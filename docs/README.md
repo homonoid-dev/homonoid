@@ -4,8 +4,9 @@ Harmonia is a cross platform design system built around continuity.
 
 This documentation defines the philosophy, principles, and long-term direction of the Harmonia ecosystem. Rather than documenting individual implementations, these documents describe the ideas that every implementation must preserve.
 
-Contents
+<br>
 
+### Contents
 - Manifesto
 - Philosophy
 - Motion

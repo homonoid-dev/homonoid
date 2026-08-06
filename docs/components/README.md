@@ -8,6 +8,9 @@ Component specifications are implementation-independent. They describe what a co
 
 Each specification serves as the source of truth for designers, developers, and contributors across the Harmonia ecosystem.
 
+<br>
+
+### Specification Standard
 Every component specification should define:
 
 - Purpose

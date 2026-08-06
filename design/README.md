@@ -16,8 +16,9 @@ Typical contents include:
 
 Every implementation within the Harmonia ecosystem should derive from the assets maintained in this directory to ensure consistency across platforms.
 
-Design Principle
+<br>
 
+### Design Principle
 Design is the source of truth.
 
 Every implementation should faithfully represent the design language defined here while respecting the capabilities and conventions of its target platform.
