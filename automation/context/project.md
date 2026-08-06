@@ -1,6 +1,6 @@
 # Project
 
-Harmonia is a cross-platform design system developed and maintained by Luminar.
+Harmonia is a cross-platform design system developed and maintained by Lumunar.
 
 The project provides a unified design language that can be implemented consistently across multiple platforms while respecting the strengths and conventions of each platform.
 
