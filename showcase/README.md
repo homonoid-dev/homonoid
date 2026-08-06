@@ -28,6 +28,7 @@ showcase/
 <br>
 
 ### components
+
 Interactive demonstrations of every Harmonia component.
 
 Each component documents its behavior, variants, states, accessibility guidance, and platform implementations.
@@ -35,26 +36,31 @@ Each component documents its behavior, variants, states, accessibility guidance,
 <br>
 
 ### motion
+
 Reference animations, interaction patterns, and motion specifications that define how interfaces preserve continuity throughout user interactions.
 
 <br>
 
 ### icons
+
 The complete Harmonia icon library with searchable previews, metadata, and usage examples.
 
 <br>
 
 ### tokens
+
 Visualization of design tokens including color, typography, spacing, elevation, radius, opacity, and other shared design primitives.
 
 <br>
 
 ### playground
+
 A live environment for experimenting with Harmonia components, themes, tokens, and interaction patterns.
 
 <br>
 
 ### comparisons
+
 Side-by-side comparisons of Harmonia implementations across Flutter, Android, iOS, and the web.
 
 This section demonstrates how each platform preserves the same design philosophy while embracing native capabilities.
@@ -62,11 +68,13 @@ This section demonstrates how each platform preserves the same design philosophy
 <br>
 
 ### docs
+
 Additional documentation covering installation, architecture, migration guides, best practices, and implementation details.
 
 <br>
 
 ### Goals
+
 - Demonstrate every Harmonia package.
 - Provide a single reference for designers and developers.
 - Showcase platform-specific implementations.

@@ -11,6 +11,7 @@ Each specification serves as the source of truth for designers, developers, and 
 <br>
 
 ### Specification Standard
+
 Every component specification should define:
 
 - Purpose

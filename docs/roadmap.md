@@ -7,6 +7,7 @@ Each milestone establishes a stronger foundation before expanding the ecosystem.
 <br>
 
 ### Version 0.x
+
 - Establish the Harmonia design language.
 - Define design tokens.
 - Build the Flutter implementation.
@@ -16,6 +17,7 @@ Each milestone establishes a stronger foundation before expanding the ecosystem.
 <br>
 
 ### Version 1.x
+
 - Stable Flutter release.
 - Harmonia Icons.
 - Harmonia Motion.
@@ -25,6 +27,7 @@ Each milestone establishes a stronger foundation before expanding the ecosystem.
 <br>
 
 ### Version 2.x
+
 - Android implementation.
 - iOS implementation.
 - Web implementation.
@@ -34,6 +37,7 @@ Each milestone establishes a stronger foundation before expanding the ecosystem.
 <br>
 
 ### Future
+
 - Figma integration.
 - Advanced theming.
 - Enterprise tooling.

@@ -7,6 +7,7 @@ This documentation defines the philosophy, principles, and long-term direction o
 <br>
 
 ### Contents
+
 - Manifesto
 - Philosophy
 - Motion

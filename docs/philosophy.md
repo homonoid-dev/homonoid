@@ -5,6 +5,7 @@ Harmonia is founded on the belief that interfaces should behave more like physic
 <br>
 
 ### Object Identity
+
 Components should preserve their identity throughout their lifetime.
 
 A button becoming a text field is not the disappearance of one component followed by the appearance of another. It is the evolution of a single object into a new state.
@@ -12,6 +13,7 @@ A button becoming a text field is not the disappearance of one component followe
 <br>
 
 ### Continuity
+
 Transitions exist to preserve understanding.
 
 Every movement should communicate how one state became another without requiring interpretation from the user.
@@ -19,6 +21,7 @@ Every movement should communicate how one state became another without requiring
 <br>
 
 ### Spatial Relationships
+
 Objects exist within a shared environment.
 
 Distance, alignment, hierarchy, and motion should reinforce relationships instead of obscuring them.
@@ -26,6 +29,7 @@ Distance, alignment, hierarchy, and motion should reinforce relationships instea
 <br>
 
 ### Platform Excellence
+
 Harmonia does not seek visual uniformity across platforms.
 
 Every implementation should embrace native capabilities while preserving the same design philosophy.
@@ -33,6 +37,7 @@ Every implementation should embrace native capabilities while preserving the sam
 <br>
 
 ### Predictability
+
 Interfaces should reward familiarity.
 
 Components should behave consistently regardless of context, allowing users to build confidence through repetition rather than memorization.
@@ -40,6 +45,7 @@ Components should behave consistently regardless of context, allowing users to b
 <br>
 
 ### Restraint
+
 Every visual decision should serve a purpose.
 
 Complexity should never exist for its own sake.
