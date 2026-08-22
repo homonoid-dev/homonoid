@@ -1,0 +1,12 @@
+name: harmonia_monorepo
+description: Monorepo workspace root for Harmonia design system.
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+workspace:
+  - packages/flutter/**
+
+dev_dependencies:
+  melos: ^8.3.0

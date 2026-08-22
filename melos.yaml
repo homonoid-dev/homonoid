@@ -1,0 +1,32 @@
+name: harmonia
+
+packages:
+  - packages/*
+  - packages/flutter/*
+  - packages/flutter/**
+  - showcase/*
+
+command:
+  version:
+    # Enable conventional commits for automated semantic versioning and changelogs
+    linkToCommits: true
+    workspaceChangelog: true
+
+scripts:
+  analyze:
+    exec: dart analyze .
+    description: Run static analysis across all workspace packages.
+
+  format:
+    exec: dart format --set-exit-if-changed .
+    description: Verify formatting across all workspace packages.
+
+  format:fix:
+    exec: dart format .
+    description: Fix formatting across all workspace packages.
+
+  test:
+    exec: flutter test
+    select-package:
+      flutter: true
+    description: Run unit and widget tests for Flutter packages.

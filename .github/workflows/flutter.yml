@@ -1,0 +1,53 @@
+name: Flutter CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/flutter/**'
+      - '.github/workflows/flutter.yml'
+      - 'melos.yaml'
+      - 'pubspec.yaml' 
+  pull_request:
+    paths:
+      - 'packages/flutter/**'
+      - '.github/workflows/flutter.yml'
+      - 'melos.yaml'
+      - 'pubspec.yaml'
+
+jobs:
+  validate:
+    name: Validate Flutter Package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Verify Flutter & Dart version
+        run: |
+          flutter --version
+          dart --version
+
+      - name: Install dependencies
+        run: flutter pub get
+        working-directory: packages/flutter
+
+      - name: Check code formatting
+        run: dart format --set-exit-if-changed .
+        working-directory: packages/flutter
+
+      - name: Static Analysis
+        run: flutter analyze
+        working-directory: packages/flutter
+
+      - name: Run Unit Tests
+        run: flutter test
+        working-directory: packages/flutter
