@@ -1,0 +1,27 @@
+name: harmonia
+description: >-
+  Harmonia is a cross-platform design system built around continuity.
+  This package provides the official Flutter implementation of Harmonia components,
+  motion controllers, design tokens, and accessibility extensions.
+version: 0.1.0-dev.1
+homepage: https://github.com/lumunar/harmonia
+repository: https://github.com/lumunar/harmonia
+issue_tracker: https://github.com/lumunar/harmonia/issues
+
+environment:
+  sdk: '>=3.11.0 <4.0.0'
+  flutter: '>=3.24.0'
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

@@ -72,7 +72,7 @@ harmonia/
 
 ### Project Status
 
-🚧 Harmonia is currently in early development.
+Harmonia is currently in early development.
 
 The first public implementation targets Flutter, followed by Android, iOS, and Web.
 
