@@ -1,13 +1,13 @@
 import type { ButtonHTMLAttributes, ReactNode, Ref } from "react";
 import type { VariantProps } from "class-variance-authority";
-import type { buttonVariants } from "./Button";
+import type { variants } from "./Button";
 
-export type ButtonVariant = NonNullable<VariantProps<typeof buttonVariants>["variant"]>;
-export type ButtonSize = NonNullable<VariantProps<typeof buttonVariants>["size"]>;
+export type ButtonVariant = NonNullable<VariantProps<typeof variants>["variant"]>;
+export type ButtonSize = NonNullable<VariantProps<typeof variants>["size"]>;
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
-  VariantProps<typeof buttonVariants> {
+  VariantProps<typeof variants> {
   /**
    * Ref forwarded to the native button element.
    */
@@ -23,10 +23,10 @@ export interface ButtonProps
   /**
    * An optional icon to display before the label.
    */
-  leadingIcon?: ReactNode;
+  leading?: ReactNode;
 
   /**
    * An optional icon to display after the label.
    */
-  trailingIcon?: ReactNode;
+  trailing?: ReactNode;
 }

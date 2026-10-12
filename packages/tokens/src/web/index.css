@@ -1,64 +1,151 @@
-:root {
-  /* Surfaces */
-  --hm-color-surface-primary: #0f172a;
-  --hm-color-surface-primary-hover: #1e293b;
-  --hm-color-surface-primary-active: #334155;
+@import "tailwindcss";
 
-  --hm-color-surface-secondary: #f1f5f9;
-  --hm-color-surface-secondary-hover: #e2e8f0;
-  --hm-color-surface-secondary-active: #cbd5e1;
+@layer base {
+  :root {
+    /*
+     * Chroma System Seed
+     * Single dynamic origin variable driving the entire Chroma palette,
+     * including auto-calibrated hover states, subtle tints, borders, and dark mode.
+     */
+    --seed: #007aff;
 
-  --hm-color-surface-ghost-hover: rgba(15, 23, 42, 0.06);
-  --hm-color-surface-ghost-active: rgba(15, 23, 42, 0.12);
+    /* Chroma Auto-Derived Palette (Light Mode) */
+    --primary: var(--seed);
+    --primary-hover: color-mix(in srgb, var(--seed) 85%, black);
+    --primary-foreground: #ffffff;
+    --primary-subtle: color-mix(in srgb, var(--seed) 12%, white);
+    --primary-border: color-mix(in srgb, var(--seed) 28%, white);
 
-  --hm-color-surface-destructive: #dc2626;
-  --hm-color-surface-destructive-hover: #b91c1c;
-  --hm-color-surface-destructive-active: #991b1b;
+    /* Pure Neutral Surfaces & Typography (Light Mode) */
+    --background: #ffffff;
+    --foreground: #171717;
+    --muted: #737373;
+    --surface: #fafafa;
+    --surface-active: color-mix(in srgb, var(--primary) 8%, white);
+    --surface-hover: #f5f5f5;
+    --border: #e5e5e5;
 
-  /* Content */
-  --hm-color-content-on-primary: #ffffff;
-  --hm-color-content-primary: #0f172a;
-  --hm-color-content-secondary: #475569;
-  --hm-color-content-destructive: #ffffff;
-  --hm-color-content-disabled: #94a3b8;
+    /* Semantic Status & Destructive */
+    --destructive: hsl(0 72% 51%);
+    --destructive-hover: hsl(0 72% 45%);
+    --destructive-foreground: #ffffff;
+    --destructive-subtle: hsl(0 85% 96%);
+    --destructive-border: hsl(0 80% 88%);
 
-  /* Borders */
-  --hm-color-border-subtle: #e2e8f0;
-  --hm-color-border-strong: #94a3b8;
+    /*
+     * Chroma Spatial System
+     * Hierarchy: Control (8-12px) < Surface (16-24px) < Layout (24-32px)
+     * Maps to:   p-*, px-*, gap-*, h-*
+     */
+    --h-control-sm: 2.0rem;
+    --h-control-md: 2.5rem;
+    --h-control-lg: 3.0rem;
+    --p-control-x: 1.0rem;
+    --p-control-y: 0.75rem;
+    --gap-control: 0.4rem;
+    --p-surface: 1.5rem;
+    --gap-surface: 1.0rem;
+    --p-layout: clamp(1.25rem, 3vw, 2.0rem);
+    --p-layout-x: var(--p-layout);
+    --p-layout-y: var(--p-layout);
+    --gap-layout: 1.5rem;
 
-  /* Focus Ring */
-  --hm-color-focus-ring: #2563eb;
+    /* Motion */
+    --motion-duration-fast: 150ms;
+    --motion-duration-normal: 200ms;
+    --motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+    --motion-press-scale: 0.98;
+  }
 
-  /* Radii */
-  --hm-radius-sm: 6px;
-  --hm-radius-md: 8px;
-  --hm-radius-lg: 12px;
-  --hm-radius-full: 9999px;
+  /* Chroma Auto-Derived Palette (Dark Mode) */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: color-mix(in srgb, var(--seed) 88%, white);
+      --primary-hover: color-mix(in srgb, var(--seed) 72%, white);
+      --primary-foreground: #ffffff;
+      --primary-subtle: color-mix(in srgb, var(--seed) 22%, transparent);
+      --primary-border: color-mix(in srgb, var(--seed) 28%, transparent);
 
-  /* Spacing */
-  --hm-space-1: 4px;
-  --hm-space-2: 8px;
-  --hm-space-3: 12px;
-  --hm-space-4: 16px;
-  --hm-space-5: 20px;
-  --hm-space-6: 24px;
+      --background: #000000;
+      --foreground: #ededed;
+      --muted: #a3a3a3;
+      --surface: #121212;
+      --surface-active: color-mix(in srgb, var(--seed) 18%, transparent);
+      --surface-hover: #1c1c1c;
+      --border: #262626;
 
-  /* Button Dimensions */
-  --hm-button-height-sm: 32px;
-  --hm-button-height-md: 40px;
-  --hm-button-height-lg: 48px;
+      --destructive: hsl(0 70% 55%);
+      --destructive-hover: hsl(0 70% 62%);
+      --destructive-foreground: #ffffff;
+      --destructive-subtle: hsl(0 70% 55% / 0.16);
+      --destructive-border: hsl(0 70% 55% / 0.28);
+    }
+  }
 
-  --hm-button-padding-x-sm: 12px;
-  --hm-button-padding-x-md: 16px;
-  --hm-button-padding-x-lg: 20px;
+  .dark {
+    --primary: color-mix(in srgb, var(--seed) 88%, white);
+    --primary-hover: color-mix(in srgb, var(--seed) 72%, white);
+    --primary-foreground: #ffffff;
+    --primary-subtle: color-mix(in srgb, var(--seed) 16%, transparent);
+    --primary-border: color-mix(in srgb, var(--seed) 28%, transparent);
 
-  --hm-button-gap-sm: 6px;
-  --hm-button-gap-md: 8px;
-  --hm-button-gap-lg: 10px;
+    --background: #000000;
+    --foreground: #ededed;
+    --muted: #a3a3a3;
+    --surface: #121212;
+    --surface-active: color-mix(in srgb, var(--seed) 18%, transparent);
+    --surface-hover: #1c1c1c;
+    --border: #262626;
 
-  /* Motion */
-  --hm-motion-duration-fast: 150ms;
-  --hm-motion-duration-normal: 200ms;
-  --hm-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
-  --hm-motion-press-scale: 0.98;
+    --destructive: hsl(0 70% 55%);
+    --destructive-hover: hsl(0 70% 62%);
+    --destructive-foreground: #ffffff;
+    --destructive-subtle: hsl(0 70% 55% / 0.16);
+    --destructive-border: hsl(0 70% 55% / 0.28);
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-active: var(--surface-active);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-subtle: var(--primary-subtle);
+  --color-primary-border: var(--primary-border);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-hover: var(--destructive-hover);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-subtle: var(--destructive-subtle);
+  --color-destructive-border: var(--destructive-border);
+
+  /* Control Heights & Frame Heights */
+  --spacing-control-sm: var(--h-control-sm);
+  --spacing-control-md: var(--h-control-md);
+  --spacing-control: var(--h-control-md);
+  --spacing-control-lg: var(--h-control-lg);
+
+  /* Semantic Insets & Gutters */
+  --spacing-control-x: var(--p-control-x);
+  --spacing-control-y: var(--p-control-y);
+  --spacing-control-gap: var(--gap-control);
+
+  --spacing-surface: var(--p-surface);
+  --spacing-surface-gap: var(--gap-surface);
+
+  --spacing-layout: var(--p-layout);
+  --spacing-layout-x: var(--p-layout-x);
+  --spacing-layout-y: var(--p-layout-y);
+  --spacing-layout-gap: var(--gap-layout);
+}
+
+@utility focus-ring {
+  @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/50;
 }

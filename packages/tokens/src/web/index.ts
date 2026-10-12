@@ -1,42 +1,43 @@
 export const webTokens = {
-  color: {
-    surface: {
-      primary: "var(--hm-color-surface-primary)",
-      primaryHover: "var(--hm-color-surface-primary-hover)",
-      primaryActive: "var(--hm-color-surface-primary-active)",
-      secondary: "var(--hm-color-surface-secondary)",
-      secondaryHover: "var(--hm-color-surface-secondary-hover)",
-      secondaryActive: "var(--hm-color-surface-secondary-active)",
-      ghostHover: "var(--hm-color-surface-ghost-hover)",
-      ghostActive: "var(--hm-color-surface-ghost-active)",
-      destructive: "var(--hm-color-surface-destructive)",
-      destructiveHover: "var(--hm-color-surface-destructive-hover)",
-      destructiveActive: "var(--hm-color-surface-destructive-active)"
-    },
-    content: {
-      onPrimary: "var(--hm-color-content-on-primary)",
-      primary: "var(--hm-color-content-primary)",
-      secondary: "var(--hm-color-content-secondary)",
-      destructive: "var(--hm-color-content-destructive)",
-      disabled: "var(--hm-color-content-disabled)"
-    },
-    border: {
-      subtle: "var(--hm-color-border-subtle)",
-      strong: "var(--hm-color-border-strong)"
-    },
-    focusRing: "var(--hm-color-focus-ring)"
+  seed: {
+    "seed": "var(--seed)"
   },
-  radius: {
-    sm: "var(--hm-radius-sm)",
-    md: "var(--hm-radius-md)",
-    lg: "var(--hm-radius-lg)",
-    full: "var(--hm-radius-full)"
+  color: {
+    primary: "var(--primary)",
+    "primary-hover": "var(--primary-hover)",
+    "primary-foreground": "var(--primary-foreground)",
+    "primary-subtle": "var(--primary-subtle)",
+    "primary-border": "var(--primary-border)",
+    background: "var(--background)",
+    foreground: "var(--foreground)",
+    muted: "var(--muted)",
+    surface: "var(--surface)",
+    "surface-active": "var(--surface-active)",
+    "surface-hover": "var(--surface-hover)",
+    border: "var(--border)",
+    destructive: "var(--destructive)",
+    "destructive-hover": "var(--destructive-hover)",
+    "destructive-foreground": "var(--destructive-foreground)",
+    "destructive-subtle": "var(--destructive-subtle)",
+    "destructive-border": "var(--destructive-border)"
+  },
+  spacing: {
+    "h-control-sm": "var(--h-control-sm)",
+    "h-control-md": "var(--h-control-md)",
+    "h-control-lg": "var(--h-control-lg)",
+    "p-control-x": "var(--p-control-x)",
+    "p-control-y": "var(--p-control-y)",
+    "gap-control": "var(--gap-control)",
+    "p-surface": "var(--p-surface)",
+    "gap-surface": "var(--gap-surface)",
+    "p-layout": "var(--p-layout)",
+    "gap-layout": "var(--gap-layout)"
   },
   motion: {
-    durationFast: "var(--hm-motion-duration-fast)",
-    durationNormal: "var(--hm-motion-duration-normal)",
-    easingStandard: "var(--hm-motion-easing-standard)",
-    pressScale: "var(--hm-motion-press-scale)"
+    "duration-fast": "var(--motion-duration-fast)",
+    "duration-normal": "var(--motion-duration-normal)",
+    "easing-standard": "var(--motion-easing-standard)",
+    "press-scale": "var(--motion-press-scale)"
   }
 } as const;
 

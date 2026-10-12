@@ -3,24 +3,24 @@ import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import type { ButtonProps } from "./types";
 
-export const buttonVariants = cva(
-  "relative inline-flex items-center justify-center select-none font-medium outline-none transition-all duration-[var(--hm-motion-duration-fast)] ease-[var(--hm-motion-easing-standard)] active:scale-[var(--hm-motion-press-scale)] focus-visible:ring-2 focus-visible:ring-[var(--hm-color-focus-ring)] focus-visible:ring-offset-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none disabled:active:scale-100",
+export const variants = cva(
+  "relative inline-flex items-center justify-center select-none font-medium transition-all duration-[var(--motion-duration-fast)] ease-[var(--motion-easing-standard)] active:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none disabled:active:scale-100",
   {
     variants: {
       variant: {
         primary:
-          "bg-[var(--hm-color-surface-primary)] text-[var(--hm-color-content-on-primary)] hover:bg-[var(--hm-color-surface-primary-hover)] active:bg-[var(--hm-color-surface-primary-active)]",
+          "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-hover",
         secondary:
-          "bg-[var(--hm-color-surface-secondary)] text-[var(--hm-color-content-primary)] border border-[var(--hm-color-border-subtle)] hover:bg-[var(--hm-color-surface-secondary-hover)] active:bg-[var(--hm-color-surface-secondary-active)]",
+          "bg-surface text-foreground border border-border hover:bg-surface-hover active:bg-surface-active",
         ghost:
-          "bg-transparent text-[var(--hm-color-content-primary)] hover:bg-[var(--hm-color-surface-ghost-hover)] active:bg-[var(--hm-color-surface-ghost-active)]",
+          "bg-transparent text-foreground hover:bg-surface-hover active:bg-surface-active",
         destructive:
-          "bg-[var(--hm-color-surface-destructive)] text-[var(--hm-color-content-destructive)] hover:bg-[var(--hm-color-surface-destructive-hover)] active:bg-[var(--hm-color-surface-destructive-active)]"
+          "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-hover"
       },
       size: {
-        sm: "h-[var(--hm-button-height-sm)] px-[var(--hm-button-padding-x-sm)] text-sm gap-[var(--hm-button-gap-sm)] rounded-[var(--hm-radius-sm)]",
-        md: "h-[var(--hm-button-height-md)] px-[var(--hm-button-padding-x-md)] text-sm font-medium gap-[var(--hm-button-gap-md)] rounded-[var(--hm-radius-md)]",
-        lg: "h-[var(--hm-button-height-lg)] px-[var(--hm-button-padding-x-lg)] text-base font-medium gap-[var(--hm-button-gap-lg)] rounded-[var(--hm-radius-lg)]"
+        sm: "h-control-sm px-3 text-sm gap-control-gap rounded-md",
+        md: "h-control-md px-control-x text-sm font-medium gap-control-gap rounded-md",
+        lg: "h-control-lg px-5 text-base font-medium gap-control-gap rounded-lg"
       }
     },
     defaultVariants: {
@@ -63,8 +63,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     size,
     loading = false,
     disabled = false,
-    leadingIcon,
-    trailingIcon,
+    leading,
+    trailing,
     children,
     className,
     type = "button",
@@ -81,25 +81,24 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       disabled={isDisabled}
       aria-busy={loading}
       aria-disabled={isDisabled}
-      className={cn(buttonVariants({ variant, size }), className)}
+      className={cn(variants({ variant, size }), className)}
       {...props}
     >
       {/* Loading Overlay with Object Continuity */}
       {loading && (
-        <span className="absolute inset-0 flex items-center justify-center transition-opacity duration-[var(--hm-motion-duration-fast)]">
+        <span className="absolute inset-0 flex items-center justify-center transition-opacity duration-[var(--motion-duration-fast)]">
           <LoadingSpinner size={size} />
         </span>
       )}
 
       {/* Button Content (preserved during loading to prevent dimensional collapse) */}
       <span
-        className={`inline-flex items-center gap-[inherit] transition-opacity duration-[var(--hm-motion-duration-fast)] ${
-          loading ? "opacity-0" : "opacity-100"
-        }`}
+        className={`inline-flex items-center gap-[inherit] transition-opacity duration-[var(--motion-duration-fast)] ${loading ? "opacity-0" : "opacity-100"
+          }`}
       >
-        {leadingIcon && <span className="inline-flex shrink-0">{leadingIcon}</span>}
+        {leading && <span className="inline-flex shrink-0">{leading}</span>}
         {children && <span>{children}</span>}
-        {trailingIcon && <span className="inline-flex shrink-0">{trailingIcon}</span>}
+        {trailing && <span className="inline-flex shrink-0">{trailing}</span>}
       </span>
     </button>
   );
