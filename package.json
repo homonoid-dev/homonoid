@@ -7,6 +7,7 @@
     "showcase"
   ],
   "scripts": {
+    "setup:showcase": "node tools/setup-harmonia.mjs showcase",
     "dev": "npm run dev --workspace=showcase",
     "build": "npm run build --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
