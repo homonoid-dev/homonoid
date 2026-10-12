@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@harmonia/web";
+import { Plus } from "lucide-react";
 
 export default function Page() {
   const [loading, setLoading] = useState(false);
@@ -43,6 +44,7 @@ export default function Page() {
 
       {/* Shapes */}
       <div className="flex items-center gap-4">
+        <Button shape="circle" layout="icon"><Plus /></Button>
         <Button shape="circle">Circle / Pill</Button>
         <Button shape="square">Square</Button>
       </div>

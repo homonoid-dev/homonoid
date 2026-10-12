@@ -5,7 +5,7 @@ import { any } from "../../utils/condition";
 import type { ButtonProps } from "./types";
 
 export const variants = cva(
-  "relative inline-flex items-center justify-center select-none font-medium transition-all duration-[var(--motion-duration-fast)] ease-[var(--motion-easing-standard)] active:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none disabled:active:scale-100",
+  "relative inline-flex items-center justify-center select-none font-medium transform-gpu origin-center transition-[color,background-color,border-color,opacity,box-shadow,transform] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing-standard)] active:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none disabled:active:scale-100",
   {
     variants: {
       variant: {
