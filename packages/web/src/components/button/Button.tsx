@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
+import { any } from "../../utils/condition";
 import type { ButtonProps } from "./types";
 
 export const variants = cva(
@@ -8,17 +9,13 @@ export const variants = cva(
   {
     variants: {
       variant: {
-        primary:
-          "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-hover",
-        secondary:
-          "bg-surface text-foreground border border-border hover:bg-surface-hover active:bg-surface-active",
-        ghost:
-          "bg-transparent text-foreground hover:bg-surface-hover active:bg-surface-active",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-hover"
+        primary: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-hover",
+        secondary: "bg-surface text-foreground border border-border hover:bg-surface-hover active:bg-surface-active",
+        ghost: "bg-transparent text-foreground hover:bg-surface-hover active:bg-surface-active",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-hover"
       },
       size: {
-        sm: "h-control-sm px-3 text-sm gap-control-gap rounded-md",
+        sm: "h-control-sm px-3 text-sm gap-control-gap rounded-sm",
         md: "h-control-md px-control-x text-sm font-medium gap-control-gap rounded-md",
         lg: "h-control-lg px-5 text-base font-medium gap-control-gap rounded-lg"
       }
@@ -72,7 +69,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   },
   ref
 ) {
-  const isDisabled = disabled || loading;
+  const isDisabled = any(disabled, loading);
 
   return (
     <button
