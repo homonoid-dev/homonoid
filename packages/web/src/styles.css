@@ -1,0 +1,33 @@
+@import "@harmonia/tokens/css";
+
+@theme {
+  --color-surface-primary: var(--hm-color-surface-primary);
+  --color-surface-primary-hover: var(--hm-color-surface-primary-hover);
+  --color-surface-primary-active: var(--hm-color-surface-primary-active);
+
+  --color-surface-secondary: var(--hm-color-surface-secondary);
+  --color-surface-secondary-hover: var(--hm-color-surface-secondary-hover);
+  --color-surface-secondary-active: var(--hm-color-surface-secondary-active);
+
+  --color-surface-ghost-hover: var(--hm-color-surface-ghost-hover);
+  --color-surface-ghost-active: var(--hm-color-surface-ghost-active);
+
+  --color-surface-destructive: var(--hm-color-surface-destructive);
+  --color-surface-destructive-hover: var(--hm-color-surface-destructive-hover);
+  --color-surface-destructive-active: var(--hm-color-surface-destructive-active);
+
+  --color-content-on-primary: var(--hm-color-content-on-primary);
+  --color-content-primary: var(--hm-color-content-primary);
+  --color-content-secondary: var(--hm-color-content-secondary);
+  --color-content-destructive: var(--hm-color-content-destructive);
+  --color-content-disabled: var(--hm-color-content-disabled);
+
+  --color-border-subtle: var(--hm-color-border-subtle);
+  --color-border-strong: var(--hm-color-border-strong);
+  --color-focus-ring: var(--hm-color-focus-ring);
+
+  --radius-sm: var(--hm-radius-sm);
+  --radius-md: var(--hm-radius-md);
+  --radius-lg: var(--hm-radius-lg);
+  --radius-full: var(--hm-radius-full);
+}

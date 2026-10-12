@@ -1,0 +1,64 @@
+:root {
+  /* Surfaces */
+  --hm-color-surface-primary: #0f172a;
+  --hm-color-surface-primary-hover: #1e293b;
+  --hm-color-surface-primary-active: #334155;
+
+  --hm-color-surface-secondary: #f1f5f9;
+  --hm-color-surface-secondary-hover: #e2e8f0;
+  --hm-color-surface-secondary-active: #cbd5e1;
+
+  --hm-color-surface-ghost-hover: rgba(15, 23, 42, 0.06);
+  --hm-color-surface-ghost-active: rgba(15, 23, 42, 0.12);
+
+  --hm-color-surface-destructive: #dc2626;
+  --hm-color-surface-destructive-hover: #b91c1c;
+  --hm-color-surface-destructive-active: #991b1b;
+
+  /* Content */
+  --hm-color-content-on-primary: #ffffff;
+  --hm-color-content-primary: #0f172a;
+  --hm-color-content-secondary: #475569;
+  --hm-color-content-destructive: #ffffff;
+  --hm-color-content-disabled: #94a3b8;
+
+  /* Borders */
+  --hm-color-border-subtle: #e2e8f0;
+  --hm-color-border-strong: #94a3b8;
+
+  /* Focus Ring */
+  --hm-color-focus-ring: #2563eb;
+
+  /* Radii */
+  --hm-radius-sm: 6px;
+  --hm-radius-md: 8px;
+  --hm-radius-lg: 12px;
+  --hm-radius-full: 9999px;
+
+  /* Spacing */
+  --hm-space-1: 4px;
+  --hm-space-2: 8px;
+  --hm-space-3: 12px;
+  --hm-space-4: 16px;
+  --hm-space-5: 20px;
+  --hm-space-6: 24px;
+
+  /* Button Dimensions */
+  --hm-button-height-sm: 32px;
+  --hm-button-height-md: 40px;
+  --hm-button-height-lg: 48px;
+
+  --hm-button-padding-x-sm: 12px;
+  --hm-button-padding-x-md: 16px;
+  --hm-button-padding-x-lg: 20px;
+
+  --hm-button-gap-sm: 6px;
+  --hm-button-gap-md: 8px;
+  --hm-button-gap-lg: 10px;
+
+  /* Motion */
+  --hm-motion-duration-fast: 150ms;
+  --hm-motion-duration-normal: 200ms;
+  --hm-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --hm-motion-press-scale: 0.98;
+}

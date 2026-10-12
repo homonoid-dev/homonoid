@@ -1,0 +1,29 @@
+{
+  "surface": {
+    "primary": "#0f172a",
+    "primaryHover": "#1e293b",
+    "primaryActive": "#334155",
+    "secondary": "#f1f5f9",
+    "secondaryHover": "#e2e8f0",
+    "secondaryActive": "#cbd5e1",
+    "ghostHover": "rgba(15, 23, 42, 0.06)",
+    "ghostActive": "rgba(15, 23, 42, 0.12)",
+    "destructive": "#dc2626",
+    "destructiveHover": "#b91c1c",
+    "destructiveActive": "#991b1b"
+  },
+  "content": {
+    "onPrimary": "#ffffff",
+    "primary": "#0f172a",
+    "secondary": "#475569",
+    "destructive": "#ffffff",
+    "disabled": "#94a3b8"
+  },
+  "border": {
+    "subtle": "#e2e8f0",
+    "strong": "#94a3b8"
+  },
+  "focus": {
+    "ring": "#2563eb"
+  }
+}

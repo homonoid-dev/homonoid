@@ -1,0 +1,17 @@
+{
+  "name": "harmonia-monorepo",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "showcase"
+  ],
+  "scripts": {
+    "build": "pnpm --filter \"@harmonia/*\" run build",
+    "lint": "pnpm --filter \"@harmonia/*\" run lint",
+    "test": "pnpm --filter \"@harmonia/*\" run test"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}
