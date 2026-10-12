@@ -12,10 +12,10 @@ Platform implementations should provide native experiences while preserving the 
 
 ```text
 packages/
+├── web/
 ├── flutter/
 ├── android/
 ├── ios/
-├── web/
 ├── icons/
 ├── motion/
 └── tokens/
@@ -24,6 +24,12 @@ packages/
 <br>
 
 ### Package Overview
+
+<br>
+
+### web
+
+The web implementation for modern browsers and web frameworks.
 
 <br>
 
@@ -42,12 +48,6 @@ The Android implementation built using Jetpack Compose.
 ### ios
 
 The iOS implementation built using SwiftUI.
-
-<br>
-
-### web
-
-The web implementation for modern browsers and web frameworks.
 
 <br>
 

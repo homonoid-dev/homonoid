@@ -61,7 +61,7 @@ A live environment for experimenting with Harmonia components, themes, tokens, a
 
 ### comparisons
 
-Side-by-side comparisons of Harmonia implementations across Flutter, Android, iOS, and the web.
+Side-by-side comparisons of Harmonia implementations across the web, Flutter, Android, and iOS.
 
 This section demonstrates how each platform preserves the same design philosophy while embracing native capabilities.
 

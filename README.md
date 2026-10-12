@@ -24,10 +24,10 @@ Maintain consistency without sacrificing platform excellence.
 
 ### Supported Platforms
 
+- Web
 - Flutter
 - Android (Jetpack Compose)
 - iOS
-- Web
 
 <br>
 
@@ -74,7 +74,7 @@ harmonia/
 
 🚧 Harmonia is currently in early development.
 
-The first public implementation targets Flutter, followed by Android, iOS, and Web.
+The first public implementation targets Web, followed by Flutter, Android, and iOS.
 
 <br>
 
