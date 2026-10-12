@@ -25,7 +25,7 @@ The web implementation and showcase ecosystem use the following standard toolcha
 - Styling: Tailwind CSS v4.3.3
 - Language: TypeScript with strict mode enabled
 - Documentation and Showcase: Next.js (App Router)
-- Package Manager: `pnpm`
+- Package Manager: npm
 
 <br>
 

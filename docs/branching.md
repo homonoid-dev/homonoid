@@ -86,7 +86,7 @@ chore/<task>
 
 Examples:
 
-- `chore/update-pnpm-workspaces`
+- `chore/update-npm-workspaces`
 - `chore/validate-repository-rules`
 
 <br>

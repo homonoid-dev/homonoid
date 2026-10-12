@@ -1,82 +1,36 @@
-# Showcase
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-The Harmonia Showcase is the reference implementation of the Harmonia design language.
+## Getting Started
 
-It provides an interactive environment for exploring components, motion, design tokens, icons, and platform-specific implementations. Rather than serving as documentation alone, the Showcase demonstrates how Harmonia behaves across supported platforms.
+First, run the development server:
 
-Every component showcased here is implemented using the corresponding Harmonia package.
-
-<br>
-
-### Structure
-
-```text
-showcase/
-├── components/
-├── motion/
-├── icons/
-├── tokens/
-├── playground/
-├── comparisons/
-└── docs/
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-<br>
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Directory Overview
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-<br>
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-### components
+## Learn More
 
-Interactive demonstrations of every Harmonia component.
+To learn more about Next.js, take a look at the following resources:
 
-Each component documents its behavior, variants, states, accessibility guidance, and platform implementations.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-<br>
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-### motion
+## Deploy on Vercel
 
-Reference animations, interaction patterns, and motion specifications that define how interfaces preserve continuity throughout user interactions.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-<br>
-
-### icons
-
-The complete Harmonia icon library with searchable previews, metadata, and usage examples.
-
-<br>
-
-### tokens
-
-Visualization of design tokens including color, typography, spacing, elevation, radius, opacity, and other shared design primitives.
-
-<br>
-
-### playground
-
-A live environment for experimenting with Harmonia components, themes, tokens, and interaction patterns.
-
-<br>
-
-### comparisons
-
-Side-by-side comparisons of Harmonia implementations across the web, Flutter, Android, and iOS.
-
-This section demonstrates how each platform preserves the same design philosophy while embracing native capabilities.
-
-<br>
-
-### docs
-
-Additional documentation covering installation, architecture, migration guides, best practices, and implementation details.
-
-<br>
-
-### Goals
-
-- Demonstrate every Harmonia package.
-- Provide a single reference for designers and developers.
-- Showcase platform-specific implementations.
-- Validate consistency across supported platforms.
-- Serve as the public home of the Harmonia ecosystem.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
