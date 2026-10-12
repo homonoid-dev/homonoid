@@ -23,6 +23,9 @@ export default function Page() {
         <Button variant="secondary" loading={loading}>
           Secondary
         </Button>
+        <Button variant="outline" loading={loading}>
+          Outline
+        </Button>
         <Button variant="ghost" loading={loading}>
           Ghost
         </Button>

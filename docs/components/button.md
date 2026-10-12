@@ -48,12 +48,13 @@ Buttons adapt to their content while maintaining consistent vertical cadence and
 
 ### Variants
 
-Harmonia defines four primary button variants to express hierarchy:
+Harmonia defines five button variants to express visual hierarchy:
 
-- `Primary`: High-emphasis button used for the primary action on a screen or within a section. Should appear sparingly.
-- `Secondary`: Medium-emphasis button with an outlined or subdued surface, used for alternative actions.
+- `Primary`: High-emphasis button using solid primary tokens for the main call to action.
+- `Secondary`: Medium-high emphasis button using a subtle tinted surface (`bg-subtle text-subtle-foreground`), providing soft visual weight.
+- `Outline`: Medium-emphasis button with an explicit hairline stroke (`border border-border`), ideal for auxiliary actions against content cards.
 - `Ghost`: Low-emphasis button without a solid background at rest, used for subtle or tertiary actions.
-- `Destructive`: Specialized high- or medium-emphasis variant using warning tokens for actions that cause irreversible data changes.
+- `Destructive`: Specialized high-emphasis variant using warning tokens for actions that cause irreversible data changes.
 
 <br>
 

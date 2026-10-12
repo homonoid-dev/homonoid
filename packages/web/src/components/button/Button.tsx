@@ -9,10 +9,11 @@ export const variants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-hover",
-        secondary: "bg-surface text-foreground border border-border hover:bg-surface-hover active:bg-surface-active",
-        ghost: "bg-transparent text-foreground hover:bg-surface-hover active:bg-surface-active",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-hover"
+        primary: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active",
+        secondary: "bg-subtle text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active",
+        outline: "bg-transparent text-foreground border border-border hover:bg-surface active:bg-surface-hover",
+        ghost: "bg-transparent text-foreground hover:bg-surface active:bg-surface-hover",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-active"
       },
       size: {
         sm: "h-control-sm px-3 text-sm gap-control-gap rounded-sm",

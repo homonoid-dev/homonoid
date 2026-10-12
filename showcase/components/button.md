@@ -20,10 +20,11 @@ export function Example() {
 
 ### Variants
 
-Harmonia provides four button variants to establish clear visual hierarchy within an interface:
+Harmonia provides five button variants to establish clear visual hierarchy within an interface:
 
 - `Primary`: High-emphasis action, typically one per section or modal view.
-- `Secondary`: Standard actions with subtle borders and neutral background.
+- `Secondary`: Soft tinted action with a subtle surface background and no borders.
+- `Outline`: Neutral stroked action with an explicit border and transparent resting state.
 - `Ghost`: Minimal emphasis without background fill at rest.
 - `Destructive`: High-contrast warning action indicating destructive operations.
 
@@ -31,6 +32,7 @@ Harmonia provides four button variants to establish clear visual hierarchy withi
 <div className="flex gap-3">
   <Button variant="primary">Primary</Button>
   <Button variant="secondary">Secondary</Button>
+  <Button variant="outline">Outline</Button>
   <Button variant="ghost">Ghost</Button>
   <Button variant="destructive">Delete</Button>
 </div>
