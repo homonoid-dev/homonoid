@@ -12,6 +12,7 @@ This documentation defines the philosophy, principles, and long-term direction o
 - Philosophy
 - Motion
 - Roadmap
+- Branching
 
 Every platform implementation is expected to follow these specifications while embracing the strengths of its native ecosystem.
 
