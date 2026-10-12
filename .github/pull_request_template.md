@@ -9,7 +9,7 @@ Describe the changes proposed in this pull request and the context behind them.
 - [ ] Added or updated implementation
 - [ ] Added or updated documentation
 - [ ] Added or updated tests
-- [ ] Verified accessibility (a11y)
+- [ ] Verified accessibility
 
 <br>
 
