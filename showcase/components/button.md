@@ -56,6 +56,39 @@ Buttons support three sizes designed around standardized 8px geometric increment
 
 <br>
 
+### Shapes
+
+Buttons support three silhouette shapes:
+
+- `Default`: Follows standard semantic radius (`rounded-sm`, `rounded-md`, or `rounded-lg`).
+- `Pill`: Full stadium curvature (`rounded-full`).
+- `Square`: Sharp rectangular edges (`rounded-none`).
+
+```tsx
+<div className="flex items-center gap-3">
+  <Button shape="default">Default</Button>
+  <Button shape="pill">Pill Shape</Button>
+  <Button shape="square">Square</Button>
+</div>
+```
+
+<br>
+
+### Layouts
+
+Buttons adapt their spatial behavior to their surrounding layout:
+
+- `Inline`: Auto-width hugging content (default).
+- `Full`: Expands to full container width (`w-full`).
+- `Icon`: 1:1 Aspect ratio for icon-only action triggers.
+
+```tsx
+<Button layout="full">Full Width Action</Button>
+<Button layout="icon" shape="pill"><SearchIcon /></Button>
+```
+
+<br>
+
 ### Continuity in Loading State
 
 Harmonia buttons preserve container dimensions when entering asynchronous operations. The text label cross-fades with the spinner without container collapse or visual jitter.

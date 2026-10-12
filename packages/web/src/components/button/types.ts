@@ -4,6 +4,8 @@ import type { variants } from "./Button";
 
 export type ButtonVariant = NonNullable<VariantProps<typeof variants>["variant"]>;
 export type ButtonSize = NonNullable<VariantProps<typeof variants>["size"]>;
+export type ButtonShape = NonNullable<VariantProps<typeof variants>["shape"]>;
+export type ButtonLayout = NonNullable<VariantProps<typeof variants>["layout"]>;
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,

@@ -18,11 +18,21 @@ export const variants = cva(
         sm: "h-control-sm px-3 text-sm gap-control-gap rounded-sm",
         md: "h-control-md px-control-x text-sm font-medium gap-control-gap rounded-md",
         lg: "h-control-lg px-5 text-base font-medium gap-control-gap rounded-lg"
+      },
+      shape: {
+        circle: "rounded-full",
+        square: "rounded-none"
+      },
+      layout: {
+        inline: "w-auto",
+        full: "w-full flex",
+        icon: "aspect-square px-0 shrink-0"
       }
     },
     defaultVariants: {
       variant: "primary",
-      size: "md"
+      size: "md",
+      layout: "inline"
     }
   }
 );
@@ -58,6 +68,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   {
     variant,
     size,
+    shape,
+    layout,
     loading = false,
     disabled = false,
     leading,
@@ -78,7 +90,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       disabled={isDisabled}
       aria-busy={loading}
       aria-disabled={isDisabled}
-      className={cn(variants({ variant, size }), className)}
+      className={cn(variants({ variant, size, shape, layout }), className)}
       {...props}
     >
       {/* Loading Overlay with Object Continuity */}
