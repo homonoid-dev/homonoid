@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import { any } from "../../utils/condition";
+import { Spinner } from "../spinner/Spinner";
 import type { ButtonProps } from "./types";
 
 export const variants = cva(
@@ -55,33 +56,6 @@ export const variants = cva(
   }
 );
 
-function LoadingSpinner({ size = "md" }: { size?: "sm" | "md" | "lg" | null }) {
-  const dimension = size === "sm" ? "w-3.5 h-3.5" : size === "lg" ? "w-5 h-5" : "w-4 h-4";
-  return (
-    <svg
-      className={`animate-spin ${dimension} text-current`}
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        strokeWidth="3.5"
-      />
-      <path
-        className="opacity-75"
-        fill="currentColor"
-        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-      />
-    </svg>
-  );
-}
-
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
     variant,
@@ -114,7 +88,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       {/* Loading Overlay with Object Continuity */}
       {loading && (
         <span className="absolute inset-0 flex items-center justify-center transition-opacity duration-[var(--motion-duration-fast)]">
-          <LoadingSpinner size={size} />
+          <Spinner
+            size={size === "lg" ? "md" : "sm"}
+            animation="border"
+            aria-hidden="true"
+          />
         </span>
       )}
 
