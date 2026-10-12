@@ -182,10 +182,13 @@
 }
 
 @keyframes spinner-grow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(0.6);
     opacity: 0.35;
   }
+
   50% {
     transform: scale(1);
     opacity: 1;
