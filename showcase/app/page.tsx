@@ -44,7 +44,7 @@ export default function Page() {
 
       {/* Shapes */}
       <div className="flex items-center gap-4">
-        <Button shape="circle" layout="icon"><Plus /></Button>
+        <Button shape="circle" size="md" layout="icon"><Plus /></Button>
         <Button shape="circle">Circle / Pill</Button>
         <Button shape="square">Square</Button>
       </div>

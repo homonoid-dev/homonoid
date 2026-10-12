@@ -27,9 +27,26 @@ export const variants = cva(
       layout: {
         inline: "w-auto",
         full: "w-full flex",
-        icon: "aspect-square px-0 shrink-0"
+        icon: "aspect-square p-0 shrink-0"
       }
     },
+    compoundVariants: [
+      {
+        layout: "icon",
+        size: "sm",
+        className: "w-control-sm"
+      },
+      {
+        layout: "icon",
+        size: "md",
+        className: "w-control-md"
+      },
+      {
+        layout: "icon",
+        size: "lg",
+        className: "w-control-lg"
+      }
+    ],
     defaultVariants: {
       variant: "primary",
       size: "md",
