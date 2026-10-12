@@ -175,12 +175,6 @@
   @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/50;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes spinner-grow {
 
   0%,
@@ -193,10 +187,6 @@
     transform: scale(1);
     opacity: 1;
   }
-}
-
-@utility animate-spinner-border {
-  animation: spin 850ms linear infinite;
 }
 
 @utility animate-spinner-grow {
