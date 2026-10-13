@@ -1,0 +1,17 @@
+{
+  "duration": {
+    "fast": 150,
+    "normal": 200
+  },
+  "easing": {
+    "standard": [
+      0.2,
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "scale": {
+    "press": 0.95
+  }
+}

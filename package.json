@@ -1,0 +1,19 @@
+{
+  "name": "harmonia-monorepo",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "showcase"
+  ],
+  "scripts": {
+    "setup:showcase": "node tools/setup-harmonia.mjs showcase",
+    "dev": "npm run dev --workspace=showcase",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}

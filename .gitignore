@@ -79,7 +79,6 @@ coverage/
 
 # Keep lockfiles for applications and package managers.
 !package-lock.json
-!pnpm-lock.yaml
 !yarn.lock
 !showcase/**/pubspec.lock
 

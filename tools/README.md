@@ -23,6 +23,12 @@ Production packages must not depend on the tools contained in this directory.
 
 <br>
 
+### Available Tools
+
+- `setup-harmonia.mjs`: Integrates the Harmonia design system into target consumer applications (e.g. `showcase`). Links packages, configures Next.js transpilation, injects Chroma CSS tokens, and sets up Tailwind scanning. Run via `npm run setup:showcase`.
+
+<br>
+
 ### Engineering Principle
 
 Automation is preferred over repetition.

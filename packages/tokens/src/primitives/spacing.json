@@ -1,0 +1,21 @@
+{
+  "control": {
+    "height": {
+      "sm": 32,
+      "md": 40,
+      "lg": 48
+    },
+    "padding-x": 16,
+    "padding-y": 12,
+    "gap": 6.4
+  },
+  "surface": {
+    "padding": 24,
+    "gap": 16
+  },
+  "layout": {
+    "padding-min": 20,
+    "padding-max": 32,
+    "gap": 24
+  }
+}
