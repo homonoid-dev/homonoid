@@ -1,7 +1,8 @@
 import type { ButtonHTMLAttributes, ReactNode, Ref } from "react";
 import type { Size } from "../../types";
 
-export type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "destructive";
+export type ButtonVariant = "contained" | "outlined" | "plain";
+export type ButtonColor = "primary" | "subtle" | "destructive";
 export type ButtonSize = Size;
 export type ButtonShape = "circle" | "square";
 export type ButtonLayout = "inline" | "full" | "icon";
@@ -13,10 +14,22 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   ref?: Ref<HTMLButtonElement>;
 
   /**
-   * Visual style variant.
-   * @default "primary"
+   * Structural surface treatment.
+   * - `contained`: Solid background fill.
+   * - `outlined`: Transparent background with border outline.
+   * - `plain`: Flat plain text/icon button (no background, no border).
+   * @default "plain"
    */
   variant?: ButtonVariant;
+
+  /**
+   * Semantic color palette intent.
+   * - `primary`: Chroma brand primary.
+   * - `subtle`: Low-contrast neutral/secondary.
+   * - `destructive`: Red alert / danger action.
+   * @default "primary"
+   */
+  color?: ButtonColor;
 
   /**
    * Standard control scale size.

@@ -222,7 +222,8 @@ export default function Page() {
                 {(["border", "grow"] as const).map((anim) => (
                   <Button
                     key={anim}
-                    variant={activeAnimation === anim ? "primary" : "secondary"}
+                    variant={activeAnimation === anim ? "contained" : "outlined"}
+                    color={activeAnimation === anim ? "primary" : "subtle"}
                     size="sm"
                     onClick={() => setActiveAnimation(anim)}
                   >
@@ -238,7 +239,8 @@ export default function Page() {
                 {(["sm", "md", "lg"] as const).map((sz) => (
                   <Button
                     key={sz}
-                    variant={activeSize === sz ? "primary" : "secondary"}
+                    variant={activeSize === sz ? "contained" : "outlined"}
+                    color={activeSize === sz ? "primary" : "subtle"}
                     size="sm"
                     onClick={() => setActiveSize(sz)}
                   >
@@ -254,7 +256,8 @@ export default function Page() {
                 {(["primary", "subtle", "foreground", "destructive"] as const).map((col) => (
                   <Button
                     key={col}
-                    variant={activeColor === col ? "primary" : "secondary"}
+                    variant={activeColor === col ? "contained" : "outlined"}
+                    color={activeColor === col ? "primary" : "subtle"}
                     size="sm"
                     onClick={() => setActiveColor(col)}
                   >
@@ -284,43 +287,73 @@ export default function Page() {
           </p>
         </div>
 
-        {/* Button Variants */}
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <Button variant="primary" loading={loading}>
-            Primary
-          </Button>
-          <Button variant="secondary" loading={loading}>
-            Secondary
-          </Button>
-          <Button variant="outline" loading={loading}>
-            Outline
-          </Button>
-          <Button variant="ghost" loading={loading}>
-            Ghost
-          </Button>
-          <Button variant="destructive" loading={loading}>
-            Destructive
-          </Button>
+        {/* Contained Buttons */}
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-xs font-medium uppercase tracking-wider text-muted">Contained</span>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Button variant="contained" color="primary" loading={loading}>
+              Primary
+            </Button>
+            <Button variant="contained" color="subtle" loading={loading}>
+              Subtle
+            </Button>
+            <Button variant="contained" color="destructive" loading={loading}>
+              Destructive
+            </Button>
+          </div>
+        </div>
+
+        {/* Outlined Buttons */}
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-xs font-medium uppercase tracking-wider text-muted">Outlined</span>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Button variant="outlined" color="primary" loading={loading}>
+              Primary
+            </Button>
+            <Button variant="outlined" color="subtle" loading={loading}>
+              Subtle
+            </Button>
+            <Button variant="outlined" color="destructive" loading={loading}>
+              Destructive Outlined
+            </Button>
+          </div>
+        </div>
+
+        {/* Default / Plain Buttons */}
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-xs font-medium uppercase tracking-wider text-muted">Default (Plain / Ghost)</span>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Button color="primary" loading={loading}>
+              Primary Plain
+            </Button>
+            <Button color="subtle" loading={loading}>
+              Subtle Plain
+            </Button>
+            <Button color="destructive" loading={loading}>
+              Destructive Plain
+            </Button>
+          </div>
         </div>
 
         {/* Sizing Hierarchy */}
         <div className="flex items-center gap-4">
-          <Button size="sm">Small (32px)</Button>
-          <Button size="md">Medium (40px)</Button>
-          <Button size="lg">Large (48px)</Button>
+          <Button variant="contained" size="sm">Small (32px)</Button>
+          <Button variant="contained" size="md">Medium (40px)</Button>
+          <Button variant="contained" size="lg">Large (48px)</Button>
         </div>
 
         {/* Shapes */}
         <div className="flex items-center gap-4">
-          <Button shape="circle" size="md" layout="icon"><Plus /></Button>
-          <Button shape="circle">Circle / Pill</Button>
-          <Button shape="square">Square</Button>
+          <Button variant="contained" shape="circle" size="md" layout="icon"><Plus /></Button>
+          <Button variant="contained" shape="circle">Circle / Pill</Button>
+          <Button variant="contained" shape="square">Square</Button>
         </div>
 
         {/* Object Continuity Loading Toggle */}
         <div className="pt-2">
           <Button
-            variant="secondary"
+            variant="outlined"
+            color="subtle"
             size="sm"
             onClick={() => setLoading(!loading)}
           >

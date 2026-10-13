@@ -48,13 +48,21 @@ Buttons adapt to their content while maintaining consistent vertical cadence and
 
 ### Variants
 
-Harmonia defines five button variants to express visual hierarchy:
+Harmonia separates structural treatment (`variant`) from semantic color intent (`color`):
 
-- `Primary`: High-emphasis button using solid primary tokens for the main call to action.
-- `Secondary`: Medium-high emphasis button using a subtle tinted surface (`bg-subtle text-subtle-foreground`), providing soft visual weight.
-- `Outline`: Medium-emphasis button with an explicit hairline stroke (`border border-border`), ideal for auxiliary actions against content cards.
-- `Ghost`: Low-emphasis button without a solid background at rest, used for subtle or tertiary actions.
-- `Destructive`: Specialized high-emphasis variant using warning tokens for actions that cause irreversible data changes.
+- `Contained` (`variant="contained"`): High-emphasis solid surface fill, providing strong visual prominence.
+- `Outlined` (`variant="outlined"`): Medium-emphasis transparent surface with a defined 1px hairline border stroke.
+- `Default / Plain` (`variant="default"` or omitted): Low-emphasis flat button with no resting background or outline, ideal for inline toolbars and subtle utility actions.
+
+<br>
+
+### Colors
+
+Semantic color palettes apply orthogonally across all variants via the `color` prop:
+
+- `Primary` (`color="primary"`): Brand-driven Chroma primary palette for the dominant call to action.
+- `Subtle` (`color="subtle"`): Low-contrast neutral/secondary palette for auxiliary options.
+- `Destructive` (`color="destructive"`): Red alert palette signaling irreversible or dangerous operations (available in contained, outlined, and plain treatments).
 
 <br>
 
