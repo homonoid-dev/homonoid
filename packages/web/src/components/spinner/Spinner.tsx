@@ -55,7 +55,7 @@ export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>(function Spinne
 
       {animation === "border" && (
         <svg
-          className="w-full h-full animate-spin transform-gpu origin-center"
+          className="w-full h-full animate-spinner-border origin-center"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
