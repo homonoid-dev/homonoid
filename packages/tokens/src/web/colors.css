@@ -51,7 +51,7 @@
       --subtle: color-mix(in srgb, var(--seed) 18%, transparent);
       --subtle-hover: color-mix(in srgb, var(--seed) 26%, transparent);
       --subtle-active: color-mix(in srgb, var(--seed) 34%, transparent);
-      --subtle-foreground: color-mix(in srgb, var(--seed) 90%, white);
+      --subtle-foreground: color-mix(in srgb, var(--seed) 15%, white);
       --subtle-border: color-mix(in srgb, var(--seed) 30%, transparent);
 
       --background: #000000;
@@ -66,7 +66,7 @@
       --destructive-hover: hsl(0 70% 62%);
       --destructive-active: hsl(0 70% 70%);
       --destructive-foreground: #ffffff;
-      --destructive-border: hsl(0 70% 55% / 0.28);
+      --destructive-border: hsl(0 70% 55% / 0.40);
     }
   }
 
@@ -81,7 +81,7 @@
     --subtle: color-mix(in srgb, var(--seed) 18%, transparent);
     --subtle-hover: color-mix(in srgb, var(--seed) 26%, transparent);
     --subtle-active: color-mix(in srgb, var(--seed) 34%, transparent);
-    --subtle-foreground: color-mix(in srgb, var(--seed) 90%, white);
+    --subtle-foreground: color-mix(in srgb, var(--seed) 15%, white);
     --subtle-border: color-mix(in srgb, var(--seed) 30%, transparent);
 
     --background: #000000;
@@ -96,7 +96,7 @@
     --destructive-hover: hsl(0 70% 62%);
     --destructive-active: hsl(0 70% 70%);
     --destructive-foreground: #ffffff;
-    --destructive-border: hsl(0 70% 55% / 0.28);
+    --destructive-border: hsl(0 70% 55% / 0.40);
   }
 }
 

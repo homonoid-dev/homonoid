@@ -3,11 +3,6 @@
 @import "@harmonia/web/styles.css";
 @source "../../packages/web/src";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
