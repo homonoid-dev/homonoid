@@ -129,7 +129,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
     <label
       htmlFor={inputId}
       className={cn(
-        "group inline-flex items-start gap-2.5 select-none",
+        "group inline-flex items-start gap-2.5 select-none w-fit",
         iff(disabled, "cursor-not-allowed opacity-60", "cursor-pointer"),
         className
       )}
