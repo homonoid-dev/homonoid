@@ -1,0 +1,4 @@
+@utility checkbox-glyph {
+  transition: transform var(--motion-duration-fast) var(--motion-easing-standard),
+    opacity var(--motion-duration-fast) var(--motion-easing-standard);
+}

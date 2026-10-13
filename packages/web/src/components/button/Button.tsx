@@ -12,8 +12,8 @@ export const variants = cva(
       variant: {
         primary: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active",
         secondary: "bg-subtle text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active",
-        outline: "bg-transparent text-foreground border border-border hover:bg-surface active:bg-surface-hover",
-        ghost: "bg-transparent text-foreground hover:bg-surface active:bg-surface-hover",
+        outline: "bg-transparent text-foreground border border-border hover:bg-surface-hover active:bg-surface-active",
+        ghost: "bg-transparent text-foreground hover:bg-surface-hover active:bg-surface-active",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-active"
       },
       size: {
