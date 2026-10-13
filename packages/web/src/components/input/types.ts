@@ -52,29 +52,12 @@ export interface InputProps
   invalid?: boolean;
 
   /**
-   * Visual adornment placed before the text entry area (e.g., search icon or prefix).
+   * Slot rendered before the input element (e.g. prefix text, icon, or custom trigger).
    */
   leading?: ReactNode;
 
   /**
-   * Visual adornment placed after the text entry area (e.g., unit label, trailing icon).
+   * Slot rendered after the input element (e.g. suffix text, icon, custom clear button, or action).
    */
   trailing?: ReactNode;
-
-  /**
-   * Whether to display an interactive clear button when text is present.
-   * Clicking the button clears the input value and invokes `onClear`.
-   * @default false
-   */
-  clearable?: boolean;
-
-  /**
-   * Callback fired when the clear button is clicked.
-   */
-  onClear?: () => void;
-
-  /**
-   * Optional class name applied directly to the interactive input frame container.
-   */
-  containerClassName?: string;
 }

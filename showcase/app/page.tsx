@@ -228,21 +228,31 @@ export default function Page() {
 
         {/* Adornments & Clear Action */}
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Adornments & Search */}
+          {/* Leading & Trailing Composition Slots */}
           <div className="flex flex-col gap-4 p-6 rounded-xl border border-border bg-background">
-            <span className="text-xs font-medium uppercase tracking-wider text-muted">Adornments & Clear Action</span>
+            <span className="text-xs font-medium uppercase tracking-wider text-muted">Leading & Trailing Slots</span>
             <div className="flex flex-col gap-3">
               <Input
-                leading={<Search className="w-4 h-4" />}
-                clearable
+                leading={<Search className="w-4 h-4 text-muted" />}
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                onClear={() => setSearchValue("")}
+                trailing={
+                  searchValue ? (
+                    <button
+                      type="button"
+                      onClick={() => setSearchValue("")}
+                      className="text-xs font-medium text-muted hover:text-foreground cursor-pointer px-1 py-0.5 rounded-sm hover:bg-surface-active transition-[color,background-color] duration-[var(--motion-duration-fast)]"
+                      aria-label="Clear input"
+                    >
+                      Clear
+                    </button>
+                  ) : null
+                }
                 placeholder="Search components or tokens..."
-                description="Includes leading icon and animated clear trigger"
+                description="User-composed leading icon and interactive trailing clear action"
               />
               <Input
-                leading={<Mail className="w-4 h-4" />}
+                leading={<Mail className="w-4 h-4 text-muted" />}
                 placeholder="you@domain.com"
                 defaultValue="alex@harmonia.design"
                 trailing={<Check className="w-4 h-4 text-primary" />}

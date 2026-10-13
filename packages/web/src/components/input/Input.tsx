@@ -2,8 +2,6 @@ import {
   forwardRef,
   useId,
   useRef,
-  useState,
-  type ChangeEvent,
   type MouseEvent
 } from "react";
 import { cva } from "class-variance-authority";
@@ -12,13 +10,13 @@ import { iff } from "../../utils/condition";
 import type { InputProps } from "./types";
 
 export const variants = cva(
-  "relative w-full inline-flex items-center select-none transform-gpu origin-center transition-[color,background-color,border-color,box-shadow,opacity] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing-standard)]",
+  "relative w-full inline-flex items-center select-none transform-gpu origin-center transition-[color,background-color,border-color,opacity] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing-standard)]",
   {
     variants: {
       variant: {
-        outlined: "border border-border focus-within:border-primary",
-        filled: "border border-transparent bg-surface focus-within:bg-background focus-within:border-primary",
-        plain: "border border-transparent bg-transparent focus-within:bg-surface focus-within:border-transparent focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary/50"
+        outlined: "border border-border hover:border-foreground/30 focus-within:border-primary focus-within:hover:border-primary focus-within:ring-2 focus-within:ring-primary/30",
+        filled: "border border-transparent bg-surface hover:bg-surface-hover focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/30",
+        plain: "border border-transparent hover:bg-surface-hover"
       },
       size: {
         sm: "h-control-sm px-2.5 text-xs gap-2 rounded-md",
@@ -26,7 +24,7 @@ export const variants = cva(
         lg: "h-control-lg px-3.5 text-base gap-3 rounded-xl"
       },
       invalid: {
-        true: "border-destructive hover:border-destructive focus-within:border-destructive focus-within:ring-destructive/50",
+        true: " border-destructive hover:border-destructive hover:focus-within:border-destructive focus-within:border-destructive focus-within:ring-2 focus-within:ring-destructive/30",
         false: ""
       },
       disabled: {
@@ -38,14 +36,12 @@ export const variants = cva(
       {
         invalid: true,
         variant: "filled",
-        className:
-          "border-destructive hover:border-destructive focus-within:border-destructive focus-within:ring-destructive/50 bg-destructive/5"
+        className: "border-destructive focus-within:border-destructive bg-destructive/5 hover:bg-destructive/30"
       },
       {
         invalid: true,
         variant: "plain",
-        className:
-          "border-destructive hover:border-destructive focus-within:border-destructive focus-within:ring-destructive/50"
+        className: "border-destructive focus-within:border-destructive"
       }
     ],
     defaultVariants: {
@@ -68,14 +64,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     invalid = false,
     leading,
     trailing,
-    clearable = false,
-    onClear,
     disabled = false,
     className,
-    containerClassName,
-    value,
-    defaultValue,
-    onChange,
     ...props
   },
   ref
@@ -87,14 +77,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const errorId = `${inputId}-error`;
 
   const innerRef = useRef<HTMLInputElement | null>(null);
-
-  const isControlled = value !== undefined;
-  const [internalValue, setInternalValue] = useState<string | number | readonly string[]>(
-    defaultValue ?? ""
-  );
-
-  const currentValue = isControlled ? value : internalValue;
-  const hasValue = String(currentValue ?? "").length > 0;
   const isInvalid = Boolean(invalid || error);
 
   const setRefs = (element: HTMLInputElement | null) => {
@@ -107,33 +89,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     }
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!isControlled) {
-      setInternalValue(e.target.value);
-    }
-    onChange?.(e);
-  };
-
-  const handleClear = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (!isControlled) {
-      setInternalValue("");
-    }
-
-    if (innerRef.current) {
-      innerRef.current.value = "";
-      const inputEvent = new Event("input", { bubbles: true });
-      innerRef.current.dispatchEvent(inputEvent);
-      innerRef.current.focus();
-    }
-
-    onClear?.();
-  };
-
   const handleContainerClick = (e: MouseEvent<HTMLDivElement>) => {
-    if (e.target !== innerRef.current && !(e.target as HTMLElement).closest("button")) {
+    if (e.target !== innerRef.current && !(e.target as HTMLElement).closest("button, a, input")) {
       innerRef.current?.focus();
     }
   };
@@ -157,21 +114,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           invalid: isInvalid,
           disabled
         }),
-        containerClassName,
         iff(!label && !description && !error, className, undefined)
       )}
     >
-      {/* Leading Adornment */}
+      {/* Leading Slot */}
       {leading && (
-        <span
-          aria-hidden="true"
-          className={cn(
-            "inline-flex shrink-0 items-center justify-center text-muted pointer-events-none select-none",
-            iff(size === "sm", "w-3.5 h-3.5 [&>svg]:w-3.5 [&>svg]:h-3.5", undefined),
-            iff(size === "md", "w-4 h-4 [&>svg]:w-4 [&>svg]:h-4", undefined),
-            iff(size === "lg", "w-5 h-5 [&>svg]:w-5 [&>svg]:h-5", undefined)
-          )}
-        >
+        <span className="inline-flex shrink-0 items-center justify-center">
           {leading}
         </span>
       )}
@@ -180,12 +128,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       <input
         ref={setRefs}
         id={inputId}
-        value={value}
-        defaultValue={defaultValue}
         disabled={disabled}
         aria-invalid={isInvalid ? true : undefined}
         aria-describedby={finalDescribedBy}
-        onChange={handleChange}
         className={cn(
           "w-full h-full bg-transparent text-foreground placeholder:text-muted outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/20",
           iff(size === "sm", "text-xs", undefined),
@@ -195,41 +140,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         {...props}
       />
 
-      {/* Interactive Clear Button */}
-      {clearable && hasValue && !disabled && (
-        <button
-          type="button"
-          tabIndex={-1}
-          aria-label="Clear input"
-          onClick={handleClear}
-          className="inline-flex shrink-0 items-center justify-center rounded-sm p-0.5 text-muted hover:text-foreground hover:bg-surface-active transition-[color,background-color,transform] duration-[var(--motion-duration-fast)] active:scale-95 cursor-pointer focus:outline-none"
-        >
-          <svg
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-3.5 h-3.5"
-            aria-hidden="true"
-          >
-            <path d="M4 4l8 8M12 4l-8 8" />
-          </svg>
-        </button>
-      )}
-
-      {/* Trailing Adornment */}
+      {/* Trailing Slot */}
       {trailing && (
-        <span
-          aria-hidden="true"
-          className={cn(
-            "inline-flex shrink-0 items-center justify-center text-muted select-none",
-            iff(size === "sm", "w-3.5 h-3.5 [&>svg]:w-3.5 [&>svg]:h-3.5", undefined),
-            iff(size === "md", "w-4 h-4 [&>svg]:w-4 [&>svg]:h-4", undefined),
-            iff(size === "lg", "w-5 h-5 [&>svg]:w-5 [&>svg]:h-5", undefined)
-          )}
-        >
+        <span className="inline-flex shrink-0 items-center justify-center">
           {trailing}
         </span>
       )}

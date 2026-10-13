@@ -35,9 +35,8 @@ An input component consists of the following elements:
 - `Control Container`: Bounded interactive frame providing the touch target, background surface, border, and focus ring boundary.
 - `Native Input`: Standard HTML `<input>` element with transparent background and native typing behavior.
 - `Label` (Optional): Clear textual descriptor associated with the input element via accessible identifiers.
-- `Leading Adornment` (Optional): Icon or prefix visual anchor preceding text (e.g. search magnifying glass or currency symbol).
-- `Trailing Adornment` (Optional): Icon, status indicator, or unit descriptor following text.
-- `Clear Action` (Optional): Interactive dismiss button clearing text input and restoring focus.
+- `Leading Slot` (Optional): Leading composition area preceding the text entry area for user-provided icons, prefixes, or triggers.
+- `Trailing Slot` (Optional): Trailing composition area following the text entry area for user-provided icons, suffixes, status badges, or custom buttons.
 - `Description` (Optional): Helper text or format instructions positioned beneath the control container.
 - `Error Message` (Optional): Semantic validation message signaling invalid input.
 
@@ -48,9 +47,9 @@ An input component consists of the following elements:
 Inputs adapt to their parent container width while preserving fixed vertical cadence:
 
 - Full Width: Inputs expand horizontally to fill their parent container (`w-full`) by default, aligning with grid columns and form stacks.
-- Alignment: Text and adornments center vertically inside the container frame.
+- Alignment: Text and slot elements center vertically inside the container frame.
 - Padding: Internal horizontal and vertical insets scale according to the control size.
-- Adornment Spacing: Consistent spatial gap separates leading/trailing glyphs from the text field.
+- Slot Spacing: Consistent spatial gap separates leading/trailing slot content from the text field.
 
 <br>
 
@@ -80,9 +79,8 @@ Inputs communicate interactive readiness and status through distinct visual stat
 
 - `Rest`: Default inactive state waiting for interaction.
 - `Hover`: Pointer presence over the container, applying subtle border contrast enhancement (`hover:border-foreground/30`).
-- `Focus`: Active keyboard entry target, displaying the high-contrast Chroma focus ring (`focus-ring`) around the container boundary.
-- `Filled`: Input containing text value, presenting clear action triggers when clearable.
-- `Invalid / Error`: Destructive status signaling failed validation, rendering high-visibility red border and focus ring (`border-destructive`, `focus-within:ring-destructive/50`).
+- `Focus`: Active keyboard entry target, highlighting the container border with the Chroma primary color (`focus-within:border-primary`).
+- `Invalid / Error`: Destructive status signaling failed validation, rendering high-visibility red border (`border-destructive`, `focus-within:border-destructive`).
 - `Disabled`: Inactive state indicating data entry is unavailable (`opacity-50`, `cursor-not-allowed`).
 - `Read-Only`: Static informative state preventing modification while preserving readable contrast and text selection.
 
@@ -92,9 +90,9 @@ Inputs communicate interactive readiness and status through distinct visual stat
 
 Harmonia requires that state transitions preserve component identity without abrupt dimensional shifts:
 
-- Geometric Stability: The container's outer bounds (`height`, `border-radius`, `box-shadow`) remain constant when switching between rest, hover, focus, and invalid states.
-- Adornment Continuity: Introducing or dismissing a clear button or validation icon transitions smoothly within reserved container slots without causing text jump or layout shift.
-- Surface Interpolation: Color transitions for background, border, and focus ring interpolate smoothly using standard motion tokens.
+- Geometric Stability: The container's outer bounds (`height`, `border-radius`) remain constant when switching between rest, hover, focus, and invalid states.
+- Composition Continuity: Accommodating leading or trailing elements preserves container boundaries and vertical alignment without layout shift.
+- Surface Interpolation: Color transitions for background and border interpolate smoothly using standard motion tokens.
 
 <br>
 
@@ -102,9 +100,8 @@ Harmonia requires that state transitions preserve component identity without abr
 
 Motion reinforces tactile feedback and state clarity:
 
-- Duration: Focus ring and border color transitions execute over fast durations (`var(--motion-duration-fast)` = 150ms).
+- Duration: Border color transitions execute over fast durations (`var(--motion-duration-fast)` = 150ms).
 - Easing: Follows Harmonia standard easing curves (`var(--motion-easing-standard)` = cubic-bezier(0.2, 0, 0, 1)).
-- Dismiss Animation: Clear button and status adornments fade smoothly into position.
 
 <br>
 
@@ -116,7 +113,7 @@ Every input implementation must satisfy accessibility standards:
 - Accessible Labeling: Explicitly associated with `<label htmlFor={id}>` or an `aria-label` attribute when a visual label is absent.
 - Validation Feedback: Invalid inputs communicate error states programmatically using `aria-invalid="true"`.
 - Associated Descriptions: Helper text and validation error messages link to the input via `aria-describedby`.
-- Keyboard Traversal: Clear buttons and interactive adornments maintain deterministic keyboard focus order and support activation via `Enter` or `Space`.
+- Unconstrained Composition: When interactive controls are placed inside leading or trailing slots, they maintain independent keyboard focusability and ARIA annotations.
 
 <br>
 
@@ -135,8 +132,8 @@ Web implementations observe web platform standards:
 Inputs integrate closely with surrounding form components:
 
 - `Field`: Form layout primitive providing labels, descriptions, and error message slots.
-- `Button`: Coordinated actions for search submissions, password visibility toggles, or inline clearing.
-- `Spinner`: Loading indicator displayed in trailing slots during asynchronous validation or search debouncing.
+- `Button`: Adjacent submit/search buttons or custom trailing actions.
+- `Spinner`: Loading indicator displayed in trailing slots during asynchronous operations.
 
 <br>
 
