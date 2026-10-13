@@ -100,7 +100,8 @@ Every checkbox implementation must satisfy WCAG 2.2 AA accessibility standards:
 - Mixed State: Sets `aria-checked="mixed"` when indeterminate.
 - Keyboard Support: Toggleable via `Space` key; navigable via `Tab` / `Shift+Tab`.
 - Associated Label: Wrapped within a `<label>` or connected via `htmlFor` and `id` for automatic label click delegation.
-- Error Announcement: Connected to validation messages using `aria-invalid` and `aria-describedby`.
+- Unified Description: Automatically binds the supporting description element via `aria-describedby` so screen readers announce label, state, and description simultaneously upon focusing the control.
+- Error Announcement: Connected to validation messages using `aria-invalid`.
 
 <br>
 

@@ -17,9 +17,9 @@ export const variants = cva(
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-active"
       },
       size: {
-        sm: "h-control-sm px-3 text-sm gap-control-gap rounded-sm",
-        md: "h-control-md px-control-x text-sm font-medium gap-control-gap rounded-md",
-        lg: "h-control-lg px-5 text-base font-medium gap-control-gap rounded-lg"
+        sm: "h-control-sm px-3 text-sm gap-control-gap rounded-md",
+        md: "h-control-md px-control-x text-sm font-medium gap-control-gap rounded-lg",
+        lg: "h-control-lg px-5 text-base font-medium gap-control-gap rounded-xl"
       },
       shape: {
         circle: "rounded-full",

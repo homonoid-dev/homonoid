@@ -9,8 +9,8 @@ export const variants = cva(
   {
     variants: {
       size: {
-        sm: "w-4 h-4 rounded-sm",
-        md: "w-5 h-5 rounded-md",
+        sm: "w-4 h-4 rounded-md",
+        md: "w-5 h-5 rounded-lg",
         lg: "w-6 h-6 rounded-lg"
       },
       shape: {
@@ -72,6 +72,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
 ) {
   const generatedId = useId();
   const inputId = id || generatedId;
+  const labelId = `${inputId}-label`;
+  const descriptionId = `${inputId}-desc`;
   const innerRef = useRef<HTMLInputElement | null>(null);
 
   const [internalChecked, setInternalChecked] = useState(Boolean(defaultChecked));
@@ -112,6 +114,16 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
   );
 
   const hasTextContent = any(Boolean(label), Boolean(description));
+  const isStringLabel = typeof label === "string";
+  const finalAriaLabel = props["aria-label"] || (isStringLabel ? label : undefined);
+  const finalAriaLabelledBy = props["aria-labelledby"] || (!isStringLabel && Boolean(label) ? labelId : undefined);
+
+  const userDescribedBy = props["aria-describedby"];
+  const finalDescribedBy = iff(
+    Boolean(userDescribedBy),
+    iff(Boolean(description), `${userDescribedBy} ${descriptionId}`, userDescribedBy),
+    iff(Boolean(description), descriptionId, undefined)
+  );
 
   return (
     <label
@@ -131,6 +143,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           checked={isChecked}
           disabled={disabled}
           aria-invalid={invalid}
+          aria-label={finalAriaLabel}
+          aria-labelledby={finalAriaLabelledBy}
+          aria-describedby={finalDescribedBy}
           aria-checked={iff(isIndeterminate, "mixed", isChecked)}
           onChange={handleChange}
           className={cn(
@@ -206,11 +221,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
         </span>
       </span>
 
-      {/* Label and Description */}
+      {/* Label and Description - hidden from screen reader cursor buffer since announced with input */}
       {hasTextContent && (
-        <span className="flex flex-col gap-0.5">
+        <span aria-hidden="true" className="flex flex-col gap-0.5">
           {label && (
             <span
+              id={labelId}
               className={cn(
                 "font-medium text-foreground",
                 iff(size === "sm", "text-xs leading-4", iff(size === "lg", "text-base leading-6", "text-sm leading-5"))
@@ -221,6 +237,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           )}
           {description && (
             <span
+              id={descriptionId}
               className={cn(
                 "text-muted",
                 iff(size === "sm", "text-[11px] leading-tight", iff(size === "lg", "text-sm leading-tight", "text-xs leading-tight"))
