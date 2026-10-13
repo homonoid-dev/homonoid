@@ -1,8 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Checkbox, Spinner, type SpinnerAnimation, type SpinnerColor, type Size } from "@harmonia/web";
-import { Plus } from "lucide-react";
+import {
+  Button,
+  Checkbox,
+  Input,
+  Spinner,
+  type SpinnerAnimation,
+  type SpinnerColor,
+  type Size
+} from "@harmonia/web";
+import { Plus, Search, Mail, Check } from "lucide-react";
 
 export default function Page() {
   const [loading, setLoading] = useState(false);
@@ -26,6 +34,8 @@ export default function Page() {
     next[index] = !next[index];
     setItems(next);
   };
+
+  const [searchValue, setSearchValue] = useState("Harmonia design system");
 
   return (
     <main className="min-h-screen py-16 px-6 max-w-5xl mx-auto flex flex-col items-center gap-16 bg-background text-foreground">
@@ -151,6 +161,111 @@ export default function Page() {
                 description="Next.js living documentation and interaction workbench"
                 checked={items[2]}
                 onChange={() => toggleItem(2)}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Input Component Section */}
+      <section className="w-full flex flex-col items-center gap-8 p-8 rounded-2xl border border-border bg-surface">
+        <div className="flex flex-col items-center text-center gap-1.5">
+          <h2 className="text-xl font-semibold tracking-tight">Input</h2>
+          <p className="text-xs text-muted max-w-lg">
+            Direct keyboard entry with object continuity, structural variants, Chroma focus rings, and adornment slots.
+          </p>
+        </div>
+
+        {/* Structural Variants & Sizes */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Surface Variants */}
+          <div className="flex flex-col gap-4 p-6 rounded-xl border border-border bg-background">
+            <span className="text-xs font-medium uppercase tracking-wider text-muted">Variants</span>
+            <div className="flex flex-col gap-3">
+              <Input
+                variant="outlined"
+                label="Outlined (Default)"
+                placeholder="Standard bordered text field"
+                defaultValue="Harmonia Design System"
+              />
+              <Input
+                variant="filled"
+                label="Filled"
+                placeholder="Subdued tinted surface"
+                defaultValue="Filled surface treatment"
+              />
+              <Input
+                variant="plain"
+                label="Plain"
+                placeholder="Border-free utility input"
+                defaultValue="Plain text entry"
+              />
+            </div>
+          </div>
+
+          {/* Sizing Hierarchy */}
+          <div className="flex flex-col gap-4 p-6 rounded-xl border border-border bg-background">
+            <span className="text-xs font-medium uppercase tracking-wider text-muted">Sizing Scale</span>
+            <div className="flex flex-col gap-3">
+              <Input
+                size="sm"
+                label="Small Control (32px)"
+                placeholder="Compact density for toolbars and tables"
+              />
+              <Input
+                size="md"
+                label="Medium Control (40px)"
+                placeholder="Standard density for dialogs and forms"
+              />
+              <Input
+                size="lg"
+                label="Large Control (48px)"
+                placeholder="Prominent touch density for hero search"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Adornments & Clear Action */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Adornments & Search */}
+          <div className="flex flex-col gap-4 p-6 rounded-xl border border-border bg-background">
+            <span className="text-xs font-medium uppercase tracking-wider text-muted">Adornments & Clear Action</span>
+            <div className="flex flex-col gap-3">
+              <Input
+                leading={<Search className="w-4 h-4" />}
+                clearable
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                onClear={() => setSearchValue("")}
+                placeholder="Search components or tokens..."
+                description="Includes leading icon and animated clear trigger"
+              />
+              <Input
+                leading={<Mail className="w-4 h-4" />}
+                placeholder="you@domain.com"
+                defaultValue="alex@harmonia.design"
+                trailing={<Check className="w-4 h-4 text-primary" />}
+                description="Leading icon with valid trailing state indicator"
+              />
+            </div>
+          </div>
+
+          {/* Validation & States */}
+          <div className="flex flex-col gap-4 p-6 rounded-xl border border-border bg-background">
+            <span className="text-xs font-medium uppercase tracking-wider text-muted">Validation & Disabled States</span>
+            <div className="flex flex-col gap-3">
+              <Input
+                label="Email Address"
+                defaultValue="invalid-email-format"
+                invalid
+                error="Please enter a valid email address."
+              />
+              <Input
+                label="Disabled Control"
+                defaultValue="Read-only system token"
+                disabled
+                description="Interactions and text editing suppressed"
               />
             </div>
           </div>
