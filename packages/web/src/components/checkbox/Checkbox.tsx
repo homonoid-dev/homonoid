@@ -18,7 +18,7 @@ export const variants = cva(
         square: "rounded-none"
       },
       state: {
-        unchecked: "bg-surface border-border text-transparent",
+        unchecked: "border-border text-transparent",
         checked: "bg-primary border-primary text-primary-foreground",
         indeterminate: "bg-primary border-primary text-primary-foreground"
       },
