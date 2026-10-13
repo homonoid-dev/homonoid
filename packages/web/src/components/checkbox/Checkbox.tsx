@@ -5,7 +5,7 @@ import { any, all, iff } from "../../utils/condition";
 import type { CheckboxProps } from "./types";
 
 export const variants = cva(
-  "relative inline-flex items-center justify-center shrink-0 border select-none transform-gpu origin-center transition-[color,background-color,border-color,box-shadow,transform] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing-standard)] active:scale-[var(--motion-press-scale)] focus-ring",
+  "relative inline-flex items-center justify-center shrink-0 border select-none transform-gpu origin-center transition-[color,background-color,border-color,box-shadow,transform] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing-standard)] active:scale-[0.88] group-active:scale-[0.88] focus-ring",
   {
     variants: {
       size: {
@@ -23,7 +23,7 @@ export const variants = cva(
         false: ""
       },
       disabled: {
-        true: "opacity-50 cursor-not-allowed pointer-events-none active:scale-100",
+        true: "opacity-50 cursor-not-allowed pointer-events-none active:scale-100 group-active:scale-100",
         false: "cursor-pointer"
       }
     },
@@ -112,7 +112,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
     <label
       htmlFor={inputId}
       className={cn(
-        "inline-flex items-start gap-2.5 select-none",
+        "group inline-flex items-start gap-2.5 select-none",
         iff(disabled, "cursor-not-allowed opacity-60", "cursor-pointer"),
         className
       )}
@@ -154,11 +154,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           fill="none"
           aria-hidden="true"
           className={cn(
-            "w-full h-full p-0.5 checkbox-glyph transform-gpu",
+            "absolute inset-0 m-auto w-full h-full p-0.5 checkbox-glyph transform-gpu",
             iff(
               all(isChecked, !isIndeterminate),
               "scale-100 opacity-100",
-              "scale-50 opacity-0 absolute"
+              "scale-0 opacity-0 pointer-events-none"
             )
           )}
         >
@@ -177,11 +177,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           fill="none"
           aria-hidden="true"
           className={cn(
-            "w-full h-full p-0.5 checkbox-glyph transform-gpu",
+            "absolute inset-0 m-auto w-full h-full p-0.5 checkbox-glyph transform-gpu",
             iff(
               isIndeterminate,
               "scale-100 opacity-100",
-              "scale-50 opacity-0 absolute"
+              "scale-0 opacity-0 pointer-events-none"
             )
           )}
         >
@@ -196,12 +196,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
 
       {/* Label and Description */}
       {hasTextContent && (
-        <span className="flex flex-col gap-0.5 pt-px">
+        <span className="flex flex-col gap-0.5">
           {label && (
             <span
               className={cn(
-                "font-medium text-foreground leading-tight",
-                iff(size === "sm", "text-xs", iff(size === "lg", "text-base", "text-sm"))
+                "font-medium text-foreground",
+                iff(size === "sm", "text-xs leading-4", iff(size === "lg", "text-base leading-6", "text-sm leading-5"))
               )}
             >
               {label}
@@ -210,8 +210,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           {description && (
             <span
               className={cn(
-                "text-muted leading-tight",
-                iff(size === "sm", "text-[11px]", iff(size === "lg", "text-sm", "text-xs"))
+                "text-muted",
+                iff(size === "sm", "text-[11px] leading-tight", iff(size === "lg", "text-sm leading-tight", "text-xs leading-tight"))
               )}
             >
               {description}
