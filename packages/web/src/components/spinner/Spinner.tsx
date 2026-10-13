@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
-import { any, all } from "../../utils/condition";
+import { any, all, iff } from "../../utils/condition";
 import type { SpinnerProps } from "./types";
 
 export const variants = cva(
@@ -46,8 +46,8 @@ export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>(function Spinne
   return (
     <span
       ref={ref}
-      role={isHidden ? undefined : "status"}
-      aria-label={isHidden ? undefined : (ariaLabel ?? label)}
+      role={iff(isHidden, undefined, "status")}
+      aria-label={iff(isHidden, undefined, ariaLabel ?? label)}
       aria-hidden={ariaHidden}
       className={cn(variants({ size, color }), className)}
       {...props}

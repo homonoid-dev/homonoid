@@ -1,10 +1,10 @@
 import { forwardRef, useEffect, useId, useRef, useState, type ChangeEvent } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
-import { any, all } from "../../utils/condition";
+import { any, all, iff } from "../../utils/condition";
 import type { CheckboxProps } from "./types";
 
-export const boxVariants = cva(
+export const variants = cva(
   "relative inline-flex items-center justify-center shrink-0 border select-none transform-gpu origin-center transition-[color,background-color,border-color,box-shadow,transform] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing-standard)] active:scale-[var(--motion-press-scale)] focus-ring",
   {
     variants: {
@@ -19,16 +19,30 @@ export const boxVariants = cva(
         indeterminate: "bg-primary border-primary text-primary-foreground"
       },
       invalid: {
-        true: "border-destructive focus-visible:ring-destructive/50"
+        true: "border-destructive",
+        false: ""
       },
       disabled: {
         true: "opacity-50 cursor-not-allowed pointer-events-none active:scale-100",
         false: "cursor-pointer"
       }
     },
+    compoundVariants: [
+      {
+        invalid: true,
+        state: "checked",
+        className: "bg-destructive border-destructive text-destructive-foreground"
+      },
+      {
+        invalid: true,
+        state: "indeterminate",
+        className: "bg-destructive border-destructive text-destructive-foreground"
+      }
+    ],
     defaultVariants: {
       size: "md",
       state: "unchecked",
+      invalid: false,
       disabled: false
     }
   }
@@ -59,7 +73,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
   const isControlled = checked !== undefined;
 
   const isIndeterminate = any(checked === "indeterminate", Boolean(indeterminate));
-  const isChecked = isControlled ? checked === true : internalChecked;
+  const isChecked = iff(isControlled, checked === true, internalChecked);
 
   // Sync indeterminate property directly with the native DOM input
   useEffect(() => {
@@ -86,11 +100,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
     onChange?.(nextChecked);
   };
 
-  const currentState = isIndeterminate
-    ? "indeterminate"
-    : isChecked
-      ? "checked"
-      : "unchecked";
+  const currentState = iff(
+    isIndeterminate,
+    "indeterminate",
+    iff(isChecked, "checked", "unchecked")
+  );
 
   const hasTextContent = any(Boolean(label), Boolean(description));
 
@@ -99,7 +113,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
       htmlFor={inputId}
       className={cn(
         "inline-flex items-start gap-2.5 select-none",
-        disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer",
+        iff(disabled, "cursor-not-allowed opacity-60", "cursor-pointer"),
         className
       )}
     >
@@ -111,7 +125,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
         checked={isChecked}
         disabled={disabled}
         aria-invalid={invalid}
-        aria-checked={isIndeterminate ? "mixed" : isChecked}
+        aria-checked={iff(isIndeterminate, "mixed", isChecked)}
         onChange={handleChange}
         className="sr-only peer"
         {...props}
@@ -121,13 +135,17 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
       <span
         aria-hidden="true"
         className={cn(
-          boxVariants({
+          variants({
             size,
             state: currentState,
             invalid,
             disabled
           }),
-          "peer-focus-visible:ring-2 peer-focus-visible:ring-primary/50"
+          iff(
+            invalid,
+            "peer-focus-visible:ring-2 peer-focus-visible:ring-destructive/50",
+            "peer-focus-visible:ring-2 peer-focus-visible:ring-primary/50"
+          )
         )}
       >
         {/* Checkmark Glyph */}
@@ -137,9 +155,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           aria-hidden="true"
           className={cn(
             "w-full h-full p-0.5 checkbox-glyph transform-gpu",
-            all(isChecked, !isIndeterminate)
-              ? "scale-100 opacity-100"
-              : "scale-50 opacity-0 absolute"
+            iff(
+              all(isChecked, !isIndeterminate),
+              "scale-100 opacity-100",
+              "scale-50 opacity-0 absolute"
+            )
           )}
         >
           <path
@@ -158,9 +178,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           aria-hidden="true"
           className={cn(
             "w-full h-full p-0.5 checkbox-glyph transform-gpu",
-            isIndeterminate
-              ? "scale-100 opacity-100"
-              : "scale-50 opacity-0 absolute"
+            iff(
+              isIndeterminate,
+              "scale-100 opacity-100",
+              "scale-50 opacity-0 absolute"
+            )
           )}
         >
           <path
@@ -179,7 +201,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
             <span
               className={cn(
                 "font-medium text-foreground leading-tight",
-                size === "sm" ? "text-xs" : size === "lg" ? "text-base" : "text-sm"
+                iff(size === "sm", "text-xs", iff(size === "lg", "text-base", "text-sm"))
               )}
             >
               {label}
@@ -189,7 +211,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
             <span
               className={cn(
                 "text-muted leading-tight",
-                size === "sm" ? "text-[11px]" : size === "lg" ? "text-sm" : "text-xs"
+                iff(size === "sm", "text-[11px]", iff(size === "lg", "text-sm", "text-xs"))
               )}
             >
               {description}

@@ -55,7 +55,8 @@ export default function Page() {
               <Checkbox label="Unchecked" defaultChecked={false} />
               <Checkbox label="Checked" defaultChecked={true} />
               <Checkbox label="Indeterminate (Mixed)" indeterminate={true} />
-              <Checkbox label="Validation Error (Invalid)" invalid={true} />
+              <Checkbox label="Invalid (Unchecked)" invalid={true} defaultChecked={false} />
+              <Checkbox label="Invalid (Checked)" invalid={true} defaultChecked={true} />
               <Checkbox label="Disabled Unchecked" disabled={true} defaultChecked={false} />
               <Checkbox label="Disabled Checked" disabled={true} defaultChecked={true} />
             </div>
