@@ -47,6 +47,16 @@ Checkboxes align with the standardized Harmonia control scale (`Size = "sm" | "m
 
 <br>
 
+### Shapes
+
+Checkboxes support geometric shape overrides via the `shape` prop (`CheckboxShape = "circle" | "square"`):
+
+- `Default` (`undefined`): Continuous corner radius inherited from size scale (`rounded-sm`, `rounded-md`, `rounded-lg`). Recommended for standard multi-select forms.
+- `Circle` (`shape="circle"`): Circular boundary (`rounded-full`). Ideal for task managers, completed checklists, and todo lists.
+- `Square` (`shape="square"`): Sharp corners (`rounded-none`). Ideal for dense enterprise data tables and brutalist layouts.
+
+<br>
+
 ### States
 
 Checkboxes support the following interactive states:
@@ -74,11 +84,11 @@ Harmonia requires that state transitions preserve component identity and physica
 
 ### Motion
 
-Motion parameters adhere strictly to `@harmonia/tokens`:
+Motion parameters adhere strictly to tactile physics and `@harmonia/tokens`:
 
-- Duration: `150ms` (`--motion-duration-fast`) for check toggle and color fill.
-- Easing: `cubic-bezier(0.2, 0, 0, 1)` (`--motion-easing-standard`) for elastic glyph entrance.
-- Micro-scale: Active press scale (`--motion-press-scale: 0.975`) providing tactile click feedback.
+- Micro-scale: Active tactile press compression (`scale-[0.88]`, `group-active:scale-[0.88]`) providing noticeable physical feedback when pressing either the checkbox control or associated label.
+- Color Transition: Smooth token transitions (`duration-[var(--motion-duration-fast)]`, `ease-[var(--motion-easing-standard)]`) across border, background, and focus-ring states.
+- Pure Utility Architecture: Zero bespoke CSS files required; utilizes Tailwind CSS utilities and design tokens directly.
 
 <br>
 

@@ -5,13 +5,17 @@ import { any, all, iff } from "../../utils/condition";
 import type { CheckboxProps } from "./types";
 
 export const variants = cva(
-  "relative inline-flex items-center justify-center shrink-0 border select-none transform-gpu origin-center transition-[color,background-color,border-color,box-shadow,transform] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing-standard)] active:scale-[0.88] group-active:scale-[0.88] focus-ring",
+  "relative inline-flex items-center justify-center shrink-0 border select-none transform-gpu origin-center transition-[color,background-color,border-color,box-shadow,transform] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing-standard)] active:scale-[0.88] group-active:scale-[0.90] focus-ring",
   {
     variants: {
       size: {
         sm: "w-4 h-4 rounded-sm",
         md: "w-5 h-5 rounded-md",
         lg: "w-6 h-6 rounded-lg"
+      },
+      shape: {
+        circle: "rounded-full",
+        square: "rounded-none"
       },
       state: {
         unchecked: "bg-surface border-border text-transparent",
@@ -51,6 +55,7 @@ export const variants = cva(
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
   {
     size = "md",
+    shape,
     checked,
     defaultChecked = false,
     indeterminate = false,
@@ -137,6 +142,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
         className={cn(
           variants({
             size,
+            shape,
             state: currentState,
             invalid,
             disabled
@@ -154,11 +160,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           fill="none"
           aria-hidden="true"
           className={cn(
-            "absolute inset-0 m-auto w-full h-full p-0.5 checkbox-glyph transform-gpu",
+            "absolute inset-0 m-auto w-full h-full p-0.5",
             iff(
               all(isChecked, !isIndeterminate),
-              "scale-100 opacity-100",
-              "scale-0 opacity-0 pointer-events-none"
+              "opacity-100",
+              "opacity-0 pointer-events-none"
             )
           )}
         >
@@ -177,11 +183,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           fill="none"
           aria-hidden="true"
           className={cn(
-            "absolute inset-0 m-auto w-full h-full p-0.5 checkbox-glyph transform-gpu",
+            "absolute inset-0 m-auto w-full h-full p-0.5",
             iff(
               isIndeterminate,
-              "scale-100 opacity-100",
-              "scale-0 opacity-0 pointer-events-none"
+              "opacity-100",
+              "opacity-0 pointer-events-none"
             )
           )}
         >

@@ -2,6 +2,7 @@ import type { InputHTMLAttributes, ReactNode, Ref } from "react";
 import type { Size } from "../../types";
 
 export type CheckboxSize = Size;
+export type CheckboxShape = "circle" | "square";
 
 export interface CheckboxProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "onChange" | "checked"> {
@@ -18,6 +19,14 @@ export interface CheckboxProps
    * @default "md"
    */
   size?: CheckboxSize;
+
+  /**
+   * Geometric shape override.
+   * - `circle`: Pill / circular checkbox (`rounded-full`)
+   * - `square`: Sharp square checkbox (`rounded-none`)
+   * Defaults to standardized scale radius (`rounded-sm` / `rounded-md` / `rounded-lg`).
+   */
+  shape?: CheckboxShape;
 
   /**
    * Controlled checked state.

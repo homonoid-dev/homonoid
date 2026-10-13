@@ -88,6 +88,34 @@ export default function Page() {
           </div>
         </div>
 
+        {/* Geometric Shapes Grid */}
+        <div className="w-full flex flex-col gap-4 p-6 rounded-xl border border-border bg-background">
+          <span className="text-xs font-medium uppercase tracking-wider text-muted">Geometric Shapes</span>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="flex flex-col gap-2 p-3.5 rounded-lg border border-border/60 bg-surface/50">
+              <span className="text-xs font-semibold text-foreground">Standard (Rounded)</span>
+              <span className="text-[11px] text-muted">Scales with size token radius</span>
+              <div className="pt-2">
+                <Checkbox label="Default rounded" defaultChecked={true} />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 p-3.5 rounded-lg border border-border/60 bg-surface/50">
+              <span className="text-xs font-semibold text-foreground">Circle (`shape="circle"`)</span>
+              <span className="text-[11px] text-muted">Task lists & completed checklists</span>
+              <div className="pt-2">
+                <Checkbox shape="circle" label="Task item" defaultChecked={true} />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 p-3.5 rounded-lg border border-border/60 bg-surface/50">
+              <span className="text-xs font-semibold text-foreground">Square (`shape="square"`)</span>
+              <span className="text-[11px] text-muted">Dense data grids & brutalist layouts</span>
+              <div className="pt-2">
+                <Checkbox shape="square" label="Sharp square" defaultChecked={true} />
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Indeterminate Nested Collection Demo */}
         <div className="w-full flex flex-col gap-4 p-6 rounded-xl border border-border bg-background">
           <span className="text-xs font-medium uppercase tracking-wider text-muted">
