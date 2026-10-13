@@ -10,7 +10,7 @@ import {
   type SpinnerColor,
   type Size
 } from "@harmonia/web";
-import { Plus, Search, Mail, Check } from "lucide-react";
+import { Plus, Search, Mail, Check, X } from "lucide-react";
 
 export default function Page() {
   const [loading, setLoading] = useState(false);
@@ -238,14 +238,15 @@ export default function Page() {
                 onChange={(e) => setSearchValue(e.target.value)}
                 trailing={
                   searchValue ? (
-                    <button
-                      type="button"
+                    <Button
+                      color="subtle"
+                      className="max-w-5 max-h-5"
+                      layout="icon"
                       onClick={() => setSearchValue("")}
-                      className="text-xs font-medium text-muted hover:text-foreground cursor-pointer px-1 py-0.5 rounded-sm hover:bg-surface-active transition-[color,background-color] duration-[var(--motion-duration-fast)]"
                       aria-label="Clear input"
                     >
-                      Clear
-                    </button>
+                      <X className="w-4 h-4 text-muted" />
+                    </Button>
                   ) : null
                 }
                 placeholder="Search components or tokens..."
@@ -269,6 +270,7 @@ export default function Page() {
                 label="Email Address"
                 defaultValue="invalid-email-format"
                 invalid
+                variant="filled"
                 error="Please enter a valid email address."
               />
               <Input

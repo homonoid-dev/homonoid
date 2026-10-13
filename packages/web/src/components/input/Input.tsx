@@ -24,7 +24,7 @@ export const variants = cva(
         lg: "h-control-lg px-3.5 text-base gap-3 rounded-xl"
       },
       invalid: {
-        true: " border-destructive hover:border-destructive hover:focus-within:border-destructive focus-within:border-destructive focus-within:ring-2 focus-within:ring-destructive/30",
+        true: "border-destructive hover:border-destructive hover:focus-within:border-destructive focus-within:border-destructive focus-within:ring-2 focus-within:ring-destructive/30",
         false: ""
       },
       disabled: {
@@ -36,12 +36,12 @@ export const variants = cva(
       {
         invalid: true,
         variant: "filled",
-        className: "border-destructive focus-within:border-destructive bg-destructive/5 hover:bg-destructive/30"
+        className: "border-destructive focus-within:border-destructive bg-destructive/10 hover:bg-destructive/20"
       },
       {
         invalid: true,
         variant: "plain",
-        className: "border-destructive focus-within:border-destructive"
+        className: "border-transparent hover:border-transparent hover:bg-destructive/20 focus-within:border-transparent focus-within:hover:border-transparent focus-within:ring-transparent"
       }
     ],
     defaultVariants: {
@@ -132,7 +132,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         aria-invalid={isInvalid ? true : undefined}
         aria-describedby={finalDescribedBy}
         className={cn(
-          "w-full h-full bg-transparent text-foreground placeholder:text-muted outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/20",
+          "w-full h-full bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30",
+          iff(isInvalid, "text-destructive placeholder:text-destructive/60", "text-foreground placeholder:text-muted"),
           iff(size === "sm", "text-xs", undefined),
           iff(size === "md", "text-sm", undefined),
           iff(size === "lg", "text-base", undefined)
