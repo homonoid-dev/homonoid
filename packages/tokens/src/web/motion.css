@@ -1,0 +1,14 @@
+@layer base {
+  :root {
+    /* Motion Tokens */
+    --motion-duration-fast: 150ms;
+    --motion-duration-normal: 200ms;
+    --motion-duration-slow: 350ms;
+    --motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+    --motion-press-scale: 0.975;
+  }
+}
+
+@utility focus-ring {
+  @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/50;
+}

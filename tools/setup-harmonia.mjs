@@ -85,11 +85,15 @@ if (cssPath) {
   let cssContent = fs.readFileSync(cssPath, "utf-8");
   const tailwindImport = '@import "tailwindcss";';
   const harmoniaTokenImport = '@import "@harmonia/tokens/css";';
+  const harmoniaWebStylesImport = '@import "@harmonia/web/styles.css";';
   const harmoniaSource = '@source "../../packages/web/src";';
 
   let additions = "";
   if (!cssContent.includes(harmoniaTokenImport)) {
     additions += `${harmoniaTokenImport}\n`;
+  }
+  if (!cssContent.includes(harmoniaWebStylesImport)) {
+    additions += `${harmoniaWebStylesImport}\n`;
   }
   if (!cssContent.includes("@source") && !cssContent.includes("packages/web")) {
     additions += `${harmoniaSource}\n`;

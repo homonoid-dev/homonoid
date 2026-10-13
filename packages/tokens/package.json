@@ -8,6 +8,9 @@
   "exports": {
     ".": "./src/index.ts",
     "./web": "./src/web/index.ts",
-    "./css": "./src/web/index.css"
+    "./css": "./src/web/index.css",
+    "./css/colors": "./src/web/colors.css",
+    "./css/spatial": "./src/web/spatial.css",
+    "./css/motion": "./src/web/motion.css"
   }
 }
