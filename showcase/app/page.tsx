@@ -100,14 +100,14 @@ export default function Page() {
               </div>
             </div>
             <div className="flex flex-col gap-2 p-3.5 rounded-lg border border-border/60 bg-surface/50">
-              <span className="text-xs font-semibold text-foreground">Circle (`shape="circle"`)</span>
+              <span className="text-xs font-semibold text-foreground">Circle ({'`shape="circle"`'})</span>
               <span className="text-[11px] text-muted">Task lists & completed checklists</span>
               <div className="pt-2">
                 <Checkbox shape="circle" label="Task item" defaultChecked={true} />
               </div>
             </div>
             <div className="flex flex-col gap-2 p-3.5 rounded-lg border border-border/60 bg-surface/50">
-              <span className="text-xs font-semibold text-foreground">Square (`shape="square"`)</span>
+              <span className="text-xs font-semibold text-foreground">Square ({'`shape="square"`'})</span>
               <span className="text-[11px] text-muted">Dense data grids & brutalist layouts</span>
               <div className="pt-2">
                 <Checkbox shape="square" label="Sharp square" defaultChecked={true} />
