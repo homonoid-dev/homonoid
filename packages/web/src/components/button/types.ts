@@ -1,19 +1,39 @@
 import type { ButtonHTMLAttributes, ReactNode, Ref } from "react";
-import type { VariantProps } from "class-variance-authority";
-import type { variants } from "./Button";
+import type { Size } from "../../types";
 
-export type ButtonVariant = NonNullable<VariantProps<typeof variants>["variant"]>;
-export type ButtonSize = NonNullable<VariantProps<typeof variants>["size"]>;
-export type ButtonShape = NonNullable<VariantProps<typeof variants>["shape"]>;
-export type ButtonLayout = NonNullable<VariantProps<typeof variants>["layout"]>;
+export type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "destructive";
+export type ButtonSize = Size;
+export type ButtonShape = "circle" | "square";
+export type ButtonLayout = "inline" | "full" | "icon";
 
-export interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
-  VariantProps<typeof variants> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Ref forwarded to the native button element.
    */
   ref?: Ref<HTMLButtonElement>;
+
+  /**
+   * Visual style variant.
+   * @default "primary"
+   */
+  variant?: ButtonVariant;
+
+  /**
+   * Standard control scale size.
+   * @default "md"
+   */
+  size?: ButtonSize;
+
+  /**
+   * Geometric shape override.
+   */
+  shape?: ButtonShape;
+
+  /**
+   * Layout behavior and bounding frame.
+   * @default "inline"
+   */
+  layout?: ButtonLayout;
 
   /**
    * Whether the button is in a loading state.

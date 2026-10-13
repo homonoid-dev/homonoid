@@ -1,6 +1,7 @@
 import type { HTMLAttributes, Ref } from "react";
+import type { Size } from "../../types";
 
-export type SpinnerSize = "sm" | "md" | "lg";
+export type SpinnerSize = Size;
 export type SpinnerColor = "current" | "primary" | "subtle" | "foreground" | "destructive";
 export type SpinnerAnimation = "border" | "grow";
 
