@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
+import { any, all } from "../../utils/condition";
 import type { SpinnerProps } from "./types";
 
 export const variants = cva(
@@ -40,7 +41,7 @@ export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>(function Spinne
   },
   ref
 ) {
-  const isHidden = ariaHidden === true || ariaHidden === "true";
+  const isHidden = any(ariaHidden === true, ariaHidden === "true");
 
   return (
     <span
@@ -51,7 +52,7 @@ export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>(function Spinne
       className={cn(variants({ size, color }), className)}
       {...props}
     >
-      {!isHidden && label && <span className="sr-only">{label}</span>}
+      {all(!isHidden, Boolean(label)) && <span className="sr-only">{label}</span>}
 
       {animation === "border" && (
         <svg
