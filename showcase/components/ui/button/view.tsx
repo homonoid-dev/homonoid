@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button, Label } from "@harmonia/react";
 import { Description } from "@/components/ui/description";
-import { Check, Code2, Copy, Eye } from "lucide-react";
+import { Check, Code2, Copy, Eye, Infinity as InfinityIcon, Layers } from "lucide-react";
 import GithubIcon from "@/components/icons/github";
 import { Code, highlighter } from "@/components/ui/code";
 
@@ -28,7 +28,7 @@ export function ButtonView() {
   };
 
   return (
-    <div className="flex flex-col px-layout-x pt-layout-y gap-layout-gap max-w-4xl">
+    <div className="flex flex-col px-layout-x pt-layout-y gap-layout-gap max-w-4xl pb-16">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
         <Label size="lg">Button</Label>
@@ -47,7 +47,6 @@ export function ButtonView() {
           variant="outlined"
           color="surface"
           shape="circle"
-          size="sm"
           leading={<GithubIcon className="size-3.5" />}
         >
           Source
@@ -57,14 +56,14 @@ export function ButtonView() {
       {/* Component Area */}
       <section className="flex flex-col gap-surface-gap">
         {/* Subtle Import Card */}
-        <div className="flex items-center justify-between p-4 rounded-3xl bg-subtle text-subtle-foreground border-[0.5px] border-subtle-border font-mono text-xs select-text">
+        <div className="flex items-center justify-between p-surface rounded-3xl bg-subtle text-subtle-foreground border-[0.5px] border-subtle-border font-mono text-xs select-text">
           <code>{highlighter('import { Button } from "@harmonia/react";')}</code>
         </div>
 
         {/* Card */}
-        <div className="border-[0.5px] border-border/50 rounded-3xl overflow-hidden">
+        <div className="border-[0.5px] p-surface border-border/50 rounded-3xl overflow-hidden">
           {/* Card Top Toolbar */}
-          <div className="flex items-center justify-between p-4">
+          <div className="flex items-center justify-between">
             <div className="flex items-center gap-1">
               <Button
                 layout="icon"
@@ -115,9 +114,32 @@ export function ButtonView() {
             <Code code={CODE_SAMPLE} />
           )}
 
-          {/* Bottom height counterbalance matching top toolbar */}
-          <div className="p-4 pointer-events-none select-none" aria-hidden="true">
-            <div className="h-control-md" />
+        </div>
+
+        {/* Hierarchy & Continuity */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap">
+          <div className="flex flex-col gap-4 p-surface rounded-3xl border-[0.5px] border-border/50">
+            <div className="size-control-md rounded-full border border-border flex items-center justify-center shrink-0">
+              <Layers className="size-4" />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <Label size="md">Hierarchy</Label>
+              <Description className="text-sm text-muted leading-relaxed">
+                Contained, outlined, and plain variants define clear visual priority, anchoring primary calls to action while keeping secondary tasks balanced.
+              </Description>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-4 p-surface rounded-3xl border-[0.5px] border-border/50">
+            <div className="size-control-md rounded-full border border-border flex items-center justify-center shrink-0">
+              <InfinityIcon className="size-4" />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <Label size="md">Continuity</Label>
+              <Description className="text-sm text-muted leading-relaxed">
+                State transitions preserve component identity and dimensional stability. Actions evolve smoothly across hover, pressed, and loading states without layout shifts.
+              </Description>
+            </div>
           </div>
         </div>
       </section>

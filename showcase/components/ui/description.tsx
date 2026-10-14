@@ -5,7 +5,7 @@ export type DescriptionProps = HTMLAttributes<HTMLParagraphElement>;
 
 export function Description({ className, children, ...props }: DescriptionProps) {
   return (
-    <p className={cn("text-forground", className)} {...props}>
+    <p className={cn("text-foreground", className)} {...props}>
       {children}
     </p>
   );
