@@ -6,7 +6,7 @@ import React, { memo } from "react";
 
 /**
  * Shell.Head slot
- * Sticky header region pinned to the top of the viewport
+ * Fixed header pinned at the top of the viewport
  */
 export const Head = memo(function Head({
   children,
@@ -14,7 +14,7 @@ export const Head = memo(function Head({
   children?: React.ReactNode;
 }) {
   return (
-    <header className="sticky top-0 z-50 shrink-0">
+    <header className="shrink-0 h-15 w-full">
       {children}
     </header>
   );
@@ -22,7 +22,7 @@ export const Head = memo(function Head({
 
 /**
  * Shell.Side slot
- * Sticky sidebar region pinned below the header with dedicated viewport height
+ * Dedicated height-locked sidebar column
  */
 export const Side = memo(function Side({
   children,
@@ -30,7 +30,7 @@ export const Side = memo(function Side({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="sticky top-15 h-[calc(100vh-3.75rem)] shrink-0 overflow-hidden">
+    <div className="h-full shrink-0 flex overflow-hidden">
       {children}
     </div>
   );
@@ -38,7 +38,7 @@ export const Side = memo(function Side({
 
 /**
  * Shell.Main slot
- * Primary natural-scrolling content column that flows beneath the sticky header
+ * Dedicated height-locked main content viewport with completely independent scroll
  */
 export const Main = memo(function Main({
   children,
@@ -46,7 +46,7 @@ export const Main = memo(function Main({
   children?: React.ReactNode;
 }) {
   return (
-    <main className="flex-1 min-w-0">
+    <main className="flex-1 h-full overflow-y-auto min-w-0">
       {children}
     </main>
   );
@@ -58,8 +58,8 @@ export const Main = memo(function Main({
 
 /**
  * Shell
- * Standard documentation layout frame with sticky frosted header,
- * pinned sticky sidebar, and natural document-level page scrolling.
+ * Application layout with locked viewport and completely independent
+ * non-interfering scroll containers for Sidebar and Main.
  */
 export function Shell({
   children,
@@ -73,9 +73,9 @@ export function Shell({
   const body = items.filter((child) => child !== head);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground select-none">
+    <div className="h-screen w-screen overflow-hidden flex flex-col bg-background text-foreground select-none">
       {head}
-      <div className="flex-1 flex w-full">
+      <div className="flex-1 flex overflow-hidden min-h-0">
         {body}
       </div>
     </div>

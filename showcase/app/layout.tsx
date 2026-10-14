@@ -22,9 +22,9 @@ export default function RootLayout({
             <Header />
           </Shell.Head>
           <Shell.Side>
-            <Sidebar className="gap-surface-gap flex flex-col py-control-y">
+            <Sidebar className="gap-surface-gap flex flex-col py-surface">
               {Array.from({ length: 20 }, (_, i) => (
-                <p key={i} className="text-base font-medium text-primary hover:text-foreground transition-colors cursor-pointer">
+                <p key={i} className="text-base font-medium text-muted hover:text-foreground transition-colors cursor-pointer">
                   Item {i + 1}
                 </p>
               ))}
