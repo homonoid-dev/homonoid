@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Label } from "@harmonia/react";
+import { Button, Label, Card } from "@harmonia/react";
 import { Description } from "@/components/ui/description";
-import { Check, Code2, Copy, Eye, Infinity as InfinityIcon, Layers } from "lucide-react";
+import { Check, Code2, Copy, Eye, Circle } from "lucide-react";
 import GithubIcon from "@/components/icons/github";
 import { Code, highlighter } from "@/components/ui/code";
 import { motion, AnimatePresence } from "motion/react";
@@ -29,7 +29,7 @@ export function ButtonView() {
   };
 
   return (
-    <div className="flex flex-col px-layout-x pt-layout-y gap-layout-gap max-w-4xl pb-16">
+    <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
         <Label size="lg">Button</Label>
@@ -62,7 +62,7 @@ export function ButtonView() {
         </div>
 
         {/* Card */}
-        <div className="border-[0.5px] p-surface border-border/50 rounded-3xl overflow-hidden flex flex-col">
+        <Card className="flex flex-col">
           {/* Card Top Toolbar */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1">
@@ -151,33 +151,15 @@ export function ButtonView() {
               )}
             </AnimatePresence>
           </motion.div>
-        </div>
+        </Card>
+      </section>
 
-        {/* Hierarchy & Continuity */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap">
-          <div className="flex flex-col gap-4 p-surface rounded-3xl border-[0.5px] border-border/50">
-            <div className="size-control-md rounded-full border border-border flex items-center justify-center shrink-0">
-              <Layers className="size-4" />
-            </div>
-            <div className="flex flex-col gap-1.5">
-              <Label size="md">Hierarchy</Label>
-              <Description className="text-sm text-muted leading-relaxed">
-                Contained, outlined, and plain variants define clear visual priority, anchoring primary calls to action while keeping secondary tasks balanced.
-              </Description>
-            </div>
+      <section>
+        <div className="flex flex-row gap-surface-gap items-center">
+          <div className="size-control-md rounded-full border-[0.5px] border-border flex items-center justify-center shrink-0">
+            <Circle className="size-4" />
           </div>
-
-          <div className="flex flex-col gap-4 p-surface rounded-3xl border-[0.5px] border-border/50">
-            <div className="size-control-md rounded-full border border-border flex items-center justify-center shrink-0">
-              <InfinityIcon className="size-4" />
-            </div>
-            <div className="flex flex-col gap-1.5">
-              <Label size="md">Continuity</Label>
-              <Description className="text-sm text-muted leading-relaxed">
-                State transitions preserve component identity and dimensional stability. Actions evolve smoothly across hover, pressed, and loading states without layout shifts.
-              </Description>
-            </div>
-          </div>
+          <Label size="lg" as="h2">Outlined</Label>
         </div>
       </section>
     </div>
