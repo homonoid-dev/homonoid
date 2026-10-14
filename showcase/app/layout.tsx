@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/ui/header";
+import { Shell } from "@/components/layout/shell";
+import { Sidebar } from "@/components/ui/sidebar/sidebar";
 
 export const metadata: Metadata = {
   title: "Harmonia — Component System",
@@ -14,9 +16,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-background text-foreground">
-        <Header />
-        <main className="flex-1">{children}</main>
+      <body>
+        <Shell>
+          <Shell.Head>
+            <Header />
+          </Shell.Head>
+          <Shell.Side>
+            <Sidebar></Sidebar>
+          </Shell.Side>
+          <Shell.Main>
+            {children}
+          </Shell.Main>
+        </Shell>
       </body>
     </html>
   );

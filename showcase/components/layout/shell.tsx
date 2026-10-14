@@ -1,5 +1,3 @@
-"use client";
-
 import React, { memo } from "react";
 
 // ---------------------------------------------------------------------------
@@ -12,13 +10,11 @@ import React, { memo } from "react";
  */
 export const Head = memo(function Head({
     children,
-    className,
 }: {
     children?: React.ReactNode;
-    className?: string;
 }) {
     return (
-        <header className={`shrink-0 ${className ?? ""}`.trim()}>
+        <header className="shrink-0">
             {children}
         </header>
     );
@@ -42,13 +38,11 @@ export const Side = memo(function Side({
  */
 export const Main = memo(function Main({
     children,
-    className,
 }: {
     children?: React.ReactNode;
-    className?: string;
 }) {
     return (
-        <main className={`flex-1 flex flex-col overflow-y-auto min-w-0 ${className ?? ""}`.trim()}>
+        <main className="flex-1 flex flex-col overflow-y-auto min-w-0">
             {children}
         </main>
     );
@@ -65,15 +59,11 @@ export const Main = memo(function Main({
  */
 export function Shell({
     children,
-    className,
 }: {
     children?: React.ReactNode;
-    className?: string;
 }) {
     return (
-        <div
-            className={`h-screen w-screen overflow-hidden flex bg-background text-foreground select-none ${className ?? ""}`.trim()}
-        >
+        <div className="h-screen w-screen overflow-hidden flex flex-col bg-background text-foreground select-none">
             {children}
         </div>
     );
