@@ -5,6 +5,7 @@ import { Button, Label } from "@harmonia/react";
 import { Description } from "@/components/ui/description";
 import { Check, Code2, Copy, Eye } from "lucide-react";
 import GithubIcon from "@/components/icons/github";
+import { Code } from "@/components/ui/code";
 
 const CODE_SAMPLE = `import { Button } from "@harmonia/react";
 
@@ -111,20 +112,7 @@ export function ButtonView() {
               </Button>
             </div>
           ) : (
-            <div className="p-4 md:p-6 overflow-x-auto text-xs font-mono leading-relaxed select-text">
-              <pre className="text-foreground">
-                <code>
-                  <span className="text-primary">import</span> &#123; Button &#125; <span className="text-primary">from</span> <span className="text-muted">&quot;@harmonia/react&quot;</span>;{"\n\n"}
-                  <span className="text-primary">export function</span> <span className="text-foreground font-semibold">Example</span>() &#123;{"\n"}
-                  {"  "}<span className="text-primary">return</span> ({"\n"}
-                  {"    "}&lt;<span className="text-primary font-semibold">Button</span> <span className="text-muted">variant</span>=<span className="text-muted">&quot;contained&quot;</span> <span className="text-muted">shape</span>=<span className="text-muted">&quot;circle&quot;</span>&gt;{"\n"}
-                  {"      "}Click me{"\n"}
-                  {"    "}&lt;/<span className="text-primary font-semibold">Button</span>&gt;{"\n"}
-                  {"  "});{"\n"}
-                  &#125;
-                </code>
-              </pre>
-            </div>
+            <Code code={CODE_SAMPLE} />
           )}
 
           {/* Bottom height counterbalance matching top toolbar */}
