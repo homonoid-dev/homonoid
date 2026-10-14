@@ -17,10 +17,11 @@ export const variants = cva(
       color: {
         primary: "",
         subtle: "",
+        surface: "",
         destructive: ""
       },
       size: {
-        sm: "h-control-sm px-3 text-sm gap-control-gap rounded-md",
+        sm: "h-control-sm px-3.5 text-sm gap-control-gap rounded-md",
         md: "h-control-md px-control-x text-sm font-medium gap-control-gap rounded-lg",
         lg: "h-control-lg px-5 text-base font-medium gap-control-gap rounded-xl"
       },
@@ -64,6 +65,11 @@ export const variants = cva(
       },
       {
         variant: "contained",
+        color: "surface",
+        className: "bg-surface text-surface-foreground hover:bg-surface-hover active:bg-surface-active"
+      },
+      {
+        variant: "contained",
         color: "destructive",
         className: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-active"
       },
@@ -77,7 +83,12 @@ export const variants = cva(
       {
         variant: "outlined",
         color: "subtle",
-        className: "border-border text-foreground hover:bg-surface-hover active:bg-surface-active"
+        className: "border-subtle-border text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active"
+      },
+      {
+        variant: "outlined",
+        color: "surface",
+        className: "border-border text-surface-foreground hover:bg-surface-hover active:bg-surface-active"
       },
       {
         variant: "outlined",
@@ -94,7 +105,12 @@ export const variants = cva(
       {
         variant: "plain",
         color: "subtle",
-        className: "text-foreground hover:bg-surface-hover active:bg-surface-active"
+        className: "text-foreground hover:bg-subtle-hover active:bg-subtle-active"
+      },
+      {
+        variant: "plain",
+        color: "surface",
+        className: "text-surface-foreground hover:bg-surface-hover active:bg-surface-active"
       },
       {
         variant: "plain",

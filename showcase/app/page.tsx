@@ -1,5 +1,6 @@
 import { Button, Label } from "@harmonia/react";
 import { Description } from "@/components/ui/description";
+import { GithubIcon } from "@/components/icons/github";
 
 export default function Page() {
   return (
@@ -15,8 +16,14 @@ export default function Page() {
           rel="noreferrer"
           className="w-fit"
         >
-          <Button variant="plain" color="subtle" shape="circle">
-            GitHub
+          <Button
+            variant="outlined"
+            color="surface"
+            shape="circle"
+            size="sm"
+            leading={<GithubIcon className="size-3.5" />}
+          >
+            Source
           </Button>
         </a>
         <Description>

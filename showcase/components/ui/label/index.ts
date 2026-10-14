@@ -1,0 +1,1 @@
+export { LabelView } from "./view";

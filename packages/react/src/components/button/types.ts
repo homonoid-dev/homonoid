@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, ReactNode, Ref } from "react";
 import type { Size } from "../../types";
 
 export type ButtonVariant = "contained" | "outlined" | "plain";
-export type ButtonColor = "primary" | "subtle" | "destructive";
+export type ButtonColor = "primary" | "subtle" | "surface" | "destructive";
 export type ButtonSize = Size;
 export type ButtonShape = "circle" | "square";
 export type ButtonLayout = "inline" | "full" | "icon";

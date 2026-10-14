@@ -1,0 +1,13 @@
+import { Label } from "@harmonia/react";
+import { Description } from "@/components/ui/description";
+
+export function LabelView() {
+  return (
+    <div className="flex flex-col px-layout-x pt-layout-y gap-surface-gap max-w-4xl">
+      <Label size="lg">Label</Label>
+      <Description>
+        A button communicates an action and allows users to trigger that action with a single interaction.
+      </Description>
+    </div>
+  );
+}
