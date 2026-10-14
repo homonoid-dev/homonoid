@@ -73,7 +73,7 @@ export function Shell({
   const body = items.filter((child) => child !== head);
 
   return (
-    <div className="h-screen w-screen overflow-hidden flex flex-col bg-background text-foreground select-none">
+    <div className="h-screen w-screen overflow-hidden flex flex-col bg-background text-foreground">
       {head}
       <div className="flex-1 flex overflow-hidden min-h-0">
         {body}
