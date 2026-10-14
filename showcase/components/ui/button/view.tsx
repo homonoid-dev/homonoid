@@ -6,6 +6,7 @@ import { Description } from "@/components/ui/description";
 import { Check, Code2, Copy, Eye, Infinity as InfinityIcon, Layers } from "lucide-react";
 import GithubIcon from "@/components/icons/github";
 import { Code, highlighter } from "@/components/ui/code";
+import { motion, AnimatePresence } from "motion/react";
 
 const CODE_SAMPLE = `import { Button } from "@harmonia/react";
 
@@ -61,7 +62,7 @@ export function ButtonView() {
         </div>
 
         {/* Card */}
-        <div className="border-[0.5px] p-surface border-border/50 rounded-3xl overflow-hidden">
+        <div className="border-[0.5px] p-surface border-border/50 rounded-3xl overflow-hidden flex flex-col">
           {/* Card Top Toolbar */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1">
@@ -103,17 +104,53 @@ export function ButtonView() {
             </Button>
           </div>
 
-          {/* Stage */}
-          {activeTab === "preview" ? (
-            <div className="p-8 md:p-14 flex items-center justify-center min-h-[220px]">
-              <Button variant="contained" shape="circle">
-                Click me
-              </Button>
-            </div>
-          ) : (
-            <Code code={CODE_SAMPLE} />
-          )}
-
+          {/* Animated Content Area */}
+          <motion.div
+            initial={false}
+            animate={{
+              height: activeTab === "preview" ? 280 : 192,
+            }}
+            transition={{
+              duration: 0.3,
+              ease: [0.2, 0, 0, 1],
+            }}
+            className="relative overflow-hidden"
+          >
+            <AnimatePresence initial={false}>
+              {activeTab === "preview" ? (
+                <motion.div
+                  key="preview"
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }}
+                  className="absolute inset-0 flex flex-col"
+                >
+                  <div className="flex-1 flex items-center justify-center">
+                    <Button variant="contained" shape="circle">
+                      Click me
+                    </Button>
+                  </div>
+                  {/* Bottom counterbalance matching top toolbar */}
+                  <div className="h-control-md shrink-0 pointer-events-none select-none" aria-hidden="true" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="code"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }}
+                  className="absolute inset-0 pt-3"
+                >
+                  <Code
+                    code={CODE_SAMPLE}
+                    className="-mx-surface px-surface"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
         </div>
 
         {/* Hierarchy & Continuity */}

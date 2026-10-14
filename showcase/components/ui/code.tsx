@@ -100,7 +100,7 @@ export function Code({ code, className }: CodeProps) {
   return (
     <div
       className={cn(
-        "p-4 md:p-6 overflow-x-auto text-xs font-mono leading-relaxed select-text",
+        "overflow-x-auto text-xs font-mono leading-relaxed select-text",
         className
       )}
     >
