@@ -105,7 +105,7 @@ export const variants = cva(
       {
         variant: "plain",
         color: "subtle",
-        className: "text-foreground hover:bg-subtle-hover active:bg-subtle-active"
+        className: "text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active"
       },
       {
         variant: "plain",
