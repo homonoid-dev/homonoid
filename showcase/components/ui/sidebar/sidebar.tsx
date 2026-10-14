@@ -5,12 +5,12 @@ import { cva } from "class-variance-authority";
 import type { SidebarProps } from "./types";
 
 export const variants = cva(
-  "h-full w-52 bg-background px-layout overflow-y-auto transition-all",
+  "h-full w-52 shrink-0 bg-background px-layout-x py-layout-y overflow-y-auto transition-all",
   {
     variants: {
       side: {
-        left: "border-r border-border/50",
-        right: "border-l border-border/50",
+        left: "border-r-[0.5px] border-border/50",
+        right: "border-l-[0.5px] border-border/50",
       },
     },
     defaultVariants: {

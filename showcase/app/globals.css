@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "@harmonia/tokens/css";
 @import "@harmonia/web/styles.css";
+@source "..";
 @source "../../packages/web/src";
 
 body {

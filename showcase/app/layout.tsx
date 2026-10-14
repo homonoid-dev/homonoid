@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/ui/header";
 import { Shell } from "@/components/layout/shell";
-import { Sidebar } from "@/components/ui/sidebar/sidebar";
+import { Sidebar } from "@/components/ui/sidebar";
 
 export const metadata: Metadata = {
   title: "Harmonia — Component System",
@@ -22,7 +22,13 @@ export default function RootLayout({
             <Header />
           </Shell.Head>
           <Shell.Side>
-            <Sidebar></Sidebar>
+            <Sidebar>
+              {Array.from({ length: 20 }, (_, i) => (
+                <h2 key={i} className="py-2 text-sm font-medium text-muted hover:text-foreground transition-colors cursor-pointer">
+                  Item {i + 1}
+                </h2>
+              ))}
+            </Sidebar>
           </Shell.Side>
           <Shell.Main>
             {children}

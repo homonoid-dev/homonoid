@@ -9,27 +9,31 @@ import React, { memo } from "react";
  * Fixed header/topbar region for global navigation, breadcrumbs, or toolbars
  */
 export const Head = memo(function Head({
-    children,
+  children,
 }: {
-    children?: React.ReactNode;
+  children?: React.ReactNode;
 }) {
-    return (
-        <header className="shrink-0">
-            {children}
-        </header>
-    );
+  return (
+    <header className="shrink-0">
+      {children}
+    </header>
+  );
 });
 
 /**
- * Shell.Sidebar slot
+ * Shell.Side slot
  * Houses any sidebar layout right or left (e.g. Navigation tabs, inspector)
  */
 export const Side = memo(function Side({
-    children,
+  children,
 }: {
-    children?: React.ReactNode;
+  children?: React.ReactNode;
 }) {
-    return <>{children}</>;
+  return (
+    <div className="h-full shrink-0 flex overflow-hidden">
+      {children}
+    </div>
+  );
 });
 
 /**
@@ -37,15 +41,15 @@ export const Side = memo(function Side({
  * Primary viewport column that flexes to fill available horizontal space
  */
 export const Main = memo(function Main({
-    children,
+  children,
 }: {
-    children?: React.ReactNode;
+  children?: React.ReactNode;
 }) {
-    return (
-        <main className="flex-1 flex flex-col overflow-y-auto min-w-0">
-            {children}
-        </main>
-    );
+  return (
+    <main className="flex-1 flex flex-col overflow-y-auto min-w-0">
+      {children}
+    </main>
+  );
 });
 
 // ---------------------------------------------------------------------------
@@ -58,15 +62,24 @@ export const Main = memo(function Main({
  * headers, sidebars, and main regions with zero unnecessary re-renders.
  */
 export function Shell({
-    children,
+  children,
 }: {
-    children?: React.ReactNode;
+  children?: React.ReactNode;
 }) {
-    return (
-        <div className="h-screen w-screen overflow-hidden flex flex-col bg-background text-foreground select-none">
-            {children}
-        </div>
-    );
+  const items = React.Children.toArray(children);
+  const head = items.find(
+    (child) => React.isValidElement(child) && child.type === Head
+  );
+  const body = items.filter((child) => child !== head);
+
+  return (
+    <div className="h-screen w-screen overflow-hidden flex flex-col bg-background text-foreground select-none">
+      {head}
+      <div className="flex-1 flex overflow-hidden min-h-0">
+        {body}
+      </div>
+    </div>
+  );
 }
 
 Shell.Head = Head;
