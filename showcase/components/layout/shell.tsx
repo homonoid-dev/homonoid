@@ -6,7 +6,7 @@ import React, { memo } from "react";
 
 /**
  * Shell.Head slot
- * Fixed header/topbar region for global navigation, breadcrumbs, or toolbars
+ * Sticky header region pinned to the top of the viewport
  */
 export const Head = memo(function Head({
   children,
@@ -14,7 +14,7 @@ export const Head = memo(function Head({
   children?: React.ReactNode;
 }) {
   return (
-    <header className="shrink-0">
+    <header className="sticky top-0 z-50 shrink-0">
       {children}
     </header>
   );
@@ -22,7 +22,7 @@ export const Head = memo(function Head({
 
 /**
  * Shell.Side slot
- * Houses any sidebar layout right or left (e.g. Navigation tabs, inspector)
+ * Sticky sidebar region pinned below the header with dedicated viewport height
  */
 export const Side = memo(function Side({
   children,
@@ -30,7 +30,7 @@ export const Side = memo(function Side({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="h-full shrink-0 flex overflow-hidden">
+    <div className="sticky top-15 h-[calc(100vh-3.75rem)] shrink-0 overflow-hidden">
       {children}
     </div>
   );
@@ -38,7 +38,7 @@ export const Side = memo(function Side({
 
 /**
  * Shell.Main slot
- * Primary viewport column that flexes to fill available horizontal space
+ * Primary natural-scrolling content column that flows beneath the sticky header
  */
 export const Main = memo(function Main({
   children,
@@ -46,7 +46,7 @@ export const Main = memo(function Main({
   children?: React.ReactNode;
 }) {
   return (
-    <main className="flex-1 flex flex-col overflow-y-auto min-w-0">
+    <main className="flex-1 min-w-0">
       {children}
     </main>
   );
@@ -58,8 +58,8 @@ export const Main = memo(function Main({
 
 /**
  * Shell
- * Optimized layout frame that locks viewport dimensions and orchestrates
- * headers, sidebars, and main regions with zero unnecessary re-renders.
+ * Standard documentation layout frame with sticky frosted header,
+ * pinned sticky sidebar, and natural document-level page scrolling.
  */
 export function Shell({
   children,
@@ -73,9 +73,9 @@ export function Shell({
   const body = items.filter((child) => child !== head);
 
   return (
-    <div className="h-screen w-screen overflow-hidden flex flex-col bg-background text-foreground select-none">
+    <div className="min-h-screen flex flex-col bg-background text-foreground select-none">
       {head}
-      <div className="flex-1 flex overflow-hidden min-h-0">
+      <div className="flex-1 flex w-full">
         {body}
       </div>
     </div>

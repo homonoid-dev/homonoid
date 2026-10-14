@@ -5,7 +5,7 @@ import { cva } from "class-variance-authority";
 import type { SidebarProps } from "./types";
 
 export const variants = cva(
-  "h-full w-52 bg-background px-layout-x overflow-y-auto transition-all",
+  "h-full w-52 px-layout-x overflow-y-auto transition-all",
   {
     variants: {
       side: {
