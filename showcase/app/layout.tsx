@@ -24,9 +24,9 @@ export default function RootLayout({
           <Shell.Side>
             <Sidebar>
               {Array.from({ length: 20 }, (_, i) => (
-                <h2 key={i} className="py-2 text-sm font-medium text-muted hover:text-foreground transition-colors cursor-pointer">
+                <p key={i} className="py-control-y text-base font-medium text-muted hover:text-foreground transition-colors cursor-pointer">
                   Item {i + 1}
-                </h2>
+                </p>
               ))}
             </Sidebar>
           </Shell.Side>
