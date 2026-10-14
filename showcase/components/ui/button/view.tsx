@@ -176,8 +176,8 @@ export function ButtonView() {
       {/* Outlined Section */}
       <section className="flex flex-col gap-surface-gap py-layout-y">
         <div className="flex flex-row gap-surface-gap items-center">
-          <div className="size-control-md rounded-full border-[0.5px] border-border flex items-center justify-center shrink-0">
-            <Circle className="size-4" />
+          <div className="size-control-md rounded-full border-[0.5px] border-primary-border flex items-center justify-center shrink-0">
+            <Circle className="size-4 text-primary" />
           </div>
           <Label size="lg" as="h2">Outlined</Label>
         </div>
