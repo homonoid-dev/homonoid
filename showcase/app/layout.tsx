@@ -2,12 +2,18 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/ui/header";
 import { Shell } from "@/components/layout/shell";
-import { Sidebar } from "@/components/ui/sidebar";
+import { Sidebar, Destination } from "@/components/ui/sidebar";
 
 export const metadata: Metadata = {
   title: "Harmonia — Component System",
   description: "Harmonia Design System Component Showcase",
 };
+
+const components = [
+  { name: "Button", href: "/button" },
+  { name: "Input", href: "/input" },
+  { name: "Spinner", href: "/spinner" },
+];
 
 export default function RootLayout({
   children,
@@ -23,10 +29,13 @@ export default function RootLayout({
           </Shell.Head>
           <Shell.Side>
             <Sidebar className="gap-surface-gap flex flex-col py-surface">
-              {Array.from({ length: 20 }, (_, i) => (
-                <p key={i} className="text-base font-medium text-muted hover:text-foreground transition-colors cursor-pointer">
-                  Item {i + 1}
-                </p>
+              {components.map((component) => (
+                <Destination
+                  key={component.href}
+                  href={component.href}
+                >
+                  {component.name}
+                </Destination>
               ))}
             </Sidebar>
           </Shell.Side>
