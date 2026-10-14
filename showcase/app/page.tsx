@@ -1,60 +1,28 @@
-"use client";
-
-import { useState } from "react";
-import { Button } from "@harmonia/react";
+import { Button, Label } from "@harmonia/react";
+import { Description } from "@/components/ui/description";
 
 export default function Page() {
-  const [loading, setLoading] = useState(false);
-
   return (
-    <main className="min-h-screen p-12 flex flex-col items-center justify-center gap-8 bg-[var(--background)] text-[var(--foreground)]">
-      <div className="flex flex-col items-center gap-2">
-        <h1 className="text-2xl font-bold tracking-tight">Harmonia Button Preview</h1>
-        <p className="text-sm text-[var(--muted)]">
-          Live testing the Button component with Chroma theming and Object Continuity.
-        </p>
-      </div>
-
-      {/* Button Variants */}
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        <Button variant="contained" color="primary" loading={loading}>
-          Primary
-        </Button>
-        <Button variant="outlined" color="subtle" loading={loading}>
-          Secondary
-        </Button>
-        <Button variant="plain" color="subtle" loading={loading}>
-          Ghost
-        </Button>
-        <Button variant="contained" color="destructive" loading={loading}>
-          Destructive
-        </Button>
-      </div>
-
-      {/* Sizing Hierarchy */}
-      <div className="flex items-center gap-4">
-        <Button size="sm">Small (32px)</Button>
-        <Button size="md">Medium (40px)</Button>
-        <Button size="lg">Large (48px)</Button>
-      </div>
-
-      {/* Shapes */}
-      <div className="flex items-center gap-4">
-        <Button shape="circle">Circle / Pill</Button>
-        <Button shape="square">Square</Button>
-      </div>
-
-      {/* Object Continuity Loading Toggle */}
-      <div className="pt-4">
-        <Button
-          variant="outlined"
-          color="subtle"
-          size="sm"
-          onClick={() => setLoading(!loading)}
+    <div className="flex flex-col px-layout-x pt-layout-y gap-surface-gap max-w-4xl">
+      <Label size="lg">Components</Label>
+      <div className="flex flex-col gap-layout-gap">
+        <Description>
+          Explore the foundational building blocks of the Harmonia Design System.
+        </Description>
+        <a
+          href="https://github.com/lumunar/harmonia/tree/main/packages/react"
+          target="_blank"
+          rel="noreferrer"
+          className="w-fit"
         >
-          Toggle Loading: {loading ? "ON" : "OFF"}
-        </Button>
+          <Button variant="plain" color="subtle" shape="circle">
+            GitHub
+          </Button>
+        </a>
+        <Description>
+          Every component is engineered with strict design token hierarchy, continuous state transitions, and native platform accessibility across every surface. They are designed to preserve spatial identity and dimensional stability throughout complex workflows, giving interfaces a refined feel that adapts effortlessly to user interactions.
+        </Description>
       </div>
-    </main>
+    </div>
   );
 }
