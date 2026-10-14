@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from "react";
-import { cn } from "@harmonia/web/cn";
+import { cn } from "@harmonia/react/cn";
 
 export type DescriptionProps = HTMLAttributes<HTMLParagraphElement>;
 

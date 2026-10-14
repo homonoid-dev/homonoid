@@ -1,24 +1,60 @@
+"use client";
+
+import { useState } from "react";
+import { Button } from "@harmonia/react";
+
 export default function Page() {
+  const [loading, setLoading] = useState(false);
+
   return (
-    <div className="p-8 max-w-4xl space-y-12">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Harmonia Component System</h1>
-        <p className="text-muted mt-2">
-          Scroll down to see the main content smoothly flow underneath the frosted glass header.
+    <main className="min-h-screen p-12 flex flex-col items-center justify-center gap-8 bg-[var(--background)] text-[var(--foreground)]">
+      <div className="flex flex-col items-center gap-2">
+        <h1 className="text-2xl font-bold tracking-tight">Harmonia Button Preview</h1>
+        <p className="text-sm text-[var(--muted)]">
+          Live testing the Button component with Chroma theming and Object Continuity.
         </p>
       </div>
 
-      {Array.from({ length: 10 }, (_, i) => (
-        <section
-          key={i}
-          className="p-6 rounded-xl border border-border/50 bg-surface/50 space-y-3"
+      {/* Button Variants */}
+      <div className="flex flex-wrap items-center justify-center gap-4">
+        <Button variant="contained" color="primary" loading={loading}>
+          Primary
+        </Button>
+        <Button variant="outlined" color="subtle" loading={loading}>
+          Secondary
+        </Button>
+        <Button variant="plain" color="subtle" loading={loading}>
+          Ghost
+        </Button>
+        <Button variant="contained" color="destructive" loading={loading}>
+          Destructive
+        </Button>
+      </div>
+
+      {/* Sizing Hierarchy */}
+      <div className="flex items-center gap-4">
+        <Button size="sm">Small (32px)</Button>
+        <Button size="md">Medium (40px)</Button>
+        <Button size="lg">Large (48px)</Button>
+      </div>
+
+      {/* Shapes */}
+      <div className="flex items-center gap-4">
+        <Button shape="circle">Circle / Pill</Button>
+        <Button shape="square">Square</Button>
+      </div>
+
+      {/* Object Continuity Loading Toggle */}
+      <div className="pt-4">
+        <Button
+          variant="outlined"
+          color="subtle"
+          size="sm"
+          onClick={() => setLoading(!loading)}
         >
-          <h2 className="text-xl font-semibold">Section {i + 1}</h2>
-          <p className="text-sm text-muted leading-relaxed">
-            Continuity, token-driven theming, and physics-based interactions. As you scroll, this content passes directly behind the frosted glass header, blurring with the background chroma theme.
-          </p>
-        </section>
-      ))}
-    </div>
+          Toggle Loading: {loading ? "ON" : "OFF"}
+        </Button>
+      </div>
+    </main>
   );
 }

@@ -29,14 +29,14 @@ if (fs.existsSync(pkgPath)) {
     pkg.dependencies["@harmonia/tokens"] = "*";
     changed = true;
   }
-  if (pkg.dependencies["@harmonia/web"] !== "*") {
-    pkg.dependencies["@harmonia/web"] = "*";
+  if (pkg.dependencies["@harmonia/react"] !== "*") {
+    pkg.dependencies["@harmonia/react"] = "*";
     changed = true;
   }
 
   if (changed) {
     fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n", "utf-8");
-    console.log(`  ✓ Linked @harmonia/tokens and @harmonia/web in ${targetDirName}/package.json`);
+    console.log(`  ✓ Linked @harmonia/tokens and @harmonia/react in ${targetDirName}/package.json`);
   } else {
     console.log(`  ✓ Dependencies already present in ${targetDirName}/package.json`);
   }
@@ -57,12 +57,12 @@ if (activeNextConfig) {
     if (content.includes("const nextConfig: NextConfig = {")) {
       content = content.replace(
         "const nextConfig: NextConfig = {",
-        'const nextConfig: NextConfig = {\n  transpilePackages: ["@harmonia/web", "@harmonia/tokens"],'
+        'const nextConfig: NextConfig = {\n  transpilePackages: ["@harmonia/react", "@harmonia/tokens"],'
       );
     } else if (content.includes("const nextConfig = {")) {
       content = content.replace(
         "const nextConfig = {",
-        'const nextConfig = {\n  transpilePackages: ["@harmonia/web", "@harmonia/tokens"],'
+        'const nextConfig = {\n  transpilePackages: ["@harmonia/react", "@harmonia/tokens"],'
       );
     }
     fs.writeFileSync(activeNextConfig, content, "utf-8");
@@ -85,17 +85,17 @@ if (cssPath) {
   let cssContent = fs.readFileSync(cssPath, "utf-8");
   const tailwindImport = '@import "tailwindcss";';
   const harmoniaTokenImport = '@import "@harmonia/tokens/css";';
-  const harmoniaWebStylesImport = '@import "@harmonia/web/styles.css";';
-  const harmoniaSource = '@source "../../packages/web/src";';
+  const harmoniaReactStylesImport = '@import "@harmonia/react/styles.css";';
+  const harmoniaSource = '@source "../../packages/react/src";';
 
   let additions = "";
   if (!cssContent.includes(harmoniaTokenImport)) {
     additions += `${harmoniaTokenImport}\n`;
   }
-  if (!cssContent.includes(harmoniaWebStylesImport)) {
-    additions += `${harmoniaWebStylesImport}\n`;
+  if (!cssContent.includes(harmoniaReactStylesImport)) {
+    additions += `${harmoniaReactStylesImport}\n`;
   }
-  if (!cssContent.includes("@source") && !cssContent.includes("packages/web")) {
+  if (!cssContent.includes("@source") && !cssContent.includes("packages/react")) {
     additions += `${harmoniaSource}\n`;
   }
 
@@ -123,11 +123,11 @@ const pagePath = possiblePagePaths.find((p) => fs.existsSync(p));
 if (pagePath) {
   const currentContent = fs.readFileSync(pagePath, "utf-8");
   // Only replace if it contains the default create-next-app starter
-  if (currentContent.includes("next/image") || currentContent.includes("Deploy now") || !currentContent.includes("@harmonia/web")) {
+  if (currentContent.includes("next/image") || currentContent.includes("Deploy now") || !currentContent.includes("@harmonia/react")) {
     const demoPageContent = `"use client";
 
 import { useState } from "react";
-import { Button } from "@harmonia/web";
+import { Button } from "@harmonia/react";
 
 export default function Page() {
   const [loading, setLoading] = useState(false);
@@ -191,14 +191,14 @@ export default function Page() {
 // 5. Ensure local workspace symlinks in node_modules
 const packagesDir = path.join(rootDir, "packages");
 const tokensPkgDir = path.join(packagesDir, "tokens");
-const webPkgDir = path.join(packagesDir, "web");
+const reactPkgDir = path.join(packagesDir, "react");
 
 for (const nmBase of [rootDir, targetDir]) {
   const harmoniaDir = path.join(nmBase, "node_modules", "@harmonia");
   fs.mkdirSync(harmoniaDir, { recursive: true });
 
   const tokensLink = path.join(harmoniaDir, "tokens");
-  const webLink = path.join(harmoniaDir, "web");
+  const reactLink = path.join(harmoniaDir, "react");
 
   if (!fs.existsSync(tokensLink)) {
     try {
@@ -208,12 +208,12 @@ for (const nmBase of [rootDir, targetDir]) {
       console.warn(`  ⚠️ Could not symlink tokens: ${e.message}`);
     }
   }
-  if (!fs.existsSync(webLink)) {
+  if (!fs.existsSync(reactLink)) {
     try {
-      fs.symlinkSync(webPkgDir, webLink, "junction");
-      console.log(`  ✓ Symlinked @harmonia/web into ${path.relative(rootDir, harmoniaDir)}`);
+      fs.symlinkSync(reactPkgDir, reactLink, "junction");
+      console.log(`  ✓ Symlinked @harmonia/react into ${path.relative(rootDir, harmoniaDir)}`);
     } catch (e) {
-      console.warn(`  ⚠️ Could not symlink web: ${e.message}`);
+      console.warn(`  ⚠️ Could not symlink react: ${e.message}`);
     }
   }
 }

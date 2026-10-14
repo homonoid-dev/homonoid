@@ -1,4 +1,4 @@
-import { cn } from "@harmonia/web/cn";
+import { cn } from "@harmonia/react/cn";
 import type { SidebarHeaderProps } from "./types";
 
 export function SidebarHeader({

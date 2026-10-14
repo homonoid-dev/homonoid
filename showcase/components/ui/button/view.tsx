@@ -1,4 +1,4 @@
-import { Label } from "@harmonia/web";
+import { Label } from "@harmonia/react";
 import { Description } from "@/components/ui/description";
 
 export function ButtonView() {

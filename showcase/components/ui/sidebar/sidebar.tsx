@@ -1,4 +1,4 @@
-import { cn } from "@harmonia/web/cn";
+import { cn } from "@harmonia/react/cn";
 import { cva } from "class-variance-authority";
 import { SidebarHeader } from "./header";
 import { SidebarDestination } from "./destination";
