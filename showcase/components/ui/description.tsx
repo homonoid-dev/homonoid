@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from "react";
 import { cn } from "@harmonia/web/cn";
 
-export interface DescriptionProps extends HTMLAttributes<HTMLParagraphElement> { }
+export type DescriptionProps = HTMLAttributes<HTMLParagraphElement>;
 
 export function Description({ className, children, ...props }: DescriptionProps) {
   return (

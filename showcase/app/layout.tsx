@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Header } from "@/components/ui/header";
 import { Shell } from "@/components/layout/shell";
 import { Sidebar } from "@/components/ui/sidebar";
 
