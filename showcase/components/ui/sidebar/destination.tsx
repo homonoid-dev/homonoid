@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export function Destination({
+export function SidebarDestination({
   href,
   children,
 }: {
@@ -16,7 +16,7 @@ export function Destination({
   return (
     <Link
       href={href}
-      className={`text-sm transition-colors ${isSelected ? "text-foreground" : "text-muted hover:text-foreground"
+      className={`text-sm ${isSelected ? "text-foreground" : "text-muted hover:text-foreground"
         }`}
     >
       {children}

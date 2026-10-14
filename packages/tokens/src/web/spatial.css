@@ -15,7 +15,7 @@
     --gap-surface: 1.0rem;
     --p-layout: clamp(1.25rem, 3vw, 2.0rem);
     --p-layout-x: var(--p-layout);
-    --p-layout-y: var(--p-layout);
+    --p-layout-y: 2.0rem;
     --gap-layout: 1.5rem;
   }
 }

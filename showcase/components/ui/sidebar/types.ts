@@ -16,3 +16,15 @@ export interface SidebarProps extends HTMLAttributes<HTMLElement> {
    */
   children?: ReactNode;
 }
+
+export interface SidebarHeaderProps extends HTMLAttributes<HTMLElement> {
+  /**
+   * Whether the sidebar header stays pinned at the top during scrolling.
+   */
+  sticky?: boolean;
+
+  /**
+   * Children content within the sidebar header.
+   */
+  children?: ReactNode;
+}

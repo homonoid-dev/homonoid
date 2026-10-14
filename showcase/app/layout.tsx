@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/ui/header";
 import { Shell } from "@/components/layout/shell";
-import { Sidebar, Destination } from "@/components/ui/sidebar";
+import { Sidebar } from "@/components/ui/sidebar";
 
 export const metadata: Metadata = {
   title: "Harmonia — Component System",
@@ -24,19 +24,18 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased">
       <body>
         <Shell>
-          <Shell.Head>
-            <Header />
-          </Shell.Head>
           <Shell.Side>
-            <Sidebar className="gap-surface-gap flex flex-col py-surface">
-              {components.map((component) => (
-                <Destination
-                  key={component.href}
-                  href={component.href}
-                >
-                  {component.name}
-                </Destination>
-              ))}
+            <Sidebar>
+              <div className="flex flex-col gap-surface-gap px-layout-x py-surface">
+                {components.map((component) => (
+                  <Sidebar.Destination
+                    key={component.href}
+                    href={component.href}
+                  >
+                    {component.name}
+                  </Sidebar.Destination>
+                ))}
+              </div>
             </Sidebar>
           </Shell.Side>
           <Shell.Main>

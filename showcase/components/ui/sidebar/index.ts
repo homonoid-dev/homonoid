@@ -1,3 +1,4 @@
 export { Sidebar } from "./sidebar";
-export { Destination } from "./item";
-export type { SidebarProps, SidebarSide } from "./types";
+export { SidebarHeader } from "./header";
+export { SidebarDestination } from "./destination";
+export type { SidebarProps, SidebarHeaderProps, SidebarSide } from "./types";

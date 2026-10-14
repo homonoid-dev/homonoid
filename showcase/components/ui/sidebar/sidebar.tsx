@@ -1,11 +1,11 @@
-"use client";
-
-import { cn } from "@harmonia/web";
+import { cn } from "@harmonia/web/cn";
 import { cva } from "class-variance-authority";
+import { SidebarHeader } from "./header";
+import { SidebarDestination } from "./destination";
 import type { SidebarProps } from "./types";
 
 export const variants = cva(
-  "h-full w-52 shrink-0 bg-background px-layout-x overflow-y-auto transition-all",
+  "h-full w-52 shrink-0 bg-background overflow-y-auto transition-all",
   {
     variants: {
       side: {
@@ -26,3 +26,6 @@ export function Sidebar({ side, className, children, ...props }: SidebarProps) {
     </aside>
   );
 }
+
+Sidebar.Header = SidebarHeader;
+Sidebar.Destination = SidebarDestination;

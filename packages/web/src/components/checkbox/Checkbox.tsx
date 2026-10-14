@@ -1,3 +1,5 @@
+"use client";
+
 import { forwardRef, useEffect, useId, useRef, useState, type ChangeEvent } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
