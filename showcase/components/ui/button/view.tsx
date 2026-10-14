@@ -5,7 +5,7 @@ import { Button, Label } from "@harmonia/react";
 import { Description } from "@/components/ui/description";
 import { Check, Code2, Copy, Eye } from "lucide-react";
 import GithubIcon from "@/components/icons/github";
-import { Code } from "@/components/ui/code";
+import { Code, highlighter } from "@/components/ui/code";
 
 const CODE_SAMPLE = `import { Button } from "@harmonia/react";
 
@@ -58,7 +58,7 @@ export function ButtonView() {
       <section className="flex flex-col gap-surface-gap">
         {/* Subtle Import Card */}
         <div className="flex items-center justify-between p-4 rounded-3xl bg-subtle text-subtle-foreground border-[0.5px] border-subtle-border font-mono text-xs select-text">
-          <code>import &#123; Button &#125; from &quot;@harmonia/react&quot;;</code>
+          <code>{highlighter('import { Button } from "@harmonia/react";')}</code>
         </div>
 
         {/* Card */}
