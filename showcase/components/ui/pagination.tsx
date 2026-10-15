@@ -56,6 +56,7 @@ export function Pagination({
           <Link href={prevItem.href}>
             <Button
               variant="outlined"
+              color="surface"
               shape="circle"
               leading={<ArrowLeft className="size-4" />}
             >
