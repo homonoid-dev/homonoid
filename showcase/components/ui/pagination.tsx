@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cond } from "@harmonia/react";
+import { Button, cond } from "@harmonia/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@harmonia/react/cn";
 import { SHOWCASE_COMPONENTS, type ShowcaseComponentItem } from "@/config/components";
@@ -53,28 +53,29 @@ export function Pagination({
     >
       <div>
         {prevItem && (
-          <Link
-            href={prevItem.href}
-            className="group inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors py-2"
-          >
-            <ArrowLeft className="size-4 transition-transform duration-200 group-hover:-translate-x-1 text-muted group-hover:text-foreground" />
-            <span className="font-medium text-foreground transition-colors group-hover:text-primary">
+          <Link href={prevItem.href}>
+            <Button
+              variant="outlined"
+              shape="circle"
+              leading={<ArrowLeft className="size-4" />}
+            >
               {prevItem.name}
-            </span>
+            </Button>
           </Link>
         )}
       </div>
 
       <div className="ml-auto text-right">
         {nextItem && (
-          <Link
-            href={nextItem.href}
-            className="group inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors py-2"
-          >
-            <span className="font-medium text-foreground transition-colors group-hover:text-primary">
+          <Link href={nextItem.href}>
+            <Button
+              variant="outlined"
+              color="surface"
+              shape="circle"
+              trailing={<ArrowRight className="size-4" />}
+            >
               {nextItem.name}
-            </span>
-            <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1 text-muted group-hover:text-foreground" />
+            </Button>
           </Link>
         )}
       </div>
