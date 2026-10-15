@@ -9,6 +9,8 @@ import {
   BUTTON_WITH_ICON_CODE_SAMPLE,
   BUTTON_ICON_ONLY_CODE_SAMPLE,
   BUTTON_LOADING_CODE_SAMPLE,
+  BUTTON_SECTIONS,
+  BUTTON_SECTIONS_LIST,
 } from "./model";
 
 export function useButtonViewModel(): ButtonViewModel {
@@ -29,6 +31,8 @@ export function useButtonViewModel(): ButtonViewModel {
     withIconCodeSample: BUTTON_WITH_ICON_CODE_SAMPLE,
     iconOnlyCodeSample: BUTTON_ICON_ONLY_CODE_SAMPLE,
     loadingCodeSample: BUTTON_LOADING_CODE_SAMPLE,
+    sections: BUTTON_SECTIONS,
+    sectionsList: BUTTON_SECTIONS_LIST,
     isLoading,
     triggerLoading,
     resetLoading,

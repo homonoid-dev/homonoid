@@ -1,3 +1,44 @@
+import type { LucideIcon } from "lucide-react";
+import { Layers, Circle, ArrowRight, Plus, Loader2 } from "lucide-react";
+import type { TocItem } from "@/components/ui/toc";
+
+export interface ButtonSectionItem extends TocItem {
+  id: string;
+  label: string;
+  icon: LucideIcon;
+}
+
+export const BUTTON_SECTIONS: Record<string, ButtonSectionItem> = {
+  variants: {
+    id: "variants",
+    label: "Variants",
+    icon: Layers,
+  },
+  outlined: {
+    id: "outlined",
+    label: "Outlined",
+    icon: Circle,
+  },
+  withIcon: {
+    id: "with-icon",
+    label: "With Icon",
+    icon: ArrowRight,
+  },
+  iconOnly: {
+    id: "icon-only",
+    label: "Icon Only",
+    icon: Plus,
+  },
+  loading: {
+    id: "loading",
+    label: "Loading",
+    icon: Loader2,
+  },
+};
+
+export const BUTTON_SECTIONS_LIST: ButtonSectionItem[] =
+  Object.values(BUTTON_SECTIONS);
+
 export const BUTTON_CONTAINED_CODE_SAMPLE = `import { Button } from "@harmonia/react";
 
 export function Example() {
@@ -98,6 +139,8 @@ export interface ButtonViewModel {
   withIconCodeSample: string;
   iconOnlyCodeSample: string;
   loadingCodeSample: string;
+  sections: Record<string, ButtonSectionItem>;
+  sectionsList: ButtonSectionItem[];
   isLoading: boolean;
   triggerLoading: () => void;
   resetLoading: () => void;

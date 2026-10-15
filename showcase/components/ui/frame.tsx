@@ -1,14 +1,17 @@
-import type { ElementType, HTMLAttributes, ReactNode } from "react";
+import type { ComponentType, ElementType, HTMLAttributes, ReactNode } from "react";
+import type { LucideIcon } from "lucide-react";
 import { cn } from "@harmonia/react/cn";
 
 export interface FrameProps extends HTMLAttributes<HTMLElement> {
   as?: ElementType;
-  children: ReactNode;
+  icon?: LucideIcon | ComponentType<{ className?: string }>;
+  children?: ReactNode;
   className?: string;
 }
 
 export function Frame({
   as: Component = "div",
+  icon: Icon,
   children,
   className,
   ...props
@@ -21,7 +24,7 @@ export function Frame({
       )}
       {...props}
     >
-      {children}
+      {Icon ? <Icon className="size-4" /> : children}
     </Component>
   );
 }
