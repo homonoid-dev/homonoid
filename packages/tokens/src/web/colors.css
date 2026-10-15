@@ -15,11 +15,11 @@
     --primary-border: color-mix(in srgb, var(--seed) 28%, white);
 
     /* Chroma Subtle Family (Light Mode) */
-    --subtle: color-mix(in srgb, var(--seed) 12%, white);
-    --subtle-hover: color-mix(in srgb, var(--seed) 18%, white);
-    --subtle-active: color-mix(in srgb, var(--seed) 25%, white);
+    --subtle: color-mix(in srgb, var(--seed) 12%, transparent);
+    --subtle-hover: color-mix(in srgb, var(--seed) 18%, transparent);
+    --subtle-active: color-mix(in srgb, var(--seed) 25%, transparent);
     --subtle-foreground: color-mix(in srgb, var(--seed) 85%, black);
-    --subtle-border: color-mix(in srgb, var(--seed) 28%, white);
+    --subtle-border: color-mix(in srgb, var(--seed) 28%, transparent);
 
     /* Pure Neutral Surfaces & Typography (Light Mode) */
     --background: #ffffff;
