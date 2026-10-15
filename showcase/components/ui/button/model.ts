@@ -18,12 +18,32 @@ export function Example() {
   );
 }`;
 
-export const BUTTON_ICON_CODE_SAMPLE = `import { Button } from "@harmonia/react";
+export const BUTTON_WITH_ICON_CODE_SAMPLE = `import { Button } from "@harmonia/react";
+import { ArrowRight } from "lucide-react";
+
+export function Example() {
+  return (
+    <Button
+      variant="contained"
+      shape="circle"
+      leading={<ArrowRight className="size-4" />}
+    >
+      Click me
+    </Button>
+  );
+}`;
+
+export const BUTTON_ICON_ONLY_CODE_SAMPLE = `import { Button } from "@harmonia/react";
 import { Plus } from "lucide-react";
 
 export function Example() {
   return (
-    <Button layout="icon" variant="contained" shape="circle" aria-label="Add item">
+    <Button
+      layout="icon"
+      variant="contained"
+      shape="circle"
+      aria-label="Add item"
+    >
       <Plus className="size-4" />
     </Button>
   );
@@ -32,5 +52,6 @@ export function Example() {
 export interface ButtonViewModel {
   containedCodeSample: string;
   outlinedCodeSample: string;
-  iconCodeSample: string;
+  withIconCodeSample: string;
+  iconOnlyCodeSample: string;
 }
