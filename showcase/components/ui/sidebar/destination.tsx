@@ -57,14 +57,10 @@ export function SidebarDestination({
   );
 
   const classes = cn(
-    "group text-sm flex items-center transition-all duration-300 cursor-pointer select-none rounded-md",
-    collapsed && isIconKept
-      ? "justify-center size-9 p-0 hover:bg-surface/50"
-      : "justify-between w-full py-1",
+    "group text-sm flex items-center w-full py-1 transition-colors duration-300 cursor-pointer select-none",
+    collapsed && isIconKept ? "justify-center" : "justify-between",
     isSelected
-      ? collapsed && isIconKept
-        ? "text-foreground font-medium bg-surface"
-        : "text-foreground font-medium"
+      ? "text-foreground font-medium"
       : "text-muted hover:text-foreground",
     className
   );

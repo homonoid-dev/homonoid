@@ -163,15 +163,6 @@ export function Toc({
           isCollapsed ? "px-2.5 items-center" : "px-layout-x"
         )}
       >
-        <div
-          className={cn(
-            "flex items-center w-full transition-all duration-300 pb-1",
-            isCollapsed ? "justify-center" : "justify-end"
-          )}
-        >
-          <Sidebar.Toggle />
-        </div>
-
         {items.map((item) => (
           <Sidebar.Destination
             key={item.id}
