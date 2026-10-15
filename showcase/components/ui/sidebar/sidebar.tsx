@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo } from "react";
 import { cn } from "@harmonia/react/cn";
+import { cond } from "@harmonia/react";
 import { cva } from "class-variance-authority";
 import { SidebarHeader } from "./header";
 import { SidebarDestination } from "./destination";
@@ -18,7 +19,7 @@ export const variants = cva(
         right: "border-l-[0.5px] border-border/50",
       },
       collapsed: {
-        true: "w-14",
+        true: "w-[calc(var(--p-layout-x)*2+1rem)]",
         false: "w-52",
       },
     },
@@ -43,13 +44,19 @@ export function Sidebar({
 
   const isCollapsed =
     collapsible &&
-    (controlledCollapsed !== undefined
-      ? controlledCollapsed
-      : internalCollapsed);
+    cond(
+      controlledCollapsed !== undefined,
+      Boolean(controlledCollapsed),
+      internalCollapsed
+    );
 
   const handleSetCollapsed = useCallback(
     (value: boolean | ((prev: boolean) => boolean)) => {
-      const next = typeof value === "function" ? value(isCollapsed) : value;
+      const next = cond(
+        typeof value === "function",
+        (value as (prev: boolean) => boolean)(isCollapsed),
+        Boolean(value)
+      );
       if (controlledCollapsed === undefined) {
         setInternalCollapsed(next);
       }
@@ -90,8 +97,8 @@ export function Sidebar({
           <div
             role="button"
             tabIndex={0}
-            aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-            title={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+            aria-label={cond(isCollapsed, "Expand sidebar", "Collapse sidebar")}
+            title={cond(isCollapsed, "Expand sidebar", "Collapse sidebar")}
             onClick={toggleCollapse}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
@@ -101,14 +108,12 @@ export function Sidebar({
             }}
             className={cn(
               "absolute inset-y-0 z-30 w-3 -translate-x-1/2 flex items-center justify-center transition-colors group/border outline-hidden select-none",
-              side === "right" ? "left-0" : "left-full",
-              side === "right"
-                ? isCollapsed
-                  ? "cursor-w-resize"
-                  : "cursor-e-resize"
-                : isCollapsed
-                  ? "cursor-e-resize"
-                  : "cursor-w-resize"
+              cond(side === "right", "left-0", "left-full"),
+              cond(
+                side === "right",
+                cond(isCollapsed, "cursor-w-resize", "cursor-e-resize"),
+                cond(isCollapsed, "cursor-e-resize", "cursor-w-resize")
+              )
             )}
           >
             <div className="w-[2px] h-full transition-colors duration-200 bg-transparent group-hover/border:bg-primary/80" />

@@ -11,6 +11,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { Sidebar } from "@/components/ui/sidebar";
 import { cn } from "@harmonia/react/cn";
+import { cond } from "@harmonia/react";
 
 export interface TocItem {
   id: string;
@@ -67,9 +68,11 @@ export function Toc({
 
   const isCollapsed =
     collapsible &&
-    (controlledCollapsed !== undefined
-      ? controlledCollapsed
-      : internalCollapsed);
+    cond(
+      controlledCollapsed !== undefined,
+      Boolean(controlledCollapsed),
+      internalCollapsed
+    );
 
   useEffect(() => {
     if (!collapsible || controlledCollapsed !== undefined) return;
@@ -157,12 +160,7 @@ export function Toc({
       onCollapsedChange={handleCollapseChange}
       className={cn("sticky top-0 self-start h-screen", className)}
     >
-      <div
-        className={cn(
-          "flex flex-col gap-surface-gap py-surface transition-[padding] duration-300 ease-in-out",
-          isCollapsed ? "px-2.5 items-center" : "px-layout-x"
-        )}
-      >
+      <div className="flex flex-col gap-surface-gap px-layout-x py-surface">
         {items.map((item) => (
           <Sidebar.Destination
             key={item.id}
