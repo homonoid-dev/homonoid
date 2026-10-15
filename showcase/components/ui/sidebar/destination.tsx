@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@harmonia/react/cn";
+import { cond } from "@harmonia/react";
 import { useSidebar } from "./context";
 import type { SidebarDestinationProps } from "./types";
 
@@ -17,23 +18,28 @@ export function SidebarDestination({
 }: SidebarDestinationProps) {
   const { collapsed } = useSidebar();
   const pathname = usePathname();
-  const isSelected =
-    active !== undefined ? active : href ? pathname === href : false;
+  const isSelected = cond(
+    active !== undefined,
+    active,
+    cond(Boolean(href), pathname === href, false)
+  );
 
   const isIconKept = keep === "icon";
   const showLabel = !collapsed || keep === "label";
   const showIcon = Boolean(icon && (!collapsed || isIconKept));
 
-  const labelText = typeof children === "string" ? children : undefined;
+  const labelText = cond(typeof children === "string", children as string, undefined);
 
   const content = (
     <>
       <span
         className={cn(
           "truncate transition-[opacity,max-width] duration-300 ease-in-out whitespace-nowrap",
-          showLabel
-            ? "max-w-full opacity-100"
-            : "max-w-0 opacity-0 overflow-hidden pointer-events-none"
+          cond(
+            showLabel,
+            "max-w-full opacity-100",
+            "max-w-0 opacity-0 overflow-hidden pointer-events-none"
+          )
         )}
       >
         {children}
@@ -42,12 +48,16 @@ export function SidebarDestination({
         <span
           className={cn(
             "shrink-0 transition-[opacity,transform,color] duration-300 ease-in-out flex items-center justify-center",
-            showIcon
-              ? "opacity-100 scale-100"
-              : "max-w-0 opacity-0 overflow-hidden pointer-events-none scale-90",
-            isSelected
-              ? "text-foreground"
-              : "text-muted group-hover:text-foreground"
+            cond(
+              showIcon,
+              "opacity-100 scale-100",
+              "max-w-0 opacity-0 overflow-hidden pointer-events-none scale-90"
+            ),
+            cond(
+              isSelected,
+              "text-foreground",
+              "text-muted group-hover:text-foreground"
+            )
           )}
         >
           {icon}
@@ -58,10 +68,12 @@ export function SidebarDestination({
 
   const classes = cn(
     "group text-sm flex items-center w-full py-1 transition-colors duration-300 cursor-pointer select-none",
-    collapsed && isIconKept ? "justify-center" : "justify-between",
-    isSelected
-      ? "text-foreground font-medium"
-      : "text-muted hover:text-foreground",
+    cond(collapsed && isIconKept, "justify-center", "justify-between"),
+    cond(
+      isSelected,
+      "text-foreground font-medium",
+      "text-muted hover:text-foreground"
+    ),
     className
   );
 
@@ -81,7 +93,7 @@ export function SidebarDestination({
 
   return (
     <a
-      href={href ?? "#"}
+      href={cond(Boolean(href), href as string, "#")}
       onClick={(e) => {
         if (onClick) {
           e.preventDefault();

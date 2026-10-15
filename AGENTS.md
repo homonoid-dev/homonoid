@@ -46,6 +46,7 @@ Harmonia prioritizes continuity, platform-native excellence, and token-driven de
 - Design Tokens First: Components must consume values exclusively from design tokens (`@harmonia/tokens`). Never introduce hardcoded colors, spacing, or radii.
 - Component Specifications: Every new component requires a formal specification in `docs/components/<name>.md` before implementation.
 - Object Continuity: State transitions must preserve component identity and dimensional stability. Components must not collapse or jump abruptly during state changes.
+- Functional Condition Utilities: Use functional condition helpers (`cond`, `iff`, `any`, `all`) from `@harmonia/react` instead of inline ternary operators (`?:`) across component markup, class definitions, and layout branching logic.
 
 <br>
 
