@@ -55,7 +55,7 @@ export function Stage({
   }, []);
 
   // Measures the active tab's entering content dynamically without lagging
-  const measureRef = useCallback((node: HTMLDivElement | null) => {
+  const measurer = useCallback((node: HTMLDivElement | null) => {
     if (observerRef.current) {
       observerRef.current.disconnect();
       observerRef.current = null;
@@ -159,7 +159,7 @@ export function Stage({
           {activeTab === "preview" ? (
             <motion.div
               key="preview"
-              ref={measureRef}
+              ref={measurer}
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
@@ -179,7 +179,7 @@ export function Stage({
           ) : (
             <motion.div
               key="code"
-              ref={measureRef}
+              ref={measurer}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
