@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Card } from "@harmonia/react";
 import { cond } from "@harmonia/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@harmonia/react/cn";
@@ -48,46 +47,34 @@ export function Pagination({
     <nav
       aria-label="Component pagination"
       className={cn(
-        "grid grid-cols-1 sm:grid-cols-2 gap-surface-gap w-full pt-layout-y border-t border-border/50",
+        "flex items-center justify-between w-full pt-layout-y select-none",
         className
       )}
     >
       <div>
         {prevItem && (
-          <Link href={prevItem.href} className="block group h-full">
-            <Card
-              variant="outlined"
-              color="surface"
-              className="h-full flex flex-col justify-center p-surface gap-1 transition-all duration-200 hover:border-primary/50 hover:bg-surface/30 cursor-pointer"
-            >
-              <span className="text-xs text-muted flex items-center gap-1.5 select-none">
-                <ArrowLeft className="size-3.5 transition-transform duration-200 group-hover:-translate-x-1 text-muted group-hover:text-foreground" />
-                Previous
-              </span>
-              <span className="text-sm font-medium text-foreground transition-colors group-hover:text-primary">
-                {prevItem.name}
-              </span>
-            </Card>
+          <Link
+            href={prevItem.href}
+            className="group inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors py-2"
+          >
+            <ArrowLeft className="size-4 transition-transform duration-200 group-hover:-translate-x-1 text-muted group-hover:text-foreground" />
+            <span className="font-medium text-foreground transition-colors group-hover:text-primary">
+              {prevItem.name}
+            </span>
           </Link>
         )}
       </div>
 
-      <div className="sm:text-right">
+      <div className="ml-auto text-right">
         {nextItem && (
-          <Link href={nextItem.href} className="block group h-full">
-            <Card
-              variant="outlined"
-              color="surface"
-              className="h-full flex flex-col justify-center sm:items-end p-surface gap-1 transition-all duration-200 hover:border-primary/50 hover:bg-surface/30 cursor-pointer"
-            >
-              <span className="text-xs text-muted flex items-center sm:justify-end gap-1.5 select-none">
-                Next
-                <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-1 text-muted group-hover:text-foreground" />
-              </span>
-              <span className="text-sm font-medium text-foreground transition-colors group-hover:text-primary">
-                {nextItem.name}
-              </span>
-            </Card>
+          <Link
+            href={nextItem.href}
+            className="group inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors py-2"
+          >
+            <span className="font-medium text-foreground transition-colors group-hover:text-primary">
+              {nextItem.name}
+            </span>
+            <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1 text-muted group-hover:text-foreground" />
           </Link>
         )}
       </div>

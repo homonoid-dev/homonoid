@@ -233,6 +233,26 @@ export function ButtonViewContent() {
           </Stage>
         </section>
 
+        {/* Object Continuity Section */}
+        <section
+          id={sections.continuity.id}
+          className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
+        >
+          <Label size="lg" as="h2">{sections.continuity.label}</Label>
+
+          <Description>
+            Harmonia treats interactive controls as persistent physical landmarks. State transitions must preserve component identity and geometric stability rather than tearing down and reconstructing elements abruptly.
+          </Description>
+
+          <Description>
+            Button containers enforce stable geometric bounds across interactive states. Transitioning into the loading state cross fades the action label into the indicator without width collapse or layout reflows.
+          </Description>
+
+          <Description>
+            Pointer compression engages calibrated spring resistance followed by fluid restorative rebound. Easing curves prioritize immediate feedback upon press while smoothing releases naturally.
+          </Description>
+        </section>
+
         {/* Component Pagination Navigation */}
         <Pagination />
       </div>

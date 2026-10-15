@@ -8,6 +8,7 @@ import {
   Ruler,
   Ban,
   StretchHorizontal,
+  Sparkles,
 } from "lucide-react";
 import type { TocItem } from "@/components/ui/toc";
 
@@ -57,6 +58,11 @@ export const BUTTON_SECTIONS: Record<string, ButtonSectionItem> = {
     id: "full-width",
     label: "Full Width",
     icon: StretchHorizontal,
+  },
+  continuity: {
+    id: "object-continuity",
+    label: "Continuity",
+    icon: Sparkles,
   },
 };
 
