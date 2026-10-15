@@ -13,6 +13,7 @@ const components = [
   { name: "Input", href: "/input" },
   { name: "Spinner", href: "/spinner" },
   { name: "Label", href: "/label" },
+  { name: "Card", href: "/card" },
 ];
 
 export default function RootLayout({

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Label, Description, Card } from "@harmonia/react";
-import { Circle, Plus, ArrowRight } from "lucide-react";
+import { Circle, Plus, ArrowRight, Layers } from "lucide-react";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
@@ -11,6 +11,7 @@ import { useButton } from "./use-button";
 export function ButtonViewContent() {
   const {
     containedCodeSample,
+    variantsCodeSample,
     outlinedCodeSample,
     withIconCodeSample,
     iconOnlyCodeSample,
@@ -52,6 +53,37 @@ export function ButtonViewContent() {
           <Button variant="contained" shape="circle">
             Click me
           </Button>
+        </Stage>
+      </section>
+
+      {/* Variants Section */}
+      <section className="flex flex-col gap-surface-gap pb-layout-y">
+        <div className="flex flex-row gap-surface-gap items-center">
+          <div className="size-control-md rounded-full border border-border flex items-center justify-center shrink-0">
+            <Layers className="size-4" />
+          </div>
+          <Label size="lg" as="h2">Variants</Label>
+        </div>
+
+        {/* Variants Stage */}
+        <Stage code={variantsCodeSample}>
+          <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+            <Button variant="contained" color="primary" shape="circle">
+              Primary
+            </Button>
+            <Button variant="contained" color="subtle" shape="circle">
+              Subtle
+            </Button>
+            <Button variant="outlined" shape="circle">
+              Outline
+            </Button>
+            <Button variant="plain" shape="circle">
+              Ghost
+            </Button>
+            <Button variant="contained" color="destructive" shape="circle">
+              Destructive
+            </Button>
+          </div>
         </Stage>
       </section>
 
