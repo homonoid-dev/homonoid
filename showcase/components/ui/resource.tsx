@@ -16,9 +16,8 @@ export type ResourceType = "github" | "figma" | "npm";
 export interface ResourceProps {
   /**
    * Resource platform type.
-   * @default "github"
    */
-  type?: ResourceType;
+  type: ResourceType;
 
   /**
    * Component directory name within packages/react (e.g. "button", "card", "label").
@@ -55,7 +54,7 @@ export interface ResourceProps {
 }
 
 export function Resource({
-  type = "github",
+  type,
   component,
   path,
   href,

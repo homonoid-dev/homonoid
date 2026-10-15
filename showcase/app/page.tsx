@@ -9,7 +9,7 @@ export default function Page() {
         <Description>
           Explore the foundational building blocks of the Harmonia Design System.
         </Description>
-        <Resource />
+        <Resource type="github" />
         <Description>
           Every component is engineered with strict design token hierarchy, continuous state transitions, and native platform accessibility across every surface. They are designed to preserve spatial identity and dimensional stability throughout complex workflows, giving interfaces a refined feel that adapts effortlessly to user interactions.
         </Description>
