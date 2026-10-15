@@ -118,18 +118,9 @@ export const SPINNER_SIZES_CODE_SAMPLE = `import { Spinner } from "@harmonia/rea
 export function SizesExample() {
   return (
     <div className="flex flex-row items-center gap-surface-gap">
-      <div className="flex flex-col items-center gap-2">
-        <Spinner size="sm" />
-        <span className="text-xs text-muted">sm (16px)</span>
-      </div>
-      <div className="flex flex-col items-center gap-2">
-        <Spinner size="md" />
-        <span className="text-xs text-muted">md (24px)</span>
-      </div>
-      <div className="flex flex-col items-center gap-2">
-        <Spinner size="lg" />
-        <span className="text-xs text-muted">lg (32px)</span>
-      </div>
+      <Spinner size="sm" />
+      <Spinner size="md" />
+      <Spinner size="lg" />
     </div>
   );
 }`;

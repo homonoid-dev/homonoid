@@ -106,19 +106,10 @@ export function SpinnerView() {
         </div>
 
         <Stage code={SPINNER_SIZES_CODE_SAMPLE}>
-          <div className="flex flex-row items-center gap-10">
-            <div className="flex flex-col items-center gap-2">
-              <Spinner size="sm" />
-              <span className="text-xs text-muted">sm (16px)</span>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Spinner size="md" />
-              <span className="text-xs text-muted">md (24px)</span>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Spinner size="lg" />
-              <span className="text-xs text-muted">lg (32px)</span>
-            </div>
+          <div className="flex flex-row items-center gap-surface-gap">
+            <Spinner size="sm" />
+            <Spinner size="md" />
+            <Spinner size="lg" />
           </div>
         </Stage>
       </section>
