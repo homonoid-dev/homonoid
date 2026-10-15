@@ -1,5 +1,4 @@
-import { Button, Label } from "@harmonia/react";
-import { Description } from "@/components/ui/description";
+import { Button, Label, Description } from "@harmonia/react";
 import { GithubIcon } from "@/components/icons/github";
 
 export default function Page() {

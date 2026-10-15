@@ -1,6 +1,4 @@
-export type ButtonTab = "preview" | "code";
-
-export const BUTTON_CODE_SAMPLE = `import { Button } from "@harmonia/react";
+export const BUTTON_CONTAINED_CODE_SAMPLE = `import { Button } from "@harmonia/react";
 
 export function Example() {
   return (
@@ -20,20 +18,7 @@ export function Example() {
   );
 }`;
 
-export const PREVIEW_CARD_HEIGHT = 280;
-export const CODE_CARD_HEIGHT = 192;
-
 export interface ButtonViewModel {
-  activeTab: ButtonTab;
-  copiedCode: boolean;
-  outlinedTab: ButtonTab;
-  copiedOutlinedCode: boolean;
-  activeCardHeight: number;
-  outlinedCardHeight: number;
-  codeSample: string;
+  containedCodeSample: string;
   outlinedCodeSample: string;
-  setActiveTab: (tab: ButtonTab) => void;
-  setOutlinedTab: (tab: ButtonTab) => void;
-  handleCopyCode: () => void;
-  handleCopyOutlinedCode: () => void;
 }

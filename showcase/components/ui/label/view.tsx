@@ -1,5 +1,4 @@
-import { Label } from "@harmonia/react";
-import { Description } from "@/components/ui/description";
+import { Label, Description } from "@harmonia/react";
 
 export function LabelView() {
   return (
