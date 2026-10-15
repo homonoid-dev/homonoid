@@ -27,8 +27,6 @@ export interface StageProps {
   defaultTab?: "preview" | "code";
   /** Optional callback to reset component preview state */
   onReset?: () => void;
-  /** Alias for onReset */
-  reset?: () => void;
 }
 
 export function Stage({
@@ -40,13 +38,10 @@ export function Stage({
   minPreviewHeight = 220,
   defaultTab = "preview",
   onReset,
-  reset,
 }: StageProps) {
   const [activeTab, setActiveTab] = useState<"preview" | "code">(defaultTab);
   const [copied, setCopied] = useState(false);
   const [measuredHeight, setMeasuredHeight] = useState<number | "auto">("auto");
-
-  const handleReset = onReset ?? reset;
 
   const copyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const observerRef = useRef<ResizeObserver | null>(null);
@@ -136,13 +131,13 @@ export function Stage({
         </div>
 
         <div className="flex items-center gap-1">
-          {handleReset && (
+          {onReset && (
             <Button
               layout="icon"
               variant="plain"
               color="subtle"
               shape="circle"
-              onClick={handleReset}
+              onClick={onReset}
               aria-label="Reset"
             >
               <RotateCcw className="size-4" />

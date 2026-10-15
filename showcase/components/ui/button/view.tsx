@@ -5,6 +5,7 @@ import { Circle, Plus, ArrowRight, Layers, Loader2 } from "lucide-react";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
+import { Frame } from "@/components/ui/frame";
 import { ButtonProvider } from "./provider";
 import { useButton } from "./use-button";
 
@@ -63,9 +64,9 @@ export function ButtonViewContent() {
       {/* Variants Section */}
       <section className="flex flex-col gap-surface-gap pb-layout-y">
         <div className="flex flex-row gap-surface-gap items-center">
-          <div className="size-control-md rounded-full border border-border flex items-center justify-center shrink-0">
+          <Frame>
             <Layers className="size-4" />
-          </div>
+          </Frame>
           <Label size="lg" as="h2">Variants</Label>
         </div>
 
@@ -94,9 +95,9 @@ export function ButtonViewContent() {
       {/* Outlined Section */}
       <section className="flex flex-col gap-surface-gap pb-layout-y">
         <div className="flex flex-row gap-surface-gap items-center">
-          <div className="size-control-md rounded-full border border-border flex items-center justify-center shrink-0">
+          <Frame>
             <Circle className="size-4" />
-          </div>
+          </Frame>
           <Label size="lg" as="h2">Outlined</Label>
         </div>
 
@@ -111,9 +112,9 @@ export function ButtonViewContent() {
       {/* With Icon Section */}
       <section className="flex flex-col gap-surface-gap pb-layout-y">
         <div className="flex flex-row gap-surface-gap items-center">
-          <div className="size-control-md rounded-full border border-border flex items-center justify-center shrink-0">
+          <Frame>
             <ArrowRight className="size-4" />
-          </div>
+          </Frame>
           <Label size="lg" as="h2">With Icon</Label>
         </div>
 
@@ -132,9 +133,9 @@ export function ButtonViewContent() {
       {/* Icon Only Section */}
       <section className="flex flex-col gap-surface-gap pb-layout-y">
         <div className="flex flex-row gap-surface-gap items-center">
-          <div className="size-control-md rounded-full border border-border flex items-center justify-center shrink-0">
+          <Frame>
             <Plus className="size-4" />
-          </div>
+          </Frame>
           <Label size="lg" as="h2">Icon Only</Label>
         </div>
 
@@ -154,9 +155,9 @@ export function ButtonViewContent() {
       {/* Loading Section */}
       <section className="flex flex-col gap-surface-gap pb-layout-y">
         <div className="flex flex-row gap-surface-gap items-center">
-          <div className="size-control-md rounded-full border border-border flex items-center justify-center shrink-0">
+          <Frame>
             <Loader2 className="size-4" />
-          </div>
+          </Frame>
           <Label size="lg" as="h2">Loading</Label>
         </div>
 
