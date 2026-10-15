@@ -35,9 +35,13 @@ export default function RootLayout({
               </Sidebar>
             </Shell.Side>
             <Shell.Main>
-              {children}
+              <div className="flex justify-between w-full min-h-full">
+                <div className="flex-1 min-w-0">
+                  {children}
+                </div>
+                <Toc />
+              </div>
             </Shell.Main>
-            <Toc />
           </Shell>
         </TocProvider>
       </body>

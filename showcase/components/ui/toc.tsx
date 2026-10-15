@@ -213,7 +213,7 @@ export function Toc({
       collapsible={collapsible}
       collapsed={isCollapsed}
       onCollapsedChange={handleCollapseChange}
-      className={cn("h-full shrink-0", className)}
+      className={cn("sticky top-0 self-start h-screen shrink-0", className)}
     >
       <div className="flex flex-col gap-surface-gap px-layout-x py-surface">
         {items.map((item) => (
