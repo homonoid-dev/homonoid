@@ -51,7 +51,7 @@ export function ButtonViewContent() {
       </section>
 
       {/* Outlined Section */}
-      <section className="flex flex-col gap-surface-gap py-layout-y">
+      <section className="flex flex-col gap-surface-gap pb-layout-y">
         <div className="flex flex-row gap-surface-gap items-center">
           <div className="size-control-md rounded-full border border-border flex items-center justify-center shrink-0">
             <Circle className="size-4" />
@@ -68,7 +68,7 @@ export function ButtonViewContent() {
       </section>
 
       {/* Icon Section */}
-      <section className="flex flex-col gap-surface-gap py-layout-y">
+      <section className="flex flex-col gap-surface-gap pb-layout-y">
         <div className="flex flex-row gap-surface-gap items-center">
           <div className="size-control-md rounded-full border border-border flex items-center justify-center shrink-0">
             <Plus className="size-4" />
