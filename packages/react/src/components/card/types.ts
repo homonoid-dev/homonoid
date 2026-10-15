@@ -2,6 +2,8 @@ import type { ElementType, HTMLAttributes, ReactNode, Ref } from "react";
 
 export type CardVariant = "outlined" | "filled";
 
+export type CardColor = "surface" | "subtle" | "primary" | "destructive";
+
 export type CardPadding = "none" | "sm" | "surface";
 
 export interface CardProps extends HTMLAttributes<HTMLElement> {
@@ -18,11 +20,27 @@ export interface CardProps extends HTMLAttributes<HTMLElement> {
 
   /**
    * Visual surface styling variant.
-   * - `outlined`: Transparent background with subtle border stroke.
-   * - `filled`: Solid surface background with subtle border stroke.
+   * - `outlined`: Transparent background with optional border stroke.
+   * - `filled`: Solid surface background with optional border stroke.
    * @default "outlined"
    */
   variant?: CardVariant;
+
+  /**
+   * Semantic color palette intent.
+   * - `surface`: Neutral background and border.
+   * - `subtle`: Low-contrast Chroma subtle tint and border.
+   * - `primary`: Chroma brand primary highlight.
+   * - `destructive`: Danger alert / error callout.
+   * @default "surface"
+   */
+  color?: CardColor;
+
+  /**
+   * Whether to display a hairline border stroke.
+   * @default true
+   */
+  border?: boolean;
 
   /**
    * Internal padding scale.

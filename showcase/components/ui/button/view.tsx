@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Label, Description } from "@harmonia/react";
+import { Button, Label, Description, Card } from "@harmonia/react";
 import { Circle } from "lucide-react";
 import GithubIcon from "@/components/icons/github";
 import { highlighter } from "@/components/ui/code";
@@ -19,8 +19,12 @@ export function ButtonViewContent() {
         <Description>
           A button communicates an action and allows users to trigger that action with a single interaction.
         </Description>
-      </div>
 
+        <Description>
+          Harmonia structures button hierarchy through three deliberate tiers contained for primary focus, outlined for secondary choices, and plain for utilities while maintaining strict object continuity by preserving fixed dimensions and fluid micro-transitions across hover, press, and loading states.
+        </Description>
+
+      </div>
       <a
         href="https://github.com/lumunar/harmonia/tree/main/packages/react"
         target="_blank"
@@ -40,9 +44,13 @@ export function ButtonViewContent() {
       {/* Component Area */}
       <section className="flex flex-col gap-surface-gap">
         {/* Subtle Import Card */}
-        <div className="flex items-center justify-between p-surface rounded-3xl bg-subtle text-subtle-foreground border-[0.5px] border-subtle-border font-mono text-xs select-text">
+        <Card
+          color="subtle"
+          variant="filled"
+          className="flex items-center justify-between font-mono text-xs select-text"
+        >
           <code>{highlighter('import { Button } from "@harmonia/react";')}</code>
-        </div>
+        </Card>
 
         {/* Contained Stage */}
         <Stage code={containedCodeSample}>

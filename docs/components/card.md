@@ -35,8 +35,28 @@ A card consists of the following elements:
 
 Harmonia defines two primary structural variants:
 
-- `Outlined` (`outlined`): Transparent surface framed by a hairline border stroke (`border-[0.5px] border-border`), ideal for lightweight modular layouts and interactive stages.
-- `Filled` (`filled`): Solid neutral surface fill (`bg-surface`) accompanied by a subtle hairline border, delivering grounded visual grouping.
+- `Outlined` (`outlined`): Transparent surface framed by an optional hairline border stroke (`bg-transparent`), ideal for lightweight modular layouts and interactive stages.
+- `Filled` (`filled`): Solid neutral surface fill (`bg-surface`) providing grounded visual grouping.
+
+<br>
+
+### Colors
+
+Cards support semantic color intent palettes aligned with Harmonia design tokens:
+
+- `Surface` (`surface`): Neutral container background and border (`bg-surface` / `border-border`).
+- `Subtle` (`subtle`): Low-contrast Chroma subtle tint and border (`bg-subtle` / `border-subtle-border`).
+- `Primary` (`primary`): Chroma brand primary highlight tint and border (`bg-primary/5` / `border-primary-border`).
+- `Destructive` (`destructive`): Danger alert or error callout tint and border (`bg-destructive/10` / `border-destructive-border`).
+
+<br>
+
+### Border Control
+
+Cards support toggling the hairline border stroke via the `border` property:
+
+- `true` (default): Renders a precise `0.5px` border stroke matching the active color token.
+- `false`: Omits the border stroke (`border-0`), enabling borderless filled cards for flat surfaces or nested containers.
 
 <br>
 
@@ -44,7 +64,7 @@ Harmonia defines two primary structural variants:
 
 Cards consume spatial boundaries, padding, and surface palettes exclusively from `@harmonia/tokens`:
 
-- Surface: `bg-surface` (`--surface`) for filled variants, `bg-transparent` for outlined variants.
-- Border: `border-[0.5px] border-border/50` (`--border`).
+- Surface: `bg-surface` (`--surface`), `bg-subtle` (`--subtle`), or `bg-transparent`.
+- Border: `border-[0.5px]` with color matched to `--border`, `--subtle-border`, `--primary-border`, or `--destructive-border`.
 - Corner Radius: `rounded-3xl` by default to preserve the fluid, rounded aesthetic of Harmonia.
 - Inset Padding: `p-surface` (`--p-surface`) by default, aligning internal elements with standardized layout rhythm.
