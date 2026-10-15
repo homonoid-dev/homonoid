@@ -1,51 +1,29 @@
 "use client";
 
-import { useState } from "react";
 import { Button, Label, Card } from "@harmonia/react";
 import { Description } from "@/components/ui/description";
 import { Check, Code2, Copy, Eye, Circle } from "lucide-react";
 import GithubIcon from "@/components/icons/github";
 import { Code, highlighter } from "@/components/ui/code";
 import { motion, AnimatePresence } from "motion/react";
+import { ButtonProvider } from "./provider";
+import { useButton } from "./use-button";
 
-const CODE_SAMPLE = `import { Button } from "@harmonia/react";
-
-export function Example() {
-  return (
-    <Button variant="contained" shape="circle">
-      Click me
-    </Button>
-  );
-}`;
-
-const OUTLINED_CODE_SAMPLE = `import { Button } from "@harmonia/react";
-
-export function Example() {
-  return (
-    <Button variant="outlined" shape="circle">
-      Click me
-    </Button>
-  );
-}`;
-
-export function ButtonView() {
-  const [activeTab, setActiveTab] = useState<"preview" | "code">("preview");
-  const [copiedCode, setCopiedCode] = useState(false);
-
-  const [outlinedTab, setOutlinedTab] = useState<"preview" | "code">("preview");
-  const [copiedOutlinedCode, setCopiedOutlinedCode] = useState(false);
-
-  const handleCopyCode = () => {
-    navigator.clipboard.writeText(CODE_SAMPLE);
-    setCopiedCode(true);
-    setTimeout(() => setCopiedCode(false), 2000);
-  };
-
-  const handleCopyOutlinedCode = () => {
-    navigator.clipboard.writeText(OUTLINED_CODE_SAMPLE);
-    setCopiedOutlinedCode(true);
-    setTimeout(() => setCopiedOutlinedCode(false), 2000);
-  };
+export function ButtonViewContent() {
+  const {
+    activeTab,
+    copiedCode,
+    outlinedTab,
+    copiedOutlinedCode,
+    activeCardHeight,
+    outlinedCardHeight,
+    codeSample,
+    outlinedCodeSample,
+    setActiveTab,
+    setOutlinedTab,
+    handleCopyCode,
+    handleCopyOutlinedCode,
+  } = useButton();
 
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl">
@@ -127,7 +105,7 @@ export function ButtonView() {
           <motion.div
             initial={false}
             animate={{
-              height: activeTab === "preview" ? 280 : 192,
+              height: activeCardHeight,
             }}
             transition={{
               duration: 0.3,
@@ -163,7 +141,7 @@ export function ButtonView() {
                   className="absolute inset-0 pt-3"
                 >
                   <Code
-                    code={CODE_SAMPLE}
+                    code={codeSample}
                     className="-mx-surface px-surface"
                   />
                 </motion.div>
@@ -228,7 +206,7 @@ export function ButtonView() {
           <motion.div
             initial={false}
             animate={{
-              height: outlinedTab === "preview" ? 280 : 192,
+              height: outlinedCardHeight,
             }}
             transition={{
               duration: 0.3,
@@ -264,7 +242,7 @@ export function ButtonView() {
                   className="absolute inset-0 pt-3"
                 >
                   <Code
-                    code={OUTLINED_CODE_SAMPLE}
+                    code={outlinedCodeSample}
                     className="-mx-surface px-surface"
                   />
                 </motion.div>
@@ -274,5 +252,13 @@ export function ButtonView() {
         </Card>
       </section>
     </div>
+  );
+}
+
+export function ButtonView() {
+  return (
+    <ButtonProvider>
+      <ButtonViewContent />
+    </ButtonProvider>
   );
 }

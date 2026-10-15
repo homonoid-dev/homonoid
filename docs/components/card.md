@@ -35,7 +35,7 @@ A card consists of the following elements:
 
 Harmonia defines two primary structural variants:
 
-- `Outlined` (`outlined`): Transparent surface framed by a hairline border stroke (`border-[0.5px] border-border/50`), ideal for lightweight modular layouts and interactive stages.
+- `Outlined` (`outlined`): Transparent surface framed by a hairline border stroke (`border border-border`), ideal for lightweight modular layouts and interactive stages.
 - `Filled` (`filled`): Solid neutral surface fill (`bg-surface`) accompanied by a subtle hairline border, delivering grounded visual grouping.
 
 <br>
