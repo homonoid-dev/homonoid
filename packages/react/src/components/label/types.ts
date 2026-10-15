@@ -25,6 +25,11 @@ export interface LabelProps extends HTMLAttributes<HTMLElement> {
   size?: LabelSize;
 
   /**
+   * Association identifier when rendered as an HTML label.
+   */
+  htmlFor?: string;
+
+  /**
    * Label content.
    */
   children?: ReactNode;
