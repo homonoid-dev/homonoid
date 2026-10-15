@@ -9,6 +9,8 @@ import {
   Ban,
   StretchHorizontal,
   Sparkles,
+  Palette,
+  BookOpen,
 } from "lucide-react";
 import type { TocItem } from "@/components/ui/toc";
 
@@ -63,6 +65,16 @@ export const BUTTON_SECTIONS: Record<string, ButtonSectionItem> = {
     id: "object-continuity",
     label: "Continuity",
     icon: Sparkles,
+  },
+  tokens: {
+    id: "design-tokens",
+    label: "Design Tokens",
+    icon: Palette,
+  },
+  styleReference: {
+    id: "style-reference",
+    label: "Style Reference",
+    icon: BookOpen,
   },
 };
 

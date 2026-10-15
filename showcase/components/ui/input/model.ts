@@ -7,6 +7,8 @@ import {
   AlertCircle,
   Ban,
   Sparkles,
+  Palette,
+  BookOpen,
 } from "lucide-react";
 import type { TocItem } from "@/components/ui/toc";
 
@@ -51,6 +53,16 @@ export const INPUT_SECTIONS: Record<string, InputSectionItem> = {
     id: "object-continuity",
     label: "Continuity",
     icon: Sparkles,
+  },
+  tokens: {
+    id: "design-tokens",
+    label: "Design Tokens",
+    icon: Palette,
+  },
+  styleReference: {
+    id: "style-reference",
+    label: "Style Reference",
+    icon: BookOpen,
   },
 };
 

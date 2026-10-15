@@ -226,6 +226,54 @@ export function InputView() {
           </Description>
         </section>
 
+        {/* Design Tokens Section */}
+        <section
+          id={INPUT_SECTIONS.tokens.id}
+          className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
+        >
+          <Label size="lg" as="h2">
+            {INPUT_SECTIONS.tokens.label}
+          </Label>
+
+          <Description>
+            Input containers share identical height tokens with buttons to ensure consistent vertical rhythm when grouped horizontally across forms and toolbars.
+          </Description>
+
+          <Description>
+            Typography tokens scale progressively across sizes, utilizing small text for compact displays, regular body text for standard forms, and large text for prominent inputs.
+          </Description>
+
+          <Description>
+            Interactive transitions for container borders and ring outlines execute using standard fast motion tokens and cubic bezier easing curves.
+          </Description>
+        </section>
+
+        {/* Style Reference Section */}
+        <section
+          id={INPUT_SECTIONS.styleReference.id}
+          className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
+        >
+          <Label size="lg" as="h2">
+            {INPUT_SECTIONS.styleReference.label}
+          </Label>
+
+          <Description>
+            Outlined inputs establish a crisp hairline boundary around the text entry surface, projecting a dedicated focus ring when keyboard navigation engages.
+          </Description>
+
+          <Description>
+            Filled inputs provide a comfortable tinted background container with soft border accents, offering clear visual separation within lighter interfaces.
+          </Description>
+
+          <Description>
+            Plain inputs omit borders and container fills at rest, blending seamlessly into data dense tables and inline content editing contexts.
+          </Description>
+
+          <Description>
+            Form captions and validation messages align beneath the container frame, shifting into high visibility destructive tones when validation conditions fail.
+          </Description>
+        </section>
+
         {/* Component Pagination Navigation */}
         <Pagination />
       </div>

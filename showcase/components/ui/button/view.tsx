@@ -253,6 +253,46 @@ export function ButtonViewContent() {
           </Description>
         </section>
 
+        {/* Design Tokens Section */}
+        <section
+          id={sections.tokens.id}
+          className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
+        >
+          <Label size="lg" as="h2">{sections.tokens.label}</Label>
+
+          <Description>
+            Button dimensions map directly to the standardized control height tokens comprising 32px for small, 40px for medium, and 48px for large scale presentations.
+          </Description>
+
+          <Description>
+            Internal horizontal and vertical padding tokens scale proportionally with control height to maintain centered optical balance across text and slot icons.
+          </Description>
+
+          <Description>
+            Boundary styling utilizes control radius tokens alongside dedicated fast duration motion variables and calibrated spring physics for tactile interaction.
+          </Description>
+        </section>
+
+        {/* Style Reference Section */}
+        <section
+          id={sections.styleReference.id}
+          className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
+        >
+          <Label size="lg" as="h2">{sections.styleReference.label}</Label>
+
+          <Description>
+            Contained buttons apply high contrast solid surface fills that subtly illuminate on hover and compress smoothly during pointer activation.
+          </Description>
+
+          <Description>
+            Outlined buttons present a subtle hairline border stroke over a transparent background, transitioning to reinforced contrast when hovered or focused.
+          </Description>
+
+          <Description>
+            Plain buttons remove resting borders and backgrounds, introducing subtle surface tints only when interacting through hover, focus, or press events.
+          </Description>
+        </section>
+
         {/* Component Pagination Navigation */}
         <Pagination />
       </div>
