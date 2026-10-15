@@ -6,6 +6,7 @@ import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
 import { Toc } from "@/components/ui/toc";
+import { Pagination } from "@/components/ui/pagination";
 import { ButtonProvider } from "./provider";
 import { useButton } from "./use-button";
 
@@ -231,6 +232,9 @@ export function ButtonViewContent() {
             </Button>
           </Stage>
         </section>
+
+        {/* Component Pagination Navigation */}
+        <Pagination />
       </div>
 
       {/* Table of Contents Right Sidebar */}

@@ -2,20 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Shell } from "@/components/layout/shell";
 import { Sidebar } from "@/components/ui/sidebar";
+import { SHOWCASE_COMPONENTS } from "@/config/components";
 
 export const metadata: Metadata = {
   title: "Harmonia — Component System",
   description: "Harmonia Design System Component Showcase",
 };
-
-const components = [
-  { name: "Button", href: "/button" },
-  { name: "Input", href: "/input" },
-  { name: "Spinner", href: "/spinner" },
-  { name: "Label", href: "/label" },
-  { name: "Checkbox", href: "/checkbox" },
-  { name: "Card", href: "/card" },
-];
 
 export default function RootLayout({
   children,
@@ -29,7 +21,7 @@ export default function RootLayout({
           <Shell.Side>
             <Sidebar>
               <div className="flex flex-col gap-surface-gap px-layout-x py-surface">
-                {components.map((component) => (
+                {SHOWCASE_COMPONENTS.map((component) => (
                   <Sidebar.Destination
                     key={component.href}
                     href={component.href}
