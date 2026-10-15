@@ -17,6 +17,16 @@ All markdown documentation must adhere to the following formatting rules:
 
 <br>
 
+### Paragraph and Copy Standards
+
+Guidelines for writing prose, component descriptions, and documentation copy:
+
+- No Dashes or Hyphens Between Words: Never use hyphens or dashes (`-`, `--`, or `—`) to separate thoughts, clauses, or words in descriptive text. Structure sentences using clean punctuation, commas, or direct conjunctions instead.
+- Continuous Flow: Keep sentence structures natural, clear, and rhythmic without disruptive punctuation breaks.
+- Token-First Clarity: Explanations must be concise and descriptive, emphasizing component behavior, hierarchy, and design tokens without decorative filler.
+
+<br>
+
 ### Technology Stack
 
 The web implementation and showcase ecosystem use the following standard toolchain:

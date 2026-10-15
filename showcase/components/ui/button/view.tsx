@@ -2,9 +2,9 @@
 
 import { Button, Label, Description, Card } from "@harmonia/react";
 import { Circle } from "lucide-react";
-import GithubIcon from "@/components/icons/github";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
+import { Resource } from "@/components/ui/resource";
 import { ButtonProvider } from "./provider";
 import { useButton } from "./use-button";
 
@@ -25,21 +25,11 @@ export function ButtonViewContent() {
         </Description>
 
       </div>
-      <a
-        href="https://github.com/lumunar/harmonia/tree/main/packages/react"
-        target="_blank"
-        rel="noreferrer"
-        className="w-fit"
-      >
-        <Button
-          variant="outlined"
-          color="surface"
-          shape="circle"
-          leading={<GithubIcon className="size-3.5" />}
-        >
-          Source
-        </Button>
-      </a>
+
+      <div className="flex items-center gap-surface-gap">
+        <Resource type="github" component="button" />
+        <Resource type="figma" href="https://www.figma.com/@lumunar" />
+      </div>
 
       {/* Component Area */}
       <section className="flex flex-col gap-surface-gap">
