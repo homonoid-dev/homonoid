@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { Button, Card } from "@harmonia/react";
-import { Eye, Code2, Copy, Check } from "lucide-react";
+import { Eye, Code2, Copy, Check, RotateCcw } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Code } from "@/components/ui/code";
 import { cn } from "@harmonia/react/cn";
@@ -25,6 +25,10 @@ export interface StageProps {
   minPreviewHeight?: number;
   /** Default active tab */
   defaultTab?: "preview" | "code";
+  /** Optional callback to reset component preview state */
+  onReset?: () => void;
+  /** Alias for onReset */
+  reset?: () => void;
 }
 
 export function Stage({
@@ -35,10 +39,14 @@ export function Stage({
   codeHeight,
   minPreviewHeight = 220,
   defaultTab = "preview",
+  onReset,
+  reset,
 }: StageProps) {
   const [activeTab, setActiveTab] = useState<"preview" | "code">(defaultTab);
   const [copied, setCopied] = useState(false);
   const [measuredHeight, setMeasuredHeight] = useState<number | "auto">("auto");
+
+  const handleReset = onReset ?? reset;
 
   const copyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const observerRef = useRef<ResizeObserver | null>(null);
@@ -127,20 +135,35 @@ export function Stage({
           </Button>
         </div>
 
-        <Button
-          layout="icon"
-          variant="plain"
-          color="subtle"
-          shape="circle"
-          onClick={handleCopy}
-          aria-label={copied ? "Copied" : "Copy code"}
-        >
-          {copied ? (
-            <Check className="size-4 text-primary" />
-          ) : (
-            <Copy className="size-4" />
+        <div className="flex items-center gap-1">
+          {handleReset && (
+            <Button
+              layout="icon"
+              variant="plain"
+              color="subtle"
+              shape="circle"
+              onClick={handleReset}
+              aria-label="Reset"
+            >
+              <RotateCcw className="size-4" />
+            </Button>
           )}
-        </Button>
+
+          <Button
+            layout="icon"
+            variant="plain"
+            color="subtle"
+            shape="circle"
+            onClick={handleCopy}
+            aria-label={copied ? "Copied" : "Copy code"}
+          >
+            {copied ? (
+              <Check className="size-4 text-primary" />
+            ) : (
+              <Copy className="size-4" />
+            )}
+          </Button>
+        </div>
       </div>
 
       {/* Dynamically Animated Content Area */}

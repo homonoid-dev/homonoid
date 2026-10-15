@@ -23,6 +23,7 @@ const TOKEN_PATTERN = new RegExp(
  * Tokenizes TSX / JavaScript code into styled React spans using Harmonia tokens.
  */
 export function highlighter(code: string): React.ReactNode[] {
+  if (!code) return [];
   const nodes: React.ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;

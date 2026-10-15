@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Label, Description, Card } from "@harmonia/react";
-import { Circle, Plus, ArrowRight, Layers } from "lucide-react";
+import { Circle, Plus, ArrowRight, Layers, Loader2 } from "lucide-react";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
@@ -15,6 +15,10 @@ export function ButtonViewContent() {
     outlinedCodeSample,
     withIconCodeSample,
     iconOnlyCodeSample,
+    loadingCodeSample,
+    isLoading,
+    triggerLoading,
+    resetLoading,
   } = useButton();
 
   return (
@@ -143,6 +147,28 @@ export function ButtonViewContent() {
             aria-label="Add item"
           >
             <Plus className="size-4" />
+          </Button>
+        </Stage>
+      </section>
+
+      {/* Loading Section */}
+      <section className="flex flex-col gap-surface-gap pb-layout-y">
+        <div className="flex flex-row gap-surface-gap items-center">
+          <div className="size-control-md rounded-full border border-border flex items-center justify-center shrink-0">
+            <Loader2 className="size-4" />
+          </div>
+          <Label size="lg" as="h2">Loading</Label>
+        </div>
+
+        {/* Loading Stage */}
+        <Stage code={loadingCodeSample} onReset={resetLoading}>
+          <Button
+            variant="contained"
+            shape="circle"
+            loading={isLoading}
+            onClick={triggerLoading}
+          >
+            Click me
           </Button>
         </Stage>
       </section>

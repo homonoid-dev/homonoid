@@ -73,10 +73,32 @@ export function Example() {
   );
 }`;
 
+export const BUTTON_LOADING_CODE_SAMPLE = `import { useState } from "react";
+import { Button } from "@harmonia/react";
+
+export function Example() {
+  const [loading, setLoading] = useState(false);
+
+  return (
+    <Button
+      variant="contained"
+      shape="circle"
+      loading={loading}
+      onClick={() => setLoading(true)}
+    >
+      Click me
+    </Button>
+  );
+}`;
+
 export interface ButtonViewModel {
   containedCodeSample: string;
   variantsCodeSample: string;
   outlinedCodeSample: string;
   withIconCodeSample: string;
   iconOnlyCodeSample: string;
+  loadingCodeSample: string;
+  isLoading: boolean;
+  triggerLoading: () => void;
+  resetLoading: () => void;
 }
