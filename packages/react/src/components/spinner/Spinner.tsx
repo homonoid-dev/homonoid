@@ -122,29 +122,20 @@ export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>(function Spinne
 
       {animation === "dash" && (
         <svg
-          className="w-full h-full animate-spinner-border origin-center"
+          className="w-full h-full animate-spinner-dash origin-center"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           aria-hidden="true"
         >
-          <circle
-            cx="12"
-            cy="12"
-            r="9.5"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            className="opacity-15"
-          />
-          <circle
-            cx="12"
-            cy="12"
-            r="9.5"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            className="animate-spinner-dash"
-          />
+          <line x1="12" y1="2.5" x2="12" y2="6.5" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" opacity={1} />
+          <line x1="12" y1="2.5" x2="12" y2="6.5" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" transform="rotate(45 12 12)" opacity={0.12} />
+          <line x1="12" y1="2.5" x2="12" y2="6.5" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" transform="rotate(90 12 12)" opacity={0.18} />
+          <line x1="12" y1="2.5" x2="12" y2="6.5" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" transform="rotate(135 12 12)" opacity={0.28} />
+          <line x1="12" y1="2.5" x2="12" y2="6.5" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" transform="rotate(180 12 12)" opacity={0.42} />
+          <line x1="12" y1="2.5" x2="12" y2="6.5" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" transform="rotate(225 12 12)" opacity={0.58} />
+          <line x1="12" y1="2.5" x2="12" y2="6.5" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" transform="rotate(270 12 12)" opacity={0.72} />
+          <line x1="12" y1="2.5" x2="12" y2="6.5" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" transform="rotate(315 12 12)" opacity={0.86} />
         </svg>
       )}
     </span>

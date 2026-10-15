@@ -2,11 +2,11 @@ import type { LucideIcon } from "lucide-react";
 import {
   RotateCw,
   Ruler,
-  Palette,
+  Paintbrush,
   Box,
   Infinity,
   MousePointerClick,
-  Sliders,
+  Palette,
   BookOpen,
 } from "lucide-react";
 import type { TocItem } from "@/components/ui/toc";
@@ -32,7 +32,7 @@ export const SPINNER_SECTIONS: Record<string, SpinnerSectionItem> = {
   colors: {
     id: "colors",
     label: "Colors",
-    icon: Palette,
+    icon: Paintbrush,
   },
   embedded: {
     id: "embedded",
@@ -52,7 +52,7 @@ export const SPINNER_SECTIONS: Record<string, SpinnerSectionItem> = {
   tokens: {
     id: "design-tokens",
     label: "Design Tokens",
-    icon: Sliders,
+    icon: Palette,
   },
   styleReference: {
     id: "style-reference",
