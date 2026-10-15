@@ -32,7 +32,7 @@ export function ButtonViewContent() {
       </div>
 
       {/* Component Area */}
-      <section className="flex flex-col gap-surface-gap">
+      <section className="flex flex-col gap-surface-gap pb-layout-y">
         {/* Subtle Import Card */}
         <Card
           color="subtle"
