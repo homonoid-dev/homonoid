@@ -4,8 +4,11 @@
     --motion-duration-fast: 150ms;
     --motion-duration-normal: 200ms;
     --motion-duration-slow: 350ms;
+    --motion-duration-press: 100ms;
+    --motion-duration-release: 300ms;
     --motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
-    --motion-press-scale: 0.95;
+    --motion-easing-fluid: cubic-bezier(0.34, 1.4, 0.64, 1);
+    --motion-press-scale: 0.97;
   }
 }
 
