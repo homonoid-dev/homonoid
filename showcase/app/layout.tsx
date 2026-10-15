@@ -13,6 +13,7 @@ const components = [
   { name: "Input", href: "/input" },
   { name: "Spinner", href: "/spinner" },
   { name: "Label", href: "/label" },
+  { name: "Checkbox", href: "/checkbox" },
   { name: "Card", href: "/card" },
 ];
 

@@ -1,5 +1,14 @@
 import type { LucideIcon } from "lucide-react";
-import { Layers, Circle, ArrowRight, Plus, Loader2 } from "lucide-react";
+import {
+  Layers,
+  Circle,
+  ArrowRight,
+  Plus,
+  Loader2,
+  Ruler,
+  Ban,
+  StretchHorizontal,
+} from "lucide-react";
 import type { TocItem } from "@/components/ui/toc";
 
 export interface ButtonSectionItem extends TocItem {
@@ -13,6 +22,11 @@ export const BUTTON_SECTIONS: Record<string, ButtonSectionItem> = {
     id: "variants",
     label: "Variants",
     icon: Layers,
+  },
+  sizes: {
+    id: "sizes",
+    label: "Sizes",
+    icon: Ruler,
   },
   outlined: {
     id: "outlined",
@@ -33,6 +47,16 @@ export const BUTTON_SECTIONS: Record<string, ButtonSectionItem> = {
     id: "loading",
     label: "Loading",
     icon: Loader2,
+  },
+  disabled: {
+    id: "disabled",
+    label: "Disabled",
+    icon: Ban,
+  },
+  fullWidth: {
+    id: "full-width",
+    label: "Full Width",
+    icon: StretchHorizontal,
   },
 };
 
@@ -132,13 +156,62 @@ export function Example() {
   );
 }`;
 
+export const BUTTON_SIZES_CODE_SAMPLE = `import { Button } from "@harmonia/react";
+
+export function Example() {
+  return (
+    <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+      <Button variant="contained" shape="circle" size="sm">
+        Small
+      </Button>
+      <Button variant="contained" shape="circle" size="md">
+        Medium
+      </Button>
+      <Button variant="contained" shape="circle" size="lg">
+        Large
+      </Button>
+    </div>
+  );
+}`;
+
+export const BUTTON_DISABLED_CODE_SAMPLE = `import { Button } from "@harmonia/react";
+
+export function Example() {
+  return (
+    <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+      <Button variant="contained" shape="circle" disabled>
+        Contained
+      </Button>
+      <Button variant="outlined" shape="circle" disabled>
+        Outlined
+      </Button>
+      <Button variant="plain" shape="circle" disabled>
+        Plain
+      </Button>
+    </div>
+  );
+}`;
+
+export const BUTTON_FULL_WIDTH_CODE_SAMPLE = `import { Button } from "@harmonia/react";
+
+export function Example() {
+  return (
+    <Button variant="contained" shape="circle" layout="full">
+      Full Width
+    </Button>
+  );
+}`;
+
 export interface ButtonViewModel {
   containedCodeSample: string;
   variantsCodeSample: string;
+  sizesCodeSample: string;
   outlinedCodeSample: string;
   withIconCodeSample: string;
   iconOnlyCodeSample: string;
   loadingCodeSample: string;
+  disabledCodeSample: string;
+  fullWidthCodeSample: string;
   sections: Record<string, ButtonSectionItem>;
   sectionsList: ButtonSectionItem[];
   isLoading: boolean;

@@ -13,10 +13,13 @@ export function ButtonViewContent() {
   const {
     containedCodeSample,
     variantsCodeSample,
+    sizesCodeSample,
     outlinedCodeSample,
     withIconCodeSample,
     iconOnlyCodeSample,
     loadingCodeSample,
+    disabledCodeSample,
+    fullWidthCodeSample,
     sections,
     sectionsList,
     isLoading,
@@ -94,6 +97,29 @@ export function ButtonViewContent() {
           </Stage>
         </section>
 
+        {/* Sizes Section */}
+        <section id={sections.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+          <div className="flex flex-row gap-surface-gap items-center">
+            <Frame icon={sections.sizes.icon} />
+            <Label size="lg" as="h2">{sections.sizes.label}</Label>
+          </div>
+
+          {/* Sizes Stage */}
+          <Stage code={sizesCodeSample}>
+            <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+              <Button variant="contained" shape="circle" size="sm">
+                Small
+              </Button>
+              <Button variant="contained" shape="circle" size="md">
+                Medium
+              </Button>
+              <Button variant="contained" shape="circle" size="lg">
+                Large
+              </Button>
+            </div>
+          </Stage>
+        </section>
+
         {/* Outlined Section */}
         <section id={sections.outlined.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
           <div className="flex flex-row gap-surface-gap items-center">
@@ -164,6 +190,44 @@ export function ButtonViewContent() {
               onClick={triggerLoading}
             >
               Click me
+            </Button>
+          </Stage>
+        </section>
+
+        {/* Disabled Section */}
+        <section id={sections.disabled.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+          <div className="flex flex-row gap-surface-gap items-center">
+            <Frame icon={sections.disabled.icon} />
+            <Label size="lg" as="h2">{sections.disabled.label}</Label>
+          </div>
+
+          {/* Disabled Stage */}
+          <Stage code={disabledCodeSample}>
+            <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+              <Button variant="contained" shape="circle" disabled>
+                Contained
+              </Button>
+              <Button variant="outlined" shape="circle" disabled>
+                Outlined
+              </Button>
+              <Button variant="plain" shape="circle" disabled>
+                Plain
+              </Button>
+            </div>
+          </Stage>
+        </section>
+
+        {/* Full Width Section */}
+        <section id={sections.fullWidth.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+          <div className="flex flex-row gap-surface-gap items-center">
+            <Frame icon={sections.fullWidth.icon} />
+            <Label size="lg" as="h2">{sections.fullWidth.label}</Label>
+          </div>
+
+          {/* Full Width Stage */}
+          <Stage code={fullWidthCodeSample}>
+            <Button variant="contained" shape="circle" layout="full">
+              Full Width
             </Button>
           </Stage>
         </section>
