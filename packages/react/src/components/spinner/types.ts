@@ -3,7 +3,7 @@ import type { Size } from "../../types";
 
 export type SpinnerSize = Size;
 export type SpinnerColor = "current" | "primary" | "subtle" | "foreground" | "destructive";
-export type SpinnerAnimation = "border" | "grow" | "orbit";
+export type SpinnerAnimation = "border" | "grow" | "orbit" | "dash";
 
 export interface SpinnerProps extends HTMLAttributes<HTMLSpanElement> {
   /**
@@ -32,6 +32,7 @@ export interface SpinnerProps extends HTMLAttributes<HTMLSpanElement> {
    * - `border`: High precision circular track with a rotating arc indicator.
    * - `grow`: Smooth radial pulse with organic breathing cadence.
    * - `orbit`: Orbital satellite nodes traversing along a celestial guide track.
+   * - `dash`: Dynamic elastic arc with accelerating spring tension.
    * @default "border"
    */
   animation?: SpinnerAnimation;

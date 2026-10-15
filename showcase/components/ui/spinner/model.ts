@@ -105,6 +105,10 @@ export function AnimationsExample() {
         <Spinner animation="orbit" size="md" />
         <span className="text-xs text-muted">Orbit</span>
       </div>
+      <div className="flex flex-col items-center gap-2">
+        <Spinner animation="dash" size="md" />
+        <span className="text-xs text-muted">Dash</span>
+      </div>
     </div>
   );
 }`;

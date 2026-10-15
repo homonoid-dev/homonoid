@@ -47,11 +47,12 @@ Spinners support three standardized sizes aligned with the Harmonia control scal
 
 ### Animation Variants
 
-Harmonia defines three animation variants that express physical continuity and material behavior:
+Harmonia defines four animation variants that express physical continuity and material behavior:
 
 - `Border`: High precision circular track with a continuously rotating arc indicator, representing continuous angular motion.
 - `Grow`: Rhythmic radial expansion and contraction with subtle opacity transitions, providing a calm organic breathing cadence.
 - `Orbit`: Orbital satellite nodes traveling along a celestial guide track with Keplerian acceleration.
+- `Dash`: Dynamic elastic arc with accelerating spring tension, expanding and contracting smoothly along the perimeter path.
 
 <br>
 
