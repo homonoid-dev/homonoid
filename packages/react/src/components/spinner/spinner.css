@@ -29,3 +29,21 @@
 @utility animate-spinner-grow {
   animation: spinner-grow 1000ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
+
+@keyframes spinner-orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(210deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@utility animate-spinner-orbit {
+  animation: spinner-orbit 1100ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}

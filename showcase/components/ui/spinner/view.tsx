@@ -81,6 +81,10 @@ export function SpinnerView() {
               <Spinner animation="grow" size="md" />
               <span className="text-xs text-muted">Grow</span>
             </div>
+            <div className="flex flex-col items-center gap-2">
+              <Spinner animation="orbit" size="md" />
+              <span className="text-xs text-muted">Orbit</span>
+            </div>
           </div>
         </Stage>
       </section>

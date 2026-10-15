@@ -85,6 +85,40 @@ export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>(function Spinne
           aria-hidden="true"
         />
       )}
+
+      {animation === "orbit" && (
+        <svg
+          className="w-full h-full animate-spinner-orbit origin-center"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="8.5"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            className="opacity-15"
+          />
+          <circle cx="12" cy="3.5" r="2.25" fill="currentColor" />
+          <circle
+            cx="19.36"
+            cy="16.25"
+            r="1.8"
+            fill="currentColor"
+            className="opacity-70"
+          />
+          <circle
+            cx="4.64"
+            cy="16.25"
+            r="1.4"
+            fill="currentColor"
+            className="opacity-40"
+          />
+        </svg>
+      )}
     </span>
   );
 });
