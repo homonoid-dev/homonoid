@@ -6,6 +6,7 @@ import {
   useState,
   useEffect,
   useCallback,
+  useMemo,
   isValidElement,
   type ReactNode,
   type ComponentType,
@@ -91,6 +92,8 @@ export interface TocProps {
   onCollapsedChange?: (collapsed: boolean) => void;
 }
 
+const EMPTY_ITEMS: TocItem[] = [];
+
 export function Toc({
   items: explicitItems,
   className,
@@ -101,7 +104,10 @@ export function Toc({
   onCollapsedChange,
 }: TocProps = {}) {
   const context = useContext(TocContext);
-  const items = explicitItems ?? context?.items ?? [];
+  const items = useMemo(
+    () => explicitItems ?? context?.items ?? EMPTY_ITEMS,
+    [explicitItems, context?.items]
+  );
   const contextCollapsed = context?.collapsed;
   const setContextCollapsed = context?.setCollapsed;
 
@@ -110,12 +116,13 @@ export function Toc({
   );
   const [internalCollapsed, setInternalCollapsed] = useState(false);
 
-  // Synchronize activeId when section items change
-  useEffect(() => {
-    if (items.length > 0 && !items.some((item) => item.id === activeId)) {
-      setActiveId(items[0]?.id ?? "");
-    }
-  }, [items, activeId]);
+  // Derive active id during render without cascading setState inside an effect
+  const isCurrentActiveValid = items.some((item) => item.id === activeId);
+  const effectiveActiveId = cond(
+    isCurrentActiveValid,
+    activeId,
+    defaultActiveId ?? items[0]?.id ?? ""
+  );
 
   const effectiveControlled = controlledCollapsed ?? contextCollapsed;
 
@@ -222,7 +229,7 @@ export function Toc({
             href={`#${item.id}`}
             icon={renderIcon(item.icon)}
             keep="icon"
-            active={activeId === item.id}
+            active={effectiveActiveId === item.id}
             onClick={() => scrollToSection(item.id)}
           >
             {item.label}
