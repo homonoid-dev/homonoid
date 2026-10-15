@@ -7,6 +7,7 @@ import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
 import { Toc } from "@/components/ui/toc";
 import { Pagination } from "@/components/ui/pagination";
+import { InteractiveStates } from "@/components/ui/interactive-states";
 import { ButtonProvider } from "./provider";
 import { useButton } from "./use-button";
 
@@ -23,6 +24,7 @@ export function ButtonViewContent() {
     fullWidthCodeSample,
     sections,
     sectionsList,
+    interactiveStates,
     isLoading,
     triggerLoading,
     resetLoading,
@@ -252,6 +254,14 @@ export function ButtonViewContent() {
             Pointer compression engages calibrated spring resistance followed by fluid restorative rebound. Easing curves prioritize immediate feedback upon press while smoothing releases naturally.
           </Description>
         </section>
+
+        {/* Interactive States Section */}
+        <InteractiveStates
+          id={sections.interactiveStates.id}
+          title={sections.interactiveStates.label}
+          description="The button supports both CSS pseudo classes and data attributes for flexibility:"
+          items={interactiveStates}
+        />
 
         {/* Design Tokens Section */}
         <section

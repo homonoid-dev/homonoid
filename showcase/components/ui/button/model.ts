@@ -8,11 +8,13 @@ import {
   Ruler,
   Ban,
   StretchHorizontal,
-  Sparkles,
+  Infinity,
+  MousePointerClick,
   Palette,
   BookOpen,
 } from "lucide-react";
 import type { TocItem } from "@/components/ui/toc";
+import type { InteractiveStateItem } from "@/components/ui/interactive-states";
 
 export interface ButtonSectionItem extends TocItem {
   id: string;
@@ -64,7 +66,12 @@ export const BUTTON_SECTIONS: Record<string, ButtonSectionItem> = {
   continuity: {
     id: "object-continuity",
     label: "Continuity",
-    icon: Sparkles,
+    icon: Infinity,
+  },
+  interactiveStates: {
+    id: "interactive-states",
+    label: "Interactive States",
+    icon: MousePointerClick,
   },
   tokens: {
     id: "design-tokens",
@@ -220,6 +227,33 @@ export function Example() {
   );
 }`;
 
+export const BUTTON_INTERACTIVE_STATES: InteractiveStateItem[] = [
+  {
+    label: "Hover",
+    selectors: [":hover", '[data-hovered="true"]'],
+  },
+  {
+    label: "Active/Pressed",
+    selectors: [":active", '[data-pressed="true"]'],
+    note: "includes scale transform",
+  },
+  {
+    label: "Focus",
+    selectors: [":focus-visible", '[data-focus-visible="true"]'],
+    note: "shows focus ring",
+  },
+  {
+    label: "Disabled",
+    selectors: [":disabled", '[aria-disabled="true"]'],
+    note: "reduced opacity, no pointer events",
+  },
+  {
+    label: "Pending",
+    selectors: ["[data-pending]"],
+    note: "no pointer events during loading",
+  },
+];
+
 export interface ButtonViewModel {
   containedCodeSample: string;
   variantsCodeSample: string;
@@ -232,6 +266,7 @@ export interface ButtonViewModel {
   fullWidthCodeSample: string;
   sections: Record<string, ButtonSectionItem>;
   sectionsList: ButtonSectionItem[];
+  interactiveStates: InteractiveStateItem[];
   isLoading: boolean;
   triggerLoading: () => void;
   resetLoading: () => void;

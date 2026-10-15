@@ -7,10 +7,12 @@ import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
 import { Pagination } from "@/components/ui/pagination";
 import { Toc } from "@/components/ui/toc";
+import { InteractiveStates } from "@/components/ui/interactive-states";
 import { Search, Mail, Eye } from "lucide-react";
 import {
   INPUT_SECTIONS,
   INPUT_SECTIONS_LIST,
+  INPUT_INTERACTIVE_STATES,
   INPUT_DEFAULT_CODE_SAMPLE,
   INPUT_VARIANTS_CODE_SAMPLE,
   INPUT_SIZES_CODE_SAMPLE,
@@ -225,6 +227,14 @@ export function InputView() {
             Color transitions for background and border interpolate smoothly using defined motion duration and standard easing curve tokens.
           </Description>
         </section>
+
+        {/* Interactive States Section */}
+        <InteractiveStates
+          id={INPUT_SECTIONS.interactiveStates.id}
+          title={INPUT_SECTIONS.interactiveStates.label}
+          description="The input supports both CSS pseudo classes and data attributes for flexibility:"
+          items={INPUT_INTERACTIVE_STATES}
+        />
 
         {/* Design Tokens Section */}
         <section

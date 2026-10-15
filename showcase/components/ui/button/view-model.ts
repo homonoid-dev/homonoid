@@ -14,6 +14,7 @@ import {
   BUTTON_FULL_WIDTH_CODE_SAMPLE,
   BUTTON_SECTIONS,
   BUTTON_SECTIONS_LIST,
+  BUTTON_INTERACTIVE_STATES,
 } from "./model";
 
 export function useButtonViewModel(): ButtonViewModel {
@@ -39,6 +40,7 @@ export function useButtonViewModel(): ButtonViewModel {
     fullWidthCodeSample: BUTTON_FULL_WIDTH_CODE_SAMPLE,
     sections: BUTTON_SECTIONS,
     sectionsList: BUTTON_SECTIONS_LIST,
+    interactiveStates: BUTTON_INTERACTIVE_STATES,
     isLoading,
     triggerLoading,
     resetLoading,

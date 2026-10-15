@@ -6,11 +6,13 @@ import {
   Tag,
   AlertCircle,
   Ban,
-  Sparkles,
+  Infinity,
+  MousePointerClick,
   Palette,
   BookOpen,
 } from "lucide-react";
 import type { TocItem } from "@/components/ui/toc";
+import type { InteractiveStateItem } from "@/components/ui/interactive-states";
 
 export interface InputSectionItem extends TocItem {
   id: string;
@@ -52,7 +54,12 @@ export const INPUT_SECTIONS: Record<string, InputSectionItem> = {
   continuity: {
     id: "object-continuity",
     label: "Continuity",
-    icon: Sparkles,
+    icon: Infinity,
+  },
+  interactiveStates: {
+    id: "interactive-states",
+    label: "Interactive States",
+    icon: MousePointerClick,
   },
   tokens: {
     id: "design-tokens",
@@ -68,6 +75,33 @@ export const INPUT_SECTIONS: Record<string, InputSectionItem> = {
 
 export const INPUT_SECTIONS_LIST: InputSectionItem[] =
   Object.values(INPUT_SECTIONS);
+
+export const INPUT_INTERACTIVE_STATES: InteractiveStateItem[] = [
+  {
+    label: "Hover",
+    selectors: [":hover", '[data-hovered="true"]'],
+  },
+  {
+    label: "Focus",
+    selectors: [":focus-within", '[data-focused="true"]'],
+    note: "shows primary focus ring",
+  },
+  {
+    label: "Invalid",
+    selectors: ['[aria-invalid="true"]', '[data-invalid="true"]'],
+    note: "shows destructive border and ring",
+  },
+  {
+    label: "Disabled",
+    selectors: [":disabled", '[aria-disabled="true"]'],
+    note: "reduced opacity, no pointer events",
+  },
+  {
+    label: "Read Only",
+    selectors: [":read-only", '[aria-readonly="true"]'],
+    note: "prevents text modification",
+  },
+];
 
 export const INPUT_DEFAULT_CODE_SAMPLE = `import { Input } from "@harmonia/react";
 
