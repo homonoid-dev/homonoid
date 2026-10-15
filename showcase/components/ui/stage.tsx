@@ -1,6 +1,12 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect, type ReactNode } from "react";
+import {
+  useState,
+  useCallback,
+  useRef,
+  useEffect,
+  type ReactNode,
+} from "react";
 import { Button, Card } from "@harmonia/react";
 import { Eye, Code2, Copy, Check } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
@@ -11,8 +17,13 @@ export interface StageProps {
   code: string;
   children: ReactNode;
   className?: string;
+  /** Optional explicit height override for the preview tab */
   previewHeight?: number;
+  /** Optional explicit height override for the code tab */
   codeHeight?: number;
+  /** Minimum height for the preview canvas (default: 220) */
+  minPreviewHeight?: number;
+  /** Default active tab */
   defaultTab?: "preview" | "code";
 }
 
@@ -20,20 +31,55 @@ export function Stage({
   code,
   children,
   className,
-  previewHeight = 280,
-  codeHeight = 192,
+  previewHeight,
+  codeHeight,
+  minPreviewHeight = 220,
   defaultTab = "preview",
 }: StageProps) {
   const [activeTab, setActiveTab] = useState<"preview" | "code">(defaultTab);
   const [copied, setCopied] = useState(false);
+  const [measuredHeight, setMeasuredHeight] = useState<number | "auto">("auto");
+
   const copyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const observerRef = useRef<ResizeObserver | null>(null);
 
   useEffect(() => {
     return () => {
       if (copyTimeoutRef.current) {
         clearTimeout(copyTimeoutRef.current);
       }
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
     };
+  }, []);
+
+  // Measures the active tab's entering content dynamically without lagging
+  const measureRef = useCallback((node: HTMLDivElement | null) => {
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+      observerRef.current = null;
+    }
+
+    if (node) {
+      const rect = node.getBoundingClientRect();
+      if (rect.height > 0) {
+        setMeasuredHeight(rect.height);
+      }
+
+      const observer = new ResizeObserver(([entry]) => {
+        if (entry) {
+          const h =
+            entry.borderBoxSize?.[0]?.blockSize ?? entry.contentRect.height;
+          if (h > 0) {
+            setMeasuredHeight(h);
+          }
+        }
+      });
+
+      observer.observe(node);
+      observerRef.current = observer;
+    }
   }, []);
 
   const handleCopy = useCallback(() => {
@@ -47,6 +93,12 @@ export function Stage({
       setCopied(false);
     }, 2000);
   }, [code]);
+
+  // Use explicit height override if provided, otherwise use measured dynamic height
+  const targetHeight =
+    activeTab === "preview"
+      ? (previewHeight ?? measuredHeight)
+      : (codeHeight ?? measuredHeight);
 
   return (
     <Card className={cn("flex flex-col", className)}>
@@ -91,11 +143,11 @@ export function Stage({
         </Button>
       </div>
 
-      {/* Animated Content Area */}
+      {/* Dynamically Animated Content Area */}
       <motion.div
         initial={false}
         animate={{
-          height: activeTab === "preview" ? previewHeight : codeHeight,
+          height: targetHeight,
         }}
         transition={{
           duration: 0.3,
@@ -103,17 +155,19 @@ export function Stage({
         }}
         className="relative overflow-hidden"
       >
-        <AnimatePresence initial={false}>
+        <AnimatePresence initial={false} mode="popLayout">
           {activeTab === "preview" ? (
             <motion.div
               key="preview"
+              ref={measureRef}
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }}
-              className="absolute inset-0 flex flex-col"
+              style={{ minHeight: minPreviewHeight }}
+              className="flex flex-col"
             >
-              <div className="flex-1 flex items-center justify-center">
+              <div className="flex-1 flex items-center justify-center p-6">
                 {children}
               </div>
               {/* Bottom counterbalance matching top toolbar */}
@@ -125,11 +179,12 @@ export function Stage({
           ) : (
             <motion.div
               key="code"
+              ref={measureRef}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }}
-              className="absolute inset-0 pt-3"
+              className="pt-3"
             >
               <Code code={code} className="-mx-surface px-surface" />
             </motion.div>
