@@ -126,13 +126,11 @@ export function Toc({
 
   const effectiveControlled = controlledCollapsed ?? contextCollapsed;
 
-  const isCollapsed =
-    collapsible &&
-    cond(
-      effectiveControlled !== undefined,
-      Boolean(effectiveControlled),
-      internalCollapsed
-    );
+  const isCollapsed = collapsible && cond(
+    effectiveControlled !== undefined,
+    Boolean(effectiveControlled),
+    internalCollapsed
+  );
 
   useEffect(() => {
     if (!collapsible || effectiveControlled !== undefined) return;

@@ -120,7 +120,7 @@ export function LabelView() {
             <Label as="label" htmlFor="workspace-input" size="sm">
               Workspace Name
             </Label>
-            <Input id="workspace-input" placeholder="e.g. Lumunar Studio" />
+            <Input id="workspace-input" placeholder="e.g. Studio" />
             <Description>
               Used across notifications and shared project invites.
             </Description>

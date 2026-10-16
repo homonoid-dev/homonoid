@@ -102,7 +102,7 @@ export function FormExample() {
       </Label>
       <Input
         id="workspace-name"
-        placeholder="e.g. Lumunar Studio"
+        placeholder="e.g. Studio"
       />
       <Description>
         Used across notifications and shared project invites.
