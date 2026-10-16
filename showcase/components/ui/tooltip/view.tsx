@@ -1,6 +1,17 @@
 "use client";
 
 import { Tooltip, Button, Label, Description, Card } from "@harmonia/react";
+import {
+  Plus,
+  Bookmark,
+  Settings,
+  Sparkles,
+  ArrowUp,
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  Copy,
+} from "lucide-react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -28,7 +39,7 @@ export function TooltipView() {
           A tooltip presents contextual descriptions or auxiliary keyboard accelerators when users hover over or focus an interactive element.
         </Description>
         <Description>
-          Tooltips clarify icon controls, reveal keyboard shortcuts, and offer guidance without crowding the primary interface canvas.
+          Tooltips clarify circular icon controls, reveal keyboard shortcuts, and offer guidance without crowding the primary interface canvas.
         </Description>
       </div>
 
@@ -50,8 +61,10 @@ export function TooltipView() {
 
         <Stage code={TOOLTIP_DEFAULT_CODE_SAMPLE}>
           <div className="flex items-center justify-center p-6">
-            <Tooltip content="Quick action tooltip">
-              <Button variant="contained">Hover me</Button>
+            <Tooltip content="Add new element">
+              <Button shape="circle" layout="icon" variant="contained">
+                <Plus className="w-4 h-4" />
+              </Button>
             </Tooltip>
           </div>
         </Stage>
@@ -70,17 +83,23 @@ export function TooltipView() {
         </div>
 
         <Stage code={TOOLTIP_VARIANTS_CODE_SAMPLE}>
-          <div className="flex flex-wrap items-center justify-center gap-4 p-6">
-            <Tooltip variant="inverted" content="Inverted contrast surface">
-              <Button variant="outlined">Inverted</Button>
+          <div className="flex flex-wrap items-center justify-center gap-6 p-6">
+            <Tooltip variant="inverted" content="Bookmark item">
+              <Button shape="circle" layout="icon" variant="contained">
+                <Bookmark className="w-4 h-4" />
+              </Button>
             </Tooltip>
 
-            <Tooltip variant="surface" content="Neutral card surface">
-              <Button variant="outlined">Surface</Button>
+            <Tooltip variant="surface" content="Settings panel">
+              <Button shape="circle" layout="icon" variant="outlined">
+                <Settings className="w-4 h-4" />
+              </Button>
             </Tooltip>
 
-            <Tooltip variant="primary" content="Brand accent surface">
-              <Button variant="outlined">Primary</Button>
+            <Tooltip variant="primary" content="AI Assistant">
+              <Button shape="circle" layout="icon" color="primary" variant="contained">
+                <Sparkles className="w-4 h-4" />
+              </Button>
             </Tooltip>
           </div>
         </Stage>
@@ -99,21 +118,29 @@ export function TooltipView() {
         </div>
 
         <Stage code={TOOLTIP_PLACEMENTS_CODE_SAMPLE}>
-          <div className="flex flex-wrap items-center justify-center gap-4 p-6">
-            <Tooltip side="top" content="Top tooltip">
-              <Button variant="outlined">Top</Button>
+          <div className="flex flex-wrap items-center justify-center gap-6 p-6">
+            <Tooltip side="top" content="North positioning">
+              <Button shape="circle" layout="icon" variant="outlined">
+                <ArrowUp className="w-4 h-4" />
+              </Button>
             </Tooltip>
 
-            <Tooltip side="bottom" content="Bottom tooltip">
-              <Button variant="outlined">Bottom</Button>
+            <Tooltip side="bottom" content="South positioning">
+              <Button shape="circle" layout="icon" variant="outlined">
+                <ArrowDown className="w-4 h-4" />
+              </Button>
             </Tooltip>
 
-            <Tooltip side="left" content="Left tooltip">
-              <Button variant="outlined">Left</Button>
+            <Tooltip side="left" content="West positioning">
+              <Button shape="circle" layout="icon" variant="outlined">
+                <ArrowLeft className="w-4 h-4" />
+              </Button>
             </Tooltip>
 
-            <Tooltip side="right" content="Right tooltip">
-              <Button variant="outlined">Right</Button>
+            <Tooltip side="right" content="East positioning">
+              <Button shape="circle" layout="icon" variant="outlined">
+                <ArrowRight className="w-4 h-4" />
+              </Button>
             </Tooltip>
           </div>
         </Stage>
@@ -135,11 +162,13 @@ export function TooltipView() {
           <div className="flex items-center justify-center p-6">
             <Tooltip>
               <Tooltip.Trigger asChild>
-                <Button variant="contained">Save Changes</Button>
+                <Button shape="circle" layout="icon" variant="contained">
+                  <Copy className="w-4 h-4" />
+                </Button>
               </Tooltip.Trigger>
               <Tooltip.Content>
-                Save changes to disk
-                <Tooltip.Shortcut>⌘S</Tooltip.Shortcut>
+                Copy to clipboard
+                <Tooltip.Shortcut>⌘C</Tooltip.Shortcut>
               </Tooltip.Content>
             </Tooltip>
           </div>

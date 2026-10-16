@@ -1,19 +1,15 @@
 "use client";
 
-import {
-  forwardRef,
-  type MutableRefObject,
-  type RefCallback,
-} from "react";
+import { forwardRef } from "react";
 import { cva } from "class-variance-authority";
-import { FloatingPortal, useTransitionStyles } from "@floating-ui/react";
+import { FloatingPortal, useTransitionStyles, useMergeRefs } from "@floating-ui/react";
 import { useTooltipContext } from "./TooltipContext";
 import { cn } from "../../utils/cn";
 import { all, iff } from "../../utils/condition";
 import type { TooltipContentProps } from "./types";
 
 export const variants = cva(
-  "z-50 pointer-events-none select-none whitespace-nowrap font-medium transform-gpu origin-center shadow-md inline-flex items-center has-[[data-slot=shortcut]]:pr-1.5",
+  "select-none whitespace-nowrap font-medium transform-gpu origin-center shadow-md inline-flex items-center has-[[data-slot=shortcut]]:pr-1.5",
   {
     variants: {
       variant: {
@@ -64,14 +60,7 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
       },
     });
 
-    const handleRef = (node: HTMLDivElement | null) => {
-      setFloating(node);
-      if (typeof ref === "function") {
-        (ref as RefCallback<HTMLDivElement>)(node);
-      } else if (ref) {
-        (ref as MutableRefObject<HTMLDivElement | null>).current = node;
-      }
-    };
+    const mergedRef = useMergeRefs([setFloating, ref]);
 
     if (!all(isMounted, !disabled)) {
       return null;
@@ -83,18 +72,23 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
     return (
       <FloatingPortal>
         <div
-          ref={handleRef}
-          style={{ ...floatingStyles, ...transitionStyles }}
+          ref={mergedRef}
+          style={floatingStyles}
           {...getFloatingProps(props as Record<string, unknown>)}
-          className={cn(
-            variants({
-              variant: activeVariant,
-              size: activeSize,
-            }),
-            className
-          )}
+          className="z-50 pointer-events-none"
         >
-          {children}
+          <div
+            style={transitionStyles}
+            className={cn(
+              variants({
+                variant: activeVariant,
+                size: activeSize,
+              }),
+              className
+            )}
+          >
+            {children}
+          </div>
         </div>
       </FloatingPortal>
     );

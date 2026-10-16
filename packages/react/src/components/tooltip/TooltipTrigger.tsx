@@ -5,9 +5,8 @@ import {
   cloneElement,
   isValidElement,
   type ReactElement,
-  type MutableRefObject,
-  type RefCallback,
 } from "react";
+import { useMergeRefs } from "@floating-ui/react";
 import { useTooltipContext } from "./TooltipContext";
 import { cn } from "../../utils/cn";
 import { iff } from "../../utils/condition";
@@ -17,17 +16,10 @@ export const TooltipTrigger = forwardRef<HTMLElement, TooltipTriggerProps>(
   function TooltipTrigger({ children, asChild = false, className }, ref) {
     const { setReference, getReferenceProps } = useTooltipContext();
 
-    const handleRef = (node: HTMLElement | null) => {
-      setReference(node);
-      if (typeof ref === "function") {
-        (ref as RefCallback<HTMLElement>)(node);
-      } else if (ref) {
-        (ref as MutableRefObject<HTMLElement | null>).current = node;
-      }
-    };
-
     if (iff(asChild, true, isValidElement(children))) {
       const child = children as ReactElement<Record<string, unknown>>;
+      const childRef = (child.props as { ref?: React.Ref<HTMLElement> })?.ref;
+      const mergedRef = useMergeRefs([setReference, ref, childRef]);
       const referenceProps = getReferenceProps({
         ...child.props,
         className: cn(child.props.className as string | undefined, className),
@@ -35,21 +27,15 @@ export const TooltipTrigger = forwardRef<HTMLElement, TooltipTriggerProps>(
 
       return cloneElement(child, {
         ...referenceProps,
-        ref: (node: HTMLElement | null) => {
-          handleRef(node);
-          const childRef = (child as unknown as { ref?: React.Ref<HTMLElement> }).ref;
-          if (typeof childRef === "function") {
-            (childRef as RefCallback<HTMLElement>)(node);
-          } else if (childRef && typeof childRef === "object") {
-            (childRef as MutableRefObject<HTMLElement | null>).current = node;
-          }
-        },
+        ref: mergedRef,
       });
     }
 
+    const mergedRef = useMergeRefs([setReference, ref]);
+
     return (
       <span
-        ref={handleRef}
+        ref={mergedRef}
         {...getReferenceProps()}
         className={cn("inline-flex items-center", className)}
       >
