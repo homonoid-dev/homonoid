@@ -228,6 +228,28 @@ export function InputView() {
         </Description>
       </section>
 
+      {/* Accessibility Section */}
+      <section
+        id={INPUT_SECTIONS.accessibility.id}
+        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
+      >
+        <Label size="lg" as="h2">
+          {INPUT_SECTIONS.accessibility.label}
+        </Label>
+
+        <Description>
+          Accessibility is fundamental to every Harmonia form primitive. We design text fields to offer unambiguous operational cues, robust input validation announcements, and complete assistive device compatibility.
+        </Description>
+
+        <Description>
+          Inputs automatically associate accompanying label and helper text using aria labelledby and aria describedby relationships. When errors occur, invalid state cues and live region error announcements guide users directly toward resolution.
+        </Description>
+
+        <Description>
+          Visible focus rings encircle the input boundary during keyboard focus, meeting strict contrast ratios and ensuring effortless field navigation across complex forms.
+        </Description>
+      </section>
+
       {/* Interactive States Section */}
       <InteractiveStates
         id={INPUT_SECTIONS.interactiveStates.id}

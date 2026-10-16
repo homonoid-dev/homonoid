@@ -158,6 +158,28 @@ export function DescriptionView() {
         </Description>
       </section>
 
+      {/* Accessibility Section */}
+      <section
+        id={DESCRIPTION_SECTIONS.accessibility.id}
+        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
+      >
+        <Label size="lg" as="h2">
+          {DESCRIPTION_SECTIONS.accessibility.label}
+        </Label>
+
+        <Description>
+          Accessibility ensures supportive information reaches all people equally. Harmonia descriptions bridge visual cues with rich assistive text, reinforcing clarity across every workflow.
+        </Description>
+
+        <Description>
+          Descriptions connect seamlessly to parent inputs and complex controls using aria describedby attributes, giving screen reader users immediate access to helper text and constraints.
+        </Description>
+
+        <Description>
+          Contrast levels for both default and muted variants are calibrated against accessibility guidelines, maintaining high legibility while signaling appropriate visual hierarchy.
+        </Description>
+      </section>
+
       {/* Design Tokens Section */}
       <section
         id={DESCRIPTION_SECTIONS.tokens.id}

@@ -183,6 +183,28 @@ export function SpinnerView() {
         </Description>
       </section>
 
+      {/* Accessibility Section */}
+      <section
+        id={SPINNER_SECTIONS.accessibility.id}
+        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
+      >
+        <Label size="lg" as="h2">
+          {SPINNER_SECTIONS.accessibility.label}
+        </Label>
+
+        <Description>
+          Accessibility for loading indicators ensures that asynchronous updates are never solely visual. Harmonia values inclusive design by conveying background activity reliably across all sensory modalities.
+        </Description>
+
+        <Description>
+          Spinners feature status role semantics and aria live announcements to inform assistive technologies when data operations begin and resolve. Hidden descriptive labels provide contextual clarity for screen readers.
+        </Description>
+
+        <Description>
+          System motion preferences are honored automatically. For users who prefer reduced motion, continuous rotation transitions into a steady status indicator to avoid vestibular discomfort.
+        </Description>
+      </section>
+
       {/* Interactive States Section */}
       <InteractiveStates
         id={SPINNER_SECTIONS.interactiveStates.id}

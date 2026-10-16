@@ -6,6 +6,7 @@ import {
   Tag,
   Ban,
   Infinity,
+  Accessibility,
   Palette,
   BookOpen,
 } from "lucide-react";
@@ -47,6 +48,11 @@ export const CHECKBOX_SECTIONS: Record<string, CheckboxSectionItem> = {
     id: "object-continuity",
     label: "Continuity",
     icon: Infinity,
+  },
+  accessibility: {
+    id: "accessibility",
+    label: "Accessibility",
+    icon: Accessibility,
   },
   tokens: {
     id: "design-tokens",

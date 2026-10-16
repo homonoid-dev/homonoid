@@ -7,6 +7,7 @@ import {
   AlertCircle,
   Ban,
   Infinity,
+  Accessibility,
   MousePointerClick,
   Palette,
   BookOpen,
@@ -55,6 +56,11 @@ export const INPUT_SECTIONS: Record<string, InputSectionItem> = {
     id: "object-continuity",
     label: "Continuity",
     icon: Infinity,
+  },
+  accessibility: {
+    id: "accessibility",
+    label: "Accessibility",
+    icon: Accessibility,
   },
   interactiveStates: {
     id: "interactive-states",

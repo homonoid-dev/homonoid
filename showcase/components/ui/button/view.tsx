@@ -42,7 +42,7 @@ export function ButtonViewContent() {
         </Description>
 
         <Description>
-          Harmonia structures button hierarchy through three deliberate tiers contained for primary focus, outlined for secondary choices, and plain for utilities while maintaining strict object continuity by preserving fixed dimensions and fluid micro-transitions across hover, press, and loading states.
+          Harmonia structures button hierarchy through three deliberate tiers contained for primary focus, outlined for secondary choices, and plain for utilities while maintaining strict object continuity by preserving fixed dimensions and fluid micro transitions across hover, press, and loading states.
         </Description>
 
       </div>
@@ -252,6 +252,26 @@ export function ButtonViewContent() {
 
         <Description>
           Pointer compression engages calibrated spring resistance followed by fluid restorative rebound. Easing curves prioritize immediate feedback upon press while smoothing releases naturally.
+        </Description>
+      </section>
+
+      {/* Accessibility Section */}
+      <section
+        id={sections.accessibility.id}
+        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
+      >
+        <Label size="lg" as="h2">{sections.accessibility.label}</Label>
+
+        <Description>
+          Accessibility stands at the core of Harmonia design philosophy. Interactive components must empower every individual with immediate comprehension, predictable keyboard navigation, and seamless assistive technology integration.
+        </Description>
+
+        <Description>
+          Buttons render semantic native button elements by default, preserving natural tab indexing, spacebar activation, and enter key dispatching without requiring synthetic keyboard handlers.
+        </Description>
+
+        <Description>
+          Prominent focus rings provide clear WCAG compliant visibility during keyboard navigation. Icon only buttons enforce descriptive aria labels, while pending states announce loading progress transparently to screen readers.
         </Description>
       </section>
 

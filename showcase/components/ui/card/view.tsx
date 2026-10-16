@@ -243,6 +243,28 @@ export function CardView() {
         </Description>
       </section>
 
+      {/* Accessibility Section */}
+      <section
+        id={CARD_SECTIONS.accessibility.id}
+        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
+      >
+        <Label size="lg" as="h2">
+          {CARD_SECTIONS.accessibility.label}
+        </Label>
+
+        <Description>
+          Accessibility in container architecture establishes semantic hierarchy and landmark clarity. Harmonia cards prioritize structured content navigation for screen readers and keyboard users alike.
+        </Description>
+
+        <Description>
+          Cards support semantic element customization through the polymorphic as property, permitting developers to render proper article, section, or aside landmarks that screen readers navigate natively.
+        </Description>
+
+        <Description>
+          When configured with interactive actions, cards maintain accessible focus indicators and clear color contrast ratios across all surface, subtle, and brand color configurations.
+        </Description>
+      </section>
+
       {/* Design Tokens Section */}
       <section
         id={CARD_SECTIONS.tokens.id}

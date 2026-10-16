@@ -4,6 +4,7 @@ import {
   Type,
   Tag,
   Infinity,
+  Accessibility,
   Palette,
   BookOpen,
 } from "lucide-react";
@@ -35,6 +36,11 @@ export const DESCRIPTION_SECTIONS: Record<string, DescriptionSectionItem> = {
     id: "object-continuity",
     label: "Continuity",
     icon: Infinity,
+  },
+  accessibility: {
+    id: "accessibility",
+    label: "Accessibility",
+    icon: Accessibility,
   },
   tokens: {
     id: "design-tokens",

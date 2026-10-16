@@ -187,6 +187,28 @@ export function CheckboxView() {
         </Description>
       </section>
 
+      {/* Accessibility Section */}
+      <section
+        id={CHECKBOX_SECTIONS.accessibility.id}
+        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
+      >
+        <Label size="lg" as="h2">
+          {CHECKBOX_SECTIONS.accessibility.label}
+        </Label>
+
+        <Description>
+          Accessibility for selection controls empowers all users with predictable states and effortless activation. We treat inclusive design as an absolute requirement rather than an afterthought.
+        </Description>
+
+        <Description>
+          Checkboxes expose native input role semantics, ensuring screen readers announce current checked, unchecked, or mixed states accurately. Spacebar toggles and tab order navigation function without specialized configuration.
+        </Description>
+
+        <Description>
+          Clear focus outlines enclose the control upon keyboard navigation. Generous touch target sizing guarantees reliable tapping across mobile screens and assistive pointer accessories.
+        </Description>
+      </section>
+
       {/* Design Tokens Section */}
       <section
         id={CHECKBOX_SECTIONS.tokens.id}
