@@ -73,7 +73,7 @@ export function Example() {
 export const TOOLTIP_VARIANTS_CODE_SAMPLE = `import { Tooltip, Button } from "@harmonia/react";
 import { Bookmark, Settings, Sparkles } from "lucide-react";
 
-export function VariantsExample() {
+export function Example() {
   return (
     <div className="flex flex-wrap items-center gap-4">
       <Tooltip variant="inverted" content="Bookmark item">
@@ -100,7 +100,7 @@ export function VariantsExample() {
 export const TOOLTIP_PLACEMENTS_CODE_SAMPLE = `import { Tooltip, Button } from "@harmonia/react";
 import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from "lucide-react";
 
-export function PlacementsExample() {
+export function Example() {
   return (
     <div className="flex flex-wrap items-center gap-4">
       <Tooltip side="top" content="North positioning">
@@ -133,7 +133,7 @@ export function PlacementsExample() {
 export const TOOLTIP_SHORTCUTS_CODE_SAMPLE = `import { Tooltip, Button } from "@harmonia/react";
 import { Copy } from "lucide-react";
 
-export function ShortcutsExample() {
+export function Example() {
   return (
     <Tooltip>
       <Tooltip.Trigger asChild>
