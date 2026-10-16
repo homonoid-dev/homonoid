@@ -1,7 +1,8 @@
 @import "tailwindcss";
 @import "@harmonia/tokens/css";
-@import "@harmonia/web/styles.css";
-@source "../../packages/web/src";
+@import "@harmonia/react/styles.css";
+@source "..";
+@source "../../packages/react/src";
 
 body {
   background: var(--background);

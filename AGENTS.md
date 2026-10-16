@@ -17,6 +17,16 @@ All markdown documentation must adhere to the following formatting rules:
 
 <br>
 
+### Paragraph and Copy Standards
+
+Guidelines for writing prose, component descriptions, and documentation copy:
+
+- No Dashes or Hyphens Between Words: Never use hyphens or dashes (`-`, `--`, or `—`) to separate thoughts, clauses, or words in descriptive text. Structure sentences using clean punctuation, commas, or direct conjunctions instead.
+- Continuous Flow: Keep sentence structures natural, clear, and rhythmic without disruptive punctuation breaks.
+- Token-First Clarity: Explanations must be concise and descriptive, emphasizing component behavior, hierarchy, and design tokens without decorative filler.
+
+<br>
+
 ### Technology Stack
 
 The web implementation and showcase ecosystem use the following standard toolchain:
@@ -36,6 +46,7 @@ Harmonia prioritizes continuity, platform-native excellence, and token-driven de
 - Design Tokens First: Components must consume values exclusively from design tokens (`@harmonia/tokens`). Never introduce hardcoded colors, spacing, or radii.
 - Component Specifications: Every new component requires a formal specification in `docs/components/<name>.md` before implementation.
 - Object Continuity: State transitions must preserve component identity and dimensional stability. Components must not collapse or jump abruptly during state changes.
+- Functional Condition Utilities: Use functional condition helpers (`cond`, `iff`, `any`, `all`) from `@harmonia/react` instead of inline ternary operators (`?:`) across component markup, class definitions, and layout branching logic.
 
 <br>
 

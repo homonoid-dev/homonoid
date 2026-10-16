@@ -41,7 +41,11 @@ export const webTokens = {
   motion: {
     "duration-fast": "var(--motion-duration-fast)",
     "duration-normal": "var(--motion-duration-normal)",
+    "duration-slow": "var(--motion-duration-slow)",
+    "duration-press": "var(--motion-duration-press)",
+    "duration-release": "var(--motion-duration-release)",
     "easing-standard": "var(--motion-easing-standard)",
+    "easing-fluid": "var(--motion-easing-fluid)",
     "press-scale": "var(--motion-press-scale)"
   }
 } as const;
