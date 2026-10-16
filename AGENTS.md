@@ -10,7 +10,7 @@ Every contribution should preserve the design philosophy, architectural standard
 
 All markdown documentation must adhere to the following formatting rules:
 
-- Single Title: Only one top-level `#` title per document.
+- Single Title: Only one top level `#` title per document.
 - Subheadings: All section headers must use `###` (never `##`).
 - Spacing: Separate major sections using an empty line, `<br>`, and an empty line before the next `###` header.
 - Whitespace Hygiene: Never leave trailing spaces on any line. Files must end with a single newline character.

@@ -5,6 +5,7 @@ import {
   Paintbrush,
   Box,
   Infinity,
+  Accessibility,
   MousePointerClick,
   Palette,
   BookOpen,
@@ -43,6 +44,11 @@ export const SPINNER_SECTIONS: Record<string, SpinnerSectionItem> = {
     id: "object-continuity",
     label: "Continuity",
     icon: Infinity,
+  },
+  accessibility: {
+    id: "accessibility",
+    label: "Accessibility",
+    icon: Accessibility,
   },
   interactiveStates: {
     id: "interactive-states",

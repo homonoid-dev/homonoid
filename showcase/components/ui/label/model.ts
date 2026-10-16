@@ -4,6 +4,7 @@ import {
   Layers,
   Tag,
   Infinity,
+  Accessibility,
   Palette,
   BookOpen,
 } from "lucide-react";
@@ -35,6 +36,11 @@ export const LABEL_SECTIONS: Record<string, LabelSectionItem> = {
     id: "object-continuity",
     label: "Continuity",
     icon: Infinity,
+  },
+  accessibility: {
+    id: "accessibility",
+    label: "Accessibility",
+    icon: Accessibility,
   },
   tokens: {
     id: "design-tokens",
@@ -102,7 +108,7 @@ export function FormExample() {
       </Label>
       <Input
         id="workspace-name"
-        placeholder="e.g. Lumunar Studio"
+        placeholder="e.g. Studio"
       />
       <Description>
         Used across notifications and shared project invites.

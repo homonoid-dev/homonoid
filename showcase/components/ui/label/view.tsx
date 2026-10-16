@@ -120,7 +120,7 @@ export function LabelView() {
             <Label as="label" htmlFor="workspace-input" size="sm">
               Workspace Name
             </Label>
-            <Input id="workspace-input" placeholder="e.g. Lumunar Studio" />
+            <Input id="workspace-input" placeholder="e.g. Studio" />
             <Description>
               Used across notifications and shared project invites.
             </Description>
@@ -147,6 +147,28 @@ export function LabelView() {
 
         <Description>
           High contrast foreground tokens maintain WCAG compliant contrast ratios across primary, subtle, and elevated surfaces.
+        </Description>
+      </section>
+
+      {/* Accessibility Section */}
+      <section
+        id={LABEL_SECTIONS.accessibility.id}
+        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
+      >
+        <Label size="lg" as="h2">
+          {LABEL_SECTIONS.accessibility.label}
+        </Label>
+
+        <Description>
+          Accessibility is the cornerstone of clear interface communication. Harmonia labels ensure that every visual heading and input prompt provides unambiguous meaning for users relying on screen readers and assistive tech.
+        </Description>
+
+        <Description>
+          Form labels pair natively with inputs using programmatic htmlFor associations or enclosing label elements. Clicking a label activates and transfers focus directly to its connected target control.
+        </Description>
+
+        <Description>
+          Polymorphic element rendering guarantees proper document outline semantics by producing real h1 through h6 heading tags rather than non semantic styled text blocks.
         </Description>
       </section>
 
