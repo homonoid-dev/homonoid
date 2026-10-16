@@ -9,7 +9,7 @@ import { all, iff } from "../../utils/condition";
 import type { TooltipContentProps } from "./types";
 
 export const variants = cva(
-  "select-none whitespace-nowrap font-medium transform-gpu origin-center shadow-md inline-flex items-center has-[[data-slot=shortcut]]:pr-1.5",
+  "select-none whitespace-nowrap font-medium transform-gpu origin-center inline-flex items-center has-[[data-slot=shortcut]]:pr-1.5",
   {
     variants: {
       variant: {
@@ -45,7 +45,13 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
     } = useTooltipContext();
 
     const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
-      duration: 150,
+      duration: {
+        open: 140,
+        close: 80,
+      },
+      common: {
+        transitionTimingFunction: "cubic-bezier(0.2, 0, 0, 1)",
+      },
       initial: {
         opacity: 0,
         transform: "scale(0.96)",
@@ -84,6 +90,7 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
                 variant: activeVariant,
                 size: activeSize,
               }),
+              "pointer-events-none",
               className
             )}
           >

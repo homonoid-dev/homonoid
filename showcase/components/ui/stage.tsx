@@ -137,7 +137,7 @@ export function Stage({
 
         <div className="flex items-center gap-1">
           {onReset && (
-            <Tooltip content="Reset stage">
+            <Tooltip side="bottom" content="Reset stage">
               <Button
                 layout="icon"
                 variant="plain"

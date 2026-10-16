@@ -37,7 +37,7 @@ export function Tooltip({
   side = "top",
   align = "center",
   offset = 6,
-  delay = { open: 200, close: 150 },
+  delay = { open: 120, close: 0 },
   variant = "inverted",
   size = "sm",
   className,
@@ -54,8 +54,8 @@ export function Tooltip({
 
   const resolvedDelay = iff(
     typeof delay === "number",
-    { open: delay as number, close: Math.round((delay as number) * 0.75) },
-    delay || { open: 200, close: 150 }
+    { open: delay as number, close: 0 },
+    delay || { open: 120, close: 0 }
   );
 
   const {
