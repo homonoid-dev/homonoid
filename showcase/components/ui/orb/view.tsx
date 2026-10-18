@@ -103,25 +103,27 @@ export function OrbView() {
         </Description>
 
         <Stage code={ORB_STATES_CODE_SAMPLE}>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 py-6 w-full">
-            {(["idle", "connecting", "listening", "thinking", "speaking", "error"] as OrbState[]).map(
-              (item) => (
-                <div
-                  key={item}
-                  className="flex flex-col items-center gap-3 p-4 rounded-2xl bg-surface/50 border border-border"
-                >
-                  <Orb
-                    theme="cloud"
-                    state={item}
-                    volume={item === "speaking" ? 0.7 : 0.3}
-                    size="sm"
-                  />
-                  <span className="text-xs font-mono uppercase text-muted font-semibold">
-                    {item}
-                  </span>
-                </div>
-              )
-            )}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-12 gap-y-8 py-6 w-full max-w-lg items-center justify-items-center">
+            {(
+              [
+                { state: "idle", label: "Idle" },
+                { state: "connecting", label: "Connecting" },
+                { state: "listening", label: "Listening" },
+                { state: "thinking", label: "Thinking" },
+                { state: "speaking", label: "Speaking" },
+                { state: "error", label: "Error" },
+              ] as const
+            ).map(({ state: itemState, label }) => (
+              <div key={itemState} className="flex flex-col items-center gap-2">
+                <Orb
+                  theme="cloud"
+                  state={itemState}
+                  volume={itemState === "speaking" ? 0.7 : 0.3}
+                  size="sm"
+                />
+                <span className="text-xs text-muted">{label}</span>
+              </div>
+            ))}
           </div>
         </Stage>
       </section>

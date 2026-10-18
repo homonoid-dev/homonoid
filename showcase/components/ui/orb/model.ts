@@ -124,12 +124,30 @@ export const ORB_STATES_CODE_SAMPLE = `import { Orb } from "@harmonia/react";
 export function StatesExample() {
   return (
     <div className="grid grid-cols-3 gap-8">
-      <Orb theme="cloud" state="idle" size="sm" />
-      <Orb theme="cloud" state="connecting" size="sm" />
-      <Orb theme="cloud" state="listening" size="sm" />
-      <Orb theme="cloud" state="thinking" size="sm" />
-      <Orb theme="cloud" state="speaking" volume={0.7} size="sm" />
-      <Orb theme="cloud" state="error" size="sm" />
+      <div className="flex flex-col items-center gap-2">
+        <Orb theme="cloud" state="idle" size="sm" />
+        <span className="text-xs text-muted">Idle</span>
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <Orb theme="cloud" state="connecting" size="sm" />
+        <span className="text-xs text-muted">Connecting</span>
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <Orb theme="cloud" state="listening" size="sm" />
+        <span className="text-xs text-muted">Listening</span>
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <Orb theme="cloud" state="thinking" size="sm" />
+        <span className="text-xs text-muted">Thinking</span>
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <Orb theme="cloud" state="speaking" volume={0.7} size="sm" />
+        <span className="text-xs text-muted">Speaking</span>
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <Orb theme="cloud" state="error" size="sm" />
+        <span className="text-xs text-muted">Error</span>
+      </div>
     </div>
   );
 }`;
