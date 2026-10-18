@@ -1,0 +1,255 @@
+/* Orb Bars Animations */
+
+@keyframes orb-bars-idle {
+
+  0%,
+  100% {
+    transform: scaleY(0.28);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: scaleY(0.48);
+    opacity: 0.85;
+  }
+}
+
+@keyframes orb-bars-connecting {
+
+  0%,
+  100% {
+    transform: scaleY(0.2);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: scaleY(0.8);
+    opacity: 1;
+  }
+}
+
+@keyframes orb-bars-listening {
+
+  0%,
+  100% {
+    transform: scaleY(0.32);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scaleY(0.65);
+    opacity: 0.95;
+  }
+}
+
+@keyframes orb-bars-thinking {
+  0% {
+    transform: scaleY(0.25);
+    opacity: 0.5;
+  }
+
+  25% {
+    transform: scaleY(0.7);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scaleY(0.35);
+    opacity: 0.6;
+  }
+
+  75% {
+    transform: scaleY(0.85);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleY(0.25);
+    opacity: 0.5;
+  }
+}
+
+@keyframes orb-bars-speaking {
+
+  0%,
+  100% {
+    transform: scaleY(0.35);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes orb-bars-error {
+
+  0%,
+  100% {
+    transform: scaleY(0.4);
+    opacity: 0.85;
+  }
+
+  50% {
+    transform: scaleY(0.7);
+    opacity: 1;
+  }
+}
+
+/* Orb Cloud Animations */
+
+@keyframes orb-cloud-breathe {
+
+  0%,
+  100% {
+    transform: scale(0.97);
+    opacity: 0.92;
+  }
+
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+}
+
+@keyframes orb-cloud-drift {
+  0% {
+    transform: rotate(0deg) scale(1.05);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.15);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1.05);
+  }
+}
+
+@keyframes orb-cloud-swirl {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orb-cloud-pulse-aura {
+
+  0%,
+  100% {
+    transform: scale(0.9);
+    opacity: 0.35;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 0.65;
+  }
+}
+
+@keyframes orb-cloud-connecting-wave {
+  0% {
+    transform: rotate(0deg) scale(0.95);
+    filter: hue-rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.05);
+    filter: hue-rotate(45deg);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(0.95);
+    filter: hue-rotate(0deg);
+  }
+}
+
+@keyframes orb-cloud-error-pulse {
+
+  0%,
+  100% {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+/* Utility classes for animations */
+
+@utility animate-orb-bars-idle {
+  animation: orb-bars-idle 1800ms var(--motion-easing-standard) infinite;
+}
+
+@utility animate-orb-bars-connecting {
+  animation: orb-bars-connecting 1200ms var(--motion-easing-standard) infinite;
+}
+
+@utility animate-orb-bars-listening {
+  animation: orb-bars-listening 1400ms var(--motion-easing-fluid) infinite;
+}
+
+@utility animate-orb-bars-thinking {
+  animation: orb-bars-thinking 1600ms ease-in-out infinite;
+}
+
+@utility animate-orb-bars-speaking {
+  animation: orb-bars-speaking 800ms var(--motion-easing-fluid) infinite;
+}
+
+@utility animate-orb-bars-error {
+  animation: orb-bars-error 900ms ease-in-out infinite;
+}
+
+@utility animate-orb-cloud-breathe {
+  animation: orb-cloud-breathe 3200ms var(--motion-easing-standard) infinite;
+}
+
+@utility animate-orb-cloud-drift {
+  animation: orb-cloud-drift 12000ms linear infinite;
+}
+
+@utility animate-orb-cloud-swirl {
+  animation: orb-cloud-swirl 6000ms linear infinite;
+}
+
+@utility animate-orb-cloud-connecting {
+  animation: orb-cloud-connecting-wave 2400ms ease-in-out infinite;
+}
+
+@utility animate-orb-cloud-aura {
+  animation: orb-cloud-pulse-aura 3000ms var(--motion-easing-standard) infinite;
+}
+
+@utility animate-orb-cloud-error {
+  animation: orb-cloud-error-pulse 1000ms ease-in-out infinite;
+}
+
+/* Reduced motion support */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-orb-bars-idle,
+  .animate-orb-bars-connecting,
+  .animate-orb-bars-listening,
+  .animate-orb-bars-thinking,
+  .animate-orb-bars-speaking,
+  .animate-orb-bars-error,
+  .animate-orb-cloud-breathe,
+  .animate-orb-cloud-drift,
+  .animate-orb-cloud-swirl,
+  .animate-orb-cloud-connecting,
+  .animate-orb-cloud-aura,
+  .animate-orb-cloud-error {
+    animation-duration: 4000ms !important;
+    animation-iteration-count: 1 !important;
+    transform: none !important;
+  }
+}

@@ -36,7 +36,10 @@ export const webTokens = {
     "p-surface": "var(--p-surface)",
     "gap-surface": "var(--gap-surface)",
     "p-layout": "var(--p-layout)",
-    "gap-layout": "var(--gap-layout)"
+    "gap-layout": "var(--gap-layout)",
+    "size-orb-sm": "var(--size-orb-sm)",
+    "size-orb-md": "var(--size-orb-md)",
+    "size-orb-lg": "var(--size-orb-lg)"
   },
   motion: {
     "duration-fast": "var(--motion-duration-fast)",

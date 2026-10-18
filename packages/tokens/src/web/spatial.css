@@ -17,6 +17,9 @@
     --p-layout-x: var(--p-layout);
     --p-layout-y: 2.0rem;
     --gap-layout: 1.5rem;
+    --size-orb-sm: 4.0rem;
+    --size-orb-md: 8.0rem;
+    --size-orb-lg: 14.0rem;
   }
 }
 
@@ -39,4 +42,8 @@
   --spacing-layout-x: var(--p-layout-x);
   --spacing-layout-y: var(--p-layout-y);
   --spacing-layout-gap: var(--gap-layout);
+
+  --spacing-orb-sm: var(--size-orb-sm);
+  --spacing-orb-md: var(--size-orb-md);
+  --spacing-orb-lg: var(--size-orb-lg);
 }
