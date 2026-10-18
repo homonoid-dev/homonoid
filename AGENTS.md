@@ -26,7 +26,7 @@ Built with React 19, Tailwind CSS v4, TypeScript strict mode, and Next.js App Ro
 
 ### Architecture and Design Tokens
 
-Consume styling exclusively from `@harmonia/tokens` with zero hardcoded values, inline styles, or arbitrary bracket classes. Author a formal specification in `docs/components/<name>.md` before implementation. Maintain object continuity and dimensional stability during transitions. Compose complex elements as compound components without artificial wrapper layers. Isolate floating positioning logic from transform transitions in overlays, ensuring non-interactive surfaces declare `pointer-events-none`. Always use functional condition helpers (`cond`, `any`, `all`) from `@harmonia/react` instead of inline ternary operators (`?:`).
+Consume styling exclusively from `@harmonia/tokens` with zero hardcoded values, inline styles, or arbitrary bracket classes. Author a formal specification in `docs/components/<name>.md` before implementation. Maintain object continuity and dimensional stability during transitions. Compose multi-part elements as compound components using dot notation without artificial wrapper layers. Isolate floating positioning logic from transform transitions in overlays, ensuring non-interactive surfaces declare `pointer-events-none`. Always use functional condition helpers (`cond`, `match`, `when`, `any`, `all`, `none`) from `@harmonia/react` instead of inline ternary operators (`?:`).
 
 <br>
 
