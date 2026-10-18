@@ -58,7 +58,7 @@ export const LABEL_SECTIONS_LIST: LabelSectionItem[] =
   Object.values(LABEL_SECTIONS);
 
 
-export const LABEL_DEFAULT_CODE_SAMPLE = `import { Label } from "@harmonia/react";
+export const LABEL_DEFAULT_CODE_SAMPLE = `import { Label } from "@homonoid/react";
 
 export function Example() {
   return (
@@ -68,7 +68,7 @@ export function Example() {
   );
 }`;
 
-export const LABEL_SIZES_CODE_SAMPLE = `import { Label } from "@harmonia/react";
+export const LABEL_SIZES_CODE_SAMPLE = `import { Label } from "@homonoid/react";
 
 export function SizesExample() {
   return (
@@ -80,7 +80,7 @@ export function SizesExample() {
   );
 }`;
 
-export const LABEL_POLYMORPHISM_CODE_SAMPLE = `import { Label } from "@harmonia/react";
+export const LABEL_POLYMORPHISM_CODE_SAMPLE = `import { Label } from "@homonoid/react";
 
 export function PolymorphismExample() {
   return (
@@ -98,7 +98,7 @@ export function PolymorphismExample() {
   );
 }`;
 
-export const LABEL_FORMS_CODE_SAMPLE = `import { Label, Input, Description } from "@harmonia/react";
+export const LABEL_FORMS_CODE_SAMPLE = `import { Label, Input, Description } from "@homonoid/react";
 
 export function FormExample() {
   return (

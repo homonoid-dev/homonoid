@@ -1,6 +1,6 @@
 "use client";
 
-import { Label, Description, Card, Input } from "@harmonia/react";
+import { Label, Description, Card, Input } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -45,7 +45,7 @@ export function LabelView() {
           variant="filled"
           className="flex items-center justify-between font-mono text-xs select-text"
         >
-          <code>{highlighter('import { Label } from "@harmonia/react";')}</code>
+          <code>{highlighter('import { Label } from "@homonoid/react";')}</code>
         </Card>
 
         <Stage code={LABEL_DEFAULT_CODE_SAMPLE}>
@@ -160,7 +160,7 @@ export function LabelView() {
         </Label>
 
         <Description>
-          Accessibility is the cornerstone of clear interface communication. Harmonia labels ensure that every visual heading and input prompt provides unambiguous meaning for users relying on screen readers and assistive tech.
+          Accessibility is the cornerstone of clear interface communication. Homonoid labels ensure that every visual heading and input prompt provides unambiguous meaning for users relying on screen readers and assistive tech.
         </Description>
 
         <Description>

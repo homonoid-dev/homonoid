@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Label, Description } from "@harmonia/react";
+import { Card, Label, Description } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -29,7 +29,7 @@ export function CardView() {
           A card groups related content and interactive elements within a clear visual container.
         </Description>
         <Description>
-          Harmonia cards provide structured surface elevation and flexible padding options while preserving design token fidelity across layouts.
+          Homonoid cards provide structured surface elevation and flexible padding options while preserving design token fidelity across layouts.
         </Description>
       </div>
 
@@ -46,7 +46,7 @@ export function CardView() {
           variant="filled"
           className="flex items-center justify-between font-mono text-xs select-text"
         >
-          <code>{highlighter('import { Card } from "@harmonia/react";')}</code>
+          <code>{highlighter('import { Card } from "@homonoid/react";')}</code>
         </Card>
 
         <Stage code={CARD_DEFAULT_CODE_SAMPLE}>
@@ -55,7 +55,7 @@ export function CardView() {
               Project Overview
             </Label>
             <Description>
-              Harmonia components provide continuous aesthetic fidelity and tactile physics.
+              Homonoid components provide continuous aesthetic fidelity and tactile physics.
             </Description>
           </Card>
         </Stage>
@@ -253,7 +253,7 @@ export function CardView() {
         </Label>
 
         <Description>
-          Accessibility in container architecture establishes semantic hierarchy and landmark clarity. Harmonia cards prioritize structured content navigation for screen readers and keyboard users alike.
+          Accessibility in container architecture establishes semantic hierarchy and landmark clarity. Homonoid cards prioritize structured content navigation for screen readers and keyboard users alike.
         </Description>
 
         <Description>

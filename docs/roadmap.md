@@ -1,6 +1,6 @@
 # Roadmap
 
-Harmonia is being developed incrementally.
+Homonoid is being developed incrementally.
 
 Each milestone establishes a stronger foundation before expanding the ecosystem.
 
@@ -8,7 +8,7 @@ Each milestone establishes a stronger foundation before expanding the ecosystem.
 
 ### Version 0.x
 
-- Establish the Harmonia design language.
+- Establish the Homonoid design language.
 - Define design tokens.
 - Build the Web implementation.
 - Publish the initial documentation.
@@ -19,8 +19,8 @@ Each milestone establishes a stronger foundation before expanding the ecosystem.
 ### Version 1.x
 
 - Stable Web release.
-- Harmonia Icons.
-- Harmonia Motion.
+- Homonoid Icons.
+- Homonoid Motion.
 - Component specifications.
 - Comprehensive accessibility support.
 
@@ -46,4 +46,4 @@ Each milestone establishes a stronger foundation before expanding the ecosystem.
 - Visual regression testing.
 - Additional platform implementations.
 
-The roadmap represents the current direction of the project and may evolve as Harmonia matures.
+The roadmap represents the current direction of the project and may evolve as Homonoid matures.

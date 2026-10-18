@@ -1,6 +1,6 @@
 "use client";
 
-import { Input, Label, Description, Card } from "@harmonia/react";
+import { Input, Label, Description, Card } from "@homonoid/react";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
@@ -53,7 +53,7 @@ export function InputView() {
           variant="filled"
           className="flex items-center justify-between font-mono text-xs select-text"
         >
-          <code>{highlighter('import { Input } from "@harmonia/react";')}</code>
+          <code>{highlighter('import { Input } from "@homonoid/react";')}</code>
         </Card>
 
         {/* Default Stage */}
@@ -216,7 +216,7 @@ export function InputView() {
         </Label>
 
         <Description>
-          Harmonia requires that state transitions preserve component identity without abrupt dimensional shifts. The container outer bounds and border radius remain constant when switching between rest, hover, focus, and invalid states.
+          Homonoid requires that state transitions preserve component identity without abrupt dimensional shifts. The container outer bounds and border radius remain constant when switching between rest, hover, focus, and invalid states.
         </Description>
 
         <Description>
@@ -238,7 +238,7 @@ export function InputView() {
         </Label>
 
         <Description>
-          Accessibility is fundamental to every Harmonia form primitive. We design text fields to offer unambiguous operational cues, robust input validation announcements, and complete assistive device compatibility.
+          Accessibility is fundamental to every Homonoid form primitive. We design text fields to offer unambiguous operational cues, robust input validation announcements, and complete assistive device compatibility.
         </Description>
 
         <Description>

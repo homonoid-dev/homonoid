@@ -1,6 +1,6 @@
 # Development Workflows
 
-The `workflows` directory documents repeatable development processes within the Harmonia ecosystem.
+The `workflows` directory documents repeatable development processes within the Homonoid ecosystem.
 
 These workflows describe the recommended sequence of steps for common development activities. Their purpose is to improve consistency, reduce uncertainty, and establish predictable engineering practices.
 

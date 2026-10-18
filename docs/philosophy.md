@@ -1,6 +1,6 @@
 # Philosophy
 
-Harmonia is founded on the belief that interfaces should behave more like physical systems than collections of independent views.
+Homonoid is founded on the belief that interfaces should behave more like physical systems than collections of independent views.
 
 <br>
 
@@ -30,7 +30,7 @@ Distance, alignment, hierarchy, and motion should reinforce relationships instea
 
 ### Platform Excellence
 
-Harmonia does not seek visual uniformity across platforms.
+Homonoid does not seek visual uniformity across platforms.
 
 Every implementation should embrace native capabilities while preserving the same design philosophy.
 

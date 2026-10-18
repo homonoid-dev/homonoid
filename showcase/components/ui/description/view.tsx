@@ -1,6 +1,6 @@
 "use client";
 
-import { Description, Label, Card, Input } from "@harmonia/react";
+import { Description, Label, Card, Input } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -45,7 +45,7 @@ export function DescriptionView() {
           variant="filled"
           className="flex items-center justify-between font-mono text-xs select-text"
         >
-          <code>{highlighter('import { Description } from "@harmonia/react";')}</code>
+          <code>{highlighter('import { Description } from "@homonoid/react";')}</code>
         </Card>
 
         <Stage code={DESCRIPTION_DEFAULT_CODE_SAMPLE}>
@@ -168,7 +168,7 @@ export function DescriptionView() {
         </Label>
 
         <Description>
-          Accessibility ensures supportive information reaches all people equally. Harmonia descriptions bridge visual cues with rich assistive text, reinforcing clarity across every workflow.
+          Accessibility ensures supportive information reaches all people equally. Homonoid descriptions bridge visual cues with rich assistive text, reinforcing clarity across every workflow.
         </Description>
 
         <Description>

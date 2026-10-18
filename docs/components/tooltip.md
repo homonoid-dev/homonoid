@@ -55,7 +55,7 @@ Tooltips float relative to their trigger target while respecting viewport bounda
 
 ### Variants
 
-Harmonia structures tooltip surface presentation through variants:
+Homonoid structures tooltip surface presentation through variants:
 
 - `Inverted` (`variant="inverted"`): High contrast dark surface on light themes and bright surface on dark themes for immediate legibility.
 - `Surface` (`variant="surface"`): Neutral elevation matching secondary card surfaces with a subtle border stroke.
@@ -96,7 +96,7 @@ Tooltips activate predictably through pointer and keyboard events:
 
 ### Object Continuity
 
-Harmonia requires that overlay transitions preserve spatial stability and component identity:
+Homonoid requires that overlay transitions preserve spatial stability and component identity:
 
 - Dimensional Stability: Tooltips maintain stable text geometry without jittering or abrupt content reflow.
 - Subtle Scaling: Entering and exiting states apply subtle scale motion (from 0.96 to 1.0) rather than abrupt pops.
@@ -149,6 +149,6 @@ Tooltips coordinate closely with surrounding interactive components:
 
 Platform packages implement this specification using their native toolchain:
 
-- Tokens: All values for padding, radii, colors, and transitions consume `@harmonia/tokens`.
+- Tokens: All values for padding, radii, colors, and transitions consume `@homonoid/tokens`.
 - Positioning: Uses floating position calculation, collision detection, and portal rendering.
 - Web Implementation: Built in `packages/react` using React 19, TypeScript, and Tailwind CSS v4.

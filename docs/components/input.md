@@ -55,7 +55,7 @@ Inputs adapt to their parent container width while preserving fixed vertical cad
 
 ### Sizes
 
-Inputs conform to the standardized Harmonia control scale (`Size = "sm" | "md" | "lg"`):
+Inputs conform to the standardized Homonoid control scale (`Size = "sm" | "md" | "lg"`):
 
 - `Small` (`sm`): 32px height (`h-control-sm`), compact typography (`text-xs` / `text-sm`), and tight padding. Ideal for dense tables, toolbars, and compact filters.
 - `Medium` (`md`): 40px height (`h-control-md`), standard typography (`text-sm`), and balanced padding. Standard density for general forms, dialogs, and settings panels.
@@ -65,7 +65,7 @@ Inputs conform to the standardized Harmonia control scale (`Size = "sm" | "md" |
 
 ### Variants
 
-Harmonia defines structural surface treatments via the `variant` prop:
+Homonoid defines structural surface treatments via the `variant` prop:
 
 - `Outlined` (`variant="outlined"`): Default structural treatment featuring a defined hairline border stroke (`border-border`) over neutral background (`bg-background`).
 - `Filled` (`variant="filled"`): Subdued background surface fill (`bg-surface` or `bg-subtle`) with a minimal border stroke, shifting contrast on focus.
@@ -88,7 +88,7 @@ Inputs communicate interactive readiness and status through distinct visual stat
 
 ### Object Continuity
 
-Harmonia requires that state transitions preserve component identity without abrupt dimensional shifts:
+Homonoid requires that state transitions preserve component identity without abrupt dimensional shifts:
 
 - Geometric Stability: The container's outer bounds (`height`, `border-radius`) remain constant when switching between rest, hover, focus, and invalid states.
 - Composition Continuity: Accommodating leading or trailing elements preserves container boundaries and vertical alignment without layout shift.
@@ -101,7 +101,7 @@ Harmonia requires that state transitions preserve component identity without abr
 Motion reinforces tactile feedback and state clarity:
 
 - Duration: Border color transitions execute over fast durations (`var(--motion-duration-fast)` = 150ms).
-- Easing: Follows Harmonia standard easing curves (`var(--motion-easing-standard)` = cubic-bezier(0.2, 0, 0, 1)).
+- Easing: Follows Homonoid standard easing curves (`var(--motion-easing-standard)` = cubic-bezier(0.2, 0, 0, 1)).
 
 <br>
 
@@ -141,5 +141,5 @@ Inputs integrate closely with surrounding form components:
 
 Platform packages implement this specification using their native toolchain:
 
-- Tokens: All values (colors, border radii, padding, typography, animations) must be consumed from `@harmonia/tokens`.
+- Tokens: All values (colors, border radii, padding, typography, animations) must be consumed from `@homonoid/tokens`.
 - Web Implementation: Built in `packages/web` using React 19, TypeScript, and Tailwind CSS v4.

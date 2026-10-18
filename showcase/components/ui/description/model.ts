@@ -57,7 +57,7 @@ export const DESCRIPTION_SECTIONS: Record<string, DescriptionSectionItem> = {
 export const DESCRIPTION_SECTIONS_LIST: DescriptionSectionItem[] =
   Object.values(DESCRIPTION_SECTIONS);
 
-export const DESCRIPTION_DEFAULT_CODE_SAMPLE = `import { Description } from "@harmonia/react";
+export const DESCRIPTION_DEFAULT_CODE_SAMPLE = `import { Description } from "@homonoid/react";
 
 export function Example() {
   return (
@@ -67,7 +67,7 @@ export function Example() {
   );
 }`;
 
-export const DESCRIPTION_VARIANTS_CODE_SAMPLE = `import { Description } from "@harmonia/react";
+export const DESCRIPTION_VARIANTS_CODE_SAMPLE = `import { Description } from "@homonoid/react";
 
 export function VariantsExample() {
   return (
@@ -82,7 +82,7 @@ export function VariantsExample() {
   );
 }`;
 
-export const DESCRIPTION_POLYMORPHISM_CODE_SAMPLE = `import { Description } from "@harmonia/react";
+export const DESCRIPTION_POLYMORPHISM_CODE_SAMPLE = `import { Description } from "@homonoid/react";
 
 export function PolymorphismExample() {
   return (
@@ -100,7 +100,7 @@ export function PolymorphismExample() {
   );
 }`;
 
-export const DESCRIPTION_CONTEXT_CODE_SAMPLE = `import { Label, Description, Input, Card } from "@harmonia/react";
+export const DESCRIPTION_CONTEXT_CODE_SAMPLE = `import { Label, Description, Input, Card } from "@homonoid/react";
 
 export function ContextExample() {
   return (

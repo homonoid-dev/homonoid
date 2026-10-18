@@ -1,6 +1,6 @@
 # Agent Guidelines
 
-Guidelines and standards for AI agents working within the Harmonia repository.
+Guidelines and standards for AI agents working within the Homonoid repository.
 
 Every contribution should preserve the design philosophy, architectural standards, and conventions of the ecosystem.
 
@@ -26,7 +26,7 @@ Built with React 19, Tailwind CSS v4, TypeScript strict mode, and Next.js App Ro
 
 ### Architecture and Design Tokens
 
-Consume styling exclusively from `@harmonia/tokens` with zero hardcoded values. Author a formal specification in `docs/components/<name>.md` before implementation. Maintain object continuity and dimensional stability during transitions.
+Consume styling exclusively from `@homonoid/tokens` with zero hardcoded values. Author a formal specification in `docs/components/<name>.md` before implementation. Maintain object continuity and dimensional stability during transitions.
 
 <br>
 

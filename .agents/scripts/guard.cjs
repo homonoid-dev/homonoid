@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * PreToolUse Safety Guard Hook for Harmonia
+ * PreToolUse Safety Guard Hook for Homonoid
  * Protects against:
  * 1. Committing, adding, or modifying sensitive .env / secret files.
  * 2. Destructive git actions (force pushing, hard resetting main).

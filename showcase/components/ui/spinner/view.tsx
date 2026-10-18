@@ -1,6 +1,6 @@
 "use client";
 
-import { Spinner, Button, Input, Label, Description, Card } from "@harmonia/react";
+import { Spinner, Button, Input, Label, Description, Card } from "@homonoid/react";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
@@ -50,7 +50,7 @@ export function SpinnerView() {
           variant="filled"
           className="flex items-center justify-between font-mono text-xs select-text"
         >
-          <code>{highlighter('import { Spinner } from "@harmonia/react";')}</code>
+          <code>{highlighter('import { Spinner } from "@homonoid/react";')}</code>
         </Card>
 
         {/* Default Stage */}
@@ -171,7 +171,7 @@ export function SpinnerView() {
         </Label>
 
         <Description>
-          Harmonia requires that loading indicators integrate seamlessly into parent components without dimensional disruption. When embedded within buttons or form controls, the spinner occupies a dedicated spatial slot to prevent layout jumps.
+          Homonoid requires that loading indicators integrate seamlessly into parent components without dimensional disruption. When embedded within buttons or form controls, the spinner occupies a dedicated spatial slot to prevent layout jumps.
         </Description>
 
         <Description>
@@ -193,7 +193,7 @@ export function SpinnerView() {
         </Label>
 
         <Description>
-          Accessibility for loading indicators ensures that asynchronous updates are never solely visual. Harmonia values inclusive design by conveying background activity reliably across all sensory modalities.
+          Accessibility for loading indicators ensures that asynchronous updates are never solely visual. Homonoid values inclusive design by conveying background activity reliably across all sensory modalities.
         </Description>
 
         <Description>

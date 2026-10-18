@@ -1,6 +1,6 @@
 # Architecture
 
-Harmonia is organized into independent areas, each with a clearly defined responsibility.
+Homonoid is organized into independent areas, each with a clearly defined responsibility.
 
 <br>
 
@@ -9,7 +9,7 @@ Harmonia is organized into independent areas, each with a clearly defined respon
 - `docs` defines the design language and project documentation.
 - `design` contains the canonical design assets.
 - `packages` contains platform implementations and reusable libraries.
-- `showcase` demonstrates the Harmonia ecosystem.
+- `showcase` demonstrates the Homonoid ecosystem.
 - `tools` contains internal development utilities.
 - `automation` contains development knowledge, workflows, and supporting resources.
 
@@ -17,7 +17,7 @@ Harmonia is organized into independent areas, each with a clearly defined respon
 
 ### Source of Truth
 
-The Harmonia ecosystem follows a single direction of responsibility.
+The Homonoid ecosystem follows a single direction of responsibility.
 
 Design defines the visual language.
 

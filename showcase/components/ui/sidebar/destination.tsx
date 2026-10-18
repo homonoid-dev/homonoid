@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@harmonia/react/cn";
-import { cond, Tooltip } from "@harmonia/react";
+import { cn } from "@homonoid/react/cn";
+import { cond, Tooltip } from "@homonoid/react";
 import { useSidebar } from "./context";
 import type { SidebarDestinationProps } from "./types";
 

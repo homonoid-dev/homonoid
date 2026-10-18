@@ -1,6 +1,6 @@
 # Repository
 
-The Harmonia repository is organized as a monorepo.
+The Homonoid repository is organized as a monorepo.
 
 Each top-level directory owns a distinct responsibility and should avoid overlapping with others.
 
@@ -11,7 +11,7 @@ Each top-level directory owns a distinct responsibility and should avoid overlap
 - `docs` contains project documentation and specifications.
 - `design` contains design assets.
 - `packages` contains reusable libraries and platform implementations.
-- `showcase` contains the public demonstration of Harmonia.
+- `showcase` contains the public demonstration of Homonoid.
 - `tools` contains internal development utilities.
 - `automation` contains documentation that supports development workflows.
 

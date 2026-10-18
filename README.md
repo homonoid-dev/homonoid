@@ -1,14 +1,14 @@
-# Harmonia
+# Homonoid
 
-[![Markdown](https://github.com/lumunar/harmonia/actions/workflows/markdown.yml/badge.svg)](https://github.com/lumunar/harmonia/actions/workflows/markdown.yml)
-[![Links](https://github.com/lumunar/harmonia/actions/workflows/links.yml/badge.svg)](https://github.com/lumunar/harmonia/actions/workflows/links.yml)
-[![Repository](https://github.com/lumunar/harmonia/actions/workflows/repository.yml/badge.svg)](https://github.com/lumunar/harmonia/actions/workflows/repository.yml)
+[![Markdown](https://github.com/homonoid-dev/homonoid/actions/workflows/markdown.yml/badge.svg)](https://github.com/homonoid-dev/homonoid/actions/workflows/markdown.yml)
+[![Links](https://github.com/homonoid-dev/homonoid/actions/workflows/links.yml/badge.svg)](https://github.com/homonoid-dev/homonoid/actions/workflows/links.yml)
+[![Repository](https://github.com/homonoid-dev/homonoid/actions/workflows/repository.yml/badge.svg)](https://github.com/homonoid-dev/homonoid/actions/workflows/repository.yml)
 
-Harmonia is a cross-platform design system developed by Lumunar.
+Homonoid is a cross-platform design system developed by Lumunar.
 
 It provides a unified design language for building beautiful, consistent, accessible, and high-performance applications across multiple platforms while embracing each platform's native capabilities.
 
-Unlike traditional UI libraries, Harmonia is founded on the principle of continuity. Interfaces should behave as connected systems where components preserve their identity and naturally evolve between states.
+Unlike traditional UI libraries, Homonoid is founded on the principle of continuity. Interfaces should behave as connected systems where components preserve their identity and naturally evolve between states.
 
 <br>
 
@@ -46,7 +46,7 @@ Maintain consistency without sacrificing platform excellence.
 ### Repository Structure
 
 ```text
-harmonia/
+homonoid/
 ├── docs/
 ├── design/
 ├── packages/
@@ -72,7 +72,7 @@ harmonia/
 
 ### Project Status
 
-🚧 Harmonia is currently in early development.
+🚧 Homonoid is currently in early development.
 
 The first public implementation targets Web, followed by Flutter, Android, and iOS.
 
@@ -82,13 +82,13 @@ The first public implementation targets Web, followed by Flutter, Android, and i
 
 Project documentation is located in the `docs` directory.
 
-The documentation defines the philosophy, specifications, motion system, and long-term direction of the Harmonia ecosystem.
+The documentation defines the philosophy, specifications, motion system, and long-term direction of the Homonoid ecosystem.
 
 <br>
 
 ### Contributing
 
-Harmonia is developed and maintained by Lumunar.
+Homonoid is developed and maintained by Lumunar.
 
 At this stage, development is focused internally as the project establishes its foundations.
 

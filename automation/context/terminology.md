@@ -1,6 +1,6 @@
 # Terminology
 
-The following terms are used consistently throughout the Harmonia ecosystem.
+The following terms are used consistently throughout the Homonoid ecosystem.
 
 <br>
 
@@ -42,19 +42,19 @@ A platform-independent design value such as color, typography, spacing, radius, 
 
 ### Platform Package
 
-A package that implements Harmonia for a specific platform.
+A package that implements Homonoid for a specific platform.
 
 <br>
 
 ### Showcase
 
-The public reference implementation used to demonstrate the Harmonia ecosystem.
+The public reference implementation used to demonstrate the Homonoid ecosystem.
 
 <br>
 
 ### Design Asset
 
-A canonical resource that defines the visual language of Harmonia, including Figma files, icons, illustrations, and design tokens.
+A canonical resource that defines the visual language of Homonoid, including Figma files, icons, illustrations, and design tokens.
 
 <br>
 

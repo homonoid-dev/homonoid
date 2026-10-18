@@ -1,8 +1,8 @@
 # Development Instructions
 
-The `instructions` directory contains implementation guidelines for specific areas of the Harmonia ecosystem.
+The `instructions` directory contains implementation guidelines for specific areas of the Homonoid ecosystem.
 
-These documents define engineering expectations, development standards, and implementation requirements. They complement the project documentation by describing how contributors should approach specific tasks while remaining consistent with the Harmonia design language.
+These documents define engineering expectations, development standards, and implementation requirements. They complement the project documentation by describing how contributors should approach specific tasks while remaining consistent with the Homonoid design language.
 
 Typical contents include:
 

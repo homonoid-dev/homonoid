@@ -1,6 +1,6 @@
 "use client";
 
-import { Tooltip, Button, Label, Description, Card } from "@harmonia/react";
+import { Tooltip, Button, Label, Description, Card } from "@homonoid/react";
 import {
   Plus,
   Bookmark,
@@ -56,7 +56,7 @@ export function TooltipView() {
           variant="filled"
           className="flex items-center justify-between font-mono text-xs select-text"
         >
-          <code>{highlighter('import { Tooltip } from "@harmonia/react";')}</code>
+          <code>{highlighter('import { Tooltip } from "@homonoid/react";')}</code>
         </Card>
 
         <Stage code={TOOLTIP_DEFAULT_CODE_SAMPLE}>
@@ -237,7 +237,7 @@ export function TooltipView() {
         </Description>
 
         <Description>
-          Animation parameters consume fast motion durations and standard motion curves from Harmonia tokens.
+          Animation parameters consume fast motion durations and standard motion curves from Homonoid tokens.
         </Description>
       </section>
 

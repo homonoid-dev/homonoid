@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Label, Description, Card } from "@harmonia/react";
+import { Button, Label, Description, Card } from "@homonoid/react";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
@@ -42,7 +42,7 @@ export function ButtonViewContent() {
         </Description>
 
         <Description>
-          Harmonia structures button hierarchy through three deliberate tiers contained for primary focus, outlined for secondary choices, and plain for utilities while maintaining strict object continuity by preserving fixed dimensions and fluid micro transitions across hover, press, and loading states.
+          Homonoid structures button hierarchy through three deliberate tiers contained for primary focus, outlined for secondary choices, and plain for utilities while maintaining strict object continuity by preserving fixed dimensions and fluid micro transitions across hover, press, and loading states.
         </Description>
 
       </div>
@@ -60,7 +60,7 @@ export function ButtonViewContent() {
           variant="filled"
           className="flex items-center justify-between font-mono text-xs select-text"
         >
-          <code>{highlighter('import { Button } from "@harmonia/react";')}</code>
+          <code>{highlighter('import { Button } from "@homonoid/react";')}</code>
         </Card>
 
         {/* Contained Stage */}
@@ -243,7 +243,7 @@ export function ButtonViewContent() {
         <Label size="lg" as="h2">{sections.continuity.label}</Label>
 
         <Description>
-          Harmonia treats interactive controls as persistent physical landmarks. State transitions must preserve component identity and geometric stability rather than tearing down and reconstructing elements abruptly.
+          Homonoid treats interactive controls as persistent physical landmarks. State transitions must preserve component identity and geometric stability rather than tearing down and reconstructing elements abruptly.
         </Description>
 
         <Description>
@@ -263,7 +263,7 @@ export function ButtonViewContent() {
         <Label size="lg" as="h2">{sections.accessibility.label}</Label>
 
         <Description>
-          Accessibility stands at the core of Harmonia design philosophy. Interactive components must empower every individual with immediate comprehension, predictable keyboard navigation, and seamless assistive technology integration.
+          Accessibility stands at the core of Homonoid design philosophy. Interactive components must empower every individual with immediate comprehension, predictable keyboard navigation, and seamless assistive technology integration.
         </Description>
 
         <Description>

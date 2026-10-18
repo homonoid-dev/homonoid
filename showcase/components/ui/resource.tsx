@@ -5,11 +5,11 @@ import {
   type ButtonVariant,
   type ButtonColor,
   type ButtonShape,
-} from "@harmonia/react";
+} from "@homonoid/react";
 import GithubIcon from "@/components/icons/github";
 import FigmaIcon from "@/components/icons/figma";
 
-const GITHUB_REPO_URL = "https://github.com/lumunar/harmonia/tree/main";
+const GITHUB_REPO_URL = "https://github.com/homonoid-dev/homonoid/tree/main";
 
 export type ResourceType = "github" | "figma" | "npm";
 
@@ -78,7 +78,7 @@ export function Resource({
         targetUrl = `${GITHUB_REPO_URL}/packages/react`;
       }
     } else if (type === "npm") {
-      targetUrl = `https://www.npmjs.com/package/${component ? `@harmonia/${component}` : "@harmonia/react"}`;
+      targetUrl = `https://www.npmjs.com/package/${component ? `@homonoid/${component}` : "@homonoid/react"}`;
     }
   }
 

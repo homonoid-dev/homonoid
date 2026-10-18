@@ -35,7 +35,7 @@ A description consists of the following elements:
 
 ### Variants
 
-Harmonia defines two typographic color variants:
+Homonoid defines two typographic color variants:
 
 - `Muted` (`muted`): Subdued neutral tone (`text-muted`), delivering gentle visual weight ideal for captions, subtitles, and auxiliary guidance.
 - `Surface` (`surface`): Primary neutral foreground tone (`text-foreground`), ensuring high legibility on subtle or accented container surfaces.
@@ -44,7 +44,7 @@ Harmonia defines two typographic color variants:
 
 ### Tokens and Styling
 
-Descriptions consume typography and color exclusively from `@harmonia/tokens`:
+Descriptions consume typography and color exclusively from `@homonoid/tokens`:
 
 - Muted Variant: `text-muted` (`--muted`).
 - Surface Variant: `text-foreground` (`--foreground`).

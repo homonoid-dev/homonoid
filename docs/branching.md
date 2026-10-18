@@ -1,6 +1,6 @@
 # Branching
 
-Harmonia follows a trunk-based branching model to maintain a stable, continuous integration environment across all packages in the ecosystem.
+Homonoid follows a trunk-based branching model to maintain a stable, continuous integration environment across all packages in the ecosystem.
 
 Every change originates from short-lived branches and merges back into the main line of development through automated validation.
 
@@ -19,7 +19,7 @@ It represents the active, stable state of the project and is always deployable. 
 Branch names reflect their purpose and scope within the monorepo.
 
 ```text
-harmonia/
+homonoid/
 ├── main
 ├── feat/
 ├── fix/

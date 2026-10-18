@@ -57,7 +57,7 @@ export const TOOLTIP_SECTIONS: Record<string, TooltipSectionItem> = {
 export const TOOLTIP_SECTIONS_LIST: TooltipSectionItem[] =
   Object.values(TOOLTIP_SECTIONS);
 
-export const TOOLTIP_DEFAULT_CODE_SAMPLE = `import { Tooltip, Button } from "@harmonia/react";
+export const TOOLTIP_DEFAULT_CODE_SAMPLE = `import { Tooltip, Button } from "@homonoid/react";
 import { Plus } from "lucide-react";
 
 export function Example() {
@@ -70,7 +70,7 @@ export function Example() {
   );
 }`;
 
-export const TOOLTIP_VARIANTS_CODE_SAMPLE = `import { Tooltip, Button } from "@harmonia/react";
+export const TOOLTIP_VARIANTS_CODE_SAMPLE = `import { Tooltip, Button } from "@homonoid/react";
 import { Bookmark, Settings, Sparkles } from "lucide-react";
 
 export function Example() {
@@ -97,7 +97,7 @@ export function Example() {
   );
 }`;
 
-export const TOOLTIP_PLACEMENTS_CODE_SAMPLE = `import { Tooltip, Button } from "@harmonia/react";
+export const TOOLTIP_PLACEMENTS_CODE_SAMPLE = `import { Tooltip, Button } from "@homonoid/react";
 import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from "lucide-react";
 
 export function Example() {
@@ -130,7 +130,7 @@ export function Example() {
   );
 }`;
 
-export const TOOLTIP_SHORTCUTS_CODE_SAMPLE = `import { Tooltip, Button } from "@harmonia/react";
+export const TOOLTIP_SHORTCUTS_CODE_SAMPLE = `import { Tooltip, Button } from "@homonoid/react";
 import { Copy } from "lucide-react";
 
 export function Example() {

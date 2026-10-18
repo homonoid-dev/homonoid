@@ -5,13 +5,13 @@ description: Use when defining, modifying, or auditing design tokens in packages
 
 # Theming Standards
 
-Guidelines for authoring and updating design tokens in Harmonia.
+Guidelines for authoring and updating design tokens in Homonoid.
 
 <br>
 
 ### Token Architecture
 
-All visual values in Harmonia originate from `@harmonia/tokens`. Never define raw hex values, pixels, or inline styles in component packages.
+All visual values in Homonoid originate from `@homonoid/tokens`. Never define raw hex values, pixels, or inline styles in component packages.
 
 <br>
 

@@ -13,8 +13,8 @@ import {
 } from "react";
 import type { LucideIcon } from "lucide-react";
 import { Sidebar } from "@/components/ui/sidebar";
-import { cn } from "@harmonia/react/cn";
-import { cond } from "@harmonia/react";
+import { cn } from "@homonoid/react/cn";
+import { cond } from "@homonoid/react";
 
 export interface TocItem {
   id: string;

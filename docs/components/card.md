@@ -33,7 +33,7 @@ A card consists of the following elements:
 
 ### Variants
 
-Harmonia defines two primary structural variants:
+Homonoid defines two primary structural variants:
 
 - `Outlined` (`outlined`): Transparent surface framed by an optional hairline border stroke (`bg-transparent`), ideal for lightweight modular layouts and interactive stages.
 - `Filled` (`filled`): Solid neutral surface fill (`bg-surface`) providing grounded visual grouping.
@@ -42,7 +42,7 @@ Harmonia defines two primary structural variants:
 
 ### Colors
 
-Cards support semantic color intent palettes aligned with Harmonia design tokens:
+Cards support semantic color intent palettes aligned with Homonoid design tokens:
 
 - `Surface` (`surface`): Neutral container background and border (`bg-surface` / `border-border`).
 - `Subtle` (`subtle`): Low-contrast Chroma subtle tint and border (`bg-subtle` / `border-subtle-border`).
@@ -62,9 +62,9 @@ Cards support toggling the hairline border stroke via the `border` property:
 
 ### Tokens and Styling
 
-Cards consume spatial boundaries, padding, and surface palettes exclusively from `@harmonia/tokens`:
+Cards consume spatial boundaries, padding, and surface palettes exclusively from `@homonoid/tokens`:
 
 - Surface: `bg-surface` (`--surface`), `bg-subtle` (`--subtle`), or `bg-transparent`.
 - Border: `border-[0.5px]` with color matched to `--border`, `--subtle-border`, `--primary-border`, or `--destructive-border`.
-- Corner Radius: `rounded-3xl` by default to preserve the fluid, rounded aesthetic of Harmonia.
+- Corner Radius: `rounded-3xl` by default to preserve the fluid, rounded aesthetic of Homonoid.
 - Inset Padding: `p-surface` (`--p-surface`) by default, aligning internal elements with standardized layout rhythm.

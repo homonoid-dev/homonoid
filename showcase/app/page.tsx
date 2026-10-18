@@ -1,5 +1,5 @@
 import { Resource } from "@/components/ui/resource";
-import { Label, Description } from "@harmonia/react";
+import { Label, Description } from "@homonoid/react";
 
 export default function Page() {
   return (
@@ -7,7 +7,7 @@ export default function Page() {
       <Label size="lg">Components</Label>
       <div className="flex flex-col gap-layout-gap">
         <Description>
-          Explore the foundational building blocks of the Harmonia Design System.
+          Explore the foundational building blocks of the Homonoid Design System.
         </Description>
         <Resource type="github" />
         <Description>
