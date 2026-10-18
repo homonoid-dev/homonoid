@@ -1,13 +1,13 @@
 "use client";
 
-import { forwardRef, useEffect, useRef } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import { match, cond } from "../../utils/condition";
 import type { OrbCloudProps, OrbSize, OrbState } from "./types";
 
 export const cloudContainerVariants = cva(
-  "relative inline-flex items-center justify-center select-none transform-gpu origin-center transition-[transform,opacity] duration-[var(--motion-duration-slow)] ease-[var(--motion-easing-standard)]",
+  "relative inline-flex items-center justify-center select-none transform-gpu origin-center transition-[transform,opacity] duration-[var(--motion-duration-slow)] ease-[var(--motion-easing-standard)] rounded-full",
   {
     variants: {
       size: {
@@ -76,7 +76,10 @@ void main() {
   vec2 uv = gl_FragCoord.xy / u_resolution;
   vec2 centered = uv - 0.5;
   float radius = length(centered);
-  float edge = 1.0 - smoothstep(0.488, 0.5, radius);
+
+  // Exact 1.5 physical device pixel antialiasing width
+  float pixelDelta = 1.5 / min(u_resolution.x, u_resolution.y);
+  float edge = 1.0 - smoothstep(0.5 - pixelDelta, 0.5, radius);
 
   if (edge <= 0.0) {
     discard;
@@ -122,7 +125,7 @@ void main() {
   float grain = (noise(gl_FragCoord.xy * 0.64) - 0.5) / 255.0;
   color += grain;
 
-  gl_FragColor = vec4(color, edge);
+  gl_FragColor = vec4(color * edge, edge);
 }
 `;
 
@@ -168,26 +171,36 @@ export const OrbCloud = forwardRef<HTMLDivElement, OrbCloudProps>(function OrbCl
   { state = "idle", volume = 0, size = "md", className, style, ...props },
   ref
 ) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stateRef = useRef(state);
   const volumeRef = useRef(volume);
+
+  useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
 
   useEffect(() => {
     stateRef.current = state;
     volumeRef.current = volume;
   }, [state, volume]);
 
-  const targetPixelSize = getPixelSize(size);
+  const pixelSize = getPixelSize(size);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const gl = canvas.getContext("webgl", {
-      alpha: true,
-      antialias: true,
-      premultipliedAlpha: true
-    });
+    const gl =
+      canvas.getContext("webgl2", {
+        alpha: true,
+        antialias: true,
+        premultipliedAlpha: true
+      }) ||
+      canvas.getContext("webgl", {
+        alpha: true,
+        antialias: true,
+        premultipliedAlpha: true
+      });
+
     if (!gl) return;
 
     const vertexShader = createShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER_SOURCE);
@@ -219,12 +232,12 @@ export const OrbCloud = forwardRef<HTMLDivElement, OrbCloudProps>(function OrbCl
     const lowerUniform = gl.getUniformLocation(program, "u_lowerColor");
     const highlightUniform = gl.getUniformLocation(program, "u_highlightColor");
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const renderSize = Math.max(1, Math.round(targetPixelSize * dpr));
+    const dpr = typeof window !== "undefined" ? Math.min(window.devicePixelRatio || 1, 3) : 1;
+    const renderWidth = Math.max(1, Math.round(pixelSize * dpr));
 
-    canvas.width = renderSize;
-    canvas.height = renderSize;
-    gl.viewport(0, 0, renderSize, renderSize);
+    canvas.width = renderWidth;
+    canvas.height = renderWidth;
+    gl.viewport(0, 0, renderWidth, renderWidth);
 
     gl.useProgram(program);
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
@@ -235,7 +248,6 @@ export const OrbCloud = forwardRef<HTMLDivElement, OrbCloudProps>(function OrbCl
     );
     gl.enableVertexAttribArray(posAttr);
     gl.vertexAttribPointer(posAttr, 2, gl.FLOAT, false, 0, 0);
-    gl.uniform2f(resUniform, renderSize, renderSize);
 
     let animationFrameId = 0;
     let accumulatedTime = 0;
@@ -278,6 +290,8 @@ export const OrbCloud = forwardRef<HTMLDivElement, OrbCloudProps>(function OrbCl
 
       const palette = currentState === "error" ? COLOR_PALETTES.error : COLOR_PALETTES.default;
 
+      gl.useProgram(program);
+      gl.uniform2f(resUniform, renderWidth, renderWidth);
       gl.uniform1f(timeUniform, accumulatedTime);
       gl.uniform1f(activityUniform, activity);
       gl.uniform3fv(deepUniform, palette.deep);
@@ -299,7 +313,7 @@ export const OrbCloud = forwardRef<HTMLDivElement, OrbCloudProps>(function OrbCl
       gl.deleteShader(vertexShader);
       gl.deleteShader(fragmentShader);
     };
-  }, [targetPixelSize]);
+  }, [pixelSize]);
 
   const normalizedVolume = Math.min(1, Math.max(0, volume));
   const scaleValue = cond(
@@ -310,10 +324,12 @@ export const OrbCloud = forwardRef<HTMLDivElement, OrbCloudProps>(function OrbCl
 
   return (
     <div
-      ref={ref}
+      ref={containerRef}
       aria-hidden="true"
       className={cn(cloudContainerVariants({ size }), className)}
       style={{
+        width: pixelSize,
+        height: pixelSize,
         transform: `scale(${scaleValue})`,
         ...style
       }}
@@ -321,11 +337,11 @@ export const OrbCloud = forwardRef<HTMLDivElement, OrbCloudProps>(function OrbCl
     >
       <canvas
         ref={canvasRef}
-        className="w-full h-full pointer-events-none transform-gpu"
         style={{
-          width: targetPixelSize,
-          height: targetPixelSize
+          width: pixelSize,
+          height: pixelSize
         }}
+        className="w-full h-full rounded-full pointer-events-none transform-gpu block"
       />
     </div>
   );
