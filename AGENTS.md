@@ -26,10 +26,22 @@ Built with React 19, Tailwind CSS v4, TypeScript strict mode, and Next.js App Ro
 
 ### Architecture and Design Tokens
 
-Consume styling exclusively from `@harmonia/tokens` with zero hardcoded values. Author a formal specification in `docs/components/<name>.md` before implementation. Maintain object continuity and dimensional stability during transitions. Always use functional condition helpers (`cond`, `any`, `all`) from `@harmonia/react` instead of inline ternary operators (`?:`).
+Consume styling exclusively from `@harmonia/tokens` with zero hardcoded values, inline styles, or arbitrary bracket classes. Author a formal specification in `docs/components/<name>.md` before implementation. Maintain object continuity and dimensional stability during transitions. Compose complex elements as compound components without artificial wrapper layers. Isolate floating positioning logic from transform transitions in overlays, ensuring non-interactive surfaces declare `pointer-events-none`. Always use functional condition helpers (`cond`, `any`, `all`) from `@harmonia/react` instead of inline ternary operators (`?:`).
+
+<br>
+
+### Accessibility
+
+Guarantee native keyboard navigation and proper ARIA semantic roles across every interactive surface. Bind dynamic descriptors and error messages through descriptive ID references. Ensure focus rings match platform visual standards, respect reduced motion preferences, and keep non-interactive overlay planes pointer transparent.
 
 <br>
 
 ### Git and Branching
 
 Follow trunk based development targeting `main` with squash merges. Name branches by type and package (`feat/react-button`, `fix/tokens-color`, `docs/tooltip`) and format commit messages using Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`).
+
+<br>
+
+### Workflow and Execution
+
+Complete tasks directly without performing redundant status checks or post completion inspection commands unless explicitly requested.
