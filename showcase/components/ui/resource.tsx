@@ -9,7 +9,7 @@ import {
 import GithubIcon from "@/components/icons/github";
 import FigmaIcon from "@/components/icons/figma";
 
-const GITHUB_REPO_URL = "https://github.com/lumunar/homonoid/tree/main";
+const GITHUB_REPO_URL = "https://github.com/homonoid-dev/homonoid/tree/main";
 
 export type ResourceType = "github" | "figma" | "npm";
 

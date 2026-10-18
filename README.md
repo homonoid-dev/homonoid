@@ -1,8 +1,8 @@
 # Homonoid
 
-[![Markdown](https://github.com/lumunar/homonoid/actions/workflows/markdown.yml/badge.svg)](https://github.com/lumunar/homonoid/actions/workflows/markdown.yml)
-[![Links](https://github.com/lumunar/homonoid/actions/workflows/links.yml/badge.svg)](https://github.com/lumunar/homonoid/actions/workflows/links.yml)
-[![Repository](https://github.com/lumunar/homonoid/actions/workflows/repository.yml/badge.svg)](https://github.com/lumunar/homonoid/actions/workflows/repository.yml)
+[![Markdown](https://github.com/homonoid-dev/homonoid/actions/workflows/markdown.yml/badge.svg)](https://github.com/homonoid-dev/homonoid/actions/workflows/markdown.yml)
+[![Links](https://github.com/homonoid-dev/homonoid/actions/workflows/links.yml/badge.svg)](https://github.com/homonoid-dev/homonoid/actions/workflows/links.yml)
+[![Repository](https://github.com/homonoid-dev/homonoid/actions/workflows/repository.yml/badge.svg)](https://github.com/homonoid-dev/homonoid/actions/workflows/repository.yml)
 
 Homonoid is a cross-platform design system developed by Lumunar.
 
