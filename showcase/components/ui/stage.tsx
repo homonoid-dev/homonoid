@@ -7,7 +7,7 @@ import {
   useEffect,
   type ReactNode,
 } from "react";
-import { Button, Card } from "@harmonia/react";
+import { Button, Card, Tooltip, iff } from "@harmonia/react";
 import { Eye, Code2, Copy, Check, RotateCcw } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Code } from "@/components/ui/code";
@@ -108,56 +108,65 @@ export function Stage({
       {/* Top Toolbar */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1">
-          <Button
-            layout="icon"
-            variant={activeTab === "preview" ? "contained" : "plain"}
-            color="surface"
-            shape="circle"
-            onClick={() => setActiveTab("preview")}
-            aria-label="Preview"
-          >
-            <Eye className="size-4" />
-          </Button>
-          <Button
-            layout="icon"
-            variant={activeTab === "code" ? "contained" : "plain"}
-            color="surface"
-            shape="circle"
-            onClick={() => setActiveTab("code")}
-            aria-label="Code"
-          >
-            <Code2 className="size-4" />
-          </Button>
+          <Tooltip side="bottom" content="Preview">
+            <Button
+              layout="icon"
+              variant={iff(activeTab === "preview", "contained", "plain")}
+              color="surface"
+              shape="circle"
+              onClick={() => setActiveTab("preview")}
+              aria-label="Preview"
+            >
+              <Eye className="size-4" />
+            </Button>
+          </Tooltip>
+
+          <Tooltip side="bottom" content="Code">
+            <Button
+              layout="icon"
+              variant={iff(activeTab === "code", "contained", "plain")}
+              color="surface"
+              shape="circle"
+              onClick={() => setActiveTab("code")}
+              aria-label="Code"
+            >
+              <Code2 className="size-4" />
+            </Button>
+          </Tooltip>
         </div>
 
         <div className="flex items-center gap-1">
           {onReset && (
+            <Tooltip side="bottom" content="Reset stage">
+              <Button
+                layout="icon"
+                variant="plain"
+                color="subtle"
+                shape="circle"
+                onClick={onReset}
+                aria-label="Reset"
+              >
+                <RotateCcw className="size-4" />
+              </Button>
+            </Tooltip>
+          )}
+
+          <Tooltip side="bottom" content={iff(copied, "Copied to clipboard", "Copy code")}>
             <Button
               layout="icon"
               variant="plain"
               color="subtle"
               shape="circle"
-              onClick={onReset}
-              aria-label="Reset"
+              onClick={handleCopy}
+              aria-label={iff(copied, "Copied", "Copy code")}
             >
-              <RotateCcw className="size-4" />
+              {iff(
+                copied,
+                <Check className="size-4 text-primary" />,
+                <Copy className="size-4" />
+              )}
             </Button>
-          )}
-
-          <Button
-            layout="icon"
-            variant="plain"
-            color="subtle"
-            shape="circle"
-            onClick={handleCopy}
-            aria-label={copied ? "Copied" : "Copy code"}
-          >
-            {copied ? (
-              <Check className="size-4 text-primary" />
-            ) : (
-              <Copy className="size-4" />
-            )}
-          </Button>
+          </Tooltip>
         </div>
       </div>
 

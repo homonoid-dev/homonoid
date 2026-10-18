@@ -1,0 +1,1 @@
+export { TooltipView } from "./view";

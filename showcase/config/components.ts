@@ -12,4 +12,5 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponentItem[] = [
   { name: "Description", href: "/description", description: "Contextual guidance and supportive copy" },
   { name: "Checkbox", href: "/checkbox", description: "Binary choice selection" },
   { name: "Card", href: "/card", description: "Structured content grouping" },
+  { name: "Tooltip", href: "/tooltip", description: "Contextual guidance and keyboard shortcuts" },
 ];
