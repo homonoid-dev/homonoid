@@ -1,6 +1,6 @@
 "use client";
 
-import { Checkbox, Label, Description, Card } from "@harmonia/react";
+import { Checkbox, Label, Description, Card } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -30,7 +30,7 @@ export function CheckboxView() {
           A checkbox allows users to select one or more independent options from a set, or toggle a single binary state between on and off.
         </Description>
         <Description>
-          Harmonia checkboxes communicate clear affirmative selections and support a three state model comprising unchecked, checked, and indeterminate while preserving tactile physical feedback.
+          Homonoid checkboxes communicate clear affirmative selections and support a three state model comprising unchecked, checked, and indeterminate while preserving tactile physical feedback.
         </Description>
       </div>
 
@@ -47,7 +47,7 @@ export function CheckboxView() {
           variant="filled"
           className="flex items-center justify-between font-mono text-xs select-text"
         >
-          <code>{highlighter('import { Checkbox } from "@harmonia/react";')}</code>
+          <code>{highlighter('import { Checkbox } from "@homonoid/react";')}</code>
         </Card>
 
         <Stage code={CHECKBOX_DEFAULT_CODE_SAMPLE}>

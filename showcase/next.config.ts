@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@harmonia/react", "@harmonia/tokens"],
+  transpilePackages: ["@homonoid/react", "@homonoid/tokens"],
   /* config options here */
   experimental: {
     agentFeedback: true,

@@ -1,10 +1,10 @@
 # Packages
 
-The `packages` directory contains the platform implementations and shared libraries that make up the Harmonia ecosystem.
+The `packages` directory contains the platform implementations and shared libraries that make up the Homonoid ecosystem.
 
-Each package has a single responsibility and is developed independently while adhering to the Harmonia design language, specifications, and engineering principles.
+Each package has a single responsibility and is developed independently while adhering to the Homonoid design language, specifications, and engineering principles.
 
-Platform implementations should provide native experiences while preserving the visual language, behavior, accessibility, and continuity defined by Harmonia.
+Platform implementations should provide native experiences while preserving the visual language, behavior, accessibility, and continuity defined by Homonoid.
 
 <br>
 
@@ -35,7 +35,7 @@ The web implementation for modern browsers and web frameworks.
 
 ### flutter
 
-The Flutter implementation of the Harmonia design system.
+The Flutter implementation of the Homonoid design system.
 
 <br>
 
@@ -53,7 +53,7 @@ The iOS implementation built using SwiftUI.
 
 ### icons
 
-The Harmonia icon library and supporting assets.
+The Homonoid icon library and supporting assets.
 
 <br>
 
@@ -71,7 +71,7 @@ The canonical design tokens that define colors, typography, spacing, radii, elev
 
 ### Architecture
 
-Every package is responsible for its own implementation while remaining faithful to the Harmonia design language.
+Every package is responsible for its own implementation while remaining faithful to the Homonoid design language.
 
 Shared design assets and specifications should never be duplicated between packages. Instead, packages should consume the same design principles while expressing them through their respective platform technologies.
 
@@ -83,4 +83,4 @@ One design language.
 
 Multiple platform implementations.
 
-Every package should feel native to its platform while remaining unmistakably Harmonia.
+Every package should feel native to its platform while remaining unmistakably Homonoid.

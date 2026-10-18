@@ -1,6 +1,6 @@
 # Development Tools
 
-The `tools` directory contains internal utilities used to develop, maintain, and release the Harmonia ecosystem.
+The `tools` directory contains internal utilities used to develop, maintain, and release the Homonoid ecosystem.
 
 These tools are not part of the public API. Their purpose is to automate repetitive tasks, improve consistency across packages, and support the long-term maintenance of the project.
 
@@ -17,7 +17,7 @@ Typical responsibilities include:
 - Release automation
 - Repository maintenance
 
-The contents of this directory will evolve alongside the Harmonia ecosystem. Every tool should improve developer productivity, increase consistency, or automate project infrastructure.
+The contents of this directory will evolve alongside the Homonoid ecosystem. Every tool should improve developer productivity, increase consistency, or automate project infrastructure.
 
 Production packages must not depend on the tools contained in this directory.
 
@@ -25,7 +25,7 @@ Production packages must not depend on the tools contained in this directory.
 
 ### Available Tools
 
-- `setup-harmonia.mjs`: Integrates the Harmonia design system into target consumer applications (e.g. `showcase`). Links packages, configures Next.js transpilation, injects Chroma CSS tokens, and sets up Tailwind scanning. Run via `npm run setup:showcase`.
+- `setup-homonoid.mjs`: Integrates the Homonoid design system into target consumer applications (e.g. `showcase`). Links packages, configures Next.js transpilation, injects Chroma CSS tokens, and sets up Tailwind scanning. Run via `npm run setup:showcase`.
 
 <br>
 

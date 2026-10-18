@@ -11,7 +11,7 @@ const rootDir = path.resolve(__dirname, "..");
 const targetDirName = process.argv[2] || "showcase";
 const targetDir = path.resolve(rootDir, targetDirName);
 
-console.log(`\n🔮 Setting up Harmonia in [${targetDirName}]...\n`);
+console.log(`\n🔮 Setting up Homonoid in [${targetDirName}]...\n`);
 
 if (!fs.existsSync(targetDir)) {
   console.error(`❌ Target directory not found: ${targetDir}`);
@@ -25,18 +25,18 @@ if (fs.existsSync(pkgPath)) {
   pkg.dependencies = pkg.dependencies || {};
   let changed = false;
 
-  if (pkg.dependencies["@harmonia/tokens"] !== "*") {
-    pkg.dependencies["@harmonia/tokens"] = "*";
+  if (pkg.dependencies["@homonoid/tokens"] !== "*") {
+    pkg.dependencies["@homonoid/tokens"] = "*";
     changed = true;
   }
-  if (pkg.dependencies["@harmonia/react"] !== "*") {
-    pkg.dependencies["@harmonia/react"] = "*";
+  if (pkg.dependencies["@homonoid/react"] !== "*") {
+    pkg.dependencies["@homonoid/react"] = "*";
     changed = true;
   }
 
   if (changed) {
     fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n", "utf-8");
-    console.log(`  ✓ Linked @harmonia/tokens and @harmonia/react in ${targetDirName}/package.json`);
+    console.log(`  ✓ Linked @homonoid/tokens and @homonoid/react in ${targetDirName}/package.json`);
   } else {
     console.log(`  ✓ Dependencies already present in ${targetDirName}/package.json`);
   }
@@ -57,12 +57,12 @@ if (activeNextConfig) {
     if (content.includes("const nextConfig: NextConfig = {")) {
       content = content.replace(
         "const nextConfig: NextConfig = {",
-        'const nextConfig: NextConfig = {\n  transpilePackages: ["@harmonia/react", "@harmonia/tokens"],'
+        'const nextConfig: NextConfig = {\n  transpilePackages: ["@homonoid/react", "@homonoid/tokens"],'
       );
     } else if (content.includes("const nextConfig = {")) {
       content = content.replace(
         "const nextConfig = {",
-        'const nextConfig = {\n  transpilePackages: ["@harmonia/react", "@harmonia/tokens"],'
+        'const nextConfig = {\n  transpilePackages: ["@homonoid/react", "@homonoid/tokens"],'
       );
     }
     fs.writeFileSync(activeNextConfig, content, "utf-8");
@@ -72,7 +72,7 @@ if (activeNextConfig) {
   }
 }
 
-// 3. Inject Harmonia Design Tokens and Tailwind @source into globals.css
+// 3. Inject Homonoid Design Tokens and Tailwind @source into globals.css
 const possibleCssPaths = [
   path.join(targetDir, "app", "globals.css"),
   path.join(targetDir, "src", "app", "globals.css"),
@@ -84,19 +84,19 @@ const cssPath = possibleCssPaths.find((p) => fs.existsSync(p));
 if (cssPath) {
   let cssContent = fs.readFileSync(cssPath, "utf-8");
   const tailwindImport = '@import "tailwindcss";';
-  const harmoniaTokenImport = '@import "@harmonia/tokens/css";';
-  const harmoniaReactStylesImport = '@import "@harmonia/react/styles.css";';
-  const harmoniaSource = '@source "../../packages/react/src";';
+  const homonoidTokenImport = '@import "@homonoid/tokens/css";';
+  const homonoidReactStylesImport = '@import "@homonoid/react/styles.css";';
+  const homonoidSource = '@source "../../packages/react/src";';
 
   let additions = "";
-  if (!cssContent.includes(harmoniaTokenImport)) {
-    additions += `${harmoniaTokenImport}\n`;
+  if (!cssContent.includes(homonoidTokenImport)) {
+    additions += `${homonoidTokenImport}\n`;
   }
-  if (!cssContent.includes(harmoniaReactStylesImport)) {
-    additions += `${harmoniaReactStylesImport}\n`;
+  if (!cssContent.includes(homonoidReactStylesImport)) {
+    additions += `${homonoidReactStylesImport}\n`;
   }
   if (!cssContent.includes("@source") && !cssContent.includes("packages/react")) {
-    additions += `${harmoniaSource}\n`;
+    additions += `${homonoidSource}\n`;
   }
 
   if (additions) {
@@ -106,9 +106,9 @@ if (cssPath) {
       cssContent = `${tailwindImport}\n${additions}${cssContent}`;
     }
     fs.writeFileSync(cssPath, cssContent, "utf-8");
-    console.log(`  ✓ Injected Harmonia Chroma tokens and Tailwind @source into ${path.relative(rootDir, cssPath)}`);
+    console.log(`  ✓ Injected Homonoid Chroma tokens and Tailwind @source into ${path.relative(rootDir, cssPath)}`);
   } else {
-    console.log(`  ✓ Harmonia tokens and @source already present in ${path.relative(rootDir, cssPath)}`);
+    console.log(`  ✓ Homonoid tokens and @source already present in ${path.relative(rootDir, cssPath)}`);
   }
 }
 
@@ -123,11 +123,11 @@ const pagePath = possiblePagePaths.find((p) => fs.existsSync(p));
 if (pagePath) {
   const currentContent = fs.readFileSync(pagePath, "utf-8");
   // Only replace if it contains the default create-next-app starter
-  if (currentContent.includes("next/image") || currentContent.includes("Deploy now") || !currentContent.includes("@harmonia/react")) {
+  if (currentContent.includes("next/image") || currentContent.includes("Deploy now") || !currentContent.includes("@homonoid/react")) {
     const demoPageContent = `"use client";
 
 import { useState } from "react";
-import { Button } from "@harmonia/react";
+import { Button } from "@homonoid/react";
 
 export default function Page() {
   const [loading, setLoading] = useState(false);
@@ -135,7 +135,7 @@ export default function Page() {
   return (
     <main className="min-h-screen p-12 flex flex-col items-center justify-center gap-8 bg-[var(--background)] text-[var(--foreground)]">
       <div className="flex flex-col items-center gap-2">
-        <h1 className="text-2xl font-bold tracking-tight">Harmonia Button Preview</h1>
+        <h1 className="text-2xl font-bold tracking-tight">Homonoid Button Preview</h1>
         <p className="text-sm text-[var(--muted)]">
           Live testing the Button component with Chroma theming and Object Continuity.
         </p>
@@ -194,16 +194,16 @@ const tokensPkgDir = path.join(packagesDir, "tokens");
 const reactPkgDir = path.join(packagesDir, "react");
 
 for (const nmBase of [rootDir, targetDir]) {
-  const harmoniaDir = path.join(nmBase, "node_modules", "@harmonia");
-  fs.mkdirSync(harmoniaDir, { recursive: true });
+  const homonoidDir = path.join(nmBase, "node_modules", "@homonoid");
+  fs.mkdirSync(homonoidDir, { recursive: true });
 
-  const tokensLink = path.join(harmoniaDir, "tokens");
-  const reactLink = path.join(harmoniaDir, "react");
+  const tokensLink = path.join(homonoidDir, "tokens");
+  const reactLink = path.join(homonoidDir, "react");
 
   if (!fs.existsSync(tokensLink)) {
     try {
       fs.symlinkSync(tokensPkgDir, tokensLink, "junction");
-      console.log(`  ✓ Symlinked @harmonia/tokens into ${path.relative(rootDir, harmoniaDir)}`);
+      console.log(`  ✓ Symlinked @homonoid/tokens into ${path.relative(rootDir, homonoidDir)}`);
     } catch (e) {
       console.warn(`  ⚠️ Could not symlink tokens: ${e.message}`);
     }
@@ -211,11 +211,11 @@ for (const nmBase of [rootDir, targetDir]) {
   if (!fs.existsSync(reactLink)) {
     try {
       fs.symlinkSync(reactPkgDir, reactLink, "junction");
-      console.log(`  ✓ Symlinked @harmonia/react into ${path.relative(rootDir, harmoniaDir)}`);
+      console.log(`  ✓ Symlinked @homonoid/react into ${path.relative(rootDir, homonoidDir)}`);
     } catch (e) {
       console.warn(`  ⚠️ Could not symlink react: ${e.message}`);
     }
   }
 }
 
-console.log(`\n✨ Harmonia setup complete for [${targetDirName}]!\n`);
+console.log(`\n✨ Homonoid setup complete for [${targetDirName}]!\n`);

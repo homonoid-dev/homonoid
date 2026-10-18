@@ -48,7 +48,7 @@ Buttons adapt to their content while maintaining consistent vertical cadence and
 
 ### Variants
 
-Harmonia separates structural treatment (`variant`) from semantic color intent (`color`):
+Homonoid separates structural treatment (`variant`) from semantic color intent (`color`):
 
 - `Contained` (`variant="contained"`): High-emphasis solid surface fill, providing strong visual prominence.
 - `Outlined` (`variant="outlined"`): Medium-emphasis transparent surface with a defined 1px hairline border stroke.
@@ -91,7 +91,7 @@ Buttons trigger their assigned callback upon pointer release (mouse up / tap up)
 
 ### Object Continuity
 
-Harmonia requires that state transitions preserve component identity rather than tearing down and reconstructing views:
+Homonoid requires that state transitions preserve component identity rather than tearing down and reconstructing views:
 
 - State Transitions: Hover, pressed, and focus states transition smoothly using defined easing curves rather than instantaneous cuts.
 - Loading Transition: Transitioning to the loading state must preserve container width and height. The button must not collapse, expand, or jump abruptly.
@@ -146,5 +146,5 @@ Buttons interact closely with surrounding components:
 
 Platform packages implement this specification using their native toolchain:
 
-- Tokens: All values (colors, border radii, padding, typography, animations) must be consumed from `@harmonia/tokens`.
+- Tokens: All values (colors, border radii, padding, typography, animations) must be consumed from `@homonoid/tokens`.
 - Web Implementation: Built in `packages/web` using React 19, TypeScript, and Tailwind CSS v4.

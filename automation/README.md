@@ -1,6 +1,6 @@
 # Development Automation
 
-The `automation` directory contains the knowledge, instructions, templates, and workflows used to develop the Harmonia ecosystem.
+The `automation` directory contains the knowledge, instructions, templates, and workflows used to develop the Homonoid ecosystem.
 
 Its purpose is to provide both developers and AI-assisted development tools with a shared understanding of the project's architecture, philosophy, engineering standards, and development workflows.
 
@@ -23,7 +23,7 @@ automation/
 
 ### context
 
-Provides high-level knowledge about Harmonia, including its architecture, design philosophy, terminology, and project structure.
+Provides high-level knowledge about Homonoid, including its architecture, design philosophy, terminology, and project structure.
 
 <br>
 

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useCallback, useMemo } from "react";
-import { cn } from "@harmonia/react/cn";
-import { cond } from "@harmonia/react";
+import { cn } from "@homonoid/react/cn";
+import { cond } from "@homonoid/react";
 import { cva } from "class-variance-authority";
 import { SidebarHeader } from "./header";
 import { SidebarDestination } from "./destination";

@@ -7,11 +7,11 @@ import {
   useEffect,
   type ReactNode,
 } from "react";
-import { Button, Card, Tooltip, cond } from "@harmonia/react";
+import { Button, Card, Tooltip, cond } from "@homonoid/react";
 import { Eye, Code2, Copy, Check, RotateCcw } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Code } from "@/components/ui/code";
-import { cn } from "@harmonia/react/cn";
+import { cn } from "@homonoid/react/cn";
 
 export interface StageProps {
   code: string;

@@ -7,7 +7,7 @@ export function Header() {
     <div className="h-15 w-full border-b-[0.5px] border-border/50 px-layout-x">
       <div className="h-full mx-auto flex items-center justify-between">
         <Link href="/" className="text-lg font-bold">
-          <span>Harmonia</span>
+          <span>Homonoid</span>
         </Link>
       </div>
     </div>

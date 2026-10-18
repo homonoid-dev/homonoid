@@ -45,7 +45,7 @@ Labels support three standardized typographic scale sizes:
 
 ### Tokens and Styling
 
-Labels consume typography and color exclusively from `@harmonia/tokens`:
+Labels consume typography and color exclusively from `@homonoid/tokens`:
 
 - Color: `text-foreground` (`--foreground`).
 - Tracking: `tracking-tight` for compact, modern optical proportion.

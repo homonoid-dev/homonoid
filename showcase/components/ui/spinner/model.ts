@@ -88,13 +88,13 @@ export const SPINNER_INTERACTIVE_STATES: InteractiveStateItem[] = [
   },
 ];
 
-export const SPINNER_DEFAULT_CODE_SAMPLE = `import { Spinner } from "@harmonia/react";
+export const SPINNER_DEFAULT_CODE_SAMPLE = `import { Spinner } from "@homonoid/react";
 
 export function Example() {
   return <Spinner size="md" />;
 }`;
 
-export const SPINNER_ANIMATIONS_CODE_SAMPLE = `import { Spinner } from "@harmonia/react";
+export const SPINNER_ANIMATIONS_CODE_SAMPLE = `import { Spinner } from "@homonoid/react";
 
 export function AnimationsExample() {
   return (
@@ -119,7 +119,7 @@ export function AnimationsExample() {
   );
 }`;
 
-export const SPINNER_SIZES_CODE_SAMPLE = `import { Spinner } from "@harmonia/react";
+export const SPINNER_SIZES_CODE_SAMPLE = `import { Spinner } from "@homonoid/react";
 
 export function SizesExample() {
   return (
@@ -131,7 +131,7 @@ export function SizesExample() {
   );
 }`;
 
-export const SPINNER_COLORS_CODE_SAMPLE = `import { Spinner } from "@harmonia/react";
+export const SPINNER_COLORS_CODE_SAMPLE = `import { Spinner } from "@homonoid/react";
 
 export function ColorsExample() {
   return (
@@ -144,7 +144,7 @@ export function ColorsExample() {
   );
 }`;
 
-export const SPINNER_EMBEDDED_CODE_SAMPLE = `import { Button, Input, Spinner } from "@harmonia/react";
+export const SPINNER_EMBEDDED_CODE_SAMPLE = `import { Button, Input, Spinner } from "@homonoid/react";
 
 export function EmbeddedExample() {
   return (

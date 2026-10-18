@@ -39,7 +39,7 @@ A checkbox component consists of the following elements:
 
 ### Sizes
 
-Checkboxes align with the standardized Harmonia control scale (`Size = "sm" | "md" | "lg"`):
+Checkboxes align with the standardized Homonoid control scale (`Size = "sm" | "md" | "lg"`):
 
 - `Small` (`sm`): 16px × 16px (`w-4 h-4`, radius `rounded-sm`). Designed for dense tables, compact lists, and inline metadata filters.
 - `Medium` (`md`): 20px × 20px (`w-5 h-5`, radius `rounded-md`). Standard density for general forms, modals, and settings.
@@ -66,7 +66,7 @@ Checkboxes support the following interactive states:
 - `Indeterminate`: Mixed selection. Filled with primary color or subtle tint displaying a centered horizontal bar.
 - `Hover`: Enhanced border contrast or subtle background tint indicating interactive affordance.
 - `Active / Pressed`: Subtle micro scale compression (`transform-gpu scale-95`) giving tactile physical response.
-- `Focus-Visible`: Prominent Harmonia focus ring (`focus-ring`) around the control container for keyboard navigation.
+- `Focus-Visible`: Prominent Homonoid focus ring (`focus-ring`) around the control container for keyboard navigation.
 - `Disabled`: Reduced opacity (`opacity-50`), pointer-events disabled, non-interactive.
 - `Invalid / Error`: Destructive border and focus tint signaling required validation failure.
 
@@ -74,7 +74,7 @@ Checkboxes support the following interactive states:
 
 ### Object Continuity
 
-Harmonia requires that state transitions preserve component identity and physical stability:
+Homonoid requires that state transitions preserve component identity and physical stability:
 
 - Dimensional Stability: The bounding box remains constant across unchecked, checked, and indeterminate states. Zero layout shift occurs when toggling.
 - Glyph Transitions: The checkmark and indeterminate bar morph and scale fluidly into place using hardware-accelerated transforms rather than sudden binary pops.
@@ -84,7 +84,7 @@ Harmonia requires that state transitions preserve component identity and physica
 
 ### Motion
 
-Motion parameters adhere strictly to tactile physics and `@harmonia/tokens`:
+Motion parameters adhere strictly to tactile physics and `@homonoid/tokens`:
 
 - Micro Scale: Active tactile press compression (`scale-[0.88]`, `group-active:scale-[0.88]`) providing noticeable physical feedback when pressing either the checkbox control or associated label.
 - Color Transition: Smooth token transitions (`duration-[var(--motion-duration-fast)]`, `ease-[var(--motion-easing-standard)]`) across border, background, and focus-ring states.
@@ -117,6 +117,6 @@ Web implementations observe standard platform practices:
 ### Implementation Notes
 
 Implemented in `packages/web/src/components/checkbox/`:
-- Consumes `Size` from `@harmonia/web/types`.
+- Consumes `Size` from `@homonoid/web/types`.
 - Uses `any` and `all` condition utilities.
 - Supports standalone checkbox or checkbox with label/description layout.

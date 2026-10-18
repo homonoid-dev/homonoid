@@ -63,7 +63,7 @@ export const CARD_SECTIONS: Record<string, CardSectionItem> = {
 export const CARD_SECTIONS_LIST: CardSectionItem[] =
   Object.values(CARD_SECTIONS);
 
-export const CARD_DEFAULT_CODE_SAMPLE = `import { Card, Label, Description } from "@harmonia/react";
+export const CARD_DEFAULT_CODE_SAMPLE = `import { Card, Label, Description } from "@homonoid/react";
 
 export function Example() {
   return (
@@ -72,13 +72,13 @@ export function Example() {
         Project Overview
       </Label>
       <Description>
-        Harmonia components provide continuous aesthetic fidelity and tactile physics.
+        Homonoid components provide continuous aesthetic fidelity and tactile physics.
       </Description>
     </Card>
   );
 }`;
 
-export const CARD_VARIANTS_CODE_SAMPLE = `import { Card, Label, Description } from "@harmonia/react";
+export const CARD_VARIANTS_CODE_SAMPLE = `import { Card, Label, Description } from "@homonoid/react";
 
 export function VariantsExample() {
   return (
@@ -103,7 +103,7 @@ export function VariantsExample() {
   );
 }`;
 
-export const CARD_COLORS_CODE_SAMPLE = `import { Card, Label, Description } from "@harmonia/react";
+export const CARD_COLORS_CODE_SAMPLE = `import { Card, Label, Description } from "@homonoid/react";
 
 export function ColorsExample() {
   return (
@@ -144,7 +144,7 @@ export function ColorsExample() {
   );
 }`;
 
-export const CARD_BORDER_CODE_SAMPLE = `import { Card, Label, Description } from "@harmonia/react";
+export const CARD_BORDER_CODE_SAMPLE = `import { Card, Label, Description } from "@homonoid/react";
 
 export function BorderExample() {
   return (
@@ -169,7 +169,7 @@ export function BorderExample() {
   );
 }`;
 
-export const CARD_PADDING_CODE_SAMPLE = `import { Card, Label, Description } from "@harmonia/react";
+export const CARD_PADDING_CODE_SAMPLE = `import { Card, Label, Description } from "@homonoid/react";
 
 export function PaddingExample() {
   return (

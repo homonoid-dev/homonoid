@@ -109,13 +109,13 @@ export const INPUT_INTERACTIVE_STATES: InteractiveStateItem[] = [
   },
 ];
 
-export const INPUT_DEFAULT_CODE_SAMPLE = `import { Input } from "@harmonia/react";
+export const INPUT_DEFAULT_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 
 export function Example() {
   return <Input placeholder="Enter text..." className="max-w-sm" />;
 }`;
 
-export const INPUT_VARIANTS_CODE_SAMPLE = `import { Input } from "@harmonia/react";
+export const INPUT_VARIANTS_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 
 export function VariantsExample() {
   return (
@@ -127,7 +127,7 @@ export function VariantsExample() {
   );
 }`;
 
-export const INPUT_SIZES_CODE_SAMPLE = `import { Input } from "@harmonia/react";
+export const INPUT_SIZES_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 
 export function SizesExample() {
   return (
@@ -139,7 +139,7 @@ export function SizesExample() {
   );
 }`;
 
-export const INPUT_ADORNMENTS_CODE_SAMPLE = `import { Input } from "@harmonia/react";
+export const INPUT_ADORNMENTS_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 import { Search, Mail, Eye } from "lucide-react";
 
 export function AdornmentsExample() {
@@ -162,7 +162,7 @@ export function AdornmentsExample() {
   );
 }`;
 
-export const INPUT_LABEL_HELPER_CODE_SAMPLE = `import { Input } from "@harmonia/react";
+export const INPUT_LABEL_HELPER_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 
 export function LabelHelperExample() {
   return (
@@ -176,7 +176,7 @@ export function LabelHelperExample() {
   );
 }`;
 
-export const INPUT_VALIDATION_CODE_SAMPLE = `import { Input } from "@harmonia/react";
+export const INPUT_VALIDATION_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 
 export function ValidationExample() {
   return (
@@ -191,7 +191,7 @@ export function ValidationExample() {
   );
 }`;
 
-export const INPUT_DISABLED_CODE_SAMPLE = `import { Input } from "@harmonia/react";
+export const INPUT_DISABLED_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 
 export function DisabledExample() {
   return (

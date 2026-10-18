@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { cn } from "@harmonia/react/cn";
+import { cn } from "@homonoid/react/cn";
 
 export interface CodeProps {
   code: string;
@@ -20,7 +20,7 @@ const TOKEN_PATTERN = new RegExp(
 );
 
 /**
- * Tokenizes TSX / JavaScript code into styled React spans using Harmonia tokens.
+ * Tokenizes TSX / JavaScript code into styled React spans using Homonoid tokens.
  */
 export function highlighter(code: string): React.ReactNode[] {
   if (!code) return [];

@@ -9,8 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@harmonia/react": "*",
-    "@harmonia/tokens": "*",
+    "@homonoid/react": "*",
+    "@homonoid/tokens": "*",
     "lucide-react": "^1.55.0",
     "motion": "^14.2.0",
     "next": "^16.4.0",

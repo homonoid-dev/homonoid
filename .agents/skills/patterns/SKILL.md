@@ -5,13 +5,13 @@ description: Use when implementing state branching, functional condition helpers
 
 # Implementation Patterns
 
-Guidelines for coding conventions and functional state management in Harmonia.
+Guidelines for coding conventions and functional state management in Homonoid.
 
 <br>
 
 ### Functional Condition Utilities
 
-Always use functional condition helpers provided by the Harmonia ecosystem rather than inline ternary operators or complex boolean ladder expressions:
+Always use functional condition helpers provided by the Homonoid ecosystem rather than inline ternary operators or complex boolean ladder expressions:
 
 - `cond`: Replaces inline ternaries for selecting between two values
 - `match`: Evaluates a key against a branches dictionary with fallback

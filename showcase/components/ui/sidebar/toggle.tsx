@@ -1,13 +1,13 @@
 "use client";
 
-import { Button } from "@harmonia/react";
+import { Button } from "@homonoid/react";
 import {
   PanelLeftClose,
   PanelLeftOpen,
   PanelRightClose,
   PanelRightOpen,
 } from "lucide-react";
-import { cn } from "@harmonia/react/cn";
+import { cn } from "@homonoid/react/cn";
 import { useSidebar } from "./context";
 import type { SidebarToggleProps } from "./types";
 

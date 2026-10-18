@@ -69,7 +69,7 @@ export const CHECKBOX_SECTIONS: Record<string, CheckboxSectionItem> = {
 export const CHECKBOX_SECTIONS_LIST: CheckboxSectionItem[] =
   Object.values(CHECKBOX_SECTIONS);
 
-export const CHECKBOX_DEFAULT_CODE_SAMPLE = `import { Checkbox } from "@harmonia/react";
+export const CHECKBOX_DEFAULT_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
 
 export function Example() {
   return (
@@ -80,7 +80,7 @@ export function Example() {
   );
 }`;
 
-export const CHECKBOX_STATES_CODE_SAMPLE = `import { Checkbox } from "@harmonia/react";
+export const CHECKBOX_STATES_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
 
 export function StatesExample() {
   return (
@@ -92,7 +92,7 @@ export function StatesExample() {
   );
 }`;
 
-export const CHECKBOX_SIZES_CODE_SAMPLE = `import { Checkbox } from "@harmonia/react";
+export const CHECKBOX_SIZES_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
 
 export function SizesExample() {
   return (
@@ -104,7 +104,7 @@ export function SizesExample() {
   );
 }`;
 
-export const CHECKBOX_SHAPES_CODE_SAMPLE = `import { Checkbox } from "@harmonia/react";
+export const CHECKBOX_SHAPES_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
 
 export function ShapesExample() {
   return (
@@ -116,7 +116,7 @@ export function ShapesExample() {
   );
 }`;
 
-export const CHECKBOX_LABEL_HELPER_CODE_SAMPLE = `import { Checkbox } from "@harmonia/react";
+export const CHECKBOX_LABEL_HELPER_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
 
 export function LabelHelperExample() {
   return (
@@ -130,7 +130,7 @@ export function LabelHelperExample() {
   );
 }`;
 
-export const CHECKBOX_DISABLED_CODE_SAMPLE = `import { Checkbox } from "@harmonia/react";
+export const CHECKBOX_DISABLED_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
 
 export function DisabledExample() {
   return (

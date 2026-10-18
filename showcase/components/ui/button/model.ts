@@ -94,7 +94,7 @@ export const BUTTON_SECTIONS: Record<string, ButtonSectionItem> = {
 export const BUTTON_SECTIONS_LIST: ButtonSectionItem[] =
   Object.values(BUTTON_SECTIONS);
 
-export const BUTTON_CONTAINED_CODE_SAMPLE = `import { Button } from "@harmonia/react";
+export const BUTTON_CONTAINED_CODE_SAMPLE = `import { Button } from "@homonoid/react";
 
 export function Example() {
   return (
@@ -104,7 +104,7 @@ export function Example() {
   );
 }`;
 
-export const BUTTON_VARIANTS_CODE_SAMPLE = `import { Button } from "@harmonia/react";
+export const BUTTON_VARIANTS_CODE_SAMPLE = `import { Button } from "@homonoid/react";
 
 export function Example() {
   return (
@@ -128,7 +128,7 @@ export function Example() {
   );
 }`;
 
-export const BUTTON_OUTLINED_CODE_SAMPLE = `import { Button } from "@harmonia/react";
+export const BUTTON_OUTLINED_CODE_SAMPLE = `import { Button } from "@homonoid/react";
 
 export function Example() {
   return (
@@ -138,7 +138,7 @@ export function Example() {
   );
 }`;
 
-export const BUTTON_WITH_ICON_CODE_SAMPLE = `import { Button } from "@harmonia/react";
+export const BUTTON_WITH_ICON_CODE_SAMPLE = `import { Button } from "@homonoid/react";
 import { ArrowRight } from "lucide-react";
 
 export function Example() {
@@ -153,7 +153,7 @@ export function Example() {
   );
 }`;
 
-export const BUTTON_ICON_ONLY_CODE_SAMPLE = `import { Button } from "@harmonia/react";
+export const BUTTON_ICON_ONLY_CODE_SAMPLE = `import { Button } from "@homonoid/react";
 import { Plus } from "lucide-react";
 
 export function Example() {
@@ -170,7 +170,7 @@ export function Example() {
 }`;
 
 export const BUTTON_LOADING_CODE_SAMPLE = `import { useState } from "react";
-import { Button } from "@harmonia/react";
+import { Button } from "@homonoid/react";
 
 export function Example() {
   const [loading, setLoading] = useState(false);
@@ -187,7 +187,7 @@ export function Example() {
   );
 }`;
 
-export const BUTTON_SIZES_CODE_SAMPLE = `import { Button } from "@harmonia/react";
+export const BUTTON_SIZES_CODE_SAMPLE = `import { Button } from "@homonoid/react";
 
 export function Example() {
   return (
@@ -205,7 +205,7 @@ export function Example() {
   );
 }`;
 
-export const BUTTON_DISABLED_CODE_SAMPLE = `import { Button } from "@harmonia/react";
+export const BUTTON_DISABLED_CODE_SAMPLE = `import { Button } from "@homonoid/react";
 
 export function Example() {
   return (
@@ -223,7 +223,7 @@ export function Example() {
   );
 }`;
 
-export const BUTTON_FULL_WIDTH_CODE_SAMPLE = `import { Button } from "@harmonia/react";
+export const BUTTON_FULL_WIDTH_CODE_SAMPLE = `import { Button } from "@homonoid/react";
 
 export function Example() {
   return (

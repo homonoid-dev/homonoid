@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button, cond } from "@harmonia/react";
+import { Button, cond } from "@homonoid/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { cn } from "@harmonia/react/cn";
+import { cn } from "@homonoid/react/cn";
 import { SHOWCASE_COMPONENTS, type ShowcaseComponentItem } from "@/config/components";
 
 export interface PaginationProps {

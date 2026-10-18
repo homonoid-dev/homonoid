@@ -1,10 +1,10 @@
 # Project
 
-Harmonia is a cross-platform design system developed and maintained by Lumunar.
+Homonoid is a cross-platform design system developed and maintained by Lumunar.
 
 The project provides a unified design language that can be implemented consistently across multiple platforms while respecting the strengths and conventions of each platform.
 
-Unlike traditional component libraries, Harmonia is founded on the principle of continuity. Components are treated as persistent objects that evolve naturally between states rather than appearing and disappearing independently.
+Unlike traditional component libraries, Homonoid is founded on the principle of continuity. Components are treated as persistent objects that evolve naturally between states rather than appearing and disappearing independently.
 
 The project consists of multiple platform implementations, shared design assets, documentation, development tools, and a public showcase.
 

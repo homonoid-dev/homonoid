@@ -5,7 +5,7 @@ description: Use when designing component structures, authoring component specif
 
 # Architecture Standards
 
-Guidelines for component composition and structural design in Harmonia.
+Guidelines for component composition and structural design in Homonoid.
 
 <br>
 

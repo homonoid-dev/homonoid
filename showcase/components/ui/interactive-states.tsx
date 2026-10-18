@@ -1,5 +1,5 @@
-import { Label, Description } from "@harmonia/react";
-import { cn } from "@harmonia/react/cn";
+import { Label, Description } from "@homonoid/react";
+import { cn } from "@homonoid/react/cn";
 
 export interface InteractiveStateItem {
   label: string;

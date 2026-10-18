@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "@harmonia/tokens/css";
-@import "@harmonia/react/styles.css";
+@import "@homonoid/tokens/css";
+@import "@homonoid/react/styles.css";
 @source "..";
 @source "../../packages/react/src";
 

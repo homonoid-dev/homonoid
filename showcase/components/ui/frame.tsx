@@ -1,6 +1,6 @@
 import type { ComponentType, ElementType, HTMLAttributes, ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
-import { cn } from "@harmonia/react/cn";
+import { cn } from "@homonoid/react/cn";
 
 export interface FrameProps extends HTMLAttributes<HTMLElement> {
   as?: ElementType;

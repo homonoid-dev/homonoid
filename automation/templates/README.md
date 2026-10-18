@@ -1,6 +1,6 @@
 # Development Templates
 
-The `templates` directory contains reusable document and project templates used throughout the Harmonia ecosystem.
+The `templates` directory contains reusable document and project templates used throughout the Homonoid ecosystem.
 
 Templates establish a consistent structure for specifications, documentation, packages, and other project artifacts while reducing repetitive work.
 

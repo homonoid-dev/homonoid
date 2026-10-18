@@ -29,7 +29,7 @@ Avoid using multiple spinners simultaneously in the same viewport when a single 
 A spinner consists of the following elements:
 
 - `Container`: The bounded geometric container establishing the dimensional envelope (`size-4`, `size-6`, or `size-8`).
-- `Indicator`: The moving geometric element that animates along predefined Harmonia motion curves.
+- `Indicator`: The moving geometric element that animates along predefined Homonoid motion curves.
 - `Track` (Optional): A subdued static baseline path over which the indicator traverses during circular animations.
 - `Accessible Announcement`: An off-screen or programmatic label (`role="status"`, `aria-label="Loading"`) for assistive technologies.
 
@@ -37,7 +37,7 @@ A spinner consists of the following elements:
 
 ### Sizes
 
-Spinners support three standardized sizes aligned with the Harmonia control scale:
+Spinners support three standardized sizes aligned with the Homonoid control scale:
 
 - `Small` (`sm`): 16px × 16px (`size-4`). Designed for inline contexts, dense tables, and small button accessories.
 - `Medium` (`md`): 24px × 24px (`size-6`). Standard indicator for forms, cards, and default controls.
@@ -47,7 +47,7 @@ Spinners support three standardized sizes aligned with the Harmonia control scal
 
 ### Animation Variants
 
-Harmonia defines four animation variants that express physical continuity and material behavior:
+Homonoid defines four animation variants that express physical continuity and material behavior:
 
 - `Border`: High precision circular track with a continuously rotating arc indicator, representing continuous angular motion.
 - `Grow`: Rhythmic radial expansion and contraction with subtle opacity transitions, providing a calm organic breathing cadence.
@@ -68,7 +68,7 @@ Spinners operate in a singular continuous active state:
 
 ### Object Continuity
 
-Harmonia requires that loading indicators integrate seamlessly into parent components without dimensional disruption:
+Homonoid requires that loading indicators integrate seamlessly into parent components without dimensional disruption:
 
 - Dimensional Reservation: When embedded within buttons or form controls, the spinner must occupy an absolute overlay or matching spatial slot to avoid layout jumps.
 - Fluid Transitions: Motion must remain continuous and never stutter across frame drops or state updates.
@@ -78,7 +78,7 @@ Harmonia requires that loading indicators integrate seamlessly into parent compo
 
 ### Motion
 
-Motion parameters adhere strictly to `@harmonia/tokens`:
+Motion parameters adhere strictly to `@homonoid/tokens`:
 
 - Rotation Speed: Continuous 360-degree rotation over 750ms to 1000ms.
 - Easing: Utilizes standard easing curves (`cubic-bezier(0.4, 0, 0.2, 1)`) for radial breathing cadence and linear progression for `border`.
@@ -110,5 +110,5 @@ Web implementations must observe web platform standards:
 
 Platform packages implement this specification using their native toolchain:
 
-- Tokens: Consumes colors, stroke dimensions, and timing from `@harmonia/tokens`.
+- Tokens: Consumes colors, stroke dimensions, and timing from `@homonoid/tokens`.
 - Web Implementation: Built in `packages/web` using React 19, TypeScript, and Tailwind CSS v4.
