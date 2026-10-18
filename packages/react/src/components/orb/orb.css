@@ -4,12 +4,12 @@
 
   0%,
   100% {
-    transform: scaleY(0.28);
+    height: var(--bar-min-height);
     opacity: 0.6;
   }
 
   50% {
-    transform: scaleY(0.48);
+    height: calc(var(--bar-min-height) + (var(--bar-max-height) - var(--bar-min-height)) * 0.35);
     opacity: 0.85;
   }
 }
@@ -18,12 +18,12 @@
 
   0%,
   100% {
-    transform: scaleY(0.2);
+    height: var(--bar-min-height);
     opacity: 0.4;
   }
 
   50% {
-    transform: scaleY(0.8);
+    height: calc(var(--bar-min-height) + (var(--bar-max-height) - var(--bar-min-height)) * 0.8);
     opacity: 1;
   }
 }
@@ -32,39 +32,39 @@
 
   0%,
   100% {
-    transform: scaleY(0.32);
+    height: calc(var(--bar-min-height) + (var(--bar-max-height) - var(--bar-min-height)) * 0.2);
     opacity: 0.7;
   }
 
   50% {
-    transform: scaleY(0.65);
+    height: calc(var(--bar-min-height) + (var(--bar-max-height) - var(--bar-min-height)) * 0.6);
     opacity: 0.95;
   }
 }
 
 @keyframes orb-bars-thinking {
   0% {
-    transform: scaleY(0.25);
+    height: var(--bar-min-height);
     opacity: 0.5;
   }
 
   25% {
-    transform: scaleY(0.7);
+    height: calc(var(--bar-min-height) + (var(--bar-max-height) - var(--bar-min-height)) * 0.65);
     opacity: 0.9;
   }
 
   50% {
-    transform: scaleY(0.35);
+    height: calc(var(--bar-min-height) + (var(--bar-max-height) - var(--bar-min-height)) * 0.25);
     opacity: 0.6;
   }
 
   75% {
-    transform: scaleY(0.85);
+    height: calc(var(--bar-min-height) + (var(--bar-max-height) - var(--bar-min-height)) * 0.85);
     opacity: 1;
   }
 
   100% {
-    transform: scaleY(0.25);
+    height: var(--bar-min-height);
     opacity: 0.5;
   }
 }
@@ -73,12 +73,12 @@
 
   0%,
   100% {
-    transform: scaleY(0.35);
+    height: calc(var(--bar-min-height) + (var(--bar-max-height) - var(--bar-min-height)) * 0.3);
     opacity: 0.8;
   }
 
   50% {
-    transform: scaleY(1);
+    height: var(--bar-max-height);
     opacity: 1;
   }
 }
@@ -87,12 +87,12 @@
 
   0%,
   100% {
-    transform: scaleY(0.4);
+    height: calc(var(--bar-min-height) + (var(--bar-max-height) - var(--bar-min-height)) * 0.35);
     opacity: 0.85;
   }
 
   50% {
-    transform: scaleY(0.7);
+    height: calc(var(--bar-min-height) + (var(--bar-max-height) - var(--bar-min-height)) * 0.7);
     opacity: 1;
   }
 }

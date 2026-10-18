@@ -5,13 +5,13 @@ import { match, cond } from "../../utils/condition";
 import type { OrbBarsProps, OrbSize, OrbState } from "./types";
 
 export const barsContainerVariants = cva(
-  "relative inline-flex items-center justify-center select-none transform-gpu origin-center transition-[transform,opacity] duration-[var(--motion-duration-normal)] ease-[var(--motion-easing-standard)]",
+  "relative inline-flex items-center justify-center select-none origin-center transition-opacity duration-[var(--motion-duration-normal)] ease-[var(--motion-easing-standard)]",
   {
     variants: {
       size: {
-        sm: "w-orb-sm h-orb-sm gap-1",
-        md: "w-orb-md h-orb-md gap-2",
-        lg: "w-orb-lg h-orb-lg gap-3"
+        sm: "w-orb-sm h-orb-sm gap-1.5",
+        md: "w-orb-md h-orb-md gap-2.5",
+        lg: "w-orb-lg h-orb-lg gap-3.5"
       }
     },
     defaultVariants: {
@@ -20,21 +20,26 @@ export const barsContainerVariants = cva(
   }
 );
 
-export const barVariants = cva(
-  "rounded-full transform-gpu origin-center transition-[background-color,transform,opacity] duration-[var(--motion-duration-normal)] ease-[var(--motion-easing-standard)]",
-  {
-    variants: {
-      size: {
-        sm: "w-1.5 h-6",
-        md: "w-3 h-14",
-        lg: "w-5 h-24"
-      }
-    },
-    defaultVariants: {
-      size: "md"
-    }
+const BAR_CONFIG: Record<
+  OrbSize,
+  { width: string; minHeight: string; maxHeight: string }
+> = {
+  sm: {
+    width: "8px",
+    minHeight: "8px",
+    maxHeight: "28px"
+  },
+  md: {
+    width: "14px",
+    minHeight: "14px",
+    maxHeight: "60px"
+  },
+  lg: {
+    width: "22px",
+    minHeight: "22px",
+    maxHeight: "104px"
   }
-);
+};
 
 const getBarColorClass = (state: OrbState): string =>
   match<OrbState, string>(
@@ -92,32 +97,45 @@ export const OrbBars = forwardRef<HTMLDivElement, OrbBarsProps>(function OrbBars
   const colorClass = getBarColorClass(state);
   const animationClass = getAnimationClass(state);
   const normalizedVolume = Math.min(1, Math.max(0, volume));
+  const config = match(size, BAR_CONFIG, BAR_CONFIG.md);
 
   return (
     <div
       ref={ref}
       aria-hidden="true"
       className={cn(barsContainerVariants({ size }), className)}
-      style={style}
+      style={{
+        "--bar-width": config.width,
+        "--bar-min-height": config.minHeight,
+        "--bar-max-height": config.maxHeight,
+        ...style
+      } as any}
       {...props}
     >
       {[0, 1, 2, 3, 4].map((index) => {
         const animationDelay = getBarDelay(index, state);
         const volumeFactor = cond(
           state === "speaking",
-          0.3 + normalizedVolume * 0.7,
-          cond(state === "listening", 0.4 + normalizedVolume * 0.4, 1)
+          0.2 + normalizedVolume * 0.8,
+          cond(state === "listening", 0.25 + normalizedVolume * 0.45, 1)
         );
+
+        const hasActiveVolume =
+          normalizedVolume > 0 && (state === "speaking" || state === "listening");
 
         return (
           <span
             key={index}
-            className={cn(barVariants({ size }), colorClass, animationClass)}
+            className={cn(
+              "w-[var(--bar-width)] min-h-[var(--bar-min-height)] max-h-[var(--bar-max-height)] rounded-full origin-center transition-[background-color,opacity]",
+              colorClass,
+              cond(hasActiveVolume, undefined, animationClass)
+            )}
             style={{
               animationDelay,
-              transform: cond(
-                normalizedVolume > 0 && (state === "speaking" || state === "listening"),
-                `scaleY(${volumeFactor})`,
+              height: cond(
+                hasActiveVolume,
+                `calc(var(--bar-min-height) + (var(--bar-max-height) - var(--bar-min-height)) * ${volumeFactor})`,
                 undefined
               )
             }}
