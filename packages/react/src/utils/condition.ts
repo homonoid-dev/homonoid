@@ -16,13 +16,8 @@ export const all = (...flags: (boolean | undefined | null)[]): boolean =>
  * Evaluates a condition and returns the thenBranch if truthy, otherwise elseBranch.
  * Functional replacement for inline ternary expressions.
  */
-export const iff = <T, F>(
+export const cond = <T, F>(
   condition: boolean | undefined | null,
   thenBranch: T,
   elseBranch: F
 ): T | F => (Boolean(condition) ? thenBranch : elseBranch);
-
-/**
- * Alias for iff (conditional selection).
- */
-export const cond = iff;

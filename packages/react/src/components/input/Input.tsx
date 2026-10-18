@@ -8,7 +8,7 @@ import {
 } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
-import { iff } from "../../utils/condition";
+import { cond } from "../../utils/condition";
 import type { InputProps } from "./types";
 
 export const variants = cva(
@@ -116,7 +116,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           invalid: isInvalid,
           disabled
         }),
-        iff(!label && !description && !error, className, undefined)
+        cond(!label && !description && !error, className, undefined)
       )}
     >
       {/* Leading Slot */}
@@ -135,10 +135,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         aria-describedby={finalDescribedBy}
         className={cn(
           "w-full h-full bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30",
-          iff(isInvalid, "text-destructive placeholder:text-destructive/60", "text-foreground placeholder:text-muted"),
-          iff(size === "sm", "text-xs", undefined),
-          iff(size === "md", "text-sm", undefined),
-          iff(size === "lg", "text-base", undefined)
+          cond(isInvalid, "text-destructive placeholder:text-destructive/60", "text-foreground placeholder:text-muted"),
+          cond(size === "sm", "text-xs", undefined),
+          cond(size === "md", "text-sm", undefined),
+          cond(size === "lg", "text-base", undefined)
         )}
         {...props}
       />
@@ -167,8 +167,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           className={cn(
             "font-medium",
             isInvalid ? "text-destructive" : "text-foreground",
-            iff(size === "sm", "text-xs", "text-sm"),
-            iff(disabled, "opacity-60 cursor-not-allowed", "cursor-pointer")
+            cond(size === "sm", "text-xs", "text-sm"),
+            cond(disabled, "opacity-60 cursor-not-allowed", "cursor-pointer")
           )}
         >
           {label}

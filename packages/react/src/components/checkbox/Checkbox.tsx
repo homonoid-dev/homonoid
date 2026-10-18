@@ -3,7 +3,7 @@
 import { forwardRef, useEffect, useId, useRef, useState, type ChangeEvent } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
-import { any, all, iff } from "../../utils/condition";
+import { any, all, cond } from "../../utils/condition";
 import type { CheckboxProps } from "./types";
 
 export const variants = cva(
@@ -82,7 +82,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
   const isControlled = checked !== undefined;
 
   const isIndeterminate = any(checked === "indeterminate", Boolean(indeterminate));
-  const isChecked = iff(isControlled, checked === true, internalChecked);
+  const isChecked = cond(isControlled, checked === true, internalChecked);
 
   // Sync indeterminate property directly with the native DOM input
   useEffect(() => {
@@ -109,10 +109,10 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
     onChange?.(nextChecked);
   };
 
-  const currentState = iff(
+  const currentState = cond(
     isIndeterminate,
     "indeterminate",
-    iff(isChecked, "checked", "unchecked")
+    cond(isChecked, "checked", "unchecked")
   );
 
   const hasTextContent = any(Boolean(label), Boolean(description));
@@ -121,10 +121,10 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
   const finalAriaLabelledBy = props["aria-labelledby"] || (!isStringLabel && Boolean(label) ? labelId : undefined);
 
   const userDescribedBy = props["aria-describedby"];
-  const finalDescribedBy = iff(
+  const finalDescribedBy = cond(
     Boolean(userDescribedBy),
-    iff(Boolean(description), `${userDescribedBy} ${descriptionId}`, userDescribedBy),
-    iff(Boolean(description), descriptionId, undefined)
+    cond(Boolean(description), `${userDescribedBy} ${descriptionId}`, userDescribedBy),
+    cond(Boolean(description), descriptionId, undefined)
   );
 
   return (
@@ -132,7 +132,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
       htmlFor={inputId}
       className={cn(
         "group inline-flex items-start gap-2.5 select-none w-fit",
-        iff(disabled, "cursor-not-allowed opacity-60", "cursor-pointer"),
+        cond(disabled, "cursor-not-allowed opacity-60", "cursor-pointer"),
         className
       )}
     >
@@ -148,12 +148,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           aria-label={finalAriaLabel}
           aria-labelledby={finalAriaLabelledBy}
           aria-describedby={finalDescribedBy}
-          aria-checked={iff(isIndeterminate, "mixed", isChecked)}
+          aria-checked={cond(isIndeterminate, "mixed", isChecked)}
           onChange={handleChange}
           className={cn(
             "peer absolute inset-0 w-full h-full opacity-0 z-10 m-0 p-0",
-            iff(disabled, "cursor-not-allowed", "cursor-pointer"),
-            iff(shape === "circle", "rounded-full", iff(shape === "square", "rounded-none", "rounded-md"))
+            cond(disabled, "cursor-not-allowed", "cursor-pointer"),
+            cond(shape === "circle", "rounded-full", cond(shape === "square", "rounded-none", "rounded-md"))
           )}
           {...props}
         />
@@ -169,7 +169,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
               invalid,
               disabled
             }),
-            iff(
+            cond(
               invalid,
               "peer-focus-visible:ring-2 peer-focus-visible:ring-destructive/50",
               "peer-focus-visible:ring-2 peer-focus-visible:ring-primary/50"
@@ -183,7 +183,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
             aria-hidden="true"
             className={cn(
               "absolute inset-0 m-auto w-full h-full p-0.5",
-              iff(
+              cond(
                 all(isChecked, !isIndeterminate),
                 "opacity-100",
                 "opacity-0 pointer-events-none"
@@ -206,7 +206,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
             aria-hidden="true"
             className={cn(
               "absolute inset-0 m-auto w-full h-full p-0.5",
-              iff(
+              cond(
                 isIndeterminate,
                 "opacity-100",
                 "opacity-0 pointer-events-none"
@@ -231,7 +231,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
               id={labelId}
               className={cn(
                 "font-medium text-foreground",
-                iff(size === "sm", "text-xs leading-4", iff(size === "lg", "text-base leading-6", "text-sm leading-5"))
+                cond(size === "sm", "text-xs leading-4", cond(size === "lg", "text-base leading-6", "text-sm leading-5"))
               )}
             >
               {label}
@@ -242,7 +242,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
               id={descriptionId}
               className={cn(
                 "text-muted",
-                iff(size === "sm", "text-[11px] leading-tight", iff(size === "lg", "text-sm leading-tight", "text-xs leading-tight"))
+                cond(size === "sm", "text-[11px] leading-tight", cond(size === "lg", "text-sm leading-tight", "text-xs leading-tight"))
               )}
             >
               {description}
