@@ -5,7 +5,7 @@ import { cva } from "class-variance-authority";
 import { FloatingPortal, useTransitionStyles, useMergeRefs } from "@floating-ui/react";
 import { useTooltipContext } from "./TooltipContext";
 import { cn } from "../../utils/cn";
-import { all, iff } from "../../utils/condition";
+import { all, cond } from "../../utils/condition";
 import type { TooltipContentProps } from "./types";
 
 export const variants = cva(
@@ -72,8 +72,8 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
       return null;
     }
 
-    const activeVariant = iff(Boolean(variant), variant, contextVariant);
-    const activeSize = iff(Boolean(size), size, contextSize);
+    const activeVariant = cond(Boolean(variant), variant, contextVariant);
+    const activeSize = cond(Boolean(size), size, contextSize);
 
     return (
       <FloatingPortal>

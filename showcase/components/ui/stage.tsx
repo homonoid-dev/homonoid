@@ -7,7 +7,7 @@ import {
   useEffect,
   type ReactNode,
 } from "react";
-import { Button, Card, Tooltip, iff } from "@harmonia/react";
+import { Button, Card, Tooltip, cond } from "@harmonia/react";
 import { Eye, Code2, Copy, Check, RotateCcw } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Code } from "@/components/ui/code";
@@ -111,7 +111,7 @@ export function Stage({
           <Tooltip side="bottom" content="Preview">
             <Button
               layout="icon"
-              variant={iff(activeTab === "preview", "contained", "plain")}
+              variant={cond(activeTab === "preview", "contained", "plain")}
               color="surface"
               shape="circle"
               onClick={() => setActiveTab("preview")}
@@ -124,7 +124,7 @@ export function Stage({
           <Tooltip side="bottom" content="Code">
             <Button
               layout="icon"
-              variant={iff(activeTab === "code", "contained", "plain")}
+              variant={cond(activeTab === "code", "contained", "plain")}
               color="surface"
               shape="circle"
               onClick={() => setActiveTab("code")}
@@ -151,16 +151,16 @@ export function Stage({
             </Tooltip>
           )}
 
-          <Tooltip side="bottom" content={iff(copied, "Copied to clipboard", "Copy code")}>
+          <Tooltip side="bottom" content={cond(copied, "Copied to clipboard", "Copy code")}>
             <Button
               layout="icon"
               variant="plain"
               color="subtle"
               shape="circle"
               onClick={handleCopy}
-              aria-label={iff(copied, "Copied", "Copy code")}
+              aria-label={cond(copied, "Copied", "Copy code")}
             >
-              {iff(
+              {cond(
                 copied,
                 <Check className="size-4 text-primary" />,
                 <Copy className="size-4" />

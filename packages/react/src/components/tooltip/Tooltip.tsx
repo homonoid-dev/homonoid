@@ -24,7 +24,7 @@ import { TooltipContext, type TooltipContextValue } from "./TooltipContext";
 import { TooltipTrigger } from "./TooltipTrigger";
 import { TooltipContent } from "./TooltipContent";
 import { TooltipShortcut } from "./TooltipShortcut";
-import { all, iff } from "../../utils/condition";
+import { all, cond } from "../../utils/condition";
 import type { TooltipProps } from "./types";
 
 export function Tooltip({
@@ -44,15 +44,15 @@ export function Tooltip({
 }: TooltipProps) {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(Boolean(defaultOpen));
   const isControlled = controlledOpen !== undefined;
-  const isOpen = iff(isControlled, Boolean(controlledOpen), uncontrolledOpen);
+  const isOpen = cond(isControlled, Boolean(controlledOpen), uncontrolledOpen);
 
-  const placement = iff(
+  const placement = cond(
     align === "center",
     side,
     `${side}-${align}`
   ) as Placement;
 
-  const resolvedDelay = iff(
+  const resolvedDelay = cond(
     typeof delay === "number",
     { open: delay as number, close: 0 },
     delay || { open: 120, close: 0 }
@@ -144,9 +144,9 @@ export function Tooltip({
       const element = child as ReactElement;
       const displayName = (element.type as { displayName?: string })?.displayName;
 
-      if (iff(element.type === TooltipTrigger, true, displayName === "Tooltip.Trigger")) {
+      if (cond(element.type === TooltipTrigger, true, displayName === "Tooltip.Trigger")) {
         hasExplicitTrigger = true;
-      } else if (iff(element.type === TooltipContent, true, displayName === "Tooltip.Content")) {
+      } else if (cond(element.type === TooltipContent, true, displayName === "Tooltip.Content")) {
         standaloneContentNode = child;
       } else {
         triggerNodes.push(child);

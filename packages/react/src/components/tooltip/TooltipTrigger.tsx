@@ -9,14 +9,14 @@ import {
 import { useMergeRefs } from "@floating-ui/react";
 import { useTooltipContext } from "./TooltipContext";
 import { cn } from "../../utils/cn";
-import { iff } from "../../utils/condition";
+import { cond } from "../../utils/condition";
 import type { TooltipTriggerProps } from "./types";
 
 export const TooltipTrigger = forwardRef<HTMLElement, TooltipTriggerProps>(
   function TooltipTrigger({ children, asChild = false, className }, ref) {
     const { setReference, getReferenceProps } = useTooltipContext();
 
-    if (iff(asChild, true, isValidElement(children))) {
+    if (cond(asChild, true, isValidElement(children))) {
       const child = children as ReactElement<Record<string, unknown>>;
       const childRef = (child.props as { ref?: React.Ref<HTMLElement> })?.ref;
       const mergedRef = useMergeRefs([setReference, ref, childRef]);
