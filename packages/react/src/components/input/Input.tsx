@@ -165,7 +165,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           id={labelId}
           htmlFor={inputId}
           className={cn(
-            "font-medium text-foreground",
+            "font-medium",
+            isInvalid ? "text-destructive" : "text-foreground",
             iff(size === "sm", "text-xs", "text-sm"),
             iff(disabled, "opacity-60 cursor-not-allowed", "cursor-pointer")
           )}

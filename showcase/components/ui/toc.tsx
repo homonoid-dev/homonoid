@@ -226,7 +226,6 @@ export function Toc({
             key={item.id}
             href={`#${item.id}`}
             icon={renderIcon(item.icon)}
-            keep="icon"
             active={effectiveActiveId === item.id}
             onClick={() => scrollToSection(item.id)}
           >

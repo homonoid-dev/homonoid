@@ -1,7 +1,6 @@
 import type { HTMLAttributes, ReactNode, MouseEvent } from "react";
 
 export type SidebarSide = "left" | "right";
-export type SidebarDestinationKeep = "label" | "icon";
 
 export interface SidebarProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -75,14 +74,6 @@ export interface SidebarDestinationProps {
    * Explicit active state override for in-page section spy.
    */
   active?: boolean;
-
-  /**
-   * What element to preserve when the enclosing sidebar is collapsed.
-   * - `icon`: Retains the icon centered and smoothly hides the text label.
-   * - `label`: Retains the text label and smoothly hides the icon.
-   * @default "icon"
-   */
-  keep?: SidebarDestinationKeep;
 
   /**
    * Click handler callback.

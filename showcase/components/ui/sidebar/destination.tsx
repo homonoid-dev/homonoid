@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@harmonia/react/cn";
-import { cond } from "@harmonia/react";
+import { cond, Tooltip } from "@harmonia/react";
 import { useSidebar } from "./context";
 import type { SidebarDestinationProps } from "./types";
 
@@ -11,12 +11,11 @@ export function SidebarDestination({
   href,
   icon,
   active,
-  keep = "icon",
   onClick,
   children,
   className,
 }: SidebarDestinationProps) {
-  const { collapsed } = useSidebar();
+  const { collapsed, side } = useSidebar();
   const pathname = usePathname();
   const isSelected = cond(
     active !== undefined,
@@ -24,11 +23,9 @@ export function SidebarDestination({
     cond(Boolean(href), pathname === href, false)
   );
 
-  const isIconKept = keep === "icon";
-  const showLabel = !collapsed || keep === "label";
-  const showIcon = Boolean(icon && (!collapsed || isIconKept));
-
+  const showLabel = !collapsed;
   const labelText = cond(typeof children === "string", children as string, undefined);
+  const tooltipSide = cond(side === "right", "left", "right");
 
   const content = (
     <>
@@ -47,12 +44,7 @@ export function SidebarDestination({
       {icon && (
         <span
           className={cn(
-            "shrink-0 transition-[opacity,transform,color] duration-300 ease-in-out flex items-center justify-center",
-            cond(
-              showIcon,
-              "opacity-100 scale-100",
-              "max-w-0 opacity-0 overflow-hidden pointer-events-none scale-90"
-            ),
+            "shrink-0 transition-[color] duration-300 ease-in-out flex items-center justify-center",
             cond(
               isSelected,
               "text-foreground",
@@ -68,7 +60,7 @@ export function SidebarDestination({
 
   const classes = cn(
     "group text-sm flex items-center w-full py-1 transition-colors duration-300 cursor-pointer select-none",
-    cond(collapsed && isIconKept, "justify-center", "justify-between"),
+    cond(collapsed, "justify-center", "justify-between"),
     cond(
       isSelected,
       "text-foreground font-medium",
@@ -77,21 +69,18 @@ export function SidebarDestination({
     className
   );
 
-  if (href && !href.startsWith("#")) {
-    return (
-      <Link
-        href={href}
-        onClick={onClick}
-        title={labelText}
-        aria-label={labelText}
-        className={classes}
-      >
-        {content}
-      </Link>
-    );
-  }
+  const isInternalRoute = Boolean(href && !href.startsWith("#"));
 
-  return (
+  const trigger = cond(
+    isInternalRoute,
+    <Link
+      href={cond(isInternalRoute, href as string, "/")}
+      onClick={onClick}
+      aria-label={labelText}
+      className={classes}
+    >
+      {content}
+    </Link>,
     <a
       href={cond(Boolean(href), href as string, "#")}
       onClick={(e) => {
@@ -100,11 +89,21 @@ export function SidebarDestination({
           onClick(e);
         }
       }}
-      title={labelText}
       aria-label={labelText}
       className={classes}
     >
       {content}
     </a>
+  );
+
+  return (
+    <Tooltip
+      content={cond(Boolean(labelText), labelText, children)}
+      side={tooltipSide}
+      offset={8}
+      disabled={!collapsed}
+    >
+      {trigger}
+    </Tooltip>
   );
 }

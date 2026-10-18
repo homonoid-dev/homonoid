@@ -17,7 +17,6 @@ export type {
   SidebarDestinationProps,
   SidebarToggleProps,
   SidebarSide,
-  SidebarDestinationKeep,
 } from "./types";
 
 

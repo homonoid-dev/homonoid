@@ -9,7 +9,7 @@ import { all, iff } from "../../utils/condition";
 import type { TooltipContentProps } from "./types";
 
 export const variants = cva(
-  "select-none whitespace-nowrap font-medium transform-gpu origin-center inline-flex items-center has-[[data-slot=shortcut]]:pr-1.5",
+  "select-none whitespace-nowrap font-medium transform-gpu origin-center inline-flex items-center has-[[data-slot=shortcut]]:pr-1",
   {
     variants: {
       variant: {
