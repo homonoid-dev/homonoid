@@ -123,58 +123,36 @@ export function Example() {
 export const MODAL_BACKDROP_CODE_SAMPLE = `import { Modal, Button } from "@homonoid/react";
 
 export function Example() {
+  const variants = ["blur", "opaque", "transparent"] as const;
+
   return (
-    <div className="flex flex-wrap items-center justify-center gap-control-gap">
-      <Modal>
-        <Button variant="outlined" color="surface">Blur</Button>
-        <Modal.Backdrop variant="blur">
-          <Modal.Container>
-            <Modal.Dialog>
-              <Modal.Header>
-                <Modal.Heading>Blur</Modal.Heading>
-              </Modal.Header>
-              <Modal.Body>Ambient background blur filter.</Modal.Body>
-              <Modal.Footer>
-                <Button variant="contained">Dismiss</Button>
-              </Modal.Footer>
-            </Modal.Dialog>
-          </Modal.Container>
-        </Modal.Backdrop>
-      </Modal>
-
-      <Modal>
-        <Button variant="outlined" color="surface">Opaque</Button>
-        <Modal.Backdrop variant="opaque">
-          <Modal.Container>
-            <Modal.Dialog>
-              <Modal.Header>
-                <Modal.Heading>Opaque</Modal.Heading>
-              </Modal.Header>
-              <Modal.Body>Solid darkened overlay plane.</Modal.Body>
-              <Modal.Footer>
-                <Button variant="contained">Dismiss</Button>
-              </Modal.Footer>
-            </Modal.Dialog>
-          </Modal.Container>
-        </Modal.Backdrop>
-      </Modal>
-
-      <Modal>
-        <Button variant="outlined" color="surface">Transparent</Button>
-        <Modal.Backdrop variant="transparent">
-          <Modal.Container>
-            <Modal.Dialog>
-              <Modal.Header>
-                <Modal.Heading>Transparent</Modal.Heading>
-              </Modal.Header>
-              <Modal.Body>Invisible backdrop surface.</Modal.Body>
-              <Modal.Footer>
-                <Button variant="contained">Dismiss</Button>
-              </Modal.Footer>
-            </Modal.Dialog>
-          </Modal.Container>
-        </Modal.Backdrop>
-      </Modal>
+    <div className="flex flex-wrap gap-4">
+      {variants.map((variant) => (
+        <Modal key={variant}>
+          <Button variant="outlined" color="surface">
+            {variant.charAt(0).toUpperCase() + variant.slice(1)}
+          </Button>
+          <Modal.Backdrop variant={variant}>
+            <Modal.Container>
+              <Modal.Dialog>
+                <Modal.Header>
+                  <Modal.Heading>
+                    {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                  </Modal.Heading>
+                </Modal.Header>
+                <Modal.Body>
+                  This modal demonstrates the {variant} backdrop variant.
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button slot="close" variant="contained">
+                    Dismiss
+                  </Button>
+                </Modal.Footer>
+              </Modal.Dialog>
+            </Modal.Container>
+          </Modal.Backdrop>
+        </Modal>
+      ))}
     </div>
   );
 }`;
@@ -182,45 +160,43 @@ export function Example() {
 export const MODAL_DISMISS_CODE_SAMPLE = `import { Modal, Button } from "@homonoid/react";
 
 export function Example() {
-  return (
-    <div className="flex flex-wrap items-center justify-center gap-control-gap">
-      <Modal>
-        <Button variant="outlined" color="surface">Dismissable</Button>
-        <Modal.Backdrop isDismissable={true}>
-          <Modal.Container>
-            <Modal.Dialog>
-              <Modal.Header>
-                <Modal.Heading>Dismissable Modal</Modal.Heading>
-              </Modal.Header>
-              <Modal.Body>
-                Clicking outside on the backdrop will dismiss this modal.
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="contained">Close</Button>
-              </Modal.Footer>
-            </Modal.Dialog>
-          </Modal.Container>
-        </Modal.Backdrop>
-      </Modal>
+  const options = [
+    {
+      isDismissable: true,
+      label: "Dismissable",
+      description: "Clicking outside on the backdrop will dismiss this modal.",
+    },
+    {
+      isDismissable: false,
+      label: "Non Dismissable",
+      description: "Clicking outside will not close this dialog.",
+    },
+  ] as const;
 
-      <Modal>
-        <Button variant="outlined" color="surface">Non Dismissable</Button>
-        <Modal.Backdrop isDismissable={false}>
-          <Modal.Container>
-            <Modal.Dialog>
-              <Modal.Header>
-                <Modal.Heading>Non Dismissable Modal</Modal.Heading>
-              </Modal.Header>
-              <Modal.Body>
-                Clicking outside will not close this dialog.
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="contained">Close</Button>
-              </Modal.Footer>
-            </Modal.Dialog>
-          </Modal.Container>
-        </Modal.Backdrop>
-      </Modal>
+  return (
+    <div className="flex flex-wrap gap-4">
+      {options.map((item) => (
+        <Modal key={item.label}>
+          <Button variant="outlined" color="surface">
+            {item.label}
+          </Button>
+          <Modal.Backdrop isDismissable={item.isDismissable}>
+            <Modal.Container>
+              <Modal.Dialog>
+                <Modal.Header>
+                  <Modal.Heading>{item.label}</Modal.Heading>
+                </Modal.Header>
+                <Modal.Body>{item.description}</Modal.Body>
+                <Modal.Footer>
+                  <Button slot="close" variant="contained">
+                    Close
+                  </Button>
+                </Modal.Footer>
+              </Modal.Dialog>
+            </Modal.Container>
+          </Modal.Backdrop>
+        </Modal>
+      ))}
     </div>
   );
 }`;
@@ -228,45 +204,41 @@ export function Example() {
 export const MODAL_SCROLL_CODE_SAMPLE = `import { Modal, Button } from "@homonoid/react";
 
 export function Example() {
-  return (
-    <div className="flex flex-wrap items-center justify-center gap-control-gap">
-      <Modal scroll="inside">
-        <Button variant="outlined" color="surface">Scroll Inside</Button>
-        <Modal.Backdrop>
-          <Modal.Container>
-            <Modal.Dialog>
-              <Modal.Header>
-                <Modal.Heading>Internal Scroll Mode</Modal.Heading>
-              </Modal.Header>
-              <Modal.Body className="space-y-4">
-                <p>Scrollable body region while header and footer stay pinned.</p>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="contained">Close</Button>
-              </Modal.Footer>
-            </Modal.Dialog>
-          </Modal.Container>
-        </Modal.Backdrop>
-      </Modal>
+  const modes = [
+    { mode: "inside", label: "Scroll Inside", title: "Internal Scroll Mode" },
+    { mode: "outside", label: "Scroll Outside", title: "Outside Scroll Mode" },
+  ] as const;
 
-      <Modal scroll="outside">
-        <Button variant="outlined" color="surface">Scroll Outside</Button>
-        <Modal.Backdrop>
-          <Modal.Container>
-            <Modal.Dialog>
-              <Modal.Header>
-                <Modal.Heading>Outside Scroll Mode</Modal.Heading>
-              </Modal.Header>
-              <Modal.Body className="space-y-4">
-                <p>Entire modal dialog scrolls naturally within the viewport.</p>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="contained">Close</Button>
-              </Modal.Footer>
-            </Modal.Dialog>
-          </Modal.Container>
-        </Modal.Backdrop>
-      </Modal>
+  return (
+    <div className="flex flex-wrap gap-4">
+      {modes.map((item) => (
+        <Modal key={item.mode} scroll={item.mode}>
+          <Button variant="outlined" color="surface">
+            {item.label}
+          </Button>
+          <Modal.Backdrop>
+            <Modal.Container>
+              <Modal.Dialog>
+                <Modal.Header>
+                  <Modal.Heading>{item.title}</Modal.Heading>
+                </Modal.Header>
+                <Modal.Body className="space-y-4">
+                  {Array.from({ length: 16 }).map((_, i) => (
+                    <p key={i}>
+                      Paragraph {i + 1}: Homonoid modal demonstrating {item.mode} scroll mechanics.
+                    </p>
+                  ))}
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button slot="close" variant="contained">
+                    Close
+                  </Button>
+                </Modal.Footer>
+              </Modal.Dialog>
+            </Modal.Container>
+          </Modal.Backdrop>
+        </Modal>
+      ))}
     </div>
   );
 }`;

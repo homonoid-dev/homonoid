@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { Modal, Button, Label, Description, Card, useModalContext } from "@homonoid/react";
-import type { ModalBackdropVariant } from "@homonoid/react";
+import { Modal, Button, Label, Description, Card } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -19,33 +17,8 @@ import {
   MODAL_DISMISS_CODE_SAMPLE,
 } from "./model";
 
-function CloseButton({ children = "Close" }: { children?: string }) {
-  const { setOpen } = useModalContext();
-  return (
-    <Button variant="contained" onClick={() => setOpen(false)}>
-      {children}
-    </Button>
-  );
-}
-
-function ConfirmButton({ children = "Confirm" }: { children?: string }) {
-  const { setOpen } = useModalContext();
-  return (
-    <Button variant="contained" onClick={() => setOpen(false)}>
-      {children}
-    </Button>
-  );
-}
-
 export function ModalView() {
   useToc(MODAL_SECTIONS_LIST);
-
-  const [backdropVariant, setBackdropVariant] =
-    useState<ModalBackdropVariant>("blur");
-  const [backdropModalOpen, setBackdropModalOpen] = useState(false);
-
-  const [dismissable, setDismissable] = useState(true);
-  const [dismissModalOpen, setDismissModalOpen] = useState(false);
 
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
@@ -90,8 +63,12 @@ export function ModalView() {
                       Are you sure you want to proceed with this operation? This action will apply changes immediately.
                     </Modal.Body>
                     <Modal.Footer>
-                      <CloseButton>Cancel</CloseButton>
-                      <ConfirmButton>Confirm</ConfirmButton>
+                      <Button slot="close" variant="plain">
+                        Cancel
+                      </Button>
+                      <Button slot="close" variant="contained">
+                        Confirm
+                      </Button>
                     </Modal.Footer>
                   </Modal.Dialog>
                 </Modal.Container>
@@ -165,51 +142,34 @@ export function ModalView() {
 
         <Stage code={MODAL_BACKDROP_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
-            {(["blur", "opaque", "transparent"] as ModalBackdropVariant[]).map(
-              (variant) => (
-                <Button
-                  key={variant}
-                  variant="outlined"
-                  color="surface"
-                  onClick={() => {
-                    setBackdropVariant(variant);
-                    setBackdropModalOpen(true);
-                  }}
-                >
+            {(["blur", "opaque", "transparent"] as const).map((variant) => (
+              <Modal key={variant}>
+                <Button variant="outlined" color="surface">
                   {variant.charAt(0).toUpperCase() + variant.slice(1)}
                 </Button>
-              )
-            )}
+                <Modal.Backdrop variant={variant}>
+                  <Modal.Container>
+                    <Modal.Dialog>
+                      <Modal.Header>
+                        <Modal.Heading>
+                          {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                        </Modal.Heading>
+                      </Modal.Header>
+                      <Modal.Body>
+                        This modal demonstrates the {variant} backdrop variant.
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button slot="close" variant="contained">
+                          Dismiss
+                        </Button>
+                      </Modal.Footer>
+                    </Modal.Dialog>
+                  </Modal.Container>
+                </Modal.Backdrop>
+              </Modal>
+            ))}
           </div>
         </Stage>
-
-        <Modal
-          open={backdropModalOpen}
-          onOpenChange={setBackdropModalOpen}
-        >
-          <Modal.Backdrop variant={backdropVariant}>
-            <Modal.Container>
-              <Modal.Dialog>
-                <Modal.Header>
-                  <Modal.Heading>
-                    {backdropVariant.charAt(0).toUpperCase() + backdropVariant.slice(1)} Backdrop
-                  </Modal.Heading>
-                </Modal.Header>
-                <Modal.Body>
-                  This dialog demonstrates the {backdropVariant} backdrop presentation.
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button
-                    variant="contained"
-                    onClick={() => setBackdropModalOpen(false)}
-                  >
-                    Dismiss
-                  </Button>
-                </Modal.Footer>
-              </Modal.Dialog>
-            </Modal.Container>
-          </Modal.Backdrop>
-        </Modal>
       </section>
 
       {/* Dismiss Control Section */}
@@ -229,58 +189,41 @@ export function ModalView() {
 
         <Stage code={MODAL_DISMISS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
-            <Button
-              variant="outlined"
-              color="surface"
-              onClick={() => {
-                setDismissable(true);
-                setDismissModalOpen(true);
-              }}
-            >
-              Dismissable
-            </Button>
-            <Button
-              variant="outlined"
-              color="surface"
-              onClick={() => {
-                setDismissable(false);
-                setDismissModalOpen(true);
-              }}
-            >
-              Non Dismissable
-            </Button>
+            {[
+              {
+                isDismissable: true,
+                label: "Dismissable",
+                description: "Clicking outside on the backdrop will dismiss this modal.",
+              },
+              {
+                isDismissable: false,
+                label: "Non Dismissable",
+                description: "Clicking outside will not close this dialog.",
+              },
+            ].map((item) => (
+              <Modal key={item.label}>
+                <Button variant="outlined" color="surface">
+                  {item.label}
+                </Button>
+                <Modal.Backdrop isDismissable={item.isDismissable}>
+                  <Modal.Container>
+                    <Modal.Dialog>
+                      <Modal.Header>
+                        <Modal.Heading>{item.label}</Modal.Heading>
+                      </Modal.Header>
+                      <Modal.Body>{item.description}</Modal.Body>
+                      <Modal.Footer>
+                        <Button slot="close" variant="contained">
+                          Close
+                        </Button>
+                      </Modal.Footer>
+                    </Modal.Dialog>
+                  </Modal.Container>
+                </Modal.Backdrop>
+              </Modal>
+            ))}
           </div>
         </Stage>
-
-        <Modal
-          open={dismissModalOpen}
-          onOpenChange={setDismissModalOpen}
-        >
-          <Modal.Backdrop isDismissable={dismissable}>
-            <Modal.Container>
-              <Modal.Dialog>
-                <Modal.Header>
-                  <Modal.Heading>
-                    {dismissable ? "Dismissable Modal" : "Non Dismissable Modal"}
-                  </Modal.Heading>
-                </Modal.Header>
-                <Modal.Body>
-                  {dismissable
-                    ? "Clicking outside on the backdrop or pressing Escape will dismiss this modal."
-                    : "Clicking outside will not close this dialog. You must click the confirmation button below."}
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button
-                    variant="contained"
-                    onClick={() => setDismissModalOpen(false)}
-                  >
-                    Close
-                  </Button>
-                </Modal.Footer>
-              </Modal.Dialog>
-            </Modal.Container>
-          </Modal.Backdrop>
-        </Modal>
       </section>
 
       {/* Scroll Modes Section */}
@@ -300,55 +243,37 @@ export function ModalView() {
 
         <Stage code={MODAL_SCROLL_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
-            <Modal scroll="inside">
-              <Button variant="outlined" color="surface">
-                Scroll Inside
-              </Button>
-              <Modal.Backdrop>
-                <Modal.Container>
-                  <Modal.Dialog>
-                    <Modal.Header>
-                      <Modal.Heading>Internal Scroll Mode</Modal.Heading>
-                    </Modal.Header>
-                    <Modal.Body className="space-y-4">
-                      {Array.from({ length: 12 }).map((_, i) => (
-                        <p key={i}>
-                          Paragraph {i + 1}: Homonoid modals preserve pinned headers and footers while allowing the central body region to scroll smoothly with contained overscroll boundaries.
-                        </p>
-                      ))}
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <CloseButton>Close</CloseButton>
-                    </Modal.Footer>
-                  </Modal.Dialog>
-                </Modal.Container>
-              </Modal.Backdrop>
-            </Modal>
-
-            <Modal scroll="outside">
-              <Button variant="outlined" color="surface">
-                Scroll Outside
-              </Button>
-              <Modal.Backdrop>
-                <Modal.Container>
-                  <Modal.Dialog>
-                    <Modal.Header>
-                      <Modal.Heading>Outside Scroll Mode</Modal.Heading>
-                    </Modal.Header>
-                    <Modal.Body className="space-y-4">
-                      {Array.from({ length: 24 }).map((_, i) => (
-                        <p key={i}>
-                          Paragraph {i + 1}: Outside scroll mode scrolls the entire modal container naturally across the viewport canvas.
-                        </p>
-                      ))}
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <CloseButton>Close</CloseButton>
-                    </Modal.Footer>
-                  </Modal.Dialog>
-                </Modal.Container>
-              </Modal.Backdrop>
-            </Modal>
+            {[
+              { mode: "inside" as const, label: "Scroll Inside", title: "Internal Scroll Mode", count: 12 },
+              { mode: "outside" as const, label: "Scroll Outside", title: "Outside Scroll Mode", count: 24 },
+            ].map((item) => (
+              <Modal key={item.mode} scroll={item.mode}>
+                <Button variant="outlined" color="surface">
+                  {item.label}
+                </Button>
+                <Modal.Backdrop>
+                  <Modal.Container>
+                    <Modal.Dialog>
+                      <Modal.Header>
+                        <Modal.Heading>{item.title}</Modal.Heading>
+                      </Modal.Header>
+                      <Modal.Body className="space-y-4">
+                        {Array.from({ length: item.count }).map((_, i) => (
+                          <p key={i}>
+                            Paragraph {i + 1}: Homonoid modal demonstrating {item.mode} scroll mechanics.
+                          </p>
+                        ))}
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button slot="close" variant="contained">
+                          Close
+                        </Button>
+                      </Modal.Footer>
+                    </Modal.Dialog>
+                  </Modal.Container>
+                </Modal.Backdrop>
+              </Modal>
+            ))}
           </div>
         </Stage>
       </section>
