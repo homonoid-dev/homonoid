@@ -1,6 +1,7 @@
 "use client";
 
-import { Modal, Button, Label, Description, Card } from "@homonoid/react";
+import type { ComponentProps } from "react";
+import { Modal, Button, Label, Description, Card, useModalContext } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -16,6 +17,18 @@ import {
   MODAL_SCROLL_CODE_SAMPLE,
   MODAL_DISMISS_CODE_SAMPLE,
 } from "./model";
+
+function Dismisser({
+  children = "Close",
+  ...props
+}: ComponentProps<typeof Button>) {
+  const { setOpen } = useModalContext();
+  return (
+    <Button {...props} onClick={() => setOpen(false)}>
+      {children}
+    </Button>
+  );
+}
 
 export function ModalView() {
   useToc(MODAL_SECTIONS_LIST);
@@ -63,12 +76,8 @@ export function ModalView() {
                       Are you sure you want to proceed with this operation? This action will apply changes immediately.
                     </Modal.Body>
                     <Modal.Footer>
-                      <Button slot="close" variant="plain">
-                        Cancel
-                      </Button>
-                      <Button slot="close" variant="contained">
-                        Confirm
-                      </Button>
+                      <Dismisser variant="plain">Cancel</Dismisser>
+                      <Dismisser variant="contained">Confirm</Dismisser>
                     </Modal.Footer>
                   </Modal.Dialog>
                 </Modal.Container>
@@ -112,9 +121,7 @@ export function ModalView() {
                         This modal is configured with the {size} size variant.
                       </Modal.Body>
                       <Modal.Footer>
-                        <Button slot="close" variant="contained">
-                          Done
-                        </Button>
+                        <Dismisser variant="contained">Done</Dismisser>
                       </Modal.Footer>
                     </Modal.Dialog>
                   </Modal.Container>
@@ -159,9 +166,7 @@ export function ModalView() {
                         This modal demonstrates the {variant} backdrop variant.
                       </Modal.Body>
                       <Modal.Footer>
-                        <Button slot="close" variant="contained">
-                          Dismiss
-                        </Button>
+                        <Dismisser variant="contained">Dismiss</Dismisser>
                       </Modal.Footer>
                     </Modal.Dialog>
                   </Modal.Container>
@@ -213,9 +218,7 @@ export function ModalView() {
                       </Modal.Header>
                       <Modal.Body>{item.description}</Modal.Body>
                       <Modal.Footer>
-                        <Button slot="close" variant="contained">
-                          Close
-                        </Button>
+                        <Dismisser variant="contained">Close</Dismisser>
                       </Modal.Footer>
                     </Modal.Dialog>
                   </Modal.Container>
@@ -265,9 +268,7 @@ export function ModalView() {
                         ))}
                       </Modal.Body>
                       <Modal.Footer>
-                        <Button slot="close" variant="contained">
-                          Close
-                        </Button>
+                        <Dismisser variant="contained">Close</Dismisser>
                       </Modal.Footer>
                     </Modal.Dialog>
                   </Modal.Container>
