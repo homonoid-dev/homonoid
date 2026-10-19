@@ -51,7 +51,7 @@
       --subtle: color-mix(in srgb, var(--seed) 18%, transparent);
       --subtle-hover: color-mix(in srgb, var(--seed) 26%, transparent);
       --subtle-active: color-mix(in srgb, var(--seed) 34%, transparent);
-      --subtle-foreground: color-mix(in srgb, var(--seed) 15%, white);
+      --subtle-foreground: color-mix(in srgb, var(--seed) 75%, white);
       --subtle-border: color-mix(in srgb, var(--seed) 30%, transparent);
 
       --background: #000000;
@@ -81,7 +81,7 @@
     --subtle: color-mix(in srgb, var(--seed) 18%, transparent);
     --subtle-hover: color-mix(in srgb, var(--seed) 26%, transparent);
     --subtle-active: color-mix(in srgb, var(--seed) 34%, transparent);
-    --subtle-foreground: color-mix(in srgb, var(--seed) 15%, white);
+    --subtle-foreground: color-mix(in srgb, var(--seed) 75%, white);
     --subtle-border: color-mix(in srgb, var(--seed) 30%, transparent);
 
     --background: #000000;
