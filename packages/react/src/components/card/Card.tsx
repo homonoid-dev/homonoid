@@ -36,7 +36,7 @@ export const variants = cva(
 
       // Fills when variant is filled
       { variant: "filled", color: "primary", className: "bg-primary/25" },
-      { variant: "filled", color: "subtle", className: "bg-subtle" },
+      { variant: "filled", color: "subtle", className: "bg-primary/10" },
       { variant: "filled", color: "surface", className: "bg-surface" },
       { variant: "filled", color: "destructive", className: "bg-destructive/15" },
     ],
