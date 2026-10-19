@@ -1,11 +1,12 @@
 "use client";
 
-import { forwardRef, useEffect } from "react";
+import { forwardRef, useEffect, useRef, useLayoutEffect } from "react";
 import { cva } from "class-variance-authority";
 import {
   FloatingPortal,
   FloatingOverlay,
   FloatingFocusManager,
+  useMergeRefs,
 } from "@floating-ui/react";
 import { useModalContext } from "./ModalContext";
 import { cn } from "../../utils/cn";
@@ -51,9 +52,18 @@ export const ModalBackdrop = forwardRef<HTMLDivElement, ModalBackdropProps>(
       setIsDismissable,
     } = useModalContext();
 
+    const overlayRef = useRef<HTMLDivElement>(null);
+    const mergedRef = useMergeRefs([ref, overlayRef]);
+
     useEffect(() => {
       setIsDismissable(isDismissable);
     }, [isDismissable, setIsDismissable]);
+
+    useLayoutEffect(() => {
+      if (overlayRef.current && isMounted) {
+        overlayRef.current.scrollTop = 0;
+      }
+    }, [isMounted]);
 
     if (!isMounted) {
       return null;
@@ -73,7 +83,7 @@ export const ModalBackdrop = forwardRef<HTMLDivElement, ModalBackdropProps>(
     return (
       <FloatingPortal>
         <FloatingOverlay
-          ref={ref}
+          ref={mergedRef}
           lockScroll={lockScroll}
           onClick={handleClick}
           className={cn(
@@ -91,7 +101,11 @@ export const ModalBackdrop = forwardRef<HTMLDivElement, ModalBackdropProps>(
           }}
           {...props}
         >
-          <FloatingFocusManager context={context} modal={true}>
+          <FloatingFocusManager
+            context={context}
+            modal={true}
+            initialFocus={cond(scroll === "outside", -1, 0)}
+          >
             <div className="contents">{children}</div>
           </FloatingFocusManager>
         </FloatingOverlay>

@@ -68,8 +68,10 @@ export const ModalDialog = forwardRef<HTMLDivElement, ModalDialogProps>(
       <div
         ref={mergedRef}
         role={role}
+        tabIndex={-1}
         aria-modal="true"
         className={cn(
+          "outline-none",
           dialogVariants({
             size: activeSize,
             variant: activeVariant,
