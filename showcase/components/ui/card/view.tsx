@@ -14,7 +14,6 @@ import {
   CARD_VARIANTS_CODE_SAMPLE,
   CARD_COLORS_CODE_SAMPLE,
   CARD_BORDER_CODE_SAMPLE,
-  CARD_PADDING_CODE_SAMPLE,
 } from "./model";
 
 export function CardView() {
@@ -109,32 +108,32 @@ export function CardView() {
 
         <Stage code={CARD_COLORS_CODE_SAMPLE}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-surface-gap w-full max-w-lg">
-            <Card variant="filled" color="surface" className="flex flex-col gap-2 p-surface">
-              <Label size="sm" as="h3">
+            <Card variant="filled" color="surface" className="flex flex-col gap-2">
+              <Label size="sm" as="h3" className="text-inherit">
                 Surface
               </Label>
               <Description>
                 Neutral surface background.
               </Description>
             </Card>
-            <Card variant="filled" color="subtle" className="flex flex-col gap-2 p-surface">
-              <Label size="sm" as="h3">
+            <Card variant="filled" color="subtle" className="flex flex-col gap-2">
+              <Label size="sm" as="h3" className="text-inherit">
                 Subtle
               </Label>
               <Description>
                 Chroma subtle wash tint.
               </Description>
             </Card>
-            <Card variant="filled" color="primary" className="flex flex-col gap-2 p-surface">
-              <Label size="sm" as="h3">
+            <Card variant="filled" color="primary" className="flex flex-col gap-2">
+              <Label size="sm" as="h3" className="text-inherit">
                 Primary
               </Label>
               <Description>
                 Brand highlight container.
               </Description>
             </Card>
-            <Card variant="filled" color="destructive" className="flex flex-col gap-2 p-surface">
-              <Label size="sm" as="h3">
+            <Card variant="filled" color="destructive" className="flex flex-col gap-2">
+              <Label size="sm" as="h3" className="text-inherit">
                 Destructive
               </Label>
               <Description>
@@ -159,7 +158,7 @@ export function CardView() {
 
         <Stage code={CARD_BORDER_CODE_SAMPLE}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap w-full max-w-lg">
-            <Card variant="filled" border={true} className="flex flex-col gap-2 p-surface">
+            <Card variant="filled" border={true} className="flex flex-col gap-2">
               <Label size="sm" as="h3">
                 With Border
               </Label>
@@ -167,54 +166,12 @@ export function CardView() {
                 Hairline border framing the card perimeter.
               </Description>
             </Card>
-            <Card variant="filled" border={false} className="flex flex-col gap-2 p-surface">
+            <Card variant="filled" border={false} className="flex flex-col gap-2">
               <Label size="sm" as="h3">
                 Borderless
               </Label>
               <Description>
                 Border stroke omitted for flat layered surfaces.
-              </Description>
-            </Card>
-          </div>
-        </Stage>
-      </section>
-
-      {/* Padding Scale Section */}
-      <section
-        id={CARD_SECTIONS.padding.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={CARD_SECTIONS.padding.icon} />
-          <Label size="lg" as="h2">
-            {CARD_SECTIONS.padding.label}
-          </Label>
-        </div>
-
-        <Stage code={CARD_PADDING_CODE_SAMPLE}>
-          <div className="flex flex-col gap-surface-gap w-full max-w-lg">
-            <Card padding="none" variant="filled" className="flex flex-col gap-1 p-2">
-              <Label size="sm" as="h3">
-                Padding None
-              </Label>
-              <Description>
-                Custom internal inset padding.
-              </Description>
-            </Card>
-            <Card padding="sm" variant="filled" className="flex flex-col gap-1">
-              <Label size="sm" as="h3">
-                Padding Small
-              </Label>
-              <Description>
-                Compact four unit padding scale.
-              </Description>
-            </Card>
-            <Card padding="surface" variant="filled" className="flex flex-col gap-1">
-              <Label size="sm" as="h3">
-                Padding Surface
-              </Label>
-              <Description>
-                Standard layout rhythm surface padding.
               </Description>
             </Card>
           </div>
