@@ -132,28 +132,12 @@ export function ModalView() {
                         </Modal.Heading>
                       </Modal.Header>
                       <Modal.Body>
-                        <p>
-                          {size === "cover" ? (
-                            <>
-                              This modal uses the <code>cover</code> size variant. It spans nearly the full
-                              screen while maintaining rounded corners and standard padding.
-                            </>
-                          ) : size === "full" ? (
-                            <>
-                              This modal uses the <code>full</code> size variant. It occupies the entire
-                              viewport without any margins or rounded corners, creating a true fullscreen
-                              experience.
-                            </>
-                          ) : (
-                            <>
-                              This modal uses the <code>{size}</code> size variant, providing a standardized
-                              maximum width to suit various content needs.
-                            </>
-                          )}
-                        </p>
+                        This modal is configured with the {size} size variant.
                       </Modal.Body>
                       <Modal.Footer>
-                        <CloseButton>Done</CloseButton>
+                        <Button slot="close" variant="contained">
+                          Done
+                        </Button>
                       </Modal.Footer>
                     </Modal.Dialog>
                   </Modal.Container>
