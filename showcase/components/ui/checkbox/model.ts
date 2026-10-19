@@ -2,7 +2,6 @@ import type { LucideIcon } from "lucide-react";
 import {
   CheckSquare,
   Ruler,
-  Circle,
   Tag,
   Ban,
   Infinity,
@@ -28,11 +27,6 @@ export const CHECKBOX_SECTIONS: Record<string, CheckboxSectionItem> = {
     id: "sizes",
     label: "Sizes",
     icon: Ruler,
-  },
-  shapes: {
-    id: "shapes",
-    label: "Shapes",
-    icon: Circle,
   },
   labelAndHelper: {
     id: "label-and-helper",
@@ -82,7 +76,7 @@ export function Example() {
 
 export const CHECKBOX_STATES_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
 
-export function StatesExample() {
+export function Example() {
   return (
     <div className="flex flex-row flex-wrap items-center gap-surface-gap">
       <Checkbox aria-label="Unchecked option" />
@@ -94,7 +88,7 @@ export function StatesExample() {
 
 export const CHECKBOX_SIZES_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
 
-export function SizesExample() {
+export function Example() {
   return (
     <div className="flex flex-row flex-wrap items-center gap-surface-gap">
       <Checkbox size="sm" defaultChecked aria-label="Small checkbox" />
@@ -104,21 +98,9 @@ export function SizesExample() {
   );
 }`;
 
-export const CHECKBOX_SHAPES_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
-
-export function ShapesExample() {
-  return (
-    <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-      <Checkbox defaultChecked aria-label="Standard shape" />
-      <Checkbox shape="circle" defaultChecked aria-label="Circle shape" />
-      <Checkbox shape="square" defaultChecked aria-label="Square shape" />
-    </div>
-  );
-}`;
-
 export const CHECKBOX_LABEL_HELPER_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
 
-export function LabelHelperExample() {
+export function Example() {
   return (
     <div className="flex flex-col gap-4 max-w-sm">
       <Checkbox
@@ -132,7 +114,7 @@ export function LabelHelperExample() {
 
 export const CHECKBOX_DISABLED_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
 
-export function DisabledExample() {
+export function Example() {
   return (
     <div className="flex flex-row flex-wrap items-center gap-surface-gap">
       <Checkbox disabled aria-label="Disabled unchecked" />

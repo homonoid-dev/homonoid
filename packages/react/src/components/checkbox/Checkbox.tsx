@@ -11,13 +11,16 @@ export const variants = cva(
   {
     variants: {
       size: {
-        sm: "w-4 h-4 rounded-md",
-        md: "w-5 h-5 rounded-lg",
-        lg: "w-6 h-6 rounded-lg"
+        sm: "w-4 h-4",
+        md: "w-5 h-5",
+        lg: "w-6 h-6"
       },
-      shape: {
-        circle: "rounded-full",
-        square: "rounded-none"
+      radius: {
+        none: "rounded-none",
+        sm: "rounded-sm",
+        md: "rounded-md",
+        lg: "rounded-lg",
+        full: "rounded-full"
       },
       state: {
         unchecked: "border-border text-transparent",
@@ -47,6 +50,7 @@ export const variants = cva(
     ],
     defaultVariants: {
       size: "md",
+      radius: "md",
       state: "unchecked",
       invalid: false,
       disabled: false
@@ -57,7 +61,7 @@ export const variants = cva(
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
   {
     size = "md",
-    shape,
+    radius = "md",
     checked,
     defaultChecked = false,
     indeterminate = false,
@@ -151,9 +155,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           aria-checked={cond(isIndeterminate, "mixed", isChecked)}
           onChange={handleChange}
           className={cn(
-            "peer absolute inset-0 w-full h-full opacity-0 z-10 m-0 p-0",
-            cond(disabled, "cursor-not-allowed", "cursor-pointer"),
-            cond(shape === "circle", "rounded-full", cond(shape === "square", "rounded-none", "rounded-md"))
+            "peer absolute inset-0 w-full h-full opacity-0 z-10 m-0 p-0 rounded-[inherit]",
+            cond(disabled, "cursor-not-allowed", "cursor-pointer")
           )}
           {...props}
         />
@@ -164,7 +167,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           className={cn(
             variants({
               size,
-              shape,
+              radius,
               state: currentState,
               invalid,
               disabled

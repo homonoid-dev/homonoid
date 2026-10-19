@@ -13,7 +13,6 @@ import {
   CHECKBOX_DEFAULT_CODE_SAMPLE,
   CHECKBOX_STATES_CODE_SAMPLE,
   CHECKBOX_SIZES_CODE_SAMPLE,
-  CHECKBOX_SHAPES_CODE_SAMPLE,
   CHECKBOX_LABEL_HELPER_CODE_SAMPLE,
   CHECKBOX_DISABLED_CODE_SAMPLE,
 } from "./model";
@@ -96,27 +95,6 @@ export function CheckboxView() {
             <Checkbox size="sm" defaultChecked aria-label="Small checkbox" />
             <Checkbox size="md" defaultChecked aria-label="Medium checkbox" />
             <Checkbox size="lg" defaultChecked aria-label="Large checkbox" />
-          </div>
-        </Stage>
-      </section>
-
-      {/* Shapes Section */}
-      <section
-        id={CHECKBOX_SECTIONS.shapes.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={CHECKBOX_SECTIONS.shapes.icon} />
-          <Label size="lg" as="h2">
-            {CHECKBOX_SECTIONS.shapes.label}
-          </Label>
-        </div>
-
-        <Stage code={CHECKBOX_SHAPES_CODE_SAMPLE}>
-          <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-            <Checkbox defaultChecked aria-label="Standard shape" />
-            <Checkbox shape="circle" defaultChecked aria-label="Circle shape" />
-            <Checkbox shape="square" defaultChecked aria-label="Square shape" />
           </div>
         </Stage>
       </section>

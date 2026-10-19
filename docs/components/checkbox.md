@@ -47,13 +47,15 @@ Checkboxes align with the standardized Homonoid control scale (`Size = "sm" | "m
 
 <br>
 
-### Shapes
+### Radius
 
-Checkboxes support geometric shape overrides via the `shape` prop (`CheckboxShape = "circle" | "square"`):
+Checkboxes support configurable corner curvature via the `radius` prop matching the Homonoid geometric scale:
 
-- `Default` (`undefined`): Continuous corner radius inherited from size scale (`rounded-sm`, `rounded-md`, `rounded-lg`). Recommended for standard multi-select forms.
-- `Circle` (`shape="circle"`): Circular boundary (`rounded-full`). Ideal for task managers, completed checklists, and todo lists.
-- `Square` (`shape="square"`): Sharp corners (`rounded-none`). Ideal for dense enterprise data tables and brutalist layouts.
+- `Medium` (`radius="md"` or omitted): Balanced standard control rounding active as default.
+- `Full` (`radius="full"`): Circular boundary ideal for task managers and completed checklists.
+- `Large` (`radius="lg"`): Soft modern corners.
+- `Small` (`radius="sm"`): Subtle corner curvature.
+- `None` (`radius="none"`): Sharp rectilinear corners.
 
 <br>
 
