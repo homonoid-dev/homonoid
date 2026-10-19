@@ -8,30 +8,14 @@
     --h-control-md: 2.5rem;
     --h-control-lg: 3.0rem;
 
-    /* Control Padding (sm: 12px, md: 16px, lg: 20px) */
-    --p-control-sm: 0.75rem;
-    --p-control-md: 1.0rem;
-    --p-control-lg: 1.25rem;
-    --p-control-x: var(--p-control-md);
-    --p-control-y: var(--p-control-sm);
+    /* Control Insets & Gaps */
+    --p-control-x: 1.0rem;
+    --p-control-y: 0.75rem;
+    --gap-control: 0.5rem;
 
-    /* Control Gaps (sm: 6px, md: 8px, lg: 10px) */
-    --gap-control-sm: 0.375rem;
-    --gap-control-md: 0.5rem;
-    --gap-control-lg: 0.625rem;
-    --gap-control: var(--gap-control-md);
-
-    /* Surface Padding (sm: 16px, md: 24px, lg: 32px) */
-    --p-surface-sm: 1.0rem;
-    --p-surface-md: 1.5rem;
-    --p-surface-lg: 2.0rem;
-    --p-surface: var(--p-surface-md);
-
-    /* Surface Gaps (sm: 12px, md: 16px, lg: 24px) */
-    --gap-surface-sm: 0.75rem;
-    --gap-surface-md: 1.0rem;
-    --gap-surface-lg: 1.5rem;
-    --gap-surface: var(--gap-surface-md);
+    /* Surface Spacing */
+    --p-surface: 1.5rem;
+    --gap-surface: 1.0rem;
 
     /* Layout Insets & Responsive Gutter */
     --p-layout: clamp(1.25rem, 3vw, 2.0rem);
@@ -48,27 +32,13 @@
   --spacing-control: var(--h-control-md);
   --spacing-control-lg: var(--h-control-lg);
 
-  /* Control Padding & Insets */
-  --spacing-control-padding-sm: var(--p-control-sm);
-  --spacing-control-padding-md: var(--p-control-md);
-  --spacing-control-padding-lg: var(--p-control-lg);
+  /* Control Insets & Gaps */
   --spacing-control-x: var(--p-control-x);
   --spacing-control-y: var(--p-control-y);
-
-  /* Control Gaps */
-  --spacing-control-gap-sm: var(--gap-control-sm);
-  --spacing-control-gap-md: var(--gap-control-md);
-  --spacing-control-gap-lg: var(--gap-control-lg);
   --spacing-control-gap: var(--gap-control);
 
   /* Surface Spacing */
-  --spacing-surface-padding-sm: var(--p-surface-sm);
-  --spacing-surface-padding-md: var(--p-surface-md);
-  --spacing-surface-padding-lg: var(--p-surface-lg);
   --spacing-surface: var(--p-surface);
-  --spacing-surface-gap-sm: var(--gap-surface-sm);
-  --spacing-surface-gap-md: var(--gap-surface-md);
-  --spacing-surface-gap-lg: var(--gap-surface-lg);
   --spacing-surface-gap: var(--gap-surface);
 
   /* Layout Spacing */

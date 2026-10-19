@@ -6,32 +6,22 @@
       "lg": 48
     },
     "padding": {
-      "sm": 12,
-      "md": 16,
-      "lg": 20
+      "x": 16,
+      "y": 12
     },
-    "gap": {
-      "sm": 6,
-      "md": 8,
-      "lg": 10
-    }
+    "gap": 8
   },
   "surface": {
-    "padding": {
-      "sm": 16,
-      "md": 24,
-      "lg": 32
-    },
-    "gap": {
-      "sm": 12,
-      "md": 16,
-      "lg": 24
-    }
+    "padding": 24,
+    "gap": 16
   },
   "layout": {
     "padding": {
-      "min": 20,
-      "max": 32
+      "x": {
+        "min": 20,
+        "max": 32
+      },
+      "y": 32
     },
     "gap": 24
   }
