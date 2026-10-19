@@ -13,7 +13,7 @@ import { cond } from "../../utils/condition";
 import type { ModalBackdropProps } from "./types";
 
 export const backdropVariants = cva(
-  "fixed inset-0 z-50 flex items-center justify-center",
+  "fixed inset-0 z-50",
   {
     variants: {
       variant: {
@@ -78,7 +78,11 @@ export const ModalBackdrop = forwardRef<HTMLDivElement, ModalBackdropProps>(
           onClick={handleClick}
           className={cn(
             backdropVariants({ variant }),
-            cond(scroll === "outside", "overflow-y-auto", "overflow-hidden"),
+            cond(
+              scroll === "outside",
+              "overflow-y-auto overflow-x-hidden",
+              "overflow-hidden flex items-center justify-center"
+            ),
             className
           )}
           style={{

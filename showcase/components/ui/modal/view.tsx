@@ -291,7 +291,7 @@ export function ModalView() {
                     variant="contained"
                     onClick={() => setDismissModalOpen(false)}
                   >
-                    Close Dialog
+                    Close
                   </Button>
                 </Modal.Footer>
               </Modal.Dialog>
@@ -353,7 +353,7 @@ export function ModalView() {
                       <Modal.Heading>Outside Scroll Mode</Modal.Heading>
                     </Modal.Header>
                     <Modal.Body className="space-y-4">
-                      {Array.from({ length: 8 }).map((_, i) => (
+                      {Array.from({ length: 24 }).map((_, i) => (
                         <p key={i}>
                           Paragraph {i + 1}: Outside scroll mode scrolls the entire modal container naturally across the viewport canvas.
                         </p>

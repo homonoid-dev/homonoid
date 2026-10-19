@@ -25,7 +25,7 @@ export const dialogVariants = cva(
       },
       scroll: {
         inside: "max-h-[calc(100vh-var(--spacing-surface)*2)]",
-        outside: "my-auto",
+        outside: "my-auto shrink-0",
       },
     },
     compoundVariants: [
