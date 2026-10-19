@@ -1,22 +1,34 @@
 "use client";
 
 import { forwardRef } from "react";
-import { useModalContext } from "./ModalContext";
+import { ModalContext, useModalContext } from "./ModalContext";
 import { cn } from "../../utils/cn";
 import { cond } from "../../utils/condition";
-import type { ModalContainerProps } from "./types";
+import type { ModalContainerProps, ModalSize } from "./types";
 
 export const ModalContainer = forwardRef<HTMLDivElement, ModalContainerProps>(
-  function ModalContainer({ children, className, ...props }, ref) {
-    const { size, scroll } = useModalContext();
+  function ModalContainer(
+    { children, size: propSize, className, ...props },
+    ref
+  ) {
+    const context = useModalContext();
+    const activeSize = cond(
+      Boolean(propSize),
+      propSize as ModalSize,
+      context.size
+    );
 
-    return (
+    const containerNode = (
       <div
         ref={ref}
         className={cn(
           "w-full min-h-full flex justify-center pointer-events-none",
-          cond(scroll === "outside", "items-start py-surface", "items-center"),
-          cond(size === "full", "p-0", "px-surface"),
+          cond(
+            context.scroll === "outside",
+            "items-start py-surface",
+            "items-center"
+          ),
+          cond(activeSize === "full", "p-0", "px-surface"),
           className
         )}
         {...props}
@@ -24,6 +36,16 @@ export const ModalContainer = forwardRef<HTMLDivElement, ModalContainerProps>(
         {children}
       </div>
     );
+
+    if (Boolean(propSize)) {
+      return (
+        <ModalContext.Provider value={{ ...context, size: activeSize }}>
+          {containerNode}
+        </ModalContext.Provider>
+      );
+    }
+
+    return containerNode;
   }
 );
 

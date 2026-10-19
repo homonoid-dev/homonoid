@@ -74,7 +74,7 @@ export function Example() {
 
 export const CARD_VARIANTS_CODE_SAMPLE = `import { Card, Label, Description } from "@homonoid/react";
 
-export function VariantsExample() {
+export function Example() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap w-full max-w-lg">
       <Card variant="outlined" className="flex flex-col gap-2 p-surface">
@@ -99,7 +99,7 @@ export function VariantsExample() {
 
 export const CARD_COLORS_CODE_SAMPLE = `import { Card, Label, Description } from "@homonoid/react";
 
-export function ColorsExample() {
+export function Example() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-surface-gap w-full max-w-lg">
       <Card variant="filled" color="surface" className="flex flex-col gap-2">
@@ -140,7 +140,7 @@ export function ColorsExample() {
 
 export const CARD_BORDER_CODE_SAMPLE = `import { Card, Label, Description } from "@homonoid/react";
 
-export function BorderExample() {
+export function Example() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap w-full max-w-lg">
       <Card variant="filled" border={true} className="flex flex-col gap-2">

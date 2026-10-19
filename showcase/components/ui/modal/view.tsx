@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Modal, Button, Label, Description, Card, useModalContext } from "@homonoid/react";
-import type { ModalSize, ModalBackdropVariant } from "@homonoid/react";
+import type { ModalBackdropVariant } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -22,7 +22,7 @@ import {
 function CloseButton({ children = "Close" }: { children?: string }) {
   const { setOpen } = useModalContext();
   return (
-    <Button variant="plain" onClick={() => setOpen(false)}>
+    <Button variant="contained" onClick={() => setOpen(false)}>
       {children}
     </Button>
   );
@@ -39,9 +39,6 @@ function ConfirmButton({ children = "Confirm" }: { children?: string }) {
 
 export function ModalView() {
   useToc(MODAL_SECTIONS_LIST);
-
-  const [activeSize, setActiveSize] = useState<ModalSize>("md");
-  const [sizeModalOpen, setSizeModalOpen] = useState(false);
 
   const [backdropVariant, setBackdropVariant] =
     useState<ModalBackdropVariant>("blur");
@@ -121,48 +118,50 @@ export function ModalView() {
 
         <Stage code={MODAL_SIZES_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
-            {(["sm", "md", "lg", "cover", "full"] as ModalSize[]).map((size) => (
-              <Button
-                key={size}
-                variant="outlined"
-                color="surface"
-                onClick={() => {
-                  setActiveSize(size);
-                  setSizeModalOpen(true);
-                }}
-              >
-                {size.charAt(0).toUpperCase() + size.slice(1)}
-              </Button>
+            {(["sm", "md", "lg", "cover", "full"] as const).map((size) => (
+              <Modal key={size}>
+                <Button variant="outlined" color="surface">
+                  {size.charAt(0).toUpperCase() + size.slice(1)}
+                </Button>
+                <Modal.Backdrop>
+                  <Modal.Container size={size}>
+                    <Modal.Dialog>
+                      <Modal.Header>
+                        <Modal.Heading>
+                          Size: {size.charAt(0).toUpperCase() + size.slice(1)}
+                        </Modal.Heading>
+                      </Modal.Header>
+                      <Modal.Body>
+                        <p>
+                          {size === "cover" ? (
+                            <>
+                              This modal uses the <code>cover</code> size variant. It spans nearly the full
+                              screen while maintaining rounded corners and standard padding.
+                            </>
+                          ) : size === "full" ? (
+                            <>
+                              This modal uses the <code>full</code> size variant. It occupies the entire
+                              viewport without any margins or rounded corners, creating a true fullscreen
+                              experience.
+                            </>
+                          ) : (
+                            <>
+                              This modal uses the <code>{size}</code> size variant, providing a standardized
+                              maximum width to suit various content needs.
+                            </>
+                          )}
+                        </p>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <CloseButton>Done</CloseButton>
+                      </Modal.Footer>
+                    </Modal.Dialog>
+                  </Modal.Container>
+                </Modal.Backdrop>
+              </Modal>
             ))}
           </div>
         </Stage>
-
-        <Modal
-          size={activeSize}
-          open={sizeModalOpen}
-          onOpenChange={setSizeModalOpen}
-        >
-          <Modal.Backdrop>
-            <Modal.Container>
-              <Modal.Dialog>
-                <Modal.Header>
-                  <Modal.Heading>{activeSize.toUpperCase()} Dialog</Modal.Heading>
-                </Modal.Header>
-                <Modal.Body>
-                  This modal demonstrates the {activeSize} sizing scale. Cover expands nearly to the viewport boundaries with surrounding margins, while full fills the complete browser canvas edge to edge.
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button
-                    variant="contained"
-                    onClick={() => setSizeModalOpen(false)}
-                  >
-                    Done
-                  </Button>
-                </Modal.Footer>
-              </Modal.Dialog>
-            </Modal.Container>
-          </Modal.Backdrop>
-        </Modal>
       </section>
 
       {/* Backdrop Variants Section */}

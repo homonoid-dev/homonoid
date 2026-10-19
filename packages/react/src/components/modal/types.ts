@@ -58,6 +58,7 @@ export interface ModalBackdropProps extends HTMLAttributes<HTMLDivElement> {
 
 export interface ModalContainerProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
+  size?: ModalSize;
   className?: string;
 }
 
