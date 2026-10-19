@@ -93,14 +93,11 @@ export function ModalView() {
         className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
       >
         <div className="flex flex-row gap-surface-gap items-center">
+          <Frame icon={MODAL_SECTIONS.sizes.icon} />
           <Label size="lg" as="h2">
             {MODAL_SECTIONS.sizes.label}
           </Label>
         </div>
-
-        <Description>
-          Modals scale across five distinct dimensions from compact prompts to full screen viewports.
-        </Description>
 
         <Stage code={MODAL_SIZES_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
@@ -138,14 +135,11 @@ export function ModalView() {
         className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
       >
         <div className="flex flex-row gap-surface-gap items-center">
+          <Frame icon={MODAL_SECTIONS.backdrop.icon} />
           <Label size="lg" as="h2">
             {MODAL_SECTIONS.backdrop.label}
           </Label>
         </div>
-
-        <Description>
-          Backdrop planes support blur, opaque, and transparent styling variants controlled directly on the backdrop element.
-        </Description>
 
         <Stage code={MODAL_BACKDROP_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
@@ -183,14 +177,11 @@ export function ModalView() {
         className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
       >
         <div className="flex flex-row gap-surface-gap items-center">
+          <Frame icon={MODAL_SECTIONS.dismiss.icon} />
           <Label size="lg" as="h2">
             {MODAL_SECTIONS.dismiss.label}
           </Label>
         </div>
-
-        <Description>
-          Backdrops configure click outside dismissal behavior via the isDismissable property.
-        </Description>
 
         <Stage code={MODAL_DISMISS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
@@ -235,14 +226,11 @@ export function ModalView() {
         className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
       >
         <div className="flex flex-row gap-surface-gap items-center">
+          <Frame icon={MODAL_SECTIONS.scroll.icon} />
           <Label size="lg" as="h2">
             {MODAL_SECTIONS.scroll.label}
           </Label>
         </div>
-
-        <Description>
-          Modals support both internal content scrolling and viewport level scrolling when dialog bodies contain extensive copy.
-        </Description>
 
         <Stage code={MODAL_SCROLL_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
