@@ -21,13 +21,16 @@ export const variants = cva(
         destructive: ""
       },
       size: {
-        sm: "h-control-sm px-3.5 text-sm gap-control-gap rounded-md",
-        md: "h-control-md px-control-x text-sm font-medium gap-control-gap rounded-lg",
-        lg: "h-control-lg px-5 text-base font-medium gap-control-gap rounded-xl"
+        sm: "h-control-sm px-3.5 text-sm gap-control-gap",
+        md: "h-control-md px-control-x text-sm font-medium gap-control-gap",
+        lg: "h-control-lg px-5 text-base font-medium gap-control-gap"
       },
-      shape: {
-        circle: "rounded-full",
-        square: "rounded-none"
+      radius: {
+        none: "rounded-none",
+        sm: "rounded-sm",
+        md: "rounded-md",
+        lg: "rounded-lg",
+        full: "rounded-full"
       },
       layout: {
         inline: "w-auto",
@@ -122,6 +125,7 @@ export const variants = cva(
       variant: "plain",
       color: "primary",
       size: "md",
+      radius: "full",
       layout: "inline"
     }
   }
@@ -132,7 +136,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     variant = "plain",
     color = "primary",
     size,
-    shape,
+    radius = "full",
     layout,
     loading = false,
     disabled = false,
@@ -154,7 +158,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       disabled={isDisabled}
       aria-busy={loading}
       aria-disabled={isDisabled}
-      className={cn(variants({ variant, color, size, shape, layout }), className)}
+      className={cn(variants({ variant, color, size, radius, layout }), className)}
       {...props}
     >
       {/* Loading Overlay with Object Continuity */}

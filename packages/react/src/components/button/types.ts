@@ -4,7 +4,7 @@ import type { Size } from "../../types";
 export type ButtonVariant = "contained" | "outlined" | "plain";
 export type ButtonColor = "primary" | "subtle" | "surface" | "destructive";
 export type ButtonSize = Size;
-export type ButtonShape = "circle" | "square";
+export type ButtonRadius = "none" | "sm" | "md" | "lg" | "full";
 export type ButtonLayout = "inline" | "full" | "icon";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -38,9 +38,15 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
 
   /**
-   * Geometric shape override.
+   * Corner radius curvature.
+   * - `none`: Flat square corners.
+   * - `sm`: Small rounded corners.
+   * - `md`: Medium rounded corners.
+   * - `lg`: Large rounded corners.
+   * - `full`: Capsule pill or circular corners.
+   * @default "full"
    */
-  shape?: ButtonShape;
+  radius?: ButtonRadius;
 
   /**
    * Layout behavior and bounding frame.

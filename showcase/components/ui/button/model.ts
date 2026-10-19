@@ -98,7 +98,7 @@ export const BUTTON_CONTAINED_CODE_SAMPLE = `import { Button } from "@homonoid/r
 
 export function Example() {
   return (
-    <Button variant="contained" shape="circle">
+    <Button variant="contained">
       Click me
     </Button>
   );
@@ -109,19 +109,19 @@ export const BUTTON_VARIANTS_CODE_SAMPLE = `import { Button } from "@homonoid/re
 export function Example() {
   return (
     <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-      <Button variant="contained" color="primary" shape="circle">
+      <Button variant="contained" color="primary">
         Primary
       </Button>
-      <Button variant="contained" color="subtle" shape="circle">
+      <Button variant="contained" color="subtle">
         Subtle
       </Button>
-      <Button variant="outlined" shape="circle">
+      <Button variant="outlined">
         Outline
       </Button>
-      <Button variant="plain" shape="circle">
+      <Button variant="plain">
         Ghost
       </Button>
-      <Button variant="contained" color="destructive" shape="circle">
+      <Button variant="contained" color="destructive">
         Destructive
       </Button>
     </div>
@@ -132,7 +132,7 @@ export const BUTTON_OUTLINED_CODE_SAMPLE = `import { Button } from "@homonoid/re
 
 export function Example() {
   return (
-    <Button variant="outlined" shape="circle">
+    <Button variant="outlined">
       Click me
     </Button>
   );
@@ -145,7 +145,6 @@ export function Example() {
   return (
     <Button
       variant="contained"
-      shape="circle"
       leading={<ArrowRight className="size-4" />}
     >
       Click me
@@ -161,7 +160,6 @@ export function Example() {
     <Button
       layout="icon"
       variant="contained"
-      shape="circle"
       aria-label="Add item"
     >
       <Plus className="size-4" />
@@ -178,7 +176,6 @@ export function Example() {
   return (
     <Button
       variant="contained"
-      shape="circle"
       loading={loading}
       onClick={() => setLoading(true)}
     >
@@ -192,13 +189,13 @@ export const BUTTON_SIZES_CODE_SAMPLE = `import { Button } from "@homonoid/react
 export function Example() {
   return (
     <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-      <Button variant="contained" shape="circle" size="sm">
+      <Button variant="contained" size="sm">
         Small
       </Button>
-      <Button variant="contained" shape="circle" size="md">
+      <Button variant="contained" size="md">
         Medium
       </Button>
-      <Button variant="contained" shape="circle" size="lg">
+      <Button variant="contained" size="lg">
         Large
       </Button>
     </div>
@@ -210,13 +207,13 @@ export const BUTTON_DISABLED_CODE_SAMPLE = `import { Button } from "@homonoid/re
 export function Example() {
   return (
     <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-      <Button variant="contained" shape="circle" disabled>
+      <Button variant="contained" disabled>
         Contained
       </Button>
-      <Button variant="outlined" shape="circle" disabled>
+      <Button variant="outlined" disabled>
         Outlined
       </Button>
-      <Button variant="plain" shape="circle" disabled>
+      <Button variant="plain" disabled>
         Plain
       </Button>
     </div>
@@ -227,7 +224,7 @@ export const BUTTON_FULL_WIDTH_CODE_SAMPLE = `import { Button } from "@homonoid/
 
 export function Example() {
   return (
-    <Button variant="contained" shape="circle" layout="full">
+    <Button variant="contained" layout="full">
       Full Width
     </Button>
   );

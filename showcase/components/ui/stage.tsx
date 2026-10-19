@@ -113,7 +113,6 @@ export function Stage({
               layout="icon"
               variant={cond(activeTab === "preview", "contained", "plain")}
               color="surface"
-              shape="circle"
               onClick={() => setActiveTab("preview")}
               aria-label="Preview"
             >
@@ -126,7 +125,6 @@ export function Stage({
               layout="icon"
               variant={cond(activeTab === "code", "contained", "plain")}
               color="surface"
-              shape="circle"
               onClick={() => setActiveTab("code")}
               aria-label="Code"
             >
@@ -142,7 +140,6 @@ export function Stage({
                 layout="icon"
                 variant="plain"
                 color="subtle"
-                shape="circle"
                 onClick={onReset}
                 aria-label="Reset"
               >
@@ -156,7 +153,6 @@ export function Stage({
               layout="icon"
               variant="plain"
               color="subtle"
-              shape="circle"
               onClick={handleCopy}
               aria-label={cond(copied, "Copied", "Copy code")}
             >

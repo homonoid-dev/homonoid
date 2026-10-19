@@ -62,7 +62,7 @@ export function TooltipView() {
         <Stage code={TOOLTIP_DEFAULT_CODE_SAMPLE}>
           <div className="flex items-center justify-center p-6">
             <Tooltip content="Add new element">
-              <Button shape="circle" layout="icon" variant="contained">
+              <Button layout="icon" variant="contained">
                 <Plus className="w-4 h-4" />
               </Button>
             </Tooltip>
@@ -85,19 +85,19 @@ export function TooltipView() {
         <Stage code={TOOLTIP_VARIANTS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-6 p-6">
             <Tooltip variant="inverted" content="Bookmark item">
-              <Button shape="circle" layout="icon" variant="contained">
+              <Button layout="icon" variant="contained">
                 <Bookmark className="w-4 h-4" />
               </Button>
             </Tooltip>
 
             <Tooltip variant="surface" content="Settings panel">
-              <Button shape="circle" layout="icon" variant="outlined">
+              <Button layout="icon" variant="outlined">
                 <Settings className="w-4 h-4" />
               </Button>
             </Tooltip>
 
             <Tooltip variant="primary" content="AI Assistant">
-              <Button shape="circle" layout="icon" color="primary" variant="contained">
+              <Button layout="icon" color="primary" variant="contained">
                 <Sparkles className="w-4 h-4" />
               </Button>
             </Tooltip>
@@ -120,25 +120,25 @@ export function TooltipView() {
         <Stage code={TOOLTIP_PLACEMENTS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-6 p-6">
             <Tooltip side="top" content="North positioning">
-              <Button shape="circle" layout="icon" variant="outlined">
+              <Button layout="icon" variant="outlined">
                 <ArrowUp className="w-4 h-4" />
               </Button>
             </Tooltip>
 
             <Tooltip side="bottom" content="South positioning">
-              <Button shape="circle" layout="icon" variant="outlined">
+              <Button layout="icon" variant="outlined">
                 <ArrowDown className="w-4 h-4" />
               </Button>
             </Tooltip>
 
             <Tooltip side="left" content="West positioning">
-              <Button shape="circle" layout="icon" variant="outlined">
+              <Button layout="icon" variant="outlined">
                 <ArrowLeft className="w-4 h-4" />
               </Button>
             </Tooltip>
 
             <Tooltip side="right" content="East positioning">
-              <Button shape="circle" layout="icon" variant="outlined">
+              <Button layout="icon" variant="outlined">
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </Tooltip>
@@ -162,7 +162,7 @@ export function TooltipView() {
           <div className="flex items-center justify-center p-6">
             <Tooltip>
               <Tooltip.Trigger asChild>
-                <Button shape="circle" layout="icon" variant="contained">
+                <Button layout="icon" variant="contained">
                   <Copy className="w-4 h-4" />
                 </Button>
               </Tooltip.Trigger>

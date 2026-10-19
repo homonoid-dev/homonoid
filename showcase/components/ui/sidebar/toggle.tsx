@@ -39,7 +39,6 @@ export function SidebarToggle({
       layout="icon"
       variant="plain"
       color="subtle"
-      shape="circle"
       onClick={(e) => {
         toggleCollapse();
         onClick?.(e);

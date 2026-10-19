@@ -65,7 +65,7 @@ export function ButtonViewContent() {
 
         {/* Contained Stage */}
         <Stage code={containedCodeSample}>
-          <Button variant="contained" shape="circle">
+          <Button variant="contained">
             Click me
           </Button>
         </Stage>
@@ -81,19 +81,19 @@ export function ButtonViewContent() {
         {/* Variants Stage */}
         <Stage code={variantsCodeSample}>
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-            <Button variant="contained" color="primary" shape="circle">
+            <Button variant="contained" color="primary">
               Primary
             </Button>
-            <Button variant="contained" color="subtle" shape="circle">
+            <Button variant="contained" color="subtle">
               Subtle
             </Button>
-            <Button variant="outlined" shape="circle">
+            <Button variant="outlined">
               Outline
             </Button>
-            <Button variant="plain" shape="circle">
+            <Button variant="plain">
               Ghost
             </Button>
-            <Button variant="contained" color="destructive" shape="circle">
+            <Button variant="contained" color="destructive">
               Destructive
             </Button>
           </div>
@@ -110,13 +110,13 @@ export function ButtonViewContent() {
         {/* Sizes Stage */}
         <Stage code={sizesCodeSample}>
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-            <Button variant="contained" shape="circle" size="sm">
+            <Button variant="contained" size="sm">
               Small
             </Button>
-            <Button variant="contained" shape="circle" size="md">
+            <Button variant="contained" size="md">
               Medium
             </Button>
-            <Button variant="contained" shape="circle" size="lg">
+            <Button variant="contained" size="lg">
               Large
             </Button>
           </div>
@@ -132,7 +132,7 @@ export function ButtonViewContent() {
 
         {/* Outlined Stage */}
         <Stage code={outlinedCodeSample}>
-          <Button variant="outlined" shape="circle">
+          <Button variant="outlined">
             Click me
           </Button>
         </Stage>
@@ -149,7 +149,6 @@ export function ButtonViewContent() {
         <Stage code={withIconCodeSample}>
           <Button
             variant="contained"
-            shape="circle"
             leading={<sections.withIcon.icon className="size-4" />}
           >
             Click me
@@ -169,7 +168,6 @@ export function ButtonViewContent() {
           <Button
             layout="icon"
             variant="contained"
-            shape="circle"
             aria-label="Add item"
           >
             <sections.iconOnly.icon className="size-4" />
@@ -188,7 +186,6 @@ export function ButtonViewContent() {
         <Stage code={loadingCodeSample} onReset={resetLoading}>
           <Button
             variant="contained"
-            shape="circle"
             loading={isLoading}
             onClick={triggerLoading}
           >
@@ -207,13 +204,13 @@ export function ButtonViewContent() {
         {/* Disabled Stage */}
         <Stage code={disabledCodeSample}>
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-            <Button variant="contained" shape="circle" disabled>
+            <Button variant="contained" disabled>
               Contained
             </Button>
-            <Button variant="outlined" shape="circle" disabled>
+            <Button variant="outlined" disabled>
               Outlined
             </Button>
-            <Button variant="plain" shape="circle" disabled>
+            <Button variant="plain" disabled>
               Plain
             </Button>
           </div>
@@ -229,7 +226,7 @@ export function ButtonViewContent() {
 
         {/* Full Width Stage */}
         <Stage code={fullWidthCodeSample}>
-          <Button variant="contained" shape="circle" layout="full">
+          <Button variant="contained" layout="full">
             Full Width
           </Button>
         </Stage>
