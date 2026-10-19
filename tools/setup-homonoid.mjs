@@ -164,10 +164,11 @@ export default function Page() {
         <Button size="lg">Large (48px)</Button>
       </div>
 
-      {/* Shapes */}
+      {/* Radii */}
       <div className="flex items-center gap-4">
-        <Button shape="circle">Circle / Pill</Button>
-        <Button shape="square">Square</Button>
+        <Button radius="full">Full</Button>
+        <Button radius="md">Medium</Button>
+        <Button radius="none">None</Button>
       </div>
 
       {/* Object Continuity Loading Toggle */}

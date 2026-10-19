@@ -4,7 +4,7 @@ import {
   type ButtonSize,
   type ButtonVariant,
   type ButtonColor,
-  type ButtonShape,
+  type ButtonRadius,
 } from "@homonoid/react";
 import GithubIcon from "@/components/icons/github";
 import FigmaIcon from "@/components/icons/figma";
@@ -49,7 +49,7 @@ export interface ResourceProps {
   size?: ButtonSize;
   variant?: ButtonVariant;
   color?: ButtonColor;
-  shape?: ButtonShape;
+  radius?: ButtonRadius;
   className?: string;
 }
 
@@ -63,7 +63,7 @@ export function Resource({
   size = "md",
   variant = "outlined",
   color = "surface",
-  shape = "circle",
+  radius,
   className,
 }: ResourceProps) {
   let targetUrl = href;
@@ -106,7 +106,7 @@ export function Resource({
       <Button
         variant={variant}
         color={color}
-        shape={shape}
+        radius={radius}
         size={size}
         className={className}
         leading={leadingIcon}

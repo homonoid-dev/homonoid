@@ -5,17 +5,24 @@
       "md": 40,
       "lg": 48
     },
-    "padding-x": 16,
-    "padding-y": 12,
-    "gap": 6.4
+    "padding": {
+      "x": 16,
+      "y": 12
+    },
+    "gap": 8
   },
   "surface": {
     "padding": 24,
     "gap": 16
   },
   "layout": {
-    "padding-min": 20,
-    "padding-max": 32,
+    "padding": {
+      "x": {
+        "min": 20,
+        "max": 32
+      },
+      "y": 32
+    },
     "gap": 24
   }
 }

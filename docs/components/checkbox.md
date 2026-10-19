@@ -47,13 +47,15 @@ Checkboxes align with the standardized Homonoid control scale (`Size = "sm" | "m
 
 <br>
 
-### Shapes
+### Radius
 
-Checkboxes support geometric shape overrides via the `shape` prop (`CheckboxShape = "circle" | "square"`):
+Checkboxes support configurable corner curvature via the `radius` prop matching the Homonoid geometric scale:
 
-- `Default` (`undefined`): Continuous corner radius inherited from size scale (`rounded-sm`, `rounded-md`, `rounded-lg`). Recommended for standard multi-select forms.
-- `Circle` (`shape="circle"`): Circular boundary (`rounded-full`). Ideal for task managers, completed checklists, and todo lists.
-- `Square` (`shape="square"`): Sharp corners (`rounded-none`). Ideal for dense enterprise data tables and brutalist layouts.
+- `Medium` (`radius="md"` or omitted): Balanced standard control rounding active as default.
+- `Full` (`radius="full"`): Circular boundary ideal for task managers and completed checklists.
+- `Large` (`radius="lg"`): Soft modern corners.
+- `Small` (`radius="sm"`): Subtle corner curvature.
+- `None` (`radius="none"`): Sharp rectilinear corners.
 
 <br>
 
@@ -86,9 +88,10 @@ Homonoid requires that state transitions preserve component identity and physica
 
 Motion parameters adhere strictly to tactile physics and `@homonoid/tokens`:
 
-- Micro Scale: Active tactile press compression (`scale-[0.88]`, `group-active:scale-[0.88]`) providing noticeable physical feedback when pressing either the checkbox control or associated label.
-- Color Transition: Smooth token transitions (`duration-[var(--motion-duration-fast)]`, `ease-[var(--motion-easing-standard)]`) across border, background, and focus-ring states.
-- Pure Utility Architecture: Zero bespoke CSS files required; utilizes Tailwind CSS utilities and design tokens directly.
+- Press Scale: Tactile press compression (`active:scale-[var(--motion-press-scale)]`) providing calibrated feedback across touch and mouse interactions.
+- State Transition: Smooth token transitions (`duration-[var(--motion-duration-normal)]`, `ease-[var(--motion-easing)]`) across surface fill, border stroke, and focus ring states.
+- Glyph Morphing: Checkmark and indeterminate bars scale smoothly between 0.75 and 1.0 while cross fading into place over normal duration.
+- Pure Utility Architecture: Consumes Tailwind CSS utilities and design tokens directly with zero bespoke stylesheets.
 
 <br>
 

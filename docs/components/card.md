@@ -45,9 +45,9 @@ Homonoid defines two primary structural variants:
 Cards support semantic color intent palettes aligned with Homonoid design tokens:
 
 - `Surface` (`surface`): Neutral container background and border (`bg-surface` / `border-border`).
-- `Subtle` (`subtle`): Low-contrast Chroma subtle tint and border (`bg-subtle` / `border-subtle-border`).
-- `Primary` (`primary`): Chroma brand primary highlight tint and border (`bg-primary/5` / `border-primary-border`).
-- `Destructive` (`destructive`): Danger alert or error callout tint and border (`bg-destructive/10` / `border-destructive-border`).
+- `Subtle` (`subtle`): Low contrast Chroma subtle wash tint and border (`bg-primary/8` / `border-subtle-border`).
+- `Primary` (`primary`): Chroma brand primary highlight tint and border (`bg-primary/25` / `border-primary-border`).
+- `Destructive` (`destructive`): Danger alert or error callout tint and border (`bg-destructive/15` / `border-destructive-border`).
 
 <br>
 

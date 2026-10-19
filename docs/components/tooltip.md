@@ -109,7 +109,7 @@ Homonoid requires that overlay transitions preserve spatial stability and compon
 Motion reinforces contextual continuity without introducing distraction:
 
 - Duration: Quick transitions operating over fast durations (`--motion-duration-fast`).
-- Easing: Standard motion easing (`--motion-easing-standard`) ensuring natural organic arrival.
+- Easing: Fluid motion easing (`--motion-easing`) ensuring natural organic arrival.
 - Directional Cue: Subtle translation away from the trigger upon arrival to indicate physical proximity.
 
 <br>

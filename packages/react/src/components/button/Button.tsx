@@ -1,12 +1,12 @@
 import { forwardRef } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
-import { any } from "../../utils/condition";
+import { any, cond, when } from "../../utils/condition";
 import { Spinner } from "../spinner/Spinner";
 import type { ButtonProps } from "./types";
 
 export const variants = cva(
-  "relative inline-flex items-center justify-center select-none font-medium transform-gpu origin-center transition-[color,background-color,border-color,opacity,box-shadow,transform] duration-[var(--motion-duration-normal)] ease-[var(--motion-easing-standard)] active:duration-[var(--motion-duration-press)] active:ease-out active:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none disabled:active:scale-100",
+  "relative inline-flex items-center justify-center font-medium select-none subpixel-antialiased overflow-hidden transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:opacity-50 disabled:pointer-events-none",
   {
     variants: {
       variant: {
@@ -21,13 +21,16 @@ export const variants = cva(
         destructive: ""
       },
       size: {
-        sm: "h-control-sm px-3.5 text-sm gap-control-gap rounded-md",
-        md: "h-control-md px-control-x text-sm font-medium gap-control-gap rounded-lg",
-        lg: "h-control-lg px-5 text-base font-medium gap-control-gap rounded-xl"
+        sm: "h-control-sm px-3.5 text-sm gap-control-gap",
+        md: "h-control-md px-control-x text-sm font-medium gap-control-gap",
+        lg: "h-control-lg px-5 text-base font-medium gap-control-gap"
       },
-      shape: {
-        circle: "rounded-full",
-        square: "rounded-none"
+      radius: {
+        none: "rounded-none",
+        sm: "rounded-sm",
+        md: "rounded-md",
+        lg: "rounded-lg",
+        full: "rounded-full"
       },
       layout: {
         inline: "w-auto",
@@ -122,6 +125,7 @@ export const variants = cva(
       variant: "plain",
       color: "primary",
       size: "md",
+      radius: "full",
       layout: "inline"
     }
   }
@@ -132,7 +136,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     variant = "plain",
     color = "primary",
     size,
-    shape,
+    radius = "full",
     layout,
     loading = false,
     disabled = false,
@@ -154,28 +158,41 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       disabled={isDisabled}
       aria-busy={loading}
       aria-disabled={isDisabled}
-      className={cn(variants({ variant, color, size, shape, layout }), className)}
+      className={cn(variants({ variant, color, size, radius, layout }), className)}
       {...props}
     >
-      {/* Loading Overlay with Object Continuity */}
-      {loading && (
-        <span className="absolute inset-0 flex items-center justify-center transition-opacity duration-[var(--motion-duration-fast)]">
-          <Spinner
-            size={size === "lg" ? "md" : "sm"}
-            animation="border"
-            aria-hidden="true"
-          />
-        </span>
-      )}
+      {/* Loading Indicator with Object Continuity */}
+      <span
+        aria-hidden={!loading}
+        className={cn(
+          "absolute inset-0 flex items-center justify-center transition-all duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)]",
+          cond(
+            loading,
+            "opacity-100 scale-100",
+            "opacity-0 scale-90 pointer-events-none"
+          )
+        )}
+      >
+        <Spinner
+          size={cond(size === "lg", "md", "sm")}
+          aria-hidden="true"
+        />
+      </span>
 
       {/* Button Content (preserved during loading to prevent dimensional collapse) */}
       <span
-        className={`inline-flex items-center gap-[inherit] transition-opacity duration-[var(--motion-duration-fast)] ${loading ? "opacity-0" : "opacity-100"
-          }`}
+        className={cn(
+          "inline-flex items-center gap-[inherit] transition-all duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)]",
+          cond(
+            loading,
+            "opacity-0 scale-95 pointer-events-none",
+            "opacity-100 scale-100"
+          )
+        )}
       >
-        {leading && <span className="inline-flex shrink-0">{leading}</span>}
-        {children && <span>{children}</span>}
-        {trailing && <span className="inline-flex shrink-0">{trailing}</span>}
+        {when(leading, <span className="inline-flex shrink-0">{leading}</span>)}
+        {when(children, <span>{children}</span>)}
+        {when(trailing, <span className="inline-flex shrink-0">{trailing}</span>)}
       </span>
     </button>
   );

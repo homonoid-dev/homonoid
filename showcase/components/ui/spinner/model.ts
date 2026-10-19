@@ -149,7 +149,7 @@ export const SPINNER_EMBEDDED_CODE_SAMPLE = `import { Button, Input, Spinner } f
 export function EmbeddedExample() {
   return (
     <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-      <Button loading shape="circle">
+      <Button loading>
         Submitting
       </Button>
       <Input

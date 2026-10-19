@@ -3,21 +3,24 @@
 import { forwardRef, useEffect, useId, useRef, useState, type ChangeEvent } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
-import { any, all, cond } from "../../utils/condition";
+import { any, all, cond, when } from "../../utils/condition";
 import type { CheckboxProps } from "./types";
 
 export const variants = cva(
-  "relative inline-flex items-center justify-center shrink-0 border select-none transform-gpu origin-center transition-[color,background-color,border-color,box-shadow,transform] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing-standard)] active:scale-[0.88] peer-active:scale-[0.88] group-active:scale-[0.90] focus-ring",
+  "relative inline-flex items-center justify-center shrink-0 border select-none transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] peer-active:scale-[var(--motion-press-scale)] group-active:scale-[var(--motion-press-scale)] focus-ring",
   {
     variants: {
       size: {
-        sm: "w-4 h-4 rounded-md",
-        md: "w-5 h-5 rounded-lg",
-        lg: "w-6 h-6 rounded-lg"
+        sm: "w-4 h-4",
+        md: "w-5 h-5",
+        lg: "w-6 h-6"
       },
-      shape: {
-        circle: "rounded-full",
-        square: "rounded-none"
+      radius: {
+        none: "rounded-none",
+        sm: "rounded-sm",
+        md: "rounded-md",
+        lg: "rounded-lg",
+        full: "rounded-full"
       },
       state: {
         unchecked: "border-border text-transparent",
@@ -47,6 +50,7 @@ export const variants = cva(
     ],
     defaultVariants: {
       size: "md",
+      radius: "md",
       state: "unchecked",
       invalid: false,
       disabled: false
@@ -57,7 +61,7 @@ export const variants = cva(
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
   {
     size = "md",
-    shape,
+    radius = "md",
     checked,
     defaultChecked = false,
     indeterminate = false,
@@ -151,9 +155,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           aria-checked={cond(isIndeterminate, "mixed", isChecked)}
           onChange={handleChange}
           className={cn(
-            "peer absolute inset-0 w-full h-full opacity-0 z-10 m-0 p-0",
-            cond(disabled, "cursor-not-allowed", "cursor-pointer"),
-            cond(shape === "circle", "rounded-full", cond(shape === "square", "rounded-none", "rounded-md"))
+            "peer absolute inset-0 w-full h-full opacity-0 z-10 m-0 p-0 rounded-[inherit]",
+            cond(disabled, "cursor-not-allowed", "cursor-pointer")
           )}
           {...props}
         />
@@ -164,7 +167,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
           className={cn(
             variants({
               size,
-              shape,
+              radius,
               state: currentState,
               invalid,
               disabled
@@ -182,11 +185,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
             fill="none"
             aria-hidden="true"
             className={cn(
-              "absolute inset-0 m-auto w-full h-full p-0.5",
+              "absolute inset-0 m-auto w-full h-full p-0.5 transition-all duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)]",
               cond(
                 all(isChecked, !isIndeterminate),
-                "opacity-100",
-                "opacity-0 pointer-events-none"
+                "opacity-100 scale-100",
+                "opacity-0 scale-75 pointer-events-none"
               )
             )}
           >
@@ -205,11 +208,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
             fill="none"
             aria-hidden="true"
             className={cn(
-              "absolute inset-0 m-auto w-full h-full p-0.5",
+              "absolute inset-0 m-auto w-full h-full p-0.5 transition-all duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)]",
               cond(
                 isIndeterminate,
-                "opacity-100",
-                "opacity-0 pointer-events-none"
+                "opacity-100 scale-100",
+                "opacity-0 scale-75 pointer-events-none"
               )
             )}
           >
@@ -224,9 +227,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
       </span>
 
       {/* Label and Description - hidden from screen reader cursor buffer since announced with input */}
-      {hasTextContent && (
+      {when(
+        hasTextContent,
         <span aria-hidden="true" className="flex flex-col gap-0.5">
-          {label && (
+          {when(
+            label,
             <span
               id={labelId}
               className={cn(
@@ -237,7 +242,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
               {label}
             </span>
           )}
-          {description && (
+          {when(
+            description,
             <span
               id={descriptionId}
               className={cn(

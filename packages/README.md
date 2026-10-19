@@ -12,7 +12,7 @@ Platform implementations should provide native experiences while preserving the 
 
 ```text
 packages/
-├── web/
+├── react/
 ├── flutter/
 ├── android/
 ├── ios/
@@ -27,9 +27,9 @@ packages/
 
 <br>
 
-### web
+### react
 
-The web implementation for modern browsers and web frameworks.
+The React implementation for modern browsers and web frameworks.
 
 <br>
 

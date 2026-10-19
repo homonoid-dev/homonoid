@@ -101,7 +101,7 @@ Homonoid requires that state transitions preserve component identity without abr
 Motion reinforces tactile feedback and state clarity:
 
 - Duration: Border color transitions execute over fast durations (`var(--motion-duration-fast)` = 150ms).
-- Easing: Follows Homonoid standard easing curves (`var(--motion-easing-standard)` = cubic-bezier(0.2, 0, 0, 1)).
+- Easing: Follows Homonoid fluid easing curves (`var(--motion-easing)` = cubic-bezier(0.34, 1.4, 0.64, 1)).
 
 <br>
 

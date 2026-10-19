@@ -2,17 +2,22 @@
   :root {
     /*
      * Chroma Spatial System
-     * Hierarchy: Control (8-12px) < Surface (16-24px) < Layout (24-32px)
-     * Maps to:   p-*, px-*, gap-*, h-*
+     * Control Heights (sm: 32px, md: 40px, lg: 48px)
      */
     --h-control-sm: 2.0rem;
     --h-control-md: 2.5rem;
     --h-control-lg: 3.0rem;
+
+    /* Control Insets & Gaps */
     --p-control-x: 1.0rem;
     --p-control-y: 0.75rem;
-    --gap-control: 0.4rem;
-    --p-surface: 1.2rem;
-    --gap-surface: 0.8rem;
+    --gap-control: 0.5rem;
+
+    /* Surface Spacing */
+    --p-surface: 1.5rem;
+    --gap-surface: 1.0rem;
+
+    /* Layout Insets & Responsive Gutter */
     --p-layout: clamp(1.25rem, 3vw, 2.0rem);
     --p-layout-x: var(--p-layout);
     --p-layout-y: 2.0rem;
@@ -21,20 +26,22 @@
 }
 
 @theme inline {
-  /* Control Heights & Frame Heights */
+  /* Control Heights */
   --spacing-control-sm: var(--h-control-sm);
   --spacing-control-md: var(--h-control-md);
   --spacing-control: var(--h-control-md);
   --spacing-control-lg: var(--h-control-lg);
 
-  /* Semantic Insets & Gutters */
+  /* Control Insets & Gaps */
   --spacing-control-x: var(--p-control-x);
   --spacing-control-y: var(--p-control-y);
   --spacing-control-gap: var(--gap-control);
 
+  /* Surface Spacing */
   --spacing-surface: var(--p-surface);
   --spacing-surface-gap: var(--gap-surface);
 
+  /* Layout Spacing */
   --spacing-layout: var(--p-layout);
   --spacing-layout-x: var(--p-layout-x);
   --spacing-layout-y: var(--p-layout-y);

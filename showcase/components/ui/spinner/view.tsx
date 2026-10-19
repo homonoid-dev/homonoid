@@ -150,7 +150,7 @@ export function SpinnerView() {
 
         <Stage code={SPINNER_EMBEDDED_CODE_SAMPLE}>
           <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-            <Button loading shape="circle">
+            <Button loading>
               Submitting
             </Button>
             <Input

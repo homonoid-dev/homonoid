@@ -1,6 +1,6 @@
-export const webTokens = {
+export const tokens = {
   seed: {
-    "seed": "var(--seed)"
+    seed: "var(--seed)"
   },
   color: {
     primary: "var(--primary)",
@@ -36,18 +36,18 @@ export const webTokens = {
     "p-surface": "var(--p-surface)",
     "gap-surface": "var(--gap-surface)",
     "p-layout": "var(--p-layout)",
+    "p-layout-x": "var(--p-layout-x)",
+    "p-layout-y": "var(--p-layout-y)",
     "gap-layout": "var(--gap-layout)"
   },
   motion: {
+    "duration-instant": "var(--motion-duration-instant)",
     "duration-fast": "var(--motion-duration-fast)",
     "duration-normal": "var(--motion-duration-normal)",
     "duration-slow": "var(--motion-duration-slow)",
-    "duration-press": "var(--motion-duration-press)",
-    "duration-release": "var(--motion-duration-release)",
-    "easing-standard": "var(--motion-easing-standard)",
-    "easing-fluid": "var(--motion-easing-fluid)",
+    easing: "var(--motion-easing)",
     "press-scale": "var(--motion-press-scale)"
   }
 } as const;
 
-export type WebTokens = typeof webTokens;
+export type Tokens = typeof tokens;

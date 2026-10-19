@@ -2,21 +2,21 @@
  * Evaluates whether any of the provided conditions are truthy.
  * Safely handles boolean, undefined, and null values.
  */
-export const any = (...flags: (boolean | undefined | null)[]): boolean =>
+export const any = (...flags: unknown[]): boolean =>
   flags.some(Boolean);
 
 /**
  * Evaluates whether all of the provided conditions are truthy.
- * Safely handles boolean, undefined, and null values.
+ * Safely handles boolean, undefined, null, or arbitrary values.
  */
-export const all = (...flags: (boolean | undefined | null)[]): boolean =>
+export const all = (...flags: unknown[]): boolean =>
   flags.every(Boolean);
 
 /**
  * Evaluates whether none of the provided conditions are truthy.
- * Safely handles boolean, undefined, and null values.
+ * Safely handles boolean, undefined, null, or arbitrary values.
  */
-export const none = (...flags: (boolean | undefined | null)[]): boolean =>
+export const none = (...flags: unknown[]): boolean =>
   flags.every((flag) => !Boolean(flag));
 
 /**
@@ -24,7 +24,7 @@ export const none = (...flags: (boolean | undefined | null)[]): boolean =>
  * Functional replacement for inline ternary expressions.
  */
 export const cond = <T, F>(
-  condition: boolean | undefined | null,
+  condition: unknown,
   thenBranch: T,
   elseBranch: F
 ): T | F => (Boolean(condition) ? thenBranch : elseBranch);
@@ -44,7 +44,7 @@ export const match = <K extends string | number | symbol, T>(
  * Prevents unwanted 0 or NaN leakage into JSX output and supports lazy execution via callback.
  */
 export const when = <T>(
-  condition: boolean | undefined | null,
+  condition: unknown,
   nodeOrFactory: T | (() => T)
 ): T | null => {
   if (!Boolean(condition)) return null;

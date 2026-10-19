@@ -57,7 +57,6 @@ export function Pagination({
             <Button
               variant="outlined"
               color="surface"
-              shape="circle"
               leading={<ArrowLeft className="size-4" />}
             >
               {prevItem.name}
@@ -72,7 +71,6 @@ export function Pagination({
             <Button
               variant="outlined"
               color="surface"
-              shape="circle"
               trailing={<ArrowRight className="size-4" />}
             >
               {nextItem.name}
