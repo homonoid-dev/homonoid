@@ -112,7 +112,7 @@ export function CardView() {
               <Label size="sm" as="h3" className="text-inherit">
                 Surface
               </Label>
-              <Description>
+              <Description className="text-inherit opacity-80">
                 Neutral surface background.
               </Description>
             </Card>
@@ -120,7 +120,7 @@ export function CardView() {
               <Label size="sm" as="h3" className="text-inherit">
                 Subtle
               </Label>
-              <Description>
+              <Description className="text-inherit opacity-80">
                 Chroma subtle wash tint.
               </Description>
             </Card>
@@ -128,7 +128,7 @@ export function CardView() {
               <Label size="sm" as="h3" className="text-inherit">
                 Primary
               </Label>
-              <Description>
+              <Description className="text-inherit opacity-80">
                 Brand highlight container.
               </Description>
             </Card>
@@ -136,7 +136,7 @@ export function CardView() {
               <Label size="sm" as="h3" className="text-inherit">
                 Destructive
               </Label>
-              <Description>
+              <Description className="text-inherit opacity-80">
                 Danger alert container.
               </Description>
             </Card>
