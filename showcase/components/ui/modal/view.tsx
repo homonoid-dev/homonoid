@@ -247,7 +247,7 @@ export function ModalView() {
         <Stage code={MODAL_SCROLL_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
             {[
-              { mode: "inside" as const, label: "Scroll Inside", title: "Internal Scroll Mode", count: 12 },
+              { mode: "inside" as const, label: "Scroll Inside", title: "Internal Scroll Mode", count: 20 },
               { mode: "outside" as const, label: "Scroll Outside", title: "Outside Scroll Mode", count: 24 },
             ].map((item) => (
               <Modal key={item.mode} scroll={item.mode}>
