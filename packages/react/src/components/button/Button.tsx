@@ -6,7 +6,7 @@ import { Spinner } from "../spinner/Spinner";
 import type { ButtonProps } from "./types";
 
 export const variants = cva(
-  "relative inline-flex items-center justify-center font-medium select-none subpixel-antialiased transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:opacity-50 disabled:pointer-events-none",
+  "relative inline-flex items-center justify-center font-medium select-none subpixel-antialiased overflow-hidden transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:opacity-50 disabled:pointer-events-none",
   {
     variants: {
       variant: {
@@ -161,21 +161,31 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       className={cn(variants({ variant, color, size, radius, layout }), className)}
       {...props}
     >
-      {/* Loading Overlay with Object Continuity */}
-      {loading && (
-        <span className="absolute inset-0 flex items-center justify-center transition-opacity duration-[var(--motion-duration-fast)]">
-          <Spinner
-            size={size === "lg" ? "md" : "sm"}
-            animation="border"
-            aria-hidden="true"
-          />
-        </span>
-      )}
+      {/* Loading Indicator with Object Continuity */}
+      <span
+        aria-hidden={!loading}
+        className={cn(
+          "absolute inset-0 flex items-center justify-center transition-all duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)]",
+          loading
+            ? "opacity-100 scale-100"
+            : "opacity-0 scale-90 pointer-events-none"
+        )}
+      >
+        <Spinner
+          size={size === "lg" ? "md" : "sm"}
+          animation="border"
+          aria-hidden="true"
+        />
+      </span>
 
       {/* Button Content (preserved during loading to prevent dimensional collapse) */}
       <span
-        className={`inline-flex items-center gap-[inherit] transition-opacity duration-[var(--motion-duration-fast)] ${loading ? "opacity-0" : "opacity-100"
-          }`}
+        className={cn(
+          "inline-flex items-center gap-[inherit] transition-all duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)]",
+          loading
+            ? "opacity-0 scale-95 pointer-events-none"
+            : "opacity-100 scale-100"
+        )}
       >
         {leading && <span className="inline-flex shrink-0">{leading}</span>}
         {children && <span>{children}</span>}

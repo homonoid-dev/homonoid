@@ -108,7 +108,7 @@ Homonoid requires that state transitions preserve component identity rather than
 
 - State Transitions: Hover, pressed, and focus states transition smoothly using defined easing curves rather than instantaneous cuts.
 - Loading Transition: Transitioning to the loading state must preserve container width and height so the button does not collapse, expand, or jump abruptly.
-- Content Morphing: Text labels cross fade smoothly into the loading indicator within the same stable container boundaries.
+- Content Morphing: Text labels dissolve smoothly in place while the loading indicator expands from 90 percent scale in the exact center, maintaining stable container boundaries.
 - Return to Rest: Completing an action smoothly returns the button to its resting state or transitions onward to the resulting interface state.
 
 <br>
