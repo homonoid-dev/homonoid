@@ -1,21 +1,41 @@
 {
   "control": {
     "height": {
+      "xs": 24,
       "sm": 32,
       "md": 40,
       "lg": 48
     },
-    "padding-x": 16,
-    "padding-y": 12,
-    "gap": 6.4
+    "padding": {
+      "xs": 8,
+      "sm": 12,
+      "md": 16,
+      "lg": 20
+    },
+    "gap": {
+      "xs": 4,
+      "sm": 6,
+      "md": 8,
+      "lg": 10
+    }
   },
   "surface": {
-    "padding": 24,
-    "gap": 16
+    "padding": {
+      "sm": 16,
+      "md": 24,
+      "lg": 32
+    },
+    "gap": {
+      "sm": 12,
+      "md": 16,
+      "lg": 24
+    }
   },
   "layout": {
-    "padding-min": 20,
-    "padding-max": 32,
+    "padding": {
+      "min": 20,
+      "max": 32
+    },
     "gap": 24
   }
 }
