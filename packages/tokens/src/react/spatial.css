@@ -2,23 +2,20 @@
   :root {
     /*
      * Chroma Spatial System
-     * Control Heights (xs: 24px, sm: 32px, md: 40px, lg: 48px)
+     * Control Heights (sm: 32px, md: 40px, lg: 48px)
      */
-    --h-control-xs: 1.5rem;
     --h-control-sm: 2.0rem;
     --h-control-md: 2.5rem;
     --h-control-lg: 3.0rem;
 
-    /* Control Padding (xs: 8px, sm: 12px, md: 16px, lg: 20px) */
-    --p-control-xs: 0.5rem;
+    /* Control Padding (sm: 12px, md: 16px, lg: 20px) */
     --p-control-sm: 0.75rem;
     --p-control-md: 1.0rem;
     --p-control-lg: 1.25rem;
     --p-control-x: var(--p-control-md);
     --p-control-y: var(--p-control-sm);
 
-    /* Control Gaps (xs: 4px, sm: 6px, md: 8px, lg: 10px) */
-    --gap-control-xs: 0.25rem;
+    /* Control Gaps (sm: 6px, md: 8px, lg: 10px) */
     --gap-control-sm: 0.375rem;
     --gap-control-md: 0.5rem;
     --gap-control-lg: 0.625rem;
@@ -41,29 +38,17 @@
     --p-layout-x: var(--p-layout);
     --p-layout-y: 2.0rem;
     --gap-layout: 1.5rem;
-
-    /* Corner Radii (Control: 4px, 6px, 8px, 12px | Surface: 16px, 24px, 32px | Full: 9999px) */
-    --r-control-xs: 0.25rem;
-    --r-control-sm: 0.375rem;
-    --r-control-md: 0.5rem;
-    --r-control-lg: 0.75rem;
-    --r-surface-sm: 1.0rem;
-    --r-surface-md: 1.5rem;
-    --r-surface-lg: 2.0rem;
-    --r-full: 9999px;
   }
 }
 
 @theme inline {
   /* Control Heights */
-  --spacing-control-xs: var(--h-control-xs);
   --spacing-control-sm: var(--h-control-sm);
   --spacing-control-md: var(--h-control-md);
   --spacing-control: var(--h-control-md);
   --spacing-control-lg: var(--h-control-lg);
 
   /* Control Padding & Insets */
-  --spacing-control-padding-xs: var(--p-control-xs);
   --spacing-control-padding-sm: var(--p-control-sm);
   --spacing-control-padding-md: var(--p-control-md);
   --spacing-control-padding-lg: var(--p-control-lg);
@@ -71,7 +56,6 @@
   --spacing-control-y: var(--p-control-y);
 
   /* Control Gaps */
-  --spacing-control-gap-xs: var(--gap-control-xs);
   --spacing-control-gap-sm: var(--gap-control-sm);
   --spacing-control-gap-md: var(--gap-control-md);
   --spacing-control-gap-lg: var(--gap-control-lg);
@@ -92,23 +76,4 @@
   --spacing-layout-x: var(--p-layout-x);
   --spacing-layout-y: var(--p-layout-y);
   --spacing-layout-gap: var(--gap-layout);
-
-  /* Corner Radii - Semantic */
-  --radius-control-xs: var(--r-control-xs);
-  --radius-control-sm: var(--r-control-sm);
-  --radius-control-md: var(--r-control-md);
-  --radius-control-lg: var(--r-control-lg);
-  --radius-surface-sm: var(--r-surface-sm);
-  --radius-surface-md: var(--r-surface-md);
-  --radius-surface-lg: var(--r-surface-lg);
-  --radius-full: var(--r-full);
-
-  /* Corner Radii - Standard Scale Harmonization */
-  --radius-xs: var(--r-control-xs);
-  --radius-sm: var(--r-control-sm);
-  --radius-md: var(--r-control-md);
-  --radius-lg: var(--r-control-lg);
-  --radius-xl: var(--r-surface-sm);
-  --radius-2xl: var(--r-surface-md);
-  --radius-3xl: var(--r-surface-lg);
 }

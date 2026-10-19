@@ -27,17 +27,14 @@ export const tokens = {
     "destructive-border": "var(--destructive-border)"
   },
   spacing: {
-    "h-control-xs": "var(--h-control-xs)",
     "h-control-sm": "var(--h-control-sm)",
     "h-control-md": "var(--h-control-md)",
     "h-control-lg": "var(--h-control-lg)",
-    "p-control-xs": "var(--p-control-xs)",
     "p-control-sm": "var(--p-control-sm)",
     "p-control-md": "var(--p-control-md)",
     "p-control-lg": "var(--p-control-lg)",
     "p-control-x": "var(--p-control-x)",
     "p-control-y": "var(--p-control-y)",
-    "gap-control-xs": "var(--gap-control-xs)",
     "gap-control-sm": "var(--gap-control-sm)",
     "gap-control-md": "var(--gap-control-md)",
     "gap-control-lg": "var(--gap-control-lg)",
@@ -54,16 +51,6 @@ export const tokens = {
     "p-layout-x": "var(--p-layout-x)",
     "p-layout-y": "var(--p-layout-y)",
     "gap-layout": "var(--gap-layout)"
-  },
-  radius: {
-    "control-xs": "var(--r-control-xs)",
-    "control-sm": "var(--r-control-sm)",
-    "control-md": "var(--r-control-md)",
-    "control-lg": "var(--r-control-lg)",
-    "surface-sm": "var(--r-surface-sm)",
-    "surface-md": "var(--r-surface-md)",
-    "surface-lg": "var(--r-surface-lg)",
-    full: "var(--r-full)"
   },
   motion: {
     "duration-instant": "var(--motion-duration-instant)",
