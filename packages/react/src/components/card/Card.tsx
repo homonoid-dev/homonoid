@@ -4,7 +4,7 @@ import { cn } from "../../utils/cn";
 import type { CardProps } from "./types";
 
 export const variants = cva(
-  "rounded-3xl overflow-hidden transition-colors duration-[var(--motion-duration-fast)] ease-[var(--motion-easing-standard)]",
+  "rounded-3xl overflow-hidden transition-colors duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)]",
   {
     variants: {
       variant: {

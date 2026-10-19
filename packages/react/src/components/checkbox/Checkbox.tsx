@@ -7,7 +7,7 @@ import { any, all, cond } from "../../utils/condition";
 import type { CheckboxProps } from "./types";
 
 export const variants = cva(
-  "relative inline-flex items-center justify-center shrink-0 border select-none transform-gpu origin-center transition-[color,background-color,border-color,box-shadow,transform] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing-standard)] active:scale-[0.88] peer-active:scale-[0.88] group-active:scale-[0.90] focus-ring",
+  "relative inline-flex items-center justify-center shrink-0 border select-none transform-gpu origin-center transition-[color,background-color,border-color,box-shadow,transform] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[0.88] peer-active:scale-[0.88] group-active:scale-[0.90] focus-ring",
   {
     variants: {
       size: {

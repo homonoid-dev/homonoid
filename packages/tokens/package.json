@@ -7,10 +7,11 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./web": "./src/web/index.ts",
-    "./css": "./src/web/index.css",
-    "./css/colors": "./src/web/colors.css",
-    "./css/spatial": "./src/web/spatial.css",
-    "./css/motion": "./src/web/motion.css"
+    "./react": "./src/react/index.ts",
+    "./web": "./src/react/index.ts",
+    "./css": "./src/react/index.css",
+    "./css/colors": "./src/react/colors.css",
+    "./css/spatial": "./src/react/spatial.css",
+    "./css/motion": "./src/react/motion.css"
   }
 }
