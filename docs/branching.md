@@ -41,7 +41,7 @@ feat/<package>-<description>
 Examples:
 
 - `feat/tokens-color-system`
-- `feat/web-button`
+- `feat/react-button`
 - `feat/motion-continuity`
 
 <br>
@@ -56,7 +56,7 @@ fix/<package>-<description>
 
 Examples:
 
-- `fix/web-focus-ring`
+- `fix/react-focus-ring`
 - `fix/tokens-contrast-ratio`
 
 <br>
@@ -101,7 +101,7 @@ release/v<version>-<target>
 
 Examples:
 
-- `release/v0.1.0-web`
+- `release/v0.1.0-react`
 - `release/v1.0.0`
 
 <br>
