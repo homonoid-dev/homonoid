@@ -22,9 +22,6 @@ export function useButtonViewModel(): ButtonViewModel {
 
   const triggerLoading = useCallback(() => {
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 4000);
   }, []);
 
   const resetLoading = useCallback(() => {

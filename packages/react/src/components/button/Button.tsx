@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
-import { any } from "../../utils/condition";
+import { any, cond, when } from "../../utils/condition";
 import { Spinner } from "../spinner/Spinner";
 import type { ButtonProps } from "./types";
 
@@ -166,14 +166,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         aria-hidden={!loading}
         className={cn(
           "absolute inset-0 flex items-center justify-center transition-all duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)]",
-          loading
-            ? "opacity-100 scale-100"
-            : "opacity-0 scale-90 pointer-events-none"
+          cond(
+            loading,
+            "opacity-100 scale-100",
+            "opacity-0 scale-90 pointer-events-none"
+          )
         )}
       >
         <Spinner
-          size={size === "lg" ? "md" : "sm"}
-          animation="border"
+          size={cond(size === "lg", "md", "sm")}
           aria-hidden="true"
         />
       </span>
@@ -182,14 +183,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       <span
         className={cn(
           "inline-flex items-center gap-[inherit] transition-all duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)]",
-          loading
-            ? "opacity-0 scale-95 pointer-events-none"
-            : "opacity-100 scale-100"
+          cond(
+            loading,
+            "opacity-0 scale-95 pointer-events-none",
+            "opacity-100 scale-100"
+          )
         )}
       >
-        {leading && <span className="inline-flex shrink-0">{leading}</span>}
-        {children && <span>{children}</span>}
-        {trailing && <span className="inline-flex shrink-0">{trailing}</span>}
+        {when(leading, <span className="inline-flex shrink-0">{leading}</span>)}
+        {when(children, <span>{children}</span>)}
+        {when(trailing, <span className="inline-flex shrink-0">{trailing}</span>)}
       </span>
     </button>
   );
