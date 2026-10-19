@@ -4,6 +4,7 @@ import {
   Maximize2,
   Sliders,
   ScrollText,
+  Infinity,
   Accessibility,
   Palette,
   BookOpen,
@@ -36,6 +37,11 @@ export const MODAL_SECTIONS: Record<string, ModalSectionItem> = {
     id: "scroll-modes",
     label: "Scroll Modes",
     icon: ScrollText,
+  },
+  continuity: {
+    id: "object-continuity",
+    label: "Continuity",
+    icon: Infinity,
   },
   accessibility: {
     id: "accessibility",

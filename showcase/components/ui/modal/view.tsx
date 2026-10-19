@@ -279,6 +279,28 @@ export function ModalView() {
         </Stage>
       </section>
 
+      {/* Object Continuity Section */}
+      <section
+        id={MODAL_SECTIONS.continuity.id}
+        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
+      >
+        <Label size="lg" as="h2">
+          {MODAL_SECTIONS.continuity.label}
+        </Label>
+
+        <Description>
+          Modal dialog surfaces preserve dimensional stability and spatial continuity across enter and exit transitions. Floating layers scale smoothly from initial triggers without clipping borders or jumping positions.
+        </Description>
+
+        <Description>
+          Backdrop overlays calibrate transition curves against document canvases, keeping ambient visual context anchored while elevating focused surfaces.
+        </Description>
+
+        <Description>
+          Scroll boundaries isolate content flow within designated containers, ensuring background document stability and preventing scroll displacement across open states.
+        </Description>
+      </section>
+
       {/* Accessibility Section */}
       <section
         id={MODAL_SECTIONS.accessibility.id}
