@@ -2,13 +2,13 @@
   "duration": {
     "instant": 100,
     "fast": 150,
-    "normal": 200,
+    "normal": 250,
     "slow": 350
   },
   "easing": [
-    0.34,
-    1.4,
-    0.64,
+    0.4,
+    0.0,
+    0.2,
     1.0
   ],
   "scale": {

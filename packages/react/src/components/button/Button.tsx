@@ -6,7 +6,7 @@ import { Spinner } from "../spinner/Spinner";
 import type { ButtonProps } from "./types";
 
 export const variants = cva(
-  "relative inline-flex items-center justify-center select-none font-medium transform-gpu origin-center transition-[color,background-color,border-color,opacity,box-shadow,transform] duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:duration-[var(--motion-duration-instant)] active:ease-out active:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none disabled:active:scale-100",
+  "relative inline-flex items-center justify-center font-medium select-none subpixel-antialiased transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:opacity-50 disabled:pointer-events-none",
   {
     variants: {
       variant: {
