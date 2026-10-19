@@ -42,6 +42,18 @@ Follow trunk based development targeting `main` with squash merges. Name branche
 
 <br>
 
+### Showcase Views Standards
+
+Mirror established showcase anatomy across all component pages in the showcase workspace. Structure sections with a Default stage, interactive variant stages, an Object Continuity section using the Infinity icon, an Accessibility section, a Design Tokens section, a Style Reference section, and terminal Pagination navigation.
+
+<br>
+
+### Showcase Stage Conventions
+
+Render interactive stage headers using a flex row container wrapping a Frame icon and a large Label heading. Never insert loose Description tags between stage headers and Stage components. Maintain strict one to one parity between rendered stage JSX and exported Example code blocks in model files. Use mapped array iterations with concise body copy instead of repetitive markup or nested ternaries. Keep stage dialogs and interactive widgets self contained with local dismiss actions instead of hoisting external page state.
+
+<br>
+
 ### Workflow and Execution
 
 Complete tasks directly without performing redundant status checks or post completion inspection commands unless explicitly requested.
