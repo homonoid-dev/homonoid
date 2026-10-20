@@ -2,7 +2,7 @@ export { Modal } from "./Modal";
 export { ModalTrigger } from "./ModalTrigger";
 export { ModalBackdrop, backdropVariants as modalBackdropVariants } from "./ModalBackdrop";
 export { ModalContainer } from "./ModalContainer";
-export { ModalDialog, dialogVariants as modalDialogVariants } from "./ModalDialog";
+export { ModalDialog, variants as modalDialogVariants } from "./ModalDialog";
 export { ModalHeader } from "./ModalHeader";
 export { ModalBody } from "./ModalBody";
 export { ModalFooter } from "./ModalFooter";

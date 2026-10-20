@@ -7,7 +7,7 @@ import { cn } from "../../utils/cn";
 import { cond } from "../../utils/condition";
 import type { PopoverDialogProps } from "./types";
 
-export const popoverDialogVariants = cva(
+export const variants = cva(
   "relative flex flex-col rounded-2xl p-surface outline-none pointer-events-auto transform-gpu overflow-hidden text-sm",
   {
     variants: {
@@ -53,7 +53,7 @@ export const PopoverDialog = forwardRef<HTMLDivElement, PopoverDialogProps>(
         tabIndex={-1}
         aria-modal={cond(modal, "true", "false")}
         className={cn(
-          popoverDialogVariants({
+          variants({
             variant: activeVariant,
             size: activeSize,
           }),

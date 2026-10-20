@@ -8,7 +8,7 @@ import { cn } from "../../utils/cn";
 import { cond } from "../../utils/condition";
 import type { ModalDialogProps } from "./types";
 
-export const dialogVariants = cva(
+export const variants = cva(
   "relative flex flex-col w-full bg-surface text-foreground border shadow-2xl overflow-hidden pointer-events-auto transform-gpu",
   {
     variants: {
@@ -72,7 +72,7 @@ export const ModalDialog = forwardRef<HTMLDivElement, ModalDialogProps>(
         aria-modal="true"
         className={cn(
           "outline-none",
-          dialogVariants({
+          variants({
             size: activeSize,
             variant: activeVariant,
             scroll: activeScroll,
