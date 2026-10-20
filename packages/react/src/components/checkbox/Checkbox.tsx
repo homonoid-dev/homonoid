@@ -160,19 +160,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
                 <CheckboxIndicator />
               </CheckboxControl>
               <CheckboxContent>
-                <Label
-                  id={labelId}
-                  as="span"
-                  size="sm"
-                  className={cn(
-                    "font-medium text-foreground",
-                    cond(
-                      size === "sm",
-                      "text-xs leading-4",
-                      cond(size === "lg", "text-base leading-6", "text-sm leading-5")
-                    )
-                  )}
-                >
+                <Label id={labelId} as="span" size={size}>
                   {children}
                 </Label>
               </CheckboxContent>
@@ -186,37 +174,13 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
                 <CheckboxContent>
                   {when(
                     label,
-                    <Label
-                      id={labelId}
-                      as="span"
-                      size="sm"
-                      className={cn(
-                        "font-medium text-foreground",
-                        cond(
-                          size === "sm",
-                          "text-xs leading-4",
-                          cond(size === "lg", "text-base leading-6", "text-sm leading-5")
-                        )
-                      )}
-                    >
+                    <Label id={labelId} as="span" size={size}>
                       {label}
                     </Label>
                   )}
                   {when(
                     description,
-                    <Description
-                      id={descriptionId}
-                      as="span"
-                      variant="muted"
-                      className={cn(
-                        "text-muted",
-                        cond(
-                          size === "sm",
-                          "text-[11px] leading-tight",
-                          cond(size === "lg", "text-sm leading-tight", "text-xs leading-tight")
-                        )
-                      )}
-                    >
+                    <Description id={descriptionId} as="span" size={cond(size === "lg", "md", "sm")}>
                       {description}
                     </Description>
                   )}

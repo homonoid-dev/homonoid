@@ -1,9 +1,9 @@
-import type { ElementType, HTMLAttributes, ReactNode, Ref } from "react";
+import type { ElementType, LabelHTMLAttributes, ReactNode, Ref } from "react";
 import type { Size } from "../../types";
 
-export type LabelSize = Size | "xs" | "2xs";
+export type LabelSize = Size;
 
-export interface LabelProps extends HTMLAttributes<HTMLElement> {
+export interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   /**
    * Ref forwarded to the underlying element.
    */
@@ -11,18 +11,16 @@ export interface LabelProps extends HTMLAttributes<HTMLElement> {
 
   /**
    * The polymorphic element type to render.
-   * @default "h1"
+   * @default "label"
    */
   as?: ElementType;
 
   /**
-   * Typographic scale size.
-   * - `2xs`: 0.75rem (12px), font-medium
-   * - `xs`: 0.875rem (14px), font-medium
-   * - `sm`: 1.0rem (16px), font-semibold
-   * - `md`: 1.125rem (18px), font-bold
-   * - `lg`: 1.5rem (24px), font-bold
-   * @default "lg"
+   * Typographic scale size for control and form field labels.
+   * - `sm`: 0.75rem (12px), font-medium
+   * - `md`: 0.875rem (14px), font-medium
+   * - `lg`: 1.0rem (16px), font-semibold
+   * @default "md"
    */
   size?: LabelSize;
 

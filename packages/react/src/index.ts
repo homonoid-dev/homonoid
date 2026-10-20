@@ -10,5 +10,6 @@ export * from "./components/tooltip/index";
 export * from "./components/modal/index";
 export * from "./components/popover/index";
 export * from "./components/switch/index";
+export * from "./components/heading/index";
 export * from "./utils/cn";
 export * from "./utils/condition";

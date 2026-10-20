@@ -142,7 +142,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
                 <SwitchThumb />
               </SwitchControl>
               <SwitchContent>
-                <Label id={labelId} as="span" size="sm" className="text-sm font-medium">
+                <Label id={labelId} as="span" size={size}>
                   {children}
                 </Label>
               </SwitchContent>
@@ -156,13 +156,13 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
                 <SwitchContent>
                   {when(
                     label,
-                    <Label id={labelId} as="span" size="sm" className="text-sm font-medium">
+                    <Label id={labelId} as="span" size={size}>
                       {label}
                     </Label>
                   )}
                   {when(
                     description,
-                    <Description id={descriptionId} as="span" variant="muted" className="text-xs">
+                    <Description id={descriptionId} as="span" size={cond(size === "lg", "md", "sm")}>
                       {description}
                     </Description>
                   )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { Switch, Label, Description, Card } from "@homonoid/react";
+import { Switch, Heading, Label, Description, Card } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -25,11 +25,11 @@ export function SwitchView() {
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
-        <Label size="lg">Switch</Label>
-        <Description>
+        <Heading size="lg">Switch</Heading>
+        <Description size="md">
           A switch toggles the state of a single setting between on and off.
         </Description>
-        <Description>
+        <Description size="md">
           Switches communicate immediate binary preferences, delivering clear tactile affordance and smooth physical transitions across states.
         </Description>
       </div>
@@ -70,9 +70,9 @@ export function SwitchView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SWITCH_SECTIONS.states.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SWITCH_SECTIONS.states.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SWITCH_STATES_CODE_SAMPLE}>
@@ -90,9 +90,9 @@ export function SwitchView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SWITCH_SECTIONS.sizes.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SWITCH_SECTIONS.sizes.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SWITCH_SIZES_CODE_SAMPLE}>
@@ -111,9 +111,9 @@ export function SwitchView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SWITCH_SECTIONS.labelAndHelper.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SWITCH_SECTIONS.labelAndHelper.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SWITCH_LABEL_HELPER_CODE_SAMPLE}>
@@ -138,9 +138,9 @@ export function SwitchView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SWITCH_SECTIONS.radius.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SWITCH_SECTIONS.radius.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SWITCH_RADIUS_CODE_SAMPLE}>
@@ -161,9 +161,9 @@ export function SwitchView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SWITCH_SECTIONS.disabled.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SWITCH_SECTIONS.disabled.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SWITCH_DISABLED_CODE_SAMPLE}>
@@ -179,19 +179,19 @@ export function SwitchView() {
         id={SWITCH_SECTIONS.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SWITCH_SECTIONS.continuity.label}
-        </Label>
+        </Heading>
 
-        <Description>
+        <Description size="md">
           State transitions maintain absolute geometric stability. Outer boundaries and track dimensions remain locked in place when transitioning across unchecked and checked states.
         </Description>
 
-        <Description>
+        <Description size="md">
           The thumb translates fluidly along the track using hardware accelerated GPU transforms rather than abrupt visual jumps or layout reflows.
         </Description>
 
-        <Description>
+        <Description size="md">
           Active pointer compression applies subtle scale tension across the entire capsule, providing immediate physical feedback upon interaction.
         </Description>
       </section>
@@ -201,19 +201,19 @@ export function SwitchView() {
         id={SWITCH_SECTIONS.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SWITCH_SECTIONS.accessibility.label}
-        </Label>
+        </Heading>
 
-        <Description>
+        <Description size="md">
           Accessibility for binary toggles guarantees predictable state announcements and effortless interaction across all assistive technologies.
         </Description>
 
-        <Description>
+        <Description size="md">
           Switches expose native input role semantics with explicit switch role declarations, ensuring screen readers announce on and off states accurately.
         </Description>
 
-        <Description>
+        <Description size="md">
           Prominent focus rings enclose the capsule container upon keyboard navigation. Generous touch targets preserve reliable activation across touch displays and pointer devices.
         </Description>
       </section>
@@ -223,19 +223,19 @@ export function SwitchView() {
         id={SWITCH_SECTIONS.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SWITCH_SECTIONS.tokens.label}
-        </Label>
+        </Heading>
 
-        <Description>
+        <Description size="md">
           Control dimensions map directly to standardized spatial tokens comprising small 28px width, medium 44px width, and large 56px width presentations.
         </Description>
 
-        <Description>
+        <Description size="md">
           Corner radii calibrate using standardized curvature tokens from sharp rectangular profiles to fully rounded pill capsules.
         </Description>
 
-        <Description>
+        <Description size="md">
           Color values consume primary brand tokens and neutral border tokens exclusively, synchronizing effortlessly across light and dark theme environments.
         </Description>
       </section>
@@ -245,19 +245,19 @@ export function SwitchView() {
         id={SWITCH_SECTIONS.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SWITCH_SECTIONS.styleReference.label}
-        </Label>
+        </Heading>
 
-        <Description>
+        <Description size="md">
           Accessible native input elements preserve standard form integration, keyboard spacebar toggles, and screen reader announcements.
         </Description>
 
-        <Description>
+        <Description size="md">
           Smooth transitions across background fills and thumb offsets provide clear confirmation without decorative distraction.
         </Description>
 
-        <Description>
+        <Description size="md">
           Associated labels and descriptive captions link automatically to input identifiers, guaranteeing comprehensive accessibility tree representations.
         </Description>
       </section>
