@@ -12,7 +12,11 @@
     "gap": 8
   },
   "surface": {
-    "padding": 24,
+    "padding": {
+      "sm": 16,
+      "md": 24,
+      "lg": 32
+    },
     "gap": 16
   },
   "layout": {

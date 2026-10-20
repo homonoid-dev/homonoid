@@ -70,7 +70,7 @@ export function Example() {
 
 export const LABEL_SIZES_CODE_SAMPLE = `import { Label } from "@homonoid/react";
 
-export function SizesExample() {
+export function Example() {
   return (
     <div className="flex flex-col gap-4">
       <Label size="lg">Large Heading</Label>
@@ -82,7 +82,7 @@ export function SizesExample() {
 
 export const LABEL_POLYMORPHISM_CODE_SAMPLE = `import { Label } from "@homonoid/react";
 
-export function PolymorphismExample() {
+export function Example() {
   return (
     <div className="flex flex-col gap-3">
       <Label as="h1" size="lg">
@@ -100,7 +100,7 @@ export function PolymorphismExample() {
 
 export const LABEL_FORMS_CODE_SAMPLE = `import { Label, Input, Description } from "@homonoid/react";
 
-export function FormExample() {
+export function Example() {
   return (
     <div className="flex flex-col gap-2 max-w-sm w-full">
       <Label as="label" htmlFor="workspace-name" size="sm">

@@ -6,7 +6,7 @@ import { Spinner } from "../spinner/Spinner";
 import type { ButtonProps } from "./types";
 
 export const variants = cva(
-  "relative inline-flex items-center justify-center font-medium select-none subpixel-antialiased overflow-hidden transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:opacity-50 disabled:pointer-events-none",
+  "relative inline-flex items-center justify-center font-medium select-none subpixel-antialiased overflow-hidden transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] aria-expanded:scale-[var(--motion-press-scale)] data-[state=open]:scale-[var(--motion-press-scale)] focus-ring cursor-pointer aria-expanded:cursor-default data-[state=open]:cursor-default disabled:opacity-50 disabled:pointer-events-none",
   {
     variants: {
       variant: {
@@ -59,66 +59,66 @@ export const variants = cva(
       {
         variant: "contained",
         color: "primary",
-        className: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active"
+        className: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active aria-expanded:bg-primary-hover data-[state=open]:bg-primary-hover"
       },
       {
         variant: "contained",
         color: "subtle",
-        className: "bg-subtle text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active"
+        className: "bg-subtle text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
       },
       {
         variant: "contained",
         color: "surface",
-        className: "bg-surface text-surface-foreground hover:bg-surface-hover active:bg-surface-active"
+        className: "bg-surface text-surface-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
       },
       {
         variant: "contained",
         color: "destructive",
-        className: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-active"
+        className: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-active aria-expanded:bg-destructive-hover data-[state=open]:bg-destructive-hover"
       },
 
       // Outlined Variants (Transparent + Border)
       {
         variant: "outlined",
         color: "primary",
-        className: "border-primary-border text-primary hover:bg-subtle active:bg-subtle-active"
+        className: "border-primary-border text-primary hover:bg-subtle active:bg-subtle-active aria-expanded:bg-subtle data-[state=open]:bg-subtle"
       },
       {
         variant: "outlined",
         color: "subtle",
-        className: "border-subtle-border text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active"
+        className: "border-subtle-border text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
       },
       {
         variant: "outlined",
         color: "surface",
-        className: "border-border text-surface-foreground hover:bg-surface-hover active:bg-surface-active"
+        className: "border-border text-surface-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
       },
       {
         variant: "outlined",
         color: "destructive",
-        className: "border-destructive-border text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20"
+        className: "border-destructive-border text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20 aria-expanded:bg-destructive-hover/5 data-[state=open]:bg-destructive-hover/5"
       },
 
       // Plain Variants (Plain / Ghost without background or border)
       {
         variant: "plain",
         color: "primary",
-        className: "text-primary hover:bg-subtle active:bg-subtle-active"
+        className: "text-primary hover:bg-subtle active:bg-subtle-active aria-expanded:bg-subtle data-[state=open]:bg-subtle"
       },
       {
         variant: "plain",
         color: "subtle",
-        className: "text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active"
+        className: "text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
       },
       {
         variant: "plain",
         color: "surface",
-        className: "text-surface-foreground hover:bg-surface-hover active:bg-surface-active"
+        className: "text-surface-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
       },
       {
         variant: "plain",
         color: "destructive",
-        className: "text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20"
+        className: "text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20 aria-expanded:bg-destructive-hover/5 data-[state=open]:bg-destructive-hover/5"
       }
     ],
     defaultVariants: {

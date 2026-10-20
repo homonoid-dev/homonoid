@@ -96,7 +96,7 @@ export function Example() {
 
 export const SPINNER_ANIMATIONS_CODE_SAMPLE = `import { Spinner } from "@homonoid/react";
 
-export function AnimationsExample() {
+export function Example() {
   return (
     <div className="flex flex-row items-center gap-surface-gap">
       <div className="flex flex-col items-center gap-2">
@@ -121,7 +121,7 @@ export function AnimationsExample() {
 
 export const SPINNER_SIZES_CODE_SAMPLE = `import { Spinner } from "@homonoid/react";
 
-export function SizesExample() {
+export function Example() {
   return (
     <div className="flex flex-row items-center gap-surface-gap">
       <Spinner size="sm" />

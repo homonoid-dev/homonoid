@@ -18,6 +18,7 @@ import {
   useMergeRefs,
 } from "@floating-ui/react";
 import { ModalContext } from "./ModalContext";
+import { ModalTrigger } from "./ModalTrigger";
 import { ModalBackdrop } from "./ModalBackdrop";
 import { ModalContainer } from "./ModalContainer";
 import { ModalDialog } from "./ModalDialog";
@@ -134,6 +135,7 @@ export function Modal({
     dialogStyles: dialogTransition.styles,
   };
 
+  let hasExplicitTrigger = false;
   let backdropNode: ReactNode = null;
   const triggerNodes: ReactNode[] = [];
 
@@ -142,7 +144,9 @@ export function Modal({
       const element = child as ReactElement;
       const displayName = (element.type as { displayName?: string })?.displayName;
 
-      if (cond(element.type === ModalBackdrop, true, displayName === "Modal.Backdrop")) {
+      if (cond(element.type === ModalTrigger, true, displayName === "Modal.Trigger")) {
+        hasExplicitTrigger = true;
+      } else if (cond(element.type === ModalBackdrop, true, displayName === "Modal.Backdrop")) {
         backdropNode = child;
       } else {
         triggerNodes.push(child);
@@ -151,6 +155,14 @@ export function Modal({
       triggerNodes.push(child);
     }
   });
+
+  if (hasExplicitTrigger) {
+    return (
+      <ModalContext.Provider value={contextValue}>
+        {children}
+      </ModalContext.Provider>
+    );
+  }
 
   const renderedTriggers = triggerNodes.map((child, index) => {
     if (isValidElement(child)) {
@@ -188,6 +200,7 @@ export function Modal({
 }
 
 Modal.displayName = "Modal";
+Modal.Trigger = ModalTrigger;
 Modal.Backdrop = ModalBackdrop;
 Modal.Container = ModalContainer;
 Modal.Dialog = ModalDialog;

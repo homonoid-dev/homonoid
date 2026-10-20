@@ -103,7 +103,7 @@ export function ModalView() {
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
             {(["sm", "md", "lg", "cover", "full"] as const).map((size) => (
               <Modal key={size}>
-                <Button variant="outlined" color="surface">
+                <Button variant="outlined">
                   {size.charAt(0).toUpperCase() + size.slice(1)}
                 </Button>
                 <Modal.Backdrop>
@@ -145,7 +145,7 @@ export function ModalView() {
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
             {(["blur", "opaque", "transparent"] as const).map((variant) => (
               <Modal key={variant}>
-                <Button variant="outlined" color="surface">
+                <Button variant="outlined">
                   {variant.charAt(0).toUpperCase() + variant.slice(1)}
                 </Button>
                 <Modal.Backdrop variant={variant}>
@@ -198,7 +198,7 @@ export function ModalView() {
               },
             ].map((item) => (
               <Modal key={item.label}>
-                <Button variant="outlined" color="surface">
+                <Button variant="outlined">
                   {item.label}
                 </Button>
                 <Modal.Backdrop isDismissable={item.isDismissable}>
@@ -239,7 +239,7 @@ export function ModalView() {
               { mode: "outside" as const, label: "Scroll Outside", title: "Outside Scroll Mode", count: 24 },
             ].map((item) => (
               <Modal key={item.mode} scroll={item.mode}>
-                <Button variant="outlined" color="surface">
+                <Button variant="outlined">
                   {item.label}
                 </Button>
                 <Modal.Backdrop>

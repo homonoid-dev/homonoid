@@ -98,7 +98,7 @@ export function Example() {
     <div className="flex flex-wrap gap-4">
       {sizes.map((size) => (
         <Modal key={size}>
-          <Button variant="outlined" color="surface">
+          <Button variant="outlined">
             {size.charAt(0).toUpperCase() + size.slice(1)}
           </Button>
           <Modal.Backdrop>
@@ -135,7 +135,7 @@ export function Example() {
     <div className="flex flex-wrap gap-4">
       {variants.map((variant) => (
         <Modal key={variant}>
-          <Button variant="outlined" color="surface">
+          <Button variant="outlined">
             {variant.charAt(0).toUpperCase() + variant.slice(1)}
           </Button>
           <Modal.Backdrop variant={variant}>
@@ -183,7 +183,7 @@ export function Example() {
     <div className="flex flex-wrap gap-4">
       {options.map((item) => (
         <Modal key={item.label}>
-          <Button variant="outlined" color="surface">
+          <Button variant="outlined">
             {item.label}
           </Button>
           <Modal.Backdrop isDismissable={item.isDismissable}>
@@ -219,7 +219,7 @@ export function Example() {
     <div className="flex flex-wrap gap-4">
       {modes.map((item) => (
         <Modal key={item.mode} scroll={item.mode}>
-          <Button variant="outlined" color="surface">
+          <Button variant="outlined">
             {item.label}
           </Button>
           <Modal.Backdrop>

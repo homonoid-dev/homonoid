@@ -48,6 +48,12 @@ export interface ModalContextValue {
   dialogStyles: CSSProperties;
 }
 
+export interface ModalTriggerProps extends React.ButtonHTMLAttributes<HTMLElement> {
+  children?: ReactNode;
+  asChild?: boolean;
+  className?: string;
+}
+
 export interface ModalBackdropProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
   variant?: ModalBackdropVariant;
