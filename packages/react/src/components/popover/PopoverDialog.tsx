@@ -14,7 +14,7 @@ export const variants = cva(
       variant: {
         surface: "bg-surface text-foreground border border-border shadow-xl",
         primary: "bg-primary text-primary-foreground border border-primary-border shadow-xl",
-        inverted: "bg-foreground text-background border border-foreground/10 shadow-xl",
+        inverted: "bg-foreground text-background border border-foreground/10 shadow-xl [&_h1]:text-background",
       },
       size: {
         sm: "w-64",
