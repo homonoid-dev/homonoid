@@ -20,6 +20,7 @@ export const ModalTrigger = forwardRef<HTMLElement, ModalTriggerProps>(
     const ariaProps = {
       "aria-haspopup": "dialog" as const,
       "aria-expanded": open,
+      "data-state": cond(open, "open", "closed"),
     };
 
     const childList = Children.toArray(children);

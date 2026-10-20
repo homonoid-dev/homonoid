@@ -21,6 +21,7 @@ export const PopoverTrigger = forwardRef<HTMLElement, PopoverTriggerProps>(
       "aria-haspopup": "dialog" as const,
       "aria-expanded": open,
       "aria-controls": cond(open, dialogId, undefined),
+      "data-state": cond(open, "open", "closed"),
     };
 
     const childList = Children.toArray(children);
