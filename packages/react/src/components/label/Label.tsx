@@ -6,6 +6,8 @@ import type { LabelProps } from "./types";
 export const variants = cva("font-bold tracking-tight text-foreground", {
   variants: {
     size: {
+      "2xs": "text-xs font-medium tracking-normal",
+      xs: "text-sm font-medium tracking-normal",
       sm: "text-base font-semibold",
       md: "text-lg",
       lg: "text-2xl",
@@ -23,6 +25,7 @@ export const Label = forwardRef<HTMLElement, LabelProps>(function Label(
   return (
     <Component
       ref={ref}
+      data-slot="label"
       className={cn(variants({ size }), className)}
       {...props}
     >
