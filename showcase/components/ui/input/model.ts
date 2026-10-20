@@ -117,7 +117,7 @@ export function Example() {
 
 export const INPUT_VARIANTS_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 
-export function VariantsExample() {
+export function Example() {
   return (
     <div className="flex flex-col gap-surface-gap w-full max-w-sm">
       <Input variant="outlined" placeholder="Outlined input" />
@@ -129,7 +129,7 @@ export function VariantsExample() {
 
 export const INPUT_SIZES_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 
-export function SizesExample() {
+export function Example() {
   return (
     <div className="flex flex-col gap-surface-gap w-full max-w-sm">
       <Input size="sm" placeholder="Small input" />
@@ -142,7 +142,7 @@ export function SizesExample() {
 export const INPUT_ADORNMENTS_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 import { Search, Mail, Eye } from "lucide-react";
 
-export function AdornmentsExample() {
+export function Example() {
   return (
     <div className="flex flex-col gap-surface-gap w-full max-w-sm">
       <Input
@@ -164,7 +164,7 @@ export function AdornmentsExample() {
 
 export const INPUT_LABEL_HELPER_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 
-export function LabelHelperExample() {
+export function Example() {
   return (
     <div className="flex flex-col gap-surface-gap w-full max-w-sm">
       <Input
@@ -178,7 +178,7 @@ export function LabelHelperExample() {
 
 export const INPUT_VALIDATION_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 
-export function ValidationExample() {
+export function Example() {
   return (
     <div className="flex flex-col gap-surface-gap w-full max-w-sm">
       <Input
@@ -193,7 +193,7 @@ export function ValidationExample() {
 
 export const INPUT_DISABLED_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 
-export function DisabledExample() {
+export function Example() {
   return (
     <div className="flex flex-col gap-surface-gap w-full max-w-sm">
       <Input

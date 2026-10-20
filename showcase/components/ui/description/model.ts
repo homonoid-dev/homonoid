@@ -69,7 +69,7 @@ export function Example() {
 
 export const DESCRIPTION_VARIANTS_CODE_SAMPLE = `import { Description } from "@homonoid/react";
 
-export function VariantsExample() {
+export function Example() {
   return (
     <div className="flex flex-col gap-3">
       <Description variant="muted">
@@ -84,7 +84,7 @@ export function VariantsExample() {
 
 export const DESCRIPTION_POLYMORPHISM_CODE_SAMPLE = `import { Description } from "@homonoid/react";
 
-export function PolymorphismExample() {
+export function Example() {
   return (
     <div className="flex flex-col gap-3">
       <Description as="p">
@@ -102,7 +102,7 @@ export function PolymorphismExample() {
 
 export const DESCRIPTION_CONTEXT_CODE_SAMPLE = `import { Label, Description, Input, Card } from "@homonoid/react";
 
-export function ContextExample() {
+export function Example() {
   return (
     <Card className="flex flex-col gap-3 max-w-sm w-full p-surface">
       <div className="flex flex-col gap-1">
