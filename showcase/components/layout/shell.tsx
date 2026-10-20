@@ -8,7 +8,7 @@ import React, { memo } from "react";
  * Shell.Head slot
  * Fixed header pinned at the top of the viewport
  */
-export const Head = memo(function Head({
+export const Header = memo(function Head({
   children,
 }: {
   children?: React.ReactNode;
@@ -22,15 +22,15 @@ export const Head = memo(function Head({
 
 /**
  * Shell.Side slot
- * Dedicated height-locked sidebar column
+ * Pinned sticky sidebar column
  */
-export const Side = memo(function Side({
+export const Sidebar = memo(function Side({
   children,
 }: {
   children?: React.ReactNode;
 }) {
   return (
-    <div className="h-full shrink-0 flex overflow-hidden">
+    <div className="sticky top-0 h-screen shrink-0 flex overflow-hidden">
       {children}
     </div>
   );
@@ -38,7 +38,7 @@ export const Side = memo(function Side({
 
 /**
  * Shell.Main slot
- * Dedicated height-locked main content viewport with completely independent scroll
+ * Main content viewport flowing naturally with window scrolling
  */
 export const Main = memo(function Main({
   children,
@@ -46,7 +46,7 @@ export const Main = memo(function Main({
   children?: React.ReactNode;
 }) {
   return (
-    <main className="flex-1 h-full overflow-y-auto min-w-0">
+    <main className="flex-1 min-w-0">
       {children}
     </main>
   );
@@ -58,8 +58,7 @@ export const Main = memo(function Main({
 
 /**
  * Shell
- * Application layout with locked viewport and completely independent
- * non-interfering scroll containers for Sidebar and Main.
+ * Application layout with natural window scrolling and pinned sidebar.
  */
 export function Shell({
   children,
@@ -67,21 +66,21 @@ export function Shell({
   children?: React.ReactNode;
 }) {
   const items = React.Children.toArray(children);
-  const head = items.find(
-    (child) => React.isValidElement(child) && child.type === Head
+  const header = items.find(
+    (child) => React.isValidElement(child) && child.type === Header
   );
-  const body = items.filter((child) => child !== head);
+  const body = items.filter((child) => child !== header);
 
   return (
-    <div className="h-screen w-screen overflow-hidden flex flex-col bg-background text-foreground">
-      {head}
-      <div className="flex-1 flex overflow-hidden min-h-0">
+    <div className="min-h-screen w-full flex flex-col bg-background text-foreground">
+      {header}
+      <div className="flex-1 flex min-h-screen">
         {body}
       </div>
     </div>
   );
 }
 
-Shell.Head = Head;
-Shell.Side = Side;
+Shell.Header = Header;
+Shell.Sidebar = Sidebar;
 Shell.Main = Main;

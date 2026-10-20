@@ -20,7 +20,7 @@ export default function RootLayout({
       <body>
         <TocProvider>
           <Shell>
-            <Shell.Side>
+            <Shell.Sidebar>
               <Sidebar>
                 <div className="flex flex-col gap-surface-gap px-layout-x py-surface">
                   {SHOWCASE_COMPONENTS.map((component) => (
@@ -33,7 +33,7 @@ export default function RootLayout({
                   ))}
                 </div>
               </Sidebar>
-            </Shell.Side>
+            </Shell.Sidebar>
             <Shell.Main>
               <div className="flex justify-between w-full min-h-full">
                 <div className="flex-1 min-w-0">
