@@ -13,8 +13,11 @@
     --p-control-y: 0.75rem;
     --gap-control: 0.5rem;
 
-    /* Surface Spacing */
-    --p-surface: 1.5rem;
+    /* Surface Spacing (sm: 16px, md: 24px, lg: 32px) */
+    --p-surface-sm: 1.0rem;
+    --p-surface-md: 1.5rem;
+    --p-surface-lg: 2.0rem;
+    --p-surface: var(--p-surface-md);
     --gap-surface: 1.0rem;
 
     /* Layout Insets & Responsive Gutter */
@@ -38,7 +41,10 @@
   --spacing-control-gap: var(--gap-control);
 
   /* Surface Spacing */
-  --spacing-surface: var(--p-surface);
+  --spacing-surface-sm: var(--p-surface-sm);
+  --spacing-surface-md: var(--p-surface-md);
+  --spacing-surface: var(--p-surface-md);
+  --spacing-surface-lg: var(--p-surface-lg);
   --spacing-surface-gap: var(--gap-surface);
 
   /* Layout Spacing */

@@ -23,7 +23,9 @@ export const variants = cva(
       },
       padding: {
         none: "p-0",
-        sm: "p-4",
+        sm: "p-surface-sm",
+        md: "p-surface-md",
+        lg: "p-surface-lg",
         surface: "p-surface",
       },
     },
