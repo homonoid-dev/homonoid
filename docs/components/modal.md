@@ -35,7 +35,7 @@ Do not use modals when:
 A modal follows a compound component architecture exposing dedicated sub components through dot notation:
 
 - `Modal`: Root context provider managing open state, keyboard dismissal, scroll lock coordination, and focus trapping.
-- `Trigger`: Direct interactive child element such as a button initiating modal presentation upon click without artificial wrapper layers.
+- `Modal.Trigger`: Interactive anchor element initiating modal presentation upon activation without artificial wrapper layers.
 - `Modal.Backdrop`: Ambient overlay plane managing visual dimming, background blur, and click outside dismissal configuration.
 - `Modal.Container`: Layout positioning shell centering the dialog within the viewport and managing scroll mechanics.
 - `Modal.Dialog`: Floating surface housing modal content with elevated tokens, rounded borders, and accessibility semantics.
