@@ -164,41 +164,52 @@ export function Toc({
   );
 
   useEffect(() => {
-    const container = document.querySelector("main");
-    if (!container) return;
+    if (!items || items.length === 0) return;
 
     const ids = items.map((item) => item.id);
 
     const handleScroll = () => {
-      const containerRect = container.getBoundingClientRect();
-      let bestId = "";
-      let maxVisible = -1;
+      const scrollY = window.scrollY;
+      const innerHeight = window.innerHeight;
+      const scrollHeight = document.documentElement.scrollHeight;
+
+      // When scrolled near the bottom of the page, activate the terminal section
+      if (scrollY + innerHeight >= scrollHeight - 32) {
+        const lastId = ids[ids.length - 1];
+        if (lastId) {
+          setActiveId(lastId);
+          return;
+        }
+      }
+
+      // Check sections from top to bottom against a standard reading offset
+      const readingOffset = 160;
+      let matchedId = ids[0] ?? "";
 
       for (const id of ids) {
         const el = document.getElementById(id);
         if (!el) continue;
 
         const rect = el.getBoundingClientRect();
-        const top = Math.max(rect.top, containerRect.top);
-        const bottom = Math.min(rect.bottom, containerRect.bottom);
-        const visibleHeight = Math.max(0, bottom - top);
-
-        if (visibleHeight > maxVisible) {
-          maxVisible = visibleHeight;
-          bestId = id;
+        if (rect.top <= readingOffset) {
+          matchedId = id;
+        } else {
+          break;
         }
       }
 
-      if (bestId) {
-        setActiveId(bestId);
+      if (matchedId) {
+        setActiveId(matchedId);
       }
     };
 
-    container.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
     handleScroll();
 
     return () => {
-      container.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
     };
   }, [items]);
 

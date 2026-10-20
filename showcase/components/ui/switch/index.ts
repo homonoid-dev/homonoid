@@ -1,0 +1,1 @@
+export { SwitchView } from "./view";
