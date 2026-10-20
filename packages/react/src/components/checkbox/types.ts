@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes, ReactNode, Ref } from "react";
+import type { HTMLAttributes, InputHTMLAttributes, ReactNode, Ref } from "react";
 import type { Size } from "../../types";
 
 export type CheckboxSize = Size;
@@ -69,4 +69,30 @@ export interface CheckboxProps
    * Callback invoked when the checked state toggles.
    */
   onChange?: (checked: boolean) => void;
+
+  /**
+   * Compound subcomponents or custom child layout.
+   */
+  children?: ReactNode;
+}
+
+export interface CheckboxControlProps extends HTMLAttributes<HTMLSpanElement> {
+  /**
+   * Optional content inside the control container, such as Checkbox.Indicator.
+   */
+  children?: ReactNode;
+}
+
+export interface CheckboxIndicatorProps extends HTMLAttributes<HTMLSpanElement> {
+  /**
+   * Optional custom glyph or icon replacing the standard checkmark and horizontal bar.
+   */
+  children?: ReactNode;
+}
+
+export interface CheckboxContentProps extends HTMLAttributes<HTMLSpanElement> {
+  /**
+   * Textual label and description content.
+   */
+  children?: ReactNode;
 }

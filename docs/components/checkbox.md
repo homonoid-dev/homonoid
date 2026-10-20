@@ -27,13 +27,32 @@ Do not use checkboxes for immediate actions that take effect without confirmatio
 
 ### Anatomy
 
-A checkbox component consists of the following elements:
+A checkbox follows a compound component architecture exposing dedicated sub components through dot notation:
 
-- `Control Container`: Bounded square boundary (`sm`, `md`, `lg`) providing the touch target, background surface, and border frame.
-- `Glyph Indicator`: SVG vector checkmark (`✓`) or horizontal bar (`—`) communicating active or indeterminate state.
-- `Label` (Optional): Clear textual description associated with the control.
-- `Description` (Optional): Supporting caption or helper text rendered beneath the label.
-- `Hidden Native Input`: Accessible native `<input type="checkbox">` preserving browser form integration and accessibility bindings.
+- `Checkbox`: Root interactive container wrapping the native accessible input and coordinating state across child elements.
+- `Checkbox.Control`: Square boundary providing the tactile touch surface, glyph container, and focus ring frame.
+- `Checkbox.Indicator`: Glyph container rendering smooth vector checkmark and indeterminate state transitions.
+- `Checkbox.Content`: Container grouping accompanying label and secondary description text beside the control.
+- `Label`: The standard Homonoid typography component presenting the primary setting title.
+- `Description`: The standard Homonoid caption component clarifying setting behavior.
+
+```tsx
+import { Checkbox, Label, Description } from "@homonoid/react";
+
+export function CheckboxExample() {
+  return (
+    <Checkbox defaultChecked>
+      <Checkbox.Control>
+        <Checkbox.Indicator />
+      </Checkbox.Control>
+      <Checkbox.Content>
+        <Label>Accept terms and conditions</Label>
+        <Description>You agree to our privacy policy and terms of service</Description>
+      </Checkbox.Content>
+    </Checkbox>
+  );
+}
+```
 
 <br>
 

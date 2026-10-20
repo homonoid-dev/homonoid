@@ -1,62 +1,36 @@
 "use client";
 
-import { forwardRef, useEffect, useId, useRef, useState, type ChangeEvent } from "react";
-import { cva } from "class-variance-authority";
+import {
+  Children,
+  forwardRef,
+  isValidElement,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type ReactElement,
+} from "react";
 import { cn } from "../../utils/cn";
-import { any, all, cond, when } from "../../utils/condition";
+import { all, any, cond, when } from "../../utils/condition";
+import { Label } from "../label/Label";
+import { Description } from "../description/Description";
+import { CheckboxContext, type CheckboxContextValue } from "./CheckboxContext";
+import { CheckboxControl } from "./CheckboxControl";
+import { CheckboxIndicator } from "./CheckboxIndicator";
+import { CheckboxContent } from "./CheckboxContent";
 import type { CheckboxProps } from "./types";
 
-export const variants = cva(
-  "relative inline-flex items-center justify-center shrink-0 border select-none transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] peer-active:scale-[var(--motion-press-scale)] group-active:scale-[var(--motion-press-scale)] focus-ring",
-  {
-    variants: {
-      size: {
-        sm: "w-4 h-4",
-        md: "w-5 h-5",
-        lg: "w-6 h-6"
-      },
-      radius: {
-        none: "rounded-none",
-        sm: "rounded-sm",
-        md: "rounded-md",
-        lg: "rounded-lg",
-        full: "rounded-full"
-      },
-      state: {
-        unchecked: "border-border text-transparent",
-        checked: "bg-primary border-primary text-primary-foreground",
-        indeterminate: "bg-primary border-primary text-primary-foreground"
-      },
-      invalid: {
-        true: "border-destructive",
-        false: ""
-      },
-      disabled: {
-        true: "opacity-50 cursor-not-allowed pointer-events-none active:scale-100 peer-active:scale-100 group-active:scale-100",
-        false: "cursor-pointer"
-      }
-    },
-    compoundVariants: [
-      {
-        invalid: true,
-        state: "checked",
-        className: "bg-destructive border-destructive text-destructive-foreground"
-      },
-      {
-        invalid: true,
-        state: "indeterminate",
-        className: "bg-destructive border-destructive text-destructive-foreground"
-      }
-    ],
-    defaultVariants: {
-      size: "md",
-      radius: "md",
-      state: "unchecked",
-      invalid: false,
-      disabled: false
-    }
-  }
-);
+export interface CheckboxComponent
+  extends React.ForwardRefExoticComponent<
+    CheckboxProps & React.RefAttributes<HTMLInputElement>
+  > {
+  Control: typeof CheckboxControl;
+  Indicator: typeof CheckboxIndicator;
+  Content: typeof CheckboxContent;
+  Label: typeof Label;
+  Description: typeof Description;
+}
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
   {
@@ -72,6 +46,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
     onChange,
     className,
     id,
+    children,
     ...props
   },
   ref
@@ -88,7 +63,6 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
   const isIndeterminate = any(checked === "indeterminate", Boolean(indeterminate));
   const isChecked = cond(isControlled, checked === true, internalChecked);
 
-  // Sync indeterminate property directly with the native DOM input
   useEffect(() => {
     if (innerRef.current) {
       innerRef.current.indeterminate = isIndeterminate;
@@ -121,8 +95,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
 
   const hasTextContent = any(Boolean(label), Boolean(description));
   const isStringLabel = typeof label === "string";
-  const finalAriaLabel = props["aria-label"] || (isStringLabel ? label : undefined);
-  const finalAriaLabelledBy = props["aria-labelledby"] || (!isStringLabel && Boolean(label) ? labelId : undefined);
+  const finalAriaLabel = props["aria-label"] || (isStringLabel ? (label as string) : undefined);
+  const finalAriaLabelledBy =
+    props["aria-labelledby"] || (!isStringLabel && Boolean(label) ? labelId : undefined);
 
   const userDescribedBy = props["aria-describedby"];
   const finalDescribedBy = cond(
@@ -131,133 +106,133 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
     cond(Boolean(description), descriptionId, undefined)
   );
 
+  const inputProps = {
+    ...props,
+    "aria-label": finalAriaLabel,
+    "aria-labelledby": finalAriaLabelledBy,
+    "aria-describedby": finalDescribedBy,
+  };
+
+  const contextValue: CheckboxContextValue = {
+    isChecked,
+    isIndeterminate,
+    currentState,
+    disabled,
+    invalid,
+    size,
+    radius,
+    inputId,
+    labelId,
+    descriptionId,
+    inputRef: setRefs,
+    inputProps,
+    handleChange,
+  };
+
+  let hasControl = false;
+  Children.forEach(children, (child) => {
+    if (isValidElement(child)) {
+      const element = child as ReactElement;
+      const displayName = (element.type as { displayName?: string })?.displayName;
+      if (cond(element.type === CheckboxControl, true, displayName === "Checkbox.Control")) {
+        hasControl = true;
+      }
+    }
+  });
+
   return (
-    <label
-      htmlFor={inputId}
-      className={cn(
-        "group inline-flex items-start gap-2.5 select-none w-fit",
-        cond(disabled, "cursor-not-allowed opacity-60", "cursor-pointer"),
-        className
-      )}
-    >
-      {/* Accessible Control Wrapper matching VoiceOver and screen reader focus frame */}
-      <span className="relative shrink-0 inline-flex">
-        <input
-          ref={setRefs}
-          id={inputId}
-          type="checkbox"
-          checked={isChecked}
-          disabled={disabled}
-          aria-invalid={invalid}
-          aria-label={finalAriaLabel}
-          aria-labelledby={finalAriaLabelledBy}
-          aria-describedby={finalDescribedBy}
-          aria-checked={cond(isIndeterminate, "mixed", isChecked)}
-          onChange={handleChange}
-          className={cn(
-            "peer absolute inset-0 w-full h-full opacity-0 z-10 m-0 p-0 rounded-[inherit]",
-            cond(disabled, "cursor-not-allowed", "cursor-pointer")
-          )}
-          {...props}
-        />
-
-        {/* Styled Control Container with Object Continuity */}
-        <span
-          aria-hidden="true"
-          className={cn(
-            variants({
-              size,
-              radius,
-              state: currentState,
-              invalid,
-              disabled
-            }),
-            cond(
-              invalid,
-              "peer-focus-visible:ring-2 peer-focus-visible:ring-destructive/50",
-              "peer-focus-visible:ring-2 peer-focus-visible:ring-primary/50"
-            )
-          )}
-        >
-          {/* Checkmark Glyph */}
-          <svg
-            viewBox="0 0 16 16"
-            fill="none"
-            aria-hidden="true"
-            className={cn(
-              "absolute inset-0 m-auto w-full h-full p-0.5 transition-all duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)]",
-              cond(
-                all(isChecked, !isIndeterminate),
-                "opacity-100 scale-100",
-                "opacity-0 scale-75 pointer-events-none"
-              )
-            )}
-          >
-            <path
-              d="M3.5 8.5L6.5 11.5L12.5 4.5"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-
-          {/* Indeterminate Glyph */}
-          <svg
-            viewBox="0 0 16 16"
-            fill="none"
-            aria-hidden="true"
-            className={cn(
-              "absolute inset-0 m-auto w-full h-full p-0.5 transition-all duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)]",
-              cond(
-                isIndeterminate,
-                "opacity-100 scale-100",
-                "opacity-0 scale-75 pointer-events-none"
-              )
-            )}
-          >
-            <path
-              d="M3.5 8H12.5"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-            />
-          </svg>
-        </span>
-      </span>
-
-      {/* Label and Description - hidden from screen reader cursor buffer since announced with input */}
-      {when(
-        hasTextContent,
-        <span aria-hidden="true" className="flex flex-col gap-0.5">
-          {when(
-            label,
-            <span
-              id={labelId}
-              className={cn(
-                "font-medium text-foreground",
-                cond(size === "sm", "text-xs leading-4", cond(size === "lg", "text-base leading-6", "text-sm leading-5"))
+    <CheckboxContext.Provider value={contextValue}>
+      <label
+        htmlFor={inputId}
+        className={cn(
+          "group inline-flex items-start gap-2.5 select-none w-fit",
+          cond(disabled, "cursor-not-allowed opacity-60", "cursor-pointer"),
+          className
+        )}
+      >
+        {cond(
+          hasControl,
+          children,
+          cond(
+            Boolean(children),
+            <>
+              <CheckboxControl>
+                <CheckboxIndicator />
+              </CheckboxControl>
+              <CheckboxContent>
+                <Label
+                  id={labelId}
+                  as="span"
+                  size="sm"
+                  className={cn(
+                    "font-medium text-foreground",
+                    cond(
+                      size === "sm",
+                      "text-xs leading-4",
+                      cond(size === "lg", "text-base leading-6", "text-sm leading-5")
+                    )
+                  )}
+                >
+                  {children}
+                </Label>
+              </CheckboxContent>
+            </>,
+            <>
+              <CheckboxControl>
+                <CheckboxIndicator />
+              </CheckboxControl>
+              {when(
+                hasTextContent,
+                <CheckboxContent>
+                  {when(
+                    label,
+                    <Label
+                      id={labelId}
+                      as="span"
+                      size="sm"
+                      className={cn(
+                        "font-medium text-foreground",
+                        cond(
+                          size === "sm",
+                          "text-xs leading-4",
+                          cond(size === "lg", "text-base leading-6", "text-sm leading-5")
+                        )
+                      )}
+                    >
+                      {label}
+                    </Label>
+                  )}
+                  {when(
+                    description,
+                    <Description
+                      id={descriptionId}
+                      as="span"
+                      variant="muted"
+                      className={cn(
+                        "text-muted",
+                        cond(
+                          size === "sm",
+                          "text-[11px] leading-tight",
+                          cond(size === "lg", "text-sm leading-tight", "text-xs leading-tight")
+                        )
+                      )}
+                    >
+                      {description}
+                    </Description>
+                  )}
+                </CheckboxContent>
               )}
-            >
-              {label}
-            </span>
-          )}
-          {when(
-            description,
-            <span
-              id={descriptionId}
-              className={cn(
-                "text-muted",
-                cond(size === "sm", "text-[11px] leading-tight", cond(size === "lg", "text-sm leading-tight", "text-xs leading-tight"))
-              )}
-            >
-              {description}
-            </span>
-          )}
-        </span>
-      )}
-    </label>
+            </>
+          )
+        )}
+      </label>
+    </CheckboxContext.Provider>
   );
-});
+}) as CheckboxComponent;
 
 Checkbox.displayName = "Checkbox";
+Checkbox.Control = CheckboxControl;
+Checkbox.Indicator = CheckboxIndicator;
+Checkbox.Content = CheckboxContent;
+Checkbox.Label = Label;
+Checkbox.Description = Description;
