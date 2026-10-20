@@ -12,7 +12,7 @@ import {
   type ReactElement,
 } from "react";
 import { cn } from "../../utils/cn";
-import { all, any, cond, when } from "../../utils/condition";
+import { any, cond, when } from "../../utils/condition";
 import { Label } from "../label/Label";
 import { Description } from "../description/Description";
 import { CheckboxContext, type CheckboxContextValue } from "./CheckboxContext";

@@ -17,9 +17,10 @@ export const variants = cva("font-medium text-foreground select-none", {
 });
 
 export const Label = forwardRef<HTMLElement, LabelProps>(function Label(
-  { as: Component = "label", size, className, children, ...props },
+  { as, size, className, children, ...props },
   ref
 ) {
+  const Component = as || (props.htmlFor ? "label" : "span");
   return (
     <Component
       ref={ref}
