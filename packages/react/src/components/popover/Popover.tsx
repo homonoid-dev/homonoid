@@ -142,9 +142,10 @@ export function Popover({
   });
 
   if (all(!hasExplicitTrigger, Boolean(standaloneContentNode))) {
+    const triggerContent = cond(triggerNodes.length === 1, triggerNodes[0], triggerNodes);
     return (
       <PopoverContext.Provider value={contextValue}>
-        <PopoverTrigger className={className}>{triggerNodes}</PopoverTrigger>
+        <PopoverTrigger className={className}>{triggerContent}</PopoverTrigger>
         {standaloneContentNode}
       </PopoverContext.Provider>
     );

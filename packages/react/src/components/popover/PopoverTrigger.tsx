@@ -4,12 +4,13 @@ import {
   forwardRef,
   cloneElement,
   isValidElement,
+  Children,
   type ReactElement,
 } from "react";
 import { useMergeRefs } from "@floating-ui/react";
 import { usePopoverContext } from "./PopoverContext";
 import { cn } from "../../utils/cn";
-import { cond } from "../../utils/condition";
+import { all, cond } from "../../utils/condition";
 import type { PopoverTriggerProps } from "./types";
 
 export const PopoverTrigger = forwardRef<HTMLElement, PopoverTriggerProps>(
@@ -22,8 +23,12 @@ export const PopoverTrigger = forwardRef<HTMLElement, PopoverTriggerProps>(
       "aria-controls": cond(open, dialogId, undefined),
     };
 
-    if (cond(asChild, true, isValidElement(children))) {
-      const child = children as ReactElement<Record<string, unknown>>;
+    const childList = Children.toArray(children);
+    const hasSingleElement = all(childList.length === 1, isValidElement(childList[0]));
+    const shouldClone = cond(asChild, true, cond(isValidElement(children), true, hasSingleElement));
+
+    if (shouldClone) {
+      const child = (cond(isValidElement(children), children, childList[0])) as ReactElement<Record<string, unknown>>;
       const childRef = (child.props as { ref?: React.Ref<HTMLElement> })?.ref;
       const mergedRef = useMergeRefs([setReference, ref, childRef]);
       const referenceProps = getReferenceProps({
