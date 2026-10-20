@@ -7,5 +7,6 @@ export * from "./components/label/index";
 export * from "./components/card/index";
 export * from "./components/description/index";
 export * from "./components/tooltip/index";
+export * from "./components/modal/index";
 export * from "./utils/cn";
 export * from "./utils/condition";
