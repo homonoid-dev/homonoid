@@ -8,7 +8,7 @@ import { cond } from "../../utils/condition";
 import type { PopoverDialogProps } from "./types";
 
 export const variants = cva(
-  "relative flex flex-col rounded-2xl px-control-x py-control-y outline-none pointer-events-auto transform-gpu overflow-hidden text-sm",
+  "relative flex flex-col rounded-2xl p-surface-sm outline-none pointer-events-auto transform-gpu overflow-hidden text-sm",
   {
     variants: {
       variant: {
