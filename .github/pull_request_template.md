@@ -7,7 +7,7 @@ Describe the changes proposed in this pull request and the context behind them.
 ### Packages Affected
 
 - [ ] `packages/tokens`
-- [ ] `packages/web`
+- [ ] `packages/react`
 - [ ] `showcase`
 - [ ] `docs`
 
