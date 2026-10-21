@@ -84,13 +84,30 @@ export const Select: SelectComponent = function Select({
   const isValue = cond(isValueControlled, controlledValue, uncontrolledValue);
 
   const initialValue = cond(isValueControlled, controlledValue, defaultValue);
-  const initialOptionLabel = cond(
-    Boolean(options && initialValue),
-    options?.find((opt) => opt.value === initialValue)?.label || initialValue,
-    undefined
-  );
+  const getInitialLabel = (): ReactNode => {
+    if (!initialValue) return undefined;
+    if (options && options.length > 0) {
+      return options.find((opt) => opt.value === initialValue)?.label || initialValue;
+    }
+    let foundLabel: ReactNode = undefined;
+    const extractFromChildren = (nodes: ReactNode) => {
+      Children.forEach(nodes, (child) => {
+        if (!isValidElement(child)) return;
+        const props = child.props as Record<string, unknown>;
+        if (props.value === initialValue) {
+          foundLabel = (props.label as ReactNode) || (props.children as ReactNode) || props.value;
+          return;
+        }
+        if (props.children) {
+          extractFromChildren(props.children as ReactNode);
+        }
+      });
+    };
+    extractFromChildren(children);
+    return foundLabel;
+  };
 
-  const [selectedLabel, setSelectedLabel] = useState<ReactNode>(initialOptionLabel);
+  const [selectedLabel, setSelectedLabel] = useState<ReactNode>(getInitialLabel);
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
 
   const registerItem = useCallback((val: string, labelNode: ReactNode) => {
