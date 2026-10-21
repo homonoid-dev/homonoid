@@ -82,6 +82,8 @@ export function Example() {
       <Checkbox aria-label="Unchecked option" />
       <Checkbox aria-label="Checked option" defaultChecked />
       <Checkbox aria-label="Indeterminate option" indeterminate />
+      <Checkbox invalid aria-label="Invalid unchecked option" />
+      <Checkbox invalid defaultChecked aria-label="Invalid checked option" />
     </div>
   );
 }`;
