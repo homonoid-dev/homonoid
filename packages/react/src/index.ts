@@ -15,5 +15,6 @@ export * from "./components/tile/index";
 export * from "./components/select/index";
 export * from "./components/dropdown/index";
 export * from "./components/separator/index";
+export * from "./components/searchbar/index";
 export * from "./utils/cn";
 export * from "./utils/condition";
