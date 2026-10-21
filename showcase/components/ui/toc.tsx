@@ -235,6 +235,7 @@ export function Toc({
           <Sidebar.Destination
             key={item.id}
             href={`#${item.id}`}
+            variant="plain"
             icon={renderIcon(item.icon)}
             active={effectiveActiveId === item.id}
             onClick={() => scrollToSection(item.id)}

@@ -124,7 +124,7 @@ export const variants = cva(
       {
         selected: true,
         color: "surface",
-        className: "bg-subtle font-medium"
+        className: "bg-surface-hover font-medium"
       },
       {
         selected: true,
