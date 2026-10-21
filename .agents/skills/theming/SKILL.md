@@ -30,3 +30,14 @@ Separate raw palette scales from semantic roles. Components must consume semanti
 ### Theme Continuity
 
 Every token must provide explicit definitions for both light and dark modes. Ensure color contrast ratios meet accessibility standards across every platform target.
+
+<br>
+
+### Interactive State Token Mapping
+
+All interactive surfaces must consume dedicated state tokens for hover, active, and focus transitions rather than arbitrary opacity percentages or ad hoc color values:
+
+- Surface: Utilize surface hover and surface active tokens for neutral tile and button feedback
+- Subtle: Utilize subtle hover and subtle active tokens for secondary and plain actions
+- Primary: Utilize subtle and subtle active tokens for plain and outlined variants, and primary hover and primary active tokens for contained variants
+- Destructive: Utilize destructive hover and destructive active tokens for contained variants, and calibrated destructive tints for plain and outlined variants

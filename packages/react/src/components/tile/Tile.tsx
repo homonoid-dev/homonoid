@@ -55,69 +55,69 @@ export const variants = cva(
         variant: "plain",
         color: "surface",
         interactive: true,
-        className: "hover:bg-surface-hover active:bg-surface-active focus:bg-surface-hover aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
+        className: "text-foreground hover:bg-surface-hover active:bg-surface-active focus:bg-surface-hover aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
       },
       {
         variant: "plain",
         color: "subtle",
         interactive: true,
-        className: "hover:bg-subtle-hover active:bg-subtle-active focus:bg-subtle-hover"
+        className: "text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active focus:bg-subtle-hover aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
       },
       {
         variant: "plain",
         color: "primary",
         interactive: true,
-        className: "hover:bg-primary/10 active:bg-primary/20 focus:bg-primary/10"
+        className: "text-primary hover:bg-subtle active:bg-subtle-active focus:bg-subtle aria-expanded:bg-subtle data-[state=open]:bg-subtle"
       },
       {
         variant: "plain",
         color: "destructive",
         interactive: true,
-        className: "hover:bg-destructive/10 active:bg-destructive/20 focus:bg-destructive/10"
+        className: "text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20 focus:bg-destructive-hover/5 aria-expanded:bg-destructive-hover/5 data-[state=open]:bg-destructive-hover/5"
       },
 
-      // Contained Variants (Aligned with Card's fills)
+      // Contained Variants (Solid fills matching Button)
       {
         variant: "contained",
         color: "surface",
-        className: "bg-surface hover:bg-surface-hover active:bg-surface-active"
+        className: "bg-surface text-foreground hover:bg-surface-hover active:bg-surface-active focus:bg-surface-hover aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
       },
       {
         variant: "contained",
         color: "subtle",
-        className: "bg-primary/10 hover:bg-primary/15 active:bg-primary/20"
+        className: "bg-subtle text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active focus:bg-subtle-hover aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
       },
       {
         variant: "contained",
         color: "primary",
-        className: "bg-primary/25 hover:bg-primary/30 active:bg-primary/35"
+        className: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active focus:bg-primary-hover aria-expanded:bg-primary-hover data-[state=open]:bg-primary-hover"
       },
       {
         variant: "contained",
         color: "destructive",
-        className: "bg-destructive/15 hover:bg-destructive/20 active:bg-destructive/25"
+        className: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-active focus:bg-destructive-hover aria-expanded:bg-destructive-hover data-[state=open]:bg-destructive-hover"
       },
 
-      // Outlined Variants (Aligned with Card's borders)
+      // Outlined Variants (Transparent + Border matching Button)
       {
         variant: "outlined",
         color: "surface",
-        className: "border-border hover:bg-surface-hover active:bg-surface-active"
+        className: "border-border text-foreground hover:bg-surface-hover active:bg-surface-active focus:bg-surface-hover aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
       },
       {
         variant: "outlined",
         color: "subtle",
-        className: "border-subtle-border hover:bg-subtle-hover active:bg-subtle-active"
+        className: "border-subtle-border text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active focus:bg-subtle-hover aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
       },
       {
         variant: "outlined",
         color: "primary",
-        className: "border-primary-border hover:bg-primary/10 active:bg-primary/20"
+        className: "border-primary-border text-primary hover:bg-subtle active:bg-subtle-active focus:bg-subtle aria-expanded:bg-subtle data-[state=open]:bg-subtle"
       },
       {
         variant: "outlined",
         color: "destructive",
-        className: "border-destructive-border hover:bg-destructive-hover/10 active:bg-destructive-active/20"
+        className: "border-destructive-border text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20 focus:bg-destructive-hover/5 aria-expanded:bg-destructive-hover/5 data-[state=open]:bg-destructive-hover/5"
       },
 
       // Selected states
@@ -129,17 +129,17 @@ export const variants = cva(
       {
         selected: true,
         color: "subtle",
-        className: "bg-primary/15 font-medium"
+        className: "bg-subtle-hover font-medium"
       },
       {
         selected: true,
         color: "primary",
-        className: "bg-primary/30 font-medium"
+        className: "bg-subtle-active font-medium"
       },
       {
         selected: true,
         color: "destructive",
-        className: "bg-destructive/25 font-medium"
+        className: "bg-destructive-hover/10 font-medium"
       }
     ],
     defaultVariants: {
