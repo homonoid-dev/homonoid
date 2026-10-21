@@ -100,7 +100,7 @@ export function Toc({
   defaultActiveId,
   collapsible = true,
   collapsed: controlledCollapsed,
-  collapseBreakpoint = 1280,
+  collapseBreakpoint = 920,
   onCollapsedChange,
 }: TocProps = {}) {
   const context = useContext(TocContext);
@@ -124,20 +124,21 @@ export function Toc({
     defaultActiveId ?? items[0]?.id ?? ""
   );
 
-  const effectiveControlled = controlledCollapsed ?? contextCollapsed;
-
-  const isCollapsed = collapsible && cond(
-    effectiveControlled !== undefined,
-    Boolean(effectiveControlled),
-    internalCollapsed
-  );
+  const isCollapsed =
+    collapsible &&
+    cond(
+      controlledCollapsed !== undefined,
+      Boolean(controlledCollapsed),
+      internalCollapsed
+    );
 
   useEffect(() => {
-    if (!collapsible || effectiveControlled !== undefined) return;
+    if (!collapsible || controlledCollapsed !== undefined) return;
 
     const mql = window.matchMedia(`(max-width: ${collapseBreakpoint}px)`);
     const update = (e: MediaQueryListEvent | MediaQueryList) => {
       setInternalCollapsed(e.matches);
+      setContextCollapsed?.(e.matches);
     };
 
     update(mql);
@@ -149,14 +150,13 @@ export function Toc({
       mql.addListener(update);
       return () => mql.removeListener(update);
     }
-  }, [collapsible, effectiveControlled, collapseBreakpoint]);
+  }, [collapsible, controlledCollapsed, collapseBreakpoint, setContextCollapsed]);
 
   const handleCollapseChange = useCallback(
     (next: boolean) => {
-      if (controlledCollapsed === undefined && setContextCollapsed) {
-        setContextCollapsed(next);
-      } else if (controlledCollapsed === undefined) {
+      if (controlledCollapsed === undefined) {
         setInternalCollapsed(next);
+        setContextCollapsed?.(next);
       }
       onCollapsedChange?.(next);
     },
