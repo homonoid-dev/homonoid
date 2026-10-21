@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { Modal, Button, Label, Description, Card, useModalContext } from "@homonoid/react";
+import { Modal, Button, Label, Heading, Description, Card, useModalContext } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -37,11 +37,11 @@ export function ModalView() {
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
-        <Label size="lg">Modal</Label>
-        <Description>
+        <Heading size="lg">Modal</Heading>
+        <Description size="md">
           A modal displays an elevated dialog surface over the application canvas to focus user attention on a discrete task, critical confirmation, or rich sub flow.
         </Description>
-        <Description>
+        <Description size="md">
           Modals interrupt standard workflow by rendering a dimmed backdrop overlay and trapping keyboard focus, requiring explicit dismissal or completion before users return to the primary interface.
         </Description>
       </div>

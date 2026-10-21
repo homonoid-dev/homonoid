@@ -1,6 +1,6 @@
 "use client";
 
-import { Tooltip, Button, Label, Description, Card } from "@homonoid/react";
+import { Tooltip, Button, Label, Description, Heading, Card } from "@homonoid/react";
 import {
   Plus,
   Bookmark,
@@ -34,11 +34,11 @@ export function TooltipView() {
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
-        <Label size="lg">Tooltip</Label>
-        <Description>
+        <Heading size="lg">Tooltip</Heading>
+        <Description size="md">
           A tooltip presents contextual descriptions or auxiliary keyboard accelerators when users hover over or focus an interactive element.
         </Description>
-        <Description>
+        <Description size="md">
           Tooltips clarify circular icon controls, reveal keyboard shortcuts, and offer guidance without crowding the primary interface canvas.
         </Description>
       </div>

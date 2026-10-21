@@ -1,6 +1,6 @@
 "use client";
 
-import { Select, Card, Label, Description } from "@homonoid/react";
+import { Select, Card, Label, Description, Heading } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -100,11 +100,11 @@ export function SelectView() {
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
-        <Label size="lg">Select</Label>
-        <Description>
+        <Heading size="lg">Select</Heading>
+        <Description size="md">
           A select displays a collapsible list of mutually exclusive options in a floating surface anchored to an interactive trigger control.
         </Description>
-        <Description>
+        <Description size="md">
           Homonoid select controls pair resilient floating positioning with the tactile Tile primitive, delivering fluid opening transitions, full typeahead navigation, and zero layout shift.
         </Description>
       </div>

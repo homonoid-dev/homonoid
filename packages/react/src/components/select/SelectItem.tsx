@@ -93,6 +93,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
         className={cn(
           "cursor-pointer select-none",
           cond(isSelected, "bg-surface-hover font-medium", ""),
+          cond(disabled, "opacity-40 text-muted pointer-events-none cursor-not-allowed", ""),
           className
         )}
         {...itemProps}

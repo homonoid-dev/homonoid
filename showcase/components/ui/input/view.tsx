@@ -1,6 +1,6 @@
 "use client";
 
-import { Input, Label, Description, Card } from "@homonoid/react";
+import { Input, Label, Heading, Description, Card } from "@homonoid/react";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
@@ -29,12 +29,12 @@ export function InputView() {
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
-        <Label size="lg">Input</Label>
-        <Description>
+        <Heading size="lg">Input</Heading>
+        <Description size="md">
           An input allows users to enter, edit, and submit text data through direct keyboard entry.
         </Description>
 
-        <Description>
+        <Description size="md">
           Inputs are foundational interface controls for capturing structured and unstructured user data while maintaining dimensional stability and visual continuity across interactive states.
         </Description>
       </div>

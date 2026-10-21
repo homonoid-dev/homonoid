@@ -1,6 +1,6 @@
 "use client";
 
-import { Description, Label, Card, Input } from "@homonoid/react";
+import { Description, Label, Heading, Card, Input } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -23,11 +23,11 @@ export function DescriptionView() {
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
-        <Label size="lg">Description</Label>
-        <Description>
+        <Heading size="lg">Description</Heading>
+        <Description size="md">
           A description provides supportive, secondary context to accompany headers, form fields, and interactive stages.
         </Description>
-        <Description>
+        <Description size="md">
           Descriptions anchor comprehension, elucidating functionality and purpose while preserving visual continuum across views.
         </Description>
       </div>

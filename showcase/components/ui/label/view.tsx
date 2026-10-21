@@ -1,6 +1,6 @@
 "use client";
 
-import { Label, Description, Card, Input } from "@homonoid/react";
+import { Label, Description, Heading, Card, Input } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -23,11 +23,11 @@ export function LabelView() {
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
-        <Label size="lg">Label</Label>
-        <Description>
+        <Heading size="lg">Label</Heading>
+        <Description size="md">
           A label establishes clear typographic hierarchy and semantic prominence for sections, views, and data landmarks.
         </Description>
-        <Description>
+        <Description size="md">
           Labels anchor layout surfaces, providing immediate legibility and visual weight while preserving continuum across responsive viewports.
         </Description>
       </div>

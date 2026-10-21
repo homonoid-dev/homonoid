@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Label, Description, Card } from "@homonoid/react";
+import { Button, Label, Heading, Description, Card } from "@homonoid/react";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
@@ -36,12 +36,12 @@ export function ButtonViewContent() {
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
-        <Label size="lg">Button</Label>
-        <Description>
+        <Heading size="lg">Button</Heading>
+        <Description size="md">
           A button communicates an action and allows users to trigger that action with a single interaction.
         </Description>
 
-        <Description>
+        <Description size="md">
           Homonoid structures button hierarchy through three deliberate tiers contained for primary focus, outlined for secondary choices, and plain for utilities while maintaining strict object continuity by preserving fixed dimensions and fluid micro transitions across hover, press, and loading states.
         </Description>
 

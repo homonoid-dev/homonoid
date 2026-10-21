@@ -1,6 +1,6 @@
 "use client";
 
-import { Tile, Card, Label, Description, Switch, Checkbox } from "@homonoid/react";
+import { Tile, Card, Label, Heading, Description, Switch, Checkbox } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -85,11 +85,11 @@ export function TileView() {
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
-        <Label size="lg">Tile</Label>
-        <Description>
+        <Heading size="lg">Tile</Heading>
+        <Description size="md">
           A tile provides a structured horizontal row container pairing descriptive copy with visual anchors and interactive accessories.
         </Description>
-        <Description>
+        <Description size="md">
           Homonoid tiles translate the Flutter ListTile model into modern web interfaces with fluid press compression, standardized spatial density, and zero wrapper bloat.
         </Description>
       </div>

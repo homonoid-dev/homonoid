@@ -5,6 +5,7 @@ import {
   Button,
   Label,
   Description,
+  Heading,
   Card,
   Input,
 } from "@homonoid/react";
@@ -50,11 +51,11 @@ export function PopoverView() {
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
-        <Label size="lg">Popover</Label>
-        <Description>
+        <Heading size="lg">Popover</Heading>
+        <Description size="md">
           A popover presents rich interactive content within a transient floating surface anchored to an interactive trigger element.
         </Description>
-        <Description>
+        <Description size="md">
           Popovers provide contextual overlays such as filter menus, property pickers, or rich confirmation forms without navigating away from the current canvas.
         </Description>
       </div>

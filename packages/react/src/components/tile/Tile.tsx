@@ -43,6 +43,10 @@ export const variants = cva(
       selected: {
         true: "",
         false: ""
+      },
+      disabled: {
+        true: "opacity-40 text-muted pointer-events-none cursor-not-allowed aria-disabled:opacity-40 aria-disabled:text-muted",
+        false: ""
       }
     },
     compoundVariants: [
@@ -144,7 +148,8 @@ export const variants = cva(
       size: "md",
       radius: "lg",
       interactive: true,
-      selected: false
+      selected: false,
+      disabled: false
     }
   }
 );
@@ -239,7 +244,8 @@ export const Tile = forwardRef<HTMLElement, TileProps>(function Tile(
           size,
           radius,
           interactive: isInteractive,
-          selected
+          selected,
+          disabled
         }),
         className
       )}
