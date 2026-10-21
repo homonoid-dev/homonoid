@@ -9,7 +9,7 @@ import {
 } from "@floating-ui/react";
 import { useSelectContext } from "./SelectContext";
 import { cn } from "../../utils/cn";
-import { all, match } from "../../utils/condition";
+import { all, cond, match } from "../../utils/condition";
 import type { SelectContentProps } from "./types";
 
 const radiusClasses: Record<string, string> = {
@@ -59,7 +59,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
 
     const mergedRef = useMergeRefs([setFloating, ref]);
 
-    if (!all(isMounted, !disabled, open)) {
+    if (!all(isMounted, !disabled)) {
       return null;
     }
 
@@ -78,7 +78,8 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                 ...style,
               }}
               className={cn(
-                "transform-gpu origin-top overflow-hidden bg-surface border border-border shadow-2xl",
+                "transform-gpu overflow-hidden bg-surface border border-border shadow-2xl",
+                cond(context.placement.startsWith("top"), "origin-bottom", "origin-top"),
                 match(radius, radiusClasses, "rounded-2xl"),
                 className
               )}
