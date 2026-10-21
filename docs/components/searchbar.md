@@ -98,6 +98,18 @@ Searchbars provide structural surface treatments via the `variant` property:
 
 <br>
 
+### Radius
+
+Searchbars support corner curvature configurations via the `radius` property:
+
+- `None` (`none`): Square container boundary with matching sharp accessory badges.
+- `Small` (`sm`): Subtle 4px rounded corners (`rounded-sm`).
+- `Medium` (`md`): Standard 6px rounded corners (`rounded-md`).
+- `Large` (`lg`): Prominent 8px rounded corners (`rounded-lg`).
+- `Full` (`full`): Continuous pill curvature (`rounded-full`), harmonizing container frames and nested shortcut badges.
+
+<br>
+
 ### States
 
 Searchbars communicate interactive status across all phases of user engagement:

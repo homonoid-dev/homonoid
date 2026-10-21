@@ -18,6 +18,14 @@ const radiusClasses: Record<SearchbarRadius, string> = {
   full: "rounded-full",
 };
 
+const shortcutRadiusClasses: Record<SearchbarRadius, string> = {
+  none: "rounded-none",
+  sm: "rounded-sm",
+  md: "rounded-md",
+  lg: "rounded-lg",
+  full: "rounded-full px-2",
+};
+
 function SearchIcon({ size }: { size: "sm" | "md" | "lg" }) {
   return (
     <svg
@@ -73,16 +81,21 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
       leading ?? <SearchIcon size={size} />
     );
 
+    const shortcutRadiusClass = radius
+      ? shortcutRadiusClasses[radius]
+      : cond(size === "lg", "rounded-md", "rounded-sm");
+
     const trailingContent = trailing ?? (
       shortcut ? (
         <kbd
           className={cn(
-            "inline-flex items-center justify-center font-mono font-medium text-muted bg-surface border border-border rounded shadow-xs select-none pointer-events-none",
+            "inline-flex items-center justify-center font-mono font-medium text-muted bg-surface border border-border shadow-xs select-none pointer-events-none",
             cond(
               size === "sm",
               "text-[10px] px-1 py-0.5 min-w-4",
               cond(size === "lg", "text-xs px-1.5 py-0.5 min-w-5", "text-xs px-1.5 py-0.5 min-w-4.5")
-            )
+            ),
+            shortcutRadiusClass
           )}
         >
           {shortcut}

@@ -1,7 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  Sparkles,
-  Maximize2,
+  Layers,
+  Ruler,
   Loader2,
   CircleDot,
   Infinity,
@@ -21,12 +21,12 @@ export const SEARCHBAR_SECTIONS: Record<string, SearchbarSectionItem> = {
   variants: {
     id: "variants",
     label: "Variants",
-    icon: Sparkles,
+    icon: Layers,
   },
   sizes: {
     id: "sizes",
     label: "Sizes",
-    icon: Maximize2,
+    icon: Ruler,
   },
   loading: {
     id: "loading",
