@@ -312,14 +312,25 @@ export const Select: SelectComponent = function Select({
         <div className={cn("flex flex-col gap-1.5 w-full", className)}>
           {when(
             label,
-            <Label id={labelId} as="span" size={size} className="cursor-default select-none pointer-events-none">
+            <Label
+              id={labelId}
+              as="span"
+              size={size}
+              disabled={disabled}
+              className="cursor-default select-none pointer-events-none"
+            >
               {label}
             </Label>
           )}
           {renderContent()}
           {when(
             description && !error,
-            <Description id={descriptionId} size="sm" className="cursor-default select-none pointer-events-none">
+            <Description
+              id={descriptionId}
+              size="sm"
+              disabled={disabled}
+              className="cursor-default select-none pointer-events-none"
+            >
               {description}
             </Description>
           )}

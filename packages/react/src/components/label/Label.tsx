@@ -3,21 +3,26 @@ import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import type { LabelProps } from "./types";
 
-export const variants = cva("font-medium text-foreground select-none", {
+export const variants = cva("font-medium select-none", {
   variants: {
     size: {
       sm: "text-xs leading-4",
       md: "text-sm leading-5",
       lg: "text-base leading-6 font-semibold",
     },
+    disabled: {
+      true: "text-muted cursor-not-allowed",
+      false: "text-foreground",
+    },
   },
   defaultVariants: {
     size: "md",
+    disabled: false,
   },
 });
 
 export const Label = forwardRef<HTMLElement, LabelProps>(function Label(
-  { as, size, className, children, ...props },
+  { as, size, disabled = false, className, children, ...props },
   ref
 ) {
   const Component = as || (props.htmlFor ? "label" : "span");
@@ -25,7 +30,8 @@ export const Label = forwardRef<HTMLElement, LabelProps>(function Label(
     <Component
       ref={ref}
       data-slot="label"
-      className={cn(variants({ size }), className)}
+      aria-disabled={disabled || undefined}
+      className={cn(variants({ size, disabled }), className)}
       {...props}
     >
       {children}

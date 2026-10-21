@@ -34,6 +34,12 @@ export interface DescriptionProps extends HTMLAttributes<HTMLElement> {
   size?: DescriptionSize;
 
   /**
+   * Whether the associated control is disabled.
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
    * Description content.
    */
   children?: ReactNode;
