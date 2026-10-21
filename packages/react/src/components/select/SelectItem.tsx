@@ -30,23 +30,25 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
       size,
       radius,
       getItemProps,
+      registerItem,
     } = useSelectContext();
 
     const isSelected = selectedValue === value;
     const labelContent = label || cond(typeof children === "string", children, undefined);
     const tileChildren = cond(typeof children === "string", null, children);
+    const itemLabel = labelContent || children || value;
 
     useEffect(() => {
-      if (isSelected) {
-        setSelectedLabel(labelContent || children || value);
+      if (registerItem) {
+        return registerItem(value, itemLabel);
       }
-    }, [isSelected, labelContent, children, value, setSelectedLabel]);
+    }, [registerItem, value, itemLabel]);
 
     const handleClick = (event: MouseEvent<HTMLElement>) => {
       if (disabled) return;
       onClick?.(event as unknown as MouseEvent<HTMLDivElement>);
       setValue(value);
-      setSelectedLabel(labelContent || children || value);
+      setSelectedLabel(itemLabel);
       setOpen(false);
     };
 

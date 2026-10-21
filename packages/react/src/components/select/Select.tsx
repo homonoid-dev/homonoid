@@ -5,6 +5,7 @@ import {
   useId,
   useRef,
   useEffect,
+  useCallback,
   Children,
   isValidElement,
   type ReactElement,
@@ -72,29 +73,7 @@ export const Select: SelectComponent = function Select({
   id,
   className,
 }: SelectProps) {
-  const findLabelForValue = (val: string | undefined): ReactNode => {
-    if (!val) return undefined;
-    if (options && options.length > 0) {
-      const match = options.find((opt) => opt.value === val);
-      if (match) return match.label || match.value;
-    }
-    let found: ReactNode = undefined;
-    const searchChildren = (nodes: ReactNode) => {
-      Children.forEach(nodes, (child) => {
-        if (!isValidElement(child)) return;
-        const props = child.props as Record<string, unknown>;
-        if (props.value === val) {
-          found = (props.label as ReactNode) || (props.children as ReactNode) || val;
-          return;
-        }
-        if (props.children) {
-          searchChildren(props.children as ReactNode);
-        }
-      });
-    };
-    searchChildren(children);
-    return found;
-  };
+  const itemsMapRef = useRef<Map<string, ReactNode>>(new Map());
 
   const [uncontrolledValue, setUncontrolledValue] = useState<string | undefined>(
     defaultValue
@@ -104,21 +83,47 @@ export const Select: SelectComponent = function Select({
   const isValueControlled = controlledValue !== undefined;
   const isValue = cond(isValueControlled, controlledValue, uncontrolledValue);
 
-  const [selectedLabel, setSelectedLabel] = useState<ReactNode>(() =>
-    findLabelForValue(cond(isValueControlled, controlledValue, defaultValue))
+  const initialValue = cond(isValueControlled, controlledValue, defaultValue);
+  const initialOptionLabel = cond(
+    Boolean(options && initialValue),
+    options?.find((opt) => opt.value === initialValue)?.label || initialValue,
+    undefined
   );
+
+  const [selectedLabel, setSelectedLabel] = useState<ReactNode>(initialOptionLabel);
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
 
+  const registerItem = useCallback((val: string, labelNode: ReactNode) => {
+    itemsMapRef.current.set(val, labelNode);
+    if (isValue === val) {
+      setSelectedLabel(labelNode);
+    }
+    return () => {
+      itemsMapRef.current.delete(val);
+    };
+  }, [isValue]);
+
+  const getItemLabel = useCallback((val: string) => {
+    return itemsMapRef.current.get(val);
+  }, []);
+
   useEffect(() => {
+    if (options && isValue !== undefined) {
+      const match = options.find((opt) => opt.value === isValue);
+      if (match) {
+        setSelectedLabel(match.label || match.value);
+        return;
+      }
+    }
     if (isValue !== undefined) {
-      const resolved = findLabelForValue(isValue);
-      if (resolved !== undefined) {
-        setSelectedLabel(resolved);
+      const registered = itemsMapRef.current.get(isValue);
+      if (registered !== undefined) {
+        setSelectedLabel(registered);
       }
     } else {
       setSelectedLabel(undefined);
     }
-  }, [isValue, children, options]);
+  }, [options, isValue]);
 
   const isOpenControlled = controlledOpen !== undefined;
   const isOpen = cond(isOpenControlled, Boolean(controlledOpen), uncontrolledOpen);
@@ -232,6 +237,8 @@ export const Select: SelectComponent = function Select({
     setHighlightedIndex,
     elementsRef,
     labelsRef,
+    registerItem,
+    getItemLabel,
   };
 
   let hasExplicitTrigger = false;

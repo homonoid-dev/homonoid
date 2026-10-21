@@ -48,6 +48,8 @@ export interface SelectContextValue {
   setHighlightedIndex: (index: number | null) => void;
   elementsRef: MutableRefObject<Array<HTMLElement | null>>;
   labelsRef: MutableRefObject<Array<string | null>>;
+  registerItem: (value: string, label: ReactNode) => () => void;
+  getItemLabel: (value: string) => ReactNode;
 }
 
 export const SelectContext = createContext<SelectContextValue | null>(null);
