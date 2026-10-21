@@ -63,7 +63,7 @@ export function SidebarDestination({
     );
 
     const classes = cn(
-      "group text-xs flex items-center w-full py-1.5 transition-colors duration-200 cursor-pointer select-none",
+      "group h-control-sm text-xs flex items-center w-full transition-colors duration-200 cursor-pointer select-none",
       cond(collapsed, "justify-center", "justify-between"),
       cond(
         isSelected,
@@ -121,41 +121,15 @@ export function SidebarDestination({
     className
   );
 
-  const tileTrigger = cond(
-    isInternalRoute,
+  const tileTrigger = (
     <Tile
-      as={Link}
-      href={cond(isInternalRoute, href as string, "/")}
-      onClick={onClick}
-      variant="plain"
-      size="sm"
-      radius="md"
-      selected={isSelected}
-      trailing={icon}
-      aria-label={labelText}
-      className={tileClasses}
-    >
-      <span
-        className={cn(
-          "truncate transition-[opacity,max-width] duration-300 ease-in-out whitespace-nowrap",
-          cond(
-            showLabel,
-            "max-w-full opacity-100",
-            "max-w-0 opacity-0 overflow-hidden pointer-events-none"
-          )
-        )}
-      >
-        {children}
-      </span>
-    </Tile>,
-    <Tile
-      as="a"
-      href={cond(Boolean(href), href as string, "#")}
+      as={cond(isInternalRoute, Link, "a")}
+      href={cond(Boolean(href), href as string, cond(isInternalRoute, "/", "#"))}
       onClick={(e) => {
-        if (onClick) {
+        if (!isInternalRoute && onClick) {
           e.preventDefault();
-          onClick(e);
         }
+        onClick?.(e);
       }}
       variant="plain"
       size="sm"
