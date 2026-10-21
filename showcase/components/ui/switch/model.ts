@@ -92,6 +92,8 @@ export function Example() {
     <div className="flex flex-row flex-wrap items-center gap-surface-gap">
       <Switch aria-label="Inactive switch" />
       <Switch defaultChecked aria-label="Active switch" />
+      <Switch invalid aria-label="Invalid inactive switch" />
+      <Switch invalid defaultChecked aria-label="Invalid active switch" />
     </div>
   );
 }`;
