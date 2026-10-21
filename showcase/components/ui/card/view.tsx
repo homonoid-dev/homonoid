@@ -24,10 +24,10 @@ export function CardView() {
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
         <Heading size="lg">Card</Heading>
-        <Description size="md">
+        <Description>
           A card groups related content and interactive elements within a clear visual container.
         </Description>
-        <Description size="md">
+        <Description>
           Homonoid cards provide structured surface elevation and flexible padding options while preserving design token fidelity across layouts.
         </Description>
       </div>

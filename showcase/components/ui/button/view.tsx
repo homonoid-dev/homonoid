@@ -37,11 +37,11 @@ export function ButtonViewContent() {
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
         <Heading size="lg">Button</Heading>
-        <Description size="md">
+        <Description>
           A button communicates an action and allows users to trigger that action with a single interaction.
         </Description>
 
-        <Description size="md">
+        <Description>
           Homonoid structures button hierarchy through three deliberate tiers contained for primary focus, outlined for secondary choices, and plain for utilities while maintaining strict object continuity by preserving fixed dimensions and fluid micro transitions across hover, press, and loading states.
         </Description>
 
@@ -75,7 +75,7 @@ export function ButtonViewContent() {
       <section id={sections.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={sections.variants.icon} />
-          <Label size="lg" as="h2">{sections.variants.label}</Label>
+          <Heading size="md" as="h2">{sections.variants.label}</Heading>
         </div>
 
         {/* Variants Stage */}
@@ -104,7 +104,7 @@ export function ButtonViewContent() {
       <section id={sections.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={sections.sizes.icon} />
-          <Label size="lg" as="h2">{sections.sizes.label}</Label>
+          <Heading size="md" as="h2">{sections.sizes.label}</Heading>
         </div>
 
         {/* Sizes Stage */}
@@ -127,7 +127,7 @@ export function ButtonViewContent() {
       <section id={sections.outlined.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={sections.outlined.icon} />
-          <Label size="lg" as="h2">{sections.outlined.label}</Label>
+          <Heading size="md" as="h2">{sections.outlined.label}</Heading>
         </div>
 
         {/* Outlined Stage */}
@@ -142,7 +142,7 @@ export function ButtonViewContent() {
       <section id={sections.withIcon.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={sections.withIcon.icon} />
-          <Label size="lg" as="h2">{sections.withIcon.label}</Label>
+          <Heading size="md" as="h2">{sections.withIcon.label}</Heading>
         </div>
 
         {/* With Icon Stage */}
@@ -160,7 +160,7 @@ export function ButtonViewContent() {
       <section id={sections.iconOnly.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={sections.iconOnly.icon} />
-          <Label size="lg" as="h2">{sections.iconOnly.label}</Label>
+          <Heading size="md" as="h2">{sections.iconOnly.label}</Heading>
         </div>
 
         {/* Icon Only Stage */}
@@ -179,7 +179,7 @@ export function ButtonViewContent() {
       <section id={sections.loading.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={sections.loading.icon} />
-          <Label size="lg" as="h2">{sections.loading.label}</Label>
+          <Heading size="md" as="h2">{sections.loading.label}</Heading>
         </div>
 
         {/* Loading Stage */}
@@ -237,7 +237,7 @@ export function ButtonViewContent() {
         id={sections.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">{sections.continuity.label}</Label>
+        <Heading size="md" as="h2">{sections.continuity.label}</Heading>
 
         <Description>
           Homonoid treats interactive controls as persistent physical landmarks. State transitions must preserve component identity and geometric stability rather than tearing down and reconstructing elements abruptly.
@@ -257,7 +257,7 @@ export function ButtonViewContent() {
         id={sections.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">{sections.accessibility.label}</Label>
+        <Heading size="md" as="h2">{sections.accessibility.label}</Heading>
 
         <Description>
           Accessibility stands at the core of Homonoid design philosophy. Interactive components must empower every individual with immediate comprehension, predictable keyboard navigation, and seamless assistive technology integration.
@@ -285,7 +285,7 @@ export function ButtonViewContent() {
         id={sections.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">{sections.tokens.label}</Label>
+        <Heading size="md" as="h2">{sections.tokens.label}</Heading>
 
         <Description>
           Button dimensions map directly to the standardized control height tokens comprising 32px for small, 40px for medium, and 48px for large scale presentations.
@@ -305,7 +305,7 @@ export function ButtonViewContent() {
         id={sections.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">{sections.styleReference.label}</Label>
+        <Heading size="md" as="h2">{sections.styleReference.label}</Heading>
 
         <Description>
           Contained buttons apply high contrast solid surface fills that subtly illuminate on hover and compress smoothly during pointer activation.

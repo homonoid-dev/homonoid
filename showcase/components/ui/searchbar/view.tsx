@@ -15,6 +15,7 @@ import {
   SEARCHBAR_SIZES_CODE_SAMPLE,
   SEARCHBAR_LOADING_CODE_SAMPLE,
   SEARCHBAR_RADII_CODE_SAMPLE,
+  SEARCHBAR_LABEL_AND_DESCRIPTION_CODE_SAMPLE,
 } from "./model";
 
 export function SearchbarView() {
@@ -69,7 +70,12 @@ export function SearchbarView() {
 
         <Stage code={SEARCHBAR_DEFAULT_CODE_SAMPLE}>
           <div className="w-full max-w-sm">
-            <Searchbar placeholder="Search documentation..." shortcut="⌘K" />
+            <Searchbar
+              label="Quick Find"
+              description="Search across all projects, team members, and settings."
+              placeholder="Search documentation..."
+              shortcut="⌘K"
+            />
           </div>
         </Stage>
       </section>
@@ -175,6 +181,30 @@ export function SearchbarView() {
                 shortcut="⌘K"
               />
             ))}
+          </div>
+        </Stage>
+      </section>
+
+      {/* Label & Description Section */}
+      <section
+        id={SEARCHBAR_SECTIONS.labelAndDescription.id}
+        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
+      >
+        <div className="flex flex-row gap-surface-gap items-center">
+          <Frame icon={SEARCHBAR_SECTIONS.labelAndDescription.icon} />
+          <Label size="lg" as="h2">
+            {SEARCHBAR_SECTIONS.labelAndDescription.label}
+          </Label>
+        </div>
+
+        <Stage code={SEARCHBAR_LABEL_AND_DESCRIPTION_CODE_SAMPLE}>
+          <div className="w-full max-w-sm flex flex-col gap-surface-gap">
+            <Searchbar
+              label="Repository Search"
+              description="Query public and private repositories across your organization."
+              placeholder="Search repositories..."
+              shortcut="⌘K"
+            />
           </div>
         </Stage>
       </section>

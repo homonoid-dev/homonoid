@@ -21,7 +21,7 @@ export const variants = cva("leading-relaxed select-none", {
   },
   defaultVariants: {
     variant: "muted",
-    size: "sm",
+    size: "md",
     disabled: false,
   },
 });

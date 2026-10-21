@@ -1,13 +1,14 @@
-import type { LucideIcon } from "lucide-react";
 import {
   Layers,
   Ruler,
   Loader2,
   CircleDot,
+  Tag,
   Infinity,
   Accessibility,
   Palette,
   BookOpen,
+  LucideIcon,
 } from "lucide-react";
 import type { TocItem } from "@/components/ui/toc";
 
@@ -37,6 +38,11 @@ export const SEARCHBAR_SECTIONS: Record<string, SearchbarSectionItem> = {
     id: "radius",
     label: "Radius",
     icon: CircleDot,
+  },
+  labelAndDescription: {
+    id: "label-and-description",
+    label: "Label & Description",
+    icon: Tag,
   },
   continuity: {
     id: "object-continuity",
@@ -68,7 +74,12 @@ export const SEARCHBAR_DEFAULT_CODE_SAMPLE = `import { Searchbar } from "@homono
 export function Example() {
   return (
     <div className="w-full max-w-sm">
-      <Searchbar placeholder="Search documentation..." shortcut="⌘K" />
+      <Searchbar
+        label="Quick Find"
+        description="Search across all projects, team members, and settings."
+        placeholder="Search documentation..."
+        shortcut="⌘K"
+      />
     </div>
   );
 }`;
@@ -156,6 +167,21 @@ export function Example() {
           shortcut="⌘K"
         />
       ))}
+    </div>
+  );
+}`;
+
+export const SEARCHBAR_LABEL_AND_DESCRIPTION_CODE_SAMPLE = `import { Searchbar } from "@homonoid/react";
+
+export function Example() {
+  return (
+    <div className="w-full max-w-sm flex flex-col gap-surface-gap">
+      <Searchbar
+        label="Repository Search"
+        description="Query public and private repositories across your organization."
+        placeholder="Search repositories..."
+        shortcut="⌘K"
+      />
     </div>
   );
 }`;
