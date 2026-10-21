@@ -25,9 +25,9 @@ export const variants = cva(
         destructive: "text-destructive"
       },
       size: {
-        sm: "min-h-control-md px-3 py-1.5 gap-2.5 text-xs",
-        md: "min-h-control-lg px-3.5 py-2.5 gap-3 text-sm",
-        lg: "min-h-14 px-4 py-3.5 gap-3.5 text-base"
+        sm: "min-h-control-sm px-3 py-1.5 gap-2.5 text-xs",
+        md: "min-h-control-md px-3.5 py-2.5 gap-3 text-sm",
+        lg: "min-h-control-lg px-4 py-3.5 gap-3.5 text-base"
       },
       radius: {
         none: "rounded-none",
@@ -42,6 +42,10 @@ export const variants = cva(
       },
       selected: {
         true: "",
+        false: ""
+      },
+      disabled: {
+        true: "opacity-40 text-muted pointer-events-none cursor-not-allowed aria-disabled:opacity-40 aria-disabled:text-muted",
         false: ""
       }
     },
@@ -144,7 +148,8 @@ export const variants = cva(
       size: "md",
       radius: "lg",
       interactive: true,
-      selected: false
+      selected: false,
+      disabled: false
     }
   }
 );
@@ -239,7 +244,8 @@ export const Tile = forwardRef<HTMLElement, TileProps>(function Tile(
           size,
           radius,
           interactive: isInteractive,
-          selected
+          selected,
+          disabled
         }),
         className
       )}

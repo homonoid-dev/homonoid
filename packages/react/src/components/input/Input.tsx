@@ -87,7 +87,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     if (typeof ref === "function") {
       ref(element);
     } else {
-      (ref as React.MutableRefObject<HTMLInputElement | null>).current = element;
+      (ref as React.RefObject<HTMLInputElement | null>).current = element;
     }
   };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { Spinner, Button, Input, Label, Description, Card } from "@homonoid/react";
+import { Spinner, Button, Input, Label, Description, Heading, Card } from "@homonoid/react";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
@@ -26,12 +26,12 @@ export function SpinnerView() {
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
-        <Label size="lg">Spinner</Label>
-        <Description>
+        <Heading size="lg">Spinner</Heading>
+        <Description size="md">
           A spinner provides non blocking indeterminate progress feedback, communicating that a background process is active while preserving spatial and visual continuity.
         </Description>
 
-        <Description>
+        <Description size="md">
           Spinners indicate that an operation is underway without requiring precise completion time estimations, integrating seamlessly into buttons, inputs, and modal containers.
         </Description>
       </div>

@@ -30,6 +30,12 @@ export interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   htmlFor?: string;
 
   /**
+   * Whether the associated control is disabled.
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
    * Label content.
    */
   children?: ReactNode;

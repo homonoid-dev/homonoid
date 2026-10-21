@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Label, Description } from "@homonoid/react";
+import { Card, Label, Heading, Description } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -23,11 +23,11 @@ export function CardView() {
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
-        <Label size="lg">Card</Label>
-        <Description>
+        <Heading size="lg">Card</Heading>
+        <Description size="md">
           A card groups related content and interactive elements within a clear visual container.
         </Description>
-        <Description>
+        <Description size="md">
           Homonoid cards provide structured surface elevation and flexible padding options while preserving design token fidelity across layouts.
         </Description>
       </div>
