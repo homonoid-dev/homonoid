@@ -76,8 +76,10 @@ export function Example() {
   return (
     <Dropdown>
       <Dropdown.Trigger asChild>
-        <Button variant="outlined" leading={<MoreHorizontal className="size-4" />}>
-          Options
+        <Button 
+          variant="outlined" 
+          layout="icon"
+          leading={<MoreHorizontal className="size-4" />}>
         </Button>
       </Dropdown.Trigger>
       <Dropdown.Content>

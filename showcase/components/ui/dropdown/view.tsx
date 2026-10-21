@@ -88,8 +88,10 @@ export function DropdownView() {
         <Stage code={DROPDOWN_DEFAULT_CODE_SAMPLE}>
           <Dropdown>
             <Dropdown.Trigger asChild>
-              <Button variant="outlined" leading={<MoreHorizontal className="size-4" />}>
-                Options
+              <Button
+                variant="outlined"
+                layout="icon"
+                leading={<MoreHorizontal className="size-4" />}>
               </Button>
             </Dropdown.Trigger>
             <Dropdown.Content>

@@ -55,25 +55,25 @@ export const variants = cva(
         variant: "plain",
         color: "surface",
         interactive: true,
-        className: "hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
+        className: "hover:bg-surface-hover active:bg-surface-active focus:bg-surface-hover aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
       },
       {
         variant: "plain",
         color: "subtle",
         interactive: true,
-        className: "hover:bg-subtle-hover active:bg-subtle-active"
+        className: "hover:bg-subtle-hover active:bg-subtle-active focus:bg-subtle-hover"
       },
       {
         variant: "plain",
         color: "primary",
         interactive: true,
-        className: "hover:bg-primary/10 active:bg-primary/20"
+        className: "hover:bg-primary/10 active:bg-primary/20 focus:bg-primary/10"
       },
       {
         variant: "plain",
         color: "destructive",
         interactive: true,
-        className: "hover:bg-destructive/10 active:bg-destructive/20"
+        className: "hover:bg-destructive/10 active:bg-destructive/20 focus:bg-destructive/10"
       },
 
       // Contained Variants (Aligned with Card's fills)

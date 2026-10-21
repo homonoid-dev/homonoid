@@ -59,19 +59,7 @@ export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
         label={labelContent}
         description={description}
         trailing={trailing}
-        className={cn(
-          "w-full text-left font-normal select-none transition-colors duration-normal ease-standard",
-          cond(
-            disabled,
-            "opacity-40 text-muted pointer-events-none cursor-not-allowed",
-            cond(
-              color === "destructive",
-              "hover:bg-destructive/10 active:bg-destructive/15 focus:bg-destructive/10",
-              "hover:bg-fill-secondary active:bg-fill-tertiary focus:bg-fill-secondary"
-            )
-          ),
-          className
-        )}
+        className={cn("w-full select-none", className)}
         {...itemProps}
         {...props}
       >
