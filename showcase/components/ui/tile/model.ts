@@ -2,7 +2,6 @@ import type { LucideIcon } from "lucide-react";
 import {
   Layers,
   Paintbrush,
-  Ruler,
   SlidersHorizontal,
   Square,
   Infinity,
@@ -28,11 +27,6 @@ export const TILE_SECTIONS: Record<string, TileSectionItem> = {
     id: "colors",
     label: "Colors",
     icon: Paintbrush,
-  },
-  sizes: {
-    id: "sizes",
-    label: "Sizes",
-    icon: Ruler,
   },
   accessories: {
     id: "accessories",
@@ -175,44 +169,6 @@ export function Example() {
   );
 }`;
 
-export const TILE_SIZES_CODE_SAMPLE = `import { Tile } from "@homonoid/react";
-import { Folder } from "lucide-react";
-
-export function Example() {
-  const items = [
-    {
-      size: "sm" as const,
-      label: "Small Density",
-      description: "Compact spatial scale for dropdowns and popover menus",
-    },
-    {
-      size: "md" as const,
-      label: "Medium Density",
-      description: "Default control scale for application lists and settings",
-    },
-    {
-      size: "lg" as const,
-      label: "Large Density",
-      description: "Spacious layout scale for hero list items and feed rows",
-    },
-  ];
-
-  return (
-    <div className="flex flex-col gap-2 w-full max-w-md">
-      {items.map((item) => (
-        <Tile
-          key={item.size}
-          size={item.size}
-          variant="contained"
-          leading={<Folder className="size-5" />}
-          label={item.label}
-          description={item.description}
-          onClick={() => {}}
-        />
-      ))}
-    </div>
-  );
-}`;
 
 export const TILE_ACCESSORIES_CODE_SAMPLE = `import { Tile, Switch, Checkbox } from "@homonoid/react";
 import { Wifi, Volume2, ChevronRight } from "lucide-react";

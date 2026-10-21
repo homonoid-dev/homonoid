@@ -16,7 +16,6 @@ import {
   Zap,
   Star,
   AlertTriangle,
-  Folder,
   Wifi,
   Volume2,
   Smartphone,
@@ -27,7 +26,6 @@ import {
   TILE_DEFAULT_CODE_SAMPLE,
   TILE_VARIANTS_CODE_SAMPLE,
   TILE_COLORS_CODE_SAMPLE,
-  TILE_SIZES_CODE_SAMPLE,
   TILE_ACCESSORIES_CODE_SAMPLE,
   TILE_COMPOSITION_CODE_SAMPLE,
 } from "./model";
@@ -80,24 +78,6 @@ export function TileView() {
       icon: <AlertTriangle className="size-5" />,
       label: "Destructive Color",
       description: "Alert palette for danger options or critical notices",
-    },
-  ];
-
-  const sizeItems = [
-    {
-      size: "sm" as const,
-      label: "Small Density",
-      description: "Compact spatial scale for dropdowns and popover menus",
-    },
-    {
-      size: "md" as const,
-      label: "Medium Density",
-      description: "Default control scale for application lists and settings",
-    },
-    {
-      size: "lg" as const,
-      label: "Large Density",
-      description: "Spacious layout scale for hero list items and feed rows",
     },
   ];
 
@@ -200,34 +180,6 @@ export function TileView() {
         </Stage>
       </section>
 
-      {/* Sizes Section */}
-      <section
-        id={TILE_SECTIONS.sizes.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={TILE_SECTIONS.sizes.icon} />
-          <Label size="lg" as="h2">
-            {TILE_SECTIONS.sizes.label}
-          </Label>
-        </div>
-
-        <Stage code={TILE_SIZES_CODE_SAMPLE}>
-          <div className="flex flex-col gap-2 w-full max-w-md">
-            {sizeItems.map((item) => (
-              <Tile
-                key={item.size}
-                size={item.size}
-                variant="contained"
-                leading={<Folder className="size-5" />}
-                label={item.label}
-                description={item.description}
-                onClick={() => { }}
-              />
-            ))}
-          </div>
-        </Stage>
-      </section>
 
       {/* Accessories Section */}
       <section
