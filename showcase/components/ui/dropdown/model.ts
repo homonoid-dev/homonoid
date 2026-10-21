@@ -76,11 +76,11 @@ export function Example() {
   return (
     <Dropdown>
       <Dropdown.Trigger asChild>
-        <Button 
-          variant="outlined" 
+        <Button
+          variant="outlined"
           layout="icon"
-          leading={<MoreHorizontal className="size-4" />}>
-        </Button>
+          leading={<MoreHorizontal className="size-4" />}
+        />
       </Dropdown.Trigger>
       <Dropdown.Content>
         <Dropdown.List>

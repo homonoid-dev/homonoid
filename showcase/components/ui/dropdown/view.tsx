@@ -91,8 +91,8 @@ export function DropdownView() {
               <Button
                 variant="outlined"
                 layout="icon"
-                leading={<MoreHorizontal className="size-4" />}>
-              </Button>
+                leading={<MoreHorizontal className="size-4" />}
+              />
             </Dropdown.Trigger>
             <Dropdown.Content>
               <Dropdown.List>
