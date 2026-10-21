@@ -104,7 +104,7 @@ export function SeparatorView() {
         </div>
 
         <Stage code={SEPARATOR_VERTICAL_CODE_SAMPLE}>
-          <div className="flex items-center h-10 gap-2 p-1.5 border border-border rounded-xl bg-surface">
+          <div className="flex items-center gap-2 p-1.5 border border-border rounded-xl bg-surface">
             <Button variant="plain" layout="icon" size="sm" leading={<Bold className="size-4" />} />
             <Button variant="plain" layout="icon" size="sm" leading={<Italic className="size-4" />} />
             <Button variant="plain" layout="icon" size="sm" leading={<Underline className="size-4" />} />

@@ -12,7 +12,7 @@ export const variants = cva(
     variants: {
       orientation: {
         horizontal: "h-[0.5px] w-full",
-        vertical: "h-full w-[0.5px] self-stretch",
+        vertical: "w-[0.5px] h-full",
       },
     },
     defaultVariants: {

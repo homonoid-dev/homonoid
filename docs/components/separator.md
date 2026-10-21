@@ -68,7 +68,7 @@ Separators adapt naturally to flexible layouts and compound containers:
 Separators preserve spatial geometry across horizontal and vertical axes:
 
 - Horizontal Geometry: Enforces full container width with a standard hairline thickness of half a pixel.
-- Vertical Geometry: Enforces self stretching height alignment with a standard hairline thickness of half a pixel.
+- Vertical Geometry: Spans parent container height or explicit utility height with a standard hairline thickness of half a pixel.
 - Spacing Rhythm: Margins remain flexible via utility classes, allowing seamless integration inside compact menus or spacious article layouts.
 
 <br>
