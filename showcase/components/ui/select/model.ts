@@ -74,7 +74,7 @@ export function Example() {
 
   return (
     <div className="w-full max-w-xs">
-      <Select defaultValue="system">
+      <Select>
         <Select.Trigger aria-label="Theme selector">
           <Select.Value placeholder="Select theme" />
         </Select.Trigger>
@@ -110,7 +110,7 @@ export function Example() {
   return (
     <div className="flex flex-col gap-4 w-full max-w-xs">
       {variants.map((item) => (
-        <Select key={item.variant} variant={item.variant} defaultValue="next">
+        <Select key={item.variant} variant={item.variant}>
           <Select.Trigger aria-label={item.label}>
             <Select.Value placeholder={item.label} />
           </Select.Trigger>
@@ -147,7 +147,7 @@ export function Example() {
   return (
     <div className="flex flex-col gap-4 w-full max-w-xs">
       {sizes.map((item) => (
-        <Select key={item.size} size={item.size} defaultValue="dev">
+        <Select key={item.size} size={item.size}>
           <Select.Trigger aria-label={item.label}>
             <Select.Value placeholder={item.label} />
           </Select.Trigger>
@@ -237,7 +237,7 @@ export function Example() {
 
   return (
     <div className="w-full max-w-sm">
-      <Select defaultValue="us-east">
+      <Select>
         <Select.Trigger aria-label="Server region">
           <Select.Value placeholder="Select deployment region" />
         </Select.Trigger>

@@ -4,6 +4,7 @@ import {
   useState,
   useId,
   useRef,
+  useEffect,
   Children,
   isValidElement,
   type ReactElement,
@@ -71,15 +72,53 @@ export const Select: SelectComponent = function Select({
   id,
   className,
 }: SelectProps) {
+  const findLabelForValue = (val: string | undefined): ReactNode => {
+    if (!val) return undefined;
+    if (options && options.length > 0) {
+      const match = options.find((opt) => opt.value === val);
+      if (match) return match.label || match.value;
+    }
+    let found: ReactNode = undefined;
+    const searchChildren = (nodes: ReactNode) => {
+      Children.forEach(nodes, (child) => {
+        if (!isValidElement(child)) return;
+        const props = child.props as Record<string, unknown>;
+        if (props.value === val) {
+          found = (props.label as ReactNode) || (props.children as ReactNode) || val;
+          return;
+        }
+        if (props.children) {
+          searchChildren(props.children as ReactNode);
+        }
+      });
+    };
+    searchChildren(children);
+    return found;
+  };
+
   const [uncontrolledValue, setUncontrolledValue] = useState<string | undefined>(
     defaultValue
   );
   const [uncontrolledOpen, setUncontrolledOpen] = useState(Boolean(defaultOpen));
-  const [selectedLabel, setSelectedLabel] = useState<ReactNode>(undefined);
-  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
 
   const isValueControlled = controlledValue !== undefined;
   const isValue = cond(isValueControlled, controlledValue, uncontrolledValue);
+
+  const [selectedLabel, setSelectedLabel] = useState<ReactNode>(() =>
+    findLabelForValue(cond(isValueControlled, controlledValue, defaultValue))
+  );
+  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (isValue !== undefined) {
+      const resolved = findLabelForValue(isValue);
+      if (resolved !== undefined) {
+        setSelectedLabel(resolved);
+      }
+    } else {
+      setSelectedLabel(undefined);
+    }
+  }, [isValue, children, options]);
 
   const isOpenControlled = controlledOpen !== undefined;
   const isOpen = cond(isOpenControlled, Boolean(controlledOpen), uncontrolledOpen);

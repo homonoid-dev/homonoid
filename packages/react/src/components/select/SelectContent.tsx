@@ -65,9 +65,15 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
 
     return (
       <FloatingPortal>
-        <FloatingFocusManager context={context} modal={false} returnFocus={true}>
+        <FloatingFocusManager
+          context={context}
+          modal={false}
+          returnFocus={true}
+          initialFocus={-1}
+        >
           <div
             ref={mergedRef}
+            tabIndex={-1}
             style={floatingStyles}
             {...getFloatingProps(props as Record<string, unknown>)}
             className="z-50 outline-none"
