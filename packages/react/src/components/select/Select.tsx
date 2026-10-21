@@ -156,6 +156,7 @@ export const Select: SelectComponent = function Select({
   const labelsRef = useRef<Array<string | null>>([]);
 
   const handleOpenChange = (nextOpen: boolean) => {
+    if (disabled) return;
     if (!isOpenControlled) {
       setUncontrolledOpen(nextOpen);
     }
@@ -243,6 +244,8 @@ export const Select: SelectComponent = function Select({
     color,
     triggerId,
     listboxId,
+    labelId,
+    descriptionId,
     floatingStyles,
     context,
     setReference,
@@ -309,20 +312,20 @@ export const Select: SelectComponent = function Select({
         <div className={cn("flex flex-col gap-1.5 w-full", className)}>
           {when(
             label,
-            <Label id={labelId} htmlFor={triggerId} size={size}>
+            <Label id={labelId} as="span" size={size} className="cursor-default select-none pointer-events-none">
               {label}
             </Label>
           )}
           {renderContent()}
           {when(
             description && !error,
-            <Description id={descriptionId} size="sm">
+            <Description id={descriptionId} size="sm" className="cursor-default select-none pointer-events-none">
               {description}
             </Description>
           )}
           {when(
             error,
-            <Description id={errorId} size="sm" className="text-destructive">
+            <Description id={errorId} size="sm" className="text-destructive cursor-default select-none pointer-events-none">
               {error}
             </Description>
           )}

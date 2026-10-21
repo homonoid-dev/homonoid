@@ -31,6 +31,8 @@ export interface SelectContextValue {
   color: SelectColor;
   triggerId: string;
   listboxId: string;
+  labelId: string;
+  descriptionId: string;
   floatingStyles: CSSProperties;
   context: FloatingContext;
   setReference: (node: ReferenceType | null) => void;

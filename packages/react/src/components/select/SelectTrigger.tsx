@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { forwardRef, type MouseEvent } from "react";
 import { cva } from "class-variance-authority";
 import { useMergeRefs } from "@floating-ui/react";
 import { useSelectContext } from "./SelectContext";
@@ -93,6 +93,8 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       open,
       triggerId,
       listboxId,
+      labelId,
+      descriptionId,
       disabled,
       invalid,
       size,
@@ -111,14 +113,20 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       "aria-expanded": open,
       "aria-haspopup": "listbox" as const,
       "aria-controls": cond(open, listboxId, undefined),
+      "aria-labelledby": labelId,
+      "aria-describedby": descriptionId,
       "data-state": cond(open, "open", "closed"),
       disabled,
+      "aria-disabled": cond(disabled, true, undefined),
     };
 
     return (
       <button
         ref={mergedRef as React.Ref<HTMLButtonElement>}
         type="button"
+        id={triggerId}
+        disabled={disabled}
+        aria-disabled={cond(disabled, true, undefined)}
         className={cn(
           variants({
             variant,
@@ -133,6 +141,14 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
         {...getReferenceProps({
           ...ariaProps,
           ...props,
+          onClick(event: MouseEvent<HTMLButtonElement>) {
+            if (disabled) {
+              event.preventDefault();
+              event.stopPropagation();
+              return;
+            }
+            props.onClick?.(event);
+          },
         })}
       >
         {children}
