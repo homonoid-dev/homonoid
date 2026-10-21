@@ -1,6 +1,8 @@
 import type { ElementType, HTMLAttributes, ReactNode, Ref } from "react";
+import type { Size } from "../../types";
 
 export type DescriptionVariant = "muted" | "surface";
+export type DescriptionSize = Size;
 
 export interface DescriptionProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -21,6 +23,15 @@ export interface DescriptionProps extends HTMLAttributes<HTMLElement> {
    * @default "muted"
    */
   variant?: DescriptionVariant;
+
+  /**
+   * Typographic scale size.
+   * - `sm`: 0.75rem (12px), compact captions and control helpers
+   * - `md`: 0.875rem (14px), standard secondary copy
+   * - `lg`: 1.0rem (16px), regular body description
+   * @default "sm"
+   */
+  size?: DescriptionSize;
 
   /**
    * Description content.

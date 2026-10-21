@@ -1,6 +1,6 @@
 "use client";
 
-import { Checkbox, Label, Description, Card } from "@homonoid/react";
+import { Checkbox, Heading, Description, Card } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -14,6 +14,7 @@ import {
   CHECKBOX_STATES_CODE_SAMPLE,
   CHECKBOX_SIZES_CODE_SAMPLE,
   CHECKBOX_LABEL_HELPER_CODE_SAMPLE,
+  CHECKBOX_RADIUS_CODE_SAMPLE,
   CHECKBOX_DISABLED_CODE_SAMPLE,
 } from "./model";
 
@@ -24,11 +25,11 @@ export function CheckboxView() {
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
-        <Label size="lg">Checkbox</Label>
-        <Description>
+        <Heading size="lg">Checkbox</Heading>
+        <Description size="md">
           A checkbox allows users to select one or more independent options from a set, or toggle a single binary state between on and off.
         </Description>
-        <Description>
+        <Description size="md">
           Homonoid checkboxes communicate clear affirmative selections and support a three state model comprising unchecked, checked, and indeterminate while preserving tactile physical feedback.
         </Description>
       </div>
@@ -64,9 +65,9 @@ export function CheckboxView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={CHECKBOX_SECTIONS.states.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {CHECKBOX_SECTIONS.states.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={CHECKBOX_STATES_CODE_SAMPLE}>
@@ -74,6 +75,8 @@ export function CheckboxView() {
             <Checkbox aria-label="Unchecked option" />
             <Checkbox aria-label="Checked option" defaultChecked />
             <Checkbox aria-label="Indeterminate option" indeterminate />
+            <Checkbox invalid aria-label="Invalid unchecked option" />
+            <Checkbox invalid defaultChecked aria-label="Invalid checked option" />
           </div>
         </Stage>
       </section>
@@ -85,9 +88,9 @@ export function CheckboxView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={CHECKBOX_SECTIONS.sizes.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {CHECKBOX_SECTIONS.sizes.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={CHECKBOX_SIZES_CODE_SAMPLE}>
@@ -106,9 +109,9 @@ export function CheckboxView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={CHECKBOX_SECTIONS.labelAndHelper.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {CHECKBOX_SECTIONS.labelAndHelper.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={CHECKBOX_LABEL_HELPER_CODE_SAMPLE}>
@@ -122,6 +125,29 @@ export function CheckboxView() {
         </Stage>
       </section>
 
+      {/* Radius Section */}
+      <section
+        id={CHECKBOX_SECTIONS.radius.id}
+        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
+      >
+        <div className="flex flex-row gap-surface-gap items-center">
+          <Frame icon={CHECKBOX_SECTIONS.radius.icon} />
+          <Heading size="md" as="h2">
+            {CHECKBOX_SECTIONS.radius.label}
+          </Heading>
+        </div>
+
+        <Stage code={CHECKBOX_RADIUS_CODE_SAMPLE}>
+          <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+            <Checkbox radius="full" defaultChecked aria-label="Circular radius checkbox" />
+            <Checkbox radius="lg" defaultChecked aria-label="Large radius checkbox" />
+            <Checkbox radius="md" defaultChecked aria-label="Medium radius checkbox" />
+            <Checkbox radius="sm" defaultChecked aria-label="Small radius checkbox" />
+            <Checkbox radius="none" defaultChecked aria-label="Sharp radius checkbox" />
+          </div>
+        </Stage>
+      </section>
+
       {/* Disabled Section */}
       <section
         id={CHECKBOX_SECTIONS.disabled.id}
@@ -129,9 +155,9 @@ export function CheckboxView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={CHECKBOX_SECTIONS.disabled.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {CHECKBOX_SECTIONS.disabled.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={CHECKBOX_DISABLED_CODE_SAMPLE}>
@@ -148,19 +174,19 @@ export function CheckboxView() {
         id={CHECKBOX_SECTIONS.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {CHECKBOX_SECTIONS.continuity.label}
-        </Label>
+        </Heading>
 
-        <Description>
+        <Description size="md">
           State transitions maintain absolute geometric stability. Outer boundaries and control dimensions remain locked in place when transitioning across unchecked, checked, and indeterminate states.
         </Description>
 
-        <Description>
+        <Description size="md">
           Glyphs scale and morph dynamically into place using hardware composited GPU transforms rather than abrupt visual popups.
         </Description>
 
-        <Description>
+        <Description size="md">
           Active pointer compression applies subtle scale tension across both the indicator box and accompanying label, providing immediate physical feedback upon click.
         </Description>
       </section>
@@ -170,19 +196,19 @@ export function CheckboxView() {
         id={CHECKBOX_SECTIONS.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {CHECKBOX_SECTIONS.accessibility.label}
-        </Label>
+        </Heading>
 
-        <Description>
+        <Description size="md">
           Accessibility for selection controls empowers all users with predictable states and effortless activation. We treat inclusive design as an absolute requirement rather than an afterthought.
         </Description>
 
-        <Description>
+        <Description size="md">
           Checkboxes expose native input role semantics, ensuring screen readers announce current checked, unchecked, or mixed states accurately. Spacebar toggles and tab order navigation function without specialized configuration.
         </Description>
 
-        <Description>
+        <Description size="md">
           Clear focus outlines enclose the control upon keyboard navigation. Generous touch target sizing guarantees reliable tapping across mobile screens and assistive pointer accessories.
         </Description>
       </section>
@@ -192,19 +218,19 @@ export function CheckboxView() {
         id={CHECKBOX_SECTIONS.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {CHECKBOX_SECTIONS.tokens.label}
-        </Label>
+        </Heading>
 
-        <Description>
+        <Description size="md">
           Control dimensions map to standard geometric tokens comprising 16px for small, 20px for medium, and 24px for large scale presentations.
         </Description>
 
-        <Description>
+        <Description size="md">
           Corner radii calibrate proportionally to control dimensions using standardized scale radius tokens to preserve aesthetic harmony with neighboring inputs and buttons.
         </Description>
 
-        <Description>
+        <Description size="md">
           Color values consume primary brand tokens and neutral border tokens exclusively, synchronizing effortlessly across light and dark theme environments.
         </Description>
       </section>
@@ -214,19 +240,19 @@ export function CheckboxView() {
         id={CHECKBOX_SECTIONS.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {CHECKBOX_SECTIONS.styleReference.label}
-        </Label>
+        </Heading>
 
-        <Description>
+        <Description size="md">
           Accessible native input elements preserve standard form submission semantics, keyboard spacebar toggles, and screen reader announcements.
         </Description>
 
-        <Description>
+        <Description size="md">
           Indeterminate parent controls communicate partial group selection to assistive technologies using mixed state aria attributes.
         </Description>
 
-        <Description>
+        <Description size="md">
           Prominent focus rings encircle the control boundary during keyboard navigation, ensuring WCAG compliant visibility standards.
         </Description>
       </section>

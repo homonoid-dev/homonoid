@@ -100,7 +100,7 @@ export function Toc({
   defaultActiveId,
   collapsible = true,
   collapsed: controlledCollapsed,
-  collapseBreakpoint = 1280,
+  collapseBreakpoint = 920,
   onCollapsedChange,
 }: TocProps = {}) {
   const context = useContext(TocContext);
@@ -108,7 +108,6 @@ export function Toc({
     () => explicitItems ?? context?.items ?? EMPTY_ITEMS,
     [explicitItems, context?.items]
   );
-  const contextCollapsed = context?.collapsed;
   const setContextCollapsed = context?.setCollapsed;
 
   const [activeId, setActiveId] = useState<string>(
@@ -124,20 +123,21 @@ export function Toc({
     defaultActiveId ?? items[0]?.id ?? ""
   );
 
-  const effectiveControlled = controlledCollapsed ?? contextCollapsed;
-
-  const isCollapsed = collapsible && cond(
-    effectiveControlled !== undefined,
-    Boolean(effectiveControlled),
-    internalCollapsed
-  );
+  const isCollapsed =
+    collapsible &&
+    cond(
+      controlledCollapsed !== undefined,
+      Boolean(controlledCollapsed),
+      internalCollapsed
+    );
 
   useEffect(() => {
-    if (!collapsible || effectiveControlled !== undefined) return;
+    if (!collapsible || controlledCollapsed !== undefined) return;
 
     const mql = window.matchMedia(`(max-width: ${collapseBreakpoint}px)`);
     const update = (e: MediaQueryListEvent | MediaQueryList) => {
       setInternalCollapsed(e.matches);
+      setContextCollapsed?.(e.matches);
     };
 
     update(mql);
@@ -149,14 +149,13 @@ export function Toc({
       mql.addListener(update);
       return () => mql.removeListener(update);
     }
-  }, [collapsible, effectiveControlled, collapseBreakpoint]);
+  }, [collapsible, controlledCollapsed, collapseBreakpoint, setContextCollapsed]);
 
   const handleCollapseChange = useCallback(
     (next: boolean) => {
-      if (controlledCollapsed === undefined && setContextCollapsed) {
-        setContextCollapsed(next);
-      } else if (controlledCollapsed === undefined) {
+      if (controlledCollapsed === undefined) {
         setInternalCollapsed(next);
+        setContextCollapsed?.(next);
       }
       onCollapsedChange?.(next);
     },
@@ -164,41 +163,52 @@ export function Toc({
   );
 
   useEffect(() => {
-    const container = document.querySelector("main");
-    if (!container) return;
+    if (!items || items.length === 0) return;
 
     const ids = items.map((item) => item.id);
 
     const handleScroll = () => {
-      const containerRect = container.getBoundingClientRect();
-      let bestId = "";
-      let maxVisible = -1;
+      const scrollY = window.scrollY;
+      const innerHeight = window.innerHeight;
+      const scrollHeight = document.documentElement.scrollHeight;
+
+      // When scrolled near the bottom of the page, activate the terminal section
+      if (scrollY + innerHeight >= scrollHeight - 32) {
+        const lastId = ids[ids.length - 1];
+        if (lastId) {
+          setActiveId(lastId);
+          return;
+        }
+      }
+
+      // Check sections from top to bottom against a standard reading offset
+      const readingOffset = 160;
+      let matchedId = ids[0] ?? "";
 
       for (const id of ids) {
         const el = document.getElementById(id);
         if (!el) continue;
 
         const rect = el.getBoundingClientRect();
-        const top = Math.max(rect.top, containerRect.top);
-        const bottom = Math.min(rect.bottom, containerRect.bottom);
-        const visibleHeight = Math.max(0, bottom - top);
-
-        if (visibleHeight > maxVisible) {
-          maxVisible = visibleHeight;
-          bestId = id;
+        if (rect.top <= readingOffset) {
+          matchedId = id;
+        } else {
+          break;
         }
       }
 
-      if (bestId) {
-        setActiveId(bestId);
+      if (matchedId) {
+        setActiveId(matchedId);
       }
     };
 
-    container.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
     handleScroll();
 
     return () => {
-      container.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
     };
   }, [items]);
 

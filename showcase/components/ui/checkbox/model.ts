@@ -3,6 +3,7 @@ import {
   CheckSquare,
   Ruler,
   Tag,
+  Square,
   Ban,
   Infinity,
   Accessibility,
@@ -32,6 +33,11 @@ export const CHECKBOX_SECTIONS: Record<string, CheckboxSectionItem> = {
     id: "label-and-helper",
     label: "Label & Helper",
     icon: Tag,
+  },
+  radius: {
+    id: "radius",
+    label: "Radius",
+    icon: Square,
   },
   disabled: {
     id: "disabled",
@@ -82,6 +88,8 @@ export function Example() {
       <Checkbox aria-label="Unchecked option" />
       <Checkbox aria-label="Checked option" defaultChecked />
       <Checkbox aria-label="Indeterminate option" indeterminate />
+      <Checkbox invalid aria-label="Invalid unchecked option" />
+      <Checkbox invalid defaultChecked aria-label="Invalid checked option" />
     </div>
   );
 }`;
@@ -108,6 +116,20 @@ export function Example() {
         label="Subscribe to weekly product digests"
         description="Receive curated feature release notes and ecosystem updates once per week."
       />
+    </div>
+  );
+}`;
+
+export const CHECKBOX_RADIUS_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
+
+export function Example() {
+  return (
+    <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+      <Checkbox radius="full" defaultChecked aria-label="Circular radius checkbox" />
+      <Checkbox radius="lg" defaultChecked aria-label="Large radius checkbox" />
+      <Checkbox radius="md" defaultChecked aria-label="Medium radius checkbox" />
+      <Checkbox radius="sm" defaultChecked aria-label="Small radius checkbox" />
+      <Checkbox radius="none" defaultChecked aria-label="Sharp radius checkbox" />
     </div>
   );
 }`;

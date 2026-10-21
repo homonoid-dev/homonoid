@@ -24,7 +24,7 @@ import { PopoverContext, type PopoverContextValue } from "./PopoverContext";
 import { PopoverTrigger } from "./PopoverTrigger";
 import { PopoverContent } from "./PopoverContent";
 import { PopoverDialog } from "./PopoverDialog";
-import { Label } from "../label/Label";
+import { Heading } from "../heading/Heading";
 import { all, cond } from "../../utils/condition";
 import type { PopoverProps } from "./types";
 
@@ -162,4 +162,4 @@ Popover.displayName = "Popover";
 Popover.Trigger = PopoverTrigger;
 Popover.Content = PopoverContent;
 Popover.Dialog = PopoverDialog;
-Popover.Heading = Label;
+Popover.Heading = Heading;

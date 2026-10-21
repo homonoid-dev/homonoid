@@ -3,26 +3,28 @@ import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import type { LabelProps } from "./types";
 
-export const variants = cva("font-bold tracking-tight text-foreground", {
+export const variants = cva("font-medium text-foreground select-none", {
   variants: {
     size: {
-      sm: "text-base font-semibold",
-      md: "text-lg",
-      lg: "text-2xl",
+      sm: "text-xs leading-4",
+      md: "text-sm leading-5",
+      lg: "text-base leading-6 font-semibold",
     },
   },
   defaultVariants: {
-    size: "lg",
+    size: "md",
   },
 });
 
 export const Label = forwardRef<HTMLElement, LabelProps>(function Label(
-  { as: Component = "h1", size, className, children, ...props },
+  { as, size, className, children, ...props },
   ref
 ) {
+  const Component = as || (props.htmlFor ? "label" : "span");
   return (
     <Component
       ref={ref}
+      data-slot="label"
       className={cn(variants({ size }), className)}
       {...props}
     >
