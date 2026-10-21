@@ -52,10 +52,10 @@ export function PopoverView() {
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
         <Heading size="lg">Popover</Heading>
-        <Description size="md">
+        <Description>
           A popover presents rich interactive content within a transient floating surface anchored to an interactive trigger element.
         </Description>
-        <Description size="md">
+        <Description>
           Popovers provide contextual overlays such as filter menus, property pickers, or rich confirmation forms without navigating away from the current canvas.
         </Description>
       </div>
@@ -100,9 +100,9 @@ export function PopoverView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={POPOVER_SECTIONS.placements.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {POPOVER_SECTIONS.placements.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={POPOVER_PLACEMENTS_CODE_SAMPLE}>
@@ -131,9 +131,9 @@ export function PopoverView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={POPOVER_SECTIONS.variants.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {POPOVER_SECTIONS.variants.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={POPOVER_VARIANTS_CODE_SAMPLE}>
@@ -162,9 +162,9 @@ export function PopoverView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={POPOVER_SECTIONS.sizes.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {POPOVER_SECTIONS.sizes.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={POPOVER_SIZES_CODE_SAMPLE}>
@@ -193,9 +193,9 @@ export function PopoverView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={POPOVER_SECTIONS.form.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {POPOVER_SECTIONS.form.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={POPOVER_FORM_CODE_SAMPLE}>
@@ -231,9 +231,9 @@ export function PopoverView() {
         id={POPOVER_SECTIONS.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {POPOVER_SECTIONS.continuity.label}
-        </Label>
+        </Heading>
 
         <Description>
           Floating popover dialog surfaces preserve dimensional stability and spatial continuity across enter and exit transitions without geometric jitter.
@@ -253,9 +253,9 @@ export function PopoverView() {
         id={POPOVER_SECTIONS.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {POPOVER_SECTIONS.accessibility.label}
-        </Label>
+        </Heading>
 
         <Description>
           Floating surfaces expose semantic dialog roles, establish accessible boundary signals, and coordinate native keyboard navigation.
@@ -279,9 +279,9 @@ export function PopoverView() {
         id={POPOVER_SECTIONS.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {POPOVER_SECTIONS.tokens.label}
-        </Label>
+        </Heading>
 
         <Description>
           Surface elevations consume surface, border, and foreground tokens dynamically across light and dark modes with zero arbitrary values.
@@ -301,9 +301,9 @@ export function PopoverView() {
         id={POPOVER_SECTIONS.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {POPOVER_SECTIONS.styleReference.label}
-        </Label>
+        </Heading>
 
         <Description>
           Direct trigger elements bind automatically to floating reference targets without intermediate artificial wrapper containers.
