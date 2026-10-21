@@ -14,8 +14,7 @@ export type Size = "sm" | "md" | "lg";
  * - `sm`: Small rounding (`--h-radius-sm`)
  * - `md`: Medium rounding (`--h-radius-md`)
  * - `lg`: Large rounding (`--h-radius-lg`)
- * - `xl`: Extra large rounding (`--h-radius-xl`)
  * - `full`: Full rounding (`--h-radius-full`)
  */
-export type Radius = "none" | "sm" | "md" | "lg" | "xl" | "full";
+export type Radius = "none" | "sm" | "md" | "lg" | "full";
 
