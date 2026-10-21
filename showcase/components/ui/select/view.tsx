@@ -101,10 +101,10 @@ export function SelectView() {
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
         <Heading size="lg">Select</Heading>
-        <Description size="md">
+        <Description>
           A select displays a collapsible list of mutually exclusive options in a floating surface anchored to an interactive trigger control.
         </Description>
-        <Description size="md">
+        <Description>
           Homonoid select controls pair resilient floating positioning with the tactile Tile primitive, delivering fluid opening transitions, full typeahead navigation, and zero layout shift.
         </Description>
       </div>
@@ -155,9 +155,9 @@ export function SelectView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SELECT_SECTIONS.variants.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SELECT_SECTIONS.variants.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SELECT_VARIANTS_CODE_SAMPLE}>
@@ -189,9 +189,9 @@ export function SelectView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SELECT_SECTIONS.sizes.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SELECT_SECTIONS.sizes.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SELECT_SIZES_CODE_SAMPLE}>
@@ -223,9 +223,9 @@ export function SelectView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SELECT_SECTIONS.accessories.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SELECT_SECTIONS.accessories.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SELECT_ACCESSORIES_CODE_SAMPLE}>
@@ -263,9 +263,9 @@ export function SelectView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SELECT_SECTIONS.groups.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SELECT_SECTIONS.groups.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SELECT_GROUPS_CODE_SAMPLE}>
@@ -303,9 +303,9 @@ export function SelectView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SELECT_SECTIONS.disabled.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SELECT_SECTIONS.disabled.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SELECT_DISABLED_CODE_SAMPLE}>
@@ -355,9 +355,9 @@ export function SelectView() {
         id={SELECT_SECTIONS.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SELECT_SECTIONS.continuity.label}
-        </Label>
+        </Heading>
 
         <Description>
           Select controls preserve absolute geometric stability across closed and open states. The trigger maintains steady horizontal boundaries without width collapse or layout reflows when opening the floating surface.
@@ -377,9 +377,9 @@ export function SelectView() {
         id={SELECT_SECTIONS.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SELECT_SECTIONS.accessibility.label}
-        </Label>
+        </Heading>
 
         <Description>
           Select adheres to the W3C WAI ARIA Combobox pattern. The trigger exposes combobox semantics while communicating expanded state and active control connections through aria expanded and aria controls.
@@ -399,9 +399,9 @@ export function SelectView() {
         id={SELECT_SECTIONS.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SELECT_SECTIONS.tokens.label}
-        </Label>
+        </Heading>
 
         <Description>
           Trigger heights and internal padding values align precisely with the Homonoid spatial control scale across small, medium, and large density configurations.
@@ -421,9 +421,9 @@ export function SelectView() {
         id={SELECT_SECTIONS.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SELECT_SECTIONS.styleReference.label}
-        </Label>
+        </Heading>
 
         <Description>
           Select supports both declarative compound subcomponents and concise shorthand configurations using the options property.

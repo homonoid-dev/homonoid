@@ -35,10 +35,10 @@ export function TooltipView() {
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
         <Heading size="lg">Tooltip</Heading>
-        <Description size="md">
+        <Description>
           A tooltip presents contextual descriptions or auxiliary keyboard accelerators when users hover over or focus an interactive element.
         </Description>
-        <Description size="md">
+        <Description>
           Tooltips clarify circular icon controls, reveal keyboard shortcuts, and offer guidance without crowding the primary interface canvas.
         </Description>
       </div>
@@ -77,9 +77,9 @@ export function TooltipView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={TOOLTIP_SECTIONS.variants.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {TOOLTIP_SECTIONS.variants.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={TOOLTIP_VARIANTS_CODE_SAMPLE}>
@@ -112,9 +112,9 @@ export function TooltipView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={TOOLTIP_SECTIONS.placements.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {TOOLTIP_SECTIONS.placements.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={TOOLTIP_PLACEMENTS_CODE_SAMPLE}>
@@ -153,9 +153,9 @@ export function TooltipView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={TOOLTIP_SECTIONS.shortcuts.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {TOOLTIP_SECTIONS.shortcuts.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={TOOLTIP_SHORTCUTS_CODE_SAMPLE}>
@@ -180,9 +180,9 @@ export function TooltipView() {
         id={TOOLTIP_SECTIONS.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {TOOLTIP_SECTIONS.continuity.label}
-        </Label>
+        </Heading>
 
         <Description>
           State transitions preserve spatial stability and component identity without abrupt dimensional jumps or visual flashes.
@@ -202,9 +202,9 @@ export function TooltipView() {
         id={TOOLTIP_SECTIONS.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {TOOLTIP_SECTIONS.accessibility.label}
-        </Label>
+        </Heading>
 
         <Description>
           Accessibility guarantees assistive technology compatibility across keyboard and screen reader workflows.
@@ -224,9 +224,9 @@ export function TooltipView() {
         id={TOOLTIP_SECTIONS.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {TOOLTIP_SECTIONS.tokens.label}
-        </Label>
+        </Heading>
 
         <Description>
           Surface colors consume foreground, surface, and primary tokens dynamically across light and dark modes.
@@ -246,9 +246,9 @@ export function TooltipView() {
         id={TOOLTIP_SECTIONS.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {TOOLTIP_SECTIONS.styleReference.label}
-        </Label>
+        </Heading>
 
         <Description>
           Tooltips support both concise prop based composition and flexible compound structures for custom content requirements.

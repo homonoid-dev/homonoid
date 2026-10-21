@@ -86,10 +86,10 @@ export function TileView() {
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
         <Heading size="lg">Tile</Heading>
-        <Description size="md">
+        <Description>
           A tile provides a structured horizontal row container pairing descriptive copy with visual anchors and interactive accessories.
         </Description>
-        <Description size="md">
+        <Description>
           Homonoid tiles translate the Flutter ListTile model into modern web interfaces with fluid press compression, standardized spatial density, and zero wrapper bloat.
         </Description>
       </div>
@@ -130,9 +130,9 @@ export function TileView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={TILE_SECTIONS.variants.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {TILE_SECTIONS.variants.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={TILE_VARIANTS_CODE_SAMPLE}>
@@ -158,9 +158,9 @@ export function TileView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={TILE_SECTIONS.colors.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {TILE_SECTIONS.colors.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={TILE_COLORS_CODE_SAMPLE}>
@@ -188,9 +188,9 @@ export function TileView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={TILE_SECTIONS.accessories.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {TILE_SECTIONS.accessories.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={TILE_ACCESSORIES_CODE_SAMPLE}>
@@ -240,9 +240,9 @@ export function TileView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={TILE_SECTIONS.composition.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {TILE_SECTIONS.composition.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={TILE_COMPOSITION_CODE_SAMPLE}>
@@ -269,9 +269,9 @@ export function TileView() {
         id={TILE_SECTIONS.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {TILE_SECTIONS.continuity.label}
-        </Label>
+        </Heading>
 
         <Description>
           Tiles maintain tactile continuity during pointer down and touch press gestures by compressing smoothly down to scale 0.97 using the motion press scale token.
@@ -291,9 +291,9 @@ export function TileView() {
         id={TILE_SECTIONS.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {TILE_SECTIONS.accessibility.label}
-        </Label>
+        </Heading>
 
         <Description>
           Interactive tiles render as semantic buttons by default and support native keyboard navigation through Tab key traversal.
@@ -313,9 +313,9 @@ export function TileView() {
         id={TILE_SECTIONS.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {TILE_SECTIONS.tokens.label}
-        </Label>
+        </Heading>
 
         <Description>
           Tile heights and padding values align with the Homonoid spatial control scale across small, medium, and large density presets.
@@ -335,9 +335,9 @@ export function TileView() {
         id={TILE_SECTIONS.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {TILE_SECTIONS.styleReference.label}
-        </Label>
+        </Heading>
 
         <Description>
           Developers can use convenient slot shorthand properties for rapid assembly or compose compound elements via Tile.Leading, Tile.Content, Tile.Label, Tile.Description, and Tile.Trailing for bespoke layouts.

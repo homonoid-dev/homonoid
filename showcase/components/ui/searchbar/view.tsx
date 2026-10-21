@@ -44,10 +44,10 @@ export function SearchbarView() {
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
         <Heading size="lg">Searchbar</Heading>
-        <Description size="md">
+        <Description>
           A searchbar allows users to enter, preview, and submit search queries across collections of data and application views.
         </Description>
-        <Description size="md">
+        <Description>
           Searchbars combine immediate text entry with contextual search actions including leading query icons, asynchronous loading spinners, and keyboard shortcut badges.
         </Description>
       </div>
@@ -87,9 +87,9 @@ export function SearchbarView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SEARCHBAR_SECTIONS.variants.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SEARCHBAR_SECTIONS.variants.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SEARCHBAR_VARIANTS_CODE_SAMPLE}>
@@ -112,9 +112,9 @@ export function SearchbarView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SEARCHBAR_SECTIONS.sizes.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SEARCHBAR_SECTIONS.sizes.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SEARCHBAR_SIZES_CODE_SAMPLE}>
@@ -138,9 +138,9 @@ export function SearchbarView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SEARCHBAR_SECTIONS.loading.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SEARCHBAR_SECTIONS.loading.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SEARCHBAR_LOADING_CODE_SAMPLE}>
@@ -166,9 +166,9 @@ export function SearchbarView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SEARCHBAR_SECTIONS.radius.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SEARCHBAR_SECTIONS.radius.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SEARCHBAR_RADII_CODE_SAMPLE}>
@@ -192,9 +192,9 @@ export function SearchbarView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SEARCHBAR_SECTIONS.labelAndDescription.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SEARCHBAR_SECTIONS.labelAndDescription.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SEARCHBAR_LABEL_AND_DESCRIPTION_CODE_SAMPLE}>
@@ -214,9 +214,9 @@ export function SearchbarView() {
         id={SEARCHBAR_SECTIONS.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SEARCHBAR_SECTIONS.continuity.label}
-        </Label>
+        </Heading>
 
         <Description>
           Searchbars preserve dimensional stability across query state transitions. The loading spinner inherits the exact dimensions of the leading icon, preventing layout jitter or content shift when asynchronous operations commence.
@@ -232,9 +232,9 @@ export function SearchbarView() {
         id={SEARCHBAR_SECTIONS.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SEARCHBAR_SECTIONS.accessibility.label}
-        </Label>
+        </Heading>
 
         <Description>
           Searchbars provide native searchbox semantics through explicit role searchbox and native type search attributes.
@@ -254,9 +254,9 @@ export function SearchbarView() {
         id={SEARCHBAR_SECTIONS.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SEARCHBAR_SECTIONS.tokens.label}
-        </Label>
+        </Heading>
 
         <Description>
           Searchbars consume spatial control heights and semantic surface tokens directly from the design system.
@@ -272,9 +272,9 @@ export function SearchbarView() {
         id={SEARCHBAR_SECTIONS.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SEARCHBAR_SECTIONS.styleReference.label}
-        </Label>
+        </Heading>
 
         <Description>
           Searchbars integrate cleanly within navigation headers, hero discovery bars, modal command palettes, and table toolbars.

@@ -26,10 +26,10 @@ export function SwitchView() {
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
         <Heading size="lg">Switch</Heading>
-        <Description size="md">
+        <Description>
           A switch toggles the state of a single setting between on and off.
         </Description>
-        <Description size="md">
+        <Description>
           Switches communicate immediate binary preferences, delivering clear tactile affordance and smooth physical transitions across states.
         </Description>
       </div>
@@ -185,15 +185,15 @@ export function SwitchView() {
           {SWITCH_SECTIONS.continuity.label}
         </Heading>
 
-        <Description size="md">
+        <Description>
           State transitions maintain absolute geometric stability. Outer boundaries and track dimensions remain locked in place when transitioning across unchecked and checked states.
         </Description>
 
-        <Description size="md">
+        <Description>
           The thumb translates fluidly along the track using hardware accelerated GPU transforms rather than abrupt visual jumps or layout reflows.
         </Description>
 
-        <Description size="md">
+        <Description>
           Active pointer compression applies subtle scale tension across the entire capsule, providing immediate physical feedback upon interaction.
         </Description>
       </section>
@@ -207,15 +207,15 @@ export function SwitchView() {
           {SWITCH_SECTIONS.accessibility.label}
         </Heading>
 
-        <Description size="md">
+        <Description>
           Accessibility for binary toggles guarantees predictable state announcements and effortless interaction across all assistive technologies.
         </Description>
 
-        <Description size="md">
+        <Description>
           Switches expose native input role semantics with explicit switch role declarations, ensuring screen readers announce on and off states accurately.
         </Description>
 
-        <Description size="md">
+        <Description>
           Prominent focus rings enclose the capsule container upon keyboard navigation. Generous touch targets preserve reliable activation across touch displays and pointer devices.
         </Description>
       </section>
@@ -229,15 +229,15 @@ export function SwitchView() {
           {SWITCH_SECTIONS.tokens.label}
         </Heading>
 
-        <Description size="md">
+        <Description>
           Control dimensions map directly to standardized spatial tokens comprising small 28px width, medium 44px width, and large 56px width presentations.
         </Description>
 
-        <Description size="md">
+        <Description>
           Corner radii calibrate using standardized curvature tokens from sharp rectangular profiles to fully rounded pill capsules.
         </Description>
 
-        <Description size="md">
+        <Description>
           Color values consume primary brand tokens and neutral border tokens exclusively, synchronizing effortlessly across light and dark theme environments.
         </Description>
       </section>
@@ -251,15 +251,15 @@ export function SwitchView() {
           {SWITCH_SECTIONS.styleReference.label}
         </Heading>
 
-        <Description size="md">
+        <Description>
           Accessible native input elements preserve standard form integration, keyboard spacebar toggles, and screen reader announcements.
         </Description>
 
-        <Description size="md">
+        <Description>
           Smooth transitions across background fills and thumb offsets provide clear confirmation without decorative distraction.
         </Description>
 
-        <Description size="md">
+        <Description>
           Associated labels and descriptive captions link automatically to input identifiers, guaranteeing comprehensive accessibility tree representations.
         </Description>
       </section>

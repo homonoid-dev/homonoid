@@ -25,10 +25,10 @@ export function SeparatorView() {
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
         <Heading size="lg">Separator</Heading>
-        <Description size="md">
+        <Description>
           A separator visually or semantically partitions collections of content, controls, or sections within a layout.
         </Description>
-        <Description size="md">
+        <Description>
           Homonoid separators provide crisp hairline boundaries across horizontal and vertical axes, preserving visual hierarchy and subpixel clarity without structural layout shift.
         </Description>
       </div>
@@ -71,9 +71,9 @@ export function SeparatorView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SEPARATOR_SECTIONS.horizontal.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SEPARATOR_SECTIONS.horizontal.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SEPARATOR_HORIZONTAL_CODE_SAMPLE}>
@@ -98,9 +98,9 @@ export function SeparatorView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SEPARATOR_SECTIONS.vertical.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SEPARATOR_SECTIONS.vertical.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SEPARATOR_VERTICAL_CODE_SAMPLE}>
@@ -122,9 +122,9 @@ export function SeparatorView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SEPARATOR_SECTIONS.semantics.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SEPARATOR_SECTIONS.semantics.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SEPARATOR_SEMANTICS_CODE_SAMPLE}>
@@ -151,9 +151,9 @@ export function SeparatorView() {
         id={SEPARATOR_SECTIONS.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SEPARATOR_SECTIONS.continuity.label}
-        </Label>
+        </Heading>
 
         <Description>
           Separators retain constant dimensions across viewport shifts and layout reconfigurations. The hairline stroke preserves exact pixel density without subpixel blur or visual jitter.
@@ -169,9 +169,9 @@ export function SeparatorView() {
         id={SEPARATOR_SECTIONS.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SEPARATOR_SECTIONS.accessibility.label}
-        </Label>
+        </Heading>
 
         <Description>
           Separators support both purely decorative modes and semantic divider roles.
@@ -191,9 +191,9 @@ export function SeparatorView() {
         id={SEPARATOR_SECTIONS.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SEPARATOR_SECTIONS.tokens.label}
-        </Label>
+        </Heading>
 
         <Description>
           Separators consume semantic border tokens exclusively, harmonizing with adjacent container borders and surfaces.
@@ -209,9 +209,9 @@ export function SeparatorView() {
         id={SEPARATOR_SECTIONS.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SEPARATOR_SECTIONS.styleReference.label}
-        </Label>
+        </Heading>
 
         <Description>
           Separators integrate cleanly within complex compound components including Select, Dropdown, Menu, and Card primitives.
