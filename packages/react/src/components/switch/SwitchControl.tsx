@@ -9,7 +9,7 @@ import { SwitchThumb } from "./SwitchThumb";
 import type { SwitchControlProps } from "./types";
 
 export const trackVariants = cva(
-  "relative inline-flex items-center shrink-0 border select-none transition-colors duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] peer-active:scale-[var(--motion-press-scale)] group-active:scale-[var(--motion-press-scale)] focus-ring",
+  "relative inline-flex items-center shrink-0 select-none transition-colors duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] peer-active:scale-[var(--motion-press-scale)] group-active:scale-[var(--motion-press-scale)] focus-ring",
   {
     variants: {
       size: {
@@ -25,11 +25,11 @@ export const trackVariants = cva(
         full: "rounded-full",
       },
       checked: {
-        true: "bg-primary border-primary",
-        false: "bg-muted/20 border-border hover:bg-muted/30",
+        true: "bg-primary",
+        false: "bg-muted/20 ring-1 ring-inset ring-border hover:bg-muted/30",
       },
       invalid: {
-        true: "border-destructive",
+        true: "ring-1 ring-inset ring-destructive",
         false: "",
       },
       disabled: {
@@ -41,12 +41,12 @@ export const trackVariants = cva(
       {
         invalid: true,
         checked: true,
-        className: "bg-destructive border-destructive",
+        className: "bg-destructive ring-1 ring-inset ring-destructive",
       },
       {
         invalid: true,
         checked: false,
-        className: "bg-destructive/10 border-destructive hover:bg-destructive/15",
+        className: "bg-destructive/10 ring-1 ring-inset ring-destructive hover:bg-destructive/15",
       },
     ],
     defaultVariants: {

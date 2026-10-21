@@ -7,7 +7,7 @@ import { useSwitchContext } from "./SwitchContext";
 import type { SwitchThumbProps } from "./types";
 
 export const thumbVariants = cva(
-  "pointer-events-none inline-flex items-center justify-center rounded-[inherit] bg-primary-foreground text-foreground shadow-xs transition-transform duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] transform-gpu select-none",
+  "pointer-events-none inline-flex items-center justify-center shrink-0 rounded-[inherit] bg-primary-foreground text-foreground shadow-xs transition-transform duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] transform-gpu select-none",
   {
     variants: {
       size: {
