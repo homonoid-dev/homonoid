@@ -15,5 +15,6 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponentItem[] = [
   { name: "Popover", href: "/popover", description: "Transient floating surface anchored to interactive triggers" },
   { name: "Spinner", href: "/spinner", description: "Indicate background activity" },
   { name: "Switch", href: "/switch", description: "Toggle state of a single setting" },
+  { name: "Tile", href: "/tile", description: "Structured horizontal list item with tactile response" },
   { name: "Tooltip", href: "/tooltip", description: "Contextual guidance and keyboard shortcuts" },
 ].sort((a, b) => a.name.localeCompare(b.name));

@@ -8,6 +8,13 @@
 export type Size = "sm" | "md" | "lg";
 
 /**
- * Semantic alias for Homonoid's standard control scale.
+ * Standard Homonoid corner radius scale.
+ * Aligns directly with `@homonoid/tokens` radius scale:
+ * - `none`: No rounding (`--h-radius-none`)
+ * - `sm`: Small rounding (`--h-radius-sm`)
+ * - `md`: Medium rounding (`--h-radius-md`)
+ * - `lg`: Large rounding (`--h-radius-lg`)
+ * - `full`: Full rounding (`--h-radius-full`)
  */
-export type HomonoidSize = Size;
+export type Radius = "none" | "sm" | "md" | "lg" | "full";
+

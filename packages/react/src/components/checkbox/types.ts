@@ -1,8 +1,8 @@
 import type { HTMLAttributes, InputHTMLAttributes, ReactNode, Ref } from "react";
-import type { Size } from "../../types";
+import type { Radius, Size } from "../../types";
 
 export type CheckboxSize = Size;
-export type CheckboxRadius = "none" | "sm" | "md" | "lg" | "full";
+export type CheckboxRadius = Radius;
 
 export interface CheckboxProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "onChange" | "checked"> {

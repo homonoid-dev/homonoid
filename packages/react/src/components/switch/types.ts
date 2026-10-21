@@ -1,8 +1,8 @@
 import type { HTMLAttributes, InputHTMLAttributes, ReactNode, Ref } from "react";
-import type { Size } from "../../types";
+import type { Radius, Size } from "../../types";
 
 export type SwitchSize = Size;
-export type SwitchRadius = "none" | "sm" | "md" | "lg" | "full";
+export type SwitchRadius = Radius;
 
 export interface SwitchProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "onChange" | "checked"> {
