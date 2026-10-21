@@ -64,7 +64,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
     if (typeof ref === "function") {
       ref(element);
     } else if (ref) {
-      (ref as React.MutableRefObject<HTMLInputElement | null>).current = element;
+      (ref as React.RefObject<HTMLInputElement | null>).current = element;
     }
   };
 

@@ -4,8 +4,8 @@ import {
   createContext,
   useContext,
   type CSSProperties,
-  type MutableRefObject,
   type ReactNode,
+  type RefObject,
 } from "react";
 import type { FloatingContext, ReferenceType } from "@floating-ui/react";
 import type {
@@ -48,8 +48,8 @@ export interface SelectContextValue {
   ) => Record<string, unknown>;
   highlightedIndex: number | null;
   setHighlightedIndex: (index: number | null) => void;
-  elementsRef: MutableRefObject<Array<HTMLElement | null>>;
-  labelsRef: MutableRefObject<Array<string | null>>;
+  elementsRef: RefObject<Array<HTMLElement | null>>;
+  labelsRef: RefObject<Array<string | null>>;
   registerItem: (value: string, label: ReactNode) => () => void;
   getItemLabel: (value: string) => ReactNode;
 }
