@@ -3,7 +3,6 @@
 import {
   Popover,
   Button,
-  Label,
   Description,
   Heading,
   Card,

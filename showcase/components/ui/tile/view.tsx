@@ -1,6 +1,6 @@
 "use client";
 
-import { Tile, Card, Label, Heading, Description, Switch, Checkbox } from "@homonoid/react";
+import { Tile, Card, Heading, Description, Switch, Checkbox } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";

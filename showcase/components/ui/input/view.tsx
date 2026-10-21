@@ -1,6 +1,6 @@
 "use client";
 
-import { Input, Label, Heading, Description, Card } from "@homonoid/react";
+import { Input, Heading, Description, Card } from "@homonoid/react";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";

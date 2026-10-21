@@ -1,6 +1,6 @@
 "use client";
 
-import { Searchbar, Card, Label, Description, Heading } from "@homonoid/react";
+import { Searchbar, Card, Description, Heading } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";

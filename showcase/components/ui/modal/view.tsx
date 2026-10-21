@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { Modal, Button, Label, Heading, Description, Card, useModalContext } from "@homonoid/react";
+import { Modal, Button, Heading, Description, Card, useModalContext } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";

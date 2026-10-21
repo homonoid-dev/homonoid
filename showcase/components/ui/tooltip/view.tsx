@@ -1,6 +1,6 @@
 "use client";
 
-import { Tooltip, Button, Label, Description, Heading, Card } from "@homonoid/react";
+import { Tooltip, Button, Description, Heading, Card } from "@homonoid/react";
 import {
   Plus,
   Bookmark,

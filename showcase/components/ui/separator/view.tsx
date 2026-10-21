@@ -1,6 +1,6 @@
 "use client";
 
-import { Separator, Button, Card, Label, Description, Heading } from "@homonoid/react";
+import { Separator, Button, Card, Description, Heading } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";

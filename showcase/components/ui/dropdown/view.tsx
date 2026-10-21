@@ -1,6 +1,6 @@
 "use client";
 
-import { Dropdown, Button, Card, Label, Description, Heading } from "@homonoid/react";
+import { Dropdown, Button, Card, Description, Heading } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
