@@ -13,7 +13,7 @@ export const trackVariants = cva(
   {
     variants: {
       size: {
-        sm: "w-7 h-4 p-0.5",
+        sm: "w-8 h-5 p-0.5",
         md: "w-11 h-6 p-0.5",
         lg: "w-14 h-8 p-1",
       },
