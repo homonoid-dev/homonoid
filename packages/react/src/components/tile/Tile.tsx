@@ -19,10 +19,10 @@ export const variants = cva(
         outlined: "bg-transparent border-[0.5px]"
       },
       color: {
-        surface: "",
-        subtle: "",
-        primary: "",
-        destructive: ""
+        surface: "text-foreground",
+        subtle: "text-subtle-foreground",
+        primary: "text-primary",
+        destructive: "text-destructive"
       },
       size: {
         sm: "min-h-control-md px-3 py-1.5 gap-2.5 text-xs",
@@ -51,117 +51,91 @@ export const variants = cva(
         variant: "plain",
         color: "surface",
         interactive: true,
-        className: "text-foreground hover:bg-subtle active:bg-subtle-active"
+        className: "hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
       },
       {
         variant: "plain",
         color: "subtle",
         interactive: true,
-        className: "text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active"
+        className: "hover:bg-subtle-hover active:bg-subtle-active"
       },
       {
         variant: "plain",
         color: "primary",
         interactive: true,
-        className: "text-primary hover:bg-primary/10 active:bg-primary/20"
+        className: "hover:bg-primary/10 active:bg-primary/20"
       },
       {
         variant: "plain",
         color: "destructive",
         interactive: true,
-        className: "text-destructive hover:bg-destructive-hover/10 active:bg-destructive-active/20"
+        className: "hover:bg-destructive/10 active:bg-destructive/20"
       },
 
-      // Plain Non Interactive
-      {
-        variant: "plain",
-        color: "surface",
-        interactive: false,
-        className: "text-foreground"
-      },
-      {
-        variant: "plain",
-        color: "subtle",
-        interactive: false,
-        className: "text-subtle-foreground"
-      },
-      {
-        variant: "plain",
-        color: "primary",
-        interactive: false,
-        className: "text-primary"
-      },
-      {
-        variant: "plain",
-        color: "destructive",
-        interactive: false,
-        className: "text-destructive"
-      },
-
-      // Contained Variants
+      // Contained Variants (Aligned with Card's fills)
       {
         variant: "contained",
         color: "surface",
-        className: "bg-surface text-surface-foreground hover:bg-surface-hover active:bg-surface-active"
+        className: "bg-surface hover:bg-surface-hover active:bg-surface-active"
       },
       {
         variant: "contained",
         color: "subtle",
-        className: "bg-subtle text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active"
+        className: "bg-primary/10 hover:bg-primary/15 active:bg-primary/20"
       },
       {
         variant: "contained",
         color: "primary",
-        className: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active"
+        className: "bg-primary/25 hover:bg-primary/30 active:bg-primary/35"
       },
       {
         variant: "contained",
         color: "destructive",
-        className: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-active"
+        className: "bg-destructive/15 hover:bg-destructive/20 active:bg-destructive/25"
       },
 
-      // Outlined Variants
+      // Outlined Variants (Aligned with Card's borders)
       {
         variant: "outlined",
         color: "surface",
-        className: "border-border text-surface-foreground hover:bg-surface-hover active:bg-surface-active"
+        className: "border-border hover:bg-surface-hover active:bg-surface-active"
       },
       {
         variant: "outlined",
         color: "subtle",
-        className: "border-subtle-border text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active"
+        className: "border-subtle-border hover:bg-subtle-hover active:bg-subtle-active"
       },
       {
         variant: "outlined",
         color: "primary",
-        className: "border-primary-border text-primary hover:bg-primary/10 active:bg-primary/20"
+        className: "border-primary-border hover:bg-primary/10 active:bg-primary/20"
       },
       {
         variant: "outlined",
         color: "destructive",
-        className: "border-destructive-border text-destructive hover:bg-destructive-hover/10 active:bg-destructive-active/20"
+        className: "border-destructive-border hover:bg-destructive-hover/10 active:bg-destructive-active/20"
       },
 
       // Selected states
       {
         selected: true,
         color: "surface",
-        className: "bg-subtle text-foreground font-medium"
+        className: "bg-subtle font-medium"
       },
       {
         selected: true,
         color: "subtle",
-        className: "bg-subtle-hover text-foreground font-medium"
+        className: "bg-primary/15 font-medium"
       },
       {
         selected: true,
         color: "primary",
-        className: "bg-primary/15 text-primary font-medium"
+        className: "bg-primary/30 font-medium"
       },
       {
         selected: true,
         color: "destructive",
-        className: "bg-destructive/15 text-destructive font-medium"
+        className: "bg-destructive/25 font-medium"
       }
     ],
     defaultVariants: {
@@ -280,7 +254,7 @@ export const Tile = forwardRef<HTMLElement, TileProps>(function Tile(
         <TileContent>
           {when(
             labelContent,
-            <Label as="span" size={size} className="truncate">
+            <Label as="span" size={size} className="truncate text-inherit">
               {labelContent}
             </Label>
           )}
@@ -289,7 +263,7 @@ export const Tile = forwardRef<HTMLElement, TileProps>(function Tile(
             <Description
               as="span"
               size={cond(size === "lg", "md", "sm")}
-              className="line-clamp-2"
+              className="line-clamp-2 text-inherit opacity-80"
             >
               {description}
             </Description>

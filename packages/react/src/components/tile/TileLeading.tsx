@@ -9,7 +9,7 @@ export const TileLeading = forwardRef<HTMLDivElement, TileLeadingProps>(
         ref={ref}
         data-slot="tile-leading"
         className={cn(
-          "inline-flex shrink-0 items-center justify-center self-center text-subtle-foreground",
+          "inline-flex shrink-0 items-center justify-center self-center text-inherit",
           className
         )}
         {...props}

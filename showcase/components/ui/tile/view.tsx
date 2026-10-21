@@ -12,7 +12,7 @@ import {
   ChevronRight,
   Bell,
   Shield,
-  Sparkles,
+  Bookmark,
   Zap,
   Star,
   AlertTriangle,
@@ -50,7 +50,7 @@ export function TileView() {
     },
     {
       variant: "outlined" as const,
-      icon: <Sparkles className="size-5" />,
+      icon: <Bookmark className="size-5" />,
       label: "Outlined Tile",
       description: "Framed surface bounded by a hairline border stroke",
     },
@@ -136,7 +136,7 @@ export function TileView() {
               leading={<User className="size-5" />}
               label="Personal Account"
               description="Security credentials and profile settings"
-              trailing={<ChevronRight className="size-4 opacity-50" />}
+              trailing={<ChevronRight className="size-4 text-muted" />}
               onClick={() => { }}
             />
           </div>
@@ -274,7 +274,7 @@ export function TileView() {
               leading={<div className="size-2 rounded-full bg-primary" />}
               label="Cloud Backup"
               description="Synced 5 minutes ago"
-              trailing={<ChevronRight className="size-4 opacity-50" />}
+              trailing={<ChevronRight className="size-4 text-muted" />}
               onClick={() => { }}
             />
           </div>
@@ -305,7 +305,7 @@ export function TileView() {
               </Tile.Content>
               <Tile.Trailing>
                 <span className="text-xs text-subtle-foreground">Active</span>
-                <ChevronRight className="size-4 opacity-50" />
+                <ChevronRight className="size-4 text-muted" />
               </Tile.Trailing>
             </Tile>
           </div>

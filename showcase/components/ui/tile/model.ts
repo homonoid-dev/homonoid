@@ -79,7 +79,7 @@ export function Example() {
         leading={<User className="size-5" />}
         label="Personal Account"
         description="Security credentials and profile settings"
-        trailing={<ChevronRight className="size-4 opacity-50" />}
+        trailing={<ChevronRight className="size-4 text-muted" />}
         onClick={() => {}}
       />
     </div>
@@ -87,7 +87,7 @@ export function Example() {
 }`;
 
 export const TILE_VARIANTS_CODE_SAMPLE = `import { Tile } from "@homonoid/react";
-import { Bell, Shield, Sparkles } from "lucide-react";
+import { Bell, Shield, Bookmark } from "lucide-react";
 
 export function Example() {
   const items = [
@@ -105,7 +105,7 @@ export function Example() {
     },
     {
       variant: "outlined" as const,
-      icon: <Sparkles className="size-5" />,
+      icon: <Bookmark className="size-5" />,
       label: "Outlined Tile",
       description: "Framed surface bounded by a hairline border stroke",
     },
@@ -251,7 +251,7 @@ export function Example() {
         leading={<div className="size-2 rounded-full bg-primary" />}
         label="Cloud Backup"
         description="Synced 5 minutes ago"
-        trailing={<ChevronRight className="size-4 opacity-50" />}
+        trailing={<ChevronRight className="size-4 text-muted" />}
         onClick={() => {}}
       />
     </div>
@@ -274,7 +274,7 @@ export function Example() {
         </Tile.Content>
         <Tile.Trailing>
           <span className="text-xs text-subtle-foreground">Active</span>
-          <ChevronRight className="size-4 opacity-50" />
+          <ChevronRight className="size-4 text-muted" />
         </Tile.Trailing>
       </Tile>
     </div>

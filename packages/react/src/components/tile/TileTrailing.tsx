@@ -9,7 +9,7 @@ export const TileTrailing = forwardRef<HTMLDivElement, TileTrailingProps>(
         ref={ref}
         data-slot="tile-trailing"
         className={cn(
-          "inline-flex shrink-0 items-center justify-center self-center gap-2 text-subtle-foreground",
+          "inline-flex shrink-0 items-center justify-center self-center gap-2 text-inherit",
           className
         )}
         {...props}
