@@ -13,8 +13,7 @@ export const variants = cva(
   {
     variants: {
       variant: {
-        outlined:
-          "border-[0.5px] border-border bg-transparent hover:border-foreground/30",
+        outlined: "border-[0.5px] border-border bg-transparent hover:border-foreground/30",
         contained: "bg-surface hover:bg-surface-hover",
         plain: "bg-transparent hover:bg-surface-hover",
       },

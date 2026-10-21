@@ -4,6 +4,7 @@ import {
   Ruler,
   SlidersHorizontal,
   FolderTree,
+  Ban,
   Infinity,
   Accessibility,
   Palette,
@@ -37,6 +38,11 @@ export const SELECT_SECTIONS: Record<string, SelectSectionItem> = {
     id: "groups",
     label: "Groups",
     icon: FolderTree,
+  },
+  disabled: {
+    id: "disabled",
+    label: "Disabled",
+    icon: Ban,
   },
   continuity: {
     id: "object-continuity",
@@ -74,7 +80,10 @@ export function Example() {
 
   return (
     <div className="w-full max-w-xs">
-      <Select>
+      <Select
+        label="Interface Theme"
+        description="Select your preferred canvas color mode"
+      >
         <Select.Trigger aria-label="Theme selector">
           <Select.Value placeholder="Select theme" />
         </Select.Trigger>
@@ -193,7 +202,11 @@ export function Example() {
 
   return (
     <div className="w-full max-w-sm">
-      <Select defaultValue="admin">
+      <Select
+        defaultValue="admin"
+        label="Organization Role"
+        description="Assign team permissions across repositories"
+      >
         <Select.Trigger aria-label="Access role">
           <Select.Value placeholder="Select member role" />
         </Select.Trigger>
@@ -236,29 +249,86 @@ export function Example() {
   ];
 
   return (
-    <div className="w-full max-w-sm">
-      <Select>
-        <Select.Trigger aria-label="Server region">
-          <Select.Value placeholder="Select deployment region" />
+    <div className= "w-full max-w-sm" >
+    <Select>
+    <Select.Trigger aria - label="Server region" >
+      <Select.Value placeholder="Select deployment region" />
         </Select.Trigger>
-        <Select.Content>
-          <Select.List>
-            {groups.map((group, index) => (
-              <Select.Group key={group.name}>
-                {index > 0 && <Select.Separator />}
-                <Select.Label className="px-3 py-1.5 text-xs text-subtle-foreground font-medium">
-                  {group.name}
-                </Select.Label>
-                {group.regions.map((region) => (
-                  <Select.Item key={region.value} value={region.value}>
-                    {region.label}
-                  </Select.Item>
-                ))}
-              </Select.Group>
-            ))}
-          </Select.List>
-        </Select.Content>
-      </Select>
-    </div>
+        < Select.Content >
+        <Select.List>
+        {
+          groups.map((group, index) => (
+            <Select.Group key= { group.name } >
+            { index > 0 && <Select.Separator />}
+        < Select.Label className = "px-3 py-1.5 text-xs text-subtle-foreground font-medium" >
+          { group.name }
+          </Select.Label>
+  {
+    group.regions.map((region) => (
+      <Select.Item key= { region.value } value = { region.value } >
+      { region.label }
+      </Select.Item>
+    ))
+  }
+  </Select.Group>
+            ))
+}
+</Select.List>
+  </Select.Content>
+  </Select>
+  </div>
   );
 }`;
+
+export const SELECT_DISABLED_CODE_SAMPLE = `import { Select } from "@homonoid/react";
+
+export function Example() {
+  const options = [
+    { value: "standard", label: "Standard Plan" },
+    { value: "pro", label: "Pro Plan", disabled: true },
+    { value: "enterprise", label: "Enterprise Plan" },
+  ];
+
+  return (
+    <div className= "flex flex-col gap-6 w-full max-w-sm" >
+    <Select
+        disabled
+  label = "Disabled Control"
+  description = "Trigger surface and list interactions are inactive"
+    >
+    <Select.Trigger aria - label="Disabled select" >
+      <Select.Value placeholder="Unavailable option" />
+        </Select.Trigger>
+        < Select.Content >
+        <Select.List>
+        <Select.Item value="one" > Option One </Select.Item>
+          </Select.List>
+          </Select.Content>
+          </Select>
+
+          < Select
+  label = "Disabled Option"
+  description = "Specific choices can be individually deactivated"
+    >
+    <Select.Trigger aria - label="Select plan" >
+      <Select.Value placeholder="Select subscription" />
+        </Select.Trigger>
+        < Select.Content >
+        <Select.List>
+        {
+          options.map((option) => (
+            <Select.Item
+                key= { option.value }
+                value = { option.value }
+                disabled = { option.disabled }
+            >
+            { option.label }
+            </Select.Item>
+          ))
+        }
+        </Select.List>
+        </Select.Content>
+        </Select>
+        </div>
+  );
+} `;
