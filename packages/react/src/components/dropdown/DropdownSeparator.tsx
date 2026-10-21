@@ -1,17 +1,18 @@
 "use client";
 
 import { forwardRef } from "react";
+import { Separator } from "../separator/Separator";
 import { cn } from "../../utils/cn";
 import type { DropdownSeparatorProps } from "./types";
 
 export const DropdownSeparator = forwardRef<HTMLDivElement, DropdownSeparatorProps>(
-  function DropdownSeparator({ className, ...props }, ref) {
+  function DropdownSeparator({ className, decorative = false, ...props }, ref) {
     return (
-      <div
+      <Separator
         ref={ref}
-        role="separator"
-        aria-orientation="horizontal"
-        className={cn("my-1 -mx-0.5 h-[0.5px] bg-border", className)}
+        orientation="horizontal"
+        decorative={decorative}
+        className={cn("my-1 -mx-0.5", className)}
         {...props}
       />
     );
