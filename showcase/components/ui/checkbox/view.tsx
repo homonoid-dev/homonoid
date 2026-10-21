@@ -14,6 +14,7 @@ import {
   CHECKBOX_STATES_CODE_SAMPLE,
   CHECKBOX_SIZES_CODE_SAMPLE,
   CHECKBOX_LABEL_HELPER_CODE_SAMPLE,
+  CHECKBOX_RADIUS_CODE_SAMPLE,
   CHECKBOX_DISABLED_CODE_SAMPLE,
 } from "./model";
 
@@ -120,6 +121,29 @@ export function CheckboxView() {
               label="Subscribe to weekly product digests"
               description="Receive curated feature release notes and ecosystem updates once per week."
             />
+          </div>
+        </Stage>
+      </section>
+
+      {/* Radius Section */}
+      <section
+        id={CHECKBOX_SECTIONS.radius.id}
+        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
+      >
+        <div className="flex flex-row gap-surface-gap items-center">
+          <Frame icon={CHECKBOX_SECTIONS.radius.icon} />
+          <Heading size="md" as="h2">
+            {CHECKBOX_SECTIONS.radius.label}
+          </Heading>
+        </div>
+
+        <Stage code={CHECKBOX_RADIUS_CODE_SAMPLE}>
+          <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+            <Checkbox radius="full" defaultChecked aria-label="Circular radius checkbox" />
+            <Checkbox radius="lg" defaultChecked aria-label="Large radius checkbox" />
+            <Checkbox radius="md" defaultChecked aria-label="Medium radius checkbox" />
+            <Checkbox radius="sm" defaultChecked aria-label="Small radius checkbox" />
+            <Checkbox radius="none" defaultChecked aria-label="Sharp radius checkbox" />
           </div>
         </Stage>
       </section>
