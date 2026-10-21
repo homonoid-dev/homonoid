@@ -9,6 +9,7 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponentItem[] = [
   { name: "Card", href: "/card", description: "Structured content grouping" },
   { name: "Checkbox", href: "/checkbox", description: "Binary choice selection" },
   { name: "Description", href: "/description", description: "Contextual guidance and supportive copy" },
+  { name: "Dropdown", href: "/dropdown", description: "Floating menu of contextual actions and commands" },
   { name: "Input", href: "/input", description: "Capture user text input" },
   { name: "Label", href: "/label", description: "Accessible captions and headers" },
   { name: "Modal", href: "/modal", description: "Elevated dialog surfaces and focus containers" },

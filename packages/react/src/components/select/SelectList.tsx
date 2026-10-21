@@ -17,7 +17,7 @@ export const SelectList = forwardRef<HTMLDivElement, SelectListProps>(
         aria-labelledby={triggerId}
         tabIndex={-1}
         className={cn(
-          "relative flex max-h-60 flex-col overflow-y-auto p-1 gap-0.5 select-none focus:outline-none",
+          "relative flex max-h-60 flex-col overflow-y-auto p-0.5 gap-0.5 select-none focus:outline-none",
           className
         )}
         {...props}
