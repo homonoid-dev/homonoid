@@ -9,7 +9,7 @@ import { SwitchThumb } from "./SwitchThumb";
 import type { SwitchControlProps } from "./types";
 
 export const trackVariants = cva(
-  "relative inline-flex items-center shrink-0 select-none transition-colors duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] peer-active:scale-[var(--motion-press-scale)] group-active:scale-[var(--motion-press-scale)] focus-ring",
+  "relative inline-flex items-center shrink-0 select-none transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] peer-active:scale-[var(--motion-press-scale)] group-active:scale-[var(--motion-press-scale)] focus-ring",
   {
     variants: {
       size: {
