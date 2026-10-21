@@ -97,7 +97,6 @@ export function Example() {
           <Dropdown.Item
             color="destructive"
             leading={<Trash2 className="size-4" />}
-            trailing="⌫"
           >
             Delete
           </Dropdown.Item>

@@ -1,0 +1,1 @@
+export { SeparatorView } from "./view";
