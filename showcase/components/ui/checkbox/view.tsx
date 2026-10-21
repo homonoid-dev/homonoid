@@ -1,6 +1,6 @@
 "use client";
 
-import { Checkbox, Heading, Label, Description, Card } from "@homonoid/react";
+import { Checkbox, Heading, Description, Card } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";

@@ -108,7 +108,6 @@ export function Toc({
     () => explicitItems ?? context?.items ?? EMPTY_ITEMS,
     [explicitItems, context?.items]
   );
-  const contextCollapsed = context?.collapsed;
   const setContextCollapsed = context?.setCollapsed;
 
   const [activeId, setActiveId] = useState<string>(
