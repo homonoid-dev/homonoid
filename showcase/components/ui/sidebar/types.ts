@@ -66,6 +66,14 @@ export interface SidebarDestinationProps {
   href?: string;
 
   /**
+   * Visual presentation style.
+   * - `tile`: Render using the Tile component with tactile states and background fills.
+   * - `plain`: Render using the minimal transparent text-only style without backgrounds.
+   * @default "tile" for left sidebar, "plain" for right sidebar
+   */
+  variant?: "tile" | "plain";
+
+  /**
    * Optional trailing icon displayed on the right edge.
    */
   icon?: ReactNode;

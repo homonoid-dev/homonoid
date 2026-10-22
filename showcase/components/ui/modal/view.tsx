@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { Modal, Button, Label, Heading, Description, Card, useModalContext } from "@homonoid/react";
+import { Modal, Button, Heading, Description, Card, useModalContext } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -94,9 +94,9 @@ export function ModalView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={MODAL_SECTIONS.sizes.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {MODAL_SECTIONS.sizes.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={MODAL_SIZES_CODE_SAMPLE}>
@@ -136,9 +136,9 @@ export function ModalView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={MODAL_SECTIONS.backdrop.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {MODAL_SECTIONS.backdrop.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={MODAL_BACKDROP_CODE_SAMPLE}>
@@ -178,9 +178,9 @@ export function ModalView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={MODAL_SECTIONS.dismiss.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {MODAL_SECTIONS.dismiss.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={MODAL_DISMISS_CODE_SAMPLE}>
@@ -227,9 +227,9 @@ export function ModalView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={MODAL_SECTIONS.scroll.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {MODAL_SECTIONS.scroll.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={MODAL_SCROLL_CODE_SAMPLE}>
@@ -272,9 +272,9 @@ export function ModalView() {
         id={MODAL_SECTIONS.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {MODAL_SECTIONS.continuity.label}
-        </Label>
+        </Heading>
 
         <Description>
           Modal dialog surfaces preserve dimensional stability and spatial continuity across enter and exit transitions. Floating layers scale smoothly from initial triggers without clipping borders or jumping positions.
@@ -294,9 +294,9 @@ export function ModalView() {
         id={MODAL_SECTIONS.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {MODAL_SECTIONS.accessibility.label}
-        </Label>
+        </Heading>
 
         <Description>
           Every modal dialog exposes standard dialog ARIA semantics, signals modal boundaries, and coordinates native keyboard navigation.
@@ -316,9 +316,9 @@ export function ModalView() {
         id={MODAL_SECTIONS.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {MODAL_SECTIONS.tokens.label}
-        </Label>
+        </Heading>
 
         <Description>
           Surface elevations consume surface and border tokens dynamically across light and dark themes with zero hardcoded hex codes.
@@ -338,9 +338,9 @@ export function ModalView() {
         id={MODAL_SECTIONS.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {MODAL_SECTIONS.styleReference.label}
-        </Label>
+        </Heading>
 
         <Description>
           Direct trigger elements bind automatically to floating reference targets without intermediate artificial wrapper containers.

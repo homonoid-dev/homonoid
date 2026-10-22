@@ -19,6 +19,11 @@ export interface TileProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   as?: ElementType;
 
   /**
+   * Optional destination link URL when rendered as a hyperlink or anchor.
+   */
+  href?: string;
+
+  /**
    * Structural surface treatment.
    * plain provides a transparent background with subtle hover and active feedback.
    * contained provides a solid surface fill.

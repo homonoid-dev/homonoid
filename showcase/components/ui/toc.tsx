@@ -230,11 +230,12 @@ export function Toc({
       onCollapsedChange={handleCollapseChange}
       className={cn("sticky top-0 self-start h-screen shrink-0", className)}
     >
-      <div className="flex flex-col gap-surface-gap px-layout-x py-surface">
+      <div className="flex flex-col gap-control-gap p-surface">
         {items.map((item) => (
           <Sidebar.Destination
             key={item.id}
             href={`#${item.id}`}
+            variant="plain"
             icon={renderIcon(item.icon)}
             active={effectiveActiveId === item.id}
             onClick={() => scrollToSection(item.id)}

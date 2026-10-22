@@ -24,10 +24,10 @@ export function CardView() {
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
         <Heading size="lg">Card</Heading>
-        <Description size="md">
+        <Description>
           A card groups related content and interactive elements within a clear visual container.
         </Description>
-        <Description size="md">
+        <Description>
           Homonoid cards provide structured surface elevation and flexible padding options while preserving design token fidelity across layouts.
         </Description>
       </div>
@@ -67,9 +67,9 @@ export function CardView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={CARD_SECTIONS.variants.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {CARD_SECTIONS.variants.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={CARD_VARIANTS_CODE_SAMPLE}>
@@ -101,9 +101,9 @@ export function CardView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={CARD_SECTIONS.colors.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {CARD_SECTIONS.colors.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={CARD_COLORS_CODE_SAMPLE}>
@@ -183,9 +183,9 @@ export function CardView() {
         id={CARD_SECTIONS.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {CARD_SECTIONS.continuity.label}
-        </Label>
+        </Heading>
 
         <Description>
           Card surfaces maintain structural visual cohesion across theme modes and elevation changes. Container boundaries preserve physical stability while adapting to internal content flows.
@@ -205,9 +205,9 @@ export function CardView() {
         id={CARD_SECTIONS.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {CARD_SECTIONS.accessibility.label}
-        </Label>
+        </Heading>
 
         <Description>
           Accessibility in container architecture establishes semantic hierarchy and landmark clarity. Homonoid cards prioritize structured content navigation for screen readers and keyboard users alike.
@@ -227,9 +227,9 @@ export function CardView() {
         id={CARD_SECTIONS.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {CARD_SECTIONS.tokens.label}
-        </Label>
+        </Heading>
 
         <Description>
           Surface fills consume semantic background tokens including surface, subtle, and accent variants to maintain unified hierarchy.
@@ -249,9 +249,9 @@ export function CardView() {
         id={CARD_SECTIONS.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {CARD_SECTIONS.styleReference.label}
-        </Label>
+        </Heading>
 
         <Description>
           Semantic HTML tags can be assigned via the polymorphic as prop to render section, article, or aside elements appropriate to content hierarchy.

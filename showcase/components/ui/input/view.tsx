@@ -1,6 +1,6 @@
 "use client";
 
-import { Input, Label, Heading, Description, Card } from "@homonoid/react";
+import { Input, Heading, Description, Card } from "@homonoid/react";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
@@ -69,9 +69,9 @@ export function InputView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={INPUT_SECTIONS.variants.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {INPUT_SECTIONS.variants.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={INPUT_VARIANTS_CODE_SAMPLE}>
@@ -90,9 +90,9 @@ export function InputView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={INPUT_SECTIONS.sizes.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {INPUT_SECTIONS.sizes.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={INPUT_SIZES_CODE_SAMPLE}>
@@ -111,9 +111,9 @@ export function InputView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={INPUT_SECTIONS.adornments.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {INPUT_SECTIONS.adornments.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={INPUT_ADORNMENTS_CODE_SAMPLE}>
@@ -142,9 +142,9 @@ export function InputView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={INPUT_SECTIONS.labelAndHelper.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {INPUT_SECTIONS.labelAndHelper.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={INPUT_LABEL_HELPER_CODE_SAMPLE}>
@@ -165,9 +165,9 @@ export function InputView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={INPUT_SECTIONS.validation.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {INPUT_SECTIONS.validation.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={INPUT_VALIDATION_CODE_SAMPLE}>
@@ -189,9 +189,9 @@ export function InputView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={INPUT_SECTIONS.disabled.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {INPUT_SECTIONS.disabled.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={INPUT_DISABLED_CODE_SAMPLE}>
@@ -211,9 +211,9 @@ export function InputView() {
         id={INPUT_SECTIONS.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {INPUT_SECTIONS.continuity.label}
-        </Label>
+        </Heading>
 
         <Description>
           Homonoid requires that state transitions preserve component identity without abrupt dimensional shifts. The container outer bounds and border radius remain constant when switching between rest, hover, focus, and invalid states.
@@ -233,9 +233,9 @@ export function InputView() {
         id={INPUT_SECTIONS.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {INPUT_SECTIONS.accessibility.label}
-        </Label>
+        </Heading>
 
         <Description>
           Accessibility is fundamental to every Homonoid form primitive. We design text fields to offer unambiguous operational cues, robust input validation announcements, and complete assistive device compatibility.
@@ -263,9 +263,9 @@ export function InputView() {
         id={INPUT_SECTIONS.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {INPUT_SECTIONS.tokens.label}
-        </Label>
+        </Heading>
 
         <Description>
           Input containers share identical height tokens with buttons to ensure consistent vertical rhythm when grouped horizontally across forms and toolbars.
@@ -285,9 +285,9 @@ export function InputView() {
         id={INPUT_SECTIONS.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {INPUT_SECTIONS.styleReference.label}
-        </Label>
+        </Heading>
 
         <Description>
           Outlined inputs establish a crisp hairline boundary around the text entry surface, projecting a dedicated focus ring when keyboard navigation engages.

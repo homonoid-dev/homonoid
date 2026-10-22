@@ -1,6 +1,6 @@
 "use client";
 
-import { Spinner, Button, Input, Label, Description, Heading, Card } from "@homonoid/react";
+import { Spinner, Button, Input, Description, Heading, Card } from "@homonoid/react";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
@@ -27,11 +27,11 @@ export function SpinnerView() {
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
         <Heading size="lg">Spinner</Heading>
-        <Description size="md">
+        <Description>
           A spinner provides non blocking indeterminate progress feedback, communicating that a background process is active while preserving spatial and visual continuity.
         </Description>
 
-        <Description size="md">
+        <Description>
           Spinners indicate that an operation is underway without requiring precise completion time estimations, integrating seamlessly into buttons, inputs, and modal containers.
         </Description>
       </div>
@@ -66,9 +66,9 @@ export function SpinnerView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SPINNER_SECTIONS.animations.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SPINNER_SECTIONS.animations.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SPINNER_ANIMATIONS_CODE_SAMPLE}>
@@ -100,9 +100,9 @@ export function SpinnerView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SPINNER_SECTIONS.sizes.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SPINNER_SECTIONS.sizes.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SPINNER_SIZES_CODE_SAMPLE}>
@@ -121,9 +121,9 @@ export function SpinnerView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SPINNER_SECTIONS.colors.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SPINNER_SECTIONS.colors.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SPINNER_COLORS_CODE_SAMPLE}>
@@ -143,9 +143,9 @@ export function SpinnerView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={SPINNER_SECTIONS.embedded.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {SPINNER_SECTIONS.embedded.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={SPINNER_EMBEDDED_CODE_SAMPLE}>
@@ -166,9 +166,9 @@ export function SpinnerView() {
         id={SPINNER_SECTIONS.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SPINNER_SECTIONS.continuity.label}
-        </Label>
+        </Heading>
 
         <Description>
           Homonoid requires that loading indicators integrate seamlessly into parent components without dimensional disruption. When embedded within buttons or form controls, the spinner occupies a dedicated spatial slot to prevent layout jumps.
@@ -188,9 +188,9 @@ export function SpinnerView() {
         id={SPINNER_SECTIONS.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SPINNER_SECTIONS.accessibility.label}
-        </Label>
+        </Heading>
 
         <Description>
           Accessibility for loading indicators ensures that asynchronous updates are never solely visual. Homonoid values inclusive design by conveying background activity reliably across all sensory modalities.
@@ -218,9 +218,9 @@ export function SpinnerView() {
         id={SPINNER_SECTIONS.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SPINNER_SECTIONS.tokens.label}
-        </Label>
+        </Heading>
 
         <Description>
           Spinner sizing maps directly to tokenized geometric dimensions comprising 16px for small, 24px for medium, and 32px for large scales.
@@ -240,9 +240,9 @@ export function SpinnerView() {
         id={SPINNER_SECTIONS.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {SPINNER_SECTIONS.styleReference.label}
-        </Label>
+        </Heading>
 
         <Description>
           Vector geometry is rendered using resolution independent SVG circles and paths, ensuring crisp rendering on high density displays.

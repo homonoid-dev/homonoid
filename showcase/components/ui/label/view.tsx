@@ -62,9 +62,9 @@ export function LabelView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={LABEL_SECTIONS.sizes.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {LABEL_SECTIONS.sizes.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={LABEL_SIZES_CODE_SAMPLE}>
@@ -83,9 +83,9 @@ export function LabelView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={LABEL_SECTIONS.polymorphism.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {LABEL_SECTIONS.polymorphism.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={LABEL_POLYMORPHISM_CODE_SAMPLE}>
@@ -110,9 +110,9 @@ export function LabelView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={LABEL_SECTIONS.forms.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {LABEL_SECTIONS.forms.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={LABEL_FORMS_CODE_SAMPLE}>
@@ -133,9 +133,9 @@ export function LabelView() {
         id={LABEL_SECTIONS.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {LABEL_SECTIONS.continuity.label}
-        </Label>
+        </Heading>
 
         <Description>
           Labels maintain dimensional stability and letterform metrics across theme transitions. Letter tracking and vertical rhythm stay optically locked when shifting between surfaces and elevations.
@@ -155,9 +155,9 @@ export function LabelView() {
         id={LABEL_SECTIONS.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {LABEL_SECTIONS.accessibility.label}
-        </Label>
+        </Heading>
 
         <Description>
           Accessibility is the cornerstone of clear interface communication. Homonoid labels ensure that every visual heading and input prompt provides unambiguous meaning for users relying on screen readers and assistive tech.
@@ -177,9 +177,9 @@ export function LabelView() {
         id={LABEL_SECTIONS.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {LABEL_SECTIONS.tokens.label}
-        </Label>
+        </Heading>
 
         <Description>
           Typography tokens establish three distinct scale tiers comprising 16px font-semibold for small, 18px font-bold for medium, and 24px font-bold for large titles.
@@ -199,9 +199,9 @@ export function LabelView() {
         id={LABEL_SECTIONS.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {LABEL_SECTIONS.styleReference.label}
-        </Label>
+        </Heading>
 
         <Description>
           Semantic headings align with the accessibility tree, allowing screen readers and keyboard users to navigate page outlines without confusion.

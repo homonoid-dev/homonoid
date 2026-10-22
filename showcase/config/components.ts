@@ -14,6 +14,7 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponentItem[] = [
   { name: "Label", href: "/label", description: "Accessible captions and headers" },
   { name: "Modal", href: "/modal", description: "Elevated dialog surfaces and focus containers" },
   { name: "Popover", href: "/popover", description: "Transient floating surface anchored to interactive triggers" },
+  { name: "Searchbar", href: "/searchbar", description: "Search query entry with instant discovery actions" },
   { name: "Select", href: "/select", description: "Collapsible floating listbox with single choice selection" },
   { name: "Separator", href: "/separator", description: "Hairline visual partition across layout axes" },
   { name: "Spinner", href: "/spinner", description: "Indicate background activity" },

@@ -26,10 +26,10 @@ export function CheckboxView() {
       {/* View Header */}
       <div className="flex flex-col gap-control-gap">
         <Heading size="lg">Checkbox</Heading>
-        <Description size="md">
+        <Description>
           A checkbox allows users to select one or more independent options from a set, or toggle a single binary state between on and off.
         </Description>
-        <Description size="md">
+        <Description>
           Homonoid checkboxes communicate clear affirmative selections and support a three state model comprising unchecked, checked, and indeterminate while preserving tactile physical feedback.
         </Description>
       </div>
@@ -178,15 +178,15 @@ export function CheckboxView() {
           {CHECKBOX_SECTIONS.continuity.label}
         </Heading>
 
-        <Description size="md">
+        <Description>
           State transitions maintain absolute geometric stability. Outer boundaries and control dimensions remain locked in place when transitioning across unchecked, checked, and indeterminate states.
         </Description>
 
-        <Description size="md">
+        <Description>
           Glyphs scale and morph dynamically into place using hardware composited GPU transforms rather than abrupt visual popups.
         </Description>
 
-        <Description size="md">
+        <Description>
           Active pointer compression applies subtle scale tension across both the indicator box and accompanying label, providing immediate physical feedback upon click.
         </Description>
       </section>
@@ -200,15 +200,15 @@ export function CheckboxView() {
           {CHECKBOX_SECTIONS.accessibility.label}
         </Heading>
 
-        <Description size="md">
+        <Description>
           Accessibility for selection controls empowers all users with predictable states and effortless activation. We treat inclusive design as an absolute requirement rather than an afterthought.
         </Description>
 
-        <Description size="md">
+        <Description>
           Checkboxes expose native input role semantics, ensuring screen readers announce current checked, unchecked, or mixed states accurately. Spacebar toggles and tab order navigation function without specialized configuration.
         </Description>
 
-        <Description size="md">
+        <Description>
           Clear focus outlines enclose the control upon keyboard navigation. Generous touch target sizing guarantees reliable tapping across mobile screens and assistive pointer accessories.
         </Description>
       </section>
@@ -222,15 +222,15 @@ export function CheckboxView() {
           {CHECKBOX_SECTIONS.tokens.label}
         </Heading>
 
-        <Description size="md">
+        <Description>
           Control dimensions map to standard geometric tokens comprising 16px for small, 20px for medium, and 24px for large scale presentations.
         </Description>
 
-        <Description size="md">
+        <Description>
           Corner radii calibrate proportionally to control dimensions using standardized scale radius tokens to preserve aesthetic harmony with neighboring inputs and buttons.
         </Description>
 
-        <Description size="md">
+        <Description>
           Color values consume primary brand tokens and neutral border tokens exclusively, synchronizing effortlessly across light and dark theme environments.
         </Description>
       </section>
@@ -244,15 +244,15 @@ export function CheckboxView() {
           {CHECKBOX_SECTIONS.styleReference.label}
         </Heading>
 
-        <Description size="md">
+        <Description>
           Accessible native input elements preserve standard form submission semantics, keyboard spacebar toggles, and screen reader announcements.
         </Description>
 
-        <Description size="md">
+        <Description>
           Indeterminate parent controls communicate partial group selection to assistive technologies using mixed state aria attributes.
         </Description>
 
-        <Description size="md">
+        <Description>
           Prominent focus rings encircle the control boundary during keyboard navigation, ensuring WCAG compliant visibility standards.
         </Description>
       </section>

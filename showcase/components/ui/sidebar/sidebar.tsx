@@ -20,7 +20,7 @@ export const variants = cva(
       },
       collapsed: {
         true: "w-[calc(var(--p-layout-x)*2+1rem)]",
-        false: "w-52",
+        false: "w-58",
       },
     },
     defaultVariants: {

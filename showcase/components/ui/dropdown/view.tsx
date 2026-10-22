@@ -1,6 +1,6 @@
 "use client";
 
-import { Dropdown, Button, Card, Label, Description, Heading } from "@homonoid/react";
+import { Dropdown, Button, Card, Description, Heading } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -125,9 +125,9 @@ export function DropdownView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={DROPDOWN_SECTIONS.placements.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {DROPDOWN_SECTIONS.placements.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={DROPDOWN_PLACEMENTS_CODE_SAMPLE}>
@@ -156,9 +156,9 @@ export function DropdownView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={DROPDOWN_SECTIONS.variants.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {DROPDOWN_SECTIONS.variants.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={DROPDOWN_VARIANTS_CODE_SAMPLE}>
@@ -186,9 +186,9 @@ export function DropdownView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={DROPDOWN_SECTIONS.sizes.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {DROPDOWN_SECTIONS.sizes.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={DROPDOWN_SIZES_CODE_SAMPLE}>
@@ -219,9 +219,9 @@ export function DropdownView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={DROPDOWN_SECTIONS.groups.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {DROPDOWN_SECTIONS.groups.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={DROPDOWN_GROUPS_CODE_SAMPLE}>
@@ -268,9 +268,9 @@ export function DropdownView() {
       >
         <div className="flex flex-row gap-surface-gap items-center">
           <Frame icon={DROPDOWN_SECTIONS.disabled.icon} />
-          <Label size="lg" as="h2">
+          <Heading size="md" as="h2">
             {DROPDOWN_SECTIONS.disabled.label}
-          </Label>
+          </Heading>
         </div>
 
         <Stage code={DROPDOWN_DISABLED_CODE_SAMPLE}>
@@ -309,9 +309,9 @@ export function DropdownView() {
         id={DROPDOWN_SECTIONS.continuity.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {DROPDOWN_SECTIONS.continuity.label}
-        </Label>
+        </Heading>
 
         <Description>
           Dropdown triggers uphold complete dimensional stability across active and dormant states. The trigger maintains steady geometry without spatial reflows when opening or dismissing the floating menu.
@@ -331,9 +331,9 @@ export function DropdownView() {
         id={DROPDOWN_SECTIONS.accessibility.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {DROPDOWN_SECTIONS.accessibility.label}
-        </Label>
+        </Heading>
 
         <Description>
           Dropdown adheres strictly to the W3C WAI ARIA Menu pattern. Triggers declare aria haspopup menu and communicate expanded status through aria expanded and aria controls.
@@ -353,9 +353,9 @@ export function DropdownView() {
         id={DROPDOWN_SECTIONS.tokens.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {DROPDOWN_SECTIONS.tokens.label}
-        </Label>
+        </Heading>
 
         <Description>
           Dropdown menus align with the Homonoid spatial scale across small, medium, and large density configurations.
@@ -375,9 +375,9 @@ export function DropdownView() {
         id={DROPDOWN_SECTIONS.styleReference.id}
         className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
       >
-        <Label size="lg" as="h2">
+        <Heading size="md" as="h2">
           {DROPDOWN_SECTIONS.styleReference.label}
-        </Label>
+        </Heading>
 
         <Description>
           Dropdown components utilize compound subcomponents to offer modular composition for simple action lists and complex hierarchical menus.
