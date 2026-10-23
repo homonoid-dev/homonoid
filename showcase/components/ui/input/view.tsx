@@ -15,8 +15,6 @@ import {
   INPUT_INTERACTIVE_STATES,
   INPUT_DEFAULT_CODE_SAMPLE,
   INPUT_VARIANTS_CODE_SAMPLE,
-  INPUT_SIZES_CODE_SAMPLE,
-  INPUT_RADII_CODE_SAMPLE,
   INPUT_ADORNMENTS_CODE_SAMPLE,
   INPUT_LABEL_HELPER_CODE_SAMPLE,
   INPUT_VALIDATION_CODE_SAMPLE,
@@ -26,13 +24,6 @@ import {
 export function InputView() {
   useToc(INPUT_SECTIONS_LIST);
 
-  const radii = [
-    { radius: "none" as const, placeholder: "Square radius" },
-    { radius: "sm" as const, placeholder: "Small radius" },
-    { radius: "md" as const, placeholder: "Medium radius" },
-    { radius: "lg" as const, placeholder: "Large radius" },
-    { radius: "full" as const, placeholder: "Pill input" },
-  ];
 
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
@@ -84,36 +75,6 @@ export function InputView() {
           </div>
         </Stage>
       </section >
-
-      {/* Sizes Section */}
-      <section id={INPUT_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={INPUT_SECTIONS.sizes.label} icon={INPUT_SECTIONS.sizes.icon} />
-
-        <Stage code={INPUT_SIZES_CODE_SAMPLE}>
-          <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-            <Input size="sm" placeholder="Small input" />
-            <Input size="md" placeholder="Medium input" />
-            <Input size="lg" placeholder="Large input" />
-          </div>
-        </Stage>
-      </section>
-
-      {/* Radius Section */}
-      <section id={INPUT_SECTIONS.radius.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={INPUT_SECTIONS.radius.label} icon={INPUT_SECTIONS.radius.icon} />
-
-        <Stage code={INPUT_RADII_CODE_SAMPLE}>
-          <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-            {radii.map((item) => (
-              <Input
-                key={item.radius}
-                radius={item.radius}
-                placeholder={item.placeholder}
-              />
-            ))}
-          </div>
-        </Stage>
-      </section>
 
       {/* Adornments Section */}
       <section id={INPUT_SECTIONS.adornments.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">

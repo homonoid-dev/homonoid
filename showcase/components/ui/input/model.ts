@@ -133,42 +133,6 @@ export function Example() {
   );
 }`;
 
-export const INPUT_SIZES_CODE_SAMPLE = `import { Input } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-      <Input size="sm" placeholder="Small input" />
-      <Input size="md" placeholder="Medium input" />
-      <Input size="lg" placeholder="Large input" />
-    </div>
-  );
-}`;
-
-export const INPUT_RADII_CODE_SAMPLE = `import { Input } from "@homonoid/react";
-
-export function Example() {
-  const radii = [
-    { radius: "none" as const, placeholder: "Square radius" },
-    { radius: "sm" as const, placeholder: "Small radius" },
-    { radius: "md" as const, placeholder: "Medium radius" },
-    { radius: "lg" as const, placeholder: "Large radius" },
-    { radius: "full" as const, placeholder: "Pill input" },
-  ];
-
-  return (
-    <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-      {radii.map((item) => (
-        <Input
-          key={item.radius}
-          radius={item.radius}
-          placeholder={item.placeholder}
-        />
-      ))}
-    </div>
-  );
-}`;
-
 export const INPUT_ADORNMENTS_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 import { Search, Mail, Eye } from "lucide-react";
 

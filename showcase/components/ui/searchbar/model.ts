@@ -3,6 +3,7 @@ import {
   Ruler,
   Loader2,
   CircleDot,
+  Command,
   Tag,
   Infinity,
   Accessibility,
@@ -39,6 +40,11 @@ export const SEARCHBAR_SECTIONS: Record<string, SearchbarSectionItem> = {
     label: "Radius",
     icon: CircleDot,
   },
+  shortcut: {
+    id: "shortcut",
+    label: "Shortcut",
+    icon: Command,
+  },
   labelAndDescription: {
     id: "label-and-description",
     label: "Label & Description",
@@ -69,7 +75,7 @@ export const SEARCHBAR_SECTIONS: Record<string, SearchbarSectionItem> = {
 export const SEARCHBAR_SECTIONS_LIST: SearchbarSectionItem[] =
   Object.values(SEARCHBAR_SECTIONS);
 
-export const SEARCHBAR_DEFAULT_CODE_SAMPLE = `import { Searchbar, Kbd } from "@homonoid/react";
+export const SEARCHBAR_DEFAULT_CODE_SAMPLE = `import { Searchbar } from "@homonoid/react";
 import { Search } from "lucide-react";
 
 export function Example() {
@@ -184,6 +190,44 @@ export function Example() {
           placeholder={item.placeholder}
         />
       ))}
+    </div>
+  );
+}`;
+
+export const SEARCHBAR_SHORTCUT_CODE_SAMPLE = `import { useRef, useEffect } from "react";
+import { Searchbar, Kbd } from "@homonoid/react";
+import { Search } from "lucide-react";
+
+export function Example() {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  return (
+    <div className="w-full max-w-sm">
+      <Searchbar
+        ref={inputRef}
+        leading={<Search className="size-4 text-muted" />}
+        trailing={
+          <Kbd
+            onClick={() => inputRef.current?.focus()}
+            className="cursor-pointer hover:bg-surface-hover active:bg-subtle transition-colors"
+          >
+            <Kbd.Abbr keyValue="command" />
+            <Kbd.Content>K</Kbd.Content>
+          </Kbd>
+        }
+        placeholder="Quick find (click shortcut or ⌘K)..."
+      />
     </div>
   );
 }`;

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import { Searchbar, Kbd, Card, Description, Heading } from "@homonoid/react";
 import { Search } from "lucide-react";
 import { Stage } from "@/components/ui/stage";
@@ -16,8 +17,40 @@ import {
   SEARCHBAR_SIZES_CODE_SAMPLE,
   SEARCHBAR_LOADING_CODE_SAMPLE,
   SEARCHBAR_RADII_CODE_SAMPLE,
+  SEARCHBAR_SHORTCUT_CODE_SAMPLE,
   SEARCHBAR_LABEL_AND_DESCRIPTION_CODE_SAMPLE,
 } from "./model";
+
+function ShortcutExample() {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (event: globalThis.KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  return (
+    <div className="w-full max-w-sm">
+      <Searchbar
+        ref={inputRef}
+        leading={<Search className="size-4 text-muted" />}
+        trailing={
+          <Kbd>
+            <Kbd.Abbr keyValue="command" />
+            <Kbd.Content>K</Kbd.Content>
+          </Kbd>
+        }
+        placeholder="Quick find (click shortcut or ⌘K)..."
+      />
+    </div>
+  );
+}
 
 export function SearchbarView() {
   useToc(SEARCHBAR_SECTIONS_LIST);
@@ -165,6 +198,15 @@ export function SearchbarView() {
               />
             ))}
           </div>
+        </Stage>
+      </section>
+
+      {/* Shortcut Section */}
+      <section id={SEARCHBAR_SECTIONS.shortcut.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SEARCHBAR_SECTIONS.shortcut.label} icon={SEARCHBAR_SECTIONS.shortcut.icon} />
+
+        <Stage code={SEARCHBAR_SHORTCUT_CODE_SAMPLE}>
+          <ShortcutExample />
         </Stage>
       </section>
 
