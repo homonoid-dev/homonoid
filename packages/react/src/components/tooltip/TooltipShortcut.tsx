@@ -1,21 +1,37 @@
+"use client";
+
 import { forwardRef } from "react";
+import { Kbd } from "../kbd/Kbd";
 import { cn } from "../../utils/cn";
 import type { TooltipShortcutProps } from "./types";
 
 export const TooltipShortcut = forwardRef<HTMLElement, TooltipShortcutProps>(
-  function TooltipShortcut({ children, className, ...props }, ref) {
+  function TooltipShortcut(
+    {
+      children,
+      className,
+      size = "sm",
+      variant = "plain",
+      radius = "md",
+      ...props
+    },
+    ref
+  ) {
     return (
-      <kbd
+      <Kbd
         ref={ref}
+        size={size}
+        variant={variant}
+        radius={radius}
         data-slot="shortcut"
         className={cn(
-          "inline-flex items-center justify-center font-mono text-[10px] tracking-widest uppercase opacity-75 ml-1.5 px-1.5 py-0.5 rounded-xl border border-current/20 bg-current/10 select-none",
+          "ml-1.5 text-inherit rounded-inherit opacity-75 border border-current/20 bg-current/10 tracking-widest",
           className
         )}
         {...props}
       >
         {children}
-      </kbd>
+      </Kbd>
     );
   }
 );

@@ -38,9 +38,8 @@ export interface TooltipContentProps extends HTMLAttributes<HTMLDivElement> {
   offset?: number;
 }
 
-export interface TooltipShortcutProps extends HTMLAttributes<HTMLElement> {
-  children?: ReactNode;
-  className?: string;
-}
+import type { KbdProps } from "../kbd/types";
+
+export interface TooltipShortcutProps extends KbdProps { }
 
 export type { Placement };

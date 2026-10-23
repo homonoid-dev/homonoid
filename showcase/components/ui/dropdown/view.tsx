@@ -98,10 +98,16 @@ export function DropdownView() {
             </Dropdown.Trigger>
             <Dropdown.Content>
               <Dropdown.List>
-                <Dropdown.Item leading={<Edit className="size-4" />} trailing="⌘E">
+                <Dropdown.Item
+                  leading={<Edit className="size-4" />}
+                  trailing={<Dropdown.Shortcut keyValue="command" content="E" />}
+                >
                   Edit
                 </Dropdown.Item>
-                <Dropdown.Item leading={<Copy className="size-4" />} trailing="⌘C">
+                <Dropdown.Item
+                  leading={<Copy className="size-4" />}
+                  trailing={<Dropdown.Shortcut keyValue="command" content="C" />}
+                >
                   Duplicate
                 </Dropdown.Item>
                 <Dropdown.Item leading={<Share2 className="size-4" />}>

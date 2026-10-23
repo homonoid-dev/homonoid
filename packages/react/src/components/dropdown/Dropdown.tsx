@@ -25,6 +25,7 @@ import { DropdownContent } from "./DropdownContent";
 import { DropdownList } from "./DropdownList";
 import { DropdownItem } from "./DropdownItem";
 import { DropdownGroup } from "./DropdownGroup";
+import { DropdownShortcut } from "./DropdownShortcut";
 import { Label } from "../label/Label";
 import { all, cond } from "../../utils/condition";
 import { cn } from "../../utils/cn";
@@ -37,6 +38,7 @@ export interface DropdownComponent extends FC<DropdownProps> {
   Item: typeof DropdownItem;
   Group: typeof DropdownGroup;
   Label: typeof Label;
+  Shortcut: typeof DropdownShortcut;
 }
 
 export const Dropdown: DropdownComponent = function Dropdown({
@@ -154,3 +156,4 @@ Dropdown.List = DropdownList;
 Dropdown.Item = DropdownItem;
 Dropdown.Group = DropdownGroup;
 Dropdown.Label = Label;
+Dropdown.Shortcut = DropdownShortcut;

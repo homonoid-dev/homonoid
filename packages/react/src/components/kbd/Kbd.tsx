@@ -55,9 +55,9 @@ export const variants = cva(
         destructive: "",
       },
       size: {
-        sm: "text-[10px] px-1 min-w-4 h-4.5 gap-0.5",
-        md: "text-xs px-1.5 min-w-4.5 h-5 gap-1",
-        lg: "text-xs px-1.5 min-w-5 h-5.5 gap-1",
+        sm: "text-sm px-1 min-w-4 h-4.5 gap-0.5",
+        md: "text-md px-2 min-w-5.5 h-6 gap-1",
+        lg: "text-lg px-2.5 min-w-7 h-7.5 gap-1",
       },
       radius: {
         none: "rounded-none",

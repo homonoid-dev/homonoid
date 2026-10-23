@@ -149,7 +149,7 @@ export function TooltipView() {
               </Tooltip.Trigger>
               <Tooltip.Content>
                 Copy to clipboard
-                <Tooltip.Shortcut>⌘C</Tooltip.Shortcut>
+                <Tooltip.Shortcut keyValue="command" content="C" />
               </Tooltip.Content>
             </Tooltip>
           </div>

@@ -7,6 +7,7 @@ import type {
 } from "react";
 import type { Placement } from "@floating-ui/react";
 import type { Radius, Size } from "../../types";
+import type { KbdProps } from "../kbd/types";
 
 export type DropdownSize = Size;
 export type DropdownRadius = Radius;
@@ -203,3 +204,6 @@ export interface DropdownGroupProps extends HTMLAttributes<HTMLDivElement> {
    */
   className?: string;
 }
+
+export interface DropdownShortcutProps extends KbdProps { }
+
