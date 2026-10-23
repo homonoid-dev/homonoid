@@ -31,7 +31,7 @@ export interface SearchbarProps
 
   /**
    * Whether an asynchronous search operation is in progress.
-   * When true, renders a Spinner in place of the leading slot.
+   * When true, sets aria-busy attribute on the searchbox container.
    * @default false
    */
   loading?: boolean;

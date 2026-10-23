@@ -5,7 +5,6 @@ import {
   type KeyboardEvent,
 } from "react";
 import { Input } from "../input/Input";
-import { Spinner } from "../spinner/Spinner";
 import { cn } from "../../utils/cn";
 import { cond } from "../../utils/condition";
 import type { SearchbarProps, SearchbarRadius } from "./types";
@@ -50,15 +49,6 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
       }
     };
 
-    const spinnerSize = cond(size === "lg", "md", "sm");
-    const spinnerClass = cond(size === "sm", "size-3.5", cond(size === "lg", "size-5", "size-4"));
-
-    const leadingContent = cond(
-      loading,
-      <Spinner size={spinnerSize} className={cn(spinnerClass, "text-muted")} />,
-      leading
-    );
-
     const shortcutRadiusClass = radius
       ? shortcutRadiusClasses[radius]
       : cond(size === "lg", "rounded-md", "rounded-sm");
@@ -67,11 +57,11 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
       shortcut ? (
         <kbd
           className={cn(
-            "inline-flex items-center justify-center font-mono font-medium text-muted bg-surface border border-border shadow-xs select-none pointer-events-none",
+            "inline-flex items-center justify-center font-mono font-medium text-muted bg-surface border border-border select-none pointer-events-none",
             cond(
               size === "sm",
-              "text-[10px] px-1 py-0.5 min-w-4",
-              cond(size === "lg", "text-xs px-1.5 py-0.5 min-w-5", "text-xs px-1.5 py-0.5 min-w-4.5")
+              "text-[10px] px-1 min-w-4",
+              cond(size === "lg", "text-xs px-1.5 min-w-5", "text-xs px-1.5 min-w-4.5")
             ),
             shortcutRadiusClass
           )}
@@ -89,7 +79,7 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
         aria-busy={cond(loading, true, undefined)}
         size={size}
         variant={variant}
-        leading={leadingContent}
+        leading={leading}
         trailing={trailingContent}
         onKeyDown={handleKeyDown}
         className={cn(
