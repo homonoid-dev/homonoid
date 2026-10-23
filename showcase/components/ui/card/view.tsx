@@ -74,7 +74,7 @@ export function CardView() {
 
         <Stage code={CARD_VARIANTS_CODE_SAMPLE}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap w-full max-w-lg">
-            <Card variant="outlined" className="flex flex-col gap-2 p-surface">
+            <Card variant="outlined" className="flex flex-col gap-2">
               <Label as="h3">
                 Outlined Card
               </Label>
@@ -82,7 +82,7 @@ export function CardView() {
                 Transparent surface framed by an optional hairline border stroke.
               </Description>
             </Card>
-            <Card variant="filled" className="flex flex-col gap-2 p-surface">
+            <Card variant="filled" className="flex flex-col gap-2">
               <Label as="h3">
                 Filled Card
               </Label>
