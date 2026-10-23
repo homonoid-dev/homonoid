@@ -276,9 +276,8 @@ export function SelectView() {
               </Select.Trigger>
               <Select.Content>
                 <Select.List>
-                  {groups.map((group, index) => (
+                  {groups.map((group) => (
                     <Select.Group key={group.name}>
-                      {index > 0 && <Select.Separator />}
                       <Select.Label className="px-3 py-1.5 text-xs text-subtle-foreground font-medium">
                         {group.name}
                       </Select.Label>
