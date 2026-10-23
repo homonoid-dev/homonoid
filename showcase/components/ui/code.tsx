@@ -1,9 +1,13 @@
+"use client";
+
 import React, { useMemo } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@homonoid/react/cn";
 
 export interface CodeProps {
   code: string;
   className?: string;
+  animated?: boolean;
 }
 
 // Regex matching TSX syntax tokens in priority order
@@ -95,8 +99,30 @@ export function highlighter(code: string): React.ReactNode[] {
   return nodes;
 }
 
-export function Code({ code, className }: CodeProps) {
-  const highlighted = useMemo(() => highlighter(code), [code]);
+export function Code({ code, className, animated = false }: CodeProps) {
+  const shouldReduceMotion = useReducedMotion();
+  const lines = useMemo(() => code.split("\n"), [code]);
+
+  if (!animated || shouldReduceMotion) {
+    return (
+      <div
+        className={cn(
+          "overflow-x-auto text-xs font-mono leading-relaxed select-text",
+          className
+        )}
+      >
+        <pre className="text-foreground">
+          <code>
+            {lines.map((line, index) => (
+              <span key={index} className="block min-h-[1.5em]">
+                {line.length > 0 ? highlighter(line) : "\u00A0"}
+              </span>
+            ))}
+          </code>
+        </pre>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -106,8 +132,25 @@ export function Code({ code, className }: CodeProps) {
       )}
     >
       <pre className="text-foreground">
-        <code>{highlighted}</code>
+        <code>
+          {lines.map((line, index) => (
+            <motion.span
+              key={index}
+              className="block min-h-[1.5em]"
+              initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }}
+              animate={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
+              transition={{
+                duration: 0.16,
+                delay: Math.min(index * 0.018, 0.32),
+                ease: [0.16, 1, 0.3, 1],
+              }}
+            >
+              {line.length > 0 ? highlighter(line) : "\u00A0"}
+            </motion.span>
+          ))}
+        </code>
       </pre>
     </div>
   );
 }
+

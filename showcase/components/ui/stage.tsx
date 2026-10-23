@@ -209,7 +209,7 @@ export function Stage({
               transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }}
               className="pt-3"
             >
-              <Code code={code} className="-mx-surface px-surface" />
+              <Code code={code} animated className="-mx-surface px-surface" />
             </motion.div>
           )}
         </AnimatePresence>
