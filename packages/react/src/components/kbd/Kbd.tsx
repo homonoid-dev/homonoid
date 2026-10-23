@@ -40,7 +40,7 @@ const compounds = (Object.keys(PALETTES) as Palette[]).flatMap((color) => [
 ]);
 
 export const variants = cva(
-  "inline-flex items-center justify-center select-none transition-colors",
+  "inline-flex items-center justify-center leading-none select-none transition-colors",
   {
     variants: {
       variant: {
@@ -55,8 +55,8 @@ export const variants = cva(
         destructive: "",
       },
       size: {
-        sm: "text-xs px-1.5 pb-[0.6px] min-w-4 h-4.5 gap-0.5",
-        md: "text-sm px-1.5 pb-[0.4px] min-w-5.5 h-5.5 gap-1",
+        sm: "text-xs px-1.5 min-w-4 h-4.5 gap-0.5",
+        md: "text-sm px-1.5 min-w-5.5 h-5.5 gap-1",
         lg: "text-base px-2 min-w-7 h-7.5 gap-1.5",
       },
       radius: {
