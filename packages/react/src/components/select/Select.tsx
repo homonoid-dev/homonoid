@@ -32,7 +32,6 @@ import { SelectContent } from "./SelectContent";
 import { SelectList } from "./SelectList";
 import { SelectItem } from "./SelectItem";
 import { SelectGroup } from "./SelectGroup";
-import { SelectSeparator } from "./SelectSeparator";
 import { Label } from "../label/Label";
 import { Description } from "../description/Description";
 import { any, cond, when } from "../../utils/condition";
@@ -48,7 +47,6 @@ export interface SelectComponent extends React.FC<SelectProps> {
   Group: typeof SelectGroup;
   Label: typeof Label;
   Description: typeof Description;
-  Separator: typeof SelectSeparator;
 }
 
 export const Select: SelectComponent = function Select({
@@ -361,4 +359,3 @@ Select.Item = SelectItem;
 Select.Group = SelectGroup;
 Select.Label = Label;
 Select.Description = Description;
-Select.Separator = SelectSeparator;

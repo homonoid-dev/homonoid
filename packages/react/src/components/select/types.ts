@@ -81,18 +81,3 @@ export interface SelectGroupProps extends HTMLAttributes<HTMLDivElement> {
   ref?: Ref<HTMLDivElement>;
   children?: ReactNode;
 }
-
-export interface SelectSeparatorProps extends HTMLAttributes<HTMLDivElement> {
-  ref?: Ref<HTMLDivElement>;
-
-  /**
-   * Whether the separator is purely decorative.
-   * @default false
-   */
-  decorative?: boolean;
-
-  /**
-   * Additional CSS classes.
-   */
-  className?: string;
-}
