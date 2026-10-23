@@ -24,7 +24,7 @@ export const DropdownShortcut = forwardRef<HTMLElement, DropdownShortcutProps>(
         variant={variant}
         data-slot="shortcut"
         className={cn(
-          "ml-auto text-muted tracking-widest",
+          "ml-auto tracking-widest",
           cond(variant === "plain", "px-0", ""),
           className
         )}

@@ -151,9 +151,9 @@ export function KbdView() {
 
         <Stage code={KBD_INLINE_CODE_SAMPLE}>
           <p className="text-sm text-foreground leading-relaxed max-w-lg">
-            Press <Kbd keyValue="command" content="K" /> to open search, press{" "}
-            <Kbd keyValue="escape" /> to dismiss overlays, or hit{" "}
-            <Kbd keyValue="enter" /> to confirm changes.
+            Press <Kbd size="sm" keyValue="command" content="K" /> to open search, press{" "}
+            <Kbd size="sm" keyValue="escape" /> to dismiss overlays, or hit{" "}
+            <Kbd size="sm" keyValue="enter" /> to confirm changes.
           </p>
         </Stage>
       </section>

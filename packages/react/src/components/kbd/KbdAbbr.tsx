@@ -59,7 +59,7 @@ export const KbdAbbr = forwardRef<HTMLElement, KbdAbbrProps>(
       <abbr
         ref={ref}
         title={resolvedTitle}
-        className={cn("no-underline select-none font-mono text-[1.20em]", className)}
+        className={cn("no-underline select-none text-[1.20em]", className)}
         {...props}
       >
         {resolvedSymbol}

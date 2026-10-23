@@ -1,7 +1,6 @@
 "use client";
 
 import { forwardRef } from "react";
-import { cn } from "../../utils/cn";
 import type { KbdContentProps } from "./types";
 
 export const KbdContent = forwardRef<HTMLSpanElement, KbdContentProps>(
@@ -16,7 +15,7 @@ export const KbdContent = forwardRef<HTMLSpanElement, KbdContentProps>(
     return (
       <span
         ref={ref}
-        className={cn("font-mono", className)}
+        className={className}
         {...props}
       >
         {children}
