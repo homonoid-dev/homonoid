@@ -33,7 +33,7 @@ export const variants = cva(
         full: "rounded-full",
       },
       invalid: {
-        true: "border-destructive hover:border-destructive hover:focus-within:border-destructive focus-within:border-destructive",
+        true: "border-destructive/30 hover:border-destructive hover:focus-within:border-destructive focus-within:border-destructive",
         false: "",
       },
       disabled: {
