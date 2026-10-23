@@ -12,18 +12,18 @@ import { any, cond, when } from "../../utils/condition";
 import type { InputProps } from "./types";
 
 export const variants = cva(
-  "relative w-full inline-flex items-center",
+  "relative w-full inline-flex items-center transform-gpu origin-center transition-[color,background-color,border-color,opacity] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)]",
   {
     variants: {
       variant: {
-        outlined: "border border-border bg-transparent hover:border-foreground/30 focus-within:border-primary focus-within:hover:border-primary focus-within:ring-2 focus-within:ring-primary/30",
-        contained: "border border-transparent bg-surface hover:bg-surface-hover focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/30",
+        outlined: "border border-border bg-transparent hover:border-foreground/30 focus-within:border-primary focus-within:hover:border-primary",
+        contained: "border border-transparent bg-surface hover:bg-surface-hover focus-within:border-primary",
         plain: "border border-transparent bg-transparent hover:bg-surface-hover",
       },
       size: {
-        sm: "h-control-sm px-2.5 text-xs gap-2",
-        md: "h-control-md px-3 text-sm gap-2.5",
-        lg: "h-control-lg px-3.5 text-base gap-3",
+        sm: "h-control-sm px-2.5 gap-2 text-xs",
+        md: "h-control-md px-3 gap-2.5 text-sm",
+        lg: "h-control-lg px-3.5 gap-3 text-base",
       },
       radius: {
         none: "rounded-none",
@@ -33,7 +33,7 @@ export const variants = cva(
         full: "rounded-full",
       },
       invalid: {
-        true: "border-destructive hover:border-destructive hover:focus-within:border-destructive focus-within:border-destructive focus-within:ring-2 focus-within:ring-destructive/30",
+        true: "border-destructive hover:border-destructive hover:focus-within:border-destructive focus-within:border-destructive",
         false: "",
       },
       disabled: {
