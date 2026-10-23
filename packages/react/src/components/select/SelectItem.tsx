@@ -13,6 +13,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
       value,
       disabled = false,
       leading,
+      trailing,
       label,
       description,
       children,
@@ -73,29 +74,8 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
         leading={leading}
         label={labelContent}
         description={description}
-        trailing={when(
-          isSelected,
-          <svg
-            viewBox="0 0 16 16"
-            fill="none"
-            aria-hidden="true"
-            className="size-4 shrink-0 text-primary"
-          >
-            <path
-              d="M3.5 8.5L6.5 11.5L12.5 4.5"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        )}
-        className={cn(
-          "cursor-pointer select-none",
-          cond(isSelected, "bg-surface-hover font-medium", ""),
-          cond(disabled, "opacity-40 text-muted pointer-events-none cursor-not-allowed", ""),
-          className
-        )}
+        trailing={trailing}
+        className={className}
         {...itemProps}
         {...props}
       >

@@ -16,6 +16,7 @@ export interface SelectOption {
   label: ReactNode;
   description?: ReactNode;
   leading?: ReactNode;
+  trailing?: ReactNode;
   disabled?: boolean;
 }
 
@@ -72,6 +73,7 @@ export interface SelectItemProps
   value: string;
   disabled?: boolean;
   leading?: ReactNode;
+  trailing?: ReactNode;
   label?: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
