@@ -1,6 +1,6 @@
 "use client";
 
-import { Searchbar, Card, Description, Heading } from "@homonoid/react";
+import { Searchbar, Kbd, Card, Description, Heading } from "@homonoid/react";
 import { Search } from "lucide-react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
@@ -29,16 +29,35 @@ export function SearchbarView() {
   ] as const;
 
   const sizes = [
-    { size: "sm", placeholder: "Small search (32px)...", shortcut: "/" },
-    { size: "md", placeholder: "Medium search (40px)...", shortcut: "⌘K" },
-    { size: "lg", placeholder: "Large search (48px)...", shortcut: "⌘K" },
-  ] as const;
+    {
+      size: "sm" as const,
+      placeholder: "Small search (32px)...",
+      iconClass: "size-3.5",
+      trailing: (
+        <Kbd size="sm">
+          <Kbd.Content>/</Kbd.Content>
+        </Kbd>
+      ),
+    },
+    {
+      size: "md" as const,
+      placeholder: "Medium search (40px)...",
+      iconClass: "size-4",
+      trailing: <Kbd size="md" keyValue="command" content="K" />,
+    },
+    {
+      size: "lg" as const,
+      placeholder: "Large search (48px)...",
+      iconClass: "size-5",
+      trailing: <Kbd size="lg" keyValue="command" content="K" />,
+    },
+  ];
 
   const radii = [
-    { radius: "md", placeholder: "Medium radius..." },
-    { radius: "lg", placeholder: "Large radius..." },
-    { radius: "full", placeholder: "Pill searchbar..." },
-  ] as const;
+    { radius: "md" as const, placeholder: "Medium radius..." },
+    { radius: "lg" as const, placeholder: "Large radius..." },
+    { radius: "full" as const, placeholder: "Pill searchbar..." },
+  ];
 
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
@@ -51,7 +70,7 @@ export function SearchbarView() {
           </Description>
         </div>
         <Description>
-          Searchbars combine immediate text entry with contextual search actions including leading query icons, asynchronous loading spinners, and keyboard shortcut badges.
+          Searchbars combine immediate text entry with contextual search actions including leading query icons, asynchronous loading states, and trailing keyboard shortcut keys.
         </Description>
       </div>
 
@@ -75,10 +94,15 @@ export function SearchbarView() {
           <div className="w-full max-w-sm">
             <Searchbar
               leading={<Search className="size-4" />}
+              trailing={
+                <Kbd>
+                  <Kbd.Abbr keyValue="command" />
+                  <Kbd.Content>K</Kbd.Content>
+                </Kbd>
+              }
               label="Quick Find"
               description="Search across all projects, team members, and settings."
               placeholder="Search documentation..."
-              shortcut="⌘K"
             />
           </div>
         </Stage>
@@ -93,6 +117,7 @@ export function SearchbarView() {
             {variants.map((item) => (
               <Searchbar
                 key={item.variant}
+                leading={<Search className="size-4" />}
                 variant={item.variant}
                 placeholder={item.placeholder}
               />
@@ -110,9 +135,10 @@ export function SearchbarView() {
             {sizes.map((item) => (
               <Searchbar
                 key={item.size}
+                leading={<Search className={item.iconClass} />}
                 size={item.size}
                 placeholder={item.placeholder}
-                shortcut={item.shortcut}
+                trailing={item.trailing}
               />
             ))}
           </div>
@@ -126,11 +152,13 @@ export function SearchbarView() {
         <Stage code={SEARCHBAR_LOADING_CODE_SAMPLE}>
           <div className="w-full max-w-sm flex flex-col gap-3">
             <Searchbar
+              leading={<Search className="size-4" />}
               loading
               defaultValue="Homonoid design tokens"
               placeholder="Querying components..."
             />
             <Searchbar
+              leading={<Search className="size-3.5" />}
               loading
               size="sm"
               placeholder="Resolving records..."
@@ -148,9 +176,10 @@ export function SearchbarView() {
             {radii.map((item) => (
               <Searchbar
                 key={item.radius}
+                leading={<Search className="size-4" />}
                 radius={item.radius}
                 placeholder={item.placeholder}
-                shortcut="⌘K"
+                trailing={<Kbd radius={item.radius} keyValue="command" content="K" />}
               />
             ))}
           </div>
@@ -164,10 +193,11 @@ export function SearchbarView() {
         <Stage code={SEARCHBAR_LABEL_AND_DESCRIPTION_CODE_SAMPLE}>
           <div className="w-full max-w-sm flex flex-col gap-surface-gap">
             <Searchbar
+              leading={<Search className="size-4" />}
+              trailing={<Kbd keyValue="command" content="K" />}
               label="Repository Search"
               description="Query public and private repositories across your organization."
               placeholder="Search repositories..."
-              shortcut="⌘K"
             />
           </div>
         </Stage>
@@ -178,11 +208,7 @@ export function SearchbarView() {
         <Heading size="md" as="h2"> {SEARCHBAR_SECTIONS.continuity.label} </Heading>
 
         <Description>
-          Searchbars preserve dimensional stability across query state transitions. The loading spinner inherits the exact dimensions of the leading icon, preventing layout jitter or content shift when asynchronous operations commence.
-        </Description>
-
-        <Description>
-          Focus rings expand outward smoothly without displacing adjacent controls or altering internal container heights.
+          Searchbars preserve dimensional stability across query state transitions. Focus rings expand outward smoothly without displacing adjacent controls or altering internal container heights.
         </Description>
       </section>
 

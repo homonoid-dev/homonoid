@@ -5,9 +5,8 @@ import {
   type KeyboardEvent,
 } from "react";
 import { Input } from "../input/Input";
-import { Kbd } from "../kbd/Kbd";
 import { cn } from "../../utils/cn";
-import { cond, when } from "../../utils/condition";
+import { cond } from "../../utils/condition";
 import type { SearchbarProps, SearchbarRadius } from "./types";
 
 const radiuses: Record<SearchbarRadius, string> = {
@@ -27,7 +26,6 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
       loading = false,
       leading,
       trailing,
-      shortcut,
       onSearch,
       onKeyDown,
       className,
@@ -51,16 +49,7 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
         size={size}
         variant={variant}
         leading={leading}
-        trailing={cond(
-          trailing,
-          trailing,
-          when(
-            shortcut,
-            <Kbd size={size} radius={radius} className="pointer-events-none">
-              {shortcut}
-            </Kbd>
-          )
-        )}
+        trailing={trailing}
         onKeyDown={handleKeyDown}
         className={cn(
           radius && radiuses[radius],

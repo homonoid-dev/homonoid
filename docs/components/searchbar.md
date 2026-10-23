@@ -38,17 +38,18 @@ The searchbar component consists of the following elements:
 - `Container`: Bounded structural frame providing touch bounds, surface background, hairline border stroke, and focus ring boundary.
 - `Leading`: Composition slot preceding the text field for contextual search icons, custom triggers, or decorative glyphs.
 - `Input`: Native search input element with transparent background and native query handling.
-- `Loading Spinner`: Visual indicator replacing the leading slot during active asynchronous query processing.
-- `Shortcut Badge`: Keyboard indicator displaying quick activation key combinations such as Command K or slash.
+- `Trailing`: Composition slot following the text field for keyboard shortcut indicators, clear triggers, or contextual action buttons.
 
 ```tsx
-import { Searchbar } from "@homonoid/react";
+import { Searchbar, Kbd } from "@homonoid/react";
+import { Search } from "lucide-react";
 
 export function SearchbarBasic() {
   return (
     <Searchbar
+      leading={<Search className="size-4" />}
+      trailing={<Kbd keyValue="command" content="K" />}
       placeholder="Search documentation..."
-      shortcut="⌘K"
       onSearch={(query) => console.log(query)}
     />
   );
@@ -61,10 +62,10 @@ export function SearchbarBasic() {
 
 Searchbars adapt to diverse query workflows through flexible accessory slots:
 
-- Standalone Search: Single control with leading slot and shortcut indicator for toolbar integration.
+- Standalone Search: Single control with leading search icon and trailing keyboard indicator for toolbar integration.
 - Controlled Query: Direct two way binding with query value and change events for real time filtering.
 - Command Trigger: Read only or button styled presentation opening dedicated command palettes on click or shortcut key press.
-- Async State: Loading spinner replacing leading slot content while network requests execute.
+- Async State: Asynchronous query communication through aria busy states during network operations.
 
 <br>
 
