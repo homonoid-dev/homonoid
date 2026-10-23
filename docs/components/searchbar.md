@@ -94,7 +94,7 @@ Searchbars conform to the standardized Homonoid control scale:
 Searchbars provide structural surface treatments via the `variant` property:
 
 - `Outlined` (`outlined`): Structural treatment with hairline border stroke over neutral background. Default presentation for general toolbars and page headers.
-- `Filled` (`filled`): Subdued surface fill with minimal border stroke, shifting contrast on interaction. Ideal for high density dashboards and embedded cards.
+- `Contained` (`contained`): Subdued surface fill with minimal border stroke, shifting contrast on interaction. Ideal for high density dashboards and embedded cards.
 - `Plain` (`plain`): Borderless container without resting background fill. Ideal for modal dialogs and seamless floating search overlays.
 
 <br>

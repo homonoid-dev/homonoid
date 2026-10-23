@@ -12,7 +12,7 @@ import { any, cond, when } from "../../utils/condition";
 import type { InputProps } from "./types";
 
 export const variants = cva(
-  "relative w-full inline-flex items-center select-none transform-gpu origin-center transition-[color,background-color,border-color,opacity] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)]",
+  "relative w-full inline-flex items-center",
   {
     variants: {
       variant: {
