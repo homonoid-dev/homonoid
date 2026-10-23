@@ -25,20 +25,10 @@ export const SEARCHBAR_SECTIONS: Record<string, SearchbarSectionItem> = {
     label: "Variants",
     icon: Layers,
   },
-  sizes: {
-    id: "sizes",
-    label: "Sizes",
-    icon: Ruler,
-  },
   loading: {
     id: "loading",
     label: "Loading",
     icon: Loader2,
-  },
-  radius: {
-    id: "radius",
-    label: "Radius",
-    icon: CircleDot,
   },
   shortcut: {
     id: "shortcut",
@@ -113,39 +103,6 @@ export function Example() {
   );
 }`;
 
-export const SEARCHBAR_SIZES_CODE_SAMPLE = `import { Searchbar } from "@homonoid/react";
-import { Search } from "lucide-react";
-
-export function Example() {
-  const sizes = [
-    {
-      size: "sm" as const,
-      placeholder: "Small search",
-    },
-    {
-      size: "md" as const,
-      placeholder: "Medium search",
-    },
-    {
-      size: "lg" as const,
-      placeholder: "Large search",
-    },
-  ];
-
-  return (
-    <div className="w-full max-w-sm flex flex-col gap-3">
-      {sizes.map((item) => (
-        <Searchbar
-          key={item.size}
-          leading={<Search className="size-4 text-muted" />}
-          size={item.size}
-          placeholder={item.placeholder}
-        />
-      ))}
-    </div>
-  );
-}`;
-
 export const SEARCHBAR_LOADING_CODE_SAMPLE = `import { Searchbar } from "@homonoid/react";
 import { Search } from "lucide-react";
 
@@ -164,32 +121,6 @@ export function Example() {
         size="sm"
         placeholder="Resolving records..."
       />
-    </div>
-  );
-}`;
-
-export const SEARCHBAR_RADII_CODE_SAMPLE = `import { Searchbar } from "@homonoid/react";
-import { Search } from "lucide-react";
-
-export function Example() {
-  const radii = [
-    { radius: "none" as const, placeholder: "Square radius" },
-    { radius: "sm" as const, placeholder: "Small radius" },
-    { radius: "md" as const, placeholder: "Medium radius" },
-    { radius: "lg" as const, placeholder: "Large radius" },
-    { radius: "full" as const, placeholder: "Pill searchbar" },
-  ];
-
-  return (
-    <div className="w-full max-w-sm flex flex-col gap-3">
-      {radii.map((item) => (
-        <Searchbar
-          key={item.radius}
-          leading={<Search className="size-4 text-muted" />}
-          radius={item.radius}
-          placeholder={item.placeholder}
-        />
-      ))}
     </div>
   );
 }`;

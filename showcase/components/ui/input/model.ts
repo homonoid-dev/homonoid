@@ -28,16 +28,6 @@ export const INPUT_SECTIONS: Record<string, InputSectionItem> = {
     label: "Variants",
     icon: Layers,
   },
-  sizes: {
-    id: "sizes",
-    label: "Sizes",
-    icon: Ruler,
-  },
-  radius: {
-    id: "radius",
-    label: "Radius",
-    icon: CircleDot,
-  },
   adornments: {
     id: "adornments",
     label: "Adornments",

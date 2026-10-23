@@ -14,9 +14,7 @@ import {
   SEARCHBAR_SECTIONS_LIST,
   SEARCHBAR_DEFAULT_CODE_SAMPLE,
   SEARCHBAR_VARIANTS_CODE_SAMPLE,
-  SEARCHBAR_SIZES_CODE_SAMPLE,
   SEARCHBAR_LOADING_CODE_SAMPLE,
-  SEARCHBAR_RADII_CODE_SAMPLE,
   SEARCHBAR_SHORTCUT_CODE_SAMPLE,
   SEARCHBAR_LABEL_AND_DESCRIPTION_CODE_SAMPLE,
 } from "./model";
@@ -143,24 +141,6 @@ export function SearchbarView() {
         </Stage>
       </section>
 
-      {/* Sizes Section */}
-      <section id={SEARCHBAR_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SEARCHBAR_SECTIONS.sizes.label} icon={SEARCHBAR_SECTIONS.sizes.icon} />
-
-        <Stage code={SEARCHBAR_SIZES_CODE_SAMPLE}>
-          <div className="w-full max-w-sm flex flex-col gap-3">
-            {sizes.map((item) => (
-              <Searchbar
-                key={item.size}
-                leading={<Search className="size-4 text-muted" />}
-                size={item.size}
-                placeholder={item.placeholder}
-              />
-            ))}
-          </div>
-        </Stage>
-      </section>
-
       {/* Loading Section */}
       <section id={SEARCHBAR_SECTIONS.loading.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
         <Frame text={SEARCHBAR_SECTIONS.loading.label} icon={SEARCHBAR_SECTIONS.loading.icon} />
@@ -179,24 +159,6 @@ export function SearchbarView() {
               size="sm"
               placeholder="Resolving records..."
             />
-          </div>
-        </Stage>
-      </section>
-
-      {/* Radius Section */}
-      <section id={SEARCHBAR_SECTIONS.radius.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SEARCHBAR_SECTIONS.radius.label} icon={SEARCHBAR_SECTIONS.radius.icon} />
-
-        <Stage code={SEARCHBAR_RADII_CODE_SAMPLE}>
-          <div className="w-full max-w-sm flex flex-col gap-3">
-            {radii.map((item) => (
-              <Searchbar
-                key={item.radius}
-                leading={<Search className="size-4 text-muted" />}
-                radius={item.radius}
-                placeholder={item.placeholder}
-              />
-            ))}
           </div>
         </Stage>
       </section>
