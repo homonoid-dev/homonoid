@@ -1,9 +1,10 @@
 import type { ReactNode, Ref } from "react";
 import type { InputProps } from "../input/types";
+import { Radius, Size, Variant } from "../../types";
 
-export type SearchbarSize = "sm" | "md" | "lg";
-export type SearchbarVariant = "outlined" | "filled" | "plain";
-export type SearchbarRadius = "none" | "sm" | "md" | "lg" | "full";
+export type SearchbarSize = Size;
+export type SearchbarVariant = Variant;
+export type SearchbarRadius = Radius;
 
 export interface SearchbarProps
   extends Omit<InputProps, "size" | "variant"> {

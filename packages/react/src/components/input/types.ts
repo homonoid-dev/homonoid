@@ -1,8 +1,8 @@
 import type { InputHTMLAttributes, ReactNode, Ref } from "react";
-import type { Size } from "../../types";
+import type { Size, Variant } from "../../types";
 
 export type InputSize = Size;
-export type InputVariant = "outlined" | "filled" | "plain";
+export type InputVariant = Variant;
 
 export interface InputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "prefix"> {
@@ -14,7 +14,7 @@ export interface InputProps
   /**
    * Structural surface treatment.
    * - `outlined`: Default bordered boundary with resting hairline stroke.
-   * - `filled`: Tinted subtle surface fill with subdued border.
+   * - `contained`: Tinted subtle surface fill with subdued border.
    * - `plain`: Clean borderless container without resting background.
    * @default "outlined"
    */

@@ -16,8 +16,8 @@ export const variants = cva(
   {
     variants: {
       variant: {
+        contained: "border border-transparent bg-surface hover:bg-surface-hover focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/30",
         outlined: "border border-border hover:border-foreground/30 focus-within:border-primary focus-within:hover:border-primary focus-within:ring-2 focus-within:ring-primary/30",
-        filled: "border border-transparent bg-surface hover:bg-surface-hover focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/30",
         plain: "border border-transparent hover:bg-surface-hover"
       },
       size: {
@@ -37,7 +37,7 @@ export const variants = cva(
     compoundVariants: [
       {
         invalid: true,
-        variant: "filled",
+        variant: "contained",
         className: "border-destructive focus-within:border-destructive bg-destructive/10 hover:bg-destructive/20"
       },
       {

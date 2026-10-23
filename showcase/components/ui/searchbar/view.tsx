@@ -33,23 +33,16 @@ export function SearchbarView() {
       size: "sm" as const,
       placeholder: "Small search (32px)...",
       iconClass: "size-3.5",
-      trailing: (
-        <Kbd size="sm">
-          <Kbd.Content>/</Kbd.Content>
-        </Kbd>
-      ),
     },
     {
       size: "md" as const,
       placeholder: "Medium search (40px)...",
       iconClass: "size-4",
-      trailing: <Kbd size="md" keyValue="command" content="K" />,
     },
     {
       size: "lg" as const,
       placeholder: "Large search (48px)...",
       iconClass: "size-5",
-      trailing: <Kbd size="lg" keyValue="command" content="K" />,
     },
   ];
 
@@ -138,7 +131,6 @@ export function SearchbarView() {
                 leading={<Search className={item.iconClass} />}
                 size={item.size}
                 placeholder={item.placeholder}
-                trailing={item.trailing}
               />
             ))}
           </div>
@@ -179,7 +171,6 @@ export function SearchbarView() {
                 leading={<Search className="size-4" />}
                 radius={item.radius}
                 placeholder={item.placeholder}
-                trailing={<Kbd radius={item.radius} keyValue="command" content="K" />}
               />
             ))}
           </div>
@@ -194,7 +185,6 @@ export function SearchbarView() {
           <div className="w-full max-w-sm flex flex-col gap-surface-gap">
             <Searchbar
               leading={<Search className="size-4" />}
-              trailing={<Kbd keyValue="command" content="K" />}
               label="Repository Search"
               description="Query public and private repositories across your organization."
               placeholder="Search repositories..."
