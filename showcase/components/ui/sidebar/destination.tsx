@@ -63,7 +63,7 @@ export function SidebarDestination({
     );
 
     const classes = cn(
-      "group h-control-sm text-xs flex items-center w-full transition-colors duration-200 cursor-pointer select-none",
+      "group h-control-sm text-sm flex items-center w-full transition-colors duration-200 cursor-pointer select-none",
       cond(collapsed, "justify-center", "justify-between"),
       cond(
         isSelected,
@@ -111,7 +111,7 @@ export function SidebarDestination({
   }
 
   const tileClasses = cn(
-    "w-full text-xs select-none cursor-pointer",
+    "w-full text-sm select-none cursor-pointer",
     cond(
       isSelected,
       "text-foreground font-medium bg-surface-hover hover:bg-surface-hover focus:bg-surface-hover",
