@@ -256,21 +256,3 @@ export const BUTTON_INTERACTIVE_STATES: InteractiveStateItem[] = [
     note: "no pointer events during loading",
   },
 ];
-
-export interface ButtonViewModel {
-  containedCodeSample: string;
-  variantsCodeSample: string;
-  sizesCodeSample: string;
-  outlinedCodeSample: string;
-  withIconCodeSample: string;
-  iconOnlyCodeSample: string;
-  loadingCodeSample: string;
-  disabledCodeSample: string;
-  fullWidthCodeSample: string;
-  sections: Record<string, ButtonSectionItem>;
-  sectionsList: ButtonSectionItem[];
-  interactiveStates: InteractiveStateItem[];
-  isLoading: boolean;
-  triggerLoading: () => void;
-  resetLoading: () => void;
-}
