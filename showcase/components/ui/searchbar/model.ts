@@ -1,8 +1,6 @@
 import {
   Layers,
-  Ruler,
   Loader2,
-  CircleDot,
   Command,
   Tag,
   Infinity,

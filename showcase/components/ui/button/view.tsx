@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Label, Heading, Description, Card } from "@homonoid/react";
+import { Button, Heading, Description, Card } from "@homonoid/react";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";

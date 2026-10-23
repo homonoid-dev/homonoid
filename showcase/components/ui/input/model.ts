@@ -1,7 +1,5 @@
 import {
   Layers,
-  Ruler,
-  CircleDot,
   AtSign,
   Tag,
   AlertCircle,

@@ -59,29 +59,6 @@ export function SearchbarView() {
     { variant: "plain", placeholder: "Plain searchbar" },
   ] as const;
 
-  const sizes = [
-    {
-      size: "sm" as const,
-      placeholder: "Small search",
-    },
-    {
-      size: "md" as const,
-      placeholder: "Medium search",
-    },
-    {
-      size: "lg" as const,
-      placeholder: "Large search",
-    },
-  ];
-
-  const radii = [
-    { radius: "none" as const, placeholder: "Square radius..." },
-    { radius: "sm" as const, placeholder: "Small radius..." },
-    { radius: "md" as const, placeholder: "Medium radius..." },
-    { radius: "lg" as const, placeholder: "Large radius..." },
-    { radius: "full" as const, placeholder: "Pill searchbar..." },
-  ];
-
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
