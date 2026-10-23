@@ -132,5 +132,3 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(
 Kbd.displayName = "Kbd";
 Kbd.Abbr = KbdAbbr;
 Kbd.Content = KbdContent;
-
-export const Kdb = Kbd;
