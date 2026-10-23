@@ -16,15 +16,12 @@ import {
   KBD_COLORS_CODE_SAMPLE,
   KBD_NAVIGATION_CODE_SAMPLE,
   KBD_INLINE_CODE_SAMPLE,
-  KBD_SPECIAL_CODE_SAMPLE,
 } from "./model";
 
 export function KbdView() {
   useToc(KBD_SECTIONS_LIST);
 
   const shortcuts = [
-    { label: "Copy", keys: "command" as const, content: "C" },
-    { label: "Paste", keys: "command" as const, content: "V" },
     { label: "Cut", keys: "command" as const, content: "X" },
     { label: "Undo", keys: "command" as const, content: "Z" },
     { label: "Command Palette", keys: ["shift", "command"] as const, content: "P" },
@@ -107,10 +104,7 @@ export function KbdView() {
         <Stage code={KBD_SHORTCUTS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center gap-4">
             {shortcuts.map((shortcut) => (
-              <div key={shortcut.label} className="flex items-center gap-2">
-                <span className="text-xs text-muted font-sans">{shortcut.label}</span>
-                <Kbd keyValue={shortcut.keys} content={shortcut.content} />
-              </div>
+              <Kbd key={shortcut.label} keyValue={shortcut.keys} content={shortcut.content} />
             ))}
           </div>
         </Stage>
@@ -123,9 +117,9 @@ export function KbdView() {
         <Stage code={KBD_VARIANTS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center gap-6">
             {variants.map((item) => (
-              <div key={item.variant} className="flex items-center gap-2">
-                <span className="text-xs text-muted font-sans">{item.label}</span>
+              <div key={item.variant} className="flex flex-col items-center gap-2">
                 <Kbd variant={item.variant} keyValue="command" content="K" />
+                <span className="text-xs text-muted font-sans">{item.label}</span>
               </div>
             ))}
           </div>
@@ -139,9 +133,9 @@ export function KbdView() {
         <Stage code={KBD_COLORS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center gap-6">
             {colors.map((item) => (
-              <div key={item.color} className="flex items-center gap-2">
-                <span className="text-xs text-muted font-sans">{item.label}</span>
+              <div key={item.color} className="flex flex-col items-center gap-2">
                 <Kbd color={item.color} keyValue="command" content="K" />
+                <span className="text-xs text-muted font-sans">{item.label}</span>
               </div>
             ))}
           </div>
@@ -155,9 +149,9 @@ export function KbdView() {
         <Stage code={KBD_NAVIGATION_CODE_SAMPLE}>
           <div className="flex items-center gap-4">
             {navigation.map((item) => (
-              <div key={item.key} className="flex items-center gap-2">
-                <span className="text-xs text-muted font-sans">{item.label}</span>
+              <div key={item.key} className="flex flex-col items-center gap-2">
                 <Kbd keyValue={item.key} />
+                <span className="text-xs text-muted font-sans">{item.label}</span>
               </div>
             ))}
           </div>
@@ -177,21 +171,6 @@ export function KbdView() {
         </Stage>
       </section>
 
-      {/* Special Keys Section */}
-      <section id={KBD_SECTIONS.special.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={KBD_SECTIONS.special.label} icon={KBD_SECTIONS.special.icon} />
-
-        <Stage code={KBD_SPECIAL_CODE_SAMPLE}>
-          <div className="flex flex-wrap items-center gap-4">
-            {specialKeys.map((item) => (
-              <div key={item.key} className="flex items-center gap-2">
-                <span className="text-xs text-muted font-sans">{item.label}</span>
-                <Kbd keyValue={item.key} />
-              </div>
-            ))}
-          </div>
-        </Stage>
-      </section>
 
       {/* Object Continuity Section */}
       <section id={KBD_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
