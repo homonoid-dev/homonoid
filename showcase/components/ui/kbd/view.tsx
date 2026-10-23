@@ -48,19 +48,6 @@ export function KbdView() {
     { key: "arrowright" as const, label: "Right" },
   ];
 
-  const specialKeys = [
-    { key: "enter" as const, label: "Enter" },
-    { key: "escape" as const, label: "Escape" },
-    { key: "tab" as const, label: "Tab" },
-    { key: "space" as const, label: "Space" },
-    { key: "backspace" as const, label: "Delete" },
-    { key: "capslock" as const, label: "Caps Lock" },
-    { key: "shift" as const, label: "Shift" },
-    { key: "option" as const, label: "Option" },
-    { key: "control" as const, label: "Control" },
-    { key: "command" as const, label: "Command" },
-  ];
-
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}

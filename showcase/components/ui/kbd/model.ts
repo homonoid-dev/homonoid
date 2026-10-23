@@ -88,10 +88,7 @@ export function Example() {
   return (
     <div className="flex flex-wrap items-center gap-4">
       {shortcuts.map((shortcut) => (
-        <div key={shortcut.label} className="flex items-center gap-2">
-          <span className="text-xs text-muted font-sans">{shortcut.label}</span>
-          <Kbd keyValue={shortcut.keys} content={shortcut.content} />
-        </div>
+        <Kbd key={shortcut.label} keyValue={shortcut.keys} content={shortcut.content} />
       ))}
     </div>
   );
@@ -109,9 +106,9 @@ export function Example() {
   return (
     <div className="flex flex-wrap items-center gap-6">
       {variants.map((item) => (
-        <div key={item.variant} className="flex items-center gap-2">
-          <span className="text-xs text-muted font-sans">{item.label}</span>
+        <div key={item.variant} className="flex flex-col items-center gap-2">
           <Kbd variant={item.variant} keyValue="command" content="K" />
+          <span className="text-xs text-muted font-sans">{item.label}</span>
         </div>
       ))}
     </div>
@@ -131,9 +128,9 @@ export function Example() {
   return (
     <div className="flex flex-wrap items-center gap-6">
       {colors.map((item) => (
-        <div key={item.color} className="flex items-center gap-2">
-          <span className="text-xs text-muted font-sans">{item.label}</span>
+        <div key={item.color} className="flex flex-col items-center gap-2">
           <Kbd color={item.color} keyValue="command" content="K" />
+          <span className="text-xs text-muted font-sans">{item.label}</span>
         </div>
       ))}
     </div>
@@ -153,9 +150,9 @@ export function Example() {
   return (
     <div className="flex items-center gap-4">
       {navigation.map((item) => (
-        <div key={item.key} className="flex items-center gap-2">
-          <span className="text-xs text-muted font-sans">{item.label}</span>
+        <div key={item.key} className="flex flex-col items-center gap-2">
           <Kbd keyValue={item.key} />
+          <span className="text-xs text-muted font-sans">{item.label}</span>
         </div>
       ))}
     </div>
