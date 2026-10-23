@@ -26,28 +26,6 @@ const shortcutRadiusClasses: Record<SearchbarRadius, string> = {
   full: "rounded-full px-2",
 };
 
-function SearchIcon({ size }: { size: "sm" | "md" | "lg" }) {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      aria-hidden="true"
-      className={cn(
-        "shrink-0 text-muted transition-colors duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)]",
-        cond(size === "sm", "size-3.5", cond(size === "lg", "size-5", "size-4"))
-      )}
-    >
-      <path
-        d="M17.5 17.5L13.875 13.875M15.8333 9.16667C15.8333 12.8486 12.8486 15.8333 9.16667 15.8333C5.48477 15.8333 2.5 12.8486 2.5 9.16667C2.5 5.48477 5.48477 2.5 9.16667 2.5C12.8486 2.5 15.8333 5.48477 15.8333 9.16667Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
   function Searchbar(
     {
@@ -78,7 +56,7 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
     const leadingContent = cond(
       loading,
       <Spinner size={spinnerSize} className={cn(spinnerClass, "text-muted")} />,
-      leading ?? <SearchIcon size={size} />
+      leading
     );
 
     const shortcutRadiusClass = radius
@@ -115,7 +93,6 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
         trailing={trailingContent}
         onKeyDown={handleKeyDown}
         className={cn(
-          "[&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none",
           radius && radiusClasses[radius],
           className
         )}

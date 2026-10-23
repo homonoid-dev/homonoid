@@ -70,11 +70,13 @@ export const SEARCHBAR_SECTIONS_LIST: SearchbarSectionItem[] =
   Object.values(SEARCHBAR_SECTIONS);
 
 export const SEARCHBAR_DEFAULT_CODE_SAMPLE = `import { Searchbar } from "@homonoid/react";
+import { Search } from "lucide-react";
 
 export function Example() {
   return (
     <div className="w-full max-w-sm">
       <Searchbar
+        leading={<Search className="size-4" />}
         label="Quick Find"
         description="Search across all projects, team members, and settings."
         placeholder="Search documentation..."

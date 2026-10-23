@@ -1,6 +1,7 @@
 "use client";
 
 import { Searchbar, Card, Description, Heading } from "@homonoid/react";
+import { Search } from "lucide-react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -73,6 +74,7 @@ export function SearchbarView() {
         <Stage code={SEARCHBAR_DEFAULT_CODE_SAMPLE}>
           <div className="w-full max-w-sm">
             <Searchbar
+              leading={<Search className="size-4" />}
               label="Quick Find"
               description="Search across all projects, team members, and settings."
               placeholder="Search documentation..."
