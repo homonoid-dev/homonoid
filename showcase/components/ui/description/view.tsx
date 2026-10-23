@@ -43,7 +43,7 @@ export function DescriptionView() {
         <Card
           color="subtle"
           variant="filled"
-          className="flex items-center justify-between font-mono text-xs select-text"
+          className="font-mono text-xs"
         >
           <code>{highlighter('import { Description } from "@homonoid/react";')}</code>
         </Card>
@@ -119,7 +119,7 @@ export function DescriptionView() {
         </div>
 
         <Stage code={DESCRIPTION_CONTEXT_CODE_SAMPLE}>
-          <Card className="flex flex-col gap-3 max-w-sm w-full p-surface">
+          <Card className="flex flex-col gap-3 max-w-sm w-full">
             <div className="flex flex-col gap-1">
               <Label size="sm" as="h3">
                 Two Factor Authentication
