@@ -8,10 +8,52 @@ import { KbdAbbr } from "./KbdAbbr";
 import { KbdContent } from "./KbdContent";
 import type { KbdProps } from "./types";
 
+const PALETTES = {
+  surface: {
+    contained: "bg-surface text-muted border border-border",
+    outlined: "bg-transparent text-muted border border-border",
+    plain: "bg-transparent text-muted border border-transparent",
+  },
+  subtle: {
+    contained: "bg-subtle text-subtle-foreground border border-subtle-border",
+    outlined: "bg-transparent text-subtle-foreground border border-subtle-border",
+    plain: "bg-transparent text-subtle-foreground border border-transparent",
+  },
+  primary: {
+    contained: "bg-primary text-primary-foreground border border-primary-border",
+    outlined: "bg-transparent text-primary border border-primary-border",
+    plain: "bg-transparent text-primary border border-transparent",
+  },
+  destructive: {
+    contained: "bg-destructive text-destructive-foreground border border-destructive-border",
+    outlined: "bg-transparent text-destructive border border-destructive-border",
+    plain: "bg-transparent text-destructive border border-transparent",
+  },
+} as const;
+
+type Palette = keyof typeof PALETTES;
+
+const compounds = (Object.keys(PALETTES) as Palette[]).flatMap((color) => [
+  { variant: "contained" as const, color, className: PALETTES[color].contained },
+  { variant: "outlined" as const, color, className: PALETTES[color].outlined },
+  { variant: "plain" as const, color, className: PALETTES[color].plain },
+]);
+
 export const variants = cva(
-  "inline-flex items-center justify-center font-mono font-medium text-muted bg-surface border border-border select-none",
+  "inline-flex items-center justify-center font-mono font-medium select-none transition-colors",
   {
     variants: {
+      variant: {
+        contained: "",
+        outlined: "",
+        plain: "",
+      },
+      color: {
+        surface: "",
+        subtle: "",
+        primary: "",
+        destructive: "",
+      },
       size: {
         sm: "text-[10px] px-1 min-w-4 h-4.5 gap-0.5",
         md: "text-xs px-1.5 min-w-4.5 h-5 gap-1",
@@ -25,22 +67,12 @@ export const variants = cva(
         full: "rounded-full px-2",
       },
     },
-    compoundVariants: [
-      {
-        size: "sm",
-        className: "rounded-sm",
-      },
-      {
-        size: "md",
-        className: "rounded-md",
-      },
-      {
-        size: "lg",
-        className: "rounded-lg",
-      },
-    ],
+    compoundVariants: compounds,
     defaultVariants: {
+      variant: "contained",
+      color: "surface",
       size: "md",
+      radius: "sm",
     },
   }
 );
@@ -56,6 +88,8 @@ export interface KbdComponent
 export const Kbd = forwardRef<HTMLElement, KbdProps>(
   function Kbd(
     {
+      variant = "contained",
+      color = "surface",
       size = "md",
       radius,
       keyValue,
@@ -76,7 +110,7 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(
     return (
       <kbd
         ref={ref}
-        className={cn(variants({ size, radius }), className)}
+        className={cn(variants({ variant, color, size, radius }), className)}
         {...props}
       >
         {cond(

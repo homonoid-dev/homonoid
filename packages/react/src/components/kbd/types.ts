@@ -1,8 +1,10 @@
 import type { HTMLAttributes, ReactNode, Ref } from "react";
-import type { Size, Radius } from "../../types";
+import type { Size, Radius, Variant, Color } from "../../types";
 
 export type KbdSize = Size;
 export type KbdRadius = Radius;
+export type KbdVariant = Variant;
+export type KbdColor = Color;
 
 export type KbdKeyValue =
   | "command"
@@ -48,6 +50,25 @@ export interface KbdProps extends Omit<HTMLAttributes<HTMLElement>, "content"> {
   ref?: Ref<HTMLElement>;
 
   /**
+   * Surface display variant.
+   * - `contained`: Solid filled background.
+   * - `outlined`: Transparent background with border outline.
+   * - `plain`: Borderless flat key presentation.
+   * @default "contained"
+   */
+  variant?: KbdVariant;
+
+  /**
+   * Semantic color palette.
+   * - `surface`: Standard neutral keyboard badge.
+   * - `subtle`: Chroma subtle tint.
+   * - `primary`: Chroma brand accent.
+   * - `destructive`: Destructive red emphasis.
+   * @default "surface"
+   */
+  color?: KbdColor;
+
+  /**
    * Standard control scale size.
    * @default "md"
    */
@@ -61,7 +82,7 @@ export interface KbdProps extends Omit<HTMLAttributes<HTMLElement>, "content"> {
   /**
    * Semantic modifier key or list of modifier keys to render automatically.
    */
-  keyValue?: KbdKeyValue | KbdKeyValue[];
+  keyValue?: KbdKeyValue | readonly KbdKeyValue[];
 
   /**
    * Primary key label or alphanumeric character content.

@@ -3,6 +3,8 @@ export { KbdAbbr, KEY_SYMBOLS } from "./KbdAbbr";
 export { KbdContent } from "./KbdContent";
 export type {
   KbdProps,
+  KbdVariant,
+  KbdColor,
   KbdSize,
   KbdRadius,
   KbdKeyValue,
