@@ -73,6 +73,18 @@ Homonoid defines structural surface treatments via the `variant` prop:
 
 <br>
 
+### Radius
+
+Inputs support corner curvature configurations via the `radius` property:
+
+- `None` (`none`): Square container boundary with sharp corners (`rounded-none`).
+- `Small` (`sm`): Subtle 4px rounded corners (`rounded-sm`).
+- `Medium` (`md`): Standard 6px rounded corners (`rounded-md`).
+- `Large` (`lg`): Prominent 8px rounded corners (`rounded-lg`).
+- `Full` (`full`): Continuous pill curvature (`rounded-full`).
+
+<br>
+
 ### States
 
 Inputs communicate interactive readiness and status through distinct visual states:

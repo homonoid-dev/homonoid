@@ -1,7 +1,7 @@
-import type { LucideIcon } from "lucide-react";
 import {
   Layers,
   Ruler,
+  CircleDot,
   AtSign,
   Tag,
   AlertCircle,
@@ -11,6 +11,7 @@ import {
   MousePointerClick,
   Palette,
   BookOpen,
+  LucideIcon,
 } from "lucide-react";
 import type { TocItem } from "@/components/ui/toc";
 import type { InteractiveStateItem } from "@/components/ui/interactive-states";
@@ -31,6 +32,11 @@ export const INPUT_SECTIONS: Record<string, InputSectionItem> = {
     id: "sizes",
     label: "Sizes",
     icon: Ruler,
+  },
+  radius: {
+    id: "radius",
+    label: "Radius",
+    icon: CircleDot,
   },
   adornments: {
     id: "adornments",
@@ -135,6 +141,30 @@ export function Example() {
       <Input size="sm" placeholder="Small input" />
       <Input size="md" placeholder="Medium input" />
       <Input size="lg" placeholder="Large input" />
+    </div>
+  );
+}`;
+
+export const INPUT_RADII_CODE_SAMPLE = `import { Input } from "@homonoid/react";
+
+export function Example() {
+  const radii = [
+    { radius: "none" as const, placeholder: "Square input..." },
+    { radius: "sm" as const, placeholder: "Small radius..." },
+    { radius: "md" as const, placeholder: "Medium radius..." },
+    { radius: "lg" as const, placeholder: "Large radius..." },
+    { radius: "full" as const, placeholder: "Pill input..." },
+  ];
+
+  return (
+    <div className="flex flex-col gap-surface-gap w-full max-w-sm">
+      {radii.map((item) => (
+        <Input
+          key={item.radius}
+          radius={item.radius}
+          placeholder={item.placeholder}
+        />
+      ))}
     </div>
   );
 }`;
