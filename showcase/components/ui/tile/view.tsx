@@ -126,16 +126,8 @@ export function TileView() {
       </section>
 
       {/* Variants Section */}
-      <section
-        id={TILE_SECTIONS.variants.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={TILE_SECTIONS.variants.icon} />
-          <Heading size="md" as="h2">
-            {TILE_SECTIONS.variants.label}
-          </Heading>
-        </div>
+      <section id={TILE_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={TILE_SECTIONS.variants.label} icon={TILE_SECTIONS.variants.icon} />
 
         <Stage code={TILE_VARIANTS_CODE_SAMPLE}>
           <div className="flex flex-col gap-2 w-full max-w-md">
@@ -154,16 +146,8 @@ export function TileView() {
       </section>
 
       {/* Colors Section */}
-      <section
-        id={TILE_SECTIONS.colors.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={TILE_SECTIONS.colors.icon} />
-          <Heading size="md" as="h2">
-            {TILE_SECTIONS.colors.label}
-          </Heading>
-        </div>
+      <section id={TILE_SECTIONS.colors.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={TILE_SECTIONS.colors.label} icon={TILE_SECTIONS.colors.icon} />
 
         <Stage code={TILE_COLORS_CODE_SAMPLE}>
           <div className="flex flex-col gap-2 w-full max-w-md">
@@ -184,16 +168,8 @@ export function TileView() {
 
 
       {/* Accessories Section */}
-      <section
-        id={TILE_SECTIONS.accessories.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={TILE_SECTIONS.accessories.icon} />
-          <Heading size="md" as="h2">
-            {TILE_SECTIONS.accessories.label}
-          </Heading>
-        </div>
+      <section id={TILE_SECTIONS.accessories.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={TILE_SECTIONS.accessories.label} icon={TILE_SECTIONS.accessories.icon} />
 
         <Stage code={TILE_ACCESSORIES_CODE_SAMPLE}>
           <div className="flex flex-col gap-2 w-full max-w-md">
@@ -236,16 +212,8 @@ export function TileView() {
       </section>
 
       {/* Composition Section */}
-      <section
-        id={TILE_SECTIONS.composition.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={TILE_SECTIONS.composition.icon} />
-          <Heading size="md" as="h2">
-            {TILE_SECTIONS.composition.label}
-          </Heading>
-        </div>
+      <section id={TILE_SECTIONS.composition.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={TILE_SECTIONS.composition.label} icon={TILE_SECTIONS.composition.icon} />
 
         <Stage code={TILE_COMPOSITION_CODE_SAMPLE}>
           <div className="w-full max-w-md">
@@ -267,13 +235,8 @@ export function TileView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={TILE_SECTIONS.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {TILE_SECTIONS.continuity.label}
-        </Heading>
+      <section id={TILE_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{TILE_SECTIONS.continuity.label}</Heading>
 
         <Description>
           Tiles maintain tactile continuity during pointer down and touch press gestures by compressing smoothly down to scale 0.97 using the motion press scale token.
@@ -289,13 +252,8 @@ export function TileView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={TILE_SECTIONS.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {TILE_SECTIONS.accessibility.label}
-        </Heading>
+      <section id={TILE_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{TILE_SECTIONS.accessibility.label}</Heading>
 
         <Description>
           Interactive tiles render as semantic buttons by default and support native keyboard navigation through Tab key traversal.
@@ -311,13 +269,8 @@ export function TileView() {
       </section>
 
       {/* Design Tokens Section */}
-      <section
-        id={TILE_SECTIONS.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {TILE_SECTIONS.tokens.label}
-        </Heading>
+      <section id={TILE_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{TILE_SECTIONS.tokens.label}</Heading>
 
         <Description>
           Tile heights and padding values align with the Homonoid spatial control scale across small, medium, and large density presets.
@@ -333,13 +286,8 @@ export function TileView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={TILE_SECTIONS.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {TILE_SECTIONS.styleReference.label}
-        </Heading>
+      <section id={TILE_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{TILE_SECTIONS.styleReference.label}</Heading>
 
         <Description>
           Developers can use convenient slot shorthand properties for rapid assembly or compose compound elements via Tile.Leading, Tile.Content, Tile.Label, Tile.Description, and Tile.Trailing for bespoke layouts.

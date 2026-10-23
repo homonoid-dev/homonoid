@@ -83,16 +83,8 @@ export function SearchbarView() {
       </section>
 
       {/* Variants Section */}
-      <section
-        id={SEARCHBAR_SECTIONS.variants.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SEARCHBAR_SECTIONS.variants.icon} />
-          <Heading size="md" as="h2">
-            {SEARCHBAR_SECTIONS.variants.label}
-          </Heading>
-        </div>
+      <section id={SEARCHBAR_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SEARCHBAR_SECTIONS.variants.label} icon={SEARCHBAR_SECTIONS.variants.icon} />
 
         <Stage code={SEARCHBAR_VARIANTS_CODE_SAMPLE}>
           <div className="w-full max-w-sm flex flex-col gap-3">
@@ -108,16 +100,8 @@ export function SearchbarView() {
       </section>
 
       {/* Sizes Section */}
-      <section
-        id={SEARCHBAR_SECTIONS.sizes.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SEARCHBAR_SECTIONS.sizes.icon} />
-          <Heading size="md" as="h2">
-            {SEARCHBAR_SECTIONS.sizes.label}
-          </Heading>
-        </div>
+      <section id={SEARCHBAR_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SEARCHBAR_SECTIONS.sizes.label} icon={SEARCHBAR_SECTIONS.sizes.icon} />
 
         <Stage code={SEARCHBAR_SIZES_CODE_SAMPLE}>
           <div className="w-full max-w-sm flex flex-col gap-3">
@@ -134,16 +118,8 @@ export function SearchbarView() {
       </section>
 
       {/* Loading Section */}
-      <section
-        id={SEARCHBAR_SECTIONS.loading.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SEARCHBAR_SECTIONS.loading.icon} />
-          <Heading size="md" as="h2">
-            {SEARCHBAR_SECTIONS.loading.label}
-          </Heading>
-        </div>
+      <section id={SEARCHBAR_SECTIONS.loading.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SEARCHBAR_SECTIONS.loading.label} icon={SEARCHBAR_SECTIONS.loading.icon} />
 
         <Stage code={SEARCHBAR_LOADING_CODE_SAMPLE}>
           <div className="w-full max-w-sm flex flex-col gap-3">
@@ -162,16 +138,8 @@ export function SearchbarView() {
       </section>
 
       {/* Radius Section */}
-      <section
-        id={SEARCHBAR_SECTIONS.radius.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SEARCHBAR_SECTIONS.radius.icon} />
-          <Heading size="md" as="h2">
-            {SEARCHBAR_SECTIONS.radius.label}
-          </Heading>
-        </div>
+      <section id={SEARCHBAR_SECTIONS.radius.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SEARCHBAR_SECTIONS.radius.label} icon={SEARCHBAR_SECTIONS.radius.icon} />
 
         <Stage code={SEARCHBAR_RADII_CODE_SAMPLE}>
           <div className="w-full max-w-sm flex flex-col gap-3">
@@ -188,16 +156,8 @@ export function SearchbarView() {
       </section>
 
       {/* Label & Description Section */}
-      <section
-        id={SEARCHBAR_SECTIONS.labelAndDescription.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SEARCHBAR_SECTIONS.labelAndDescription.icon} />
-          <Heading size="md" as="h2">
-            {SEARCHBAR_SECTIONS.labelAndDescription.label}
-          </Heading>
-        </div>
+      <section id={SEARCHBAR_SECTIONS.labelAndDescription.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SEARCHBAR_SECTIONS.labelAndDescription.label} icon={SEARCHBAR_SECTIONS.labelAndDescription.icon} />
 
         <Stage code={SEARCHBAR_LABEL_AND_DESCRIPTION_CODE_SAMPLE}>
           <div className="w-full max-w-sm flex flex-col gap-surface-gap">
@@ -212,13 +172,8 @@ export function SearchbarView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={SEARCHBAR_SECTIONS.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SEARCHBAR_SECTIONS.continuity.label}
-        </Heading>
+      <section id={SEARCHBAR_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2"> {SEARCHBAR_SECTIONS.continuity.label} </Heading>
 
         <Description>
           Searchbars preserve dimensional stability across query state transitions. The loading spinner inherits the exact dimensions of the leading icon, preventing layout jitter or content shift when asynchronous operations commence.
@@ -230,13 +185,8 @@ export function SearchbarView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={SEARCHBAR_SECTIONS.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SEARCHBAR_SECTIONS.accessibility.label}
-        </Heading>
+      <section id={SEARCHBAR_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2"> {SEARCHBAR_SECTIONS.accessibility.label} </Heading>
 
         <Description>
           Searchbars provide native searchbox semantics through explicit role searchbox and native type search attributes.
@@ -252,13 +202,8 @@ export function SearchbarView() {
       </section>
 
       {/* Design Tokens Section */}
-      <section
-        id={SEARCHBAR_SECTIONS.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SEARCHBAR_SECTIONS.tokens.label}
-        </Heading>
+      <section id={SEARCHBAR_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2"> {SEARCHBAR_SECTIONS.tokens.label} </Heading>
 
         <Description>
           Searchbars consume spatial control heights and semantic surface tokens directly from the design system.
@@ -270,13 +215,8 @@ export function SearchbarView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={SEARCHBAR_SECTIONS.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SEARCHBAR_SECTIONS.styleReference.label}
-        </Heading>
+      <section id={SEARCHBAR_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2"> {SEARCHBAR_SECTIONS.styleReference.label} </Heading>
 
         <Description>
           Searchbars integrate cleanly within navigation headers, hero discovery bars, modal command palettes, and table toolbars.

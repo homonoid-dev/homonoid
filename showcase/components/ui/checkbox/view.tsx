@@ -61,16 +61,8 @@ export function CheckboxView() {
       </section>
 
       {/* States Section */}
-      <section
-        id={CHECKBOX_SECTIONS.states.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={CHECKBOX_SECTIONS.states.icon} />
-          <Heading size="md" as="h2">
-            {CHECKBOX_SECTIONS.states.label}
-          </Heading>
-        </div>
+      <section id={CHECKBOX_SECTIONS.states.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={CHECKBOX_SECTIONS.states.label} icon={CHECKBOX_SECTIONS.states.icon} />
 
         <Stage code={CHECKBOX_STATES_CODE_SAMPLE}>
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
@@ -84,16 +76,8 @@ export function CheckboxView() {
       </section>
 
       {/* Sizes Section */}
-      <section
-        id={CHECKBOX_SECTIONS.sizes.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={CHECKBOX_SECTIONS.sizes.icon} />
-          <Heading size="md" as="h2">
-            {CHECKBOX_SECTIONS.sizes.label}
-          </Heading>
-        </div>
+      <section id={CHECKBOX_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={CHECKBOX_SECTIONS.sizes.label} icon={CHECKBOX_SECTIONS.sizes.icon} />
 
         <Stage code={CHECKBOX_SIZES_CODE_SAMPLE}>
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
@@ -105,16 +89,8 @@ export function CheckboxView() {
       </section>
 
       {/* Label and Helper Section */}
-      <section
-        id={CHECKBOX_SECTIONS.labelAndHelper.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={CHECKBOX_SECTIONS.labelAndHelper.icon} />
-          <Heading size="md" as="h2">
-            {CHECKBOX_SECTIONS.labelAndHelper.label}
-          </Heading>
-        </div>
+      <section id={CHECKBOX_SECTIONS.labelAndHelper.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={CHECKBOX_SECTIONS.labelAndHelper.label} icon={CHECKBOX_SECTIONS.labelAndHelper.icon} />
 
         <Stage code={CHECKBOX_LABEL_HELPER_CODE_SAMPLE}>
           <div className="flex flex-col gap-4 max-w-sm">
@@ -128,16 +104,8 @@ export function CheckboxView() {
       </section>
 
       {/* Radius Section */}
-      <section
-        id={CHECKBOX_SECTIONS.radius.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={CHECKBOX_SECTIONS.radius.icon} />
-          <Heading size="md" as="h2">
-            {CHECKBOX_SECTIONS.radius.label}
-          </Heading>
-        </div>
+      <section id={CHECKBOX_SECTIONS.radius.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={CHECKBOX_SECTIONS.radius.label} icon={CHECKBOX_SECTIONS.radius.icon} />
 
         <Stage code={CHECKBOX_RADIUS_CODE_SAMPLE}>
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
@@ -151,16 +119,8 @@ export function CheckboxView() {
       </section>
 
       {/* Disabled Section */}
-      <section
-        id={CHECKBOX_SECTIONS.disabled.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={CHECKBOX_SECTIONS.disabled.icon} />
-          <Heading size="md" as="h2">
-            {CHECKBOX_SECTIONS.disabled.label}
-          </Heading>
-        </div>
+      <section id={CHECKBOX_SECTIONS.disabled.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={CHECKBOX_SECTIONS.disabled.label} icon={CHECKBOX_SECTIONS.disabled.icon} />
 
         <Stage code={CHECKBOX_DISABLED_CODE_SAMPLE}>
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
@@ -172,14 +132,8 @@ export function CheckboxView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={CHECKBOX_SECTIONS.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {CHECKBOX_SECTIONS.continuity.label}
-        </Heading>
-
+      <section id={CHECKBOX_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{CHECKBOX_SECTIONS.continuity.label}</Heading>
         <Description>
           State transitions maintain absolute geometric stability. Outer boundaries and control dimensions remain locked in place when transitioning across unchecked, checked, and indeterminate states.
         </Description>
@@ -194,13 +148,8 @@ export function CheckboxView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={CHECKBOX_SECTIONS.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {CHECKBOX_SECTIONS.accessibility.label}
-        </Heading>
+      <section id={CHECKBOX_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{CHECKBOX_SECTIONS.accessibility.label}</Heading>
 
         <Description>
           Accessibility for selection controls empowers all users with predictable states and effortless activation. We treat inclusive design as an absolute requirement rather than an afterthought.
@@ -216,13 +165,8 @@ export function CheckboxView() {
       </section>
 
       {/* Design Tokens Section */}
-      <section
-        id={CHECKBOX_SECTIONS.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {CHECKBOX_SECTIONS.tokens.label}
-        </Heading>
+      <section id={CHECKBOX_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{CHECKBOX_SECTIONS.tokens.label}</Heading>
 
         <Description>
           Control dimensions map to standard geometric tokens comprising 16px for small, 20px for medium, and 24px for large scale presentations.
@@ -238,13 +182,8 @@ export function CheckboxView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={CHECKBOX_SECTIONS.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {CHECKBOX_SECTIONS.styleReference.label}
-        </Heading>
+      <section id={CHECKBOX_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2"> {CHECKBOX_SECTIONS.styleReference.label} </Heading>
 
         <Description>
           Accessible native input elements preserve standard form submission semantics, keyboard spacebar toggles, and screen reader announcements.

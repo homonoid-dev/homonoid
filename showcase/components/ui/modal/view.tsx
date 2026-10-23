@@ -90,16 +90,8 @@ export function ModalView() {
       </section>
 
       {/* Sizes Section */}
-      <section
-        id={MODAL_SECTIONS.sizes.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={MODAL_SECTIONS.sizes.icon} />
-          <Heading size="md" as="h2">
-            {MODAL_SECTIONS.sizes.label}
-          </Heading>
-        </div>
+      <section id={MODAL_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={MODAL_SECTIONS.sizes.label} icon={MODAL_SECTIONS.sizes.icon} />
 
         <Stage code={MODAL_SIZES_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
@@ -132,16 +124,8 @@ export function ModalView() {
       </section>
 
       {/* Backdrop Variants Section */}
-      <section
-        id={MODAL_SECTIONS.backdrop.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={MODAL_SECTIONS.backdrop.icon} />
-          <Heading size="md" as="h2">
-            {MODAL_SECTIONS.backdrop.label}
-          </Heading>
-        </div>
+      <section id={MODAL_SECTIONS.backdrop.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={MODAL_SECTIONS.backdrop.label} icon={MODAL_SECTIONS.backdrop.icon} />
 
         <Stage code={MODAL_BACKDROP_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
@@ -174,16 +158,8 @@ export function ModalView() {
       </section>
 
       {/* Dismiss Control Section */}
-      <section
-        id={MODAL_SECTIONS.dismiss.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={MODAL_SECTIONS.dismiss.icon} />
-          <Heading size="md" as="h2">
-            {MODAL_SECTIONS.dismiss.label}
-          </Heading>
-        </div>
+      <section id={MODAL_SECTIONS.dismiss.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={MODAL_SECTIONS.dismiss.label} icon={MODAL_SECTIONS.dismiss.icon} />
 
         <Stage code={MODAL_DISMISS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
@@ -223,16 +199,8 @@ export function ModalView() {
       </section>
 
       {/* Scroll Modes Section */}
-      <section
-        id={MODAL_SECTIONS.scroll.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={MODAL_SECTIONS.scroll.icon} />
-          <Heading size="md" as="h2">
-            {MODAL_SECTIONS.scroll.label}
-          </Heading>
-        </div>
+      <section id={MODAL_SECTIONS.scroll.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={MODAL_SECTIONS.scroll.label} icon={MODAL_SECTIONS.scroll.icon} />
 
         <Stage code={MODAL_SCROLL_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-control-gap p-6">
@@ -270,13 +238,8 @@ export function ModalView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={MODAL_SECTIONS.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {MODAL_SECTIONS.continuity.label}
-        </Heading>
+      <section id={MODAL_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{MODAL_SECTIONS.continuity.label}</Heading>
 
         <Description>
           Modal dialog surfaces preserve dimensional stability and spatial continuity across enter and exit transitions. Floating layers scale smoothly from initial triggers without clipping borders or jumping positions.
@@ -292,13 +255,8 @@ export function ModalView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={MODAL_SECTIONS.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {MODAL_SECTIONS.accessibility.label}
-        </Heading>
+      <section id={MODAL_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{MODAL_SECTIONS.accessibility.label}</Heading>
 
         <Description>
           Every modal dialog exposes standard dialog ARIA semantics, signals modal boundaries, and coordinates native keyboard navigation.
@@ -314,13 +272,8 @@ export function ModalView() {
       </section>
 
       {/* Design Tokens Section */}
-      <section
-        id={MODAL_SECTIONS.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {MODAL_SECTIONS.tokens.label}
-        </Heading>
+      <section id={MODAL_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{MODAL_SECTIONS.tokens.label}</Heading>
 
         <Description>
           Surface elevations consume surface and border tokens dynamically across light and dark themes with zero hardcoded hex codes.
@@ -336,13 +289,8 @@ export function ModalView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={MODAL_SECTIONS.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {MODAL_SECTIONS.styleReference.label}
-        </Heading>
+      <section id={MODAL_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{MODAL_SECTIONS.styleReference.label}</Heading>
 
         <Description>
           Direct trigger elements bind automatically to floating reference targets without intermediate artificial wrapper containers.

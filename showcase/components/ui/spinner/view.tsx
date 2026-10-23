@@ -62,16 +62,8 @@ export function SpinnerView() {
       </section>
 
       {/* Animations Section */}
-      <section
-        id={SPINNER_SECTIONS.animations.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SPINNER_SECTIONS.animations.icon} />
-          <Heading size="md" as="h2">
-            {SPINNER_SECTIONS.animations.label}
-          </Heading>
-        </div>
+      <section id={SPINNER_SECTIONS.animations.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SPINNER_SECTIONS.animations.label} icon={SPINNER_SECTIONS.animations.icon} />
 
         <Stage code={SPINNER_ANIMATIONS_CODE_SAMPLE}>
           <div className="flex flex-row items-center gap-12">
@@ -96,16 +88,8 @@ export function SpinnerView() {
       </section>
 
       {/* Sizes Section */}
-      <section
-        id={SPINNER_SECTIONS.sizes.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SPINNER_SECTIONS.sizes.icon} />
-          <Heading size="md" as="h2">
-            {SPINNER_SECTIONS.sizes.label}
-          </Heading>
-        </div>
+      <section id={SPINNER_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SPINNER_SECTIONS.sizes.label} icon={SPINNER_SECTIONS.sizes.icon} />
 
         <Stage code={SPINNER_SIZES_CODE_SAMPLE}>
           <div className="flex flex-row items-center gap-surface-gap">
@@ -117,16 +101,8 @@ export function SpinnerView() {
       </section>
 
       {/* Colors Section */}
-      <section
-        id={SPINNER_SECTIONS.colors.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SPINNER_SECTIONS.colors.icon} />
-          <Heading size="md" as="h2">
-            {SPINNER_SECTIONS.colors.label}
-          </Heading>
-        </div>
+      <section id={SPINNER_SECTIONS.colors.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SPINNER_SECTIONS.colors.label} icon={SPINNER_SECTIONS.colors.icon} />
 
         <Stage code={SPINNER_COLORS_CODE_SAMPLE}>
           <div className="flex flex-row items-center gap-8">
@@ -138,16 +114,8 @@ export function SpinnerView() {
       </section>
 
       {/* Embedded Section */}
-      <section
-        id={SPINNER_SECTIONS.embedded.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SPINNER_SECTIONS.embedded.icon} />
-          <Heading size="md" as="h2">
-            {SPINNER_SECTIONS.embedded.label}
-          </Heading>
-        </div>
+      <section id={SPINNER_SECTIONS.embedded.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SPINNER_SECTIONS.embedded.label} icon={SPINNER_SECTIONS.embedded.icon} />
 
         <Stage code={SPINNER_EMBEDDED_CODE_SAMPLE}>
           <div className="flex flex-col gap-surface-gap w-full max-w-sm">
@@ -163,13 +131,8 @@ export function SpinnerView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={SPINNER_SECTIONS.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SPINNER_SECTIONS.continuity.label}
-        </Heading>
+      <section id={SPINNER_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{SPINNER_SECTIONS.continuity.label}</Heading>
 
         <Description>
           Homonoid requires that loading indicators integrate seamlessly into parent components without dimensional disruption. When embedded within buttons or form controls, the spinner occupies a dedicated spatial slot to prevent layout jumps.
@@ -185,13 +148,8 @@ export function SpinnerView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={SPINNER_SECTIONS.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SPINNER_SECTIONS.accessibility.label}
-        </Heading>
+      <section id={SPINNER_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{SPINNER_SECTIONS.accessibility.label}</Heading>
 
         <Description>
           Accessibility for loading indicators ensures that asynchronous updates are never solely visual. Homonoid values inclusive design by conveying background activity reliably across all sensory modalities.
@@ -215,13 +173,8 @@ export function SpinnerView() {
       />
 
       {/* Design Tokens Section */}
-      <section
-        id={SPINNER_SECTIONS.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SPINNER_SECTIONS.tokens.label}
-        </Heading>
+      <section id={SPINNER_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{SPINNER_SECTIONS.tokens.label}</Heading>
 
         <Description>
           Spinner sizing maps directly to tokenized geometric dimensions comprising 16px for small, 24px for medium, and 32px for large scales.
@@ -237,13 +190,8 @@ export function SpinnerView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={SPINNER_SECTIONS.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SPINNER_SECTIONS.styleReference.label}
-        </Heading>
+      <section id={SPINNER_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{SPINNER_SECTIONS.styleReference.label}</Heading>
 
         <Description>
           Vector geometry is rendered using resolution independent SVG circles and paths, ensuring crisp rendering on high density displays.

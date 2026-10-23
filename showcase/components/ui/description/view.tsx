@@ -58,16 +58,8 @@ export function DescriptionView() {
       </section>
 
       {/* Variants Section */}
-      <section
-        id={DESCRIPTION_SECTIONS.variants.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={DESCRIPTION_SECTIONS.variants.icon} />
-          <Heading size="md" as="h2">
-            {DESCRIPTION_SECTIONS.variants.label}
-          </Heading>
-        </div>
+      <section id={DESCRIPTION_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={DESCRIPTION_SECTIONS.variants.label} icon={DESCRIPTION_SECTIONS.variants.icon} />
 
         <Stage code={DESCRIPTION_VARIANTS_CODE_SAMPLE}>
           <div className="flex flex-col gap-3 max-w-md">
@@ -82,16 +74,8 @@ export function DescriptionView() {
       </section>
 
       {/* Polymorphism Section */}
-      <section
-        id={DESCRIPTION_SECTIONS.polymorphism.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={DESCRIPTION_SECTIONS.polymorphism.icon} />
-          <Heading size="md" as="h2">
-            {DESCRIPTION_SECTIONS.polymorphism.label}
-          </Heading>
-        </div>
+      <section id={DESCRIPTION_SECTIONS.polymorphism.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={DESCRIPTION_SECTIONS.polymorphism.label} icon={DESCRIPTION_SECTIONS.polymorphism.icon} />
 
         <Stage code={DESCRIPTION_POLYMORPHISM_CODE_SAMPLE}>
           <div className="flex flex-col gap-3 max-w-md">
@@ -109,16 +93,8 @@ export function DescriptionView() {
       </section>
 
       {/* Context Section */}
-      <section
-        id={DESCRIPTION_SECTIONS.context.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={DESCRIPTION_SECTIONS.context.icon} />
-          <Heading size="md" as="h2">
-            {DESCRIPTION_SECTIONS.context.label}
-          </Heading>
-        </div>
+      <section id={DESCRIPTION_SECTIONS.context.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={DESCRIPTION_SECTIONS.context.label} icon={DESCRIPTION_SECTIONS.context.icon} />
 
         <Stage code={DESCRIPTION_CONTEXT_CODE_SAMPLE}>
           <Card className="flex flex-col gap-3 max-w-sm w-full">
@@ -139,13 +115,8 @@ export function DescriptionView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={DESCRIPTION_SECTIONS.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {DESCRIPTION_SECTIONS.continuity.label}
-        </Heading>
+      <section id={DESCRIPTION_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{DESCRIPTION_SECTIONS.continuity.label}</Heading>
 
         <Description>
           Descriptions maintain reading cadence and typographical balance across themes and surfaces. Letterforms and baseline geometry stay optically stable when moving between container backgrounds.
@@ -161,13 +132,8 @@ export function DescriptionView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={DESCRIPTION_SECTIONS.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {DESCRIPTION_SECTIONS.accessibility.label}
-        </Heading>
+      <section id={DESCRIPTION_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{DESCRIPTION_SECTIONS.accessibility.label}</Heading>
 
         <Description>
           Accessibility ensures supportive information reaches all people equally. Homonoid descriptions bridge visual cues with rich assistive text, reinforcing clarity across every workflow.
@@ -183,13 +149,8 @@ export function DescriptionView() {
       </section>
 
       {/* Design Tokens Section */}
-      <section
-        id={DESCRIPTION_SECTIONS.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {DESCRIPTION_SECTIONS.tokens.label}
-        </Heading>
+      <section id={DESCRIPTION_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{DESCRIPTION_SECTIONS.tokens.label}</Heading>
 
         <Description>
           Color values consume muted and foreground tokens exclusively, ensuring harmonious tonality and dynamic adaptation between light and dark themes.
@@ -205,13 +166,8 @@ export function DescriptionView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={DESCRIPTION_SECTIONS.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {DESCRIPTION_SECTIONS.styleReference.label}
-        </Heading>
+      <section id={DESCRIPTION_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{DESCRIPTION_SECTIONS.styleReference.label}</Heading>
 
         <Description>
           Accessible forms leverage descriptive text via programmatic associations such as described by attributes, ensuring assistive readers announce context accurately.

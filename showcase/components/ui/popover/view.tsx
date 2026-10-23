@@ -95,16 +95,8 @@ export function PopoverView() {
       </section>
 
       {/* Placements Section */}
-      <section
-        id={POPOVER_SECTIONS.placements.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={POPOVER_SECTIONS.placements.icon} />
-          <Heading size="md" as="h2">
-            {POPOVER_SECTIONS.placements.label}
-          </Heading>
-        </div>
+      <section id={POPOVER_SECTIONS.placements.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={POPOVER_SECTIONS.placements.label} icon={POPOVER_SECTIONS.placements.icon} />
 
         <Stage code={POPOVER_PLACEMENTS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-4 p-6">
@@ -126,16 +118,8 @@ export function PopoverView() {
       </section>
 
       {/* Variants Section */}
-      <section
-        id={POPOVER_SECTIONS.variants.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={POPOVER_SECTIONS.variants.icon} />
-          <Heading size="md" as="h2">
-            {POPOVER_SECTIONS.variants.label}
-          </Heading>
-        </div>
+      <section id={POPOVER_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={POPOVER_SECTIONS.variants.label} icon={POPOVER_SECTIONS.variants.icon} />
 
         <Stage code={POPOVER_VARIANTS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-4 p-6">
@@ -157,16 +141,8 @@ export function PopoverView() {
       </section>
 
       {/* Sizes Section */}
-      <section
-        id={POPOVER_SECTIONS.sizes.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={POPOVER_SECTIONS.sizes.icon} />
-          <Heading size="md" as="h2">
-            {POPOVER_SECTIONS.sizes.label}
-          </Heading>
-        </div>
+      <section id={POPOVER_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={POPOVER_SECTIONS.sizes.label} icon={POPOVER_SECTIONS.sizes.icon} />
 
         <Stage code={POPOVER_SIZES_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-4 p-6">
@@ -188,16 +164,8 @@ export function PopoverView() {
       </section>
 
       {/* Form Actions Section */}
-      <section
-        id={POPOVER_SECTIONS.form.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={POPOVER_SECTIONS.form.icon} />
-          <Heading size="md" as="h2">
-            {POPOVER_SECTIONS.form.label}
-          </Heading>
-        </div>
+      <section id={POPOVER_SECTIONS.form.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={POPOVER_SECTIONS.form.label} icon={POPOVER_SECTIONS.form.icon} />
 
         <Stage code={POPOVER_FORM_CODE_SAMPLE}>
           <div className="flex items-center justify-center p-6">
@@ -228,13 +196,8 @@ export function PopoverView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={POPOVER_SECTIONS.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {POPOVER_SECTIONS.continuity.label}
-        </Heading>
+      <section id={POPOVER_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{POPOVER_SECTIONS.continuity.label}</Heading>
 
         <Description>
           Floating popover dialog surfaces preserve dimensional stability and spatial continuity across enter and exit transitions without geometric jitter.
@@ -250,13 +213,8 @@ export function PopoverView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={POPOVER_SECTIONS.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {POPOVER_SECTIONS.accessibility.label}
-        </Heading>
+      <section id={POPOVER_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{POPOVER_SECTIONS.accessibility.label}</Heading>
 
         <Description>
           Floating surfaces expose semantic dialog roles, establish accessible boundary signals, and coordinate native keyboard navigation.
@@ -276,13 +234,8 @@ export function PopoverView() {
       </section>
 
       {/* Design Tokens Section */}
-      <section
-        id={POPOVER_SECTIONS.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {POPOVER_SECTIONS.tokens.label}
-        </Heading>
+      <section id={POPOVER_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{POPOVER_SECTIONS.tokens.label}</Heading>
 
         <Description>
           Surface elevations consume surface, border, and foreground tokens dynamically across light and dark modes with zero arbitrary values.
@@ -298,13 +251,8 @@ export function PopoverView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={POPOVER_SECTIONS.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {POPOVER_SECTIONS.styleReference.label}
-        </Heading>
+      <section id={POPOVER_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{POPOVER_SECTIONS.styleReference.label}</Heading>
 
         <Description>
           Direct trigger elements bind automatically to floating reference targets without intermediate artificial wrapper containers.

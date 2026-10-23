@@ -73,16 +73,8 @@ export function TooltipView() {
       </section>
 
       {/* Variants Section */}
-      <section
-        id={TOOLTIP_SECTIONS.variants.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={TOOLTIP_SECTIONS.variants.icon} />
-          <Heading size="md" as="h2">
-            {TOOLTIP_SECTIONS.variants.label}
-          </Heading>
-        </div>
+      <section id={TOOLTIP_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={TOOLTIP_SECTIONS.variants.label} icon={TOOLTIP_SECTIONS.variants.icon} />
 
         <Stage code={TOOLTIP_VARIANTS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-6 p-6">
@@ -108,16 +100,8 @@ export function TooltipView() {
       </section>
 
       {/* Placements Section */}
-      <section
-        id={TOOLTIP_SECTIONS.placements.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={TOOLTIP_SECTIONS.placements.icon} />
-          <Heading size="md" as="h2">
-            {TOOLTIP_SECTIONS.placements.label}
-          </Heading>
-        </div>
+      <section id={TOOLTIP_SECTIONS.placements.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={TOOLTIP_SECTIONS.placements.label} icon={TOOLTIP_SECTIONS.placements.icon} />
 
         <Stage code={TOOLTIP_PLACEMENTS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-6 p-6">
@@ -149,16 +133,8 @@ export function TooltipView() {
       </section>
 
       {/* Shortcuts Section */}
-      <section
-        id={TOOLTIP_SECTIONS.shortcuts.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={TOOLTIP_SECTIONS.shortcuts.icon} />
-          <Heading size="md" as="h2">
-            {TOOLTIP_SECTIONS.shortcuts.label}
-          </Heading>
-        </div>
+      <section id={TOOLTIP_SECTIONS.shortcuts.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={TOOLTIP_SECTIONS.shortcuts.label} icon={TOOLTIP_SECTIONS.shortcuts.icon} />
 
         <Stage code={TOOLTIP_SHORTCUTS_CODE_SAMPLE}>
           <div className="flex items-center justify-center p-6">
@@ -178,13 +154,8 @@ export function TooltipView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={TOOLTIP_SECTIONS.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {TOOLTIP_SECTIONS.continuity.label}
-        </Heading>
+      <section id={TOOLTIP_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{TOOLTIP_SECTIONS.continuity.label}</Heading>
 
         <Description>
           State transitions preserve spatial stability and component identity without abrupt dimensional jumps or visual flashes.
@@ -200,13 +171,8 @@ export function TooltipView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={TOOLTIP_SECTIONS.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {TOOLTIP_SECTIONS.accessibility.label}
-        </Heading>
+      <section id={TOOLTIP_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{TOOLTIP_SECTIONS.accessibility.label}</Heading>
 
         <Description>
           Accessibility guarantees assistive technology compatibility across keyboard and screen reader workflows.
@@ -222,13 +188,8 @@ export function TooltipView() {
       </section>
 
       {/* Design Tokens Section */}
-      <section
-        id={TOOLTIP_SECTIONS.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {TOOLTIP_SECTIONS.tokens.label}
-        </Heading>
+      <section id={TOOLTIP_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{TOOLTIP_SECTIONS.tokens.label}</Heading>
 
         <Description>
           Surface colors consume foreground, surface, and primary tokens dynamically across light and dark modes.
@@ -244,13 +205,8 @@ export function TooltipView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={TOOLTIP_SECTIONS.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {TOOLTIP_SECTIONS.styleReference.label}
-        </Heading>
+      <section id={TOOLTIP_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{TOOLTIP_SECTIONS.styleReference.label}</Heading>
 
         <Description>
           Tooltips support both concise prop based composition and flexible compound structures for custom content requirements.

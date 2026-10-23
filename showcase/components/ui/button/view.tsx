@@ -73,10 +73,7 @@ export function ButtonView() {
 
       {/* Variants Section */}
       <section id={sections.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={sections.variants.icon} />
-          <Heading size="md" as="h2">{sections.variants.label}</Heading>
-        </div>
+        <Frame text={sections.variants.label} icon={sections.variants.icon} />
 
         {/* Variants Stage */}
         <Stage code={BUTTON_VARIANTS_CODE_SAMPLE}>
@@ -102,10 +99,7 @@ export function ButtonView() {
 
       {/* Sizes Section */}
       <section id={sections.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={sections.sizes.icon} />
-          <Heading size="md" as="h2">{sections.sizes.label}</Heading>
-        </div>
+        <Frame text={sections.sizes.label} icon={sections.sizes.icon} />
 
         {/* Sizes Stage */}
         <Stage code={BUTTON_SIZES_CODE_SAMPLE}>
@@ -125,10 +119,7 @@ export function ButtonView() {
 
       {/* Outlined Section */}
       <section id={sections.outlined.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={sections.outlined.icon} />
-          <Heading size="md" as="h2">{sections.outlined.label}</Heading>
-        </div>
+        <Frame text={sections.outlined.label} icon={sections.outlined.icon} />
 
         {/* Outlined Stage */}
         <Stage code={BUTTON_OUTLINED_CODE_SAMPLE}>
@@ -140,10 +131,7 @@ export function ButtonView() {
 
       {/* With Icon Section */}
       <section id={sections.withIcon.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={sections.withIcon.icon} />
-          <Heading size="md" as="h2">{sections.withIcon.label}</Heading>
-        </div>
+        <Frame text={sections.withIcon.label} icon={sections.withIcon.icon} />
 
         {/* With Icon Stage */}
         <Stage code={BUTTON_WITH_ICON_CODE_SAMPLE}>
@@ -158,10 +146,7 @@ export function ButtonView() {
 
       {/* Icon Only Section */}
       <section id={sections.iconOnly.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={sections.iconOnly.icon} />
-          <Heading size="md" as="h2">{sections.iconOnly.label}</Heading>
-        </div>
+        <Frame text={sections.iconOnly.label} icon={sections.iconOnly.icon} />
 
         {/* Icon Only Stage */}
         <Stage code={BUTTON_ICON_ONLY_CODE_SAMPLE}>
@@ -177,10 +162,7 @@ export function ButtonView() {
 
       {/* Loading Section */}
       <section id={sections.loading.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={sections.loading.icon} />
-          <Heading size="md" as="h2">{sections.loading.label}</Heading>
-        </div>
+        <Frame text={sections.loading.label} icon={sections.loading.icon} />
 
         {/* Loading Stage */}
         <Stage code={BUTTON_LOADING_CODE_SAMPLE} onReset={() => setIsLoading(false)}>
@@ -196,10 +178,7 @@ export function ButtonView() {
 
       {/* Disabled Section */}
       <section id={sections.disabled.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={sections.disabled.icon} />
-          <Label size="lg" as="h2">{sections.disabled.label}</Label>
-        </div>
+        <Frame text={sections.disabled.label} icon={sections.disabled.icon} />
 
         {/* Disabled Stage */}
         <Stage code={BUTTON_DISABLED_CODE_SAMPLE}>
@@ -219,10 +198,7 @@ export function ButtonView() {
 
       {/* Full Width Section */}
       <section id={sections.fullWidth.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={sections.fullWidth.icon} />
-          <Label size="lg" as="h2">{sections.fullWidth.label}</Label>
-        </div>
+        <Frame text={sections.fullWidth.label} icon={sections.fullWidth.icon} />
 
         {/* Full Width Stage */}
         <Stage code={BUTTON_FULL_WIDTH_CODE_SAMPLE}>
@@ -233,10 +209,7 @@ export function ButtonView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={sections.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
+      <section id={sections.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
         <Heading size="md" as="h2">{sections.continuity.label}</Heading>
 
         <Description>
@@ -253,10 +226,7 @@ export function ButtonView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={sections.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
+      <section id={sections.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
         <Heading size="md" as="h2">{sections.accessibility.label}</Heading>
 
         <Description>
@@ -281,10 +251,7 @@ export function ButtonView() {
       />
 
       {/* Design Tokens Section */}
-      <section
-        id={sections.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
+      <section id={sections.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
         <Heading size="md" as="h2">{sections.tokens.label}</Heading>
 
         <Description>
@@ -301,10 +268,7 @@ export function ButtonView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={sections.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
+      <section id={sections.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
         <Heading size="md" as="h2">{sections.styleReference.label}</Heading>
 
         <Description>

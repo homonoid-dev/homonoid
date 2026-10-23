@@ -151,16 +151,8 @@ export function SelectView() {
       </section>
 
       {/* Variants Section */}
-      <section
-        id={SELECT_SECTIONS.variants.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SELECT_SECTIONS.variants.icon} />
-          <Heading size="md" as="h2">
-            {SELECT_SECTIONS.variants.label}
-          </Heading>
-        </div>
+      <section id={SELECT_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SELECT_SECTIONS.variants.label} icon={SELECT_SECTIONS.variants.icon} />
 
         <Stage code={SELECT_VARIANTS_CODE_SAMPLE}>
           <div className="flex flex-col gap-4 w-full max-w-xs">
@@ -185,16 +177,8 @@ export function SelectView() {
       </section>
 
       {/* Sizes Section */}
-      <section
-        id={SELECT_SECTIONS.sizes.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SELECT_SECTIONS.sizes.icon} />
-          <Heading size="md" as="h2">
-            {SELECT_SECTIONS.sizes.label}
-          </Heading>
-        </div>
+      <section id={SELECT_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SELECT_SECTIONS.sizes.label} icon={SELECT_SECTIONS.sizes.icon} />
 
         <Stage code={SELECT_SIZES_CODE_SAMPLE}>
           <div className="flex flex-col gap-4 w-full max-w-xs">
@@ -219,16 +203,8 @@ export function SelectView() {
       </section>
 
       {/* Accessories Section */}
-      <section
-        id={SELECT_SECTIONS.accessories.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SELECT_SECTIONS.accessories.icon} />
-          <Heading size="md" as="h2">
-            {SELECT_SECTIONS.accessories.label}
-          </Heading>
-        </div>
+      <section id={SELECT_SECTIONS.accessories.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SELECT_SECTIONS.accessories.label} icon={SELECT_SECTIONS.accessories.icon} />
 
         <Stage code={SELECT_ACCESSORIES_CODE_SAMPLE}>
           <div className="w-full max-w-sm">
@@ -259,16 +235,8 @@ export function SelectView() {
       </section>
 
       {/* Groups Section */}
-      <section
-        id={SELECT_SECTIONS.groups.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SELECT_SECTIONS.groups.icon} />
-          <Heading size="md" as="h2">
-            {SELECT_SECTIONS.groups.label}
-          </Heading>
-        </div>
+      <section id={SELECT_SECTIONS.groups.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SELECT_SECTIONS.groups.label} icon={SELECT_SECTIONS.groups.icon} />
 
         <Stage code={SELECT_GROUPS_CODE_SAMPLE}>
           <div className="w-full max-w-sm">
@@ -298,16 +266,8 @@ export function SelectView() {
       </section>
 
       {/* Disabled Section */}
-      <section
-        id={SELECT_SECTIONS.disabled.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SELECT_SECTIONS.disabled.icon} />
-          <Heading size="md" as="h2">
-            {SELECT_SECTIONS.disabled.label}
-          </Heading>
-        </div>
+      <section id={SELECT_SECTIONS.disabled.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SELECT_SECTIONS.disabled.label} icon={SELECT_SECTIONS.disabled.icon} />
 
         <Stage code={SELECT_DISABLED_CODE_SAMPLE}>
           <div className="flex flex-col gap-6 w-full max-w-sm">
@@ -352,13 +312,8 @@ export function SelectView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={SELECT_SECTIONS.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SELECT_SECTIONS.continuity.label}
-        </Heading>
+      <section id={SELECT_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{SELECT_SECTIONS.continuity.label}</Heading>
 
         <Description>
           Select controls preserve absolute geometric stability across closed and open states. The trigger maintains steady horizontal boundaries without width collapse or layout reflows when opening the floating surface.
@@ -374,13 +329,8 @@ export function SelectView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={SELECT_SECTIONS.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SELECT_SECTIONS.accessibility.label}
-        </Heading>
+      <section id={SELECT_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{SELECT_SECTIONS.accessibility.label}</Heading>
 
         <Description>
           Select adheres to the W3C WAI ARIA Combobox pattern. The trigger exposes combobox semantics while communicating expanded state and active control connections through aria expanded and aria controls.
@@ -396,13 +346,8 @@ export function SelectView() {
       </section>
 
       {/* Design Tokens Section */}
-      <section
-        id={SELECT_SECTIONS.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SELECT_SECTIONS.tokens.label}
-        </Heading>
+      <section id={SELECT_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{SELECT_SECTIONS.tokens.label}</Heading>
 
         <Description>
           Trigger heights and internal padding values align precisely with the Homonoid spatial control scale across small, medium, and large density configurations.
@@ -418,13 +363,8 @@ export function SelectView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={SELECT_SECTIONS.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SELECT_SECTIONS.styleReference.label}
-        </Heading>
+      <section id={SELECT_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{SELECT_SECTIONS.styleReference.label}</Heading>
 
         <Description>
           Select supports both declarative compound subcomponents and concise shorthand configurations using the options property.
