@@ -5,24 +5,17 @@ import {
   type KeyboardEvent,
 } from "react";
 import { Input } from "../input/Input";
+import { Kbd } from "../kbd/Kbd";
 import { cn } from "../../utils/cn";
-import { cond } from "../../utils/condition";
+import { cond, when } from "../../utils/condition";
 import type { SearchbarProps, SearchbarRadius } from "./types";
 
-const radiusClasses: Record<SearchbarRadius, string> = {
+const radiuses: Record<SearchbarRadius, string> = {
   none: "rounded-none",
   sm: "rounded-sm",
   md: "rounded-md",
   lg: "rounded-lg",
   full: "rounded-full",
-};
-
-const shortcutRadiusClasses: Record<SearchbarRadius, string> = {
-  none: "rounded-none",
-  sm: "rounded-sm",
-  md: "rounded-md",
-  lg: "rounded-lg",
-  full: "rounded-full px-2",
 };
 
 export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
@@ -49,28 +42,6 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
       }
     };
 
-    const shortcutRadiusClass = radius
-      ? shortcutRadiusClasses[radius]
-      : cond(size === "lg", "rounded-md", "rounded-sm");
-
-    const trailingContent = trailing ?? (
-      shortcut ? (
-        <kbd
-          className={cn(
-            "inline-flex items-center justify-center font-mono font-medium text-muted bg-surface border border-border select-none pointer-events-none",
-            cond(
-              size === "sm",
-              "text-[10px] px-1 min-w-4",
-              cond(size === "lg", "text-xs px-1.5 min-w-5", "text-xs px-1.5 min-w-4.5")
-            ),
-            shortcutRadiusClass
-          )}
-        >
-          {shortcut}
-        </kbd>
-      ) : undefined
-    );
-
     return (
       <Input
         ref={ref}
@@ -80,10 +51,19 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
         size={size}
         variant={variant}
         leading={leading}
-        trailing={trailingContent}
+        trailing={cond(
+          trailing,
+          trailing,
+          when(
+            shortcut,
+            <Kbd size={size} radius={radius} className="pointer-events-none">
+              {shortcut}
+            </Kbd>
+          )
+        )}
         onKeyDown={handleKeyDown}
         className={cn(
-          radius && radiusClasses[radius],
+          radius && radiuses[radius],
           className
         )}
         {...props}
