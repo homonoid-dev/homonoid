@@ -1,13 +1,17 @@
-import type { ReactNode, Ref } from "react";
-import type { InputProps } from "../input/types";
-import { Radius, Size, Variant } from "../../types";
+import type { Ref } from "react";
+import type {
+  InputProps,
+  InputRadius,
+  InputSize,
+  InputVariant,
+} from "../input/types";
 
-export type SearchbarSize = Size;
-export type SearchbarVariant = Variant;
-export type SearchbarRadius = Radius;
+export type SearchbarSize = InputSize;
+export type SearchbarVariant = InputVariant;
+export type SearchbarRadius = InputRadius;
 
 export interface SearchbarProps
-  extends Omit<InputProps, "size" | "variant"> {
+  extends Omit<InputProps, "size" | "variant" | "radius"> {
   /**
    * Ref forwarded to the underlying native input element.
    */

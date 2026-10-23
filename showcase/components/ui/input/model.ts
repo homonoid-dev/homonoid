@@ -121,7 +121,7 @@ export function Example() {
   return (
     <div className="flex flex-col gap-surface-gap w-full max-w-sm">
       <Input variant="outlined" placeholder="Outlined input" />
-      <Input variant="filled" placeholder="Filled input" />
+      <Input variant="contained" placeholder="Contained input" />
       <Input variant="plain" placeholder="Plain input" />
     </div>
   );

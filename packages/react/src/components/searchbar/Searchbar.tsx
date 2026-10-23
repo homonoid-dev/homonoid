@@ -5,17 +5,8 @@ import {
   type KeyboardEvent,
 } from "react";
 import { Input } from "../input/Input";
-import { cn } from "../../utils/cn";
 import { cond } from "../../utils/condition";
-import type { SearchbarProps, SearchbarRadius } from "./types";
-
-const radiuses: Record<SearchbarRadius, string> = {
-  none: "rounded-none",
-  sm: "rounded-sm",
-  md: "rounded-md",
-  lg: "rounded-lg",
-  full: "rounded-full",
-};
+import type { SearchbarProps } from "./types";
 
 export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
   function Searchbar(
@@ -48,13 +39,11 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
         aria-busy={cond(loading, true, undefined)}
         size={size}
         variant={variant}
+        radius={radius}
         leading={leading}
         trailing={trailing}
         onKeyDown={handleKeyDown}
-        className={cn(
-          radius && radiuses[radius],
-          className
-        )}
+        className={className}
         {...props}
       />
     );

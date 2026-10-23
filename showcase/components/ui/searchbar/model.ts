@@ -97,7 +97,7 @@ import { Search } from "lucide-react";
 export function Example() {
   const variants = [
     { variant: "outlined", placeholder: "Outlined searchbar..." },
-    { variant: "filled", placeholder: "Filled searchbar..." },
+    { variant: "contained", placeholder: "Contained searchbar..." },
     { variant: "plain", placeholder: "Plain searchbar..." },
   ] as const;
 
