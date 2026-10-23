@@ -36,12 +36,14 @@ export function ModalView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Modal</Heading>
-        <Description size="md">
-          A modal displays an elevated dialog surface over the application canvas to focus user attention on a discrete task, critical confirmation, or rich sub flow.
-        </Description>
-        <Description size="md">
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Modal</Heading>
+          <Description>
+            A modal displays an elevated dialog surface over the application canvas to focus user attention on a discrete task, critical confirmation, or rich sub flow.
+          </Description>
+        </div>
+        <Description>
           Modals interrupt standard workflow by rendering a dimmed backdrop overlay and trapping keyboard focus, requiring explicit dismissal or completion before users return to the primary interface.
         </Description>
       </div>
@@ -57,7 +59,7 @@ export function ModalView() {
         <Card
           color="subtle"
           variant="filled"
-          className="flex items-center justify-between font-mono text-xs select-text"
+          className="font-mono text-xs"
         >
           <code>{highlighter('import { Modal } from "@homonoid/react";')}</code>
         </Card>

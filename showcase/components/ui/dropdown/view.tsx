@@ -1,6 +1,6 @@
 "use client";
 
-import { Dropdown, Button, Card, Description, Heading } from "@homonoid/react";
+import { Dropdown, Button, Card, Description, Heading, Separator } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -59,12 +59,14 @@ export function DropdownView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Dropdown</Heading>
-        <Description size="md">
-          A dropdown displays a floating menu of actionable items, contextual operations, and commands anchored to an interactive trigger.
-        </Description>
-        <Description size="md">
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Dropdown</Heading>
+          <Description>
+            A dropdown displays a floating menu of actionable items, contextual operations, and commands anchored to an interactive trigger.
+          </Description>
+        </div>
+        <Description>
           Homonoid dropdown menus combine resilient anchored positioning with the tactile Tile primitive, delivering fluid entrance transitions, full keyboard navigation, and total visual continuity.
         </Description>
       </div>
@@ -80,7 +82,7 @@ export function DropdownView() {
         <Card
           color="subtle"
           variant="filled"
-          className="flex items-center justify-between font-mono text-xs select-text"
+          className="font-mono text-xs"
         >
           <code>{highlighter('import { Dropdown } from "@homonoid/react";')}</code>
         </Card>
@@ -105,7 +107,7 @@ export function DropdownView() {
                 <Dropdown.Item leading={<Share2 className="size-4" />}>
                   Share
                 </Dropdown.Item>
-                <Dropdown.Separator />
+                <Separator />
                 <Dropdown.Item
                   color="destructive"
                   leading={<Trash2 className="size-4" />}
@@ -242,7 +244,7 @@ export function DropdownView() {
                     Preferences
                   </Dropdown.Item>
                 </Dropdown.Group>
-                <Dropdown.Separator />
+                <Separator />
                 <Dropdown.Group>
                   <Dropdown.Label className="px-3 py-1.5 text-xs text-muted font-medium">
                     Billing
@@ -251,7 +253,7 @@ export function DropdownView() {
                     Subscriptions
                   </Dropdown.Item>
                 </Dropdown.Group>
-                <Dropdown.Separator />
+                <Separator />
                 <Dropdown.Item color="destructive" leading={<LogOut className="size-4" />}>
                   Sign Out
                 </Dropdown.Item>

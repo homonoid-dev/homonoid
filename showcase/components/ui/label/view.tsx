@@ -22,12 +22,14 @@ export function LabelView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Label</Heading>
-        <Description size="md">
-          A label establishes clear typographic hierarchy and semantic prominence for sections, views, and data landmarks.
-        </Description>
-        <Description size="md">
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Label</Heading>
+          <Description>
+            A label establishes clear typographic hierarchy and semantic prominence for sections, views, and data landmarks.
+          </Description>
+        </div>
+        <Description>
           Labels anchor layout surfaces, providing immediate legibility and visual weight while preserving continuum across responsive viewports.
         </Description>
       </div>
@@ -43,13 +45,13 @@ export function LabelView() {
         <Card
           color="subtle"
           variant="filled"
-          className="flex items-center justify-between font-mono text-xs select-text"
+          className="font-mono text-xs"
         >
           <code>{highlighter('import { Label } from "@homonoid/react";')}</code>
         </Card>
 
         <Stage code={LABEL_DEFAULT_CODE_SAMPLE}>
-          <Label size="lg" as="h1">
+          <Label>
             Account Settings
           </Label>
         </Stage>
@@ -117,7 +119,7 @@ export function LabelView() {
 
         <Stage code={LABEL_FORMS_CODE_SAMPLE}>
           <div className="flex flex-col gap-2 max-w-sm w-full">
-            <Label as="label" htmlFor="workspace-input" size="sm">
+            <Label as="label" htmlFor="workspace-input">
               Workspace Name
             </Label>
             <Input id="workspace-input" placeholder="e.g. Studio" />

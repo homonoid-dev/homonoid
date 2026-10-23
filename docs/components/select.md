@@ -44,7 +44,6 @@ A select component follows a compound component architecture exposing dedicated 
 - `Select.Item`: Selectable choice row built directly upon the Tile component, inheriting standardized leading, label, description, and trailing check accessories with zero code duplication.
 - `Select.Group`: Logical grouping wrapper categorizing related options into labeled clusters.
 - `Select.Label`: Group heading caption powered by the Homonoid Label component.
-- `Select.Separator`: Hairline divider stroke separating option groups or auxiliary commands powered by the Homonoid Separator component.
 - `Select.Description`: Supporting caption beneath the trigger powered by the Homonoid Description component.
 
 ```tsx

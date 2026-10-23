@@ -25,11 +25,13 @@ export function SpinnerView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Spinner</Heading>
-        <Description>
-          A spinner provides non blocking indeterminate progress feedback, communicating that a background process is active while preserving spatial and visual continuity.
-        </Description>
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Spinner</Heading>
+          <Description>
+            A spinner provides non blocking indeterminate progress feedback, communicating that a background process is active while preserving spatial and visual continuity.
+          </Description>
+        </div>
 
         <Description>
           Spinners indicate that an operation is underway without requiring precise completion time estimations, integrating seamlessly into buttons, inputs, and modal containers.
@@ -48,14 +50,14 @@ export function SpinnerView() {
         <Card
           color="subtle"
           variant="filled"
-          className="flex items-center justify-between font-mono text-xs select-text"
+          className="font-mono text-xs"
         >
           <code>{highlighter('import { Spinner } from "@homonoid/react";')}</code>
         </Card>
 
         {/* Default Stage */}
         <Stage code={SPINNER_DEFAULT_CODE_SAMPLE}>
-          <Spinner size="md" />
+          <Spinner />
         </Stage>
       </section>
 
@@ -74,19 +76,19 @@ export function SpinnerView() {
         <Stage code={SPINNER_ANIMATIONS_CODE_SAMPLE}>
           <div className="flex flex-row items-center gap-12">
             <div className="flex flex-col items-center gap-2">
-              <Spinner animation="border" size="md" />
+              <Spinner animation="border" />
               <span className="text-xs text-muted">Border</span>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <Spinner animation="grow" size="md" />
+              <Spinner animation="grow" />
               <span className="text-xs text-muted">Grow</span>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <Spinner animation="orbit" size="md" />
+              <Spinner animation="orbit" />
               <span className="text-xs text-muted">Orbit</span>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <Spinner animation="dash" size="md" />
+              <Spinner animation="dash" />
               <span className="text-xs text-muted">Dash</span>
             </div>
           </div>
@@ -128,10 +130,9 @@ export function SpinnerView() {
 
         <Stage code={SPINNER_COLORS_CODE_SAMPLE}>
           <div className="flex flex-row items-center gap-8">
-            <Spinner color="primary" size="md" />
-            <Spinner color="subtle" size="md" />
-            <Spinner color="foreground" size="md" />
-            <Spinner color="destructive" size="md" />
+            <Spinner color="subtle" />
+            <Spinner color="foreground" />
+            <Spinner color="destructive" />
           </div>
         </Stage>
       </section>

@@ -1,3 +1,23 @@
+
+/**
+ * Base variant scale.
+ * Aligns directly with `@homonoid/tokens` variant scale:
+ * - `contained`: Solid background fill.
+ * - `outlined`: Transparent background with border outline.
+ * - `plain`: Flat plain text/icon button (no background, no border).
+ */
+export type Variant = "contained" | "outlined" | "plain";
+
+/**
+ * Base color scale.
+ * Aligns directly with `@homonoid/tokens` color scale:
+ * - `primary`: Chroma brand primary.
+ * - `subtle`: Chroma subtle.
+ * - `surface`: Chroma surface.
+ * - `destructive`: Chroma destructive.
+ */
+export type Color = "primary" | "subtle" | "surface" | "destructive";
+
 /**
  * Standard Homonoid spatial control scale.
  * Aligns directly with `@homonoid/tokens` control scale:

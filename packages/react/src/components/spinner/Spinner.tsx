@@ -15,7 +15,6 @@ export const variants = cva(
       },
       color: {
         current: "text-current",
-        primary: "text-primary",
         subtle: "text-subtle-foreground",
         foreground: "text-foreground",
         destructive: "text-destructive"

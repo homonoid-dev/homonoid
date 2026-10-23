@@ -62,7 +62,7 @@ export const LABEL_DEFAULT_CODE_SAMPLE = `import { Label } from "@homonoid/react
 
 export function Example() {
   return (
-    <Label size="lg" as="h1">
+    <Label>
       Account Settings
     </Label>
   );
@@ -103,7 +103,7 @@ export const LABEL_FORMS_CODE_SAMPLE = `import { Label, Input, Description } fro
 export function Example() {
   return (
     <div className="flex flex-col gap-2 max-w-sm w-full">
-      <Label as="label" htmlFor="workspace-name" size="sm">
+      <Label as="label" htmlFor="workspace-name">
         Workspace Name
       </Label>
       <Input

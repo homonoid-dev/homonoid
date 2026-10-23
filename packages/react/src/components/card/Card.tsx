@@ -12,10 +12,10 @@ export const variants = cva(
         filled: "",
       },
       color: {
-        primary: "text-primary",
+        primary: "text-primary-foreground",
         subtle: "text-subtle-foreground",
         surface: "text-foreground",
-        destructive: "text-destructive",
+        destructive: "text-destructive-foreground",
       },
       border: {
         true: "border-[0.5px]",
@@ -37,10 +37,10 @@ export const variants = cva(
       { border: true, color: "destructive", className: "border-destructive-border" },
 
       // Fills when variant is filled
-      { variant: "filled", color: "primary", className: "bg-primary/25" },
-      { variant: "filled", color: "subtle", className: "bg-primary/10" },
+      { variant: "filled", color: "primary", className: "bg-primary" },
+      { variant: "filled", color: "subtle", className: "bg-subtle" },
       { variant: "filled", color: "surface", className: "bg-surface" },
-      { variant: "filled", color: "destructive", className: "bg-destructive/15" },
+      { variant: "filled", color: "destructive", className: "bg-destructive" },
     ],
     defaultVariants: {
       variant: "outlined",

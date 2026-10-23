@@ -91,7 +91,7 @@ export const SPINNER_INTERACTIVE_STATES: InteractiveStateItem[] = [
 export const SPINNER_DEFAULT_CODE_SAMPLE = `import { Spinner } from "@homonoid/react";
 
 export function Example() {
-  return <Spinner size="md" />;
+  return <Spinner />;
 }`;
 
 export const SPINNER_ANIMATIONS_CODE_SAMPLE = `import { Spinner } from "@homonoid/react";
@@ -100,19 +100,19 @@ export function Example() {
   return (
     <div className="flex flex-row items-center gap-surface-gap">
       <div className="flex flex-col items-center gap-2">
-        <Spinner animation="border" size="md" />
+        <Spinner animation="border" />
         <span className="text-xs text-muted">Border</span>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <Spinner animation="grow" size="md" />
+        <Spinner animation="grow" />
         <span className="text-xs text-muted">Grow</span>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <Spinner animation="orbit" size="md" />
+        <Spinner animation="orbit" />
         <span className="text-xs text-muted">Orbit</span>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <Spinner animation="dash" size="md" />
+        <Spinner animation="dash" />
         <span className="text-xs text-muted">Dash</span>
       </div>
     </div>
@@ -136,10 +136,9 @@ export const SPINNER_COLORS_CODE_SAMPLE = `import { Spinner } from "@homonoid/re
 export function ColorsExample() {
   return (
     <div className="flex flex-row items-center gap-surface-gap">
-      <Spinner color="primary" size="md" />
-      <Spinner color="subtle" size="md" />
-      <Spinner color="foreground" size="md" />
-      <Spinner color="destructive" size="md" />
+      <Spinner color="subtle" />
+      <Spinner color="foreground" />
+      <Spinner color="destructive" />
     </div>
   );
 }`;

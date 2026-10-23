@@ -99,11 +99,13 @@ export function SelectView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Select</Heading>
-        <Description>
-          A select displays a collapsible list of mutually exclusive options in a floating surface anchored to an interactive trigger control.
-        </Description>
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap" >
+          <Heading size="lg">Select</Heading>
+          <Description>
+            A select displays a collapsible list of mutually exclusive options in a floating surface anchored to an interactive trigger control.
+          </Description>
+        </div>
         <Description>
           Homonoid select controls pair resilient floating positioning with the tactile Tile primitive, delivering fluid opening transitions, full typeahead navigation, and zero layout shift.
         </Description>
@@ -120,7 +122,7 @@ export function SelectView() {
         <Card
           color="subtle"
           variant="filled"
-          className="flex items-center justify-between font-mono text-xs select-text"
+          className="font-mono text-xs"
         >
           <code>{highlighter('import { Select } from "@homonoid/react";')}</code>
         </Card>
@@ -276,9 +278,8 @@ export function SelectView() {
               </Select.Trigger>
               <Select.Content>
                 <Select.List>
-                  {groups.map((group, index) => (
+                  {groups.map((group) => (
                     <Select.Group key={group.name}>
-                      {index > 0 && <Select.Separator />}
                       <Select.Label className="px-3 py-1.5 text-xs text-subtle-foreground font-medium">
                         {group.name}
                       </Select.Label>

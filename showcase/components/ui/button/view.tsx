@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Button, Label, Heading, Description, Card } from "@homonoid/react";
 import { highlighter } from "@/components/ui/code";
 import { Stage } from "@/components/ui/stage";
@@ -8,43 +9,42 @@ import { Frame } from "@/components/ui/frame";
 import { useToc } from "@/components/ui/toc";
 import { Pagination } from "@/components/ui/pagination";
 import { InteractiveStates } from "@/components/ui/interactive-states";
-import { ButtonProvider } from "./provider";
-import { useButton } from "./use-button";
+import {
+  BUTTON_SECTIONS,
+  BUTTON_SECTIONS_LIST,
+  BUTTON_INTERACTIVE_STATES,
+  BUTTON_CONTAINED_CODE_SAMPLE,
+  BUTTON_VARIANTS_CODE_SAMPLE,
+  BUTTON_SIZES_CODE_SAMPLE,
+  BUTTON_OUTLINED_CODE_SAMPLE,
+  BUTTON_WITH_ICON_CODE_SAMPLE,
+  BUTTON_ICON_ONLY_CODE_SAMPLE,
+  BUTTON_LOADING_CODE_SAMPLE,
+  BUTTON_DISABLED_CODE_SAMPLE,
+  BUTTON_FULL_WIDTH_CODE_SAMPLE,
+} from "./model";
 
-export function ButtonViewContent() {
-  const {
-    containedCodeSample,
-    variantsCodeSample,
-    sizesCodeSample,
-    outlinedCodeSample,
-    withIconCodeSample,
-    iconOnlyCodeSample,
-    loadingCodeSample,
-    disabledCodeSample,
-    fullWidthCodeSample,
-    sections,
-    sectionsList,
-    interactiveStates,
-    isLoading,
-    triggerLoading,
-    resetLoading,
-  } = useButton();
+export function ButtonView() {
+  const [isLoading, setIsLoading] = useState(false);
 
-  useToc(sectionsList);
+  useToc(BUTTON_SECTIONS_LIST);
+
+  const sections = BUTTON_SECTIONS;
 
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Button</Heading>
-        <Description>
-          A button communicates an action and allows users to trigger that action with a single interaction.
-        </Description>
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Button</Heading>
+          <Description>
+            A button communicates an action and allows users to trigger that action with a single interaction.
+          </Description>
+        </div>
 
         <Description>
           Homonoid structures button hierarchy through three deliberate tiers contained for primary focus, outlined for secondary choices, and plain for utilities while maintaining strict object continuity by preserving fixed dimensions and fluid micro transitions across hover, press, and loading states.
         </Description>
-
       </div>
 
       <div className="flex items-center gap-surface-gap">
@@ -58,13 +58,13 @@ export function ButtonViewContent() {
         <Card
           color="subtle"
           variant="filled"
-          className="flex items-center justify-between font-mono text-xs select-text"
+          className="font-mono text-xs"
         >
           <code>{highlighter('import { Button } from "@homonoid/react";')}</code>
         </Card>
 
         {/* Contained Stage */}
-        <Stage code={containedCodeSample}>
+        <Stage code={BUTTON_CONTAINED_CODE_SAMPLE}>
           <Button variant="contained">
             Click me
           </Button>
@@ -79,7 +79,7 @@ export function ButtonViewContent() {
         </div>
 
         {/* Variants Stage */}
-        <Stage code={variantsCodeSample}>
+        <Stage code={BUTTON_VARIANTS_CODE_SAMPLE}>
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
             <Button variant="contained" color="primary">
               Primary
@@ -108,7 +108,7 @@ export function ButtonViewContent() {
         </div>
 
         {/* Sizes Stage */}
-        <Stage code={sizesCodeSample}>
+        <Stage code={BUTTON_SIZES_CODE_SAMPLE}>
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
             <Button variant="contained" size="sm">
               Small
@@ -131,7 +131,7 @@ export function ButtonViewContent() {
         </div>
 
         {/* Outlined Stage */}
-        <Stage code={outlinedCodeSample}>
+        <Stage code={BUTTON_OUTLINED_CODE_SAMPLE}>
           <Button variant="outlined">
             Click me
           </Button>
@@ -146,7 +146,7 @@ export function ButtonViewContent() {
         </div>
 
         {/* With Icon Stage */}
-        <Stage code={withIconCodeSample}>
+        <Stage code={BUTTON_WITH_ICON_CODE_SAMPLE}>
           <Button
             variant="contained"
             leading={<sections.withIcon.icon className="size-4" />}
@@ -164,7 +164,7 @@ export function ButtonViewContent() {
         </div>
 
         {/* Icon Only Stage */}
-        <Stage code={iconOnlyCodeSample}>
+        <Stage code={BUTTON_ICON_ONLY_CODE_SAMPLE}>
           <Button
             layout="icon"
             variant="contained"
@@ -183,11 +183,11 @@ export function ButtonViewContent() {
         </div>
 
         {/* Loading Stage */}
-        <Stage code={loadingCodeSample} onReset={resetLoading}>
+        <Stage code={BUTTON_LOADING_CODE_SAMPLE} onReset={() => setIsLoading(false)}>
           <Button
             variant="contained"
             loading={isLoading}
-            onClick={triggerLoading}
+            onClick={() => setIsLoading(true)}
           >
             Click me
           </Button>
@@ -202,7 +202,7 @@ export function ButtonViewContent() {
         </div>
 
         {/* Disabled Stage */}
-        <Stage code={disabledCodeSample}>
+        <Stage code={BUTTON_DISABLED_CODE_SAMPLE}>
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
             <Button variant="contained" disabled>
               Contained
@@ -225,7 +225,7 @@ export function ButtonViewContent() {
         </div>
 
         {/* Full Width Stage */}
-        <Stage code={fullWidthCodeSample}>
+        <Stage code={BUTTON_FULL_WIDTH_CODE_SAMPLE}>
           <Button variant="contained" layout="full">
             Full Width
           </Button>
@@ -277,7 +277,7 @@ export function ButtonViewContent() {
         id={sections.interactiveStates.id}
         title={sections.interactiveStates.label}
         description="The button supports both CSS pseudo classes and data attributes for flexibility:"
-        items={interactiveStates}
+        items={BUTTON_INTERACTIVE_STATES}
       />
 
       {/* Design Tokens Section */}
@@ -323,13 +323,5 @@ export function ButtonViewContent() {
       {/* Component Pagination Navigation */}
       <Pagination />
     </div>
-  );
-}
-
-export function ButtonView() {
-  return (
-    <ButtonProvider>
-      <ButtonViewContent />
-    </ButtonProvider>
   );
 }

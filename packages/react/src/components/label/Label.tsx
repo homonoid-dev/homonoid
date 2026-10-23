@@ -3,11 +3,11 @@ import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import type { LabelProps } from "./types";
 
-export const variants = cva("font-medium select-none", {
+export const variants = cva("font-medium", {
   variants: {
     size: {
       sm: "text-sm leading-4",
-      md: "text-base leading-5",
+      md: "text-md leading-5",
       lg: "text-lg leading-6 font-semibold",
     },
     disabled: {

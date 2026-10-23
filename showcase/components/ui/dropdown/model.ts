@@ -69,7 +69,7 @@ export const DROPDOWN_SECTIONS: Record<string, DropdownSectionItem> = {
 export const DROPDOWN_SECTIONS_LIST: DropdownSectionItem[] =
   Object.values(DROPDOWN_SECTIONS);
 
-export const DROPDOWN_DEFAULT_CODE_SAMPLE = `import { Dropdown, Button } from "@homonoid/react";
+export const DROPDOWN_DEFAULT_CODE_SAMPLE = `import { Dropdown, Button, Separator } from "@homonoid/react";
 import { MoreHorizontal, Edit, Copy, Share2, Trash2 } from "lucide-react";
 
 export function Example() {
@@ -93,7 +93,7 @@ export function Example() {
           <Dropdown.Item leading={<Share2 className="size-4" />}>
             Share
           </Dropdown.Item>
-          <Dropdown.Separator />
+          <Separator />
           <Dropdown.Item
             color="destructive"
             leading={<Trash2 className="size-4" />}
@@ -194,7 +194,7 @@ export function Example() {
   );
 }`;
 
-export const DROPDOWN_GROUPS_CODE_SAMPLE = `import { Dropdown, Button } from "@homonoid/react";
+export const DROPDOWN_GROUPS_CODE_SAMPLE = `import { Dropdown, Button, Separator } from "@homonoid/react";
 import { User, Settings, CreditCard, LogOut } from "lucide-react";
 
 export function Example() {
@@ -216,7 +216,7 @@ export function Example() {
               Preferences
             </Dropdown.Item>
           </Dropdown.Group>
-          <Dropdown.Separator />
+          <Separator />
           <Dropdown.Group>
             <Dropdown.Label className="px-3 py-1.5 text-xs text-muted font-medium">
               Billing
@@ -225,7 +225,7 @@ export function Example() {
               Subscriptions
             </Dropdown.Item>
           </Dropdown.Group>
-          <Dropdown.Separator />
+          <Separator />
           <Dropdown.Item color="destructive" leading={<LogOut className="size-4" />}>
             Sign Out
           </Dropdown.Item>

@@ -33,11 +33,13 @@ export function TooltipView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Tooltip</Heading>
-        <Description>
-          A tooltip presents contextual descriptions or auxiliary keyboard accelerators when users hover over or focus an interactive element.
-        </Description>
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Tooltip</Heading>
+          <Description>
+            A tooltip presents contextual descriptions or auxiliary keyboard accelerators when users hover over or focus an interactive element.
+          </Description>
+        </div>
         <Description>
           Tooltips clarify circular icon controls, reveal keyboard shortcuts, and offer guidance without crowding the primary interface canvas.
         </Description>
@@ -54,7 +56,7 @@ export function TooltipView() {
         <Card
           color="subtle"
           variant="filled"
-          className="flex items-center justify-between font-mono text-xs select-text"
+          className="font-mono text-xs"
         >
           <code>{highlighter('import { Tooltip } from "@homonoid/react";')}</code>
         </Card>

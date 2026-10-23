@@ -5,6 +5,37 @@ import { any, cond, when } from "../../utils/condition";
 import { Spinner } from "../spinner/Spinner";
 import type { ButtonProps } from "./types";
 
+const PALETTES = {
+  primary: {
+    solid: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active aria-expanded:bg-primary-hover data-[state=open]:bg-primary-hover",
+    ghost: "text-primary hover:bg-subtle active:bg-subtle-active aria-expanded:bg-subtle data-[state=open]:bg-subtle",
+    border: "border-primary-border",
+  },
+  subtle: {
+    solid: "bg-subtle text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover",
+    ghost: "text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover",
+    border: "border-subtle-border",
+  },
+  surface: {
+    solid: "bg-surface text-surface-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover",
+    ghost: "text-surface-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover",
+    border: "border-border",
+  },
+  destructive: {
+    solid: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-active aria-expanded:bg-destructive-hover data-[state=open]:bg-destructive-hover",
+    ghost: "text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20 aria-expanded:bg-destructive-hover/5 data-[state=open]:bg-destructive-hover/5",
+    border: "border-destructive-border",
+  },
+} as const;
+
+type Palette = keyof typeof PALETTES;
+
+const compounds = (Object.keys(PALETTES) as Palette[]).flatMap((color) => [
+  { variant: "contained" as const, color, className: PALETTES[color].solid },
+  { variant: "outlined" as const, color, className: `${PALETTES[color].border} ${PALETTES[color].ghost}` },
+  { variant: "plain" as const, color, className: PALETTES[color].ghost },
+]);
+
 export const variants = cva(
   "relative inline-flex items-center justify-center font-medium select-none subpixel-antialiased overflow-hidden transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] aria-expanded:scale-[var(--motion-press-scale)] data-[state=open]:scale-[var(--motion-press-scale)] focus-ring cursor-pointer aria-expanded:cursor-default data-[state=open]:cursor-default disabled:opacity-50 disabled:pointer-events-none",
   {
@@ -12,122 +43,45 @@ export const variants = cva(
       variant: {
         contained: "",
         outlined: "bg-transparent border",
-        plain: "bg-transparent"
+        plain: "bg-transparent",
       },
       color: {
         primary: "",
         subtle: "",
         surface: "",
-        destructive: ""
+        destructive: "",
       },
       size: {
-        sm: "h-control-sm px-3.5 text-sm gap-control-gap",
-        md: "h-control-md px-control-x text-sm font-medium gap-control-gap",
-        lg: "h-control-lg px-5 text-base font-medium gap-control-gap"
+        sm: "h-control-sm px-3.5 gap-control-gap text-sm",
+        md: "h-control-md px-control-x gap-control-gap text-sm",
+        lg: "h-control-lg px-5 gap-control-gap text-base",
       },
       radius: {
         none: "rounded-none",
         sm: "rounded-sm",
         md: "rounded-md",
         lg: "rounded-lg",
-        full: "rounded-full"
+        full: "rounded-full",
       },
       layout: {
         inline: "w-auto",
         full: "w-full flex",
-        icon: "aspect-square p-0 shrink-0"
-      }
+        icon: "aspect-square p-0 shrink-0",
+      },
     },
     compoundVariants: [
-      {
-        layout: "icon",
-        size: "sm",
-        className: "w-control-sm"
-      },
-      {
-        layout: "icon",
-        size: "md",
-        className: "w-control-md"
-      },
-      {
-        layout: "icon",
-        size: "lg",
-        className: "w-control-lg"
-      },
-
-      // Contained Variants (Solid fills)
-      {
-        variant: "contained",
-        color: "primary",
-        className: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active aria-expanded:bg-primary-hover data-[state=open]:bg-primary-hover"
-      },
-      {
-        variant: "contained",
-        color: "subtle",
-        className: "bg-subtle text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
-      },
-      {
-        variant: "contained",
-        color: "surface",
-        className: "bg-surface text-surface-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
-      },
-      {
-        variant: "contained",
-        color: "destructive",
-        className: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-active aria-expanded:bg-destructive-hover data-[state=open]:bg-destructive-hover"
-      },
-
-      // Outlined Variants (Transparent + Border)
-      {
-        variant: "outlined",
-        color: "primary",
-        className: "border-primary-border text-primary hover:bg-subtle active:bg-subtle-active aria-expanded:bg-subtle data-[state=open]:bg-subtle"
-      },
-      {
-        variant: "outlined",
-        color: "subtle",
-        className: "border-subtle-border text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
-      },
-      {
-        variant: "outlined",
-        color: "surface",
-        className: "border-border text-surface-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
-      },
-      {
-        variant: "outlined",
-        color: "destructive",
-        className: "border-destructive-border text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20 aria-expanded:bg-destructive-hover/5 data-[state=open]:bg-destructive-hover/5"
-      },
-
-      // Plain Variants (Plain / Ghost without background or border)
-      {
-        variant: "plain",
-        color: "primary",
-        className: "text-primary hover:bg-subtle active:bg-subtle-active aria-expanded:bg-subtle data-[state=open]:bg-subtle"
-      },
-      {
-        variant: "plain",
-        color: "subtle",
-        className: "text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
-      },
-      {
-        variant: "plain",
-        color: "surface",
-        className: "text-surface-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
-      },
-      {
-        variant: "plain",
-        color: "destructive",
-        className: "text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20 aria-expanded:bg-destructive-hover/5 data-[state=open]:bg-destructive-hover/5"
-      }
+      { layout: "icon", size: "sm", className: "w-control-sm" },
+      { layout: "icon", size: "md", className: "w-control-md" },
+      { layout: "icon", size: "lg", className: "w-control-lg" },
+      ...compounds,
     ],
     defaultVariants: {
       variant: "plain",
       color: "primary",
       size: "md",
       radius: "full",
-      layout: "inline"
-    }
+      layout: "inline",
+    },
   }
 );
 

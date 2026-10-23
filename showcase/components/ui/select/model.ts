@@ -249,34 +249,29 @@ export function Example() {
   ];
 
   return (
-    <div className= "w-full max-w-sm" >
-    <Select>
-    <Select.Trigger aria - label="Server region" >
-      <Select.Value placeholder="Select deployment region" />
+    <div className="w-full max-w-sm">
+      <Select>
+        <Select.Trigger aria-label="Server region">
+          <Select.Value placeholder="Select deployment region" />
         </Select.Trigger>
-        < Select.Content >
-        <Select.List>
-        {
-          groups.map((group, index) => (
-            <Select.Group key= { group.name } >
-            { index > 0 && <Select.Separator />}
-        < Select.Label className = "px-3 py-1.5 text-xs text-subtle-foreground font-medium" >
-          { group.name }
-          </Select.Label>
-  {
-    group.regions.map((region) => (
-      <Select.Item key= { region.value } value = { region.value } >
-      { region.label }
-      </Select.Item>
-    ))
-  }
-  </Select.Group>
-            ))
-}
-</Select.List>
-  </Select.Content>
-  </Select>
-  </div>
+        <Select.Content>
+          <Select.List>
+            {groups.map((group) => (
+              <Select.Group key={group.name}>
+                <Select.Label className="px-3 py-1.5 text-xs text-subtle-foreground font-medium">
+                  {group.name}
+                </Select.Label>
+                {group.regions.map((region) => (
+                  <Select.Item key={region.value} value={region.value}>
+                    {region.label}
+                  </Select.Item>
+                ))}
+              </Select.Group>
+            ))}
+          </Select.List>
+        </Select.Content>
+      </Select>
+    </div>
   );
 }`;
 
@@ -290,45 +285,43 @@ export function Example() {
   ];
 
   return (
-    <div className= "flex flex-col gap-6 w-full max-w-sm" >
-    <Select
+    <div className="flex flex-col gap-6 w-full max-w-sm">
+      <Select
         disabled
-  label = "Disabled Control"
-  description = "Trigger surface and list interactions are inactive"
-    >
-    <Select.Trigger aria - label="Disabled select" >
-      <Select.Value placeholder="Unavailable option" />
+        label="Disabled Control"
+        description="Trigger surface and list interactions are inactive"
+      >
+        <Select.Trigger aria-label="Disabled select">
+          <Select.Value placeholder="Unavailable option" />
         </Select.Trigger>
-        < Select.Content >
-        <Select.List>
-        <Select.Item value="one" > Option One </Select.Item>
+        <Select.Content>
+          <Select.List>
+            <Select.Item value="one">Option One</Select.Item>
           </Select.List>
-          </Select.Content>
-          </Select>
-
-          < Select
-  label = "Disabled Option"
-  description = "Specific choices can be individually deactivated"
-    >
-    <Select.Trigger aria - label="Select plan" >
-      <Select.Value placeholder="Select subscription" />
-        </Select.Trigger>
-        < Select.Content >
-        <Select.List>
-        {
-          options.map((option) => (
-            <Select.Item
-                key= { option.value }
-                value = { option.value }
-                disabled = { option.disabled }
-            >
-            { option.label }
-            </Select.Item>
-          ))
-        }
-        </Select.List>
         </Select.Content>
-        </Select>
-        </div>
+      </Select>
+
+      <Select
+        label="Disabled Option"
+        description="Specific choices can be individually deactivated"
+      >
+        <Select.Trigger aria-label="Select plan">
+          <Select.Value placeholder="Select subscription" />
+        </Select.Trigger>
+        <Select.Content>
+          <Select.List>
+            {options.map((option) => (
+              <Select.Item
+                key={option.value}
+                value={option.value}
+                disabled={option.disabled}
+              >
+                {option.label}
+              </Select.Item>
+            ))}
+          </Select.List>
+        </Select.Content>
+      </Select>
+    </div>
   );
-} `;
+}`;

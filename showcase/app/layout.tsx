@@ -6,8 +6,8 @@ import { TocProvider, Toc } from "@/components/ui/toc";
 import { SHOWCASE_COMPONENTS } from "@/config/components";
 
 export const metadata: Metadata = {
-  title: "Homonoid — Component System",
-  description: "Homonoid Design System Component Showcase",
+  title: "Homonoid",
+  description: "Homonoid Design System",
 };
 
 export default function RootLayout({

@@ -28,13 +28,14 @@ export function InputView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Input</Heading>
-        <Description size="md">
-          An input allows users to enter, edit, and submit text data through direct keyboard entry.
-        </Description>
-
-        <Description size="md">
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Input</Heading>
+          <Description>
+            An input allows users to enter, edit, and submit text data through direct keyboard entry.
+          </Description>
+        </div>
+        <Description>
           Inputs are foundational interface controls for capturing structured and unstructured user data while maintaining dimensional stability and visual continuity across interactive states.
         </Description>
       </div>
@@ -51,7 +52,7 @@ export function InputView() {
         <Card
           color="subtle"
           variant="filled"
-          className="flex items-center justify-between font-mono text-xs select-text"
+          className="font-mono text-xs"
         >
           <code>{highlighter('import { Input } from "@homonoid/react";')}</code>
         </Card>

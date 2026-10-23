@@ -1,9 +1,14 @@
+"use client";
+
 import React, { useMemo } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@homonoid/react/cn";
+import { any, cond, when } from "@homonoid/react";
 
 export interface CodeProps {
   code: string;
   className?: string;
+  animated?: boolean;
 }
 
 // Regex matching TSX syntax tokens in priority order
@@ -14,7 +19,6 @@ const TOKEN_PATTERN = new RegExp(
     `(?<tag><\\/?[A-Za-z0-9_.]+)`,
     `(?<prop>\\b[a-zA-Z_][a-zA-Z0-9_-]*(?=\\s*=))`,
     `(?<keyword>\\b(?:import|export|from|function|return|const|let|var|default|type|interface|as|switch|case|break|if|else)\\b)`,
-    `(?<component>\\b[A-Z][a-zA-Z0-9_]*\\b)`,
   ].join("|"),
   "g"
 );
@@ -54,7 +58,7 @@ export function highlighter(code: string): React.ReactNode[] {
         </span>
       );
     } else if (groups.tag) {
-      const prefix = matchedText.startsWith("</") ? "</" : "<";
+      const prefix = cond(matchedText.startsWith("</"), "</", "<");
       const tagName = matchedText.slice(prefix.length);
       nodes.push(
         <React.Fragment key={matchIndex}>
@@ -74,12 +78,6 @@ export function highlighter(code: string): React.ReactNode[] {
           {matchedText}
         </span>
       );
-    } else if (groups.component) {
-      nodes.push(
-        <span key={matchIndex} className="text-foreground font-semibold">
-          {matchedText}
-        </span>
-      );
     } else {
       nodes.push(matchedText);
     }
@@ -88,15 +86,37 @@ export function highlighter(code: string): React.ReactNode[] {
   }
 
   // Trailing plain text
-  if (lastIndex < code.length) {
+  when(lastIndex < code.length, () => {
     nodes.push(code.slice(lastIndex));
-  }
+  });
 
   return nodes;
 }
 
-export function Code({ code, className }: CodeProps) {
-  const highlighted = useMemo(() => highlighter(code), [code]);
+export function Code({ code, className, animated = false }: CodeProps) {
+  const shouldReduceMotion = useReducedMotion();
+  const lines = useMemo(() => code.split("\n"), [code]);
+
+  if (any(!animated, shouldReduceMotion)) {
+    return (
+      <div
+        className={cn(
+          "overflow-x-auto text-xs font-mono leading-relaxed select-text",
+          className
+        )}
+      >
+        <pre className="text-foreground">
+          <code>
+            {lines.map((line, index) => (
+              <span key={index} className="block min-h-[1.5em]">
+                {cond(line.length > 0, highlighter(line), "\u00A0")}
+              </span>
+            ))}
+          </code>
+        </pre>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -106,7 +126,23 @@ export function Code({ code, className }: CodeProps) {
       )}
     >
       <pre className="text-foreground">
-        <code>{highlighted}</code>
+        <code>
+          {lines.map((line, index) => (
+            <motion.span
+              key={index}
+              className="block min-h-[1.5em]"
+              initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }}
+              animate={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
+              transition={{
+                duration: 0.20,
+                delay: Math.min(index * 0.020, 0.40),
+                ease: [0.15, 1, 0.35, 1],
+              }}
+            >
+              {cond(line.length > 0, highlighter(line), "\u00A0")}
+            </motion.span>
+          ))}
+        </code>
       </pre>
     </div>
   );

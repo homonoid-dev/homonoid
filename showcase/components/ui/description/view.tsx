@@ -22,12 +22,14 @@ export function DescriptionView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Description</Heading>
-        <Description size="md">
-          A description provides supportive, secondary context to accompany headers, form fields, and interactive stages.
-        </Description>
-        <Description size="md">
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Description</Heading>
+          <Description>
+            A description provides supportive, secondary context to accompany headers, form fields, and interactive stages.
+          </Description>
+        </div>
+        <Description>
           Descriptions anchor comprehension, elucidating functionality and purpose while preserving visual continuum across views.
         </Description>
       </div>
@@ -43,7 +45,7 @@ export function DescriptionView() {
         <Card
           color="subtle"
           variant="filled"
-          className="flex items-center justify-between font-mono text-xs select-text"
+          className="font-mono text-xs"
         >
           <code>{highlighter('import { Description } from "@homonoid/react";')}</code>
         </Card>
@@ -119,7 +121,7 @@ export function DescriptionView() {
         </div>
 
         <Stage code={DESCRIPTION_CONTEXT_CODE_SAMPLE}>
-          <Card className="flex flex-col gap-3 max-w-sm w-full p-surface">
+          <Card className="flex flex-col gap-3 max-w-sm w-full">
             <div className="flex flex-col gap-1">
               <Label size="sm" as="h3">
                 Two Factor Authentication

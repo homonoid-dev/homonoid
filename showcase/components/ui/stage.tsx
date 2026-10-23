@@ -7,7 +7,7 @@ import {
   useEffect,
   type ReactNode,
 } from "react";
-import { Button, Card, Tooltip, cond } from "@homonoid/react";
+import { Button, Card, Tooltip, cond, when } from "@homonoid/react";
 import { Eye, Code2, Copy, Check, RotateCcw } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Code } from "@/components/ui/code";
@@ -98,10 +98,11 @@ export function Stage({
   }, [code]);
 
   // Use explicit height override if provided, otherwise use measured dynamic height
-  const targetHeight =
-    activeTab === "preview"
-      ? (previewHeight ?? measuredHeight)
-      : (codeHeight ?? measuredHeight);
+  const targetHeight = cond(
+    activeTab === "preview",
+    previewHeight ?? measuredHeight,
+    codeHeight ?? measuredHeight
+  );
 
   return (
     <Card className={cn("flex flex-col", className)}>
@@ -134,7 +135,8 @@ export function Stage({
         </div>
 
         <div className="flex items-center gap-1">
-          {onReset && (
+          {when(
+            Boolean(onReset),
             <Tooltip side="bottom" content="Reset stage">
               <Button
                 layout="icon"
@@ -179,7 +181,8 @@ export function Stage({
         className="relative overflow-hidden"
       >
         <AnimatePresence initial={false} mode="popLayout">
-          {activeTab === "preview" ? (
+          {cond(
+            activeTab === "preview",
             <motion.div
               key="preview"
               ref={measurer}
@@ -198,8 +201,7 @@ export function Stage({
                 className="h-control-md shrink-0 pointer-events-none select-none"
                 aria-hidden="true"
               />
-            </motion.div>
-          ) : (
+            </motion.div>,
             <motion.div
               key="code"
               ref={measurer}
@@ -209,7 +211,7 @@ export function Stage({
               transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }}
               className="pt-3"
             >
-              <Code code={code} className="-mx-surface px-surface" />
+              <Code code={code} animated className="-mx-surface px-surface" />
             </motion.div>
           )}
         </AnimatePresence>

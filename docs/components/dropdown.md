@@ -43,10 +43,9 @@ A dropdown component follows a compound component architecture exposing dedicate
 - `Dropdown.Item`: Interactive action row built directly upon the Tile primitive, supporting leading icons, titles, descriptions, and trailing shortcut hints.
 - `Dropdown.Group`: Logical section wrapper categorizing related commands into labeled clusters.
 - `Dropdown.Label`: Section heading caption powered by the Homonoid Label component.
-- `Dropdown.Separator`: Hairline divider stroke separating command groupings powered by the Homonoid Separator component.
 
 ```tsx
-import { Dropdown, Button } from "@homonoid/react";
+import { Dropdown, Button, Separator } from "@homonoid/react";
 
 export function DropdownBasic() {
   return (
@@ -62,7 +61,7 @@ export function DropdownBasic() {
           <Dropdown.Item onSelect={() => console.log("duplicate")}>
             Duplicate
           </Dropdown.Item>
-          <Dropdown.Separator />
+          <Separator />
           <Dropdown.Item color="destructive" onSelect={() => console.log("delete")}>
             Delete
           </Dropdown.Item>
