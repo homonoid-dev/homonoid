@@ -4,10 +4,10 @@ import type {
   ReactNode,
   Ref,
 } from "react";
-import type { Radius, Size } from "../../types";
+import type { Variant, Radius, Size, Color } from "../../types";
 
-export type SelectVariant = "contained" | "outlined" | "plain";
-export type SelectColor = "surface" | "subtle" | "primary" | "destructive";
+export type SelectVariant = Variant;
+export type SelectColor = Color
 export type SelectSize = Size;
 export type SelectRadius = Radius;
 
@@ -81,5 +81,6 @@ export interface SelectItemProps
 
 export interface SelectGroupProps extends HTMLAttributes<HTMLDivElement> {
   ref?: Ref<HTMLDivElement>;
+  label?: ReactNode;
   children?: ReactNode;
 }
