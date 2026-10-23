@@ -49,7 +49,7 @@ export function LabelView() {
         </Card>
 
         <Stage code={LABEL_DEFAULT_CODE_SAMPLE}>
-          <Label size="lg" as="h1">
+          <Label>
             Account Settings
           </Label>
         </Stage>
@@ -117,7 +117,7 @@ export function LabelView() {
 
         <Stage code={LABEL_FORMS_CODE_SAMPLE}>
           <div className="flex flex-col gap-2 max-w-sm w-full">
-            <Label as="label" htmlFor="workspace-input" size="sm">
+            <Label as="label" htmlFor="workspace-input">
               Workspace Name
             </Label>
             <Input id="workspace-input" placeholder="e.g. Studio" />
