@@ -23,30 +23,29 @@ export function SearchbarView() {
   useToc(SEARCHBAR_SECTIONS_LIST);
 
   const variants = [
-    { variant: "outlined", placeholder: "Outlined searchbar..." },
-    { variant: "contained", placeholder: "Contained searchbar..." },
-    { variant: "plain", placeholder: "Plain searchbar..." },
+    { variant: "outlined", placeholder: "Outlined searchbar" },
+    { variant: "contained", placeholder: "Contained searchbar" },
+    { variant: "plain", placeholder: "Plain searchbar" },
   ] as const;
 
   const sizes = [
     {
       size: "sm" as const,
-      placeholder: "Small search (32px)...",
-      iconClass: "size-3.5",
+      placeholder: "Small search",
     },
     {
       size: "md" as const,
-      placeholder: "Medium search (40px)...",
-      iconClass: "size-4",
+      placeholder: "Medium search",
     },
     {
       size: "lg" as const,
-      placeholder: "Large search (48px)...",
-      iconClass: "size-5",
+      placeholder: "Large search",
     },
   ];
 
   const radii = [
+    { radius: "none" as const, placeholder: "Square radius..." },
+    { radius: "sm" as const, placeholder: "Small radius..." },
     { radius: "md" as const, placeholder: "Medium radius..." },
     { radius: "lg" as const, placeholder: "Large radius..." },
     { radius: "full" as const, placeholder: "Pill searchbar..." },
@@ -86,15 +85,7 @@ export function SearchbarView() {
         <Stage code={SEARCHBAR_DEFAULT_CODE_SAMPLE}>
           <div className="w-full max-w-sm">
             <Searchbar
-              leading={<Search className="size-4" />}
-              trailing={
-                <Kbd>
-                  <Kbd.Abbr keyValue="command" />
-                  <Kbd.Content>K</Kbd.Content>
-                </Kbd>
-              }
-              label="Quick Find"
-              description="Search across all projects, team members, and settings."
+              leading={<Search className="size-4 text-muted" />}
               placeholder="Search documentation..."
             />
           </div>
@@ -110,7 +101,7 @@ export function SearchbarView() {
             {variants.map((item) => (
               <Searchbar
                 key={item.variant}
-                leading={<Search className="size-4" />}
+                leading={<Search className="size-4 text-muted" />}
                 variant={item.variant}
                 placeholder={item.placeholder}
               />
@@ -128,7 +119,7 @@ export function SearchbarView() {
             {sizes.map((item) => (
               <Searchbar
                 key={item.size}
-                leading={<Search className={item.iconClass} />}
+                leading={<Search className="size-4 text-muted" />}
                 size={item.size}
                 placeholder={item.placeholder}
               />
@@ -144,13 +135,13 @@ export function SearchbarView() {
         <Stage code={SEARCHBAR_LOADING_CODE_SAMPLE}>
           <div className="w-full max-w-sm flex flex-col gap-3">
             <Searchbar
-              leading={<Search className="size-4" />}
+              leading={<Search className="size-4 text-muted" />}
               loading
               defaultValue="Homonoid design tokens"
               placeholder="Querying components..."
             />
             <Searchbar
-              leading={<Search className="size-3.5" />}
+              leading={<Search className="size-4 text-muted" />}
               loading
               size="sm"
               placeholder="Resolving records..."
@@ -168,7 +159,7 @@ export function SearchbarView() {
             {radii.map((item) => (
               <Searchbar
                 key={item.radius}
-                leading={<Search className="size-4" />}
+                leading={<Search className="size-4 text-muted" />}
                 radius={item.radius}
                 placeholder={item.placeholder}
               />
@@ -184,7 +175,7 @@ export function SearchbarView() {
         <Stage code={SEARCHBAR_LABEL_AND_DESCRIPTION_CODE_SAMPLE}>
           <div className="w-full max-w-sm flex flex-col gap-surface-gap">
             <Searchbar
-              leading={<Search className="size-4" />}
+              leading={<Search className="size-4 text-muted" />}
               label="Repository Search"
               description="Query public and private repositories across your organization."
               placeholder="Search repositories..."

@@ -5,6 +5,7 @@ import {
   type KeyboardEvent,
 } from "react";
 import { Input } from "../input/Input";
+import { Spinner } from "../spinner/Spinner";
 import { cond } from "../../utils/condition";
 import type { SearchbarProps } from "./types";
 
@@ -31,6 +32,12 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
       }
     };
 
+    const _leading = cond(
+      loading,
+      <Spinner size="sm" aria-hidden="true" />,
+      leading
+    );
+
     return (
       <Input
         ref={ref}
@@ -40,7 +47,7 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
         size={size}
         variant={variant}
         radius={radius}
-        leading={leading}
+        leading={_leading}
         trailing={trailing}
         onKeyDown={handleKeyDown}
         className={className}

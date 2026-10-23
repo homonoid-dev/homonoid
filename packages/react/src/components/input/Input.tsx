@@ -43,18 +43,6 @@ export const variants = cva(
     },
     compoundVariants: [
       {
-        size: "sm",
-        className: "rounded-md",
-      },
-      {
-        size: "md",
-        className: "rounded-lg",
-      },
-      {
-        size: "lg",
-        className: "rounded-xl",
-      },
-      {
         invalid: true,
         variant: "contained",
         className: "border-destructive focus-within:border-destructive bg-destructive/10 hover:bg-destructive/20",
@@ -68,6 +56,7 @@ export const variants = cva(
     defaultVariants: {
       variant: "outlined",
       size: "md",
+      radius: "lg",
       invalid: false,
       disabled: false,
     },
@@ -79,7 +68,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     id,
     variant = "outlined",
     size = "md",
-    radius,
+    radius = "md",
     label,
     description,
     error,

@@ -149,11 +149,11 @@ export const INPUT_RADII_CODE_SAMPLE = `import { Input } from "@homonoid/react";
 
 export function Example() {
   const radii = [
-    { radius: "none" as const, placeholder: "Square input..." },
-    { radius: "sm" as const, placeholder: "Small radius..." },
-    { radius: "md" as const, placeholder: "Medium radius..." },
-    { radius: "lg" as const, placeholder: "Large radius..." },
-    { radius: "full" as const, placeholder: "Pill input..." },
+    { radius: "none" as const, placeholder: "Square radius" },
+    { radius: "sm" as const, placeholder: "Small radius" },
+    { radius: "md" as const, placeholder: "Medium radius" },
+    { radius: "lg" as const, placeholder: "Large radius" },
+    { radius: "full" as const, placeholder: "Pill input" },
   ];
 
   return (
