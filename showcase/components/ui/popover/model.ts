@@ -82,12 +82,13 @@ export function Example() {
 }`;
 
 export const POPOVER_PLACEMENTS_CODE_SAMPLE = `import { Button, Popover } from "@homonoid/react";
+import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from "lucide-react";
 
 const PLACEMENTS = [
-  { side: "top" as const, label: "Top" },
-  { side: "bottom" as const, label: "Bottom" },
-  { side: "left" as const, label: "Left" },
-  { side: "right" as const, label: "Right" },
+  { side: "top" as const, label: "Top", icon: ArrowUp },
+  { side: "bottom" as const, label: "Bottom", icon: ArrowDown },
+  { side: "left" as const, label: "Left", icon: ArrowLeft },
+  { side: "right" as const, label: "Right", icon: ArrowRight },
 ];
 
 export function Example() {
@@ -95,7 +96,9 @@ export function Example() {
     <div className="flex flex-wrap items-center justify-center gap-4 p-6">
       {PLACEMENTS.map((item) => (
         <Popover key={item.side} side={item.side}>
-          <Button variant="outlined">{item.label}</Button>
+          <Button layout="icon" variant="outlined">
+            <item.icon className="w-4 h-4" />
+          </Button>
           <Popover.Content className="max-w-56">
             <Popover.Dialog>
               <Popover.Heading size="sm">{item.label} Placement</Popover.Heading>
