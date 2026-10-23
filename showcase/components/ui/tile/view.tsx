@@ -105,7 +105,7 @@ export function TileView() {
         <Card
           color="subtle"
           variant="filled"
-          className="flex items-center justify-between font-mono text-xs select-text"
+          className="font-mono text-xs"
         >
           <code>{highlighter('import { Tile } from "@homonoid/react";')}</code>
         </Card>

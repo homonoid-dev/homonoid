@@ -54,7 +54,7 @@ export function TooltipView() {
         <Card
           color="subtle"
           variant="filled"
-          className="flex items-center justify-between font-mono text-xs select-text"
+          className="font-mono text-xs"
         >
           <code>{highlighter('import { Tooltip } from "@homonoid/react";')}</code>
         </Card>
