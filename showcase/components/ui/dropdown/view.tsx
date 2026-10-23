@@ -1,6 +1,6 @@
 "use client";
 
-import { Dropdown, Button, Card, Description, Heading } from "@homonoid/react";
+import { Dropdown, Button, Card, Description, Heading, Separator } from "@homonoid/react";
 import { Stage } from "@/components/ui/stage";
 import { Resource } from "@/components/ui/resource";
 import { Frame } from "@/components/ui/frame";
@@ -105,7 +105,7 @@ export function DropdownView() {
                 <Dropdown.Item leading={<Share2 className="size-4" />}>
                   Share
                 </Dropdown.Item>
-                <Dropdown.Separator />
+                <Separator />
                 <Dropdown.Item
                   color="destructive"
                   leading={<Trash2 className="size-4" />}
@@ -242,7 +242,7 @@ export function DropdownView() {
                     Preferences
                   </Dropdown.Item>
                 </Dropdown.Group>
-                <Dropdown.Separator />
+                <Separator />
                 <Dropdown.Group>
                   <Dropdown.Label className="px-3 py-1.5 text-xs text-muted font-medium">
                     Billing
@@ -251,7 +251,7 @@ export function DropdownView() {
                     Subscriptions
                   </Dropdown.Item>
                 </Dropdown.Group>
-                <Dropdown.Separator />
+                <Separator />
                 <Dropdown.Item color="destructive" leading={<LogOut className="size-4" />}>
                   Sign Out
                 </Dropdown.Item>

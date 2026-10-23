@@ -4,7 +4,6 @@ export { DropdownContent } from "./DropdownContent";
 export { DropdownList } from "./DropdownList";
 export { DropdownItem } from "./DropdownItem";
 export { DropdownGroup } from "./DropdownGroup";
-export { DropdownSeparator } from "./DropdownSeparator";
 export { DropdownContext, useDropdownContext } from "./DropdownContext";
 export type {
   DropdownProps,
@@ -13,7 +12,6 @@ export type {
   DropdownListProps,
   DropdownItemProps,
   DropdownGroupProps,
-  DropdownSeparatorProps,
   DropdownSize,
   DropdownRadius,
   DropdownColor,
