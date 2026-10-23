@@ -24,11 +24,13 @@ export function CheckboxView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Checkbox</Heading>
-        <Description>
-          A checkbox allows users to select one or more independent options from a set, or toggle a single binary state between on and off.
-        </Description>
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Checkbox</Heading>
+          <Description>
+            A checkbox allows users to select one or more independent options from a set, or toggle a single binary state between on and off.
+          </Description>
+        </div>
         <Description>
           Homonoid checkboxes communicate clear affirmative selections and support a three state model comprising unchecked, checked, and indeterminate while preserving tactile physical feedback.
         </Description>

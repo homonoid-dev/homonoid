@@ -24,11 +24,13 @@ export function SwitchView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Switch</Heading>
-        <Description>
-          A switch toggles the state of a single setting between on and off.
-        </Description>
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Switch</Heading>
+          <Description>
+            A switch toggles the state of a single setting between on and off.
+          </Description>
+        </div>
         <Description>
           Switches communicate immediate binary preferences, delivering clear tactile affordance and smooth physical transitions across states.
         </Description>

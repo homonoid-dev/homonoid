@@ -49,11 +49,13 @@ export function PopoverView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Popover</Heading>
-        <Description>
-          A popover presents rich interactive content within a transient floating surface anchored to an interactive trigger element.
-        </Description>
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Popover</Heading>
+          <Description>
+            A popover presents rich interactive content within a transient floating surface anchored to an interactive trigger element.
+          </Description>
+        </div>
         <Description>
           Popovers provide contextual overlays such as filter menus, property pickers, or rich confirmation forms without navigating away from the current canvas.
         </Description>

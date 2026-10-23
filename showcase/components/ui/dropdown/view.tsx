@@ -59,12 +59,14 @@ export function DropdownView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Dropdown</Heading>
-        <Description size="md">
-          A dropdown displays a floating menu of actionable items, contextual operations, and commands anchored to an interactive trigger.
-        </Description>
-        <Description size="md">
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Dropdown</Heading>
+          <Description>
+            A dropdown displays a floating menu of actionable items, contextual operations, and commands anchored to an interactive trigger.
+          </Description>
+        </div>
+        <Description>
           Homonoid dropdown menus combine resilient anchored positioning with the tactile Tile primitive, delivering fluid entrance transitions, full keyboard navigation, and total visual continuity.
         </Description>
       </div>

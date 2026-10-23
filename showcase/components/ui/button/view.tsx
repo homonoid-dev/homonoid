@@ -34,11 +34,13 @@ export function ButtonView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Button</Heading>
-        <Description>
-          A button communicates an action and allows users to trigger that action with a single interaction.
-        </Description>
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Button</Heading>
+          <Description>
+            A button communicates an action and allows users to trigger that action with a single interaction.
+          </Description>
+        </div>
 
         <Description>
           Homonoid structures button hierarchy through three deliberate tiers contained for primary focus, outlined for secondary choices, and plain for utilities while maintaining strict object continuity by preserving fixed dimensions and fluid micro transitions across hover, press, and loading states.

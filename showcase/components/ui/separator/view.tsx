@@ -23,11 +23,13 @@ export function SeparatorView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Separator</Heading>
-        <Description>
-          A separator visually or semantically partitions collections of content, controls, or sections within a layout.
-        </Description>
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Separator</Heading>
+          <Description>
+            A separator visually or semantically partitions collections of content, controls, or sections within a layout.
+          </Description>
+        </div>
         <Description>
           Homonoid separators provide crisp hairline boundaries across horizontal and vertical axes, preserving visual hierarchy and subpixel clarity without structural layout shift.
         </Description>

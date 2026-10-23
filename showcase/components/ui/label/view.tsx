@@ -22,12 +22,14 @@ export function LabelView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Label</Heading>
-        <Description size="md">
-          A label establishes clear typographic hierarchy and semantic prominence for sections, views, and data landmarks.
-        </Description>
-        <Description size="md">
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Label</Heading>
+          <Description>
+            A label establishes clear typographic hierarchy and semantic prominence for sections, views, and data landmarks.
+          </Description>
+        </div>
+        <Description>
           Labels anchor layout surfaces, providing immediate legibility and visual weight while preserving continuum across responsive viewports.
         </Description>
       </div>

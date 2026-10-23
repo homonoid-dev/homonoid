@@ -42,11 +42,13 @@ export function SearchbarView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Searchbar</Heading>
-        <Description>
-          A searchbar allows users to enter, preview, and submit search queries across collections of data and application views.
-        </Description>
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Searchbar</Heading>
+          <Description>
+            A searchbar allows users to enter, preview, and submit search queries across collections of data and application views.
+          </Description>
+        </div>
         <Description>
           Searchbars combine immediate text entry with contextual search actions including leading query icons, asynchronous loading spinners, and keyboard shortcut badges.
         </Description>

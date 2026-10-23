@@ -25,11 +25,13 @@ export function SpinnerView() {
   return (
     <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
       {/* View Header */}
-      <div className="flex flex-col gap-control-gap">
-        <Heading size="lg">Spinner</Heading>
-        <Description>
-          A spinner provides non blocking indeterminate progress feedback, communicating that a background process is active while preserving spatial and visual continuity.
-        </Description>
+      <div className="flex flex-col gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="lg">Spinner</Heading>
+          <Description>
+            A spinner provides non blocking indeterminate progress feedback, communicating that a background process is active while preserving spatial and visual continuity.
+          </Description>
+        </div>
 
         <Description>
           Spinners indicate that an operation is underway without requiring precise completion time estimations, integrating seamlessly into buttons, inputs, and modal containers.
