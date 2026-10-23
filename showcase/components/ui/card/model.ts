@@ -62,7 +62,7 @@ export const CARD_DEFAULT_CODE_SAMPLE = `import { Card, Label, Description } fro
 export function Example() {
   return (
     <Card className="flex flex-col gap-2 max-w-sm w-full p-surface">
-      <Label size="md" as="h3">
+      <Label as="h3">
         Project Overview
       </Label>
       <Description>
@@ -78,7 +78,7 @@ export function Example() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap w-full max-w-lg">
       <Card variant="outlined" className="flex flex-col gap-2 p-surface">
-        <Label size="sm" as="h3">
+        <Label as="h3">
           Outlined Card
         </Label>
         <Description>
@@ -86,7 +86,7 @@ export function Example() {
         </Description>
       </Card>
       <Card variant="filled" className="flex flex-col gap-2 p-surface">
-        <Label size="sm" as="h3">
+        <Label as="h3">
           Filled Card
         </Label>
         <Description>
@@ -103,7 +103,7 @@ export function Example() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-surface-gap w-full max-w-lg">
       <Card variant="filled" color="surface" className="flex flex-col gap-2">
-        <Label size="sm" as="h3" className="text-inherit">
+        <Label as="h3" className="text-inherit">
           Surface
         </Label>
         <Description className="text-inherit opacity-80">
@@ -111,7 +111,7 @@ export function Example() {
         </Description>
       </Card>
       <Card variant="filled" color="subtle" className="flex flex-col gap-2">
-        <Label size="sm" as="h3" className="text-inherit">
+        <Label as="h3" className="text-inherit">
           Subtle
         </Label>
         <Description className="text-inherit opacity-80">
@@ -119,7 +119,7 @@ export function Example() {
         </Description>
       </Card>
       <Card variant="filled" color="primary" className="flex flex-col gap-2">
-        <Label size="sm" as="h3" className="text-inherit">
+        <Label as="h3" className="text-inherit">
           Primary
         </Label>
         <Description className="text-inherit opacity-80">
@@ -127,7 +127,7 @@ export function Example() {
         </Description>
       </Card>
       <Card variant="filled" color="destructive" className="flex flex-col gap-2">
-        <Label size="sm" as="h3" className="text-inherit">
+        <Label as="h3" className="text-inherit">
           Destructive
         </Label>
         <Description className="text-inherit opacity-80">
@@ -144,7 +144,7 @@ export function Example() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap w-full max-w-lg">
       <Card variant="filled" border={true} className="flex flex-col gap-2">
-        <Label size="sm" as="h3">
+        <Label as="h3">
           With Border
         </Label>
         <Description>
@@ -152,7 +152,7 @@ export function Example() {
         </Description>
       </Card>
       <Card variant="filled" border={false} className="flex flex-col gap-2">
-        <Label size="sm" as="h3">
+        <Label as="h3">
           Borderless
         </Label>
         <Description>
