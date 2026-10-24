@@ -145,6 +145,7 @@ export function Example() {
     <div className="w-full max-w-sm">
       <Searchbar
         ref={inputRef}
+        aria-keyshortcuts="Meta+K Control+K"
         leading={<Search className="size-4 text-muted" aria-hidden="true" />}
         trailing={<Kbd keyValue="command" content="K" />}
         placeholder="Quick find..."

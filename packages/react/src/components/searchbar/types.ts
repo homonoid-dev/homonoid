@@ -41,7 +41,6 @@ export interface SearchbarProps
    */
   loading?: boolean;
 
-
   /**
    * Callback fired when user submits a query via Enter key press.
    */
