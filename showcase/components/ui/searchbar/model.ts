@@ -147,10 +147,7 @@ export function Example() {
         ref={inputRef}
         leading={<Search className="size-4 text-muted" />}
         trailing={
-          <Kbd
-            onClick={() => inputRef.current?.focus()}
-            className="cursor-pointer hover:bg-surface-hover active:bg-subtle transition-colors"
-          >
+          <Kbd>
             <Kbd.Abbr keyValue="command" />
             <Kbd.Content>K</Kbd.Content>
           </Kbd>
