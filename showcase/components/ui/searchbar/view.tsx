@@ -119,18 +119,12 @@ export function SearchbarView() {
         <Frame text={SEARCHBAR_SECTIONS.loading.label} icon={SEARCHBAR_SECTIONS.loading.icon} />
 
         <Stage code={SEARCHBAR_LOADING_CODE_SAMPLE}>
-          <div className="w-full max-w-sm flex flex-col gap-3">
+          <div className="w-full max-w-sm">
             <Searchbar
               leading={<Search className="size-4 text-muted" />}
               loading
               defaultValue="Homonoid design tokens"
               placeholder="Querying components..."
-            />
-            <Searchbar
-              leading={<Search className="size-4 text-muted" />}
-              loading
-              size="sm"
-              placeholder="Resolving records..."
             />
           </div>
         </Stage>

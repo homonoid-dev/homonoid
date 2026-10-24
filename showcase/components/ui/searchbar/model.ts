@@ -106,18 +106,12 @@ import { Search } from "lucide-react";
 
 export function Example() {
   return (
-    <div className="w-full max-w-sm flex flex-col gap-3">
+    <div className="w-full max-w-sm">
       <Searchbar
         leading={<Search className="size-4 text-muted" />}
         loading
         defaultValue="Homonoid design tokens"
         placeholder="Querying components..."
-      />
-      <Searchbar
-        leading={<Search className="size-4 text-muted" />}
-        loading
-        size="sm"
-        placeholder="Resolving records..."
       />
     </div>
   );

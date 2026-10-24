@@ -115,9 +115,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   ].filter(Boolean);
   const finalDescribedBy = describedByParts.length > 0 ? describedByParts.join(" ") : undefined;
 
-  const hasLeading = Boolean(leading);
-  const hasTrailing = Boolean(trailing);
-
   const controlContainer = (
     <div
       onClick={handleContainerClick}
@@ -140,18 +137,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         aria-invalid={cond(isInvalid, true, undefined)}
         aria-describedby={finalDescribedBy}
         className={cn(
-          "absolute inset-0 w-full h-full rounded-[inherit] bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none",
+          "order-2 flex-1 w-full min-w-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none",
           cond(
-            hasLeading,
-            cond(size === "sm", "pl-8", cond(size === "lg", "pl-11", "pl-9")),
-            cond(size === "sm", "pl-2.5", cond(size === "lg", "pl-3.5", "pl-3"))
-          ),
-          cond(
-            hasTrailing,
-            cond(size === "sm", "pr-10", cond(size === "lg", "pr-16", "pr-14")),
-            cond(size === "sm", "pr-2.5", cond(size === "lg", "pr-3.5", "pr-3"))
-          ),
-          cond(isInvalid, "text-destructive placeholder:text-destructive/60", "text-foreground placeholder:text-muted")
+            isInvalid,
+            "text-destructive placeholder:text-destructive/60",
+            "text-foreground placeholder:text-muted"
+          )
         )}
         {...props}
       />
@@ -161,7 +152,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         leading,
         <span
           data-slot="input-leading"
-          className="relative z-10 inline-flex shrink-0 items-center justify-center pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto"
+          className="order-1 inline-flex shrink-0 items-center justify-center pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto"
         >
           {leading}
         </span>
@@ -172,7 +163,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         trailing,
         <span
           data-slot="input-trailing"
-          className="relative z-10 ml-auto inline-flex shrink-0 items-center justify-center pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto"
+          className="order-3 inline-flex shrink-0 items-center justify-center pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto"
         >
           {trailing}
         </span>
