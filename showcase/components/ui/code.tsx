@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useRef, useEffect } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@homonoid/react/cn";
 import { any, cond } from "@homonoid/react";
@@ -11,7 +11,7 @@ export interface CodeProps {
   animated?: boolean;
 }
 
-const TOKEN_REGEX = /(\/\/.*)|("[^"]*"|'[^']*'|`[^`]*`)|(<\/?[A-Za-z0-9_.]+|\/?>)|(\b[a-zA-Z_][a-zA-Z0-9_-]*(?=\s*=))|(\b(?:import|export|from|function|return|const|let|var|default|type|interface|switch|case|break|if|else)\b|\bas(?=\s+const\b))/g;
+const REGEX = /(\/\/.*)|("[^"]*"|'[^']*'|`[^`]*`)|(<\/?[A-Za-z0-9_.]+|\/?>)|(\b[a-zA-Z_][a-zA-Z0-9_-]*(?=\s*=))|(\b(?:import|export|from|function|return|const|let|var|default|type|interface|switch|case|break|if|else)\b|\bas(?=\s+const\b))/g;
 
 /**
  * Tokenizes TSX / JavaScript code into styled React spans using Homonoid tokens.
@@ -21,9 +21,9 @@ export function highlighter(code: string): React.ReactNode[] {
   const nodes: React.ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
-  TOKEN_REGEX.lastIndex = 0;
+  REGEX.lastIndex = 0;
 
-  while ((match = TOKEN_REGEX.exec(code)) !== null) {
+  while ((match = REGEX.exec(code)) !== null) {
     if (match.index > lastIndex) {
       nodes.push(code.slice(lastIndex, match.index));
     }
@@ -79,19 +79,27 @@ export function highlighter(code: string): React.ReactNode[] {
 export function Code({ code, className, animated = false }: CodeProps) {
   const shouldReduceMotion = useReducedMotion();
   const lines = useMemo(() => code.split("\n"), [code]);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = 0;
+    }
+  }, [code]);
 
   if (any(!animated, shouldReduceMotion)) {
     return (
       <div
+        ref={scrollRef}
         className={cn(
           "overflow-x-auto text-xs font-mono leading-relaxed select-text",
           className
         )}
       >
-        <pre className="text-foreground">
-          <code>
+        <pre className="text-foreground w-fit min-w-full">
+          <code className="block w-fit min-w-full">
             {lines.map((line, index) => (
-              <span key={index} className="block min-h-[1.5em]">
+              <span key={index} className="block min-h-[1.5em] w-fit min-w-full pr-8">
                 {cond(line.length > 0, highlighter(line), "\u00A0")}
               </span>
             ))}
@@ -103,22 +111,23 @@ export function Code({ code, className, animated = false }: CodeProps) {
 
   return (
     <div
+      ref={scrollRef}
       className={cn(
         "overflow-x-auto text-xs font-mono leading-relaxed select-text",
         className
       )}
     >
-      <pre className="text-foreground">
-        <code>
+      <pre className="text-foreground w-fit min-w-full">
+        <code className="block w-fit min-w-full">
           {lines.map((line, index) => (
             <motion.span
               key={index}
-              className="block min-h-[1.5em]"
-              initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }}
-              animate={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
+              className="block min-h-[1.5em] w-fit min-w-full pr-8"
+              initial={{ opacity: 0, y: 3 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.2,
-                delay: Math.min(index * 0.02, 0.4),
+                duration: 0.18,
+                delay: Math.min(index * 0.015, 0.35),
                 ease: [0.15, 1, 0.35, 1],
               }}
             >

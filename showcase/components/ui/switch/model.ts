@@ -121,7 +121,9 @@ export function Example() {
         </Switch.Control>
         <Switch.Content>
           <Label>Automatic updates</Label>
-          <Description>Download and install platform patches as soon as they become available.</Description>
+          <Description>
+            Download and install platform patches as soon as they become available.
+          </Description>
         </Switch.Content>
       </Switch>
     </div>
