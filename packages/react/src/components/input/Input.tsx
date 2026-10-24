@@ -151,10 +151,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
             cond(size === "sm", "pr-10", cond(size === "lg", "pr-16", "pr-14")),
             cond(size === "sm", "pr-2.5", cond(size === "lg", "pr-3.5", "pr-3"))
           ),
-          cond(isInvalid, "text-destructive placeholder:text-destructive/60", "text-foreground placeholder:text-muted"),
-          cond(size === "sm", "text-xs", undefined),
-          cond(size === "md", "text-sm", undefined),
-          cond(size === "lg", "text-base", undefined)
+          cond(isInvalid, "text-destructive placeholder:text-destructive/60", "text-foreground placeholder:text-muted")
         )}
         {...props}
       />
