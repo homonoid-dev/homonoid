@@ -38,12 +38,7 @@ function ShortcutExample() {
       <Searchbar
         ref={inputRef}
         leading={<Search className="size-4 text-muted" aria-hidden="true" />}
-        trailing={
-          <Kbd>
-            <Kbd.Abbr keyValue="command" />
-            <Kbd.Content>K</Kbd.Content>
-          </Kbd>
-        }
+        trailing={<Kbd keyValue="command" content="K" />}
         placeholder="Quick find..."
       />
     </div>
