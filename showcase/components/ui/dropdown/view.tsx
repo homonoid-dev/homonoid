@@ -21,6 +21,10 @@ import {
   Settings,
   CreditCard,
   LogOut,
+  ArrowDownLeft,
+  ArrowDownRight,
+  ArrowUpLeft,
+  ArrowUpRight,
 } from "lucide-react";
 import {
   DROPDOWN_SECTIONS,
@@ -37,10 +41,10 @@ export function DropdownView() {
   useToc(DROPDOWN_SECTIONS_LIST);
 
   const placements = [
-    { placement: "bottom-start" as const, label: "Bottom Start" },
-    { placement: "bottom-end" as const, label: "Bottom End" },
-    { placement: "top-start" as const, label: "Top Start" },
-    { placement: "top-end" as const, label: "Top End" },
+    { placement: "bottom-start" as const, label: "Bottom Start", icon: <ArrowDownLeft className="size-4" /> },
+    { placement: "bottom-end" as const, label: "Bottom End", icon: <ArrowDownRight className="size-4" /> },
+    { placement: "top-start" as const, label: "Top Start", icon: <ArrowUpLeft className="size-4" /> },
+    { placement: "top-end" as const, label: "Top End", icon: <ArrowUpRight className="size-4" /> },
   ];
 
   const actions = [
@@ -135,7 +139,13 @@ export function DropdownView() {
             {placements.map((item) => (
               <Dropdown key={item.placement} placement={item.placement}>
                 <Dropdown.Trigger asChild>
-                  <Button variant="outlined">{item.label}</Button>
+                  <Button
+                    layout="icon"
+                    variant="outlined"
+                    aria-label={item.label}
+                  >
+                    {item.icon}
+                  </Button>
                 </Dropdown.Trigger>
                 <Dropdown.Content>
                   <Dropdown.List>

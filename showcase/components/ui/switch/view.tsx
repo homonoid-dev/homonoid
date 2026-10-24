@@ -59,7 +59,7 @@ export function SwitchView() {
             </Switch.Control>
             <Switch.Content>
               <Label>Airplane Mode</Label>
-              <Description>Disable cellular, Wi Fi, and Bluetooth connections</Description>
+              <Description>Disable connections</Description>
             </Switch.Content>
           </Switch>
         </Stage>
