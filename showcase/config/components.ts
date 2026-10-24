@@ -11,6 +11,7 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponentItem[] = [
   { name: "Description", href: "/description", description: "Contextual guidance and supportive copy" },
   { name: "Dropdown", href: "/dropdown", description: "Floating menu of contextual actions and commands" },
   { name: "Input", href: "/input", description: "Capture user text input" },
+  { name: "Kbd", href: "/kbd", description: "Keyboard shortcut keys and command combination badges" },
   { name: "Label", href: "/label", description: "Accessible captions and headers" },
   { name: "Modal", href: "/modal", description: "Elevated dialog surfaces and focus containers" },
   { name: "Popover", href: "/popover", description: "Transient floating surface anchored to interactive triggers" },

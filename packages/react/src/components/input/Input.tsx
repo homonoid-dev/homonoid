@@ -8,50 +8,58 @@ import {
 } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
-import { cond } from "../../utils/condition";
+import { any, cond, when } from "../../utils/condition";
 import type { InputProps } from "./types";
 
 export const variants = cva(
-  "relative w-full inline-flex items-center select-none transform-gpu origin-center transition-[color,background-color,border-color,opacity] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)]",
+  "relative w-full inline-flex items-center transform-gpu origin-center transition-[color,background-color,border-color,opacity] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)]",
   {
     variants: {
       variant: {
-        outlined: "border border-border hover:border-foreground/30 focus-within:border-primary focus-within:hover:border-primary focus-within:ring-2 focus-within:ring-primary/30",
-        filled: "border border-transparent bg-surface hover:bg-surface-hover focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/30",
-        plain: "border border-transparent hover:bg-surface-hover"
+        outlined: "border border-border bg-transparent hover:border-foreground/30 focus-within:border-primary focus-within:hover:border-primary",
+        contained: "border border-transparent bg-surface hover:bg-surface-hover focus-within:border-primary",
+        plain: "border border-transparent bg-transparent hover:bg-surface-hover",
       },
       size: {
-        sm: "h-control-sm px-2.5 text-xs gap-2 rounded-md",
-        md: "h-control-md px-3 text-sm gap-2.5 rounded-lg",
-        lg: "h-control-lg px-3.5 text-base gap-3 rounded-xl"
+        sm: "h-control-sm px-2.5 gap-2 text-xs",
+        md: "h-control-md px-3 gap-2.5 text-sm",
+        lg: "h-control-lg px-3.5 gap-3 text-base",
+      },
+      radius: {
+        none: "rounded-none",
+        sm: "rounded-md",
+        md: "rounded-lg",
+        lg: "rounded-xl",
+        full: "rounded-full",
       },
       invalid: {
-        true: "border-destructive hover:border-destructive hover:focus-within:border-destructive focus-within:border-destructive focus-within:ring-2 focus-within:ring-destructive/30",
-        false: ""
+        true: "border-destructive/30 hover:border-destructive hover:focus-within:border-destructive focus-within:border-destructive",
+        false: "",
       },
       disabled: {
         true: "opacity-50 cursor-not-allowed pointer-events-none bg-surface/50",
-        false: "cursor-text"
-      }
+        false: "cursor-text",
+      },
     },
     compoundVariants: [
       {
         invalid: true,
-        variant: "filled",
-        className: "border-destructive focus-within:border-destructive bg-destructive/10 hover:bg-destructive/20"
+        variant: "contained",
+        className: "border-destructive focus-within:border-destructive bg-destructive/10 hover:bg-destructive/20",
       },
       {
         invalid: true,
         variant: "plain",
-        className: "border-transparent hover:border-transparent hover:bg-destructive/20 focus-within:border-transparent focus-within:hover:border-transparent focus-within:ring-transparent"
-      }
+        className: "border-transparent hover:border-transparent hover:bg-destructive/20 focus-within:border-transparent focus-within:hover:border-transparent focus-within:ring-transparent",
+      },
     ],
     defaultVariants: {
       variant: "outlined",
       size: "md",
+      radius: "lg",
       invalid: false,
-      disabled: false
-    }
+      disabled: false,
+    },
   }
 );
 
@@ -60,6 +68,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     id,
     variant = "outlined",
     size = "md",
+    radius = "md",
     label,
     description,
     error,
@@ -79,7 +88,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const errorId = `${inputId}-error`;
 
   const innerRef = useRef<HTMLInputElement | null>(null);
-  const isInvalid = Boolean(invalid || error);
+  const isInvalid = any(invalid, Boolean(error));
 
   const setRefs = (element: HTMLInputElement | null) => {
     innerRef.current = element;
@@ -113,39 +122,49 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         variants({
           variant,
           size,
+          radius,
           invalid: isInvalid,
-          disabled
+          disabled,
         }),
         cond(!label && !description && !error, className, undefined)
       )}
     >
-      {/* Leading Slot */}
-      {leading && (
-        <span className="inline-flex shrink-0 items-center justify-center">
-          {leading}
-        </span>
-      )}
-
       {/* Native Input Element */}
       <input
         ref={setRefs}
         id={inputId}
         disabled={disabled}
-        aria-invalid={isInvalid ? true : undefined}
+        aria-invalid={cond(isInvalid, true, undefined)}
         aria-describedby={finalDescribedBy}
         className={cn(
-          "w-full h-full bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30",
-          cond(isInvalid, "text-destructive placeholder:text-destructive/60", "text-foreground placeholder:text-muted"),
-          cond(size === "sm", "text-xs", undefined),
-          cond(size === "md", "text-sm", undefined),
-          cond(size === "lg", "text-base", undefined)
+          "order-2 flex-1 w-full min-w-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none",
+          cond(
+            isInvalid,
+            "text-destructive placeholder:text-destructive/60",
+            "text-foreground placeholder:text-muted"
+          )
         )}
         {...props}
       />
 
+      {/* Leading Slot */}
+      {when(
+        leading,
+        <span
+          data-slot="input-leading"
+          className="order-1 inline-flex shrink-0 items-center justify-center pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto"
+        >
+          {leading}
+        </span>
+      )}
+
       {/* Trailing Slot */}
-      {trailing && (
-        <span className="inline-flex shrink-0 items-center justify-center">
+      {when(
+        trailing,
+        <span
+          data-slot="input-trailing"
+          className="order-3 inline-flex shrink-0 items-center justify-center pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto"
+        >
           {trailing}
         </span>
       )}
@@ -160,13 +179,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   // Composed layout with label and helper/error captions
   return (
     <div className={cn("w-full flex flex-col gap-1.5 select-none", className)}>
-      {label && (
+      {when(
+        label,
         <label
           id={labelId}
           htmlFor={inputId}
           className={cn(
             "font-medium",
-            isInvalid ? "text-destructive" : "text-foreground",
+            cond(isInvalid, "text-destructive", "text-foreground"),
             cond(size === "sm", "text-xs", "text-sm"),
             cond(disabled, "opacity-60 cursor-not-allowed", "cursor-pointer")
           )}
@@ -177,13 +197,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 
       {controlContainer}
 
-      {error && (
+      {when(
+        error,
         <span id={errorId} className="text-xs text-destructive font-medium leading-normal">
           {error}
         </span>
       )}
 
-      {!error && description && (
+      {when(
+        !error && description,
         <span id={descriptionId} className="text-xs text-muted leading-normal">
           {description}
         </span>

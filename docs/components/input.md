@@ -68,8 +68,20 @@ Inputs conform to the standardized Homonoid control scale (`Size = "sm" | "md" |
 Homonoid defines structural surface treatments via the `variant` prop:
 
 - `Outlined` (`variant="outlined"`): Default structural treatment featuring a defined hairline border stroke (`border-border`) over neutral background (`bg-background`).
-- `Filled` (`variant="filled"`): Subdued background surface fill (`bg-surface` or `bg-subtle`) with a minimal border stroke, shifting contrast on focus.
+- `Contained` (`variant="contained"`): Subdued background surface fill (`bg-surface`) with a minimal border stroke, shifting contrast on focus.
 - `Plain` (`variant="plain"`): Transparent borderless container without resting background, ideal for inline data editing and embedded search fields.
+
+<br>
+
+### Radius
+
+Inputs support corner curvature configurations via the `radius` property:
+
+- `None` (`none`): Square container boundary with sharp corners (`rounded-none`).
+- `Small` (`sm`): Subtle 4px rounded corners (`rounded-sm`).
+- `Medium` (`md`): Standard 6px rounded corners (`rounded-md`).
+- `Large` (`lg`): Prominent 8px rounded corners (`rounded-lg`).
+- `Full` (`full`): Continuous pill curvature (`rounded-full`).
 
 <br>
 

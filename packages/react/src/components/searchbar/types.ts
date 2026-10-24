@@ -1,12 +1,17 @@
-import type { ReactNode, Ref } from "react";
-import type { InputProps } from "../input/types";
+import type { Ref } from "react";
+import type {
+  InputProps,
+  InputRadius,
+  InputSize,
+  InputVariant,
+} from "../input/types";
 
-export type SearchbarSize = "sm" | "md" | "lg";
-export type SearchbarVariant = "outlined" | "filled" | "plain";
-export type SearchbarRadius = "none" | "sm" | "md" | "lg" | "full";
+export type SearchbarSize = InputSize;
+export type SearchbarVariant = InputVariant;
+export type SearchbarRadius = InputRadius;
 
 export interface SearchbarProps
-  extends Omit<InputProps, "size" | "variant"> {
+  extends Omit<InputProps, "size" | "variant" | "radius"> {
   /**
    * Ref forwarded to the underlying native input element.
    */
@@ -31,15 +36,10 @@ export interface SearchbarProps
 
   /**
    * Whether an asynchronous search operation is in progress.
-   * When true, renders a Spinner in place of the leading slot.
+   * When true, sets aria-busy attribute on the searchbox container.
    * @default false
    */
   loading?: boolean;
-
-  /**
-   * Keyboard shortcut indicator displayed within the trailing slot.
-   */
-  shortcut?: ReactNode;
 
   /**
    * Callback fired when user submits a query via Enter key press.

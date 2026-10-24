@@ -63,16 +63,8 @@ export function CardView() {
       </section>
 
       {/* Variants Section */}
-      <section
-        id={CARD_SECTIONS.variants.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={CARD_SECTIONS.variants.icon} />
-          <Heading size="md" as="h2">
-            {CARD_SECTIONS.variants.label}
-          </Heading>
-        </div>
+      <section id={CARD_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={CARD_SECTIONS.variants.label} icon={CARD_SECTIONS.variants.icon} />
 
         <Stage code={CARD_VARIANTS_CODE_SAMPLE}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap w-full max-w-lg">
@@ -97,16 +89,8 @@ export function CardView() {
       </section>
 
       {/* Colors Section */}
-      <section
-        id={CARD_SECTIONS.colors.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={CARD_SECTIONS.colors.icon} />
-          <Heading size="md" as="h2">
-            {CARD_SECTIONS.colors.label}
-          </Heading>
-        </div>
+      <section id={CARD_SECTIONS.colors.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={CARD_SECTIONS.colors.label} icon={CARD_SECTIONS.colors.icon} />
 
         <Stage code={CARD_COLORS_CODE_SAMPLE}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-surface-gap w-full max-w-lg">
@@ -147,16 +131,8 @@ export function CardView() {
       </section>
 
       {/* Border Control Section */}
-      <section
-        id={CARD_SECTIONS.border.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={CARD_SECTIONS.border.icon} />
-          <Label size="lg" as="h2">
-            {CARD_SECTIONS.border.label}
-          </Label>
-        </div>
+      <section id={CARD_SECTIONS.border.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={CARD_SECTIONS.border.label} icon={CARD_SECTIONS.border.icon} />
 
         <Stage code={CARD_BORDER_CODE_SAMPLE}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap w-full max-w-lg">
@@ -181,13 +157,8 @@ export function CardView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={CARD_SECTIONS.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {CARD_SECTIONS.continuity.label}
-        </Heading>
+      <section id={CARD_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2"> {CARD_SECTIONS.continuity.label} </Heading>
 
         <Description>
           Card surfaces maintain structural visual cohesion across theme modes and elevation changes. Container boundaries preserve physical stability while adapting to internal content flows.
@@ -203,13 +174,8 @@ export function CardView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={CARD_SECTIONS.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {CARD_SECTIONS.accessibility.label}
-        </Heading>
+      <section id={CARD_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2"> {CARD_SECTIONS.accessibility.label} </Heading>
 
         <Description>
           Accessibility in container architecture establishes semantic hierarchy and landmark clarity. Homonoid cards prioritize structured content navigation for screen readers and keyboard users alike.
@@ -225,13 +191,8 @@ export function CardView() {
       </section>
 
       {/* Design Tokens Section */}
-      <section
-        id={CARD_SECTIONS.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {CARD_SECTIONS.tokens.label}
-        </Heading>
+      <section id={CARD_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2"> {CARD_SECTIONS.tokens.label} </Heading>
 
         <Description>
           Surface fills consume semantic background tokens including surface, subtle, and accent variants to maintain unified hierarchy.
@@ -247,13 +208,8 @@ export function CardView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={CARD_SECTIONS.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {CARD_SECTIONS.styleReference.label}
-        </Heading>
+      <section id={CARD_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2"> {CARD_SECTIONS.styleReference.label} </Heading>
 
         <Description>
           Semantic HTML tags can be assigned via the polymorphic as prop to render section, article, or aside elements appropriate to content hierarchy.

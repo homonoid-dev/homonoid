@@ -21,6 +21,10 @@ import {
   Settings,
   CreditCard,
   LogOut,
+  ArrowDownLeft,
+  ArrowDownRight,
+  ArrowUpLeft,
+  ArrowUpRight,
 } from "lucide-react";
 import {
   DROPDOWN_SECTIONS,
@@ -37,10 +41,10 @@ export function DropdownView() {
   useToc(DROPDOWN_SECTIONS_LIST);
 
   const placements = [
-    { placement: "bottom-start" as const, label: "Bottom Start" },
-    { placement: "bottom-end" as const, label: "Bottom End" },
-    { placement: "top-start" as const, label: "Top Start" },
-    { placement: "top-end" as const, label: "Top End" },
+    { placement: "bottom-start" as const, label: "Bottom Start", icon: <ArrowDownLeft className="size-4" /> },
+    { placement: "bottom-end" as const, label: "Bottom End", icon: <ArrowDownRight className="size-4" /> },
+    { placement: "top-start" as const, label: "Top Start", icon: <ArrowUpLeft className="size-4" /> },
+    { placement: "top-end" as const, label: "Top End", icon: <ArrowUpRight className="size-4" /> },
   ];
 
   const actions = [
@@ -98,10 +102,16 @@ export function DropdownView() {
             </Dropdown.Trigger>
             <Dropdown.Content>
               <Dropdown.List>
-                <Dropdown.Item leading={<Edit className="size-4" />} trailing="⌘E">
+                <Dropdown.Item
+                  leading={<Edit className="size-4" />}
+                  trailing={<Dropdown.Shortcut keyValue="command" content="E" />}
+                >
                   Edit
                 </Dropdown.Item>
-                <Dropdown.Item leading={<Copy className="size-4" />} trailing="⌘C">
+                <Dropdown.Item
+                  leading={<Copy className="size-4" />}
+                  trailing={<Dropdown.Shortcut keyValue="command" content="C" />}
+                >
                   Duplicate
                 </Dropdown.Item>
                 <Dropdown.Item leading={<Share2 className="size-4" />}>
@@ -121,23 +131,21 @@ export function DropdownView() {
       </section>
 
       {/* Placements Section */}
-      <section
-        id={DROPDOWN_SECTIONS.placements.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={DROPDOWN_SECTIONS.placements.icon} />
-          <Heading size="md" as="h2">
-            {DROPDOWN_SECTIONS.placements.label}
-          </Heading>
-        </div>
+      <section id={DROPDOWN_SECTIONS.placements.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={DROPDOWN_SECTIONS.placements.label} icon={DROPDOWN_SECTIONS.placements.icon} />
 
         <Stage code={DROPDOWN_PLACEMENTS_CODE_SAMPLE}>
           <div className="flex flex-wrap gap-4 items-center justify-center">
             {placements.map((item) => (
               <Dropdown key={item.placement} placement={item.placement}>
                 <Dropdown.Trigger asChild>
-                  <Button variant="outlined">{item.label}</Button>
+                  <Button
+                    layout="icon"
+                    variant="outlined"
+                    aria-label={item.label}
+                  >
+                    {item.icon}
+                  </Button>
                 </Dropdown.Trigger>
                 <Dropdown.Content>
                   <Dropdown.List>
@@ -152,16 +160,8 @@ export function DropdownView() {
       </section>
 
       {/* Variants Section */}
-      <section
-        id={DROPDOWN_SECTIONS.variants.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={DROPDOWN_SECTIONS.variants.icon} />
-          <Heading size="md" as="h2">
-            {DROPDOWN_SECTIONS.variants.label}
-          </Heading>
-        </div>
+      <section id={DROPDOWN_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={DROPDOWN_SECTIONS.variants.label} icon={DROPDOWN_SECTIONS.variants.icon} />
 
         <Stage code={DROPDOWN_VARIANTS_CODE_SAMPLE}>
           <Dropdown>
@@ -182,16 +182,8 @@ export function DropdownView() {
       </section>
 
       {/* Sizes Section */}
-      <section
-        id={DROPDOWN_SECTIONS.sizes.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={DROPDOWN_SECTIONS.sizes.icon} />
-          <Heading size="md" as="h2">
-            {DROPDOWN_SECTIONS.sizes.label}
-          </Heading>
-        </div>
+      <section id={DROPDOWN_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={DROPDOWN_SECTIONS.sizes.label} icon={DROPDOWN_SECTIONS.sizes.icon} />
 
         <Stage code={DROPDOWN_SIZES_CODE_SAMPLE}>
           <div className="flex flex-wrap gap-4 items-center justify-center">
@@ -215,16 +207,8 @@ export function DropdownView() {
       </section>
 
       {/* Groups Section */}
-      <section
-        id={DROPDOWN_SECTIONS.groups.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={DROPDOWN_SECTIONS.groups.icon} />
-          <Heading size="md" as="h2">
-            {DROPDOWN_SECTIONS.groups.label}
-          </Heading>
-        </div>
+      <section id={DROPDOWN_SECTIONS.groups.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={DROPDOWN_SECTIONS.groups.label} icon={DROPDOWN_SECTIONS.groups.icon} />
 
         <Stage code={DROPDOWN_GROUPS_CODE_SAMPLE}>
           <Dropdown>
@@ -264,16 +248,8 @@ export function DropdownView() {
       </section>
 
       {/* Disabled Section */}
-      <section
-        id={DROPDOWN_SECTIONS.disabled.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={DROPDOWN_SECTIONS.disabled.icon} />
-          <Heading size="md" as="h2">
-            {DROPDOWN_SECTIONS.disabled.label}
-          </Heading>
-        </div>
+      <section id={DROPDOWN_SECTIONS.disabled.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={DROPDOWN_SECTIONS.disabled.label} icon={DROPDOWN_SECTIONS.disabled.icon} />
 
         <Stage code={DROPDOWN_DISABLED_CODE_SAMPLE}>
           <div className="flex flex-wrap gap-6 items-center justify-center">
@@ -307,14 +283,8 @@ export function DropdownView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={DROPDOWN_SECTIONS.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {DROPDOWN_SECTIONS.continuity.label}
-        </Heading>
-
+      <section id={DROPDOWN_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{DROPDOWN_SECTIONS.continuity.label}</Heading>
         <Description>
           Dropdown triggers uphold complete dimensional stability across active and dormant states. The trigger maintains steady geometry without spatial reflows when opening or dismissing the floating menu.
         </Description>
@@ -329,13 +299,8 @@ export function DropdownView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={DROPDOWN_SECTIONS.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {DROPDOWN_SECTIONS.accessibility.label}
-        </Heading>
+      <section id={DROPDOWN_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{DROPDOWN_SECTIONS.accessibility.label}</Heading>
 
         <Description>
           Dropdown adheres strictly to the W3C WAI ARIA Menu pattern. Triggers declare aria haspopup menu and communicate expanded status through aria expanded and aria controls.
@@ -351,13 +316,8 @@ export function DropdownView() {
       </section>
 
       {/* Design Tokens Section */}
-      <section
-        id={DROPDOWN_SECTIONS.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {DROPDOWN_SECTIONS.tokens.label}
-        </Heading>
+      <section id={DROPDOWN_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2"> {DROPDOWN_SECTIONS.tokens.label}</Heading>
 
         <Description>
           Dropdown menus align with the Homonoid spatial scale across small, medium, and large density configurations.
@@ -373,13 +333,8 @@ export function DropdownView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={DROPDOWN_SECTIONS.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {DROPDOWN_SECTIONS.styleReference.label}
-        </Heading>
+      <section id={DROPDOWN_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{DROPDOWN_SECTIONS.styleReference.label}</Heading>
 
         <Description>
           Dropdown components utilize compound subcomponents to offer modular composition for simple action lists and complex hierarchical menus.

@@ -59,23 +59,15 @@ export function SwitchView() {
             </Switch.Control>
             <Switch.Content>
               <Label>Airplane Mode</Label>
-              <Description>Disable cellular, Wi Fi, and Bluetooth connections</Description>
+              <Description>Disable connections</Description>
             </Switch.Content>
           </Switch>
         </Stage>
       </section>
 
       {/* States Section */}
-      <section
-        id={SWITCH_SECTIONS.states.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SWITCH_SECTIONS.states.icon} />
-          <Heading size="md" as="h2">
-            {SWITCH_SECTIONS.states.label}
-          </Heading>
-        </div>
+      <section id={SWITCH_SECTIONS.states.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SWITCH_SECTIONS.states.label} icon={SWITCH_SECTIONS.states.icon} />
 
         <Stage code={SWITCH_STATES_CODE_SAMPLE}>
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
@@ -88,16 +80,8 @@ export function SwitchView() {
       </section>
 
       {/* Sizes Section */}
-      <section
-        id={SWITCH_SECTIONS.sizes.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SWITCH_SECTIONS.sizes.icon} />
-          <Heading size="md" as="h2">
-            {SWITCH_SECTIONS.sizes.label}
-          </Heading>
-        </div>
+      <section id={SWITCH_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SWITCH_SECTIONS.sizes.label} icon={SWITCH_SECTIONS.sizes.icon} />
 
         <Stage code={SWITCH_SIZES_CODE_SAMPLE}>
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
@@ -109,16 +93,8 @@ export function SwitchView() {
       </section>
 
       {/* Label and Helper Section */}
-      <section
-        id={SWITCH_SECTIONS.labelAndHelper.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SWITCH_SECTIONS.labelAndHelper.icon} />
-          <Heading size="md" as="h2">
-            {SWITCH_SECTIONS.labelAndHelper.label}
-          </Heading>
-        </div>
+      <section id={SWITCH_SECTIONS.labelAndHelper.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SWITCH_SECTIONS.labelAndHelper.label} icon={SWITCH_SECTIONS.labelAndHelper.icon} />
 
         <Stage code={SWITCH_LABEL_HELPER_CODE_SAMPLE}>
           <div className="flex flex-col gap-4 max-w-sm">
@@ -128,7 +104,9 @@ export function SwitchView() {
               </Switch.Control>
               <Switch.Content>
                 <Label>Automatic updates</Label>
-                <Description>Download and install platform patches as soon as they become available.</Description>
+                <Description>
+                  Download and install platform patches as soon as they become available.
+                </Description>
               </Switch.Content>
             </Switch>
           </div>
@@ -136,16 +114,8 @@ export function SwitchView() {
       </section>
 
       {/* Radius Section */}
-      <section
-        id={SWITCH_SECTIONS.radius.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SWITCH_SECTIONS.radius.icon} />
-          <Heading size="md" as="h2">
-            {SWITCH_SECTIONS.radius.label}
-          </Heading>
-        </div>
+      <section id={SWITCH_SECTIONS.radius.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SWITCH_SECTIONS.radius.label} icon={SWITCH_SECTIONS.radius.icon} />
 
         <Stage code={SWITCH_RADIUS_CODE_SAMPLE}>
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
@@ -159,16 +129,8 @@ export function SwitchView() {
       </section>
 
       {/* Disabled Section */}
-      <section
-        id={SWITCH_SECTIONS.disabled.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={SWITCH_SECTIONS.disabled.icon} />
-          <Heading size="md" as="h2">
-            {SWITCH_SECTIONS.disabled.label}
-          </Heading>
-        </div>
+      <section id={SWITCH_SECTIONS.disabled.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SWITCH_SECTIONS.disabled.label} icon={SWITCH_SECTIONS.disabled.icon} />
 
         <Stage code={SWITCH_DISABLED_CODE_SAMPLE}>
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
@@ -179,13 +141,8 @@ export function SwitchView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={SWITCH_SECTIONS.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SWITCH_SECTIONS.continuity.label}
-        </Heading>
+      <section id={SWITCH_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{SWITCH_SECTIONS.continuity.label}</Heading>
 
         <Description>
           State transitions maintain absolute geometric stability. Outer boundaries and track dimensions remain locked in place when transitioning across unchecked and checked states.
@@ -201,13 +158,8 @@ export function SwitchView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={SWITCH_SECTIONS.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SWITCH_SECTIONS.accessibility.label}
-        </Heading>
+      <section id={SWITCH_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{SWITCH_SECTIONS.accessibility.label}</Heading>
 
         <Description>
           Accessibility for binary toggles guarantees predictable state announcements and effortless interaction across all assistive technologies.
@@ -223,13 +175,8 @@ export function SwitchView() {
       </section>
 
       {/* Design Tokens Section */}
-      <section
-        id={SWITCH_SECTIONS.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SWITCH_SECTIONS.tokens.label}
-        </Heading>
+      <section id={SWITCH_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2"> {SWITCH_SECTIONS.tokens.label}</Heading>
 
         <Description>
           Control dimensions map directly to standardized spatial tokens comprising small 28px width, medium 44px width, and large 56px width presentations.
@@ -245,13 +192,8 @@ export function SwitchView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={SWITCH_SECTIONS.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {SWITCH_SECTIONS.styleReference.label}
-        </Heading>
+      <section id={SWITCH_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{SWITCH_SECTIONS.styleReference.label}</Heading>
 
         <Description>
           Accessible native input elements preserve standard form integration, keyboard spacebar toggles, and screen reader announcements.

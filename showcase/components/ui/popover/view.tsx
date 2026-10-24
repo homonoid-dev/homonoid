@@ -15,6 +15,12 @@ import { highlighter } from "@/components/ui/code";
 import { useToc } from "@/components/ui/toc";
 import { Pagination } from "@/components/ui/pagination";
 import {
+  ArrowUp,
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+} from "lucide-react";
+import {
   POPOVER_SECTIONS,
   POPOVER_SECTIONS_LIST,
   POPOVER_DEFAULT_CODE_SAMPLE,
@@ -25,11 +31,12 @@ import {
 } from "./model";
 
 const PLACEMENTS = [
-  { side: "top" as const, label: "Top" },
-  { side: "bottom" as const, label: "Bottom" },
-  { side: "left" as const, label: "Left" },
-  { side: "right" as const, label: "Right" },
+  { side: "top" as const, label: "Top", icon: ArrowUp },
+  { side: "bottom" as const, label: "Bottom", icon: ArrowDown },
+  { side: "left" as const, label: "Left", icon: ArrowLeft },
+  { side: "right" as const, label: "Right", icon: ArrowRight },
 ];
+
 
 const VARIANTS = [
   { variant: "surface" as const, label: "Surface" },
@@ -95,22 +102,16 @@ export function PopoverView() {
       </section>
 
       {/* Placements Section */}
-      <section
-        id={POPOVER_SECTIONS.placements.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={POPOVER_SECTIONS.placements.icon} />
-          <Heading size="md" as="h2">
-            {POPOVER_SECTIONS.placements.label}
-          </Heading>
-        </div>
+      <section id={POPOVER_SECTIONS.placements.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={POPOVER_SECTIONS.placements.label} icon={POPOVER_SECTIONS.placements.icon} />
 
         <Stage code={POPOVER_PLACEMENTS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-4 p-6">
             {PLACEMENTS.map((item) => (
               <Popover key={item.side} side={item.side}>
-                <Button variant="outlined">{item.label}</Button>
+                <Button layout="icon" variant="outlined">
+                  <item.icon className="w-4 h-4" />
+                </Button>
                 <Popover.Content className="max-w-56">
                   <Popover.Dialog>
                     <Popover.Heading size="sm">{item.label} Placement</Popover.Heading>
@@ -126,16 +127,8 @@ export function PopoverView() {
       </section>
 
       {/* Variants Section */}
-      <section
-        id={POPOVER_SECTIONS.variants.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={POPOVER_SECTIONS.variants.icon} />
-          <Heading size="md" as="h2">
-            {POPOVER_SECTIONS.variants.label}
-          </Heading>
-        </div>
+      <section id={POPOVER_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={POPOVER_SECTIONS.variants.label} icon={POPOVER_SECTIONS.variants.icon} />
 
         <Stage code={POPOVER_VARIANTS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-4 p-6">
@@ -157,16 +150,8 @@ export function PopoverView() {
       </section>
 
       {/* Sizes Section */}
-      <section
-        id={POPOVER_SECTIONS.sizes.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={POPOVER_SECTIONS.sizes.icon} />
-          <Heading size="md" as="h2">
-            {POPOVER_SECTIONS.sizes.label}
-          </Heading>
-        </div>
+      <section id={POPOVER_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={POPOVER_SECTIONS.sizes.label} icon={POPOVER_SECTIONS.sizes.icon} />
 
         <Stage code={POPOVER_SIZES_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-4 p-6">
@@ -188,16 +173,8 @@ export function PopoverView() {
       </section>
 
       {/* Form Actions Section */}
-      <section
-        id={POPOVER_SECTIONS.form.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={POPOVER_SECTIONS.form.icon} />
-          <Heading size="md" as="h2">
-            {POPOVER_SECTIONS.form.label}
-          </Heading>
-        </div>
+      <section id={POPOVER_SECTIONS.form.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={POPOVER_SECTIONS.form.label} icon={POPOVER_SECTIONS.form.icon} />
 
         <Stage code={POPOVER_FORM_CODE_SAMPLE}>
           <div className="flex items-center justify-center p-6">
@@ -228,13 +205,8 @@ export function PopoverView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={POPOVER_SECTIONS.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {POPOVER_SECTIONS.continuity.label}
-        </Heading>
+      <section id={POPOVER_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{POPOVER_SECTIONS.continuity.label}</Heading>
 
         <Description>
           Floating popover dialog surfaces preserve dimensional stability and spatial continuity across enter and exit transitions without geometric jitter.
@@ -250,13 +222,8 @@ export function PopoverView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={POPOVER_SECTIONS.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {POPOVER_SECTIONS.accessibility.label}
-        </Heading>
+      <section id={POPOVER_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{POPOVER_SECTIONS.accessibility.label}</Heading>
 
         <Description>
           Floating surfaces expose semantic dialog roles, establish accessible boundary signals, and coordinate native keyboard navigation.
@@ -276,13 +243,8 @@ export function PopoverView() {
       </section>
 
       {/* Design Tokens Section */}
-      <section
-        id={POPOVER_SECTIONS.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {POPOVER_SECTIONS.tokens.label}
-        </Heading>
+      <section id={POPOVER_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{POPOVER_SECTIONS.tokens.label}</Heading>
 
         <Description>
           Surface elevations consume surface, border, and foreground tokens dynamically across light and dark modes with zero arbitrary values.
@@ -298,13 +260,8 @@ export function PopoverView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={POPOVER_SECTIONS.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {POPOVER_SECTIONS.styleReference.label}
-        </Heading>
+      <section id={POPOVER_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{POPOVER_SECTIONS.styleReference.label}</Heading>
 
         <Description>
           Direct trigger elements bind automatically to floating reference targets without intermediate artificial wrapper containers.

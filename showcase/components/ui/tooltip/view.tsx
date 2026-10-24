@@ -5,7 +5,7 @@ import {
   Plus,
   Bookmark,
   Settings,
-  Sparkles,
+  Zap,
   ArrowUp,
   ArrowDown,
   ArrowLeft,
@@ -26,6 +26,35 @@ import {
   TOOLTIP_PLACEMENTS_CODE_SAMPLE,
   TOOLTIP_SHORTCUTS_CODE_SAMPLE,
 } from "./model";
+
+const VARIANTS = [
+  {
+    variant: "inverted" as const,
+    content: "Bookmark item",
+    icon: Bookmark,
+    buttonVariant: "contained" as const,
+  },
+  {
+    variant: "surface" as const,
+    content: "Settings panel",
+    icon: Settings,
+    buttonVariant: "outlined" as const,
+  },
+  {
+    variant: "primary" as const,
+    content: "Quick actions",
+    icon: Zap,
+    buttonVariant: "contained" as const,
+    buttonColor: "primary" as const,
+  },
+];
+
+const PLACEMENTS = [
+  { side: "top" as const, label: "Top", icon: ArrowUp },
+  { side: "bottom" as const, label: "Bottom", icon: ArrowDown },
+  { side: "left" as const, label: "Left", icon: ArrowLeft },
+  { side: "right" as const, label: "Right", icon: ArrowRight },
+];
 
 export function TooltipView() {
   useToc(TOOLTIP_SECTIONS_LIST);
@@ -73,92 +102,42 @@ export function TooltipView() {
       </section>
 
       {/* Variants Section */}
-      <section
-        id={TOOLTIP_SECTIONS.variants.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={TOOLTIP_SECTIONS.variants.icon} />
-          <Heading size="md" as="h2">
-            {TOOLTIP_SECTIONS.variants.label}
-          </Heading>
-        </div>
+      <section id={TOOLTIP_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={TOOLTIP_SECTIONS.variants.label} icon={TOOLTIP_SECTIONS.variants.icon} />
 
         <Stage code={TOOLTIP_VARIANTS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-6 p-6">
-            <Tooltip variant="inverted" content="Bookmark item">
-              <Button layout="icon" variant="contained">
-                <Bookmark className="w-4 h-4" />
-              </Button>
-            </Tooltip>
-
-            <Tooltip variant="surface" content="Settings panel">
-              <Button layout="icon" variant="outlined">
-                <Settings className="w-4 h-4" />
-              </Button>
-            </Tooltip>
-
-            <Tooltip variant="primary" content="AI Assistant">
-              <Button layout="icon" color="primary" variant="contained">
-                <Sparkles className="w-4 h-4" />
-              </Button>
-            </Tooltip>
+            {VARIANTS.map((item) => (
+              <Tooltip key={item.variant} variant={item.variant} content={item.content}>
+                <Button layout="icon" variant={item.buttonVariant} color={item.buttonColor}>
+                  <item.icon className="w-4 h-4" />
+                </Button>
+              </Tooltip>
+            ))}
           </div>
         </Stage>
       </section>
 
       {/* Placements Section */}
-      <section
-        id={TOOLTIP_SECTIONS.placements.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={TOOLTIP_SECTIONS.placements.icon} />
-          <Heading size="md" as="h2">
-            {TOOLTIP_SECTIONS.placements.label}
-          </Heading>
-        </div>
+      <section id={TOOLTIP_SECTIONS.placements.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={TOOLTIP_SECTIONS.placements.label} icon={TOOLTIP_SECTIONS.placements.icon} />
 
         <Stage code={TOOLTIP_PLACEMENTS_CODE_SAMPLE}>
           <div className="flex flex-wrap items-center justify-center gap-6 p-6">
-            <Tooltip side="top" content="North positioning">
-              <Button layout="icon" variant="outlined">
-                <ArrowUp className="w-4 h-4" />
-              </Button>
-            </Tooltip>
-
-            <Tooltip side="bottom" content="South positioning">
-              <Button layout="icon" variant="outlined">
-                <ArrowDown className="w-4 h-4" />
-              </Button>
-            </Tooltip>
-
-            <Tooltip side="left" content="West positioning">
-              <Button layout="icon" variant="outlined">
-                <ArrowLeft className="w-4 h-4" />
-              </Button>
-            </Tooltip>
-
-            <Tooltip side="right" content="East positioning">
-              <Button layout="icon" variant="outlined">
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Tooltip>
+            {PLACEMENTS.map((item) => (
+              <Tooltip key={item.side} side={item.side} content={`${item.label} positioning`}>
+                <Button layout="icon" variant="outlined">
+                  <item.icon className="w-4 h-4" />
+                </Button>
+              </Tooltip>
+            ))}
           </div>
         </Stage>
       </section>
 
       {/* Shortcuts Section */}
-      <section
-        id={TOOLTIP_SECTIONS.shortcuts.id}
-        className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <div className="flex flex-row gap-surface-gap items-center">
-          <Frame icon={TOOLTIP_SECTIONS.shortcuts.icon} />
-          <Heading size="md" as="h2">
-            {TOOLTIP_SECTIONS.shortcuts.label}
-          </Heading>
-        </div>
+      <section id={TOOLTIP_SECTIONS.shortcuts.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={TOOLTIP_SECTIONS.shortcuts.label} icon={TOOLTIP_SECTIONS.shortcuts.icon} />
 
         <Stage code={TOOLTIP_SHORTCUTS_CODE_SAMPLE}>
           <div className="flex items-center justify-center p-6">
@@ -170,7 +149,7 @@ export function TooltipView() {
               </Tooltip.Trigger>
               <Tooltip.Content>
                 Copy to clipboard
-                <Tooltip.Shortcut>⌘C</Tooltip.Shortcut>
+                <Tooltip.Shortcut keyValue="command" content="C" />
               </Tooltip.Content>
             </Tooltip>
           </div>
@@ -178,13 +157,8 @@ export function TooltipView() {
       </section>
 
       {/* Object Continuity Section */}
-      <section
-        id={TOOLTIP_SECTIONS.continuity.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {TOOLTIP_SECTIONS.continuity.label}
-        </Heading>
+      <section id={TOOLTIP_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{TOOLTIP_SECTIONS.continuity.label}</Heading>
 
         <Description>
           State transitions preserve spatial stability and component identity without abrupt dimensional jumps or visual flashes.
@@ -200,13 +174,8 @@ export function TooltipView() {
       </section>
 
       {/* Accessibility Section */}
-      <section
-        id={TOOLTIP_SECTIONS.accessibility.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {TOOLTIP_SECTIONS.accessibility.label}
-        </Heading>
+      <section id={TOOLTIP_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{TOOLTIP_SECTIONS.accessibility.label}</Heading>
 
         <Description>
           Accessibility guarantees assistive technology compatibility across keyboard and screen reader workflows.
@@ -222,13 +191,8 @@ export function TooltipView() {
       </section>
 
       {/* Design Tokens Section */}
-      <section
-        id={TOOLTIP_SECTIONS.tokens.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {TOOLTIP_SECTIONS.tokens.label}
-        </Heading>
+      <section id={TOOLTIP_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{TOOLTIP_SECTIONS.tokens.label}</Heading>
 
         <Description>
           Surface colors consume foreground, surface, and primary tokens dynamically across light and dark modes.
@@ -244,13 +208,8 @@ export function TooltipView() {
       </section>
 
       {/* Style Reference Section */}
-      <section
-        id={TOOLTIP_SECTIONS.styleReference.id}
-        className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y"
-      >
-        <Heading size="md" as="h2">
-          {TOOLTIP_SECTIONS.styleReference.label}
-        </Heading>
+      <section id={TOOLTIP_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
+        <Heading size="md" as="h2">{TOOLTIP_SECTIONS.styleReference.label}</Heading>
 
         <Description>
           Tooltips support both concise prop based composition and flexible compound structures for custom content requirements.

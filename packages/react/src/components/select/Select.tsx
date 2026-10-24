@@ -290,6 +290,7 @@ export const Select: SelectComponent = function Select({
                   label={option.label}
                   description={option.description}
                   leading={option.leading}
+                  trailing={option.trailing}
                   disabled={option.disabled}
                 />
               ))}

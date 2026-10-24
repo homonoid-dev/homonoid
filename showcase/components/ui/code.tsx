@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useRef, useEffect } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@homonoid/react/cn";
-import { any, cond, when } from "@homonoid/react";
+import { any, cond } from "@homonoid/react";
 
 export interface CodeProps {
   code: string;
@@ -11,17 +11,7 @@ export interface CodeProps {
   animated?: boolean;
 }
 
-// Regex matching TSX syntax tokens in priority order
-const TOKEN_PATTERN = new RegExp(
-  [
-    `(?<comment>//.*|/\\*[\\s\\S]*?\\*/)`,
-    `(?<string>"[^"\\\\]*(?:\\\\.[^"\\\\]*)*"|'[^'\\\\]*(?:\\\\.[^'\\\\]*)*'|\`[^\`\\\\]*(?:\\\\.[^\`\\\\]*)*\`)`,
-    `(?<tag><\\/?[A-Za-z0-9_.]+)`,
-    `(?<prop>\\b[a-zA-Z_][a-zA-Z0-9_-]*(?=\\s*=))`,
-    `(?<keyword>\\b(?:import|export|from|function|return|const|let|var|default|type|interface|as|switch|case|break|if|else)\\b)`,
-  ].join("|"),
-  "g"
-);
+const REGEX = /(\/\/.*)|("[^"]*"|'[^']*'|`[^`]*`)|(<\/?[A-Za-z0-9_.]+|\/?>)|(\b[a-zA-Z_][a-zA-Z0-9_-]*(?=\s*=))|(\b(?:import|export|from|function|return|const|let|var|default|type|interface|switch|case|break|if|else)\b|\bas(?=\s+const\b))/g;
 
 /**
  * Tokenizes TSX / JavaScript code into styled React spans using Homonoid tokens.
@@ -31,84 +21,85 @@ export function highlighter(code: string): React.ReactNode[] {
   const nodes: React.ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
+  REGEX.lastIndex = 0;
 
-  TOKEN_PATTERN.lastIndex = 0;
-
-  while ((match = TOKEN_PATTERN.exec(code)) !== null) {
-    const matchedText = match[0];
-    const matchIndex = match.index;
-
-    // Plain text before match
-    if (matchIndex > lastIndex) {
-      nodes.push(code.slice(lastIndex, matchIndex));
+  while ((match = REGEX.exec(code)) !== null) {
+    if (match.index > lastIndex) {
+      nodes.push(code.slice(lastIndex, match.index));
     }
-
-    const groups = match.groups || {};
-
-    if (groups.comment) {
+    const [, comment, string, tag, prop, keyword] = match;
+    if (comment) {
       nodes.push(
-        <span key={matchIndex} className="text-muted/60 italic">
-          {matchedText}
+        <span key={match.index} className="text-muted/60 italic">
+          {comment}
         </span>
       );
-    } else if (groups.string) {
+    } else if (string) {
       nodes.push(
-        <span key={matchIndex} className="text-muted">
-          {matchedText}
+        <span key={match.index} className="text-muted">
+          {string}
         </span>
       );
-    } else if (groups.tag) {
-      const prefix = cond(matchedText.startsWith("</"), "</", "<");
-      const tagName = matchedText.slice(prefix.length);
+    } else if (tag) {
+      const isClose = tag.startsWith("</");
+      const isOpen = tag.startsWith("<");
+      const name = cond(isClose, tag.slice(2), cond(isOpen, tag.slice(1), ""));
       nodes.push(
-        <React.Fragment key={matchIndex}>
-          {prefix}
-          <span className="text-primary font-semibold">{tagName}</span>
-        </React.Fragment>
+        cond(
+          Boolean(name),
+          <React.Fragment key={match.index}>
+            {cond(isClose, "</", "<")}
+            <span className="text-primary font-semibold">{name}</span>
+          </React.Fragment>,
+          tag
+        )
       );
-    } else if (groups.prop) {
+    } else if (prop) {
       nodes.push(
-        <span key={matchIndex} className="text-muted">
-          {matchedText}
+        <span key={match.index} className="text-muted">
+          {prop}
         </span>
       );
-    } else if (groups.keyword) {
+    } else if (keyword) {
       nodes.push(
-        <span key={matchIndex} className="text-primary">
-          {matchedText}
+        <span key={match.index} className="text-primary">
+          {keyword}
         </span>
       );
-    } else {
-      nodes.push(matchedText);
     }
-
-    lastIndex = matchIndex + matchedText.length;
+    lastIndex = match.index + match[0].length;
   }
 
-  // Trailing plain text
-  when(lastIndex < code.length, () => {
+  if (lastIndex < code.length) {
     nodes.push(code.slice(lastIndex));
-  });
-
+  }
   return nodes;
 }
 
 export function Code({ code, className, animated = false }: CodeProps) {
   const shouldReduceMotion = useReducedMotion();
   const lines = useMemo(() => code.split("\n"), [code]);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = 0;
+    }
+  }, [code]);
 
   if (any(!animated, shouldReduceMotion)) {
     return (
       <div
+        ref={scrollRef}
         className={cn(
           "overflow-x-auto text-xs font-mono leading-relaxed select-text",
           className
         )}
       >
-        <pre className="text-foreground">
-          <code>
+        <pre className="text-foreground w-fit min-w-full">
+          <code className="block w-fit min-w-full">
             {lines.map((line, index) => (
-              <span key={index} className="block min-h-[1.5em]">
+              <span key={index} className="block min-h-[1.5em] w-fit min-w-full pr-8">
                 {cond(line.length > 0, highlighter(line), "\u00A0")}
               </span>
             ))}
@@ -120,22 +111,23 @@ export function Code({ code, className, animated = false }: CodeProps) {
 
   return (
     <div
+      ref={scrollRef}
       className={cn(
         "overflow-x-auto text-xs font-mono leading-relaxed select-text",
         className
       )}
     >
-      <pre className="text-foreground">
-        <code>
+      <pre className="text-foreground w-fit min-w-full">
+        <code className="block w-fit min-w-full">
           {lines.map((line, index) => (
             <motion.span
               key={index}
-              className="block min-h-[1.5em]"
-              initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }}
-              animate={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
+              className="block min-h-[1.5em] w-fit min-w-full pr-8"
+              initial={{ opacity: 0, y: 3 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.20,
-                delay: Math.min(index * 0.020, 0.40),
+                duration: 0.18,
+                delay: Math.min(index * 0.015, 0.35),
                 ease: [0.15, 1, 0.35, 1],
               }}
             >

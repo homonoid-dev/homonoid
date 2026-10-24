@@ -1,8 +1,10 @@
 import type { InputHTMLAttributes, ReactNode, Ref } from "react";
-import type { Size } from "../../types";
+import type { Color, Radius, Size, Variant } from "../../types";
 
 export type InputSize = Size;
-export type InputVariant = "outlined" | "filled" | "plain";
+export type InputVariant = Variant;
+export type InputRadius = Radius;
+export type InputColor = Color;
 
 export interface InputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "prefix"> {
@@ -14,7 +16,7 @@ export interface InputProps
   /**
    * Structural surface treatment.
    * - `outlined`: Default bordered boundary with resting hairline stroke.
-   * - `filled`: Tinted subtle surface fill with subdued border.
+   * - `contained`: Tinted subtle surface fill with subdued border.
    * - `plain`: Clean borderless container without resting background.
    * @default "outlined"
    */
@@ -28,6 +30,16 @@ export interface InputProps
    * @default "md"
    */
   size?: InputSize;
+
+  /**
+   * Border radius curvature for the container frame.
+   * - `none`: Square container boundary.
+   * - `sm`: Subtle 4px rounded corners (`rounded-sm`).
+   * - `md`: Standard 6px rounded corners (`rounded-md`).
+   * - `lg`: Prominent 8px rounded corners (`rounded-lg`).
+   * - `full`: Continuous pill curvature (`rounded-full`).
+   */
+  radius?: InputRadius;
 
   /**
    * Optional primary textual or visual label associated with the input.

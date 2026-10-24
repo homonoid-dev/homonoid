@@ -14,10 +14,10 @@ import type { SelectContentProps } from "./types";
 
 const radiusClasses: Record<string, string> = {
   none: "rounded-none",
-  sm: "rounded-lg",
-  md: "rounded-xl",
-  lg: "rounded-2xl",
-  full: "rounded-3xl",
+  sm: "rounded-md",
+  md: "rounded-lg",
+  lg: "rounded-xl",
+  full: "rounded-2xl",
 };
 
 export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
@@ -87,7 +87,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
               className={cn(
                 "transform-gpu overflow-hidden bg-surface border-[0.5px] border-border shadow-lg p-1 focus:outline-none",
                 cond(context.placement.startsWith("top"), "origin-bottom", "origin-top"),
-                match(radius, radiusClasses, "rounded-2xl"),
+                match(radius, radiusClasses, "rounded-md"),
                 className
               )}
             >

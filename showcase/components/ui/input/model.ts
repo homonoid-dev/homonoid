@@ -1,7 +1,5 @@
-import type { LucideIcon } from "lucide-react";
 import {
   Layers,
-  Ruler,
   AtSign,
   Tag,
   AlertCircle,
@@ -11,6 +9,7 @@ import {
   MousePointerClick,
   Palette,
   BookOpen,
+  LucideIcon,
 } from "lucide-react";
 import type { TocItem } from "@/components/ui/toc";
 import type { InteractiveStateItem } from "@/components/ui/interactive-states";
@@ -26,11 +25,6 @@ export const INPUT_SECTIONS: Record<string, InputSectionItem> = {
     id: "variants",
     label: "Variants",
     icon: Layers,
-  },
-  sizes: {
-    id: "sizes",
-    label: "Sizes",
-    icon: Ruler,
   },
   adornments: {
     id: "adornments",
@@ -121,20 +115,8 @@ export function Example() {
   return (
     <div className="flex flex-col gap-surface-gap w-full max-w-sm">
       <Input variant="outlined" placeholder="Outlined input" />
-      <Input variant="filled" placeholder="Filled input" />
+      <Input variant="contained" placeholder="Contained input" />
       <Input variant="plain" placeholder="Plain input" />
-    </div>
-  );
-}`;
-
-export const INPUT_SIZES_CODE_SAMPLE = `import { Input } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-      <Input size="sm" placeholder="Small input" />
-      <Input size="md" placeholder="Medium input" />
-      <Input size="lg" placeholder="Large input" />
     </div>
   );
 }`;
