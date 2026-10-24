@@ -145,14 +145,14 @@ export function Example() {
     <div className="w-full max-w-sm">
       <Searchbar
         ref={inputRef}
-        leading={<Search className="size-4 text-muted" />}
+        leading={<Search className="size-4 text-muted" aria-hidden="true" />}
         trailing={
           <Kbd>
             <Kbd.Abbr keyValue="command" />
             <Kbd.Content>K</Kbd.Content>
           </Kbd>
         }
-        placeholder="Quick find (click shortcut or ⌘K)..."
+        placeholder="Quick find..."
       />
     </div>
   );

@@ -15,6 +15,7 @@ export const KbdContent = forwardRef<HTMLSpanElement, KbdContentProps>(
     return (
       <span
         ref={ref}
+        aria-hidden="true"
         className={className}
         {...props}
       >

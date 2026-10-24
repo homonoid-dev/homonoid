@@ -1,12 +1,12 @@
 "use client";
 
-import { forwardRef } from "react";
+import { forwardRef, Children, isValidElement, type ReactNode } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import { cond, when } from "../../utils/condition";
-import { KbdAbbr } from "./KbdAbbr";
+import { KbdAbbr, KEY_SYMBOLS } from "./KbdAbbr";
 import { KbdContent } from "./KbdContent";
-import type { KbdProps } from "./types";
+import type { KbdProps, KbdKeyValue } from "./types";
 
 const PALETTES = {
   surface: {
@@ -77,6 +77,61 @@ export const variants = cva(
   }
 );
 
+function extractKbdAriaLabel(
+  keyValue?: KbdKeyValue | readonly KbdKeyValue[],
+  content?: ReactNode,
+  children?: ReactNode
+): string | undefined {
+  const parts: string[] = [];
+
+  const addKey = (k: string) => {
+    const keyInfo = KEY_SYMBOLS[k.toLowerCase()];
+    parts.push(keyInfo?.title || k);
+  };
+
+  if (Array.isArray(keyValue)) {
+    keyValue.forEach((k) => addKey(String(k)));
+  } else if (keyValue) {
+    addKey(String(keyValue));
+  }
+
+  if (typeof content === "string" || typeof content === "number") {
+    parts.push(String(content));
+  }
+
+  if (children && parts.length === 0) {
+    Children.forEach(children, (child) => {
+      if (child === null || child === undefined || typeof child === "boolean") return;
+      if (typeof child === "string" || typeof child === "number") {
+        const text = String(child).trim();
+        if (text) {
+          const symMatch = Object.values(KEY_SYMBOLS).find((s) => s.symbol === text);
+          parts.push(symMatch?.title || text);
+        }
+      } else if (isValidElement(child)) {
+        const p = child.props as {
+          keyValue?: string | readonly string[];
+          title?: string;
+          children?: ReactNode;
+          content?: ReactNode;
+        };
+        if (p.keyValue) {
+          const keys = Array.isArray(p.keyValue) ? p.keyValue : [p.keyValue];
+          keys.forEach((k) => addKey(String(k)));
+        }
+        if (typeof p.content === "string") {
+          parts.push(p.content);
+        }
+        if (typeof p.children === "string" && !p.keyValue) {
+          parts.push(p.children);
+        }
+      }
+    });
+  }
+
+  return parts.length > 0 ? parts.join(" ") : undefined;
+}
+
 export interface KbdComponent
   extends React.ForwardRefExoticComponent<
     KbdProps & React.RefAttributes<HTMLElement>
@@ -106,24 +161,28 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(
       keyValue as string[],
       cond(Boolean(keyValue), [keyValue as string], [])
     );
+    const ariaLabel = props["aria-label"] || extractKbdAriaLabel(keyValue, content, children);
 
     return (
       <kbd
         ref={ref}
+        aria-label={ariaLabel}
         className={cn(variants({ variant, color, size, radius }), className)}
         {...props}
       >
-        {cond(
-          hasAtomic,
-          <>
-            {keyList.map((key, index) => (
-              <KbdAbbr key={index} keyValue={key} />
-            ))}
-            {when(Boolean(content), <KbdContent>{content}</KbdContent>)}
-            {children}
-          </>,
-          children
-        )}
+        <span aria-hidden="true" className="inline-flex items-center justify-center gap-inherit">
+          {cond(
+            hasAtomic,
+            <>
+              {keyList.map((key, index) => (
+                <KbdAbbr key={index} keyValue={key} />
+              ))}
+              {when(Boolean(content), <KbdContent>{content}</KbdContent>)}
+              {children}
+            </>,
+            children
+          )}
+        </span>
       </kbd>
     );
   }
