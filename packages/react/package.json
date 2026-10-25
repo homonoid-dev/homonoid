@@ -29,6 +29,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
+    "lint": "tsc --noEmit",
     "prepack": "tsc"
   },
   "publishConfig": {

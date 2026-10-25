@@ -16,6 +16,7 @@
   "scripts": {
     "build": "tsc && chmod +x dist/index.js",
     "clean": "rm -rf dist",
+    "lint": "tsc --noEmit",
     "prepack": "tsc && chmod +x dist/index.js"
   },
   "publishConfig": {
