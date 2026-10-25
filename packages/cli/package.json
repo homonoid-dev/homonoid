@@ -1,0 +1,49 @@
+{
+  "name": "@homonoid/cli",
+  "version": "0.1.0",
+  "description": "Command line interface for onboarding and automating the Homonoid design system",
+  "type": "module",
+  "bin": {
+    "homonoid": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc && chmod +x dist/index.js",
+    "clean": "rm -rf dist",
+    "prepack": "tsc && chmod +x dist/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/homonoid-dev/homonoid.git",
+    "directory": "packages/cli"
+  },
+  "keywords": [
+    "homonoid",
+    "cli",
+    "design-system",
+    "chroma",
+    "theme",
+    "tailwindcss",
+    "tokens",
+    "react"
+  ],
+  "author": "Homonoid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/homonoid-dev/homonoid/issues"
+  },
+  "homepage": "https://github.com/homonoid-dev/homonoid/tree/main/packages/cli#readme",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.8.2"
+  }
+}
