@@ -1,17 +1,62 @@
 {
   "name": "@homonoid/tokens",
   "version": "0.1.0",
-  "private": true,
+  "description": "Canonical design tokens for the Homonoid design system",
   "type": "module",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./src/index.ts",
-    "./react": "./src/react/index.ts",
-    "./web": "./src/react/index.ts",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js"
+    },
+    "./web": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js"
+    },
     "./css": "./src/react/index.css",
     "./css/colors": "./src/react/colors.css",
     "./css/spatial": "./src/react/spatial.css",
     "./css/motion": "./src/react/motion.css"
+  },
+  "files": [
+    "dist",
+    "src/react/*.css",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepack": "tsc"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/homonoid-dev/homonoid.git",
+    "directory": "packages/tokens"
+  },
+  "keywords": [
+    "homonoid",
+    "design-tokens",
+    "design-system",
+    "tokens",
+    "css-variables",
+    "react"
+  ],
+  "author": "Lumunar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/homonoid-dev/homonoid/issues"
+  },
+  "homepage": "https://github.com/homonoid-dev/homonoid/tree/main/packages/tokens#readme",
+  "devDependencies": {
+    "typescript": "^5.8.2"
   }
 }
