@@ -1,19 +1,61 @@
 {
   "name": "@homonoid/react",
   "version": "0.1.0",
-  "private": true,
+  "description": "React implementation of the Homonoid design system",
   "type": "module",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./src/index.ts",
-    "./cn": "./src/utils/cn.ts",
-    "./condition": "./src/utils/condition.ts",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./cn": {
+      "types": "./dist/utils/cn.d.ts",
+      "import": "./dist/utils/cn.js"
+    },
+    "./condition": {
+      "types": "./dist/utils/condition.d.ts",
+      "import": "./dist/utils/condition.js"
+    },
     "./styles.css": "./src/styles.css"
   },
+  "files": [
+    "dist",
+    "src/**/*.css",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepack": "tsc"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/homonoid-dev/homonoid.git",
+    "directory": "packages/react"
+  },
+  "keywords": [
+    "homonoid",
+    "react",
+    "components",
+    "design-system",
+    "ui",
+    "tailwindcss"
+  ],
+  "author": "Homonoid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/homonoid-dev/homonoid/issues"
+  },
+  "homepage": "https://github.com/homonoid-dev/homonoid/tree/main/packages/react#readme",
   "dependencies": {
     "@floating-ui/react": "^0.27.20",
-    "@homonoid/tokens": "*",
+    "@homonoid/tokens": "^0.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.0.1"
@@ -27,6 +69,7 @@
     "@types/react-dom": "^19.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwindcss": "^4.0.0"
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.8.2"
   }
 }
