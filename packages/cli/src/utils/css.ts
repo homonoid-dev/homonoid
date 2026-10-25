@@ -22,12 +22,17 @@ export function findStylesheetPath(targetDir: string): string | null {
   return null;
 }
 
-export function ensureHomonoidCss(cssPath: string): { changed: boolean } {
+export function ensureHomonoidCss(cssPath: string, targetDir: string = process.cwd()): { changed: boolean } {
   let content = fs.readFileSync(cssPath, "utf-8");
   const tailwindImport = '@import "tailwindcss";';
   const tokensImport = '@import "@homonoid/tokens/css";';
   const reactStylesImport = '@import "@homonoid/react/styles.css";';
-  const reactSource = '@source "../node_modules/@homonoid/react";';
+
+  const relativeSource = path
+    .relative(path.dirname(cssPath), path.join(targetDir, "node_modules/@homonoid/react"))
+    .split(path.sep)
+    .join("/");
+  const reactSource = `@source "${relativeSource}";`;
 
   let additions = "";
   if (!content.includes(tokensImport)) {

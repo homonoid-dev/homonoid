@@ -38,7 +38,7 @@ export async function runInit(targetDir: string, options: InitOptions = {}): Pro
 
   const cssPath = findStylesheetPath(targetDir);
   if (cssPath) {
-    const { changed } = ensureHomonoidCss(cssPath);
+    const { changed } = ensureHomonoidCss(cssPath, targetDir);
     const relPath = path.relative(targetDir, cssPath);
     if (changed) {
       console.log(`  Injected Homonoid tokens and Tailwind sources into ${relPath}`);
