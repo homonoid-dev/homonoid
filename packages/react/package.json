@@ -1,6 +1,6 @@
 {
   "name": "@homonoid/react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React implementation of the Homonoid design system",
   "type": "module",
   "main": "./dist/index.js",
