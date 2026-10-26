@@ -8,7 +8,7 @@ import {
 } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
-import { any, cond, when } from "../../utils/condition";
+import { any, cond, match, when } from "../../utils/condition";
 import type { InputProps } from "./types";
 
 export const variants = cva(
@@ -187,7 +187,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           className={cn(
             "font-medium",
             cond(isInvalid, "text-destructive", "text-foreground"),
-            cond(size === "sm", "text-xs", "text-sm"),
+            match(size, { sm: "text-[11px]", md: "text-xs", lg: "text-sm" }, "text-xs"),
             cond(disabled, "opacity-60 cursor-not-allowed", "cursor-pointer")
           )}
         >
