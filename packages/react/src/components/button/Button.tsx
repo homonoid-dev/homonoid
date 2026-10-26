@@ -17,8 +17,8 @@ const PALETTES = {
     border: "border-subtle-border",
   },
   surface: {
-    solid: "bg-surface text-surface-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover",
-    ghost: "text-surface-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover",
+    solid: "bg-surface text-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover",
+    ghost: "text-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover",
     border: "border-border",
   },
   destructive: {
@@ -136,7 +136,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       {/* Button Content (preserved during loading to prevent dimensional collapse) */}
       <span
         className={cn(
-          "inline-flex items-center gap-[inherit] transition-all duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)]",
+          "inline-flex items-center gap-[inherit] transition-[opacity,transform] duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)]",
           cond(
             loading,
             "opacity-0 scale-95 pointer-events-none",
