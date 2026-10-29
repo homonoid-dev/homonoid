@@ -196,37 +196,41 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 
   const floatingLabelElement = when(
     all(isFloating, Boolean(label)),
-    <label
-      id={labelId}
-      htmlFor={inputId}
-      data-slot="input-floating-label"
-      data-floated={cond(isFloated, "true", "false")}
+    <div
       className={cn(
-        "pointer-events-none absolute left-0 select-none z-10 font-medium leading-none origin-left max-w-full truncate",
-        "transition-[top,transform,color,background-color,padding] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
-        floatingLabelColor,
-        cond(
-          isFloated,
-          cn(
-            "top-0 -translate-y-1/2 -ml-1 px-1 rounded-xs scale-85",
-            floatingLabelBg
-          ),
-          cn(
-            "top-1/2 -translate-y-1/2 ml-0 px-0 bg-transparent scale-100",
-            restingLabelSize
-          )
-        ),
-        cond(disabled, "opacity-50", undefined)
+        "pointer-events-none absolute inset-0 select-none z-10 flex items-center",
+        "transform-gpu transition-transform duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
+        cond(isFloated, "-translate-y-1/2", "translate-y-0")
       )}
     >
-      {label}
-      {when(
-        props.required,
-        <span className="text-destructive ml-0.5" aria-hidden="true">
-          *
-        </span>
-      )}
-    </label>
+      <label
+        id={labelId}
+        htmlFor={inputId}
+        data-slot="input-floating-label"
+        data-floated={cond(isFloated, "true", "false")}
+        className={cn(
+          "inline-flex items-center -ml-1 px-1 rounded-xs truncate font-medium leading-normal origin-left",
+          "transform-gpu subpixel-antialiased",
+          "transition-[transform,color,background-color] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
+          restingLabelSize,
+          floatingLabelColor,
+          cond(
+            isFloated,
+            cn("scale-85", floatingLabelBg),
+            "scale-100 bg-transparent"
+          ),
+          cond(disabled, "opacity-50", undefined)
+        )}
+      >
+        {label}
+        {when(
+          props.required,
+          <span className="text-destructive ml-0.5" aria-hidden="true">
+            *
+          </span>
+        )}
+      </label>
+    </div>
   );
 
   const inputElement = (
