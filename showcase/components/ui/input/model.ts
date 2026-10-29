@@ -173,6 +173,7 @@ export function Example() {
       <Input
         floating
         label="First Name"
+        placeholder="Enter your first name"
       />
       <Input
         floating

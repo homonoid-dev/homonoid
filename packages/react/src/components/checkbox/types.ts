@@ -100,11 +100,21 @@ export interface CheckboxContentProps extends HTMLAttributes<HTMLSpanElement> {
 export type CheckboxPlacement = "leading" | "trailing";
 
 export interface CheckboxTileProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "onChange" | "checked"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   /**
-   * Ref forwarded to the underlying native input element.
+   * Ref forwarded to the root tile container element.
    */
-  ref?: Ref<HTMLInputElement>;
+  ref?: Ref<HTMLDivElement>;
+
+  /**
+   * Optional form input name.
+   */
+  name?: string;
+
+  /**
+   * Optional form input value.
+   */
+  value?: string;
 
   /**
    * Tile structural variant.
@@ -158,6 +168,12 @@ export interface CheckboxTileProps
    * @default false
    */
   invalid?: boolean;
+
+  /**
+   * Whether the tile renders in a selected visual state.
+   * @default false
+   */
+  selected?: boolean;
 
   /**
    * Where to place the checkbox control within the tile.

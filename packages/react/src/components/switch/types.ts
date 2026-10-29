@@ -93,11 +93,21 @@ export interface SwitchContentProps extends HTMLAttributes<HTMLSpanElement> {
 export type SwitchPlacement = "leading" | "trailing";
 
 export interface SwitchTileProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "onChange" | "checked"> {
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   /**
-   * Ref forwarded to the underlying native input element.
+   * Ref forwarded to the root tile container element.
    */
-  ref?: Ref<HTMLInputElement>;
+  ref?: Ref<HTMLDivElement>;
+
+  /**
+   * Optional form input name.
+   */
+  name?: string;
+
+  /**
+   * Optional form input value.
+   */
+  value?: string;
 
   /**
    * Tile structural variant.
@@ -145,6 +155,12 @@ export interface SwitchTileProps
    * @default false
    */
   invalid?: boolean;
+
+  /**
+   * Whether the tile renders in a selected visual state.
+   * @default false
+   */
+  selected?: boolean;
 
   /**
    * Where to place the switch control within the tile.
