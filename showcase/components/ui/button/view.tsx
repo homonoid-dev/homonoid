@@ -77,7 +77,7 @@ export function ButtonView() {
 
         {/* Variants Stage */}
         <Stage code={BUTTON_VARIANTS_CODE_SAMPLE}>
-          <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-surface-gap">
             <Button variant="contained" color="primary">
               Primary
             </Button>
@@ -103,7 +103,7 @@ export function ButtonView() {
 
         {/* Sizes Stage */}
         <Stage code={BUTTON_SIZES_CODE_SAMPLE}>
-          <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+          <div className="flex flex-row flex-wrap justify-center items-center gap-surface-gap">
             <Button variant="contained" size="sm">
               Small
             </Button>
@@ -182,7 +182,7 @@ export function ButtonView() {
 
         {/* Disabled Stage */}
         <Stage code={BUTTON_DISABLED_CODE_SAMPLE}>
-          <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+          <div className="flex flex-row flex-wrap justify-center items-center gap-surface-gap">
             <Button variant="contained" disabled>
               Contained
             </Button>

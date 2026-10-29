@@ -66,7 +66,7 @@ export function SpinnerView() {
         <Frame text={SPINNER_SECTIONS.animations.label} icon={SPINNER_SECTIONS.animations.icon} />
 
         <Stage code={SPINNER_ANIMATIONS_CODE_SAMPLE}>
-          <div className="flex flex-row items-center gap-12">
+          <div className="flex flex-row flex-wrap justify-center items-center gap-surface-gap">
             <div className="flex flex-col items-center gap-2">
               <Spinner animation="border" />
               <span className="text-xs text-muted">Border</span>
@@ -92,7 +92,7 @@ export function SpinnerView() {
         <Frame text={SPINNER_SECTIONS.sizes.label} icon={SPINNER_SECTIONS.sizes.icon} />
 
         <Stage code={SPINNER_SIZES_CODE_SAMPLE}>
-          <div className="flex flex-row items-center gap-surface-gap">
+          <div className="flex flex-row flex-wrap justify-center items-center gap-surface-gap">
             <Spinner size="sm" />
             <Spinner size="md" />
             <Spinner size="lg" />

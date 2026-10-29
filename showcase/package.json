@@ -11,20 +11,20 @@
   "dependencies": {
     "@homonoid/react": "*",
     "@homonoid/tokens": "*",
-    "lucide-react": "^1.55.0",
-    "motion": "^14.2.0",
-    "next": "^16.4.2",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "lucide-react": "^1.64.0",
+    "motion": "^14.7.1",
+    "next": "^16.4.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4.3.3",
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "eslint": "^10.12.0",
-    "eslint-config-next": "^16.4.2",
+    "eslint": "^10.13.0",
+    "eslint-config-next": "^16.4.3",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5.8.2"
+    "typescript": "^7.0.2"
   }
 }

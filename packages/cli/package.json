@@ -44,7 +44,7 @@
   },
   "homepage": "https://github.com/homonoid-dev/homonoid/tree/main/packages/cli#readme",
   "devDependencies": {
-    "@types/node": "^22.0.0",
-    "typescript": "^5.8.2"
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
   }
 }
