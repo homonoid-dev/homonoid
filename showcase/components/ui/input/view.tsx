@@ -124,6 +124,7 @@ export function InputView() {
             <Input
               floating
               label="First Name"
+              placeholder="Enter your first name"
             />
             <Input
               floating

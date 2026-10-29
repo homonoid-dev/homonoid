@@ -101,7 +101,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   },
   ref
 ) {
-  const isFloating = any(floating, floatingLabel);
+  const isFloating = all(any(floating, floatingLabel), Boolean(label));
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState(defaultValue ?? "");
   const [isFocused, setIsFocused] = useState(false);
