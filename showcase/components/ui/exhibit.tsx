@@ -2,8 +2,8 @@
 
 import type { ComponentType, ReactNode } from "react";
 import Link from "next/link";
-import type { LucideIcon } from "lucide-react";
-import { Heading, Description, Card, Button } from "@homonoid/react";
+import { Component, List, type LucideIcon } from "lucide-react";
+import { Heading, Description, Card, Tile, Button } from "@homonoid/react";
 import { cn } from "@homonoid/react/cn";
 import { any, cond, when } from "@homonoid/react";
 import { highlighter } from "./code";
@@ -213,26 +213,24 @@ export function Exhibit({
       {/* Main Content & Interactive Stages */}
       {children}
 
-      {/* Related Components Subtle Chip Rail */}
+      {/* Related Components Outlined Tiles */}
       {when(
         resolvedRelated.length > 0,
-        <section className="flex flex-col gap-control-gap">
-          <Heading size="md" as="h2">Related</Heading>
-          {when(
-            Boolean(relatedDescription),
-            <Description>{relatedDescription}</Description>
-          )}
+        <section className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+          <Frame text="Related" icon={Component} />
 
-          <div className="flex flex-wrap items-center gap-control-gap">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-surface-gap">
             {resolvedRelated.map((item) => (
-              <Link key={item.href} href={item.href} tabIndex={-1}>
-                <Button
-                  variant="contained"
-                  color="subtle"
-                >
-                  {item.name}
-                </Button>
-              </Link>
+              <Tile
+                key={item.href}
+                as={Link}
+                href={item.href}
+                variant="outlined"
+                label={item.name}
+                description={item.description}
+                size="lg"
+                className="rounded-3xl"
+              />
             ))}
           </div>
         </section>
