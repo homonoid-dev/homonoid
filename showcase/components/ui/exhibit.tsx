@@ -109,6 +109,7 @@ export interface ExhibitProps {
   defaultStage?: ReactNode;
   sections?: TocItem[];
   related?: (string | ShowcaseComponentItem)[];
+  relatedDescription?: ReactNode;
   children?: ReactNode;
   className?: string;
 }
@@ -125,6 +126,7 @@ export function Exhibit({
   defaultStage,
   sections,
   related,
+  relatedDescription = "Explore complementary primitives and companion controls designed to pair naturally within unified interface layouts.",
   children,
   className,
 }: ExhibitProps) {
@@ -216,6 +218,11 @@ export function Exhibit({
         resolvedRelated.length > 0,
         <section className="flex flex-col gap-control-gap pt-layout-y">
           <Heading size="md" as="h2">Related</Heading>
+          {when(
+            Boolean(relatedDescription),
+            <Description>{relatedDescription}</Description>
+          )}
+
           <div className="flex flex-wrap items-center gap-control-gap">
             {resolvedRelated.map((item) => (
               <Link key={item.href} href={item.href} tabIndex={-1}>
