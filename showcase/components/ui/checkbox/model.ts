@@ -5,6 +5,7 @@ import {
   Tag,
   Square,
   Ban,
+  LayoutList,
   Infinity,
   Accessibility,
   Palette,
@@ -43,6 +44,11 @@ export const CHECKBOX_SECTIONS: Record<string, CheckboxSectionItem> = {
     id: "disabled",
     label: "Disabled",
     icon: Ban,
+  },
+  tile: {
+    id: "tile",
+    label: "Tile",
+    icon: LayoutList,
   },
   continuity: {
     id: "object-continuity",
@@ -145,3 +151,28 @@ export function Example() {
     </div>
   );
 }`;
+
+export const CHECKBOX_TILE_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
+
+export function Example() {
+  return (
+    <div className="flex flex-col gap-control-gap w-full max-w-sm">
+      <Checkbox.Tile
+        label="I agree to terms and conditions"
+        defaultChecked
+      />
+      <Checkbox.Tile
+        variant="outlined"
+        label="Push Notifications"
+        description="Receive instant alerts for incoming messages"
+        defaultChecked
+      />
+      <Checkbox.Tile
+        placement="leading"
+        label="Leading Selection"
+        description="Checkbox control positioned on the leading edge"
+      />
+    </div>
+  );
+}`;
+

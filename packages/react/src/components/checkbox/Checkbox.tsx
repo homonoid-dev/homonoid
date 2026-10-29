@@ -19,6 +19,7 @@ import { CheckboxContext, type CheckboxContextValue } from "./CheckboxContext";
 import { CheckboxControl } from "./CheckboxControl";
 import { CheckboxIndicator } from "./CheckboxIndicator";
 import { CheckboxContent } from "./CheckboxContent";
+import { CheckboxTile } from "./CheckboxTile";
 import type { CheckboxProps } from "./types";
 
 export interface CheckboxComponent
@@ -30,6 +31,7 @@ export interface CheckboxComponent
   Content: typeof CheckboxContent;
   Label: typeof Label;
   Description: typeof Description;
+  Tile: typeof CheckboxTile;
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
@@ -200,3 +202,4 @@ Checkbox.Indicator = CheckboxIndicator;
 Checkbox.Content = CheckboxContent;
 Checkbox.Label = Label;
 Checkbox.Description = Description;
+Checkbox.Tile = CheckboxTile;

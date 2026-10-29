@@ -16,6 +16,7 @@ import {
   CHECKBOX_LABEL_HELPER_CODE_SAMPLE,
   CHECKBOX_RADIUS_CODE_SAMPLE,
   CHECKBOX_DISABLED_CODE_SAMPLE,
+  CHECKBOX_TILE_CODE_SAMPLE,
 } from "./model";
 
 export function CheckboxView() {
@@ -127,6 +128,31 @@ export function CheckboxView() {
             <Checkbox disabled aria-label="Disabled unchecked" />
             <Checkbox disabled defaultChecked aria-label="Disabled checked" />
             <Checkbox disabled indeterminate aria-label="Disabled indeterminate" />
+          </div>
+        </Stage>
+      </section>
+
+      {/* Tile Section */}
+      <section id={CHECKBOX_SECTIONS.tile.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={CHECKBOX_SECTIONS.tile.label} icon={CHECKBOX_SECTIONS.tile.icon} />
+
+        <Stage code={CHECKBOX_TILE_CODE_SAMPLE}>
+          <div className="flex flex-col gap-control-gap w-full max-w-sm">
+            <Checkbox.Tile
+              label="I agree to terms and conditions"
+              defaultChecked
+            />
+            <Checkbox.Tile
+              variant="outlined"
+              label="Push Notifications"
+              description="Receive instant alerts for incoming messages"
+              defaultChecked
+            />
+            <Checkbox.Tile
+              placement="leading"
+              label="Leading Selection"
+              description="Checkbox control positioned on the leading edge"
+            />
           </div>
         </Stage>
       </section>

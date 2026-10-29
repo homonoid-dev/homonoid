@@ -96,3 +96,110 @@ export interface CheckboxContentProps extends HTMLAttributes<HTMLSpanElement> {
    */
   children?: ReactNode;
 }
+
+export type CheckboxPlacement = "leading" | "trailing";
+
+export interface CheckboxTileProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "onChange" | "checked"> {
+  /**
+   * Ref forwarded to the underlying native input element.
+   */
+  ref?: Ref<HTMLInputElement>;
+
+  /**
+   * Tile structural variant.
+   * @default "plain"
+   */
+  variant?: "plain" | "contained" | "outlined";
+
+  /**
+   * Semantic color intent.
+   * @default "surface"
+   */
+  color?: "surface" | "subtle" | "primary" | "destructive";
+
+  /**
+   * Standard control scale size.
+   * @default "md"
+   */
+  size?: CheckboxSize;
+
+  /**
+   * Corner radius curvature for the tile container.
+   * @default "lg"
+   */
+  radius?: CheckboxRadius;
+
+  /**
+   * Controlled checked state.
+   */
+  checked?: boolean | "indeterminate";
+
+  /**
+   * Default checked state for uncontrolled mode.
+   * @default false
+   */
+  defaultChecked?: boolean;
+
+  /**
+   * Whether the checkbox is in an indeterminate state.
+   * @default false
+   */
+  indeterminate?: boolean;
+
+  /**
+   * Whether the checkbox tile is disabled.
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * Whether the checkbox is in an invalid state.
+   * @default false
+   */
+  invalid?: boolean;
+
+  /**
+   * Where to place the checkbox control within the tile.
+   * - `trailing`: checkbox sits in the trailing accessory slot (default).
+   * - `leading`: checkbox sits in the leading visual anchor slot.
+   * @default "trailing"
+   */
+  placement?: CheckboxPlacement;
+
+  /**
+   * Leading accessory when placement is "trailing", or secondary leading accessory.
+   */
+  leading?: ReactNode;
+
+  /**
+   * Trailing accessory when placement is "leading", or secondary trailing accessory.
+   */
+  trailing?: ReactNode;
+
+  /**
+   * Primary label copy.
+   */
+  label?: ReactNode;
+
+  /**
+   * Secondary supporting description copy.
+   */
+  description?: ReactNode;
+
+  /**
+   * Callback invoked when the checked state toggles.
+   */
+  onChange?: (checked: boolean) => void;
+
+  /**
+   * Custom child content within the tile.
+   */
+  children?: ReactNode;
+
+  /**
+   * Additional CSS classes for the tile container.
+   */
+  className?: string;
+}
+
