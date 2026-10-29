@@ -22,7 +22,7 @@ export default function RootLayout({
           <Shell>
             <Shell.Sidebar>
               <Sidebar>
-                <div className="flex flex-col gap-control-gap p-surface">
+                <div className="flex flex-col gap-control-gap p-surface-sm">
                   {SHOWCASE_COMPONENTS.map((component) => (
                     <Sidebar.Destination
                       key={component.href}
