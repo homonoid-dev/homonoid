@@ -1,8 +1,9 @@
 "use client";
 
 import type { ComponentType, ReactNode } from "react";
+import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
-import { Heading, Description, Card } from "@homonoid/react";
+import { Heading, Description, Card, Button } from "@homonoid/react";
 import { cn } from "@homonoid/react/cn";
 import { any, cond, when } from "@homonoid/react";
 import { highlighter } from "./code";
@@ -11,6 +12,7 @@ import { Frame } from "./frame";
 import { Resource } from "./resource";
 import { Pagination } from "./pagination";
 import { useToc, type TocItem } from "./toc";
+import { SHOWCASE_COMPONENTS, type ShowcaseComponentItem } from "@/config/components";
 
 export interface ExhibitSectionItem {
   id: string;
@@ -106,6 +108,7 @@ export interface ExhibitProps {
   defaultCode?: string;
   defaultStage?: ReactNode;
   sections?: TocItem[];
+  related?: (string | ShowcaseComponentItem)[];
   children?: ReactNode;
   className?: string;
 }
@@ -121,12 +124,33 @@ export function Exhibit({
   defaultCode,
   defaultStage,
   sections,
+  related,
   children,
   className,
 }: ExhibitProps) {
   useToc(sections);
 
   const resolvedImport = importCode ?? cond(Boolean(component), `import { ${title} } from "@homonoid/react";`, undefined);
+
+  const configItem = SHOWCASE_COMPONENTS.find(
+    (item) =>
+      (component && item.href === `/${component}`) ||
+      item.name.toLowerCase() === title.toLowerCase()
+  );
+
+  const rawRelated = related ?? configItem?.related;
+
+  const resolvedRelated: ShowcaseComponentItem[] = (rawRelated ?? [])
+    .map((entry) => {
+      if (typeof entry !== "string") return entry;
+      const match = SHOWCASE_COMPONENTS.find(
+        (c) =>
+          c.name.toLowerCase() === entry.toLowerCase() ||
+          c.href.replace("/", "").toLowerCase() === entry.toLowerCase()
+      );
+      return match ?? { name: entry, href: `/${entry.toLowerCase()}` };
+    })
+    .filter(Boolean);
 
   return (
     <div className={cn("flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0", className)}>
@@ -186,6 +210,26 @@ export function Exhibit({
 
       {/* Main Content & Interactive Stages */}
       {children}
+
+      {/* Related Components Subtle Chip Rail */}
+      {when(
+        resolvedRelated.length > 0,
+        <section className="flex flex-col gap-control-gap pt-layout-y">
+          <Heading size="md" as="h2">Related</Heading>
+          <div className="flex flex-wrap items-center gap-control-gap">
+            {resolvedRelated.map((item) => (
+              <Link key={item.href} href={item.href} tabIndex={-1}>
+                <Button
+                  variant="contained"
+                  color="subtle"
+                >
+                  {item.name}
+                </Button>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Terminal Pagination Navigation */}
       <Pagination />
