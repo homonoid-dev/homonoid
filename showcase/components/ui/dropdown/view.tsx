@@ -1,12 +1,7 @@
 "use client";
 
-import { Dropdown, Button, Card, Description, Heading, Separator } from "@homonoid/react";
-import { Stage } from "@/components/ui/stage";
-import { Resource } from "@/components/ui/resource";
-import { Frame } from "@/components/ui/frame";
-import { highlighter } from "@/components/ui/code";
-import { useToc } from "@/components/ui/toc";
-import { Pagination } from "@/components/ui/pagination";
+import { Dropdown, Button, Description, Separator } from "@homonoid/react";
+import { Exhibit } from "@/components/ui/exhibit";
 import {
   MoreHorizontal,
   Edit,
@@ -38,7 +33,7 @@ import {
 } from "./model";
 
 export function DropdownView() {
-  useToc(DROPDOWN_SECTIONS_LIST);
+  const sections = DROPDOWN_SECTIONS;
 
   const placements = [
     { placement: "bottom-start" as const, label: "Bottom Start", icon: <ArrowDownLeft className="size-4" /> },
@@ -61,230 +56,186 @@ export function DropdownView() {
   ];
 
   return (
-    <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
-      {/* View Header */}
-      <div className="flex flex-col gap-layout-gap">
-        <div className="flex flex-col gap-control-gap">
-          <Heading size="lg">Dropdown</Heading>
-          <Description>
-            A dropdown displays a floating menu of actionable items, contextual operations, and commands anchored to an interactive trigger.
-          </Description>
-        </div>
-        <Description>
-          Homonoid dropdown menus combine resilient anchored positioning with the tactile Tile primitive, delivering fluid entrance transitions, full keyboard navigation, and total visual continuity.
-        </Description>
-      </div>
-
-      {/* Resource Links */}
-      <div className="flex items-center gap-surface-gap">
-        <Resource type="github" component="dropdown" />
-        <Resource type="figma" href="https://www.figma.com/@lumunar" />
-      </div>
-
-      {/* Default Stage */}
-      <section className="flex flex-col gap-surface-gap pb-layout-y">
-        <Card
-          color="subtle"
-          variant="filled"
-          className="font-mono text-xs"
-        >
-          <code>{highlighter('import { Dropdown } from "@homonoid/react";')}</code>
-        </Card>
-
-        <Stage code={DROPDOWN_DEFAULT_CODE_SAMPLE}>
-          <Dropdown>
-            <Dropdown.Trigger asChild>
-              <Button
-                variant="outlined"
-                layout="icon"
-                leading={<MoreHorizontal className="size-4" />}
-              />
-            </Dropdown.Trigger>
-            <Dropdown.Content>
-              <Dropdown.List>
-                <Dropdown.Item
-                  leading={<Edit className="size-4" />}
-                  trailing={<Dropdown.Shortcut keyValue="command" content="E" />}
-                >
-                  Edit
-                </Dropdown.Item>
-                <Dropdown.Item
-                  leading={<Copy className="size-4" />}
-                  trailing={<Dropdown.Shortcut keyValue="command" content="C" />}
-                >
-                  Duplicate
-                </Dropdown.Item>
-                <Dropdown.Item leading={<Share2 className="size-4" />}>
-                  Share
-                </Dropdown.Item>
-                <Separator />
-                <Dropdown.Item
-                  color="destructive"
-                  leading={<Trash2 className="size-4" />}
-                >
-                  Delete
-                </Dropdown.Item>
-              </Dropdown.List>
-            </Dropdown.Content>
-          </Dropdown>
-        </Stage>
-      </section>
-
+    <Exhibit
+      title="Dropdown"
+      summary="A dropdown displays a floating menu of actionable items, contextual operations, and commands anchored to an interactive trigger."
+      description="Homonoid dropdown menus combine resilient anchored positioning with the tactile Tile primitive, delivering fluid entrance transitions, full keyboard navigation, and total visual continuity."
+      component="dropdown"
+      importCode='import { Dropdown } from "@homonoid/react";'
+      defaultCode={DROPDOWN_DEFAULT_CODE_SAMPLE}
+      defaultStage={
+        <Dropdown>
+          <Dropdown.Trigger asChild>
+            <Button
+              variant="outlined"
+              layout="icon"
+              leading={<MoreHorizontal className="size-4" />}
+            />
+          </Dropdown.Trigger>
+          <Dropdown.Content>
+            <Dropdown.List>
+              <Dropdown.Item
+                leading={<Edit className="size-4" />}
+                trailing={<Dropdown.Shortcut keyValue="command" content="E" />}
+              >
+                Edit
+              </Dropdown.Item>
+              <Dropdown.Item
+                leading={<Copy className="size-4" />}
+                trailing={<Dropdown.Shortcut keyValue="command" content="C" />}
+              >
+                Duplicate
+              </Dropdown.Item>
+              <Dropdown.Item leading={<Share2 className="size-4" />}>
+                Share
+              </Dropdown.Item>
+              <Separator />
+              <Dropdown.Item
+                color="destructive"
+                leading={<Trash2 className="size-4" />}
+              >
+                Delete
+              </Dropdown.Item>
+            </Dropdown.List>
+          </Dropdown.Content>
+        </Dropdown>
+      }
+      sections={DROPDOWN_SECTIONS_LIST}
+    >
       {/* Placements Section */}
-      <section id={DROPDOWN_SECTIONS.placements.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={DROPDOWN_SECTIONS.placements.label} icon={DROPDOWN_SECTIONS.placements.icon} />
-
-        <Stage code={DROPDOWN_PLACEMENTS_CODE_SAMPLE}>
-          <div className="flex flex-wrap gap-4 items-center justify-center">
-            {placements.map((item) => (
-              <Dropdown key={item.placement} placement={item.placement}>
-                <Dropdown.Trigger asChild>
-                  <Button
-                    layout="icon"
-                    variant="outlined"
-                    aria-label={item.label}
-                  >
-                    {item.icon}
-                  </Button>
-                </Dropdown.Trigger>
-                <Dropdown.Content>
-                  <Dropdown.List>
-                    <Dropdown.Item>Action Item</Dropdown.Item>
-                    <Dropdown.Item>Second Item</Dropdown.Item>
-                  </Dropdown.List>
-                </Dropdown.Content>
-              </Dropdown>
-            ))}
-          </div>
-        </Stage>
-      </section>
-
-      {/* Variants Section */}
-      <section id={DROPDOWN_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={DROPDOWN_SECTIONS.variants.label} icon={DROPDOWN_SECTIONS.variants.icon} />
-
-        <Stage code={DROPDOWN_VARIANTS_CODE_SAMPLE}>
-          <Dropdown>
-            <Dropdown.Trigger asChild>
-              <Button variant="outlined">Item Variants</Button>
-            </Dropdown.Trigger>
-            <Dropdown.Content>
-              <Dropdown.List>
-                {actions.map((item) => (
-                  <Dropdown.Item key={item.label} color={item.color} leading={item.icon}>
-                    {item.label}
-                  </Dropdown.Item>
-                ))}
-              </Dropdown.List>
-            </Dropdown.Content>
-          </Dropdown>
-        </Stage>
-      </section>
-
-      {/* Sizes Section */}
-      <section id={DROPDOWN_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={DROPDOWN_SECTIONS.sizes.label} icon={DROPDOWN_SECTIONS.sizes.icon} />
-
-        <Stage code={DROPDOWN_SIZES_CODE_SAMPLE}>
-          <div className="flex flex-wrap gap-4 items-center justify-center">
-            {sizes.map((item) => (
-              <Dropdown key={item.size} size={item.size}>
-                <Dropdown.Trigger asChild>
-                  <Button size={item.size} variant="outlined">
-                    {item.label}
-                  </Button>
-                </Dropdown.Trigger>
-                <Dropdown.Content>
-                  <Dropdown.List>
-                    <Dropdown.Item>First Option</Dropdown.Item>
-                    <Dropdown.Item>Second Option</Dropdown.Item>
-                  </Dropdown.List>
-                </Dropdown.Content>
-              </Dropdown>
-            ))}
-          </div>
-        </Stage>
-      </section>
-
-      {/* Groups Section */}
-      <section id={DROPDOWN_SECTIONS.groups.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={DROPDOWN_SECTIONS.groups.label} icon={DROPDOWN_SECTIONS.groups.icon} />
-
-        <Stage code={DROPDOWN_GROUPS_CODE_SAMPLE}>
-          <Dropdown>
-            <Dropdown.Trigger asChild>
-              <Button variant="outlined">Account</Button>
-            </Dropdown.Trigger>
-            <Dropdown.Content>
-              <Dropdown.List>
-                <Dropdown.Group>
-                  <Dropdown.Label className="px-3 py-1.5 text-xs text-muted font-medium">
-                    Profile
-                  </Dropdown.Label>
-                  <Dropdown.Item leading={<User className="size-4" />}>
-                    Personal Info
-                  </Dropdown.Item>
-                  <Dropdown.Item leading={<Settings className="size-4" />}>
-                    Preferences
-                  </Dropdown.Item>
-                </Dropdown.Group>
-                <Separator />
-                <Dropdown.Group>
-                  <Dropdown.Label className="px-3 py-1.5 text-xs text-muted font-medium">
-                    Billing
-                  </Dropdown.Label>
-                  <Dropdown.Item leading={<CreditCard className="size-4" />}>
-                    Subscriptions
-                  </Dropdown.Item>
-                </Dropdown.Group>
-                <Separator />
-                <Dropdown.Item color="destructive" leading={<LogOut className="size-4" />}>
-                  Sign Out
-                </Dropdown.Item>
-              </Dropdown.List>
-            </Dropdown.Content>
-          </Dropdown>
-        </Stage>
-      </section>
-
-      {/* Disabled Section */}
-      <section id={DROPDOWN_SECTIONS.disabled.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={DROPDOWN_SECTIONS.disabled.label} icon={DROPDOWN_SECTIONS.disabled.icon} />
-
-        <Stage code={DROPDOWN_DISABLED_CODE_SAMPLE}>
-          <div className="flex flex-wrap gap-6 items-center justify-center">
-            <Dropdown disabled>
+      <Exhibit.Stage section={sections.placements} code={DROPDOWN_PLACEMENTS_CODE_SAMPLE}>
+        <div className="flex flex-wrap gap-4 items-center justify-center">
+          {placements.map((item) => (
+            <Dropdown key={item.placement} placement={item.placement}>
               <Dropdown.Trigger asChild>
-                <Button disabled variant="outlined">
-                  Disabled Menu
+                <Button
+                  layout="icon"
+                  variant="outlined"
+                  aria-label={item.label}
+                >
+                  {item.icon}
                 </Button>
               </Dropdown.Trigger>
               <Dropdown.Content>
                 <Dropdown.List>
-                  <Dropdown.Item>Unavailable</Dropdown.Item>
+                  <Dropdown.Item>Action Item</Dropdown.Item>
+                  <Dropdown.Item>Second Item</Dropdown.Item>
                 </Dropdown.List>
               </Dropdown.Content>
             </Dropdown>
+          ))}
+        </div>
+      </Exhibit.Stage>
 
-            <Dropdown>
+      {/* Variants Section */}
+      <Exhibit.Stage section={sections.variants} code={DROPDOWN_VARIANTS_CODE_SAMPLE}>
+        <Dropdown>
+          <Dropdown.Trigger asChild>
+            <Button variant="outlined">Item Variants</Button>
+          </Dropdown.Trigger>
+          <Dropdown.Content>
+            <Dropdown.List>
+              {actions.map((item) => (
+                <Dropdown.Item key={item.label} color={item.color} leading={item.icon}>
+                  {item.label}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.List>
+          </Dropdown.Content>
+        </Dropdown>
+      </Exhibit.Stage>
+
+      {/* Sizes Section */}
+      <Exhibit.Stage section={sections.sizes} code={DROPDOWN_SIZES_CODE_SAMPLE}>
+        <div className="flex flex-wrap gap-4 items-center justify-center">
+          {sizes.map((item) => (
+            <Dropdown key={item.size} size={item.size}>
               <Dropdown.Trigger asChild>
-                <Button variant="outlined">Disabled Items</Button>
+                <Button size={item.size} variant="outlined">
+                  {item.label}
+                </Button>
               </Dropdown.Trigger>
               <Dropdown.Content>
                 <Dropdown.List>
-                  <Dropdown.Item>Available Option</Dropdown.Item>
-                  <Dropdown.Item disabled>Locked Feature</Dropdown.Item>
-                  <Dropdown.Item>Active Option</Dropdown.Item>
+                  <Dropdown.Item>First Option</Dropdown.Item>
+                  <Dropdown.Item>Second Option</Dropdown.Item>
                 </Dropdown.List>
               </Dropdown.Content>
             </Dropdown>
-          </div>
-        </Stage>
-      </section>
+          ))}
+        </div>
+      </Exhibit.Stage>
+
+      {/* Groups Section */}
+      <Exhibit.Stage section={sections.groups} code={DROPDOWN_GROUPS_CODE_SAMPLE}>
+        <Dropdown>
+          <Dropdown.Trigger asChild>
+            <Button variant="outlined">Account</Button>
+          </Dropdown.Trigger>
+          <Dropdown.Content>
+            <Dropdown.List>
+              <Dropdown.Group>
+                <Dropdown.Label className="px-3 py-1.5 text-xs text-muted font-medium">
+                  Profile
+                </Dropdown.Label>
+                <Dropdown.Item leading={<User className="size-4" />}>
+                  Personal Info
+                </Dropdown.Item>
+                <Dropdown.Item leading={<Settings className="size-4" />}>
+                  Preferences
+                </Dropdown.Item>
+              </Dropdown.Group>
+              <Separator />
+              <Dropdown.Group>
+                <Dropdown.Label className="px-3 py-1.5 text-xs text-muted font-medium">
+                  Billing
+                </Dropdown.Label>
+                <Dropdown.Item leading={<CreditCard className="size-4" />}>
+                  Subscriptions
+                </Dropdown.Item>
+              </Dropdown.Group>
+              <Separator />
+              <Dropdown.Item color="destructive" leading={<LogOut className="size-4" />}>
+                Sign Out
+              </Dropdown.Item>
+            </Dropdown.List>
+          </Dropdown.Content>
+        </Dropdown>
+      </Exhibit.Stage>
+
+      {/* Disabled Section */}
+      <Exhibit.Stage section={sections.disabled} code={DROPDOWN_DISABLED_CODE_SAMPLE}>
+        <div className="flex flex-wrap gap-6 items-center justify-center">
+          <Dropdown disabled>
+            <Dropdown.Trigger asChild>
+              <Button disabled variant="outlined">
+                Disabled Menu
+              </Button>
+            </Dropdown.Trigger>
+            <Dropdown.Content>
+              <Dropdown.List>
+                <Dropdown.Item>Unavailable</Dropdown.Item>
+              </Dropdown.List>
+            </Dropdown.Content>
+          </Dropdown>
+
+          <Dropdown>
+            <Dropdown.Trigger asChild>
+              <Button variant="outlined">Disabled Items</Button>
+            </Dropdown.Trigger>
+            <Dropdown.Content>
+              <Dropdown.List>
+                <Dropdown.Item>Available Option</Dropdown.Item>
+                <Dropdown.Item disabled>Locked Feature</Dropdown.Item>
+                <Dropdown.Item>Active Option</Dropdown.Item>
+              </Dropdown.List>
+            </Dropdown.Content>
+          </Dropdown>
+        </div>
+      </Exhibit.Stage>
 
       {/* Object Continuity Section */}
-      <section id={DROPDOWN_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{DROPDOWN_SECTIONS.continuity.label}</Heading>
+      <Exhibit.Section section={sections.continuity}>
         <Description>
           Dropdown triggers uphold complete dimensional stability across active and dormant states. The trigger maintains steady geometry without spatial reflows when opening or dismissing the floating menu.
         </Description>
@@ -296,12 +247,10 @@ export function DropdownView() {
         <Description>
           Menu tiles transition across hover, active press, and focus states with silky smooth color changes, preserving tactile continuity across the entire surface hierarchy.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Accessibility Section */}
-      <section id={DROPDOWN_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{DROPDOWN_SECTIONS.accessibility.label}</Heading>
-
+      <Exhibit.Section section={sections.accessibility}>
         <Description>
           Dropdown adheres strictly to the W3C WAI ARIA Menu pattern. Triggers declare aria haspopup menu and communicate expanded status through aria expanded and aria controls.
         </Description>
@@ -313,12 +262,10 @@ export function DropdownView() {
         <Description>
           Typeahead navigation allows rapid jumping through choices by typing initial character sequences directly on the keyboard.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Design Tokens Section */}
-      <section id={DROPDOWN_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2"> {DROPDOWN_SECTIONS.tokens.label}</Heading>
-
+      <Exhibit.Section section={sections.tokens}>
         <Description>
           Dropdown menus align with the Homonoid spatial scale across small, medium, and large density configurations.
         </Description>
@@ -330,12 +277,10 @@ export function DropdownView() {
         <Description>
           Menu items leverage the Tile component directly, sharing typography scale, focus rings, and state tokens with zero design drift.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Style Reference Section */}
-      <section id={DROPDOWN_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{DROPDOWN_SECTIONS.styleReference.label}</Heading>
-
+      <Exhibit.Section section={sections.styleReference}>
         <Description>
           Dropdown components utilize compound subcomponents to offer modular composition for simple action lists and complex hierarchical menus.
         </Description>
@@ -343,10 +288,7 @@ export function DropdownView() {
         <Description>
           Action items seamlessly incorporate leading icons, detailed labels, secondary descriptions, and trailing keyboard shortcuts through unified prop interfaces.
         </Description>
-      </section>
-
-      {/* Component Pagination Navigation */}
-      <Pagination />
-    </div>
+      </Exhibit.Section>
+    </Exhibit>
   );
 }

@@ -1,14 +1,9 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { Searchbar, Kbd, Card, Description, Heading } from "@homonoid/react";
+import { Searchbar, Kbd, Description } from "@homonoid/react";
 import { Search } from "lucide-react";
-import { Stage } from "@/components/ui/stage";
-import { Resource } from "@/components/ui/resource";
-import { Frame } from "@/components/ui/frame";
-import { highlighter } from "@/components/ui/code";
-import { useToc } from "@/components/ui/toc";
-import { Pagination } from "@/components/ui/pagination";
+import { Exhibit } from "@/components/ui/exhibit";
 import {
   SEARCHBAR_SECTIONS,
   SEARCHBAR_SECTIONS_LIST,
@@ -48,7 +43,7 @@ function ShortcutExample() {
 }
 
 export function SearchbarView() {
-  useToc(SEARCHBAR_SECTIONS_LIST);
+  const sections = SEARCHBAR_SECTIONS;
 
   const variants = [
     { variant: "outlined", placeholder: "Outlined searchbar" },
@@ -57,139 +52,92 @@ export function SearchbarView() {
   ] as const;
 
   return (
-    <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
-      {/* View Header */}
-      <div className="flex flex-col gap-layout-gap">
-        <div className="flex flex-col gap-control-gap">
-          <Heading size="lg">Searchbar</Heading>
-          <Description>
-            A searchbar allows users to enter, preview, and submit search queries across collections of data and application views.
-          </Description>
+    <Exhibit
+      title="Searchbar"
+      summary="A searchbar allows users to enter, preview, and submit search queries across collections of data and application views."
+      description="Searchbars combine immediate text entry with contextual search actions including leading query icons, asynchronous loading states, and trailing keyboard shortcut keys."
+      component="searchbar"
+      importCode='import { Searchbar } from "@homonoid/react";'
+      defaultCode={SEARCHBAR_DEFAULT_CODE_SAMPLE}
+      defaultStage={
+        <div className="w-full max-w-sm">
+          <Searchbar
+            leading={<Search className="size-4 text-muted" />}
+            placeholder="Search documentation..."
+          />
         </div>
-        <Description>
-          Searchbars combine immediate text entry with contextual search actions including leading query icons, asynchronous loading states, and trailing keyboard shortcut keys.
-        </Description>
-      </div>
-
-      {/* Resource Links */}
-      <div className="flex items-center gap-surface-gap">
-        <Resource type="github" component="searchbar" />
-        <Resource type="figma" href="https://www.figma.com/@lumunar" />
-      </div>
-
-      {/* Default Stage */}
-      <section className="flex flex-col gap-surface-gap pb-layout-y">
-        <Card
-          color="subtle"
-          variant="filled"
-          className="font-mono text-xs"
-        >
-          <code>{highlighter('import { Searchbar } from "@homonoid/react";')}</code>
-        </Card>
-
-        <Stage code={SEARCHBAR_DEFAULT_CODE_SAMPLE}>
-          <div className="w-full max-w-sm">
-            <Searchbar
-              leading={<Search className="size-4 text-muted" />}
-              placeholder="Search documentation..."
-            />
-          </div>
-        </Stage>
-      </section>
-
+      }
+      sections={SEARCHBAR_SECTIONS_LIST}
+    >
       {/* Variants Section */}
-      <section id={SEARCHBAR_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SEARCHBAR_SECTIONS.variants.label} icon={SEARCHBAR_SECTIONS.variants.icon} />
-
-        <Stage code={SEARCHBAR_VARIANTS_CODE_SAMPLE}>
-          <div className="w-full max-w-sm flex flex-col gap-3">
-            {variants.map((item) => (
-              <Searchbar
-                key={item.variant}
-                leading={<Search className="size-4 text-muted" />}
-                variant={item.variant}
-                placeholder={item.placeholder}
-              />
-            ))}
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.variants} code={SEARCHBAR_VARIANTS_CODE_SAMPLE}>
+        <div className="w-full max-w-sm flex flex-col gap-3">
+          {variants.map((item) => (
+            <Searchbar
+              key={item.variant}
+              leading={<Search className="size-4 text-muted" />}
+              variant={item.variant}
+              placeholder={item.placeholder}
+            />
+          ))}
+        </div>
+      </Exhibit.Stage>
 
       {/* Loading Section */}
-      <section id={SEARCHBAR_SECTIONS.loading.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SEARCHBAR_SECTIONS.loading.label} icon={SEARCHBAR_SECTIONS.loading.icon} />
-
-        <Stage code={SEARCHBAR_LOADING_CODE_SAMPLE}>
-          <div className="w-full max-w-sm">
-            <Searchbar
-              leading={<Search className="size-4 text-muted" />}
-              loading
-              defaultValue="Homonoid design tokens"
-              placeholder="Querying components..."
-            />
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.loading} code={SEARCHBAR_LOADING_CODE_SAMPLE}>
+        <div className="w-full max-w-sm">
+          <Searchbar
+            leading={<Search className="size-4 text-muted" />}
+            loading
+            defaultValue="Homonoid design tokens"
+            placeholder="Querying components..."
+          />
+        </div>
+      </Exhibit.Stage>
 
       {/* Shortcut Section */}
-      <section id={SEARCHBAR_SECTIONS.shortcut.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SEARCHBAR_SECTIONS.shortcut.label} icon={SEARCHBAR_SECTIONS.shortcut.icon} />
-
-        <Stage code={SEARCHBAR_SHORTCUT_CODE_SAMPLE}>
-          <ShortcutExample />
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.shortcut} code={SEARCHBAR_SHORTCUT_CODE_SAMPLE}>
+        <ShortcutExample />
+      </Exhibit.Stage>
 
       {/* Label & Description Section */}
-      <section id={SEARCHBAR_SECTIONS.labelAndDescription.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SEARCHBAR_SECTIONS.labelAndDescription.label} icon={SEARCHBAR_SECTIONS.labelAndDescription.icon} />
-
-        <Stage code={SEARCHBAR_LABEL_AND_DESCRIPTION_CODE_SAMPLE}>
-          <div className="w-full max-w-sm flex flex-col gap-surface-gap">
-            <Searchbar
-              leading={<Search className="size-4 text-muted" />}
-              label="Repository Search"
-              description="Query public and private repositories across your organization."
-              placeholder="Search repositories..."
-            />
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.labelAndDescription} code={SEARCHBAR_LABEL_AND_DESCRIPTION_CODE_SAMPLE}>
+        <div className="w-full max-w-sm flex flex-col gap-surface-gap">
+          <Searchbar
+            leading={<Search className="size-4 text-muted" />}
+            label="Repository Search"
+            description="Query public and private repositories across your organization."
+            placeholder="Search repositories..."
+          />
+        </div>
+      </Exhibit.Stage>
 
       {/* Floating Label Section */}
-      <section id={SEARCHBAR_SECTIONS.floatingLabel.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SEARCHBAR_SECTIONS.floatingLabel.label} icon={SEARCHBAR_SECTIONS.floatingLabel.icon} />
-
-        <Stage code={SEARCHBAR_FLOATING_LABEL_CODE_SAMPLE}>
-          <div className="w-full max-w-sm flex flex-col gap-3">
-            <Searchbar
-              floating
-              label="Search library..."
-              leading={<Search className="size-4 text-muted" />}
-            />
-            <Searchbar
-              floating
-              label="Quick command"
-              leading={<Search className="size-4 text-muted" />}
-              trailing={<Kbd keyValue="command" content="K" />}
-            />
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.floatingLabel} code={SEARCHBAR_FLOATING_LABEL_CODE_SAMPLE}>
+        <div className="w-full max-w-sm flex flex-col gap-3">
+          <Searchbar
+            floating
+            label="Search library..."
+            leading={<Search className="size-4 text-muted" />}
+          />
+          <Searchbar
+            floating
+            label="Quick command"
+            leading={<Search className="size-4 text-muted" />}
+            trailing={<Kbd keyValue="command" content="K" />}
+          />
+        </div>
+      </Exhibit.Stage>
 
       {/* Object Continuity Section */}
-      <section id={SEARCHBAR_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2"> {SEARCHBAR_SECTIONS.continuity.label} </Heading>
-
+      <Exhibit.Section section={sections.continuity}>
         <Description>
           Searchbars preserve dimensional stability across query state transitions. Focus rings expand outward smoothly without displacing adjacent controls or altering internal container heights.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Accessibility Section */}
-      <section id={SEARCHBAR_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2"> {SEARCHBAR_SECTIONS.accessibility.label} </Heading>
-
+      <Exhibit.Section section={sections.accessibility}>
         <Description>
           Searchbars provide native searchbox semantics through explicit role searchbox and native type search attributes.
         </Description>
@@ -201,12 +149,10 @@ export function SearchbarView() {
         <Description>
           Native keyboard navigation allows quick focus management and intuitive Escape key clearing behaviors.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Design Tokens Section */}
-      <section id={SEARCHBAR_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2"> {SEARCHBAR_SECTIONS.tokens.label} </Heading>
-
+      <Exhibit.Section section={sections.tokens}>
         <Description>
           Searchbars consume spatial control heights and semantic surface tokens directly from the design system.
         </Description>
@@ -214,12 +160,10 @@ export function SearchbarView() {
         <Description>
           Container padding, typography sizes, and border treatments scale systematically across small, medium, and large tiers.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Style Reference Section */}
-      <section id={SEARCHBAR_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2"> {SEARCHBAR_SECTIONS.styleReference.label} </Heading>
-
+      <Exhibit.Section section={sections.styleReference}>
         <Description>
           Searchbars integrate cleanly within navigation headers, hero discovery bars, modal command palettes, and table toolbars.
         </Description>
@@ -227,10 +171,7 @@ export function SearchbarView() {
         <Description>
           Curvature options from sharp corners to rounded full pills harmonize with surrounding card surfaces and button shapes.
         </Description>
-      </section>
-
-      {/* Component Pagination Navigation */}
-      <Pagination />
-    </div>
+      </Exhibit.Section>
+    </Exhibit>
   );
 }

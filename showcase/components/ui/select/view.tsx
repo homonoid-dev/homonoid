@@ -1,12 +1,7 @@
 "use client";
 
-import { Select, Card, Description, Heading } from "@homonoid/react";
-import { Stage } from "@/components/ui/stage";
-import { Resource } from "@/components/ui/resource";
-import { Frame } from "@/components/ui/frame";
-import { highlighter } from "@/components/ui/code";
-import { useToc } from "@/components/ui/toc";
-import { Pagination } from "@/components/ui/pagination";
+import { Select, Description } from "@homonoid/react";
+import { Exhibit } from "@/components/ui/exhibit";
 import { Shield, Zap, Lock } from "lucide-react";
 import {
   SELECT_SECTIONS,
@@ -20,7 +15,7 @@ import {
 } from "./model";
 
 export function SelectView() {
-  useToc(SELECT_SECTIONS_LIST);
+  const sections = SELECT_SECTIONS;
 
   const defaultOptions = [
     { value: "system", label: "System Theme" },
@@ -97,221 +92,176 @@ export function SelectView() {
   ];
 
   return (
-    <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
-      {/* View Header */}
-      <div className="flex flex-col gap-layout-gap">
-        <div className="flex flex-col gap-control-gap" >
-          <Heading size="lg">Select</Heading>
-          <Description>
-            A select displays a collapsible list of mutually exclusive options in a floating surface anchored to an interactive trigger control.
-          </Description>
+    <Exhibit
+      title="Select"
+      summary="A select displays a collapsible list of mutually exclusive options in a floating surface anchored to an interactive trigger control."
+      description="Homonoid select controls pair resilient floating positioning with the tactile Tile primitive, delivering fluid opening transitions, full typeahead navigation, and zero layout shift."
+      component="select"
+      importCode='import { Select } from "@homonoid/react";'
+      defaultCode={SELECT_DEFAULT_CODE_SAMPLE}
+      defaultStage={
+        <div className="w-full max-w-xs">
+          <Select
+            label="Interface Theme"
+            description="Select your preferred canvas color mode"
+          >
+            <Select.Trigger aria-label="Theme selector">
+              <Select.Value placeholder="Select theme" />
+            </Select.Trigger>
+            <Select.Content>
+              <Select.List>
+                {defaultOptions.map((item) => (
+                  <Select.Item key={item.value} value={item.value}>
+                    {item.label}
+                  </Select.Item>
+                ))}
+              </Select.List>
+            </Select.Content>
+          </Select>
         </div>
-        <Description>
-          Homonoid select controls pair resilient floating positioning with the tactile Tile primitive, delivering fluid opening transitions, full typeahead navigation, and zero layout shift.
-        </Description>
-      </div>
-
-      {/* Resource Links */}
-      <div className="flex items-center gap-surface-gap">
-        <Resource type="github" component="select" />
-        <Resource type="figma" href="https://www.figma.com/@lumunar" />
-      </div>
-
-      {/* Default Stage */}
-      <section className="flex flex-col gap-surface-gap pb-layout-y">
-        <Card
-          color="subtle"
-          variant="filled"
-          className="font-mono text-xs"
-        >
-          <code>{highlighter('import { Select } from "@homonoid/react";')}</code>
-        </Card>
-
-        <Stage code={SELECT_DEFAULT_CODE_SAMPLE}>
-          <div className="w-full max-w-xs">
-            <Select
-              label="Interface Theme"
-              description="Select your preferred canvas color mode"
-            >
-              <Select.Trigger aria-label="Theme selector">
-                <Select.Value placeholder="Select theme" />
-              </Select.Trigger>
-              <Select.Content>
-                <Select.List>
-                  {defaultOptions.map((item) => (
-                    <Select.Item key={item.value} value={item.value}>
-                      {item.label}
-                    </Select.Item>
-                  ))}
-                </Select.List>
-              </Select.Content>
-            </Select>
-          </div>
-        </Stage>
-      </section>
-
+      }
+      sections={SELECT_SECTIONS_LIST}
+    >
       {/* Variants Section */}
-      <section id={SELECT_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SELECT_SECTIONS.variants.label} icon={SELECT_SECTIONS.variants.icon} />
-
-        <Stage code={SELECT_VARIANTS_CODE_SAMPLE}>
-          <div className="flex flex-col gap-4 w-full max-w-xs">
-            {variants.map((item) => (
-              <Select key={item.variant} variant={item.variant}>
-                <Select.Trigger aria-label={item.label}>
-                  <Select.Value placeholder={item.label} />
-                </Select.Trigger>
-                <Select.Content>
-                  <Select.List>
-                    {frameworks.map((option) => (
-                      <Select.Item key={option.value} value={option.value}>
-                        {option.label}
-                      </Select.Item>
-                    ))}
-                  </Select.List>
-                </Select.Content>
-              </Select>
-            ))}
-          </div>
-        </Stage>
-      </section>
-
-      {/* Sizes Section */}
-      <section id={SELECT_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SELECT_SECTIONS.sizes.label} icon={SELECT_SECTIONS.sizes.icon} />
-
-        <Stage code={SELECT_SIZES_CODE_SAMPLE}>
-          <div className="flex flex-col gap-4 w-full max-w-xs">
-            {sizes.map((item) => (
-              <Select key={item.size} size={item.size}>
-                <Select.Trigger aria-label={item.label}>
-                  <Select.Value placeholder={item.label} />
-                </Select.Trigger>
-                <Select.Content>
-                  <Select.List>
-                    {environments.map((option) => (
-                      <Select.Item key={option.value} value={option.value}>
-                        {option.label}
-                      </Select.Item>
-                    ))}
-                  </Select.List>
-                </Select.Content>
-              </Select>
-            ))}
-          </div>
-        </Stage>
-      </section>
-
-      {/* Accessories Section */}
-      <section id={SELECT_SECTIONS.accessories.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SELECT_SECTIONS.accessories.label} icon={SELECT_SECTIONS.accessories.icon} />
-
-        <Stage code={SELECT_ACCESSORIES_CODE_SAMPLE}>
-          <div className="w-full max-w-sm">
-            <Select
-              defaultValue="admin"
-              label="Organization Role"
-              description="Assign team permissions across repositories"
-            >
-              <Select.Trigger aria-label="Access role">
-                <Select.Value placeholder="Select member role" />
+      <Exhibit.Stage section={sections.variants} code={SELECT_VARIANTS_CODE_SAMPLE}>
+        <div className="flex flex-col gap-4 w-full max-w-xs">
+          {variants.map((item) => (
+            <Select key={item.variant} variant={item.variant}>
+              <Select.Trigger aria-label={item.label}>
+                <Select.Value placeholder={item.label} />
               </Select.Trigger>
               <Select.Content>
                 <Select.List>
-                  {roles.map((item) => (
-                    <Select.Item
-                      key={item.value}
-                      value={item.value}
-                      leading={item.icon}
-                      label={item.label}
-                      description={item.description}
-                    />
-                  ))}
-                </Select.List>
-              </Select.Content>
-            </Select>
-          </div>
-        </Stage>
-      </section>
-
-      {/* Groups Section */}
-      <section id={SELECT_SECTIONS.groups.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SELECT_SECTIONS.groups.label} icon={SELECT_SECTIONS.groups.icon} />
-
-        <Stage code={SELECT_GROUPS_CODE_SAMPLE}>
-          <div className="w-full max-w-sm">
-            <Select>
-              <Select.Trigger aria-label="Server region">
-                <Select.Value placeholder="Select deployment region" />
-              </Select.Trigger>
-              <Select.Content>
-                <Select.List>
-                  {groups.map((group) => (
-                    <Select.Group key={group.name} label={group.name}>
-                      {group.regions.map((region) => (
-                        <Select.Item key={region.value} value={region.value}>
-                          {region.label}
-                        </Select.Item>
-                      ))}
-                    </Select.Group>
-                  ))}
-                </Select.List>
-              </Select.Content>
-            </Select>
-          </div>
-        </Stage>
-      </section>
-
-      {/* Disabled Section */}
-      <section id={SELECT_SECTIONS.disabled.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SELECT_SECTIONS.disabled.label} icon={SELECT_SECTIONS.disabled.icon} />
-
-        <Stage code={SELECT_DISABLED_CODE_SAMPLE}>
-          <div className="flex flex-col gap-6 w-full max-w-sm">
-            <Select
-              disabled
-              label="Disabled Control"
-              description="Trigger surface and list interactions are inactive"
-            >
-              <Select.Trigger aria-label="Disabled select">
-                <Select.Value placeholder="Unavailable option" />
-              </Select.Trigger>
-              <Select.Content>
-                <Select.List>
-                  <Select.Item value="one">Option One</Select.Item>
-                </Select.List>
-              </Select.Content>
-            </Select>
-
-            <Select
-              label="Disabled Option"
-              description="Specific choices can be individually deactivated"
-            >
-              <Select.Trigger aria-label="Select plan">
-                <Select.Value placeholder="Select subscription" />
-              </Select.Trigger>
-              <Select.Content>
-                <Select.List>
-                  {disabledOptions.map((option) => (
-                    <Select.Item
-                      key={option.value}
-                      value={option.value}
-                      disabled={option.disabled}
-                    >
+                  {frameworks.map((option) => (
+                    <Select.Item key={option.value} value={option.value}>
                       {option.label}
                     </Select.Item>
                   ))}
                 </Select.List>
               </Select.Content>
             </Select>
-          </div>
-        </Stage>
-      </section>
+          ))}
+        </div>
+      </Exhibit.Stage>
+
+      {/* Sizes Section */}
+      <Exhibit.Stage section={sections.sizes} code={SELECT_SIZES_CODE_SAMPLE}>
+        <div className="flex flex-col gap-4 w-full max-w-xs">
+          {sizes.map((item) => (
+            <Select key={item.size} size={item.size}>
+              <Select.Trigger aria-label={item.label}>
+                <Select.Value placeholder={item.label} />
+              </Select.Trigger>
+              <Select.Content>
+                <Select.List>
+                  {environments.map((option) => (
+                    <Select.Item key={option.value} value={option.value}>
+                      {option.label}
+                    </Select.Item>
+                  ))}
+                </Select.List>
+              </Select.Content>
+            </Select>
+          ))}
+        </div>
+      </Exhibit.Stage>
+
+      {/* Accessories Section */}
+      <Exhibit.Stage section={sections.accessories} code={SELECT_ACCESSORIES_CODE_SAMPLE}>
+        <div className="w-full max-w-sm">
+          <Select
+            defaultValue="admin"
+            label="Organization Role"
+            description="Assign team permissions across repositories"
+          >
+            <Select.Trigger aria-label="Access role">
+              <Select.Value placeholder="Select member role" />
+            </Select.Trigger>
+            <Select.Content>
+              <Select.List>
+                {roles.map((item) => (
+                  <Select.Item
+                    key={item.value}
+                    value={item.value}
+                    leading={item.icon}
+                    label={item.label}
+                    description={item.description}
+                  />
+                ))}
+              </Select.List>
+            </Select.Content>
+          </Select>
+        </div>
+      </Exhibit.Stage>
+
+      {/* Groups Section */}
+      <Exhibit.Stage section={sections.groups} code={SELECT_GROUPS_CODE_SAMPLE}>
+        <div className="w-full max-w-sm">
+          <Select>
+            <Select.Trigger aria-label="Server region">
+              <Select.Value placeholder="Select deployment region" />
+            </Select.Trigger>
+            <Select.Content>
+              <Select.List>
+                {groups.map((group) => (
+                  <Select.Group key={group.name} label={group.name}>
+                    {group.regions.map((region) => (
+                      <Select.Item key={region.value} value={region.value}>
+                        {region.label}
+                      </Select.Item>
+                    ))}
+                  </Select.Group>
+                ))}
+              </Select.List>
+            </Select.Content>
+          </Select>
+        </div>
+      </Exhibit.Stage>
+
+      {/* Disabled Section */}
+      <Exhibit.Stage section={sections.disabled} code={SELECT_DISABLED_CODE_SAMPLE}>
+        <div className="flex flex-col gap-6 w-full max-w-sm">
+          <Select
+            disabled
+            label="Disabled Control"
+            description="Trigger surface and list interactions are inactive"
+          >
+            <Select.Trigger aria-label="Disabled select">
+              <Select.Value placeholder="Unavailable option" />
+            </Select.Trigger>
+            <Select.Content>
+              <Select.List>
+                <Select.Item value="one">Option One</Select.Item>
+              </Select.List>
+            </Select.Content>
+          </Select>
+
+          <Select
+            label="Disabled Option"
+            description="Specific choices can be individually deactivated"
+          >
+            <Select.Trigger aria-label="Select plan">
+              <Select.Value placeholder="Select subscription" />
+            </Select.Trigger>
+            <Select.Content>
+              <Select.List>
+                {disabledOptions.map((option) => (
+                  <Select.Item
+                    key={option.value}
+                    value={option.value}
+                    disabled={option.disabled}
+                  >
+                    {option.label}
+                  </Select.Item>
+                ))}
+              </Select.List>
+            </Select.Content>
+          </Select>
+        </div>
+      </Exhibit.Stage>
 
       {/* Object Continuity Section */}
-      <section id={SELECT_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{SELECT_SECTIONS.continuity.label}</Heading>
-
+      <Exhibit.Section section={sections.continuity}>
         <Description>
           Select controls preserve absolute geometric stability across closed and open states. The trigger maintains steady horizontal boundaries without width collapse or layout reflows when opening the floating surface.
         </Description>
@@ -323,12 +273,10 @@ export function SelectView() {
         <Description>
           Tactile press physics compress the trigger down to scale 0.97 during pointer down events, giving clear mechanical feedback before option list expansion.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Accessibility Section */}
-      <section id={SELECT_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{SELECT_SECTIONS.accessibility.label}</Heading>
-
+      <Exhibit.Section section={sections.accessibility}>
         <Description>
           Select adheres to the W3C WAI ARIA Combobox pattern. The trigger exposes combobox semantics while communicating expanded state and active control connections through aria expanded and aria controls.
         </Description>
@@ -340,12 +288,10 @@ export function SelectView() {
         <Description>
           Typeahead search allows rapid jumping through long lists by typing initial character sequences directly on the keyboard.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Design Tokens Section */}
-      <section id={SELECT_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{SELECT_SECTIONS.tokens.label}</Heading>
-
+      <Exhibit.Section section={sections.tokens}>
         <Description>
           Trigger heights and internal padding values align precisely with the Homonoid spatial control scale across small, medium, and large density configurations.
         </Description>
@@ -357,12 +303,10 @@ export function SelectView() {
         <Description>
           Item options share visual proportions, radii, and state colors directly with the unified Tile component system.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Style Reference Section */}
-      <section id={SELECT_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{SELECT_SECTIONS.styleReference.label}</Heading>
-
+      <Exhibit.Section section={sections.styleReference}>
         <Description>
           Select supports both declarative compound subcomponents and concise shorthand configurations using the options property.
         </Description>
@@ -370,10 +314,7 @@ export function SelectView() {
         <Description>
           Every item leverages the Tile primitive directly, granting effortless support for leading iconography, rich labels, secondary descriptions, and trailing check indicators.
         </Description>
-      </section>
-
-      {/* Component Pagination Navigation */}
-      <Pagination />
-    </div>
+      </Exhibit.Section>
+    </Exhibit>
   );
 }

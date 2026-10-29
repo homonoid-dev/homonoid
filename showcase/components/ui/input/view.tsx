@@ -1,12 +1,7 @@
 "use client";
 
-import { Input, Heading, Description, Card } from "@homonoid/react";
-import { highlighter } from "@/components/ui/code";
-import { Stage } from "@/components/ui/stage";
-import { Resource } from "@/components/ui/resource";
-import { Frame } from "@/components/ui/frame";
-import { Pagination } from "@/components/ui/pagination";
-import { useToc } from "@/components/ui/toc";
+import { Input, Description } from "@homonoid/react";
+import { Exhibit } from "@/components/ui/exhibit";
 import { InteractiveStates } from "@/components/ui/interactive-states";
 import { Search, Mail, Eye } from "lucide-react";
 import {
@@ -23,159 +18,105 @@ import {
 } from "./model";
 
 export function InputView() {
-  useToc(INPUT_SECTIONS_LIST);
-
+  const sections = INPUT_SECTIONS;
 
   return (
-    <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
-      {/* View Header */}
-      <div className="flex flex-col gap-layout-gap">
-        <div className="flex flex-col gap-control-gap">
-          <Heading size="lg">Input</Heading>
-          <Description>
-            An input allows users to enter, edit, and submit text data through direct keyboard entry.
-          </Description>
-        </div>
-        <Description>
-          Inputs are foundational interface controls for capturing structured and unstructured user data while maintaining dimensional stability and visual continuity across interactive states.
-        </Description>
-      </div>
-
-      {/* Resources */}
-      <div className="flex items-center gap-surface-gap">
-        <Resource type="github" component="input" />
-        <Resource type="figma" href="https://www.figma.com/@lumunar" />
-      </div>
-
-      {/* Component Area */}
-      <section className="flex flex-col gap-surface-gap pb-layout-y">
-        {/* Subtle Import Card */}
-        <Card
-          color="subtle"
-          variant="filled"
-          className="font-mono text-xs"
-        >
-          <code>{highlighter('import { Input } from "@homonoid/react";')}</code>
-        </Card>
-
-        {/* Default Stage */}
-        <Stage code={INPUT_DEFAULT_CODE_SAMPLE}>
-          <Input placeholder="Enter text..." className="max-w-sm" />
-        </Stage>
-      </section>
-
+    <Exhibit
+      title="Input"
+      summary="An input allows users to enter, edit, and submit text data through direct keyboard entry."
+      description="Inputs are foundational interface controls for capturing structured and unstructured user data while maintaining dimensional stability and visual continuity across interactive states."
+      component="input"
+      importCode='import { Input } from "@homonoid/react";'
+      defaultCode={INPUT_DEFAULT_CODE_SAMPLE}
+      defaultStage={<Input placeholder="Enter text..." className="max-w-sm" />}
+      sections={INPUT_SECTIONS_LIST}
+    >
       {/* Variants Section */}
-      <section id={INPUT_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={INPUT_SECTIONS.variants.label} icon={INPUT_SECTIONS.variants.icon} />
-
-        <Stage code={INPUT_VARIANTS_CODE_SAMPLE}>
-          <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-            <Input variant="outlined" placeholder="Outlined input" />
-            <Input variant="contained" placeholder="Contained input" />
-            <Input variant="plain" placeholder="Plain input" />
-          </div>
-        </Stage>
-      </section >
+      <Exhibit.Stage section={sections.variants} code={INPUT_VARIANTS_CODE_SAMPLE}>
+        <div className="flex flex-col gap-surface-gap w-full max-w-sm">
+          <Input variant="outlined" placeholder="Outlined input" />
+          <Input variant="contained" placeholder="Contained input" />
+          <Input variant="plain" placeholder="Plain input" />
+        </div>
+      </Exhibit.Stage>
 
       {/* Adornments Section */}
-      <section id={INPUT_SECTIONS.adornments.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={INPUT_SECTIONS.adornments.label} icon={INPUT_SECTIONS.adornments.icon} />
-
-        <Stage code={INPUT_ADORNMENTS_CODE_SAMPLE}>
-          <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-            <Input
-              leading={<Search className="size-4 text-muted" />}
-              placeholder="Search components..."
-            />
-            <Input
-              leading={<Mail className="size-4 text-muted" />}
-              placeholder="Email address"
-            />
-            <Input
-              type="password"
-              trailing={<Eye className="size-4 text-muted cursor-pointer" />}
-              placeholder="Password"
-            />
-          </div>
-        </Stage>
-      </section >
+      <Exhibit.Stage section={sections.adornments} code={INPUT_ADORNMENTS_CODE_SAMPLE}>
+        <div className="flex flex-col gap-surface-gap w-full max-w-sm">
+          <Input
+            leading={<Search className="size-4 text-muted" />}
+            placeholder="Search components..."
+          />
+          <Input
+            leading={<Mail className="size-4 text-muted" />}
+            placeholder="Email address"
+          />
+          <Input
+            type="password"
+            trailing={<Eye className="size-4 text-muted cursor-pointer" />}
+            placeholder="Password"
+          />
+        </div>
+      </Exhibit.Stage>
 
       {/* Label & Helper Section */}
-      <section id={INPUT_SECTIONS.labelAndHelper.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={INPUT_SECTIONS.labelAndHelper.label} icon={INPUT_SECTIONS.labelAndHelper.icon} />
-
-        <Stage code={INPUT_LABEL_HELPER_CODE_SAMPLE}>
-          <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-            <Input
-              label="Email Address"
-              description="We will only use this to send transaction receipts."
-              placeholder="name@company.com"
-            />
-          </div>
-        </Stage>
-      </section >
+      <Exhibit.Stage section={sections.labelAndHelper} code={INPUT_LABEL_HELPER_CODE_SAMPLE}>
+        <div className="flex flex-col gap-surface-gap w-full max-w-sm">
+          <Input
+            label="Email Address"
+            description="We will only use this to send transaction receipts."
+            placeholder="name@company.com"
+          />
+        </div>
+      </Exhibit.Stage>
 
       {/* Floating Label Section */}
-      <section id={INPUT_SECTIONS.floatingLabel.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={INPUT_SECTIONS.floatingLabel.label} icon={INPUT_SECTIONS.floatingLabel.icon} />
-
-        <Stage code={INPUT_FLOATING_LABEL_CODE_SAMPLE}>
-          <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-            <Input
-              floating
-              label="First Name"
-              placeholder="Enter your first name"
-            />
-            <Input
-              floating
-              label="Email Address"
-              defaultValue="ada@homonoid.dev"
-            />
-            <Input
-              floating
-              label="Search Library"
-              leading={<Search className="size-4 text-muted" />}
-            />
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.floatingLabel} code={INPUT_FLOATING_LABEL_CODE_SAMPLE}>
+        <div className="flex flex-col gap-surface-gap w-full max-w-sm">
+          <Input
+            floating
+            label="First Name"
+            placeholder="Enter your first name"
+          />
+          <Input
+            floating
+            label="Email Address"
+            defaultValue="ada@homonoid.dev"
+          />
+          <Input
+            floating
+            label="Search Library"
+            leading={<Search className="size-4 text-muted" />}
+          />
+        </div>
+      </Exhibit.Stage>
 
       {/* Validation Section */}
-      <section id={INPUT_SECTIONS.validation.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={INPUT_SECTIONS.validation.label} icon={INPUT_SECTIONS.validation.icon} />
-
-        <Stage code={INPUT_VALIDATION_CODE_SAMPLE}>
-          <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-            <Input
-              invalid
-              label="Username"
-              error="This username is already taken."
-              defaultValue="lumunar"
-            />
-          </div>
-        </Stage>
-      </section >
+      <Exhibit.Stage section={sections.validation} code={INPUT_VALIDATION_CODE_SAMPLE}>
+        <div className="flex flex-col gap-surface-gap w-full max-w-sm">
+          <Input
+            invalid
+            label="Username"
+            error="This username is already taken."
+            defaultValue="lumunar"
+          />
+        </div>
+      </Exhibit.Stage>
 
       {/* Disabled Section */}
-      <section id={INPUT_SECTIONS.disabled.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={INPUT_SECTIONS.disabled.label} icon={INPUT_SECTIONS.disabled.icon} />
-
-        <Stage code={INPUT_DISABLED_CODE_SAMPLE}>
-          <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-            <Input
-              disabled
-              label="Account ID"
-              defaultValue="acc_983142"
-              description="System managed identifier cannot be modified."
-            />
-          </div>
-        </Stage>
-      </section >
+      <Exhibit.Stage section={sections.disabled} code={INPUT_DISABLED_CODE_SAMPLE}>
+        <div className="flex flex-col gap-surface-gap w-full max-w-sm">
+          <Input
+            disabled
+            label="Account ID"
+            defaultValue="acc_983142"
+            description="System managed identifier cannot be modified."
+          />
+        </div>
+      </Exhibit.Stage>
 
       {/* Object Continuity Section */}
-      <section id={INPUT_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{INPUT_SECTIONS.continuity.label}</Heading>
-
+      <Exhibit.Section section={sections.continuity}>
         <Description>
           Homonoid requires that state transitions preserve component identity without abrupt dimensional shifts. The container outer bounds and border radius remain constant when switching between rest, hover, focus, and invalid states.
         </Description>
@@ -187,12 +128,10 @@ export function InputView() {
         <Description>
           Color transitions for background and border interpolate smoothly using defined motion duration and standard easing curve tokens.
         </Description>
-      </section >
+      </Exhibit.Section>
 
       {/* Accessibility Section */}
-      <section id={INPUT_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{INPUT_SECTIONS.accessibility.label}</Heading>
-
+      <Exhibit.Section section={sections.accessibility}>
         <Description>
           Accessibility is fundamental to every Homonoid form primitive. We design text fields to offer unambiguous operational cues, robust input validation announcements, and complete assistive device compatibility.
         </Description>
@@ -204,20 +143,18 @@ export function InputView() {
         <Description>
           Visible focus rings encircle the input boundary during keyboard focus, meeting strict contrast ratios and ensuring effortless field navigation across complex forms.
         </Description>
-      </section >
+      </Exhibit.Section>
 
       {/* Interactive States Section */}
-      < InteractiveStates
-        id={INPUT_SECTIONS.interactiveStates.id}
-        title={INPUT_SECTIONS.interactiveStates.label}
+      <InteractiveStates
+        id={sections.interactiveStates.id}
+        title={sections.interactiveStates.label}
         description="The input supports both CSS pseudo classes and data attributes for flexibility:"
         items={INPUT_INTERACTIVE_STATES}
       />
 
       {/* Design Tokens Section */}
-      <section id={INPUT_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{INPUT_SECTIONS.tokens.label}</Heading>
-
+      <Exhibit.Section section={sections.tokens}>
         <Description>
           Input containers share identical height tokens with buttons to ensure consistent vertical rhythm when grouped horizontally across forms and toolbars.
         </Description>
@@ -229,12 +166,10 @@ export function InputView() {
         <Description>
           Interactive transitions for container borders and ring outlines execute using standard fast motion tokens and cubic bezier easing curves.
         </Description>
-      </section >
+      </Exhibit.Section>
 
       {/* Style Reference Section */}
-      <section id={INPUT_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{INPUT_SECTIONS.styleReference.label}</Heading>
-
+      <Exhibit.Section section={sections.styleReference}>
         <Description>
           Outlined inputs establish a crisp hairline boundary around the text entry surface, projecting a dedicated focus ring when keyboard navigation engages.
         </Description>
@@ -250,10 +185,7 @@ export function InputView() {
         <Description>
           Form captions and validation messages align beneath the container frame, shifting into high visibility destructive tones when validation conditions fail.
         </Description>
-      </section >
-
-      {/* Component Pagination Navigation */}
-      < Pagination />
-    </div >
+      </Exhibit.Section>
+    </Exhibit>
   );
 }

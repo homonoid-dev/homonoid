@@ -1,12 +1,7 @@
 "use client";
 
-import { Switch, Heading, Label, Description, Card } from "@homonoid/react";
-import { Stage } from "@/components/ui/stage";
-import { Resource } from "@/components/ui/resource";
-import { Frame } from "@/components/ui/frame";
-import { highlighter } from "@/components/ui/code";
-import { useToc } from "@/components/ui/toc";
-import { Pagination } from "@/components/ui/pagination";
+import { Switch, Label, Description } from "@homonoid/react";
+import { Exhibit } from "@/components/ui/exhibit";
 import {
   SWITCH_SECTIONS,
   SWITCH_SECTIONS_LIST,
@@ -20,157 +15,108 @@ import {
 } from "./model";
 
 export function SwitchView() {
-  useToc(SWITCH_SECTIONS_LIST);
+  const sections = SWITCH_SECTIONS;
 
   return (
-    <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
-      {/* View Header */}
-      <div className="flex flex-col gap-layout-gap">
-        <div className="flex flex-col gap-control-gap">
-          <Heading size="lg">Switch</Heading>
-          <Description>
-            A switch toggles the state of a single setting between on and off.
-          </Description>
+    <Exhibit
+      title="Switch"
+      summary="A switch toggles the state of a single setting between on and off."
+      description="Switches communicate immediate binary preferences, delivering clear tactile affordance and smooth physical transitions across states."
+      component="switch"
+      importCode='import { Switch } from "@homonoid/react";'
+      defaultCode={SWITCH_DEFAULT_CODE_SAMPLE}
+      defaultStage={
+        <Switch defaultChecked>
+          <Switch.Control>
+            <Switch.Thumb />
+          </Switch.Control>
+          <Switch.Content>
+            <Label>Airplane Mode</Label>
+            <Description>Disable connections</Description>
+          </Switch.Content>
+        </Switch>
+      }
+      sections={SWITCH_SECTIONS_LIST}
+    >
+      {/* States Section */}
+      <Exhibit.Stage section={sections.states} code={SWITCH_STATES_CODE_SAMPLE}>
+        <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+          <Switch aria-label="Inactive switch" />
+          <Switch defaultChecked aria-label="Active switch" />
+          <Switch invalid aria-label="Invalid inactive switch" />
+          <Switch invalid defaultChecked aria-label="Invalid active switch" />
         </div>
-        <Description>
-          Switches communicate immediate binary preferences, delivering clear tactile affordance and smooth physical transitions across states.
-        </Description>
-      </div>
+      </Exhibit.Stage>
 
-      {/* Resource Links */}
-      <div className="flex items-center gap-surface-gap">
-        <Resource type="github" component="switch" />
-        <Resource type="figma" href="https://www.figma.com/@lumunar" />
-      </div>
+      {/* Sizes Section */}
+      <Exhibit.Stage section={sections.sizes} code={SWITCH_SIZES_CODE_SAMPLE}>
+        <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+          <Switch size="sm" defaultChecked aria-label="Small switch" />
+          <Switch size="md" defaultChecked aria-label="Medium switch" />
+          <Switch size="lg" defaultChecked aria-label="Large switch" />
+        </div>
+      </Exhibit.Stage>
 
-      {/* Default Stage */}
-      <section className="flex flex-col gap-surface-gap pb-layout-y">
-        <Card
-          color="subtle"
-          variant="filled"
-          className="font-mono text-xs"
-        >
-          <code>{highlighter('import { Switch } from "@homonoid/react";')}</code>
-        </Card>
-
-        <Stage code={SWITCH_DEFAULT_CODE_SAMPLE}>
+      {/* Label and Helper Section */}
+      <Exhibit.Stage section={sections.labelAndHelper} code={SWITCH_LABEL_HELPER_CODE_SAMPLE}>
+        <div className="flex flex-col gap-4 max-w-sm">
           <Switch defaultChecked>
             <Switch.Control>
               <Switch.Thumb />
             </Switch.Control>
             <Switch.Content>
-              <Label>Airplane Mode</Label>
-              <Description>Disable connections</Description>
+              <Label>Automatic updates</Label>
+              <Description>
+                Download and install platform patches as soon as they become available.
+              </Description>
             </Switch.Content>
           </Switch>
-        </Stage>
-      </section>
-
-      {/* States Section */}
-      <section id={SWITCH_SECTIONS.states.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SWITCH_SECTIONS.states.label} icon={SWITCH_SECTIONS.states.icon} />
-
-        <Stage code={SWITCH_STATES_CODE_SAMPLE}>
-          <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-            <Switch aria-label="Inactive switch" />
-            <Switch defaultChecked aria-label="Active switch" />
-            <Switch invalid aria-label="Invalid inactive switch" />
-            <Switch invalid defaultChecked aria-label="Invalid active switch" />
-          </div>
-        </Stage>
-      </section>
-
-      {/* Sizes Section */}
-      <section id={SWITCH_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SWITCH_SECTIONS.sizes.label} icon={SWITCH_SECTIONS.sizes.icon} />
-
-        <Stage code={SWITCH_SIZES_CODE_SAMPLE}>
-          <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-            <Switch size="sm" defaultChecked aria-label="Small switch" />
-            <Switch size="md" defaultChecked aria-label="Medium switch" />
-            <Switch size="lg" defaultChecked aria-label="Large switch" />
-          </div>
-        </Stage>
-      </section>
-
-      {/* Label and Helper Section */}
-      <section id={SWITCH_SECTIONS.labelAndHelper.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SWITCH_SECTIONS.labelAndHelper.label} icon={SWITCH_SECTIONS.labelAndHelper.icon} />
-
-        <Stage code={SWITCH_LABEL_HELPER_CODE_SAMPLE}>
-          <div className="flex flex-col gap-4 max-w-sm">
-            <Switch defaultChecked>
-              <Switch.Control>
-                <Switch.Thumb />
-              </Switch.Control>
-              <Switch.Content>
-                <Label>Automatic updates</Label>
-                <Description>
-                  Download and install platform patches as soon as they become available.
-                </Description>
-              </Switch.Content>
-            </Switch>
-          </div>
-        </Stage>
-      </section>
+        </div>
+      </Exhibit.Stage>
 
       {/* Radius Section */}
-      <section id={SWITCH_SECTIONS.radius.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SWITCH_SECTIONS.radius.label} icon={SWITCH_SECTIONS.radius.icon} />
-
-        <Stage code={SWITCH_RADIUS_CODE_SAMPLE}>
-          <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-            <Switch radius="full" defaultChecked aria-label="Pill radius switch" />
-            <Switch radius="lg" defaultChecked aria-label="Large radius switch" />
-            <Switch radius="md" defaultChecked aria-label="Medium radius switch" />
-            <Switch radius="sm" defaultChecked aria-label="Small radius switch" />
-            <Switch radius="none" defaultChecked aria-label="Sharp radius switch" />
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.radius} code={SWITCH_RADIUS_CODE_SAMPLE}>
+        <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+          <Switch radius="full" defaultChecked aria-label="Pill radius switch" />
+          <Switch radius="lg" defaultChecked aria-label="Large radius switch" />
+          <Switch radius="md" defaultChecked aria-label="Medium radius switch" />
+          <Switch radius="sm" defaultChecked aria-label="Small radius switch" />
+          <Switch radius="none" defaultChecked aria-label="Sharp radius switch" />
+        </div>
+      </Exhibit.Stage>
 
       {/* Disabled Section */}
-      <section id={SWITCH_SECTIONS.disabled.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SWITCH_SECTIONS.disabled.label} icon={SWITCH_SECTIONS.disabled.icon} />
-
-        <Stage code={SWITCH_DISABLED_CODE_SAMPLE}>
-          <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-            <Switch disabled aria-label="Disabled inactive switch" />
-            <Switch disabled defaultChecked aria-label="Disabled active switch" />
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.disabled} code={SWITCH_DISABLED_CODE_SAMPLE}>
+        <div className="flex flex-row flex-wrap items-center gap-surface-gap">
+          <Switch disabled aria-label="Disabled inactive switch" />
+          <Switch disabled defaultChecked aria-label="Disabled active switch" />
+        </div>
+      </Exhibit.Stage>
 
       {/* Tile Section */}
-      <section id={SWITCH_SECTIONS.tile.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={SWITCH_SECTIONS.tile.label} icon={SWITCH_SECTIONS.tile.icon} />
-
-        <Stage code={SWITCH_TILE_CODE_SAMPLE}>
-          <div className="flex flex-col gap-control-gap w-full max-w-sm">
-            <Switch.Tile
-              variant="contained"
-              label="Airplane Mode"
-              description="Disable all wireless connections"
-              defaultChecked
-            />
-            <Switch.Tile
-              variant="outlined"
-              label="Do Not Disturb"
-              description="Silence calls and notifications"
-            />
-            <Switch.Tile
-              placement="leading"
-              label="Leading Toggle"
-              description="Switch control aligned to the leading slot"
-            />
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.tile} code={SWITCH_TILE_CODE_SAMPLE}>
+        <div className="flex flex-col gap-control-gap w-full max-w-sm">
+          <Switch.Tile
+            variant="contained"
+            label="Airplane Mode"
+            description="Disable all wireless connections"
+            defaultChecked
+          />
+          <Switch.Tile
+            variant="outlined"
+            label="Do Not Disturb"
+            description="Silence calls and notifications"
+          />
+          <Switch.Tile
+            placement="leading"
+            label="Leading Toggle"
+            description="Switch control aligned to the leading slot"
+          />
+        </div>
+      </Exhibit.Stage>
 
       {/* Object Continuity Section */}
-      <section id={SWITCH_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{SWITCH_SECTIONS.continuity.label}</Heading>
-
+      <Exhibit.Section section={sections.continuity}>
         <Description>
           State transitions maintain absolute geometric stability. Outer boundaries and track dimensions remain locked in place when transitioning across unchecked and checked states.
         </Description>
@@ -182,12 +128,10 @@ export function SwitchView() {
         <Description>
           Active pointer compression applies subtle scale tension across the entire capsule, providing immediate physical feedback upon interaction.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Accessibility Section */}
-      <section id={SWITCH_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{SWITCH_SECTIONS.accessibility.label}</Heading>
-
+      <Exhibit.Section section={sections.accessibility}>
         <Description>
           Accessibility for binary toggles guarantees predictable state announcements and effortless interaction across all assistive technologies.
         </Description>
@@ -199,12 +143,10 @@ export function SwitchView() {
         <Description>
           Prominent focus rings enclose the capsule container upon keyboard navigation. Generous touch targets preserve reliable activation across touch displays and pointer devices.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Design Tokens Section */}
-      <section id={SWITCH_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2"> {SWITCH_SECTIONS.tokens.label}</Heading>
-
+      <Exhibit.Section section={sections.tokens}>
         <Description>
           Control dimensions map directly to standardized spatial tokens comprising small 28px width, medium 44px width, and large 56px width presentations.
         </Description>
@@ -216,12 +158,10 @@ export function SwitchView() {
         <Description>
           Color values consume primary brand tokens and neutral border tokens exclusively, synchronizing effortlessly across light and dark theme environments.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Style Reference Section */}
-      <section id={SWITCH_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{SWITCH_SECTIONS.styleReference.label}</Heading>
-
+      <Exhibit.Section section={sections.styleReference}>
         <Description>
           Accessible native input elements preserve standard form integration, keyboard spacebar toggles, and screen reader announcements.
         </Description>
@@ -233,10 +173,7 @@ export function SwitchView() {
         <Description>
           Associated labels and descriptive captions link automatically to input identifiers, guaranteeing comprehensive accessibility tree representations.
         </Description>
-      </section>
-
-      {/* Component Pagination Navigation */}
-      <Pagination />
-    </div>
+      </Exhibit.Section>
+    </Exhibit>
   );
 }

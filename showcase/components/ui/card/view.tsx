@@ -1,12 +1,7 @@
 "use client";
 
-import { Card, Label, Heading, Description } from "@homonoid/react";
-import { Stage } from "@/components/ui/stage";
-import { Resource } from "@/components/ui/resource";
-import { Frame } from "@/components/ui/frame";
-import { highlighter } from "@/components/ui/code";
-import { useToc } from "@/components/ui/toc";
-import { Pagination } from "@/components/ui/pagination";
+import { Card, Label, Description } from "@homonoid/react";
+import { Exhibit } from "@/components/ui/exhibit";
 import {
   CARD_SECTIONS,
   CARD_SECTIONS_LIST,
@@ -17,149 +12,112 @@ import {
 } from "./model";
 
 export function CardView() {
-  useToc(CARD_SECTIONS_LIST);
+  const sections = CARD_SECTIONS;
 
   return (
-    <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
-      {/* View Header */}
-      <div className="flex flex-col gap-layout-gap">
-        <div className="flex flex-col gap-control-gap">
-          <Heading size="lg">Card</Heading>
+    <Exhibit
+      title="Card"
+      summary="A card groups related content and interactive elements within a clear visual container."
+      description="Homonoid cards provide structured surface elevation and flexible padding options while preserving design token fidelity across layouts."
+      component="card"
+      importCode='import { Card } from "@homonoid/react";'
+      defaultCode={CARD_DEFAULT_CODE_SAMPLE}
+      defaultStage={
+        <Card className="flex flex-col gap-2 max-w-sm w-full p-surface">
+          <Label as="h3">
+            Project Overview
+          </Label>
           <Description>
-            A card groups related content and interactive elements within a clear visual container.
+            Homonoid components provide continuous aesthetic fidelity and tactile physics.
           </Description>
-        </div>
-        <Description>
-          Homonoid cards provide structured surface elevation and flexible padding options while preserving design token fidelity across layouts.
-        </Description>
-      </div>
-
-      {/* Resource Links */}
-      <div className="flex items-center gap-surface-gap">
-        <Resource type="github" component="card" />
-        <Resource type="figma" href="https://www.figma.com/@lumunar" />
-      </div>
-
-      {/* Default Stage */}
-      <section className="flex flex-col gap-surface-gap pb-layout-y">
-        <Card
-          color="subtle"
-          variant="filled"
-          className="font-mono text-xs"
-        >
-          <code>{highlighter('import { Card } from "@homonoid/react";')}</code>
         </Card>
-
-        <Stage code={CARD_DEFAULT_CODE_SAMPLE}>
-          <Card className="flex flex-col gap-2 max-w-sm w-full p-surface">
+      }
+      sections={CARD_SECTIONS_LIST}
+    >
+      {/* Variants Section */}
+      <Exhibit.Stage section={sections.variants} code={CARD_VARIANTS_CODE_SAMPLE}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap w-full max-w-lg">
+          <Card variant="outlined" className="flex flex-col gap-2">
             <Label as="h3">
-              Project Overview
+              Outlined Card
             </Label>
             <Description>
-              Homonoid components provide continuous aesthetic fidelity and tactile physics.
+              Transparent surface framed by an optional hairline border stroke.
             </Description>
           </Card>
-        </Stage>
-      </section>
-
-      {/* Variants Section */}
-      <section id={CARD_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={CARD_SECTIONS.variants.label} icon={CARD_SECTIONS.variants.icon} />
-
-        <Stage code={CARD_VARIANTS_CODE_SAMPLE}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap w-full max-w-lg">
-            <Card variant="outlined" className="flex flex-col gap-2">
-              <Label as="h3">
-                Outlined Card
-              </Label>
-              <Description>
-                Transparent surface framed by an optional hairline border stroke.
-              </Description>
-            </Card>
-            <Card variant="filled" className="flex flex-col gap-2">
-              <Label as="h3">
-                Filled Card
-              </Label>
-              <Description>
-                Solid surface fill providing grounded visual grouping across views.
-              </Description>
-            </Card>
-          </div>
-        </Stage>
-      </section>
+          <Card variant="filled" className="flex flex-col gap-2">
+            <Label as="h3">
+              Filled Card
+            </Label>
+            <Description>
+              Solid surface fill providing grounded visual grouping across views.
+            </Description>
+          </Card>
+        </div>
+      </Exhibit.Stage>
 
       {/* Colors Section */}
-      <section id={CARD_SECTIONS.colors.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={CARD_SECTIONS.colors.label} icon={CARD_SECTIONS.colors.icon} />
-
-        <Stage code={CARD_COLORS_CODE_SAMPLE}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-surface-gap w-full max-w-lg">
-            <Card variant="filled" color="surface" className="flex flex-col gap-2">
-              <Label as="h3" className="text-inherit">
-                Surface
-              </Label>
-              <Description className="text-inherit opacity-80">
-                Neutral surface background.
-              </Description>
-            </Card>
-            <Card variant="filled" color="subtle" className="flex flex-col gap-2">
-              <Label as="h3" className="text-inherit">
-                Subtle
-              </Label>
-              <Description className="text-inherit opacity-80">
-                Chroma subtle wash tint.
-              </Description>
-            </Card>
-            <Card variant="filled" color="primary" className="flex flex-col gap-2">
-              <Label as="h3" className="text-inherit">
-                Primary
-              </Label>
-              <Description className="text-inherit opacity-80">
-                Brand highlight container.
-              </Description>
-            </Card>
-            <Card variant="filled" color="destructive" className="flex flex-col gap-2">
-              <Label as="h3" className="text-inherit">
-                Destructive
-              </Label>
-              <Description className="text-inherit opacity-80">
-                Danger alert container.
-              </Description>
-            </Card>
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.colors} code={CARD_COLORS_CODE_SAMPLE}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-surface-gap w-full max-w-lg">
+          <Card variant="filled" color="surface" className="flex flex-col gap-2">
+            <Label as="h3" className="text-inherit">
+              Surface
+            </Label>
+            <Description className="text-inherit opacity-80">
+              Neutral surface background.
+            </Description>
+          </Card>
+          <Card variant="filled" color="subtle" className="flex flex-col gap-2">
+            <Label as="h3" className="text-inherit">
+              Subtle
+            </Label>
+            <Description className="text-inherit opacity-80">
+              Chroma subtle wash tint.
+            </Description>
+          </Card>
+          <Card variant="filled" color="primary" className="flex flex-col gap-2">
+            <Label as="h3" className="text-inherit">
+              Primary
+            </Label>
+            <Description className="text-inherit opacity-80">
+              Brand highlight container.
+            </Description>
+          </Card>
+          <Card variant="filled" color="destructive" className="flex flex-col gap-2">
+            <Label as="h3" className="text-inherit">
+              Destructive
+            </Label>
+            <Description className="text-inherit opacity-80">
+              Danger alert container.
+            </Description>
+          </Card>
+        </div>
+      </Exhibit.Stage>
 
       {/* Border Control Section */}
-      <section id={CARD_SECTIONS.border.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={CARD_SECTIONS.border.label} icon={CARD_SECTIONS.border.icon} />
-
-        <Stage code={CARD_BORDER_CODE_SAMPLE}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap w-full max-w-lg">
-            <Card variant="filled" border={true} className="flex flex-col gap-2">
-              <Label as="h3">
-                With Border
-              </Label>
-              <Description>
-                Hairline border framing the card perimeter.
-              </Description>
-            </Card>
-            <Card variant="filled" border={false} className="flex flex-col gap-2">
-              <Label as="h3">
-                Borderless
-              </Label>
-              <Description>
-                Border stroke omitted for flat layered surfaces.
-              </Description>
-            </Card>
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.border} code={CARD_BORDER_CODE_SAMPLE}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap w-full max-w-lg">
+          <Card variant="filled" border={true} className="flex flex-col gap-2">
+            <Label as="h3">
+              With Border
+            </Label>
+            <Description>
+              Hairline border framing the card perimeter.
+            </Description>
+          </Card>
+          <Card variant="filled" border={false} className="flex flex-col gap-2">
+            <Label as="h3">
+              Borderless
+            </Label>
+            <Description>
+              Border stroke omitted for flat layered surfaces.
+            </Description>
+          </Card>
+        </div>
+      </Exhibit.Stage>
 
       {/* Object Continuity Section */}
-      <section id={CARD_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2"> {CARD_SECTIONS.continuity.label} </Heading>
-
+      <Exhibit.Section section={sections.continuity}>
         <Description>
           Card surfaces maintain structural visual cohesion across theme modes and elevation changes. Container boundaries preserve physical stability while adapting to internal content flows.
         </Description>
@@ -171,12 +129,10 @@ export function CardView() {
         <Description>
           Surface fills and borders calibrate against ambient luminance, ensuring continuous contrast fidelity across light and dark presentations.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Accessibility Section */}
-      <section id={CARD_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2"> {CARD_SECTIONS.accessibility.label} </Heading>
-
+      <Exhibit.Section section={sections.accessibility}>
         <Description>
           Accessibility in container architecture establishes semantic hierarchy and landmark clarity. Homonoid cards prioritize structured content navigation for screen readers and keyboard users alike.
         </Description>
@@ -188,12 +144,10 @@ export function CardView() {
         <Description>
           When configured with interactive actions, cards maintain accessible focus indicators and clear color contrast ratios across all surface, subtle, and brand color configurations.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Design Tokens Section */}
-      <section id={CARD_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2"> {CARD_SECTIONS.tokens.label} </Heading>
-
+      <Exhibit.Section section={sections.tokens}>
         <Description>
           Surface fills consume semantic background tokens including surface, subtle, and accent variants to maintain unified hierarchy.
         </Description>
@@ -205,12 +159,10 @@ export function CardView() {
         <Description>
           Padding values inherit proportional space tokens matching the global layout rhythm.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Style Reference Section */}
-      <section id={CARD_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2"> {CARD_SECTIONS.styleReference.label} </Heading>
-
+      <Exhibit.Section section={sections.styleReference}>
         <Description>
           Semantic HTML tags can be assigned via the polymorphic as prop to render section, article, or aside elements appropriate to content hierarchy.
         </Description>
@@ -222,10 +174,7 @@ export function CardView() {
         <Description>
           Nested typographic elements follow established contrast guidelines, ensuring readability across all background color treatments.
         </Description>
-      </section>
-
-      {/* Component Pagination Navigation */}
-      <Pagination />
-    </div>
+      </Exhibit.Section>
+    </Exhibit>
   );
 }
