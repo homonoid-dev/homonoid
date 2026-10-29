@@ -66,6 +66,14 @@ export const variants = cva(
   }
 );
 
+const DATE_INPUT_TYPES = new Set([
+  "date",
+  "time",
+  "datetime-local",
+  "month",
+  "week"
+]);
+
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   {
     id,
@@ -124,30 +132,28 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!isControlled) {
+    if (isFloating && !isControlled) {
       setInternalValue(e.target.value);
     }
     onChange?.(e);
   };
 
   const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
-    setIsFocused(true);
+    if (isFloating) {
+      setIsFocused(true);
+    }
     onFocus?.(e);
   };
 
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-    setIsFocused(false);
+    if (isFloating) {
+      setIsFocused(false);
+    }
     onBlur?.(e);
   };
 
   const currentValue = cond(isControlled, value, internalValue);
-  const isDateType = any(
-    props.type === "date",
-    props.type === "time",
-    props.type === "datetime-local",
-    props.type === "month",
-    props.type === "week"
-  );
+  const isDateType = Boolean(props.type && DATE_INPUT_TYPES.has(props.type));
   const hasValue = any(
     currentValue !== undefined && currentValue !== null && currentValue !== "",
     Boolean(innerRef.current?.value),
