@@ -141,7 +141,7 @@ export const SwitchTile = forwardRef<HTMLInputElement, SwitchTileProps>(
           color={color}
           size={size}
           radius={radius}
-          interactive={false}
+          interactive={!disabled}
           selected={isChecked}
           disabled={disabled}
           leading={resolvedLeading}
@@ -149,8 +149,7 @@ export const SwitchTile = forwardRef<HTMLInputElement, SwitchTileProps>(
           description={description}
           trailing={resolvedTrailing}
           className={cn(
-            "cursor-pointer transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] has-[:focus-visible]:focus-ring",
-            cond(disabled, "cursor-not-allowed opacity-50 active:scale-100", ""),
+            "has-[:focus-visible]:focus-ring",
             className
           )}
         >
