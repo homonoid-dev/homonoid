@@ -7,6 +7,7 @@ import {
   useEffect,
   useCallback,
   useMemo,
+  useRef,
   isValidElement,
   type ReactNode,
   type ComponentType,
@@ -162,12 +163,17 @@ export function Toc({
     [controlledCollapsed, setContextCollapsed, onCollapsedChange]
   );
 
+  const isScrollingRef = useRef(false);
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   useEffect(() => {
     if (!items || items.length === 0) return;
 
     const ids = items.map((item) => item.id);
 
     const handleScroll = () => {
+      if (isScrollingRef.current) return;
+
       const scrollY = window.scrollY;
       const innerHeight = window.innerHeight;
       const scrollHeight = document.documentElement.scrollHeight;
@@ -202,21 +208,54 @@ export function Toc({
       }
     };
 
+    const handleScrollEnd = () => {
+      isScrollingRef.current = false;
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = null;
+      }
+    };
+
+    const handleUserInteraction = () => {
+      isScrollingRef.current = false;
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = null;
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scrollend", handleScrollEnd);
+    window.addEventListener("wheel", handleUserInteraction, { passive: true });
+    window.addEventListener("touchmove", handleUserInteraction, { passive: true });
     window.addEventListener("resize", handleScroll, { passive: true });
     handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scrollend", handleScrollEnd);
+      window.removeEventListener("wheel", handleUserInteraction);
+      window.removeEventListener("touchmove", handleUserInteraction);
       window.removeEventListener("resize", handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
     };
   }, [items]);
 
   const scrollToSection = useCallback((id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      isScrollingRef.current = true;
       setActiveId(id);
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      scrollTimeoutRef.current = setTimeout(() => {
+        isScrollingRef.current = false;
+      }, 800);
     }
   }, []);
 
