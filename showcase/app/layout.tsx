@@ -22,16 +22,14 @@ export default function RootLayout({
           <Shell>
             <Shell.Sidebar>
               <Sidebar>
-                <div className="flex flex-col gap-control-gap p-surface-sm">
-                  {SHOWCASE_COMPONENTS.map((component) => (
-                    <Sidebar.Destination
-                      key={component.href}
-                      href={component.href}
-                    >
-                      {component.name}
-                    </Sidebar.Destination>
-                  ))}
-                </div>
+                {SHOWCASE_COMPONENTS.map((component) => (
+                  <Sidebar.Item
+                    key={component.href}
+                    href={component.href}
+                  >
+                    {component.name}
+                  </Sidebar.Item>
+                ))}
               </Sidebar>
             </Shell.Sidebar>
             <Shell.Main>

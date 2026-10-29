@@ -34,17 +34,14 @@ export interface SidebarProps extends HTMLAttributes<HTMLElement> {
   onCollapsedChange?: (collapsed: boolean) => void;
 
   /**
+   * Additional class name for the inner scrolling content container.
+   */
+  contentClassName?: string;
+
+  /**
    * Children content within the sidebar.
    */
   children?: ReactNode;
-}
-
-export interface SidebarToggleProps
-  extends Omit<HTMLAttributes<HTMLButtonElement>, "color"> {
-  /**
-   * Optional custom aria-label override.
-   */
-  "aria-label"?: string;
 }
 
 export interface SidebarHeaderProps extends HTMLAttributes<HTMLElement> {
@@ -59,7 +56,7 @@ export interface SidebarHeaderProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
 }
 
-export interface SidebarDestinationProps {
+export interface SidebarItemProps {
   /**
    * Destination URL or in-page anchor hash (e.g. "#variants").
    */
@@ -98,3 +95,5 @@ export interface SidebarDestinationProps {
    */
   className?: string;
 }
+
+export type SidebarDestinationProps = SidebarItemProps;

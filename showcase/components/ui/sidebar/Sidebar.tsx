@@ -4,9 +4,8 @@ import { useState, useCallback, useMemo } from "react";
 import { cn } from "@homonoid/react/cn";
 import { cond } from "@homonoid/react";
 import { cva } from "class-variance-authority";
-import { SidebarHeader } from "./header";
-import { SidebarDestination } from "./destination";
-import { SidebarToggle } from "./toggle";
+import { SidebarHeader } from "./SidebarHeader";
+import { SidebarItem, SidebarDestination } from "./SidebarItem";
 import { SidebarContext, type SidebarContextValue } from "./context";
 import type { SidebarProps } from "./types";
 
@@ -37,6 +36,7 @@ export function Sidebar({
   defaultCollapsed = false,
   onCollapsedChange,
   className,
+  contentClassName,
   children,
   ...props
 }: SidebarProps) {
@@ -89,7 +89,12 @@ export function Sidebar({
         className={cn(variants({ side, collapsed: isCollapsed }), className)}
         {...props}
       >
-        <div className="h-full overflow-y-auto overflow-x-hidden">
+        <div
+          className={cn(
+            "flex flex-col gap-control-gap p-surface-sm h-full overflow-y-auto overflow-x-hidden",
+            contentClassName
+          )}
+        >
           {children}
         </div>
 
@@ -125,5 +130,6 @@ export function Sidebar({
 }
 
 Sidebar.Header = SidebarHeader;
+Sidebar.Item = SidebarItem;
 Sidebar.Destination = SidebarDestination;
-Sidebar.Toggle = SidebarToggle;
+

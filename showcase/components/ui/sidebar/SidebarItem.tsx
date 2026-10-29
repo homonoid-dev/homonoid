@@ -3,12 +3,53 @@
 import type { MouseEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { cva } from "class-variance-authority";
 import { cn } from "@homonoid/react/cn";
 import { cond, when, Tooltip, Tile } from "@homonoid/react";
 import { useSidebar } from "./context";
-import type { SidebarDestinationProps } from "./types";
+import type { SidebarItemProps } from "./types";
 
-export function SidebarDestination({
+export const plainItemVariants = cva(
+  "group h-control-sm text-sm flex items-center w-full shrink-0 transition-colors duration-200 cursor-pointer select-none",
+  {
+    variants: {
+      collapsed: {
+        true: "justify-center",
+        false: "justify-between",
+      },
+      selected: {
+        true: "text-foreground font-medium",
+        false: "text-muted hover:text-foreground",
+      },
+    },
+    defaultVariants: {
+      collapsed: false,
+      selected: false,
+    },
+  }
+);
+
+export const tileItemVariants = cva(
+  "w-full text-sm select-none cursor-pointer",
+  {
+    variants: {
+      collapsed: {
+        true: "justify-center px-0",
+        false: "",
+      },
+      selected: {
+        true: "text-foreground font-medium bg-surface-hover hover:bg-surface-hover focus:bg-surface-hover",
+        false: "text-muted hover:text-foreground",
+      },
+    },
+    defaultVariants: {
+      collapsed: false,
+      selected: false,
+    },
+  }
+);
+
+export function SidebarItem({
   href = "#",
   icon,
   active,
@@ -16,7 +57,7 @@ export function SidebarDestination({
   children,
   className,
   variant,
-}: SidebarDestinationProps) {
+}: SidebarItemProps) {
   const { collapsed, side } = useSidebar();
   const pathname = usePathname();
 
@@ -61,16 +102,7 @@ export function SidebarDestination({
       selected={isSelected}
       trailing={icon}
       aria-label={labelText}
-      className={cn(
-        "w-full text-sm select-none cursor-pointer",
-        cond(
-          isSelected,
-          "text-foreground font-medium bg-surface-hover hover:bg-surface-hover focus:bg-surface-hover",
-          "text-muted hover:text-foreground"
-        ),
-        cond(collapsed, "justify-center px-0", ""),
-        className
-      )}
+      className={cn(tileItemVariants({ collapsed, selected: isSelected }), className)}
     >
       {label}
     </Tile>,
@@ -78,16 +110,7 @@ export function SidebarDestination({
       href={href}
       onClick={handleClick}
       aria-label={labelText}
-      className={cn(
-        "group h-control-sm text-sm flex items-center w-full shrink-0 transition-colors duration-200 cursor-pointer select-none",
-        cond(collapsed, "justify-center", "justify-between"),
-        cond(
-          isSelected,
-          "text-foreground font-medium",
-          "text-muted hover:text-foreground"
-        ),
-        className
-      )}
+      className={cn(plainItemVariants({ collapsed, selected: isSelected }), className)}
     >
       {label}
       {when(
@@ -119,3 +142,6 @@ export function SidebarDestination({
     </Tooltip>
   );
 }
+
+export const SidebarDestination = SidebarItem;
+
