@@ -1,4 +1,5 @@
 import type { HTMLAttributes, ReactNode, MouseEvent } from "react";
+import type { TileProps } from "@homonoid/react";
 
 export type SidebarSide = "left" | "right";
 
@@ -63,12 +64,10 @@ export interface SidebarItemProps {
   href?: string;
 
   /**
-   * Visual presentation style.
-   * - `tile`: Render using the Tile component with tactile states and background fills.
-   * - `plain`: Render using the minimal transparent text-only style without backgrounds.
-   * @default "tile" for left sidebar, "plain" for right sidebar
+   * Visual presentation style matching Tile variant.
+   * @default "plain"
    */
-  variant?: "tile" | "plain";
+  variant?: TileProps["variant"];
 
   /**
    * Optional trailing icon displayed on the right edge.
