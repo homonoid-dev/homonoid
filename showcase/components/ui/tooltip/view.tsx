@@ -1,6 +1,6 @@
 "use client";
 
-import { Tooltip, Button, Description, Heading, Card } from "@homonoid/react";
+import { Tooltip, Button, Description } from "@homonoid/react";
 import {
   Plus,
   Bookmark,
@@ -12,12 +12,7 @@ import {
   ArrowRight,
   Copy,
 } from "lucide-react";
-import { Stage } from "@/components/ui/stage";
-import { Resource } from "@/components/ui/resource";
-import { Frame } from "@/components/ui/frame";
-import { highlighter } from "@/components/ui/code";
-import { useToc } from "@/components/ui/toc";
-import { Pagination } from "@/components/ui/pagination";
+import { Exhibit } from "@/components/ui/exhibit";
 import {
   TOOLTIP_SECTIONS,
   TOOLTIP_SECTIONS_LIST,
@@ -57,109 +52,72 @@ const PLACEMENTS = [
 ];
 
 export function TooltipView() {
-  useToc(TOOLTIP_SECTIONS_LIST);
+  const sections = TOOLTIP_SECTIONS;
 
   return (
-    <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
-      {/* View Header */}
-      <div className="flex flex-col gap-layout-gap">
-        <div className="flex flex-col gap-control-gap">
-          <Heading size="lg">Tooltip</Heading>
-          <Description>
-            A tooltip presents contextual descriptions or auxiliary keyboard accelerators when users hover over or focus an interactive element.
-          </Description>
+    <Exhibit
+      title="Tooltip"
+      summary="A tooltip presents contextual descriptions or auxiliary keyboard accelerators when users hover over or focus an interactive element."
+      description="Tooltips clarify circular icon controls, reveal keyboard shortcuts, and offer guidance without crowding the primary interface canvas."
+      component="tooltip"
+      importCode='import { Tooltip } from "@homonoid/react";'
+      defaultCode={TOOLTIP_DEFAULT_CODE_SAMPLE}
+      defaultStage={
+        <div className="flex items-center justify-center p-6">
+          <Tooltip content="Add new element">
+            <Button layout="icon" variant="contained">
+              <Plus className="w-4 h-4" />
+            </Button>
+          </Tooltip>
         </div>
-        <Description>
-          Tooltips clarify circular icon controls, reveal keyboard shortcuts, and offer guidance without crowding the primary interface canvas.
-        </Description>
-      </div>
-
-      {/* Resource Links */}
-      <div className="flex items-center gap-surface-gap">
-        <Resource type="github" component="tooltip" />
-        <Resource type="figma" href="https://www.figma.com/@lumunar" />
-      </div>
-
-      {/* Default Stage */}
-      <section className="flex flex-col gap-surface-gap pb-layout-y">
-        <Card
-          color="subtle"
-          variant="filled"
-          className="font-mono text-xs"
-        >
-          <code>{highlighter('import { Tooltip } from "@homonoid/react";')}</code>
-        </Card>
-
-        <Stage code={TOOLTIP_DEFAULT_CODE_SAMPLE}>
-          <div className="flex items-center justify-center p-6">
-            <Tooltip content="Add new element">
-              <Button layout="icon" variant="contained">
-                <Plus className="w-4 h-4" />
+      }
+      sections={TOOLTIP_SECTIONS_LIST}
+    >
+      {/* Variants Section */}
+      <Exhibit.Stage section={sections.variants} code={TOOLTIP_VARIANTS_CODE_SAMPLE}>
+        <div className="flex flex-wrap items-center justify-center gap-6 p-6">
+          {VARIANTS.map((item) => (
+            <Tooltip key={item.variant} variant={item.variant} content={item.content}>
+              <Button layout="icon" variant={item.buttonVariant} color={item.buttonColor}>
+                <item.icon className="w-4 h-4" />
               </Button>
             </Tooltip>
-          </div>
-        </Stage>
-      </section>
-
-      {/* Variants Section */}
-      <section id={TOOLTIP_SECTIONS.variants.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={TOOLTIP_SECTIONS.variants.label} icon={TOOLTIP_SECTIONS.variants.icon} />
-
-        <Stage code={TOOLTIP_VARIANTS_CODE_SAMPLE}>
-          <div className="flex flex-wrap items-center justify-center gap-6 p-6">
-            {VARIANTS.map((item) => (
-              <Tooltip key={item.variant} variant={item.variant} content={item.content}>
-                <Button layout="icon" variant={item.buttonVariant} color={item.buttonColor}>
-                  <item.icon className="w-4 h-4" />
-                </Button>
-              </Tooltip>
-            ))}
-          </div>
-        </Stage>
-      </section>
+          ))}
+        </div>
+      </Exhibit.Stage>
 
       {/* Placements Section */}
-      <section id={TOOLTIP_SECTIONS.placements.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={TOOLTIP_SECTIONS.placements.label} icon={TOOLTIP_SECTIONS.placements.icon} />
-
-        <Stage code={TOOLTIP_PLACEMENTS_CODE_SAMPLE}>
-          <div className="flex flex-wrap items-center justify-center gap-6 p-6">
-            {PLACEMENTS.map((item) => (
-              <Tooltip key={item.side} side={item.side} content={`${item.label} positioning`}>
-                <Button layout="icon" variant="outlined">
-                  <item.icon className="w-4 h-4" />
-                </Button>
-              </Tooltip>
-            ))}
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.placements} code={TOOLTIP_PLACEMENTS_CODE_SAMPLE}>
+        <div className="flex flex-wrap items-center justify-center gap-6 p-6">
+          {PLACEMENTS.map((item) => (
+            <Tooltip key={item.side} side={item.side} content={`${item.label} positioning`}>
+              <Button layout="icon" variant="outlined">
+                <item.icon className="w-4 h-4" />
+              </Button>
+            </Tooltip>
+          ))}
+        </div>
+      </Exhibit.Stage>
 
       {/* Shortcuts Section */}
-      <section id={TOOLTIP_SECTIONS.shortcuts.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={TOOLTIP_SECTIONS.shortcuts.label} icon={TOOLTIP_SECTIONS.shortcuts.icon} />
-
-        <Stage code={TOOLTIP_SHORTCUTS_CODE_SAMPLE}>
-          <div className="flex items-center justify-center p-6">
-            <Tooltip>
-              <Tooltip.Trigger asChild>
-                <Button layout="icon" variant="contained">
-                  <Copy className="w-4 h-4" />
-                </Button>
-              </Tooltip.Trigger>
-              <Tooltip.Content>
-                Copy to clipboard
-                <Tooltip.Shortcut keyValue="command" content="C" />
-              </Tooltip.Content>
-            </Tooltip>
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.shortcuts} code={TOOLTIP_SHORTCUTS_CODE_SAMPLE}>
+        <div className="flex items-center justify-center p-6">
+          <Tooltip>
+            <Tooltip.Trigger asChild>
+              <Button layout="icon" variant="contained">
+                <Copy className="w-4 h-4" />
+              </Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content>
+              Copy to clipboard
+              <Tooltip.Shortcut keyValue="command" content="C" />
+            </Tooltip.Content>
+          </Tooltip>
+        </div>
+      </Exhibit.Stage>
 
       {/* Object Continuity Section */}
-      <section id={TOOLTIP_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{TOOLTIP_SECTIONS.continuity.label}</Heading>
-
+      <Exhibit.Section section={sections.continuity}>
         <Description>
           State transitions preserve spatial stability and component identity without abrupt dimensional jumps or visual flashes.
         </Description>
@@ -171,12 +129,10 @@ export function TooltipView() {
         <Description>
           Enter and exit delay timers prevent visual noise during sweeping pointer movements across adjacent interface controls.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Accessibility Section */}
-      <section id={TOOLTIP_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{TOOLTIP_SECTIONS.accessibility.label}</Heading>
-
+      <Exhibit.Section section={sections.accessibility}>
         <Description>
           Accessibility guarantees assistive technology compatibility across keyboard and screen reader workflows.
         </Description>
@@ -188,12 +144,10 @@ export function TooltipView() {
         <Description>
           Keyboard navigation displays tooltips immediately on focus, and pressing Escape dismisses active overlays without moving focus.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Design Tokens Section */}
-      <section id={TOOLTIP_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{TOOLTIP_SECTIONS.tokens.label}</Heading>
-
+      <Exhibit.Section section={sections.tokens}>
         <Description>
           Surface colors consume foreground, surface, and primary tokens dynamically across light and dark modes.
         </Description>
@@ -205,12 +159,10 @@ export function TooltipView() {
         <Description>
           Animation parameters consume fast motion durations and standard motion curves from Homonoid tokens.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Style Reference Section */}
-      <section id={TOOLTIP_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{TOOLTIP_SECTIONS.styleReference.label}</Heading>
-
+      <Exhibit.Section section={sections.styleReference}>
         <Description>
           Tooltips support both concise prop based composition and flexible compound structures for custom content requirements.
         </Description>
@@ -222,10 +174,7 @@ export function TooltipView() {
         <Description>
           Portal mounting isolates tooltip surfaces from parent overflow clipping, guaranteeing consistent rendering above all stacking contexts.
         </Description>
-      </section>
-
-      {/* Component Pagination Navigation */}
-      <Pagination />
-    </div>
+      </Exhibit.Section>
+    </Exhibit>
   );
 }
