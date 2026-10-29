@@ -148,6 +148,7 @@ export function SwitchView() {
         <Stage code={SWITCH_TILE_CODE_SAMPLE}>
           <div className="flex flex-col gap-control-gap w-full max-w-sm">
             <Switch.Tile
+              variant="contained"
               label="Airplane Mode"
               description="Disable all wireless connections"
               defaultChecked
