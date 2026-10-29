@@ -222,8 +222,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           floatingLabelColor,
           cond(
             isFloated,
-            cn("scale-85", floatingLabelBg),
-            "scale-100 bg-transparent"
+            cn("scale-85 -translate-y-0.5", floatingLabelBg),
+            "scale-100 translate-y-0 bg-transparent"
           ),
           cond(disabled, "opacity-50", undefined)
         )}
