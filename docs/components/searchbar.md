@@ -124,6 +124,14 @@ Searchbars communicate interactive status across all phases of user engagement:
 
 <br>
 
+### Floating Labels
+
+Searchbars inherit the floating label capability from the underlying input component via the `floating` property.
+
+The label rests within the query slot beside leading search icons at rest. Upon focus or query entry, the label ascends to straddle the top border with an eighty five percent fixed background mask, preserving full compatibility with leading spinners, search icons, and trailing shortcut badges.
+
+<br>
+
 ### Object Continuity
 
 Searchbars preserve dimensional stability across interactive transitions:
