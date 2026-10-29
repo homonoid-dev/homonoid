@@ -216,7 +216,7 @@ export function Exhibit({
       {/* Related Components Subtle Chip Rail */}
       {when(
         resolvedRelated.length > 0,
-        <section className="flex flex-col gap-control-gap pt-layout-y">
+        <section className="flex flex-col gap-control-gap">
           <Heading size="md" as="h2">Related</Heading>
           {when(
             Boolean(relatedDescription),
