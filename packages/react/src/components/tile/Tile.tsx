@@ -197,12 +197,13 @@ export const Tile = forwardRef<HTMLElement, TileProps>(function Tile(
   const defaultTag = cond(isInteractive, "button", "div");
   const Component = as || defaultTag;
   const isNativeButton = Component === "button";
+  const isLabel = Component === "label";
 
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (onKeyDown) {
       onKeyDown(event);
     }
-    if (any(disabled, event.defaultPrevented, isNativeButton)) return;
+    if (any(disabled, event.defaultPrevented, isNativeButton, isLabel)) return;
     if (any(event.key === "Enter", event.key === " ")) {
       if (event.key === " ") {
         event.preventDefault();
@@ -214,13 +215,19 @@ export const Tile = forwardRef<HTMLElement, TileProps>(function Tile(
   const interactiveAttributes = cond(
     isInteractive,
     cond(
-      isNativeButton,
-      {
-        type: "button" as const,
-        disabled,
-        "aria-disabled": cond(disabled, true, undefined),
-        "aria-selected": cond(selected, true, undefined)
-      },
+      any(isNativeButton, isLabel),
+      cond(
+        isNativeButton,
+        {
+          type: "button" as const,
+          disabled,
+          "aria-disabled": cond(disabled, true, undefined),
+          "aria-selected": cond(selected, true, undefined)
+        },
+        {
+          "aria-disabled": cond(disabled, true, undefined)
+        }
+      ),
       {
         role: "button",
         tabIndex: cond(disabled, -1, 0),
@@ -269,7 +276,7 @@ export const Tile = forwardRef<HTMLElement, TileProps>(function Tile(
             <Description
               as="span"
               size={cond(size === "lg", "md", "sm")}
-              className="line-clamp-2 text-inherit opacity-80"
+              className="line-clamp-2 text-inherit opacity-80 font-normal"
             >
               {description}
             </Description>

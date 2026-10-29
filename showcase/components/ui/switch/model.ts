@@ -5,6 +5,7 @@ import {
   Tag,
   Square,
   Ban,
+  LayoutList,
   Infinity,
   Accessibility,
   Palette,
@@ -43,6 +44,11 @@ export const SWITCH_SECTIONS: Record<string, SwitchSectionItem> = {
     id: "disabled",
     label: "Disabled",
     icon: Ban,
+  },
+  tile: {
+    id: "tile",
+    label: "Tile",
+    icon: LayoutList,
   },
   continuity: {
     id: "object-continuity",
@@ -154,3 +160,29 @@ export function Example() {
     </div>
   );
 }`;
+
+export const SWITCH_TILE_CODE_SAMPLE = `import { Switch } from "@homonoid/react";
+
+export function Example() {
+  return (
+    <div className="flex flex-col gap-control-gap w-full max-w-sm">
+      <Switch.Tile
+        variant="contained"
+        label="Airplane Mode"
+        description="Disable all wireless connections"
+        defaultChecked
+      />
+      <Switch.Tile
+        variant="outlined"
+        label="Do Not Disturb"
+        description="Silence calls and notifications"
+      />
+      <Switch.Tile
+        placement="leading"
+        label="Leading Toggle"
+        description="Switch control aligned to the leading slot"
+      />
+    </div>
+  );
+}`;
+

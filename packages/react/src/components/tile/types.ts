@@ -19,6 +19,11 @@ export interface TileProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   as?: ElementType;
 
   /**
+   * Associated form control identifier when rendered as a label.
+   */
+  htmlFor?: string;
+
+  /**
    * Optional destination link URL when rendered as a hyperlink or anchor.
    */
   href?: string;

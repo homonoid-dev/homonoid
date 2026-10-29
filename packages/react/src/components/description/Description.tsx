@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import type { DescriptionProps } from "./types";
 
-export const variants = cva("leading-relaxed", {
+export const variants = cva("leading-relaxed font-normal", {
   variants: {
     variant: {
       muted: "text-muted",

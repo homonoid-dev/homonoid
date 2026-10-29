@@ -16,6 +16,7 @@ import {
   SWITCH_LABEL_HELPER_CODE_SAMPLE,
   SWITCH_RADIUS_CODE_SAMPLE,
   SWITCH_DISABLED_CODE_SAMPLE,
+  SWITCH_TILE_CODE_SAMPLE,
 } from "./model";
 
 export function SwitchView() {
@@ -136,6 +137,32 @@ export function SwitchView() {
           <div className="flex flex-row flex-wrap items-center gap-surface-gap">
             <Switch disabled aria-label="Disabled inactive switch" />
             <Switch disabled defaultChecked aria-label="Disabled active switch" />
+          </div>
+        </Stage>
+      </section>
+
+      {/* Tile Section */}
+      <section id={SWITCH_SECTIONS.tile.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SWITCH_SECTIONS.tile.label} icon={SWITCH_SECTIONS.tile.icon} />
+
+        <Stage code={SWITCH_TILE_CODE_SAMPLE}>
+          <div className="flex flex-col gap-control-gap w-full max-w-sm">
+            <Switch.Tile
+              variant="contained"
+              label="Airplane Mode"
+              description="Disable all wireless connections"
+              defaultChecked
+            />
+            <Switch.Tile
+              variant="outlined"
+              label="Do Not Disturb"
+              description="Silence calls and notifications"
+            />
+            <Switch.Tile
+              placement="leading"
+              label="Leading Toggle"
+              description="Switch control aligned to the leading slot"
+            />
           </div>
         </Stage>
       </section>

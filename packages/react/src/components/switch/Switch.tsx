@@ -18,6 +18,7 @@ import { SwitchContext, type SwitchContextValue } from "./SwitchContext";
 import { SwitchControl } from "./SwitchControl";
 import { SwitchThumb } from "./SwitchThumb";
 import { SwitchContent } from "./SwitchContent";
+import { SwitchTile } from "./SwitchTile";
 import type { SwitchProps } from "./types";
 
 export interface SwitchComponent
@@ -29,6 +30,7 @@ export interface SwitchComponent
   Content: typeof SwitchContent;
   Label: typeof Label;
   Description: typeof Description;
+  Tile: typeof SwitchTile;
 }
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
@@ -182,3 +184,4 @@ Switch.Thumb = SwitchThumb;
 Switch.Content = SwitchContent;
 Switch.Label = Label;
 Switch.Description = Description;
+Switch.Tile = SwitchTile;
