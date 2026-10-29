@@ -63,7 +63,7 @@ export function SidebarDestination({
     );
 
     const classes = cn(
-      "group h-control-sm text-sm flex items-center w-full transition-colors duration-200 cursor-pointer select-none",
+      "group h-control-sm text-sm flex items-center w-full shrink-0 transition-colors duration-200 cursor-pointer select-none",
       cond(collapsed, "justify-center", "justify-between"),
       cond(
         isSelected,

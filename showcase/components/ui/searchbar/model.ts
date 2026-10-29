@@ -7,6 +7,7 @@ import {
   Accessibility,
   Palette,
   BookOpen,
+  ArrowUpToLine,
   LucideIcon,
 } from "lucide-react";
 import type { TocItem } from "@/components/ui/toc";
@@ -37,6 +38,11 @@ export const SEARCHBAR_SECTIONS: Record<string, SearchbarSectionItem> = {
     id: "label-and-description",
     label: "Label & Description",
     icon: Tag,
+  },
+  floatingLabel: {
+    id: "floating-label",
+    label: "Floating Label",
+    icon: ArrowUpToLine,
   },
   continuity: {
     id: "object-continuity",
@@ -159,6 +165,27 @@ export function Example() {
         label="Repository Search"
         description="Query public and private repositories across your organization."
         placeholder="Search repositories..."
+      />
+    </div>
+  );
+}`;
+
+export const SEARCHBAR_FLOATING_LABEL_CODE_SAMPLE = `import { Searchbar, Kbd } from "@homonoid/react";
+import { Search } from "lucide-react";
+
+export function Example() {
+  return (
+    <div className="w-full max-w-sm flex flex-col gap-3">
+      <Searchbar
+        floating
+        label="Search library..."
+        leading={<Search className="size-4 text-muted" />}
+      />
+      <Searchbar
+        floating
+        label="Quick command"
+        leading={<Search className="size-4 text-muted" />}
+        trailing={<Kbd keyValue="command" content="K" />}
       />
     </div>
   );

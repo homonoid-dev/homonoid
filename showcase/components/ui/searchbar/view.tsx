@@ -17,6 +17,7 @@ import {
   SEARCHBAR_LOADING_CODE_SAMPLE,
   SEARCHBAR_SHORTCUT_CODE_SAMPLE,
   SEARCHBAR_LABEL_AND_DESCRIPTION_CODE_SAMPLE,
+  SEARCHBAR_FLOATING_LABEL_CODE_SAMPLE,
 } from "./model";
 
 function ShortcutExample() {
@@ -150,6 +151,27 @@ export function SearchbarView() {
               label="Repository Search"
               description="Query public and private repositories across your organization."
               placeholder="Search repositories..."
+            />
+          </div>
+        </Stage>
+      </section>
+
+      {/* Floating Label Section */}
+      <section id={SEARCHBAR_SECTIONS.floatingLabel.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={SEARCHBAR_SECTIONS.floatingLabel.label} icon={SEARCHBAR_SECTIONS.floatingLabel.icon} />
+
+        <Stage code={SEARCHBAR_FLOATING_LABEL_CODE_SAMPLE}>
+          <div className="w-full max-w-sm flex flex-col gap-3">
+            <Searchbar
+              floating
+              label="Search library..."
+              leading={<Search className="size-4 text-muted" />}
+            />
+            <Searchbar
+              floating
+              label="Quick command"
+              leading={<Search className="size-4 text-muted" />}
+              trailing={<Kbd keyValue="command" content="K" />}
             />
           </div>
         </Stage>

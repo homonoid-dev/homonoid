@@ -1,4 +1,4 @@
-import type { Ref } from "react";
+import type { ReactNode, Ref } from "react";
 import type {
   InputProps,
   InputRadius,
@@ -45,4 +45,27 @@ export interface SearchbarProps
    * Callback fired when user submits a query via Enter key press.
    */
   onSearch?: (value: string) => void;
+
+  /**
+   * Optional primary textual or visual label associated with the searchbar.
+   */
+  label?: ReactNode;
+
+  /**
+   * Whether the label transitions smoothly into a floating state upon focus or query presence.
+   * Automatically aligns with leading search icons and masks the container border.
+   * @default false
+   */
+  floating?: boolean;
+
+  /**
+   * Alias for `floating`.
+   * @default false
+   */
+  floatingLabel?: boolean;
+
+  /**
+   * Optional custom styling class for the floating label background mask.
+   */
+  floatingLabelClassName?: string;
 }

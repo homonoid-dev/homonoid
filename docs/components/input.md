@@ -98,6 +98,16 @@ Inputs communicate interactive readiness and status through distinct visual stat
 
 <br>
 
+### Floating Labels
+
+Inputs support an animated floating label configuration via the `floating` property.
+
+The label rests inside the text entry slot when empty and unfocused, aligning naturally with leading adornments without manual offsets.
+
+Upon focus or value entry, the label animates upward to straddle the top container border. A solid background mask matching the container surface prevents border strokes from bleeding through during hover and active states.
+
+<br>
+
 ### Object Continuity
 
 Homonoid requires that state transitions preserve component identity without abrupt dimensional shifts:
