@@ -1,12 +1,7 @@
 "use client";
 
-import { Label, Description, Heading, Card, Input } from "@homonoid/react";
-import { Stage } from "@/components/ui/stage";
-import { Resource } from "@/components/ui/resource";
-import { Frame } from "@/components/ui/frame";
-import { highlighter } from "@/components/ui/code";
-import { useToc } from "@/components/ui/toc";
-import { Pagination } from "@/components/ui/pagination";
+import { Label, Description, Input } from "@homonoid/react";
+import { Exhibit } from "@/components/ui/exhibit";
 import {
   LABEL_SECTIONS,
   LABEL_SECTIONS_LIST,
@@ -17,99 +12,58 @@ import {
 } from "./model";
 
 export function LabelView() {
-  useToc(LABEL_SECTIONS_LIST);
+  const sections = LABEL_SECTIONS;
 
   return (
-    <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0">
-      {/* View Header */}
-      <div className="flex flex-col gap-layout-gap">
-        <div className="flex flex-col gap-control-gap">
-          <Heading size="lg">Label</Heading>
-          <Description>
-            A label establishes clear typographic hierarchy and semantic prominence for sections, views, and data landmarks.
-          </Description>
-        </div>
-        <Description>
-          Labels anchor layout surfaces, providing immediate legibility and visual weight while preserving continuum across responsive viewports.
-        </Description>
-      </div>
-
-      {/* Resource Links */}
-      <div className="flex items-center gap-surface-gap">
-        <Resource type="github" component="label" />
-        <Resource type="figma" href="https://www.figma.com/@lumunar" />
-      </div>
-
-      {/* Default Stage */}
-      <section className="flex flex-col gap-surface-gap pb-layout-y">
-        <Card
-          color="subtle"
-          variant="filled"
-          className="font-mono text-xs"
-        >
-          <code>{highlighter('import { Label } from "@homonoid/react";')}</code>
-        </Card>
-
-        <Stage code={LABEL_DEFAULT_CODE_SAMPLE}>
-          <Label>
-            Account Settings
-          </Label>
-        </Stage>
-      </section>
-
+    <Exhibit
+      title="Label"
+      summary="A label establishes clear typographic hierarchy and semantic prominence for sections, views, and data landmarks."
+      description="Labels anchor layout surfaces, providing immediate legibility and visual weight while preserving continuum across responsive viewports."
+      component="label"
+      importCode='import { Label } from "@homonoid/react";'
+      defaultCode={LABEL_DEFAULT_CODE_SAMPLE}
+      defaultStage={<Label>Account Settings</Label>}
+      sections={LABEL_SECTIONS_LIST}
+    >
       {/* Sizes Section */}
-      <section id={LABEL_SECTIONS.sizes.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={LABEL_SECTIONS.sizes.label} icon={LABEL_SECTIONS.sizes.icon} />
-
-        <Stage code={LABEL_SIZES_CODE_SAMPLE}>
-          <div className="flex flex-col items-center gap-4 text-center">
-            <Label size="lg">Large Heading</Label>
-            <Label size="md">Medium Section</Label>
-            <Label size="sm">Small Subsection</Label>
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.sizes} code={LABEL_SIZES_CODE_SAMPLE}>
+        <div className="flex flex-col items-center gap-4 text-center">
+          <Label size="lg">Large Heading</Label>
+          <Label size="md">Medium Section</Label>
+          <Label size="sm">Small Subsection</Label>
+        </div>
+      </Exhibit.Stage>
 
       {/* Polymorphism Section */}
-      <section id={LABEL_SECTIONS.polymorphism.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={LABEL_SECTIONS.polymorphism.label} icon={LABEL_SECTIONS.polymorphism.icon} />
-
-        <Stage code={LABEL_POLYMORPHISM_CODE_SAMPLE}>
-          <div className="flex flex-col items-center gap-3 text-center">
-            <Label as="h1" size="lg">
-              Document Landmark (h1)
-            </Label>
-            <Label as="h2" size="md">
-              Regional Section (h2)
-            </Label>
-            <Label as="span" size="sm">
-              Inline Accessory (span)
-            </Label>
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.polymorphism} code={LABEL_POLYMORPHISM_CODE_SAMPLE}>
+        <div className="flex flex-col items-center gap-3 text-center">
+          <Label as="h1" size="lg">
+            Document Landmark (h1)
+          </Label>
+          <Label as="h2" size="md">
+            Regional Section (h2)
+          </Label>
+          <Label as="span" size="sm">
+            Inline Accessory (span)
+          </Label>
+        </div>
+      </Exhibit.Stage>
 
       {/* Form Controls Section */}
-      <section id={LABEL_SECTIONS.forms.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-        <Frame text={LABEL_SECTIONS.forms.label} icon={LABEL_SECTIONS.forms.icon} />
-
-        <Stage code={LABEL_FORMS_CODE_SAMPLE}>
-          <div className="flex flex-col gap-2 max-w-sm w-full">
-            <Label as="label" htmlFor="workspace-input">
-              Workspace Name
-            </Label>
-            <Input id="workspace-input" placeholder="e.g. Studio" />
-            <Description>
-              Used across notifications and shared project invites.
-            </Description>
-          </div>
-        </Stage>
-      </section>
+      <Exhibit.Stage section={sections.forms} code={LABEL_FORMS_CODE_SAMPLE}>
+        <div className="flex flex-col gap-2 max-w-sm w-full">
+          <Label as="label" htmlFor="workspace-input">
+            Workspace Name
+          </Label>
+          <Input id="workspace-input" placeholder="e.g. Studio" />
+          <Description>
+            Used across notifications and shared project invites.
+          </Description>
+        </div>
+      </Exhibit.Stage>
 
       {/* Object Continuity Section */}
-      <section id={LABEL_SECTIONS.continuity.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{LABEL_SECTIONS.continuity.label}</Heading>
-
+      <Exhibit.Section section={sections.continuity}>
         <Description>
           Labels maintain dimensional stability and letterform metrics across theme transitions. Letter tracking and vertical rhythm stay optically locked when shifting between surfaces and elevations.
         </Description>
@@ -121,12 +75,10 @@ export function LabelView() {
         <Description>
           High contrast foreground tokens maintain WCAG compliant contrast ratios across primary, subtle, and elevated surfaces.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Accessibility Section */}
-      <section id={LABEL_SECTIONS.accessibility.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{LABEL_SECTIONS.accessibility.label}</Heading>
-
+      <Exhibit.Section section={sections.accessibility}>
         <Description>
           Accessibility is the cornerstone of clear interface communication. Homonoid labels ensure that every visual heading and input prompt provides unambiguous meaning for users relying on screen readers and assistive tech.
         </Description>
@@ -138,12 +90,10 @@ export function LabelView() {
         <Description>
           Polymorphic element rendering guarantees proper document outline semantics by producing real h1 through h6 heading tags rather than non semantic styled text blocks.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Design Tokens Section */}
-      <section id={LABEL_SECTIONS.tokens.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{LABEL_SECTIONS.tokens.label}</Heading>
-
+      <Exhibit.Section section={sections.tokens}>
         <Description>
           Typography tokens establish three distinct scale tiers comprising 16px font-semibold for small, 18px font-bold for medium, and 24px font-bold for large titles.
         </Description>
@@ -155,12 +105,10 @@ export function LabelView() {
         <Description>
           Color values consume foreground design tokens exclusively, ensuring harmonious appearance and effortless synchronization across themes.
         </Description>
-      </section>
+      </Exhibit.Section>
 
       {/* Style Reference Section */}
-      <section id={LABEL_SECTIONS.styleReference.id} className="flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y">
-        <Heading size="md" as="h2">{LABEL_SECTIONS.styleReference.label}</Heading>
-
+      <Exhibit.Section section={sections.styleReference}>
         <Description>
           Semantic headings align with the accessibility tree, allowing screen readers and keyboard users to navigate page outlines without confusion.
         </Description>
@@ -172,10 +120,7 @@ export function LabelView() {
         <Description>
           Tight letter tracking optimizes display clarity on high density screens, keeping headlines legible across diverse viewports.
         </Description>
-      </section>
-
-      {/* Component Pagination Navigation */}
-      <Pagination />
-    </div>
+      </Exhibit.Section>
+    </Exhibit>
   );
 }
