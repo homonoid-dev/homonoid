@@ -15,7 +15,7 @@ import { all, any, cond, match, when } from "../../utils/condition";
 import type { InputProps } from "./types";
 
 export const variants = cva(
-  "relative w-full inline-flex items-center transform-gpu origin-center transition-[color,background-color,border-color,opacity] duration-1000 ease-[var(--motion-easing)]",
+  "relative w-full inline-flex items-center transform-gpu origin-center transition-[color,background-color,border-color,opacity] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)]",
   {
     variants: {
       variant: {
@@ -205,37 +205,48 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     <div
       className={cn(
         "pointer-events-none absolute inset-0 select-none z-10 flex items-center",
-        "transform-gpu transition duration-1000 ease-[var(--motion-easing)] motion-reduce:transition-none",
+        "transform-gpu transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
         cond(isFloated, "-translate-y-1/2", "translate-y-0")
       )}
     >
-      <label
-        id={labelId}
-        htmlFor={inputId}
-        data-slot="input-floating-label"
-        data-floated={cond(isFloated, "true", "false")}
-        className={cn(
-          "inline-flex items-center -ml-1 px-1 rounded-xs truncate font-medium leading-normal origin-left",
-          "transform-gpu subpixel-antialiased",
-          "transition duration-1000 ease-[var(--motion-easing)] motion-reduce:transition-none",
-          restingLabelSize,
-          floatingLabelColor,
-          cond(
-            isFloated,
-            cn("scale-85 -translate-y-0.5", floatingLabelBg),
-            "scale-100 translate-y-0 bg-transparent"
-          ),
-          cond(disabled, "opacity-50", undefined)
-        )}
-      >
-        {label}
-        {when(
-          props.required,
-          <span className="text-destructive ml-0.5" aria-hidden="true">
-            *
-          </span>
-        )}
-      </label>
+      <div className="relative inline-grid items-center -ml-1">
+        {/* Fixed Width Background Mask Plate for Border Notch */}
+        <span
+          aria-hidden="true"
+          className={cn(
+            "col-start-1 row-start-1 h-full w-full px-1 rounded-xs",
+            "transform-gpu origin-left scale-85",
+            "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
+            floatingLabelBg,
+            cond(isFloated, "-translate-y-0.5 opacity-100", "translate-y-0 opacity-0")
+          )}
+        />
+
+        {/* Text Label Scaling Layer */}
+        <label
+          id={labelId}
+          htmlFor={inputId}
+          data-slot="input-floating-label"
+          data-floated={cond(isFloated, "true", "false")}
+          className={cn(
+            "col-start-1 row-start-1 inline-flex items-center px-1 rounded-xs truncate font-medium leading-normal origin-left",
+            "transform-gpu subpixel-antialiased",
+            "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
+            restingLabelSize,
+            floatingLabelColor,
+            cond(isFloated, "scale-85 -translate-y-0.5", "scale-100 translate-y-0"),
+            cond(disabled, "opacity-50", undefined)
+          )}
+        >
+          {label}
+          {when(
+            props.required,
+            <span className="text-destructive ml-0.5" aria-hidden="true">
+              *
+            </span>
+          )}
+        </label>
+      </div>
     </div>
   );
 
