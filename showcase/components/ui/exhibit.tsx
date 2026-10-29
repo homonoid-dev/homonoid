@@ -226,11 +226,14 @@ export function Exhibit({
                 as={Link}
                 href={item.href}
                 variant="outlined"
-                label={item.name}
-                description={item.description}
                 size="lg"
                 className="rounded-3xl"
-              />
+              >
+                <Tile.Content>
+                  <Tile.Label size="md">{item.name}</Tile.Label>
+                  <Tile.Description size="sm">{item.description}</Tile.Description>
+                </Tile.Content>
+              </Tile>
             ))}
           </div>
         </section>
