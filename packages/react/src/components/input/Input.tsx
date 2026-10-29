@@ -15,7 +15,7 @@ import { all, any, cond, match, when } from "../../utils/condition";
 import type { InputProps } from "./types";
 
 export const variants = cva(
-  "relative w-full inline-flex items-center transform-gpu origin-center transition-[color,background-color,border-color,opacity] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)]",
+  "relative w-full inline-flex items-center transform-gpu origin-center transition-[color,background-color,border-color,opacity] duration-1000 ease-[var(--motion-easing)]",
   {
     variants: {
       variant: {
@@ -205,7 +205,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     <div
       className={cn(
         "pointer-events-none absolute inset-0 select-none z-10 flex items-center",
-        "transform-gpu transition-transform duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
+        "transform-gpu transition duration-1000 ease-[var(--motion-easing)] motion-reduce:transition-none",
         cond(isFloated, "-translate-y-1/2", "translate-y-0")
       )}
     >
@@ -217,7 +217,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         className={cn(
           "inline-flex items-center -ml-1 px-1 rounded-xs truncate font-medium leading-normal origin-left",
           "transform-gpu subpixel-antialiased",
-          "transition-[transform,color,background-color] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
+          "transition duration-1000 ease-[var(--motion-easing)] motion-reduce:transition-none",
           restingLabelSize,
           floatingLabelColor,
           cond(
