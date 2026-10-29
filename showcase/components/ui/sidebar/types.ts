@@ -1,39 +1,7 @@
 import type { HTMLAttributes, ReactNode, MouseEvent } from "react";
 import type { TileProps } from "@homonoid/react";
 
-export type SidebarSide = "left" | "right";
-
 export interface SidebarProps extends HTMLAttributes<HTMLElement> {
-  /**
-   * Docking orientation of the sidebar.
-   * - `left`: Renders with a right border (`border-r`).
-   * - `right`: Renders with a left border (`border-l`).
-   * @default "left"
-   */
-  side?: SidebarSide;
-
-  /**
-   * Whether the sidebar can collapse into a compact mode.
-   * @default false
-   */
-  collapsible?: boolean;
-
-  /**
-   * Controlled collapsed state.
-   */
-  collapsed?: boolean;
-
-  /**
-   * Default collapsed state for uncontrolled mode.
-   * @default false
-   */
-  defaultCollapsed?: boolean;
-
-  /**
-   * Callback fired when collapsed state changes.
-   */
-  onCollapsedChange?: (collapsed: boolean) => void;
-
   /**
    * Additional class name for the inner scrolling content container.
    */
@@ -94,5 +62,3 @@ export interface SidebarItemProps {
    */
   className?: string;
 }
-
-export type SidebarDestinationProps = SidebarItemProps;

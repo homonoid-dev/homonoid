@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  createContext,
   useContext,
   useState,
   useEffect,
@@ -13,52 +12,13 @@ import {
   type ComponentType,
 } from "react";
 import type { LucideIcon } from "lucide-react";
-import { Sidebar } from "@/components/ui/sidebar";
 import { cn } from "@homonoid/react/cn";
 import { cond } from "@homonoid/react";
+import { TocContext } from "./context";
+import { TocItem } from "./TocItem";
+import type { TocProps } from "./types";
 
-export interface TocItem {
-  id: string;
-  label: string;
-  icon?: LucideIcon | ComponentType<{ className?: string }> | ReactNode;
-}
-
-export interface TocContextValue {
-  items: TocItem[];
-  setItems: (items: TocItem[]) => void;
-  collapsed: boolean;
-  setCollapsed: (collapsed: boolean | ((prev: boolean) => boolean)) => void;
-}
-
-export const TocContext = createContext<TocContextValue | null>(null);
-
-export function TocProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<TocItem[]>([]);
-  const [collapsed, setCollapsed] = useState(false);
-
-  return (
-    <TocContext.Provider value={{ items, setItems, collapsed, setCollapsed }}>
-      {children}
-    </TocContext.Provider>
-  );
-}
-
-export function useToc(items?: TocItem[]) {
-  const context = useContext(TocContext);
-  if (!context) {
-    throw new Error("useToc must be used within a TocProvider");
-  }
-
-  const { setItems } = context;
-
-  useEffect(() => {
-    if (items) {
-      setItems(items);
-    }
-  }, [items, setItems]);
-
-  return context;
-}
+const EMPTY_ITEMS: TocItem[] = [];
 
 function renderIcon(
   icon?: LucideIcon | ComponentType<{ className?: string }> | ReactNode
@@ -69,32 +29,6 @@ function renderIcon(
   return <IconComponent className="size-4" />;
 }
 
-export interface TocProps {
-  items?: TocItem[];
-  className?: string;
-  defaultActiveId?: string;
-  /**
-   * Whether the Table of Contents sidebar can collapse.
-   * @default true
-   */
-  collapsible?: boolean;
-  /**
-   * Controlled collapsed state.
-   */
-  collapsed?: boolean;
-  /**
-   * Screen width in pixels under which the TOC automatically collapses.
-   * @default 1280
-   */
-  collapseBreakpoint?: number;
-  /**
-   * Callback fired when collapsed state changes.
-   */
-  onCollapsedChange?: (collapsed: boolean) => void;
-}
-
-const EMPTY_ITEMS: TocItem[] = [];
-
 export function Toc({
   items: explicitItems,
   className,
@@ -102,7 +36,6 @@ export function Toc({
   collapsible = true,
   collapsed: controlledCollapsed,
   collapseBreakpoint = 920,
-  onCollapsedChange,
 }: TocProps = {}) {
   const context = useContext(TocContext);
   const items = useMemo(
@@ -116,7 +49,6 @@ export function Toc({
   );
   const [internalCollapsed, setInternalCollapsed] = useState(false);
 
-  // Derive active id during render without cascading setState inside an effect
   const isCurrentActiveValid = items.some((item) => item.id === activeId);
   const effectiveActiveId = cond(
     isCurrentActiveValid,
@@ -152,17 +84,6 @@ export function Toc({
     }
   }, [collapsible, controlledCollapsed, collapseBreakpoint, setContextCollapsed]);
 
-  const handleCollapseChange = useCallback(
-    (next: boolean) => {
-      if (controlledCollapsed === undefined) {
-        setInternalCollapsed(next);
-        setContextCollapsed?.(next);
-      }
-      onCollapsedChange?.(next);
-    },
-    [controlledCollapsed, setContextCollapsed, onCollapsedChange]
-  );
-
   const isScrollingRef = useRef(false);
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -178,7 +99,6 @@ export function Toc({
       const innerHeight = window.innerHeight;
       const scrollHeight = document.documentElement.scrollHeight;
 
-      // When scrolled near the bottom of the page, activate the terminal section
       if (scrollY + innerHeight >= scrollHeight - 32) {
         const lastId = ids[ids.length - 1];
         if (lastId) {
@@ -187,7 +107,6 @@ export function Toc({
         }
       }
 
-      // Check sections from top to bottom against a standard reading offset
       const readingOffset = 160;
       let matchedId = ids[0] ?? "";
 
@@ -262,24 +181,37 @@ export function Toc({
   if (!items || items.length === 0) return null;
 
   return (
-    <Sidebar
-      side="right"
-      collapsible={collapsible}
-      collapsed={isCollapsed}
-      onCollapsedChange={handleCollapseChange}
-      className={cn("sticky top-0 self-start h-screen shrink-0", className)}
+    <nav
+      aria-label="Table of contents"
+      className={cn(
+        "sticky top-0 self-start h-screen shrink-0 border-l-[0.5px] border-border/50 bg-background transition-[width] duration-300 ease-in-out select-none",
+        cond(isCollapsed, "w-[calc(var(--p-layout-x)*2+1rem)]", "w-58"),
+        className
+      )}
     >
-      {items.map((item) => (
-        <Sidebar.Item
-          key={item.id}
-          href={`#${item.id}`}
-          icon={renderIcon(item.icon)}
-          active={effectiveActiveId === item.id}
-          onClick={() => scrollToSection(item.id)}
-        >
-          {item.label}
-        </Sidebar.Item>
-      ))}
-    </Sidebar>
+      <div
+        className={cn(
+          "flex flex-col gap-control-gap p-surface-sm h-full overflow-y-auto overflow-x-hidden",
+          cond(isCollapsed, "items-center", "")
+        )}
+      >
+        {items.map((item) => (
+          <TocItem
+            key={item.id}
+            href={`#${item.id}`}
+            label={item.label}
+            icon={renderIcon(item.icon)}
+            active={effectiveActiveId === item.id}
+            collapsed={isCollapsed}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection(item.id);
+            }}
+          />
+        ))}
+      </div>
+    </nav>
   );
 }
+
+Toc.Item = TocItem;

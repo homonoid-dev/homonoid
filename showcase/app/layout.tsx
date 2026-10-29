@@ -18,30 +18,30 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body>
-        <TocProvider>
-          <Shell>
-            <Shell.Sidebar>
-              <Sidebar>
-                {SHOWCASE_COMPONENTS.map((component) => (
-                  <Sidebar.Item
-                    key={component.href}
-                    href={component.href}
-                  >
-                    {component.name}
-                  </Sidebar.Item>
-                ))}
-              </Sidebar>
-            </Shell.Sidebar>
-            <Shell.Main>
+        <Shell>
+          <Shell.Sidebar>
+            <Sidebar>
+              {SHOWCASE_COMPONENTS.map((component) => (
+                <Sidebar.Item
+                  key={component.href}
+                  href={component.href}
+                >
+                  {component.name}
+                </Sidebar.Item>
+              ))}
+            </Sidebar>
+          </Shell.Sidebar>
+          <Shell.Main>
+            <TocProvider>
               <div className="flex justify-between w-full min-h-full">
                 <div className="flex-1 min-w-0">
                   {children}
                 </div>
                 <Toc />
               </div>
-            </Shell.Main>
-          </Shell>
-        </TocProvider>
+            </TocProvider>
+          </Shell.Main>
+        </Shell>
       </body>
     </html>
   );
