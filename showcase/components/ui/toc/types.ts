@@ -1,20 +1,17 @@
 import type { ReactNode, ComponentType, MouseEvent } from "react";
 import type { LucideIcon } from "lucide-react";
 
-export interface TocItem {
+export interface TocItemModel {
   id: string;
   label: string;
   icon?: LucideIcon | ComponentType<{ className?: string }> | ReactNode;
 }
 
 export interface TocProps {
-  items?: TocItem[];
+  items?: TocItemModel[];
   className?: string;
   defaultActiveId?: string;
-  collapsible?: boolean;
   collapsed?: boolean;
-  collapseBreakpoint?: number;
-  onCollapsedChange?: (collapsed: boolean) => void;
 }
 
 export interface TocItemProps {
@@ -28,8 +25,8 @@ export interface TocItemProps {
 }
 
 export interface TocContextValue {
-  items: TocItem[];
-  setItems: (items: TocItem[]) => void;
+  items: TocItemModel[];
+  setItems: (items: TocItemModel[]) => void;
   collapsed: boolean;
   setCollapsed: (collapsed: boolean | ((prev: boolean) => boolean)) => void;
 }

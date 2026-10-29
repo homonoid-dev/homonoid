@@ -1,16 +1,8 @@
 "use client";
 
-import type { ComponentType, ReactNode } from "react";
-import type { LucideIcon } from "lucide-react";
 import { cn } from "@homonoid/react/cn";
 import { cond, Tooltip } from "@homonoid/react";
 import type { TocItemProps } from "./types";
-
-export interface TocItem {
-  id: string;
-  label: string;
-  icon?: LucideIcon | ComponentType<{ className?: string }> | ReactNode;
-}
 
 export function TocItem({
   href,
@@ -32,7 +24,7 @@ export function TocItem({
           "flex items-center justify-center size-control-sm rounded-lg transition-colors select-none cursor-pointer",
           cond(
             Boolean(active),
-            "text-foreground",
+            "bg-surface-hover text-foreground font-medium",
             "text-muted hover:text-foreground"
           ),
           className
@@ -49,7 +41,7 @@ export function TocItem({
         "flex items-center justify-between w-full h-control-sm px-3 rounded-lg text-xs transition-colors select-none cursor-pointer",
         cond(
           Boolean(active),
-          "text-foreground",
+          "bg-surface-hover text-foreground font-medium",
           "text-muted hover:text-foreground"
         ),
         className

@@ -1,12 +1,12 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
-import type { TocItem, TocContextValue } from "./types";
+import type { TocItemModel, TocContextValue } from "./types";
 
 export const TocContext = createContext<TocContextValue | null>(null);
 
 export function TocProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<TocItem[]>([]);
+  const [items, setItems] = useState<TocItemModel[]>([]);
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -16,7 +16,7 @@ export function TocProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function useToc(items?: TocItem[]) {
+export function useToc(items?: TocItemModel[]) {
   const context = useContext(TocContext);
   if (!context) {
     throw new Error("useToc must be used within a TocProvider");

@@ -4,5 +4,6 @@ export { TocProvider, useToc, TocContext } from "./context";
 export type {
   TocProps,
   TocItemProps,
+  TocItemModel,
   TocContextValue,
 } from "./types";

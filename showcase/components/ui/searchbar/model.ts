@@ -10,9 +10,9 @@ import {
   ArrowUpToLine,
   LucideIcon,
 } from "lucide-react";
-import type { TocItem } from "@/components/ui/toc";
+import type { TocItemModel } from "@/components/ui/toc";
 
-export interface SearchbarSectionItem extends TocItem {
+export interface SearchbarSectionItem extends TocItemModel {
   id: string;
   label: string;
   icon: LucideIcon;

@@ -11,7 +11,7 @@ import { Stage } from "./stage";
 import { Frame } from "./frame";
 import { Resource } from "./resource";
 import { Pagination } from "./pagination";
-import { useToc, type TocItem } from "./toc";
+import { useToc, type TocItemModel } from "./toc";
 import { SHOWCASE_COMPONENTS, type ShowcaseComponentItem } from "@/config/components";
 
 export interface ExhibitSectionItem {
@@ -107,7 +107,7 @@ export interface ExhibitProps {
   importCode?: string;
   defaultCode?: string;
   defaultStage?: ReactNode;
-  sections?: TocItem[];
+  sections?: TocItemModel[];
   related?: (string | ShowcaseComponentItem)[];
   relatedDescription?: ReactNode;
   children?: ReactNode;

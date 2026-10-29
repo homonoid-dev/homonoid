@@ -4,9 +4,7 @@ import {
   useContext,
   useState,
   useEffect,
-  useCallback,
   useMemo,
-  useRef,
   isValidElement,
   type ReactNode,
   type ComponentType,
@@ -16,9 +14,9 @@ import { cn } from "@homonoid/react/cn";
 import { cond } from "@homonoid/react";
 import { TocContext } from "./context";
 import { TocItem } from "./TocItem";
-import type { TocProps } from "./types";
+import type { TocProps, TocItemModel } from "./types";
 
-const EMPTY_ITEMS: TocItem[] = [];
+const EMPTY_ITEMS: TocItemModel[] = [];
 
 function renderIcon(
   icon?: LucideIcon | ComponentType<{ className?: string }> | ReactNode
@@ -33,21 +31,17 @@ export function Toc({
   items: explicitItems,
   className,
   defaultActiveId,
-  collapsible = true,
   collapsed: controlledCollapsed,
-  collapseBreakpoint = 920,
 }: TocProps = {}) {
   const context = useContext(TocContext);
   const items = useMemo(
     () => explicitItems ?? context?.items ?? EMPTY_ITEMS,
     [explicitItems, context?.items]
   );
-  const setContextCollapsed = context?.setCollapsed;
 
   const [activeId, setActiveId] = useState<string>(
     defaultActiveId ?? items[0]?.id ?? ""
   );
-  const [internalCollapsed, setInternalCollapsed] = useState(false);
 
   const isCurrentActiveValid = items.some((item) => item.id === activeId);
   const effectiveActiveId = cond(
@@ -56,127 +50,45 @@ export function Toc({
     defaultActiveId ?? items[0]?.id ?? ""
   );
 
-  const isCollapsed =
-    collapsible &&
-    cond(
-      controlledCollapsed !== undefined,
-      Boolean(controlledCollapsed),
-      internalCollapsed
-    );
-
-  useEffect(() => {
-    if (!collapsible || controlledCollapsed !== undefined) return;
-
-    const mql = window.matchMedia(`(max-width: ${collapseBreakpoint}px)`);
-    const update = (e: MediaQueryListEvent | MediaQueryList) => {
-      setInternalCollapsed(e.matches);
-      setContextCollapsed?.(e.matches);
-    };
-
-    update(mql);
-
-    if (mql.addEventListener) {
-      mql.addEventListener("change", update);
-      return () => mql.removeEventListener("change", update);
-    } else {
-      mql.addListener(update);
-      return () => mql.removeListener(update);
-    }
-  }, [collapsible, controlledCollapsed, collapseBreakpoint, setContextCollapsed]);
-
-  const isScrollingRef = useRef(false);
-  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isCollapsed = cond(
+    controlledCollapsed !== undefined,
+    Boolean(controlledCollapsed),
+    Boolean(context?.collapsed)
+  );
 
   useEffect(() => {
     if (!items || items.length === 0) return;
 
-    const ids = items.map((item) => item.id);
-
-    const handleScroll = () => {
-      if (isScrollingRef.current) return;
-
-      const scrollY = window.scrollY;
-      const innerHeight = window.innerHeight;
-      const scrollHeight = document.documentElement.scrollHeight;
-
-      if (scrollY + innerHeight >= scrollHeight - 32) {
-        const lastId = ids[ids.length - 1];
-        if (lastId) {
-          setActiveId(lastId);
-          return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+            break;
+          }
         }
+      },
+      {
+        rootMargin: "-80px 0px -70% 0px",
+        threshold: 0,
       }
+    );
 
-      const readingOffset = 160;
-      let matchedId = ids[0] ?? "";
+    for (const item of items) {
+      const el = document.getElementById(item.id);
+      if (el) observer.observe(el);
+    }
 
-      for (const id of ids) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= readingOffset) {
-          matchedId = id;
-        } else {
-          break;
-        }
-      }
-
-      if (matchedId) {
-        setActiveId(matchedId);
-      }
-    };
-
-    const handleScrollEnd = () => {
-      isScrollingRef.current = false;
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-        scrollTimeoutRef.current = null;
-      }
-    };
-
-    const handleUserInteraction = () => {
-      isScrollingRef.current = false;
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-        scrollTimeoutRef.current = null;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("scrollend", handleScrollEnd);
-    window.addEventListener("wheel", handleUserInteraction, { passive: true });
-    window.addEventListener("touchmove", handleUserInteraction, { passive: true });
-    window.addEventListener("resize", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("scrollend", handleScrollEnd);
-      window.removeEventListener("wheel", handleUserInteraction);
-      window.removeEventListener("touchmove", handleUserInteraction);
-      window.removeEventListener("resize", handleScroll);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-    };
+    return () => observer.disconnect();
   }, [items]);
 
-  const scrollToSection = useCallback((id: string) => {
+  const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      isScrollingRef.current = true;
       setActiveId(id);
       el.scrollIntoView({ behavior: "smooth", block: "start" });
-
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-      scrollTimeoutRef.current = setTimeout(() => {
-        isScrollingRef.current = false;
-      }, 800);
     }
-  }, []);
+  };
 
   if (!items || items.length === 0) return null;
 

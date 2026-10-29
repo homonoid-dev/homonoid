@@ -8,9 +8,9 @@ import {
   Palette,
   BookOpen,
 } from "lucide-react";
-import type { TocItem } from "@/components/ui/toc";
+import type { TocItemModel } from "@/components/ui/toc";
 
-export interface SeparatorSectionItem extends TocItem {
+export interface SeparatorSectionItem extends TocItemModel {
   id: string;
   label: string;
   icon: LucideIcon;
