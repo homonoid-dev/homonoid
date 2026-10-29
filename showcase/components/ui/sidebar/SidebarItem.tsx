@@ -50,16 +50,16 @@ export function SidebarItem({
         aria-label={labelText}
         className={cn(
           "w-full select-none cursor-pointer",
-          cond(collapsed, "justify-center px-0", "justify-between"),
+          cond(collapsed, "justify-center px-0 gap-0", "justify-between"),
           className
         )}
       >
         <span
           className={cn(
-            "truncate transition-[opacity,max-width] duration-300 ease-in-out whitespace-nowrap",
+            "truncate transition-[opacity,max-width,width] duration-300 ease-in-out whitespace-nowrap",
             cond(
               collapsed,
-              "max-w-0 opacity-0 overflow-hidden pointer-events-none",
+              "w-0 min-w-0 max-w-0 opacity-0 overflow-hidden pointer-events-none flex-none",
               "min-w-0 flex-1 text-left opacity-100"
             )
           )}
