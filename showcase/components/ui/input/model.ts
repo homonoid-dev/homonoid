@@ -9,7 +9,7 @@ import {
   MousePointerClick,
   Palette,
   BookOpen,
-  Sparkles,
+  ArrowUpToLine,
   LucideIcon,
 } from "lucide-react";
 import type { TocItem } from "@/components/ui/toc";
@@ -40,7 +40,7 @@ export const INPUT_SECTIONS: Record<string, InputSectionItem> = {
   floatingLabel: {
     id: "floating-label",
     label: "Floating Label",
-    icon: Sparkles,
+    icon: ArrowUpToLine,
   },
   validation: {
     id: "validation",
