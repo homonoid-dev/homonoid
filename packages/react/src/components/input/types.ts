@@ -47,6 +47,24 @@ export interface InputProps
   label?: ReactNode;
 
   /**
+   * Whether the label transitions smoothly into a floating state upon focus or input content presence.
+   * Eliminates manual offsets and masks the container border seamlessly.
+   * @default false
+   */
+  floating?: boolean;
+
+  /**
+   * Alias for `floating`.
+   * @default false
+   */
+  floatingLabel?: boolean;
+
+  /**
+   * Optional custom styling class for the floating label background mask.
+   */
+  floatingLabelClassName?: string;
+
+  /**
    * Optional helper text or guidance rendered beneath the input container.
    */
   description?: ReactNode;

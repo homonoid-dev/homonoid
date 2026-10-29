@@ -4,11 +4,14 @@ import {
   forwardRef,
   useId,
   useRef,
+  useState,
+  type ChangeEvent,
+  type FocusEvent,
   type MouseEvent
 } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
-import { any, cond, match, when } from "../../utils/condition";
+import { all, any, cond, match, when } from "../../utils/condition";
 import type { InputProps } from "./types";
 
 export const variants = cva(
@@ -70,6 +73,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     size = "md",
     radius = "md",
     label,
+    floating = false,
+    floatingLabel = false,
+    floatingLabelClassName,
     description,
     error,
     invalid = false,
@@ -77,10 +83,21 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     trailing,
     disabled = false,
     className,
+    value,
+    defaultValue,
+    onChange,
+    onFocus,
+    onBlur,
+    placeholder,
     ...props
   },
   ref
 ) {
+  const isFloating = any(floating, floatingLabel);
+  const isControlled = value !== undefined;
+  const [internalValue, setInternalValue] = useState(defaultValue ?? "");
+  const [isFocused, setIsFocused] = useState(false);
+
   const generatedId = useId();
   const inputId = id || generatedId;
   const labelId = `${inputId}-label`;
@@ -106,6 +123,38 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     }
   };
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!isControlled) {
+      setInternalValue(e.target.value);
+    }
+    onChange?.(e);
+  };
+
+  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+    setIsFocused(true);
+    onFocus?.(e);
+  };
+
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    setIsFocused(false);
+    onBlur?.(e);
+  };
+
+  const currentValue = cond(isControlled, value, internalValue);
+  const isDateType = any(
+    props.type === "date",
+    props.type === "time",
+    props.type === "datetime-local",
+    props.type === "month",
+    props.type === "week"
+  );
+  const hasValue = any(
+    currentValue !== undefined && currentValue !== null && currentValue !== "",
+    Boolean(innerRef.current?.value),
+    isDateType
+  );
+  const isFloated = any(isFocused, hasValue);
+
   // Accessibility bindings
   const userDescribedBy = props["aria-describedby"];
   const describedByParts = [
@@ -114,6 +163,101 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     description ? descriptionId : undefined
   ].filter(Boolean);
   const finalDescribedBy = describedByParts.length > 0 ? describedByParts.join(" ") : undefined;
+
+  const floatingLabelBg = cond(
+    Boolean(floatingLabelClassName),
+    floatingLabelClassName,
+    match(
+      variant,
+      {
+        contained: "bg-surface",
+        outlined: "bg-background",
+        plain: "bg-transparent",
+      },
+      "bg-background"
+    )
+  );
+
+  const floatingLabelColor = cond(
+    isInvalid,
+    "text-destructive",
+    cond(isFocused, "text-primary", "text-muted")
+  );
+
+  const restingLabelSize = match(
+    size,
+    {
+      sm: "text-xs",
+      md: "text-sm",
+      lg: "text-base",
+    },
+    "text-sm"
+  );
+
+  const floatingLabelElement = when(
+    all(isFloating, Boolean(label)),
+    <label
+      id={labelId}
+      htmlFor={inputId}
+      data-slot="input-floating-label"
+      data-floated={cond(isFloated, "true", "false")}
+      className={cn(
+        "pointer-events-none absolute left-0 select-none z-10 font-medium leading-none origin-left max-w-full truncate",
+        "transition-[top,transform,color,background-color,padding] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
+        floatingLabelColor,
+        cond(
+          isFloated,
+          cn(
+            "top-0 -translate-y-1/2 -ml-1 px-1 rounded-xs scale-85",
+            floatingLabelBg
+          ),
+          cn(
+            "top-1/2 -translate-y-1/2 ml-0 px-0 bg-transparent scale-100",
+            restingLabelSize
+          )
+        ),
+        cond(disabled, "opacity-50", undefined)
+      )}
+    >
+      {label}
+      {when(
+        props.required,
+        <span className="text-destructive ml-0.5" aria-hidden="true">
+          *
+        </span>
+      )}
+    </label>
+  );
+
+  const inputElement = (
+    <input
+      ref={setRefs}
+      id={inputId}
+      disabled={disabled}
+      aria-invalid={cond(isInvalid, true, undefined)}
+      aria-describedby={finalDescribedBy}
+      value={value}
+      defaultValue={defaultValue}
+      onChange={handleChange}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      placeholder={cond(isFloating, cond(isFloated, placeholder, undefined), placeholder)}
+      className={cn(
+        cond(!isFloating, "order-2 flex-1", "w-full h-full"),
+        "min-w-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none",
+        cond(
+          isInvalid,
+          "text-destructive placeholder:text-destructive/60",
+          "text-foreground placeholder:text-muted"
+        )
+      )}
+      {...props}
+    />
+  );
+
+  const hasExternalLabel = all(!isFloating, Boolean(label));
+  const hasFooter = any(Boolean(error), Boolean(description));
+  const needsOuterWrapper = any(hasExternalLabel, hasFooter);
 
   const controlContainer = (
     <div
@@ -126,26 +270,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           invalid: isInvalid,
           disabled,
         }),
-        cond(!label && !description && !error, className, undefined)
+        cond(!needsOuterWrapper, className, undefined)
       )}
     >
-      {/* Native Input Element */}
-      <input
-        ref={setRefs}
-        id={inputId}
-        disabled={disabled}
-        aria-invalid={cond(isInvalid, true, undefined)}
-        aria-describedby={finalDescribedBy}
-        className={cn(
-          "order-2 flex-1 w-full min-w-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none",
-          cond(
-            isInvalid,
-            "text-destructive placeholder:text-destructive/60",
-            "text-foreground placeholder:text-muted"
-          )
-        )}
-        {...props}
-      />
+      {/* Native Input Element / Floating Slot */}
+      {cond(
+        isFloating,
+        <div className="relative order-2 flex-1 min-w-0 flex items-center h-full">
+          {inputElement}
+          {floatingLabelElement}
+        </div>,
+        inputElement
+      )}
 
       {/* Leading Slot */}
       {when(
@@ -171,16 +307,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     </div>
   );
 
-  // If no label, description, or error message, return the container directly
-  if (!label && !description && !error) {
+  // If no external label and no footer (description or error), return control container directly
+  if (!needsOuterWrapper) {
     return controlContainer;
   }
 
-  // Composed layout with label and helper/error captions
+  // Composed layout with external label and helper/error captions
   return (
     <div className={cn("w-full flex flex-col gap-1.5 select-none", className)}>
       {when(
-        label,
+        hasExternalLabel,
         <label
           id={labelId}
           htmlFor={inputId}

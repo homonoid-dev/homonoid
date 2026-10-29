@@ -17,6 +17,7 @@ import {
   INPUT_VARIANTS_CODE_SAMPLE,
   INPUT_ADORNMENTS_CODE_SAMPLE,
   INPUT_LABEL_HELPER_CODE_SAMPLE,
+  INPUT_FLOATING_LABEL_CODE_SAMPLE,
   INPUT_VALIDATION_CODE_SAMPLE,
   INPUT_DISABLED_CODE_SAMPLE,
 } from "./model";
@@ -113,6 +114,30 @@ export function InputView() {
           </div>
         </Stage>
       </section >
+
+      {/* Floating Label Section */}
+      <section id={INPUT_SECTIONS.floatingLabel.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+        <Frame text={INPUT_SECTIONS.floatingLabel.label} icon={INPUT_SECTIONS.floatingLabel.icon} />
+
+        <Stage code={INPUT_FLOATING_LABEL_CODE_SAMPLE}>
+          <div className="flex flex-col gap-surface-gap w-full max-w-sm">
+            <Input
+              floating
+              label="First Name"
+            />
+            <Input
+              floating
+              label="Email Address"
+              defaultValue="ada@homonoid.dev"
+            />
+            <Input
+              floating
+              label="Search Library"
+              leading={<Search className="size-4 text-muted" />}
+            />
+          </div>
+        </Stage>
+      </section>
 
       {/* Validation Section */}
       <section id={INPUT_SECTIONS.validation.id} className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">

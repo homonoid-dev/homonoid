@@ -9,6 +9,7 @@ import {
   MousePointerClick,
   Palette,
   BookOpen,
+  Sparkles,
   LucideIcon,
 } from "lucide-react";
 import type { TocItem } from "@/components/ui/toc";
@@ -35,6 +36,11 @@ export const INPUT_SECTIONS: Record<string, InputSectionItem> = {
     id: "label-and-helper",
     label: "Label & Helper",
     icon: Tag,
+  },
+  floatingLabel: {
+    id: "floating-label",
+    label: "Floating Label",
+    icon: Sparkles,
   },
   validation: {
     id: "validation",
@@ -153,6 +159,30 @@ export function Example() {
         label="Email Address"
         description="We will only use this to send transaction receipts."
         placeholder="name@company.com"
+      />
+    </div>
+  );
+}`;
+
+export const INPUT_FLOATING_LABEL_CODE_SAMPLE = `import { Input } from "@homonoid/react";
+import { Search } from "lucide-react";
+
+export function Example() {
+  return (
+    <div className="flex flex-col gap-surface-gap w-full max-w-sm">
+      <Input
+        floating
+        label="First Name"
+      />
+      <Input
+        floating
+        label="Email Address"
+        defaultValue="ada@homonoid.dev"
+      />
+      <Input
+        floating
+        label="Search Library"
+        leading={<Search className="size-4 text-muted" />}
       />
     </div>
   );
