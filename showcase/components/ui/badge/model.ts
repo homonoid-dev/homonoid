@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Layers,
+  Ruler,
   Paintbrush,
   Pin,
   Infinity,
@@ -21,6 +22,11 @@ export const BADGE_SECTIONS: Record<string, BadgeSectionItem> = {
     id: "variants",
     label: "Variants",
     icon: Layers,
+  },
+  sizes: {
+    id: "sizes",
+    label: "Sizes",
+    icon: Ruler,
   },
   colors: {
     id: "colors",
@@ -92,6 +98,33 @@ export function Example() {
         <Badge variant="outlined" color="surface">Outlined</Badge>
         <Badge variant="plain" color="surface">Plain</Badge>
       </div>
+    </div>
+  );
+}`;
+
+export const BADGE_SIZES_CODE_SAMPLE = `import { Badge, Button } from "@homonoid/react";
+import { Bell } from "lucide-react";
+
+export function Example() {
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-8">
+      <Badge size="sm" count={3} placement="top-right" color="destructive">
+        <Button size="sm" layout="icon" variant="outlined" color="surface" aria-label="Notifications">
+          <Bell className="size-3.5" />
+        </Button>
+      </Badge>
+
+      <Badge size="md" count={5} placement="top-right" color="destructive">
+        <Button size="md" layout="icon" variant="outlined" color="surface" aria-label="Notifications">
+          <Bell className="size-4" />
+        </Button>
+      </Badge>
+
+      <Badge size="lg" count={8} placement="top-right" color="destructive">
+        <Button size="lg" layout="icon" variant="outlined" color="surface" aria-label="Notifications">
+          <Bell className="size-5" />
+        </Button>
+      </Badge>
     </div>
   );
 }`;

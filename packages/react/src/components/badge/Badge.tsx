@@ -59,9 +59,9 @@ export const badgeVariants = cva(
         destructive: "",
       },
       size: {
-        sm: "h-4.5 px-1.5 gap-1 text-[11px]",
-        md: "h-5.5 px-2 gap-1.5 text-xs",
-        lg: "h-6.5 px-2.5 gap-1.5 text-xs font-semibold",
+        sm: "h-5 px-2 gap-1 text-[11px]",
+        md: "h-6 px-2.5 gap-1.5 text-xs",
+        lg: "h-7 px-3 gap-1.5 text-sm font-medium",
       },
       radius: {
         none: "rounded-none",

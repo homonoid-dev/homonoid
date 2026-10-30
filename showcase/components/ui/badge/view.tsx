@@ -8,6 +8,7 @@ import {
   BADGE_SECTIONS_LIST,
   BADGE_DEFAULT_CODE_SAMPLE,
   BADGE_VARIANTS_CODE_SAMPLE,
+  BADGE_SIZES_CODE_SAMPLE,
   BADGE_COLORS_CODE_SAMPLE,
   BADGE_ANCHORS_CODE_SAMPLE,
 } from "./model";
@@ -55,6 +56,29 @@ export function BadgeView() {
             <Badge variant="outlined" color="surface">Outlined</Badge>
             <Badge variant="plain" color="surface">Plain</Badge>
           </div>
+        </div>
+      </Exhibit.Stage>
+
+      {/* Dimensional Scales Section */}
+      <Exhibit.Stage section={sections.sizes} code={BADGE_SIZES_CODE_SAMPLE}>
+        <div className="flex flex-wrap items-center justify-center gap-8">
+          <Badge size="sm" count={3} placement="top-right" color="destructive">
+            <Button size="sm" layout="icon" variant="outlined" color="surface" aria-label="Notifications">
+              <Bell className="size-3.5" />
+            </Button>
+          </Badge>
+
+          <Badge size="md" count={5} placement="top-right" color="destructive">
+            <Button size="md" layout="icon" variant="outlined" color="surface" aria-label="Notifications">
+              <Bell className="size-4" />
+            </Button>
+          </Badge>
+
+          <Badge size="lg" count={8} placement="top-right" color="destructive">
+            <Button size="lg" layout="icon" variant="outlined" color="surface" aria-label="Notifications">
+              <Bell className="size-5" />
+            </Button>
+          </Badge>
         </div>
       </Exhibit.Stage>
 
