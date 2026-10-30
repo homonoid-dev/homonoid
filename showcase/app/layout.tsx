@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Shell } from "@/components/layout/shell";
-import { AppSidebar } from "@/components/ui/sidebar";
+import { Nav } from "@/components/ui/sidebar";
 import { TocProvider, Toc } from "@/components/ui/toc";
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({
       <body>
         <Shell>
           <Shell.Sidebar>
-            <AppSidebar />
+            <Nav />
           </Shell.Sidebar>
           <Shell.Main>
             <TocProvider>
