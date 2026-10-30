@@ -50,7 +50,7 @@ export const StepperIndicator = forwardRef<
             cond(
               any(isActive, isCompleted),
               "bg-primary",
-              "bg-surface-subtle"
+              "bg-border"
             )
           ),
           className

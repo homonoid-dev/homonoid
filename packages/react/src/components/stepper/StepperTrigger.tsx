@@ -74,7 +74,7 @@ export const StepperTrigger = forwardRef<
         cond(
           isBar,
           "w-full flex-col items-start gap-2.5",
-          "flex items-center gap-3"
+          "w-full flex-col items-start gap-2"
         ),
         className
       )}

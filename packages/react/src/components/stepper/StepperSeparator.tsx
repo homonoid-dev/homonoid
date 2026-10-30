@@ -26,8 +26,8 @@ export const StepperSeparator = forwardRef<
         "transition-colors",
         cond(
           isHorizontal,
-          "h-0.5 flex-1 min-w-4 mx-2",
-          "w-0.5 flex-1 min-h-6 my-2 self-stretch"
+          "absolute top-5 start-12 end-2 h-0.5",
+          "w-0.5 flex-1 min-h-6 my-2 ml-5 self-stretch"
         ),
         cond(isCompleted, "bg-primary", "bg-border"),
         className

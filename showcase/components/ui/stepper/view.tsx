@@ -108,7 +108,7 @@ export function StepperView() {
               {barSteps.map((step) => (
                 <Stepper.Item key={step.value} step={step.value}>
                   <Stepper.Trigger className="group flex w-full flex-col items-start gap-3">
-                    <Stepper.Indicator className="h-1 w-full rounded-full transition-colors group-data-[state=completed]:bg-primary group-data-[state=active]:bg-primary group-data-[state=inactive]:bg-surface-subtle" />
+                    <Stepper.Indicator className="h-1 w-full rounded-full transition-colors group-data-[state=completed]:bg-primary group-data-[state=active]:bg-primary group-data-[state=inactive]:bg-border" />
                     <Stepper.Title className="text-sm font-medium transition-colors group-data-[state=active]:text-foreground group-data-[state=completed]:text-foreground group-data-[state=inactive]:text-foreground-muted">
                       {step.title}
                     </Stepper.Title>
