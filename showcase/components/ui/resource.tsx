@@ -8,6 +8,7 @@ import {
 } from "@homonoid/react";
 import GithubIcon from "@/components/icons/github";
 import FigmaIcon from "@/components/icons/figma";
+import NpmIcon from "@/components/icons/npm";
 
 const GITHUB_REPO_URL = "https://github.com/homonoid-dev/homonoid/tree/main";
 
@@ -94,6 +95,8 @@ export function Resource({
       <GithubIcon className="size-3.5" />
     ) : type === "figma" ? (
       <FigmaIcon className="size-3.5" />
+    ) : type === "npm" ? (
+      <NpmIcon className="size-3.5" />
     ) : undefined);
 
   return (

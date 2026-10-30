@@ -12,7 +12,10 @@ export default function ComponentsPage() {
             Explore the foundational building blocks of the Homonoid Design System.
           </Description>
         </div>
-        <Resource type="github" />
+        <div className="flex items-center gap-surface-gap">
+          <Resource type="github" />
+          <Resource type="npm" />
+        </div>
         <Description>
           Every component is engineered with strict design token hierarchy, continuous state transitions, and native platform accessibility across every surface. They are designed to preserve spatial identity and dimensional stability throughout complex workflows, giving interfaces a refined feel that adapts effortlessly to user interactions.
         </Description>
@@ -22,7 +25,8 @@ export default function ComponentsPage() {
         {SHOWCASE_COMPONENTS.map((component) => (
           <Card
             key={component.name}
-            className="aspect-square rounded-3xl flex items-center justify-center text-center p-surface-sm"
+            padding="sm"
+            className="aspect-square rounded-3xl flex items-center justify-center text-center"
           >
             <Label size="md">{component.name}</Label>
           </Card>
