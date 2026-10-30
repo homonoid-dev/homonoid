@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentType, ReactNode } from "react";
+import type { ComponentType, ReactNode, MouseEvent } from "react";
 import Link from "next/link";
 import { Component, List, type LucideIcon } from "lucide-react";
 import { Heading, Description, Card, Tile, Button } from "@homonoid/react";
@@ -48,12 +48,35 @@ export function ExhibitStage({
   const resolvedTitle = explicitTitle ?? explicitLabel ?? section?.title ?? section?.label ?? "";
   const resolvedIcon = explicitIcon ?? section?.icon;
 
+  const scrollToSelf = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (!resolvedId) return;
+    const el = document.getElementById(resolvedId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.pushState(null, "", `#${resolvedId}`);
+    }
+  };
+
+  const leadingIcon = when(Boolean(resolvedIcon), () => {
+    const IconComponent = resolvedIcon!;
+    return <IconComponent className="size-4 shrink-0" />;
+  });
+
   return (
     <section
       id={resolvedId}
       className={cn("flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y", className)}
     >
-      <Frame text={resolvedTitle} icon={resolvedIcon} />
+      <Button
+        variant="outlined"
+        color="surface"
+        leading={leadingIcon}
+        onClick={scrollToSelf}
+        className="w-fit"
+      >
+        {resolvedTitle}
+      </Button>
       <Stage code={code ?? ""} onReset={onReset}>
         {children}
       </Stage>
@@ -120,13 +143,12 @@ export function Exhibit({
   description,
   component,
   githubUrl,
-  figmaUrl = "https://www.figma.com/@lumunar",
+  figmaUrl = "https://www.figma.com/@homonoid",
   importCode,
   defaultCode,
   defaultStage,
   sections,
   related,
-  relatedDescription = "Explore complementary primitives and companion controls designed to pair naturally within unified interface layouts.",
   children,
   className,
 }: ExhibitProps) {
