@@ -2,7 +2,7 @@
 
 import { useState, useMemo, type ReactNode } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronsUpDown, Plus } from "lucide-react";
+import { ChevronDown, ChevronsUpDown, Plus, Bell } from "lucide-react";
 import { Resource } from "@/components/ui/resource";
 import { Exhibit } from "@/components/ui/exhibit";
 import { SHOWCASE_COMPONENTS } from "@/config/components";
@@ -20,6 +20,8 @@ import {
   Switch,
   Tile,
   Tooltip,
+  Badge,
+  Stepper,
 } from "@homonoid/react";
 
 const CATEGORIES = [
@@ -33,6 +35,13 @@ const CATEGORIES = [
 ] as const;
 
 const PREVIEWS: Record<string, ReactNode> = {
+  Badge: (
+    <Badge size="sm" count={3} placement="top-right" color="destructive">
+      <Button size="sm" layout="icon" variant="outlined" color="surface">
+        <Bell className="size-3" />
+      </Button>
+    </Badge>
+  ),
   Button: (<Button size="sm" variant="contained">Action</Button>),
   Card: (
     <Card padding="sm" variant="filled" className="rounded-xl" >
@@ -90,6 +99,13 @@ const PREVIEWS: Record<string, ReactNode> = {
   ),
   Separator: <div className="w-20 h-[0.5px] bg-border" />,
   Spinner: <Spinner size="md" />,
+  Stepper: (
+    <Stepper
+      size="sm"
+      defaultValue={1}
+      steps={[{ value: 1 }, { value: 2 }]}
+    />
+  ),
   Switch: <Switch defaultChecked />,
   Tile: (
     <Tile size="sm" variant="contained" className="w-30">
