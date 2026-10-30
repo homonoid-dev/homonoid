@@ -4,6 +4,7 @@ import { useState, useMemo, type ReactNode } from "react";
 import Link from "next/link";
 import { ChevronDown, ChevronsUpDown } from "lucide-react";
 import { Resource } from "@/components/ui/resource";
+import { Exhibit } from "@/components/ui/exhibit";
 import { SHOWCASE_COMPONENTS } from "@/config/components";
 import {
   Card,
@@ -147,6 +148,33 @@ export default function ComponentsPage() {
             </Card>
           </Link>
         ))}
+      </div>
+
+      {/* Homonoid Core Values and Considerations */}
+      <div className="flex flex-col pt-layout-y">
+        <Exhibit.Section title="Object Continuity">
+          <Description>
+            Interfaces behave as coherent systems where every component maintains permanence and spatial identity. State transitions evolve smoothly rather than reconstructing elements abruptly, ensuring users preserve visual orientation during interaction.
+          </Description>
+        </Exhibit.Section>
+
+        <Exhibit.Section title="Physical Motion">
+          <Description>
+            Motion in Homonoid is never decorative filler. Fluid spring curves and micro scale compressions convey tactile feedback, communicate hierarchy shifts, and reinforce physical manipulation across every interaction.
+          </Description>
+        </Exhibit.Section>
+
+        <Exhibit.Section title="Inclusive Architecture">
+          <Description>
+            Native accessibility is engineered directly into component foundations. Complete semantic landmarks, compliant contrast ratios, and intuitive keyboard navigation ensure every interface adapts effortlessly across assistive technologies.
+          </Description>
+        </Exhibit.Section>
+
+        <Exhibit.Section title="Token Hierarchy">
+          <Description>
+            All styling consumes standardized spatial, typographic, and surface tokens with zero hardcoded values. Design tokens adapt dynamically across light and dark modes while maintaining rigorous aesthetic harmony.
+          </Description>
+        </Exhibit.Section>
       </div>
     </div>
   );
