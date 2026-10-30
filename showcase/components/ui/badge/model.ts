@@ -63,21 +63,20 @@ export const BADGE_SECTIONS: Record<string, BadgeSectionItem> = {
 export const BADGE_SECTIONS_LIST: BadgeSectionItem[] = Object.values(BADGE_SECTIONS);
 
 export const BADGE_DEFAULT_CODE_SAMPLE = `import { Badge } from "@homonoid/react";
+import { Check } from "lucide-react";
 
 export function Example() {
   return (
     <div className="flex flex-wrap items-center justify-center gap-3">
-      <Badge color="primary" variant="contained">
-        Active
+      <Badge dot color="primary" variant="contained">
+        Operational
       </Badge>
-      <Badge color="subtle" variant="contained">
-        Draft
+      <Badge leading={<Check className="size-3" />} color="surface" variant="contained">
+        Verified
       </Badge>
-      <Badge color="surface" variant="contained">
-        Archived
-      </Badge>
-      <Badge color="destructive" variant="contained">
-        Alert
+      <Badge count={24} color="destructive" variant="contained" />
+      <Badge color="subtle" variant="outlined">
+        v2.4.0
       </Badge>
     </div>
   );
