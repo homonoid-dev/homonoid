@@ -118,17 +118,54 @@ export const BadgeIndicator = forwardRef<HTMLSpanElement, BadgeIndicatorProps>(
       undefined
     );
 
+    const resolvedContent = children ?? displayCount;
+    const isSingle = cond(
+      dot,
+      false,
+      cond(
+        typeof resolvedContent === "string" || typeof resolvedContent === "number",
+        String(resolvedContent).length === 1,
+        false
+      )
+    );
+
     const placementClasses = cond(
       Boolean(placement),
-      match(
-        placement as NonNullable<typeof placement>,
-        {
-          "top-right": "absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 z-10",
-          "top-left": "absolute top-0 left-0 -translate-y-1/2 -translate-x-1/2 z-10",
-          "bottom-right": "absolute bottom-0 right-0 translate-y-1/2 translate-x-1/2 z-10",
-          "bottom-left": "absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 z-10",
-        },
-        ""
+      cond(
+        dot,
+        match(
+          placement as NonNullable<typeof placement>,
+          {
+            "top-right": "absolute top-0.5 right-0.5 z-10",
+            "top-left": "absolute top-0.5 left-0.5 z-10",
+            "bottom-right": "absolute bottom-0.5 right-0.5 z-10",
+            "bottom-left": "absolute bottom-0.5 left-0.5 z-10",
+          },
+          ""
+        ),
+        cond(
+          isSingle,
+          match(
+            placement as NonNullable<typeof placement>,
+            {
+              "top-right": "absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 z-10",
+              "top-left": "absolute top-0 left-0 -translate-y-1/4 -translate-x-1/4 z-10",
+              "bottom-right": "absolute bottom-0 right-0 translate-y-1/4 translate-x-1/4 z-10",
+              "bottom-left": "absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 z-10",
+            },
+            ""
+          ),
+          match(
+            placement as NonNullable<typeof placement>,
+            {
+              "top-right": "absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 z-10",
+              "top-left": "absolute top-0 left-0 -translate-y-1/2 -translate-x-1/2 z-10",
+              "bottom-right": "absolute bottom-0 right-0 translate-y-1/2 translate-x-1/2 z-10",
+              "bottom-left": "absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 z-10",
+            },
+            ""
+          )
+        )
       ),
       ""
     );
@@ -142,12 +179,13 @@ export const BadgeIndicator = forwardRef<HTMLSpanElement, BadgeIndicatorProps>(
         data-size={size}
         className={cn(
           indicatorVariants({ variant, color, size, radius, dot }),
+          cond(isSingle, "aspect-square p-0 min-w-0 shrink-0", ""),
           placementClasses,
           className
         )}
         {...props}
       >
-        {cond(dot, null, children ?? displayCount)}
+        {cond(dot, null, resolvedContent)}
       </span>
     );
   }

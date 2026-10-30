@@ -51,9 +51,9 @@ export function BadgeView() {
             <Badge variant="plain" color="primary">Plain</Badge>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <Badge variant="contained" color="subtle">Contained</Badge>
-            <Badge variant="outlined" color="subtle">Outlined</Badge>
-            <Badge variant="plain" color="subtle">Plain</Badge>
+            <Badge variant="contained" color="surface">Contained</Badge>
+            <Badge variant="outlined" color="surface">Outlined</Badge>
+            <Badge variant="plain" color="surface">Plain</Badge>
           </div>
         </div>
       </Exhibit.Stage>
