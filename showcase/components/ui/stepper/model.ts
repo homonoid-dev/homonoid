@@ -1,7 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Layers,
-  Sparkles,
+  Component,
   MousePointerClick,
   Infinity,
   Accessibility,
@@ -20,7 +20,7 @@ export const STEPPER_SECTIONS: Record<string, StepperSectionItem> = {
   atomic: {
     id: "atomic-usage",
     label: "Atomic Usage",
-    icon: Sparkles,
+    icon: Component,
   },
   variants: {
     id: "variants",
