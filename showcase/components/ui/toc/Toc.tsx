@@ -32,6 +32,7 @@ export function Toc({
   className,
   defaultActiveId,
   collapsed: controlledCollapsed,
+  collapseBreakpoint = 1200,
 }: TocProps = {}) {
   const context = useContext(TocContext);
   const items = useMemo(
@@ -42,6 +43,18 @@ export function Toc({
   const [activeId, setActiveId] = useState<string>(
     defaultActiveId ?? items[0]?.id ?? ""
   );
+  const [internalCollapsed, setInternalCollapsed] = useState(false);
+
+  useEffect(() => {
+    if (controlledCollapsed !== undefined) return;
+
+    const mql = window.matchMedia(`(max-width: ${collapseBreakpoint}px)`);
+    const update = () => setInternalCollapsed(mql.matches);
+
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, [controlledCollapsed, collapseBreakpoint]);
 
   const isCurrentActiveValid = items.some((item) => item.id === activeId);
   const effectiveActiveId = cond(
@@ -53,7 +66,7 @@ export function Toc({
   const isCollapsed = cond(
     controlledCollapsed !== undefined,
     Boolean(controlledCollapsed),
-    Boolean(context?.collapsed)
+    internalCollapsed
   );
 
   useEffect(() => {

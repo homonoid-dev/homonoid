@@ -12,6 +12,7 @@ export interface TocProps {
   className?: string;
   defaultActiveId?: string;
   collapsed?: boolean;
+  collapseBreakpoint?: number;
 }
 
 export interface TocItemProps {

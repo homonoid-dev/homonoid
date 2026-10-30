@@ -276,7 +276,7 @@ export const Tile = forwardRef<HTMLElement, TileProps>(function Tile(
             <Description
               as="span"
               size={cond(size === "lg", "md", "sm")}
-              className="line-clamp-2 text-inherit opacity-80 font-normal"
+              className="text-inherit opacity-80 font-normal"
             >
               {description}
             </Description>
