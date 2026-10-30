@@ -158,10 +158,10 @@ export const BadgeIndicator = forwardRef<HTMLSpanElement, BadgeIndicatorProps>(
           match(
             placement as NonNullable<typeof placement>,
             {
-              "top-right": "absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 z-10",
-              "top-left": "absolute top-0 left-0 -translate-y-1/2 -translate-x-1/2 z-10",
-              "bottom-right": "absolute bottom-0 right-0 translate-y-1/2 translate-x-1/2 z-10",
-              "bottom-left": "absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 z-10",
+              "top-right": "absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 z-10",
+              "top-left": "absolute top-0 left-0 -translate-y-1/2 -translate-x-1/3 z-10",
+              "bottom-right": "absolute bottom-0 right-0 translate-y-1/2 translate-x-1/3 z-10",
+              "bottom-left": "absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/3 z-10",
             },
             ""
           )
