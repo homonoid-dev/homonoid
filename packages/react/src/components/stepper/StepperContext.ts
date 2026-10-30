@@ -1,0 +1,34 @@
+"use client";
+
+import { createContext, useContext } from "react";
+import type { Size } from "../../types";
+import type {
+  StepperIndicators,
+  StepperOrientation,
+  StepperVariant,
+} from "./types";
+
+export interface StepperContextValue {
+  value: number | string;
+  setValue: (value: number | string) => void;
+  orientation: StepperOrientation;
+  variant: StepperVariant;
+  size: Size;
+  linear: boolean;
+  indicators?: StepperIndicators;
+  stepValues: Array<number | string>;
+  registerStep: (step: number | string) => () => void;
+}
+
+export const StepperContext = createContext<StepperContextValue | null>(null);
+
+export function useStepperContext(): StepperContextValue {
+  const context = useContext(StepperContext);
+  if (!context) {
+    throw new Error(
+      "Stepper compound components must be rendered within a <Stepper> provider."
+    );
+  }
+  return context;
+}
+

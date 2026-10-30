@@ -17,5 +17,6 @@ export * from "./components/dropdown/index";
 export * from "./components/separator/index";
 export * from "./components/searchbar/index";
 export * from "./components/kbd/index";
+export * from "./components/stepper/index";
 export * from "./utils/cn";
 export * from "./utils/condition";
