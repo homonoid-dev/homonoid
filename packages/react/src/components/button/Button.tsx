@@ -41,9 +41,9 @@ export const variants = cva(
   {
     variants: {
       variant: {
-        contained: "",
+        contained: "border border-transparent",
         outlined: "bg-transparent border",
-        plain: "bg-transparent",
+        plain: "bg-transparent border border-transparent",
       },
       color: {
         primary: "",
