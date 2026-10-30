@@ -16,7 +16,7 @@ export interface StepperIndicators {
 
 export interface StepperStepDefinition {
   value: number | string;
-  title: ReactNode;
+  title?: ReactNode;
   description?: ReactNode;
   icon?: ReactNode;
   content?: ReactNode;

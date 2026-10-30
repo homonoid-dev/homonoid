@@ -8,6 +8,7 @@ import {
   STEPPER_SECTIONS_LIST,
   STEPPER_DEFAULT_CODE_SAMPLE,
   STEPPER_ATOMIC_CODE_SAMPLE,
+  STEPPER_INDICATORS_CODE_SAMPLE,
   STEPPER_VARIANTS_CODE_SAMPLE,
   STEPPER_INTERACTIVE_CODE_SAMPLE,
 } from "./model";
@@ -58,6 +59,12 @@ export function StepperView() {
     },
   ];
 
+  const indicatorOnlySteps = [
+    { value: 1 },
+    { value: 2 },
+    { value: 3 },
+  ];
+
   const barSteps = [
     { value: 1, title: "User Details" },
     { value: 2, title: "Payment Info" },
@@ -93,10 +100,19 @@ export function StepperView() {
       <Exhibit.Stage section={sections.atomic} code={STEPPER_ATOMIC_CODE_SAMPLE}>
         <div className="w-full max-w-2xl mx-auto">
           <Stepper
-            color="destructive"
             defaultValue={1}
             variant="circle"
             steps={atomicSteps}
+          />
+        </div>
+      </Exhibit.Stage>
+
+      {/* Indicators Only Section */}
+      <Exhibit.Stage section={sections.indicators} code={STEPPER_INDICATORS_CODE_SAMPLE}>
+        <div className="w-full max-w-md mx-auto">
+          <Stepper
+            defaultValue={2}
+            steps={indicatorOnlySteps}
           />
         </div>
       </Exhibit.Stage>
@@ -152,7 +168,7 @@ export function StepperView() {
               disabled={currentStep === 1}
               onClick={() => setCurrentStep((prev) => prev - 1)}
             >
-              Previous
+              Back
             </Button>
             <Button
               variant="contained"

@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import {
   Layers,
   Component,
+  CircleDot,
   MousePointerClick,
   Infinity,
   Accessibility,
@@ -21,6 +22,11 @@ export const STEPPER_SECTIONS: Record<string, StepperSectionItem> = {
     id: "atomic-usage",
     label: "Atomic Usage",
     icon: Component,
+  },
+  indicators: {
+    id: "indicators-only",
+    label: "Indicators Only",
+    icon: CircleDot,
   },
   variants: {
     id: "variants",
@@ -125,6 +131,25 @@ export function Example() {
   );
 }`;
 
+export const STEPPER_INDICATORS_CODE_SAMPLE = `import { Stepper } from "@homonoid/react";
+
+export function Example() {
+  const steps = [
+    { value: 1 },
+    { value: 2 },
+    { value: 3 },
+  ];
+
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <Stepper
+        defaultValue={2}
+        steps={steps}
+      />
+    </div>
+  );
+}`;
+
 export const STEPPER_VARIANTS_CODE_SAMPLE = `import { Stepper } from "@homonoid/react";
 
 export function Example() {
@@ -197,7 +222,7 @@ export function Example() {
           disabled={currentStep === 1}
           onClick={() => setCurrentStep((prev) => prev - 1)}
         >
-          Previous
+          Back
         </Button>
         <Button
           variant="contained"

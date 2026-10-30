@@ -181,13 +181,16 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
                 ))}
               </StepperList>
 
-              <div className="w-full">
-                {steps?.map((stepDef) => (
-                  <StepperView key={stepDef.value} value={stepDef.value}>
-                    {stepDef.content}
-                  </StepperView>
-                ))}
-              </div>
+              {when(
+                Boolean(steps?.some((s) => Boolean(s.content))),
+                <div className="w-full">
+                  {steps?.map((stepDef) => (
+                    <StepperView key={stepDef.value} value={stepDef.value}>
+                      {stepDef.content}
+                    </StepperView>
+                  ))}
+                </div>
+              )}
             </>,
             children
           )}
