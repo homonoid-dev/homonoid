@@ -24,8 +24,8 @@ export const StepperIndicator = forwardRef<
     color,
     {
       primary: "bg-primary",
-      subtle: "bg-subtle-foreground",
-      surface: "bg-foreground",
+      subtle: "bg-subtle",
+      surface: "bg-surface",
       destructive: "bg-destructive",
     },
     "bg-primary"

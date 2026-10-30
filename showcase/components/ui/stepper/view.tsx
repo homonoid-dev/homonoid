@@ -93,6 +93,7 @@ export function StepperView() {
       <Exhibit.Stage section={sections.atomic} code={STEPPER_ATOMIC_CODE_SAMPLE}>
         <div className="w-full max-w-2xl mx-auto">
           <Stepper
+            color="subtle"
             defaultValue={1}
             variant="circle"
             steps={atomicSteps}
