@@ -8,7 +8,6 @@ import { cn } from "@homonoid/react/cn";
 import { any, cond, when } from "@homonoid/react";
 import { highlighter } from "./code";
 import { Stage } from "./stage";
-import { Frame } from "./frame";
 import { Resource } from "./resource";
 import { Pagination } from "./pagination";
 import { useToc, type TocItemModel } from "./toc";
@@ -238,8 +237,23 @@ export function Exhibit({
       {/* Related Components Outlined Tiles */}
       {when(
         resolvedRelated.length > 0,
-        <section className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-          <Frame text="Related" icon={Component} />
+        <section id="related" className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+          <Button
+            variant="outlined"
+            color="surface"
+            leading={<Component className="size-4 shrink-0" />}
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById("related");
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth", block: "start" });
+                window.history.pushState(null, "", "#related");
+              }
+            }}
+            className="w-fit"
+          >
+            Related
+          </Button>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-surface-gap">
             {resolvedRelated.map((item) => (
