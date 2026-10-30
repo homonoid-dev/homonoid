@@ -2,7 +2,7 @@
 
 import { forwardRef } from "react";
 import { cn } from "../../utils/cn";
-import { cond } from "../../utils/condition";
+import { cond, match } from "../../utils/condition";
 import { useStepperContext } from "./StepperContext";
 import { useStepperItemContext } from "./StepperItemContext";
 import type { StepperSeparatorProps } from "./types";
@@ -11,10 +11,21 @@ export const StepperSeparator = forwardRef<
   HTMLDivElement,
   StepperSeparatorProps
 >(function StepperSeparator({ className, ...props }, ref) {
-  const { orientation } = useStepperContext();
+  const { orientation, color } = useStepperContext();
   const { isCompleted } = useStepperItemContext();
 
   const isHorizontal = orientation === "horizontal";
+
+  const activeColorClass = match(
+    color,
+    {
+      primary: "bg-primary",
+      subtle: "bg-subtle-foreground",
+      surface: "bg-foreground",
+      destructive: "bg-destructive",
+    },
+    "bg-primary"
+  );
 
   return (
     <div
@@ -29,7 +40,7 @@ export const StepperSeparator = forwardRef<
           "absolute top-5 start-14 end-4 h-0.5",
           "w-0.5 flex-1 min-h-6 my-2 ml-5 self-stretch"
         ),
-        cond(isCompleted, "bg-primary", "bg-border"),
+        cond(isCompleted, activeColorClass, "bg-border"),
         className
       )}
       {...props}

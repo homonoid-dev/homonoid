@@ -8,7 +8,7 @@ import { useStepperItemContext } from "./StepperItemContext";
 import type { StepperTriggerProps } from "./types";
 
 export const StepperTrigger = forwardRef<
-  HTMLButtonElement,
+  HTMLDivElement,
   StepperTriggerProps
 >(function StepperTrigger(
   { className, onClick, onKeyDown, children, disabled: propDisabled, ...props },
@@ -29,7 +29,7 @@ export const StepperTrigger = forwardRef<
   const isBar = variant === "bar";
   const isDisabled = propDisabled || itemDisabled || (linear && !isCompleted && !isActive);
 
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     if (isDisabled) return;
     onClick?.(event);
     if (!event.defaultPrevented) {
@@ -37,11 +37,14 @@ export const StepperTrigger = forwardRef<
     }
   };
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     onKeyDown?.(event);
     if (event.defaultPrevented || isDisabled) return;
 
-    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setValue(step);
+    } else if (event.key === "ArrowRight" || event.key === "ArrowDown") {
       event.preventDefault();
       const nextIndex = index + 1;
       if (nextIndex < stepValues.length) {
@@ -57,20 +60,21 @@ export const StepperTrigger = forwardRef<
   };
 
   return (
-    <button
+    <div
       ref={ref}
-      type="button"
+      role="button"
+      tabIndex={cond(isBar, cond(isDisabled, -1, 0), -1)}
       data-slot="stepper-trigger"
       data-state={state}
       aria-current={cond(isActive, "step", undefined)}
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
-      disabled={isDisabled}
+      aria-disabled={cond(isDisabled, true, undefined)}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       className={cn(
         "group/trigger relative inline-flex text-left select-none cursor-pointer focus-ring outline-none transition-colors",
-        "disabled:cursor-not-allowed disabled:pointer-events-none",
+        cond(isDisabled, "cursor-not-allowed pointer-events-none opacity-50", ""),
         cond(
           isBar,
           "w-full flex-col items-start gap-2.5",
@@ -81,7 +85,7 @@ export const StepperTrigger = forwardRef<
       {...props}
     >
       {children}
-    </button>
+    </div>
   );
 });
 

@@ -153,6 +153,17 @@ Steppers support distinct indicator treatments tailored to density and visual in
 
 <br>
 
+### Colors
+
+Steppers support configurable semantic color intent applied across active indicators and completed separator tracks via the `color` prop:
+
+* `Primary` (`color="primary"`): Brand dominant Chroma primary palette active by default.
+* `Subtle` (`color="subtle"`): Low contrast secondary tint for quiet auxiliary workflows.
+* `Surface` (`color="surface"`): Monochromatic palette adapting across light and dark modes.
+* `Destructive` (`color="destructive"`): Red alert palette signaling critical or error prone workflows.
+
+<br>
+
 ### States
 
 Each milestone item communicates its operational standing through explicit data state attributes:

@@ -1,5 +1,5 @@
-import type { HTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
-import type { Size } from "../../types";
+import type { HTMLAttributes, ReactNode } from "react";
+import type { Size, Color } from "../../types";
 import type { LabelProps } from "../label/types";
 import type { DescriptionProps } from "../description/types";
 
@@ -53,6 +53,12 @@ export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
    * @default "circle"
    */
   variant?: StepperVariant;
+
+  /**
+   * Semantic color palette applied to indicators and connectors.
+   * @default "primary"
+   */
+  color?: Color;
 
   /**
    * Spatial density scale for indicator and typography.
@@ -115,11 +121,12 @@ export interface StepperItemProps extends HTMLAttributes<HTMLLIElement> {
   children?: ReactNode;
 }
 
-export interface StepperTriggerProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface StepperTriggerProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
+  disabled?: boolean;
 }
 
-export interface StepperIndicatorProps extends HTMLAttributes<HTMLDivElement> {
+export interface StepperIndicatorProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
 }
 

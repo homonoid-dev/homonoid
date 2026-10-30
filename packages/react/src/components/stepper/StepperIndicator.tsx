@@ -2,44 +2,39 @@
 
 import { forwardRef } from "react";
 import { cn } from "../../utils/cn";
-import { any, cond } from "../../utils/condition";
-import { variants as buttonVariants } from "../button/Button";
+import { all, any, cond, match } from "../../utils/condition";
+import type { Color } from "../../types";
+import { Button } from "../button/Button";
 import { Spinner } from "../spinner/Spinner";
 import { useStepperContext } from "./StepperContext";
 import { useStepperItemContext } from "./StepperItemContext";
 import type { StepperIndicatorProps } from "./types";
 
-function DefaultCheckIcon() {
-  return (
-    <svg
-      data-slot="stepper-check-icon"
-      className="size-4 shrink-0"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  );
-}
-
 export const StepperIndicator = forwardRef<
-  HTMLDivElement,
+  HTMLElement,
   StepperIndicatorProps
 >(function StepperIndicator({ className, children, ...props }, ref) {
-  const { variant, size, indicators } = useStepperContext();
-  const { index, state, isActive, isCompleted } = useStepperItemContext();
+  const { variant, size, color, indicators } = useStepperContext();
+  const { index, state, isActive, isCompleted, disabled } =
+    useStepperItemContext();
 
   const isBar = variant === "bar";
+
+  const activeBarColor = match(
+    color,
+    {
+      primary: "bg-primary",
+      subtle: "bg-subtle-foreground",
+      surface: "bg-foreground",
+      destructive: "bg-destructive",
+    },
+    "bg-primary"
+  );
 
   if (isBar) {
     return (
       <div
-        ref={ref}
+        ref={ref as React.Ref<HTMLDivElement>}
         data-slot="stepper-indicator"
         data-state={state}
         className={cn(
@@ -49,7 +44,7 @@ export const StepperIndicator = forwardRef<
             "bg-destructive",
             cond(
               any(isActive, isCompleted),
-              "bg-primary",
+              activeBarColor,
               "bg-border"
             )
           ),
@@ -60,44 +55,46 @@ export const StepperIndicator = forwardRef<
     );
   }
 
-  const indicatorButtonClasses = buttonVariants({
-    layout: "icon",
-    radius: "full",
-    size,
-    variant: cond(
-      state === "error",
-      "contained",
-      cond(any(isActive, isCompleted), "contained", "outlined")
-    ),
-    color: cond(
-      state === "error",
-      "destructive",
-      cond(any(isActive, isCompleted), "primary", "surface")
-    ),
-  });
-
   const resolvedContent = cond(
     state === "loading",
     indicators?.loading ?? <Spinner size="sm" />,
     cond(
-      isCompleted,
-      indicators?.completed ?? children ?? <DefaultCheckIcon />,
+      all(isCompleted, Boolean(indicators?.completed)),
+      indicators?.completed,
       children ?? index + 1
     )
   );
 
+  const buttonColor = cond<Color, Color>(
+    state === "error",
+    "destructive",
+    cond<Color, Color>(any(isActive, isCompleted), color, "surface")
+  );
+
+  const buttonVariant = cond<"contained" | "outlined", "contained" | "outlined">(
+    any(isActive, isCompleted),
+    "contained",
+    "outlined"
+  );
+
   return (
-    <div
-      ref={ref}
+    <Button
+      {...props}
+      ref={ref as React.Ref<HTMLButtonElement>}
+      type="button"
+      layout="icon"
+      radius="full"
+      size={size}
+      variant={buttonVariant}
+      color={buttonColor}
+      disabled={disabled}
       data-slot="stepper-indicator"
       data-state={state}
-      className={cn(indicatorButtonClasses, className)}
-      {...props}
+      className={cn("pointer-events-auto", className)}
     >
       {resolvedContent}
-    </div>
+    </Button>
   );
 });
 
 StepperIndicator.displayName = "StepperIndicator";
-

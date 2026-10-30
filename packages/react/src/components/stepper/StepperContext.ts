@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import type { Size } from "../../types";
+import type { Size, Color } from "../../types";
 import type {
   StepperIndicators,
   StepperOrientation,
@@ -13,6 +13,7 @@ export interface StepperContextValue {
   setValue: (value: number | string) => void;
   orientation: StepperOrientation;
   variant: StepperVariant;
+  color: Color;
   size: Size;
   linear: boolean;
   indicators?: StepperIndicators;
