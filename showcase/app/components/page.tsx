@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, type ReactNode } from "react";
+import Link from "next/link";
 import { ChevronDown, ChevronsUpDown } from "lucide-react";
 import { Resource } from "@/components/ui/resource";
 import { SHOWCASE_COMPONENTS } from "@/config/components";
@@ -129,17 +130,22 @@ export default function ComponentsPage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-surface">
         {filteredComponents.map((component) => (
-          <Card
+          <Link
             key={component.name}
-            className="aspect-square rounded-3xl flex flex-col justify-between"
+            href={component.href}
+            className="cursor-pointer block"
           >
-            <div className="flex-1 flex items-center justify-center pointer-events-none select-none">
-              {PREVIEWS[component.name]}
-            </div>
-            <Label size="md" className="self-start">
-              {component.name}
-            </Label>
-          </Card>
+            <Card
+              className="aspect-square rounded-3xl flex flex-col justify-between cursor-pointer"
+            >
+              <div className="flex-1 flex items-center justify-center pointer-events-none select-none">
+                {PREVIEWS[component.name]}
+              </div>
+              <Label size="md" className="self-start">
+                {component.name}
+              </Label>
+            </Card>
+          </Link>
         ))}
       </div>
     </div>
