@@ -10,7 +10,7 @@ import {
   Trash2,
   Check,
   Info,
-  Sparkles,
+  Star,
   AlertTriangle,
   User,
   Settings,
@@ -45,7 +45,7 @@ export function DropdownView() {
   const actions = [
     { label: "Standard Action", color: "surface" as const, icon: <Check className="size-4" /> },
     { label: "Subtle Action", color: "subtle" as const, icon: <Info className="size-4" /> },
-    { label: "Primary Action", color: "primary" as const, icon: <Sparkles className="size-4" /> },
+    { label: "Primary Action", color: "primary" as const, icon: <Star className="size-4" /> },
     { label: "Destructive Action", color: "destructive" as const, icon: <AlertTriangle className="size-4" /> },
   ];
 

@@ -21,6 +21,7 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponentItem[] = [
   { name: "Select", href: "/components/select", description: "Collapsible floating listbox with single choice selection", category: "Inputs", related: ["Dropdown", "Tile"] },
   { name: "Separator", href: "/components/separator", description: "Hairline visual partition across layout axes", category: "Layout", related: ["Card", "Tile"] },
   { name: "Spinner", href: "/components/spinner", description: "Indicate background activity", category: "Feedback", related: ["Button"] },
+  { name: "Stepper", href: "/components/stepper", description: "Sequential multistep progress navigation", category: "Layout", related: ["Button", "Label", "Description"] },
   { name: "Switch", href: "/components/switch", description: "Toggle state of a single setting", category: "Inputs", related: ["Checkbox", "Tile", "Label"] },
   { name: "Tile", href: "/components/tile", description: "Structured horizontal list item with tactile response", category: "Layout", related: ["Checkbox", "Switch", "Select", "Dropdown"] },
   { name: "Tooltip", href: "/components/tooltip", description: "Contextual guidance and keyboard shortcuts", category: "Feedback", related: ["Popover", "Kbd"] },

@@ -18,3 +18,9 @@ Never write arbitrary pixel values or hex codes in component class strings. Use 
 ### Object Continuity
 
 Transitions must preserve component identity and spatial stability. Elements must not jump, flicker, or collapse abruptly when toggling states or collapsing sidebars.
+
+<br>
+
+### Prohibited Icons
+
+Never use the Sparkles icon across components, stage showcases, or documentation examples. Select purposeful semantic glyphs such as Star, Zap, or Layers rather than decorative novelty icons.

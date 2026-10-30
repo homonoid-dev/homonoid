@@ -154,13 +154,13 @@ export function Example() {
 }`;
 
 export const DROPDOWN_VARIANTS_CODE_SAMPLE = `import { Dropdown, Button } from "@homonoid/react";
-import { Check, Info, Sparkles, AlertTriangle } from "lucide-react";
+import { Check, Info, Star, AlertTriangle } from "lucide-react";
 
 export function Example() {
   const actions = [
     { label: "Standard Action", color: "surface" as const, icon: <Check className="size-4" /> },
     { label: "Subtle Action", color: "subtle" as const, icon: <Info className="size-4" /> },
-    { label: "Primary Action", color: "primary" as const, icon: <Sparkles className="size-4" /> },
+    { label: "Primary Action", color: "primary" as const, icon: <Star className="size-4" /> },
     { label: "Destructive Action", color: "destructive" as const, icon: <AlertTriangle className="size-4" /> },
   ];
 
