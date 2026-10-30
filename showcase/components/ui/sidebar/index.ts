@@ -1,13 +1,14 @@
 import { Sidebar as SidebarRoot } from "./Sidebar";
 import { SidebarHeader } from "./SidebarHeader";
 import { SidebarItem } from "./SidebarItem";
+import { AppSidebar } from "./AppSidebar";
 
 export const Sidebar = Object.assign(SidebarRoot, {
   Header: SidebarHeader,
   Item: SidebarItem,
 });
 
-export { SidebarHeader, SidebarItem };
+export { SidebarHeader, SidebarItem, AppSidebar };
 export type {
   SidebarProps,
   SidebarHeaderProps,

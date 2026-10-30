@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Shell } from "@/components/layout/shell";
-import { Sidebar } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/ui/sidebar";
 import { TocProvider, Toc } from "@/components/ui/toc";
-import { SHOWCASE_COMPONENTS } from "@/config/components";
 
 export const metadata: Metadata = {
   title: "Homonoid",
@@ -20,16 +19,7 @@ export default function RootLayout({
       <body>
         <Shell>
           <Shell.Sidebar>
-            <Sidebar>
-              {SHOWCASE_COMPONENTS.map((component) => (
-                <Sidebar.Item
-                  key={component.href}
-                  href={component.href}
-                >
-                  {component.name}
-                </Sidebar.Item>
-              ))}
-            </Sidebar>
+            <AppSidebar />
           </Shell.Sidebar>
           <Shell.Main>
             <TocProvider>

@@ -1,8 +1,9 @@
 import { cn } from "@homonoid/react/cn";
+import { cond } from "@homonoid/react";
 import type { SidebarHeaderProps } from "./types";
 
 export function SidebarHeader({
-  sticky,
+  sticky = false,
   children,
   className,
   ...props
@@ -10,8 +11,8 @@ export function SidebarHeader({
   return (
     <header
       className={cn(
-        "h-15 top-15 shrink-0 flex items-center text-lg font-bold px-layout-x",
-        sticky && "sticky top-0 z-10",
+        "shrink-0 flex items-center w-full px-surface-sm pt-surface-sm pb-control-gap bg-background",
+        cond(sticky, "sticky top-0 z-10", ""),
         className
       )}
       {...props}
@@ -20,3 +21,5 @@ export function SidebarHeader({
     </header>
   );
 }
+
+SidebarHeader.displayName = "SidebarHeader";
