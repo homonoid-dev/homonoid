@@ -7,6 +7,7 @@ export interface ShowcaseComponentItem {
 }
 
 export const SHOWCASE_COMPONENTS: ShowcaseComponentItem[] = [
+  { name: "Badge", href: "/components/badge", description: "Metadata tags, notification counts, and status indicators", category: "Feedback", related: ["Button", "Label", "Kbd"] },
   { name: "Button", href: "/components/button", description: "Trigger actions and operations", category: "Actions", related: ["Kbd", "Spinner"] },
   { name: "Card", href: "/components/card", description: "Structured content grouping", category: "Layout", related: ["Tile", "Separator"] },
   { name: "Checkbox", href: "/components/checkbox", description: "Binary choice selection", category: "Inputs", related: ["Switch", "Tile", "Label"] },
