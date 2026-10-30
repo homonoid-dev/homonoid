@@ -20,7 +20,7 @@ export const StepperTitle = forwardRef<HTMLElement, StepperTitleProps>(
         disabled={disabled}
         data-slot="stepper-title"
         className={cn(
-          "transition-colors select-none",
+          "transition-colors select-none text-center",
           cond(
             any(isActive, isCompleted),
             "text-foreground",

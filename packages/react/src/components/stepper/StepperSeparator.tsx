@@ -20,8 +20,8 @@ export const StepperSeparator = forwardRef<
     color,
     {
       primary: "bg-primary",
-      subtle: "bg-subtle",
-      surface: "bg-surface",
+      subtle: "bg-subtle-border",
+      surface: "bg-border",
       destructive: "bg-destructive",
     },
     "bg-primary"
@@ -34,17 +34,32 @@ export const StepperSeparator = forwardRef<
       aria-hidden="true"
       data-slot="stepper-separator"
       className={cn(
-        "transition-colors rounded-full",
+        "transition-colors pointer-events-none",
         cond(
           isHorizontal,
-          "absolute top-5 start-14 end-4 h-0.5",
+          "absolute top-5 left-1/2 w-full -translate-y-1/2 px-8",
           "w-0.5 flex-1 min-h-6 my-2 ml-5 self-stretch"
         ),
-        cond(isCompleted, activeColorClass, "bg-border"),
         className
       )}
       {...props}
-    />
+    >
+      {cond(
+        isHorizontal,
+        <div
+          className={cn(
+            "h-0.5 w-full rounded-full transition-colors",
+            cond(isCompleted, activeColorClass, "bg-border")
+          )}
+        />,
+        <div
+          className={cn(
+            "w-0.5 h-full rounded-full transition-colors",
+            cond(isCompleted, activeColorClass, "bg-border")
+          )}
+        />
+      )}
+    </div>
   );
 });
 

@@ -93,7 +93,7 @@ export function StepperView() {
       <Exhibit.Stage section={sections.atomic} code={STEPPER_ATOMIC_CODE_SAMPLE}>
         <div className="w-full max-w-2xl mx-auto">
           <Stepper
-            color="subtle"
+            color="destructive"
             defaultValue={1}
             variant="circle"
             steps={atomicSteps}
@@ -131,9 +131,9 @@ export function StepperView() {
             <Stepper.List>
               {interactiveSteps.map((step, index) => (
                 <Stepper.Item key={step.value} step={step.value} className="relative flex-1">
-                  <Stepper.Trigger className="flex w-full flex-col items-start gap-2">
+                  <Stepper.Trigger className="flex w-full flex-col items-center gap-2 text-center">
                     <Stepper.Indicator />
-                    <div className="flex flex-col gap-0.5">
+                    <div className="flex flex-col items-center gap-0.5 text-center">
                       <Stepper.Title>{step.title}</Stepper.Title>
                       <Stepper.Description>{step.description}</Stepper.Description>
                     </div>

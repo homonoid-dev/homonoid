@@ -73,12 +73,12 @@ export const StepperTrigger = forwardRef<
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       className={cn(
-        "group/trigger relative inline-flex text-left select-none cursor-pointer focus-ring outline-none transition-colors",
+        "group/trigger relative inline-flex select-none cursor-pointer focus-ring outline-none transition-colors",
         cond(isDisabled, "cursor-not-allowed pointer-events-none opacity-50", ""),
         cond(
           isBar,
-          "w-full flex-col items-start gap-2.5",
-          "w-full flex-col items-start gap-2"
+          "w-full flex-col items-start gap-2.5 text-left",
+          "w-full flex-col items-center gap-2 text-center"
         ),
         className
       )}

@@ -151,7 +151,16 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
 
                       {when(
                         any(stepDef.title, stepDef.description),
-                        <div className="flex flex-col gap-0.5">
+                        <div
+                          className={cn(
+                            "flex flex-col gap-0.5",
+                            cond(
+                              variant === "bar",
+                              "items-start text-left",
+                              "items-center text-center"
+                            )
+                          )}
+                        >
                           {when(stepDef.title, <StepperTitle>{stepDef.title}</StepperTitle>)}
                           {when(stepDef.description, (
                             <StepperDescription>

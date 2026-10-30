@@ -25,7 +25,7 @@ export const StepperDescription = forwardRef<
       disabled={disabled}
       data-slot="stepper-description"
       className={cn(
-        "transition-colors select-none",
+        "transition-colors select-none text-center",
         cond(isActive, "text-foreground", "text-muted"),
         className
       )}
