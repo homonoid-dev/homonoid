@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Layout } from "@/components/layout";
 
 export const metadata: Metadata = {
   title: "Homonoid",
@@ -14,8 +13,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body>
-        <Layout>{children}</Layout>
+      <body className="min-h-screen bg-background text-foreground">
+        {children}
       </body>
     </html>
   );
