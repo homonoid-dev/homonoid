@@ -103,7 +103,7 @@ export const StepperItem = forwardRef<HTMLLIElement, StepperItemProps>(
             "group/step relative flex",
             cond(
               isHorizontal,
-              "flex-1 flex-col items-start",
+              "flex-1 last:flex-none flex-col items-start",
               "flex-col items-start w-full"
             ),
             className

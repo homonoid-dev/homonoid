@@ -81,7 +81,7 @@ export function Example() {
   ];
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-2xl mx-auto">
       <Stepper
         defaultValue={2}
         steps={steps}
@@ -115,7 +115,7 @@ export function Example() {
   ];
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-2xl mx-auto">
       <Stepper
         defaultValue={1}
         variant="circle"
@@ -171,7 +171,7 @@ export function Example() {
   ];
 
   return (
-    <div className="w-full flex flex-col gap-6">
+    <div className="w-full max-w-2xl mx-auto flex flex-col gap-6">
       <Stepper value={currentStep} onValueChange={(val) => setCurrentStep(Number(val))}>
         <Stepper.List>
           {steps.map((step, index) => (

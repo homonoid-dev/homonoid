@@ -80,7 +80,7 @@ export function StepperView() {
       importCode='import { Stepper } from "@homonoid/react";'
       defaultCode={STEPPER_DEFAULT_CODE_SAMPLE}
       defaultStage={
-        <div className="w-full">
+        <div className="w-full max-w-2xl mx-auto">
           <Stepper
             defaultValue={2}
             steps={defaultSteps}
@@ -91,7 +91,7 @@ export function StepperView() {
     >
       {/* Atomic Usage Section */}
       <Exhibit.Stage section={sections.atomic} code={STEPPER_ATOMIC_CODE_SAMPLE}>
-        <div className="w-full">
+        <div className="w-full max-w-2xl mx-auto">
           <Stepper
             defaultValue={1}
             variant="circle"
@@ -125,7 +125,7 @@ export function StepperView() {
 
       {/* Interactive Navigation Section */}
       <Exhibit.Stage section={sections.interactive} code={STEPPER_INTERACTIVE_CODE_SAMPLE}>
-        <div className="w-full flex flex-col gap-6">
+        <div className="w-full max-w-2xl mx-auto flex flex-col gap-6">
           <Stepper value={currentStep} onValueChange={(val) => setCurrentStep(Number(val))}>
             <Stepper.List>
               {interactiveSteps.map((step, index) => (
