@@ -2,7 +2,7 @@
 
 import { forwardRef } from "react";
 import { cn } from "../../utils/cn";
-import { cond } from "../../utils/condition";
+import { any, cond } from "../../utils/condition";
 import { Label } from "../label/Label";
 import { useStepperItemContext } from "./StepperItemContext";
 import type { StepperTitleProps } from "./types";
@@ -22,9 +22,9 @@ export const StepperTitle = forwardRef<HTMLElement, StepperTitleProps>(
         className={cn(
           "transition-colors select-none",
           cond(
-            isActive,
-            "text-foreground font-semibold",
-            cond(isCompleted, "text-foreground", "text-muted")
+            any(isActive, isCompleted),
+            "text-foreground",
+            "text-muted"
           ),
           className
         )}

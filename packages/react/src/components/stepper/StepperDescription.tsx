@@ -26,7 +26,7 @@ export const StepperDescription = forwardRef<
       data-slot="stepper-description"
       className={cn(
         "transition-colors select-none",
-        cond(isActive, "text-subtle-foreground", "text-muted"),
+        cond(isActive, "text-foreground", "text-muted"),
         className
       )}
       {...props}

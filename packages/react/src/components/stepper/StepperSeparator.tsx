@@ -23,10 +23,10 @@ export const StepperSeparator = forwardRef<
       aria-hidden="true"
       data-slot="stepper-separator"
       className={cn(
-        "transition-colors",
+        "transition-colors rounded-full",
         cond(
           isHorizontal,
-          "absolute top-5 start-12 end-2 h-0.5",
+          "absolute top-5 start-14 end-4 h-0.5",
           "w-0.5 flex-1 min-h-6 my-2 ml-5 self-stretch"
         ),
         cond(isCompleted, "bg-primary", "bg-border"),
