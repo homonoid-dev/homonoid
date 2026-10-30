@@ -2,7 +2,7 @@
 
 import { useState, useMemo, type ReactNode } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronsUpDown } from "lucide-react";
+import { ChevronDown, ChevronsUpDown, Plus } from "lucide-react";
 import { Resource } from "@/components/ui/resource";
 import { Exhibit } from "@/components/ui/exhibit";
 import { SHOWCASE_COMPONENTS } from "@/config/components";
@@ -19,6 +19,7 @@ import {
   Spinner,
   Switch,
   Tile,
+  Tooltip,
 } from "@homonoid/react";
 
 const CATEGORIES = [
@@ -32,41 +33,54 @@ const CATEGORIES = [
 ] as const;
 
 const PREVIEWS: Record<string, ReactNode> = {
-  Button: (
-    <Button size="sm" variant="contained">
-      Action
-    </Button>
-  ),
+  Button: (<Button size="sm" variant="contained">Action</Button>),
   Card: (
-    <div className="w-16 h-12 rounded-xl border border-border bg-surface flex items-center justify-center shadow-xs">
-      <div className="w-8 h-1.5 rounded-full bg-muted/40" />
-    </div>
+    <Card padding="sm" variant="filled" className="rounded-xl" >
+      <div className="flex flex-col gap-1 w-20">
+        <div className="w-full h-1.5 rounded-full bg-muted/30" />
+        <div className="w-3/4 h-1.5 rounded-full bg-muted/15" />
+      </div>
+    </Card>
   ),
-  Checkbox: <Checkbox defaultChecked size="sm" />,
+  Checkbox: <Checkbox defaultChecked />,
   Description: (
-    <div className="flex flex-col gap-1 w-20">
+    <div className="flex flex-col gap-1 w-30 p-surface-sm">
       <div className="w-full h-1.5 rounded-full bg-muted/40" />
       <div className="w-3/4 h-1.5 rounded-full bg-muted/20" />
     </div>
   ),
   Dropdown: (
-    <Button size="sm" radius="md" variant="outlined" color="surface" trailing={<ChevronDown className="size-3" />}>
-      Menu
-    </Button>
+    <Card padding="sm" variant="filled" className="rounded-xl">
+      <div className="flex flex-col gap-1 w-20">
+        {[0, 1, 2].map((i) => (
+          <div key={i} className="flex flex-row gap-0.5 items-center">
+            <div className="h-1.5 shrink-0 aspect-square rounded-full bg-muted/30" />
+            <div className="w-full h-1.5 rounded-full bg-muted/30" />
+          </div>
+        ))}
+      </div>
+    </Card>
   ),
   Input: <Input size="sm" placeholder="Text..." className="w-28 text-xs" readOnly />,
   Kbd: <Kbd keyValue="command" content="K" />,
   Label: <Label size="sm" className="font-semibold">Headline</Label>,
   Modal: (
-    <div className="w-20 h-14 rounded-lg border border-border bg-surface shadow-md flex flex-col p-1.5 gap-1.5">
-      <div className="w-10 h-1.5 rounded bg-foreground/60" />
-      <div className="w-14 h-1 rounded bg-muted/30" />
-    </div>
+    <Card padding="sm" variant="filled" className="rounded-xl" >
+      <div className="flex flex-col gap-1 w-20">
+        <div className="w-full h-1.5 rounded-full bg-muted/30" />
+        <div className="w-3/4 h-1.5 rounded-full bg-muted/15" />
+        <div className="w-3/8 h-1.5 rounded-full bg-primary" />
+      </div>
+    </Card>
   ),
   Popover: (
-    <div className="px-2.5 py-1.5 rounded-lg border border-border bg-surface text-xs shadow-sm">
-      Popup
-    </div>
+    <Card padding="sm" variant="filled" className="rounded-xl" >
+      <div className="flex flex-col gap-1 w-20">
+        <div className="w-full h-1.5 rounded-full bg-muted/30" />
+        <div className="w-3/4 h-1.5 rounded-full bg-muted/15" />
+        <div className="w-3/8 h-1.5 rounded-full bg-muted/15" />
+      </div>
+    </Card>
   ),
   Searchbar: <Searchbar size="sm" placeholder="Search..." className="w-28 text-xs" readOnly />,
   Select: (
@@ -76,16 +90,18 @@ const PREVIEWS: Record<string, ReactNode> = {
   ),
   Separator: <div className="w-20 h-[0.5px] bg-border" />,
   Spinner: <Spinner size="md" />,
-  Switch: <Switch defaultChecked size="sm" />,
+  Switch: <Switch defaultChecked />,
   Tile: (
-    <Tile size="sm" variant="contained" radius="md" className="w-28 text-xs">
+    <Tile size="sm" variant="contained" className="w-30">
       Item
     </Tile>
   ),
   Tooltip: (
-    <div className="px-2.5 py-1 rounded-md bg-foreground text-background text-[11px] font-medium shadow-sm">
-      Tooltip
-    </div>
+    <Tooltip open side="bottom" content="Tooltip">
+      <Button size="sm" variant="contained" layout="icon">
+        <Plus className="size-3" />
+      </Button>
+    </Tooltip>
   ),
 };
 
