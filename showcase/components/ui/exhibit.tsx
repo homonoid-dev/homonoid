@@ -230,8 +230,8 @@ export function Exhibit({
                 className="rounded-3xl"
               >
                 <Tile.Content>
-                  <Tile.Label size="md">{item.name}</Tile.Label>
-                  <Tile.Description size="sm">{item.description}</Tile.Description>
+                  <Tile.Label size="md" className="truncate">{item.name}</Tile.Label>
+                  <Tile.Description size="sm" className="truncate">{item.description}</Tile.Description>
                 </Tile.Content>
               </Tile>
             ))}
