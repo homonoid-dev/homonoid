@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentType, ReactNode } from "react";
+import type { ComponentType, ReactNode, MouseEvent } from "react";
 import Link from "next/link";
 import { Component, List, type LucideIcon } from "lucide-react";
 import { Heading, Description, Card, Tile, Button } from "@homonoid/react";
@@ -8,10 +8,9 @@ import { cn } from "@homonoid/react/cn";
 import { any, cond, when } from "@homonoid/react";
 import { highlighter } from "./code";
 import { Stage } from "./stage";
-import { Frame } from "./frame";
 import { Resource } from "./resource";
 import { Pagination } from "./pagination";
-import { useToc, type TocItem } from "./toc";
+import { useToc, type TocItemModel } from "./toc";
 import { SHOWCASE_COMPONENTS, type ShowcaseComponentItem } from "@/config/components";
 
 export interface ExhibitSectionItem {
@@ -48,12 +47,35 @@ export function ExhibitStage({
   const resolvedTitle = explicitTitle ?? explicitLabel ?? section?.title ?? section?.label ?? "";
   const resolvedIcon = explicitIcon ?? section?.icon;
 
+  const scrollToSelf = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (!resolvedId) return;
+    const el = document.getElementById(resolvedId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.pushState(null, "", `#${resolvedId}`);
+    }
+  };
+
+  const leadingIcon = when(Boolean(resolvedIcon), () => {
+    const IconComponent = resolvedIcon!;
+    return <IconComponent className="size-4 shrink-0" />;
+  });
+
   return (
     <section
       id={resolvedId}
       className={cn("flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y", className)}
     >
-      <Frame text={resolvedTitle} icon={resolvedIcon} />
+      <Button
+        variant="outlined"
+        color="surface"
+        leading={leadingIcon}
+        onClick={scrollToSelf}
+        className="w-fit"
+      >
+        {resolvedTitle}
+      </Button>
       <Stage code={code ?? ""} onReset={onReset}>
         {children}
       </Stage>
@@ -107,7 +129,7 @@ export interface ExhibitProps {
   importCode?: string;
   defaultCode?: string;
   defaultStage?: ReactNode;
-  sections?: TocItem[];
+  sections?: TocItemModel[];
   related?: (string | ShowcaseComponentItem)[];
   relatedDescription?: ReactNode;
   children?: ReactNode;
@@ -120,13 +142,12 @@ export function Exhibit({
   description,
   component,
   githubUrl,
-  figmaUrl = "https://www.figma.com/@lumunar",
+  figmaUrl = "https://www.figma.com/@homonoid",
   importCode,
   defaultCode,
   defaultStage,
   sections,
   related,
-  relatedDescription = "Explore complementary primitives and companion controls designed to pair naturally within unified interface layouts.",
   children,
   className,
 }: ExhibitProps) {
@@ -136,7 +157,7 @@ export function Exhibit({
 
   const configItem = SHOWCASE_COMPONENTS.find(
     (item) =>
-      (component && item.href === `/${component}`) ||
+      (component && item.href === `/components/${component}`) ||
       item.name.toLowerCase() === title.toLowerCase()
   );
 
@@ -148,9 +169,9 @@ export function Exhibit({
       const match = SHOWCASE_COMPONENTS.find(
         (c) =>
           c.name.toLowerCase() === entry.toLowerCase() ||
-          c.href.replace("/", "").toLowerCase() === entry.toLowerCase()
+          c.href.replace("/components/", "").toLowerCase() === entry.toLowerCase()
       );
-      return match ?? { name: entry, href: `/${entry.toLowerCase()}` };
+      return match ?? { name: entry, href: `/components/${entry.toLowerCase()}` };
     })
     .filter(Boolean);
 
@@ -216,8 +237,23 @@ export function Exhibit({
       {/* Related Components Outlined Tiles */}
       {when(
         resolvedRelated.length > 0,
-        <section className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-          <Frame text="Related" icon={Component} />
+        <section id="related" className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
+          <Button
+            variant="outlined"
+            color="surface"
+            leading={<Component className="size-4 shrink-0" />}
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById("related");
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth", block: "start" });
+                window.history.pushState(null, "", "#related");
+              }
+            }}
+            className="w-fit"
+          >
+            Related
+          </Button>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-surface-gap">
             {resolvedRelated.map((item) => (
@@ -230,8 +266,8 @@ export function Exhibit({
                 className="rounded-3xl"
               >
                 <Tile.Content>
-                  <Tile.Label size="md">{item.name}</Tile.Label>
-                  <Tile.Description size="sm">{item.description}</Tile.Description>
+                  <Tile.Label size="md" className="truncate">{item.name}</Tile.Label>
+                  <Tile.Description size="sm" className="truncate">{item.description}</Tile.Description>
                 </Tile.Content>
               </Tile>
             ))}

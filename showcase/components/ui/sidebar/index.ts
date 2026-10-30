@@ -1,22 +1,16 @@
-import { Sidebar as SidebarRoot } from "./sidebar";
-import { SidebarHeader } from "./header";
-import { SidebarDestination } from "./destination";
-import { SidebarToggle } from "./toggle";
+import { Sidebar as SidebarRoot } from "./Sidebar";
+import { SidebarHeader } from "./SidebarHeader";
+import { SidebarItem } from "./SidebarItem";
+import { Nav } from "./Nav";
 
 export const Sidebar = Object.assign(SidebarRoot, {
   Header: SidebarHeader,
-  Destination: SidebarDestination,
-  Toggle: SidebarToggle,
+  Item: SidebarItem,
 });
 
-export { SidebarHeader, SidebarDestination, SidebarToggle };
-export { useSidebar } from "./context";
+export { SidebarHeader, SidebarItem, Nav };
 export type {
   SidebarProps,
   SidebarHeaderProps,
-  SidebarDestinationProps,
-  SidebarToggleProps,
-  SidebarSide,
+  SidebarItemProps,
 } from "./types";
-
-

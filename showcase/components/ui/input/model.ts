@@ -12,10 +12,10 @@ import {
   ArrowUpToLine,
   LucideIcon,
 } from "lucide-react";
-import type { TocItem } from "@/components/ui/toc";
+import type { TocItemModel } from "@/components/ui/toc";
 import type { InteractiveStateItem } from "@/components/ui/interactive-states";
 
-export interface InputSectionItem extends TocItem {
+export interface InputSectionItem extends TocItemModel {
   id: string;
   label: string;
   icon: LucideIcon;

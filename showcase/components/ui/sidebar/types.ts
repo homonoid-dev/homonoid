@@ -1,50 +1,16 @@
 import type { HTMLAttributes, ReactNode, MouseEvent } from "react";
-
-export type SidebarSide = "left" | "right";
+import type { TileProps } from "@homonoid/react";
 
 export interface SidebarProps extends HTMLAttributes<HTMLElement> {
   /**
-   * Docking orientation of the sidebar.
-   * - `left`: Renders with a right border (`border-r`).
-   * - `right`: Renders with a left border (`border-l`).
-   * @default "left"
+   * Additional class name for the inner scrolling content container.
    */
-  side?: SidebarSide;
-
-  /**
-   * Whether the sidebar can collapse into a compact mode.
-   * @default false
-   */
-  collapsible?: boolean;
-
-  /**
-   * Controlled collapsed state.
-   */
-  collapsed?: boolean;
-
-  /**
-   * Default collapsed state for uncontrolled mode.
-   * @default false
-   */
-  defaultCollapsed?: boolean;
-
-  /**
-   * Callback fired when collapsed state changes.
-   */
-  onCollapsedChange?: (collapsed: boolean) => void;
+  contentClassName?: string;
 
   /**
    * Children content within the sidebar.
    */
   children?: ReactNode;
-}
-
-export interface SidebarToggleProps
-  extends Omit<HTMLAttributes<HTMLButtonElement>, "color"> {
-  /**
-   * Optional custom aria-label override.
-   */
-  "aria-label"?: string;
 }
 
 export interface SidebarHeaderProps extends HTMLAttributes<HTMLElement> {
@@ -59,19 +25,17 @@ export interface SidebarHeaderProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
 }
 
-export interface SidebarDestinationProps {
+export interface SidebarItemProps {
   /**
    * Destination URL or in-page anchor hash (e.g. "#variants").
    */
   href?: string;
 
   /**
-   * Visual presentation style.
-   * - `tile`: Render using the Tile component with tactile states and background fills.
-   * - `plain`: Render using the minimal transparent text-only style without backgrounds.
-   * @default "tile" for left sidebar, "plain" for right sidebar
+   * Visual presentation style matching Tile variant.
+   * @default "plain"
    */
-  variant?: "tile" | "plain";
+  variant?: TileProps["variant"];
 
   /**
    * Optional trailing icon displayed on the right edge.
