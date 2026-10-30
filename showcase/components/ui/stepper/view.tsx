@@ -129,8 +129,8 @@ export function StepperView() {
           <Stepper value={currentStep} onValueChange={(val) => setCurrentStep(Number(val))}>
             <Stepper.List>
               {interactiveSteps.map((step, index) => (
-                <Stepper.Item key={step.value} step={step.value}>
-                  <Stepper.Trigger>
+                <Stepper.Item key={step.value} step={step.value} className="relative flex-1">
+                  <Stepper.Trigger className="flex w-full flex-col items-start gap-2">
                     <Stepper.Indicator />
                     <div className="flex flex-col gap-0.5">
                       <Stepper.Title>{step.title}</Stepper.Title>
