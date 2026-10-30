@@ -157,7 +157,7 @@ export function Exhibit({
 
   const configItem = SHOWCASE_COMPONENTS.find(
     (item) =>
-      (component && item.href === `/${component}`) ||
+      (component && item.href === `/components/${component}`) ||
       item.name.toLowerCase() === title.toLowerCase()
   );
 
@@ -169,9 +169,9 @@ export function Exhibit({
       const match = SHOWCASE_COMPONENTS.find(
         (c) =>
           c.name.toLowerCase() === entry.toLowerCase() ||
-          c.href.replace("/", "").toLowerCase() === entry.toLowerCase()
+          c.href.replace("/components/", "").toLowerCase() === entry.toLowerCase()
       );
-      return match ?? { name: entry, href: `/${entry.toLowerCase()}` };
+      return match ?? { name: entry, href: `/components/${entry.toLowerCase()}` };
     })
     .filter(Boolean);
 

@@ -2,7 +2,7 @@ import { Shell } from "@/components/layout/shell";
 import { Nav } from "@/components/ui/sidebar";
 import { TocProvider, Toc } from "@/components/ui/toc";
 
-export default function ShowcaseLayout({
+export default function ComponentsLayout({
   children,
 }: {
   children: React.ReactNode;
