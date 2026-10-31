@@ -229,12 +229,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           data-slot="input-floating-label"
           data-floated={cond(isFloated, "true", "false")}
           className={cn(
-            "col-start-1 row-start-1 inline-flex items-center px-1 rounded-xs truncate font-medium leading-normal origin-left",
+            "col-start-1 row-start-1 inline-flex items-center px-1 rounded-xs truncate leading-normal origin-left",
             "transform-gpu subpixel-antialiased",
             "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
             restingLabelSize,
             floatingLabelColor,
-            cond(isFloated, "scale-85", "scale-100 translate-y-0"),
+            cond(isFloated, "scale-85 -translate-y-0.5", "scale-100 translate-y-0"),
             cond(disabled, "opacity-50", undefined)
           )}
         >
