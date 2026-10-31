@@ -36,7 +36,7 @@ const CATEGORIES = [
 
 const PREVIEWS: Record<string, ReactNode> = {
   Accordion: (
-    <Card padding="sm" variant="filled" className="rounded-xl">
+    <Card padding="none" variant="filled" className="p-2 rounded-lg">
       <div className="flex flex-col gap-1 w-20">
         <div className="flex items-center justify-between">
           <div className="w-12 h-1.5 rounded-full bg-muted/40" />
@@ -51,18 +51,18 @@ const PREVIEWS: Record<string, ReactNode> = {
     </Card>
   ),
   Autocomplete: (
-    <Card padding="sm" variant="filled" className="rounded-xl">
-      <div className="flex flex-col gap-1.5 w-20">
-        <div className="flex items-center gap-1 px-1.5 py-0.5 rounded border border-border/40 bg-surface/60">
-          <div className="size-1.5 rounded-full bg-muted/60" />
-          <div className="w-8 h-1 rounded-full bg-muted/40" />
+    <div className="flex flex-col gap-1.5">
+      <Card padding="none" variant="filled" className="flex flex-col p-2 gap-1.5 rounded-lg">
+        <div className="flex flex-row gap-0.5 items-center w-20">
+          <div className="h-1.5 shrink-0 aspect-square rounded-full bg-muted/30" />
+          <div className="w-full h-1.5 rounded-full bg-muted/30" />
         </div>
-        <div className="flex flex-col gap-0.5 p-1 rounded border border-border/30 bg-surface/80">
-          <div className="w-12 h-1 rounded-full bg-primary/60" />
-          <div className="w-10 h-1 rounded-full bg-muted/30" />
-        </div>
-      </div>
-    </Card>
+      </Card>
+      <Card padding="none" variant="filled" className="flex flex-col p-2 gap-1.5 rounded-lg">
+        <div className="w-full h-1.5 rounded-full bg-muted/20" />
+        <div className="w-3/4 h-1.5 rounded-full bg-muted/20" />
+      </Card>
+    </div>
   ),
   Badge: (
     <Badge size="sm" count={3} placement="top-right" color="destructive">
@@ -88,7 +88,7 @@ const PREVIEWS: Record<string, ReactNode> = {
     </div>
   ),
   Dropdown: (
-    <Card padding="sm" variant="filled" className="rounded-xl">
+    <Card padding="none" variant="filled" className="p-2 rounded-lg">
       <div className="flex flex-col gap-1 w-20">
         {[0, 1, 2].map((i) => (
           <div key={i} className="flex flex-row gap-0.5 items-center">
