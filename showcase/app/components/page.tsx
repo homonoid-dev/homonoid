@@ -35,6 +35,22 @@ const CATEGORIES = [
 ] as const;
 
 const PREVIEWS: Record<string, ReactNode> = {
+  Accordion: (
+    <Card padding="sm" variant="filled" className="rounded-xl">
+      <div className="flex flex-col gap-1 w-20">
+        <div className="flex items-center justify-between">
+          <div className="w-12 h-1.5 rounded-full bg-muted/40" />
+          <ChevronDown className="size-2 text-muted" />
+        </div>
+        <div className="w-14 h-1 rounded-full bg-muted/20" />
+        <div className="w-full h-px bg-border/40" />
+        <div className="flex items-center justify-between">
+          <div className="w-10 h-1.5 rounded-full bg-muted/40" />
+          <ChevronDown className="size-2 text-muted" />
+        </div>
+      </div>
+    </Card>
+  ),
   Badge: (
     <Badge size="sm" count={3} placement="top-right" color="destructive">
       <Button size="sm" layout="icon" variant="outlined" color="surface">

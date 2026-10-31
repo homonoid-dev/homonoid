@@ -68,7 +68,7 @@ import { Check } from "lucide-react";
 export function Example() {
   return (
     <div className="flex flex-wrap items-center justify-center gap-3">
-      <Badge dot color="primary" variant="contained">
+      <Badge color="primary" variant="contained">
         Operational
       </Badge>
       <Badge leading={<Check className="size-3" />} color="surface" variant="contained">
