@@ -22,6 +22,7 @@ import {
   Tooltip,
   Badge,
   Stepper,
+  Textarea,
 } from "@homonoid/react";
 
 const CATEGORIES = [
@@ -137,6 +138,7 @@ const PREVIEWS: Record<string, ReactNode> = {
     />
   ),
   Switch: <Switch defaultChecked />,
+  Textarea: <Textarea size="sm" placeholder="Text..." rows={2} className="w-28 text-xs" readOnly />,
   Tile: (
     <Tile size="sm" variant="contained" className="w-30">
       Item

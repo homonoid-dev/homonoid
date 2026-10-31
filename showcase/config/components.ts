@@ -26,6 +26,7 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponentItem[] = [
   { name: "Spinner", href: "/components/spinner", description: "Indicate background activity", category: "Feedback", related: ["Button"] },
   { name: "Stepper", href: "/components/stepper", description: "Sequential multistep progress navigation", category: "Layout", related: ["Button", "Label", "Description"] },
   { name: "Switch", href: "/components/switch", description: "Toggle state of a single setting", category: "Inputs", related: ["Checkbox", "Tile", "Label"] },
+  { name: "Textarea", href: "/components/textarea", description: "Multi line text entry with auto resize and floating label support", category: "Inputs", related: ["Input", "Description", "Label"] },
   { name: "Tile", href: "/components/tile", description: "Structured horizontal list item with tactile response", category: "Layout", related: ["Checkbox", "Switch", "Select", "Dropdown"] },
   { name: "Tooltip", href: "/components/tooltip", description: "Contextual guidance and keyboard shortcuts", category: "Feedback", related: ["Popover", "Kbd"] },
 ].sort((a, b) => a.name.localeCompare(b.name));
