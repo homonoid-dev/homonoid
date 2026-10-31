@@ -51,6 +51,20 @@ const PREVIEWS: Record<string, ReactNode> = {
       </div>
     </Card>
   ),
+  Autocomplete: (
+    <Card padding="sm" variant="filled" className="rounded-xl">
+      <div className="flex flex-col gap-1.5 w-20">
+        <div className="flex items-center gap-1 px-1.5 py-0.5 rounded border border-border/40 bg-surface/60">
+          <div className="size-1.5 rounded-full bg-muted/60" />
+          <div className="w-8 h-1 rounded-full bg-muted/40" />
+        </div>
+        <div className="flex flex-col gap-0.5 p-1 rounded border border-border/30 bg-surface/80">
+          <div className="w-12 h-1 rounded-full bg-primary/60" />
+          <div className="w-10 h-1 rounded-full bg-muted/30" />
+        </div>
+      </div>
+    </Card>
+  ),
   Badge: (
     <Badge size="sm" count={3} placement="top-right" color="destructive">
       <Button size="sm" layout="icon" variant="outlined" color="surface">

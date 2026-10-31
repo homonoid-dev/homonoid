@@ -1,0 +1,171 @@
+"use client";
+
+import {
+  forwardRef,
+  useId,
+  useRef,
+  useEffect,
+  useMemo,
+  type MouseEvent,
+} from "react";
+import { useMergeRefs } from "@floating-ui/react";
+import { Tile } from "../tile/Tile";
+import { cond, when } from "../../utils/condition";
+import { cn } from "../../utils/cn";
+import { useAutocompleteContext } from "./AutocompleteContext";
+import type { AutocompleteItemProps } from "./types";
+
+export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps>(
+  function AutocompleteItem(
+    {
+      value,
+      disabled = false,
+      leading,
+      trailing,
+      label,
+      description,
+      children,
+      className,
+      onClick,
+      ...props
+    },
+    ref
+  ) {
+    const {
+      query,
+      value: selectedValue,
+      onSelectOption,
+      size,
+      radius,
+      color,
+      disabled: rootDisabled,
+      registerItem,
+      highlightedIndex,
+      setHighlightedIndex,
+      registeredItems,
+      customFilter,
+    } = useAutocompleteContext();
+
+    const localRef = useRef<HTMLDivElement | null>(null);
+    const mergedRef = useMergeRefs([localRef, ref]);
+    const generatedId = useId();
+    const itemId = `autocomplete-item-${generatedId}`;
+
+    const labelContent = label || (typeof children === "string" ? children : undefined);
+    const tileChildren = typeof children === "string" ? null : children;
+    const itemLabel: string = label || (typeof children === "string" ? children : value);
+
+    const isMatch = useMemo(() => {
+      if (!query.trim()) return true;
+      if (customFilter) {
+        return customFilter({ value, label: itemLabel, description }, query);
+      }
+      const q = query.toLowerCase();
+      const text = itemLabel.toLowerCase();
+      const desc = (description || "").toLowerCase();
+      return text.includes(q) || desc.includes(q);
+    }, [query, customFilter, value, itemLabel, description]);
+
+    useEffect(() => {
+      if (!isMatch) return;
+      const unregister = registerItem({
+        id: itemId,
+        value,
+        label: itemLabel,
+        description,
+        disabled: Boolean(disabled || rootDisabled),
+      });
+      return unregister;
+    }, [isMatch, itemId, value, itemLabel, description, disabled, rootDisabled, registerItem]);
+
+    const isSelected = selectedValue === value;
+    const currentIndex = registeredItems.findIndex((item) => item.id === itemId);
+    const isHighlighted = highlightedIndex !== null && currentIndex === highlightedIndex;
+
+    useEffect(() => {
+      if (isHighlighted && localRef.current) {
+        localRef.current.scrollIntoView({ block: "nearest" });
+      }
+    }, [isHighlighted]);
+
+    if (!isMatch) {
+      return null;
+    }
+
+    const checkmarkIcon = (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+        className="size-4 shrink-0 text-foreground"
+      >
+        <polyline points="20 6 9 17 4 12" />
+      </svg>
+    );
+
+    const computedTrailing = cond(
+      trailing !== undefined,
+      trailing,
+      cond(isSelected, checkmarkIcon, undefined)
+    );
+
+    const handleClick = (e: MouseEvent<HTMLDivElement>) => {
+      if (disabled || rootDisabled) return;
+      onClick?.(e);
+      onSelectOption(value, {
+        value,
+        label: itemLabel,
+        description,
+        leading,
+        trailing: computedTrailing,
+      });
+    };
+
+    const handleMouseEnter = () => {
+      if (disabled || rootDisabled) return;
+      if (currentIndex !== -1) {
+        setHighlightedIndex(currentIndex);
+      }
+    };
+
+    return (
+      <Tile
+        ref={mergedRef}
+        id={itemId}
+        as="div"
+        role="option"
+        aria-selected={isSelected}
+        aria-disabled={cond(disabled || rootDisabled, true, undefined)}
+        data-highlighted={cond(isHighlighted, "", undefined)}
+        data-selected={cond(isSelected, "true", undefined)}
+        variant="plain"
+        color={color}
+        size={size}
+        radius={radius}
+        disabled={disabled || rootDisabled}
+        interactive={!disabled && !rootDisabled}
+        selected={isSelected}
+        leading={leading}
+        label={labelContent}
+        description={description}
+        trailing={computedTrailing}
+        className={cn(
+          "cursor-pointer select-none",
+          cond(isHighlighted && !isSelected, "bg-surface-hover", ""),
+          className
+        )}
+        onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
+        {...props}
+      >
+        {tileChildren}
+      </Tile>
+    );
+  }
+);
+
+AutocompleteItem.displayName = "Autocomplete.Item";
