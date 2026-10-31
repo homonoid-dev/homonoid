@@ -20,23 +20,23 @@ export function AccordionView() {
 
   const defaultItems = [
     {
-      value: "accessibility",
-      trigger: "Is it accessible?",
+      value: "architecture",
+      trigger: "How does the compound pattern work?",
       content:
-        "Yes. It adheres to the WAI ARIA design pattern with full keyboard navigation.",
+        "Subcomponents connect through React context to synchronize disclosure states and keyboard navigation automatically.",
     },
     {
-      value: "styling",
-      trigger: "Is it styled with tokens?",
+      value: "theming",
+      trigger: "Can themes be overridden dynamically?",
       disabled: true,
       content:
-        "Yes. It consumes styling exclusively from Homonoid design tokens.",
+        "Theme tokens adapt across light and dark modes through CSS custom properties defined at the root.",
     },
     {
-      value: "animation",
-      trigger: "Is it animated?",
+      value: "motion",
+      trigger: "How is object continuity preserved?",
       content:
-        "Yes. CSS grid row interpolation guarantees smooth dimensional continuity.",
+        "Transitions utilize CSS grid template rows and motion duration tokens to eliminate abrupt layout jumps.",
     },
   ];
 
@@ -102,7 +102,7 @@ export function AccordionView() {
       defaultCode={ACCORDION_DEFAULT_CODE_SAMPLE}
       defaultStage={
         <div className="w-full max-w-lg mx-auto">
-          <Accordion defaultValue="accessibility" items={defaultItems} />
+          <Accordion defaultValue="architecture" items={defaultItems} />
         </div>
       }
       sections={ACCORDION_SECTIONS_LIST}
