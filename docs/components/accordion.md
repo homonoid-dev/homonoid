@@ -46,9 +46,9 @@ The accordion adheres to a compound component architecture exposing dedicated pr
 
 The accordion composes core Homonoid primitives under the hood to ensure token consistency:
 
-* `Button`: Powers interactive behavior for `Accordion.Trigger`, inheriting focus rings, pressed tactile feedback, and keyboard activation semantics.
-* `Label`: Powers heading typography within `Accordion.Trigger` and is exposed via `Accordion.Label` for explicit header copy styling.
-* `ChevronDown`: Serves as the standard disclosure indicator, rotating smoothly during state transitions without arbitrary icon decorations.
+* `Tile`: Powers `Accordion.Trigger`, inheriting structured horizontal row rhythm, leading and trailing accessories, description support, and high contrast focus rings.
+* `Label`: Powers heading typography within the trigger row and is exposed via `Accordion.Label` for explicit header copy styling.
+* `ChevronDown`: Serves as the trailing accessory within the tile container, rotating smoothly during state transitions without arbitrary icon decorations.
 
 <br>
 
@@ -162,6 +162,7 @@ The accordion accommodates both single panel inspection and multi panel comparis
 
 Transitions preserve visual stability without abrupt jumps:
 
+* Single Layer Tactile Press: In separated card presentations, the entire `Accordion.Item` takes the physical press scale transition as one unified surface, preventing inner elements from pulling away or shrinking awkwardly inside container borders.
 * Height Interpolation: Panels utilize CSS grid row transitions moving from zero fractions to one fraction with zero minimum height, avoiding clipped text or jumping content.
 * Indicator Continuity: The trailing chevron rotates smoothly across one hundred eighty degrees with calibrated cubic bezier timing.
 * Motion Preference: Motion durations collapse automatically to zero when the user prefers reduced motion.

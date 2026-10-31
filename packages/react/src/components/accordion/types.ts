@@ -9,6 +9,8 @@ export interface AccordionItemDefinition {
   value: string;
   trigger: ReactNode;
   content: ReactNode;
+  leading?: ReactNode;
+  description?: ReactNode;
   disabled?: boolean;
 }
 
@@ -37,6 +39,8 @@ export interface AccordionItemProps extends HTMLAttributes<HTMLDivElement> {
 export interface AccordionTriggerProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   asHeading?: AccordionHeadingLevel;
+  leading?: ReactNode;
+  description?: ReactNode;
   hideChevron?: boolean;
   chevronIcon?: ReactNode;
   children?: ReactNode;

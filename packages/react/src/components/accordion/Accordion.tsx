@@ -211,7 +211,12 @@ const AccordionRoot = forwardRef<HTMLDivElement, AccordionProps>(
                 value={item.value}
                 disabled={item.disabled}
               >
-                <AccordionTrigger>{item.trigger}</AccordionTrigger>
+                <AccordionTrigger
+                  leading={item.leading}
+                  description={item.description}
+                >
+                  {item.trigger}
+                </AccordionTrigger>
                 <AccordionContent>{item.content}</AccordionContent>
               </AccordionItem>
             )),
