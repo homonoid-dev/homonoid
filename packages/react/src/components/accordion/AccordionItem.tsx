@@ -29,7 +29,7 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
 
     const variantStyles = cond(
       variant === "separated",
-      "border border-border rounded-2xl overflow-hidden bg-surface transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] has-[[data-accordion-trigger]:active]:scale-[var(--motion-press-scale)]",
+      "border border-border rounded-xl overflow-hidden bg-surface mb-2 last:mb-0",
       "border-b border-border last:border-b-0"
     );
 

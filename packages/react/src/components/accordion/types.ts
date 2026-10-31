@@ -1,9 +1,9 @@
-import type { ReactNode, HTMLAttributes, ButtonHTMLAttributes } from "react";
+import type { ReactNode, HTMLAttributes } from "react";
+import type { TileColor } from "../tile/types";
 
 export type AccordionVariant = "flush" | "bordered" | "separated";
 export type AccordionSize = "sm" | "md" | "lg";
-export type AccordionColor = "surface" | "primary" | "subtle";
-export type AccordionHeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+export type AccordionColor = TileColor;
 
 export interface AccordionItemDefinition {
   value: string;
@@ -11,6 +11,7 @@ export interface AccordionItemDefinition {
   content: ReactNode;
   leading?: ReactNode;
   description?: ReactNode;
+  trailing?: ReactNode;
   disabled?: boolean;
 }
 
@@ -26,7 +27,6 @@ export interface AccordionProps
   size?: AccordionSize;
   disabled?: boolean;
   items?: AccordionItemDefinition[];
-  headingLevel?: AccordionHeadingLevel;
   children?: ReactNode;
 }
 
@@ -37,12 +37,10 @@ export interface AccordionItemProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export interface AccordionTriggerProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
-  asHeading?: AccordionHeadingLevel;
+  extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   leading?: ReactNode;
   description?: ReactNode;
-  hideChevron?: boolean;
-  chevronIcon?: ReactNode;
+  trailing?: ReactNode;
   children?: ReactNode;
 }
 

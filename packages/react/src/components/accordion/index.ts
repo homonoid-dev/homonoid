@@ -14,7 +14,6 @@ export type {
   AccordionVariant,
   AccordionSize,
   AccordionColor,
-  AccordionHeadingLevel,
 } from "./types";
 export type { AccordionContextValue } from "./AccordionContext";
 export type { AccordionItemContextValue } from "./AccordionItemContext";

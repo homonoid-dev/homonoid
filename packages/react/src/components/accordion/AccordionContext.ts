@@ -1,11 +1,10 @@
 "use client";
 
-import { createContext, useContext, type RefObject, type KeyboardEvent } from "react";
+import { createContext, useContext, type RefObject } from "react";
 import type {
   AccordionVariant,
   AccordionColor,
   AccordionSize,
-  AccordionHeadingLevel,
 } from "./types";
 
 export interface AccordionContextValue {
@@ -18,9 +17,7 @@ export interface AccordionContextValue {
   color: AccordionColor;
   size: AccordionSize;
   disabled: boolean;
-  headingLevel: AccordionHeadingLevel;
   containerRef: RefObject<HTMLDivElement | null>;
-  handleKeyDown: (event: KeyboardEvent<HTMLButtonElement>) => void;
 }
 
 export const AccordionContext = createContext<AccordionContextValue | null>(null);
@@ -34,4 +31,3 @@ export function useAccordionContext(): AccordionContextValue {
   }
   return context;
 }
-

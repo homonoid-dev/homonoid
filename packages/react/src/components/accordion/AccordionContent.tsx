@@ -32,11 +32,11 @@ export const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps
               "text-muted leading-relaxed",
               cond(
                 size === "sm",
-                "px-3 pb-2.5 pt-0 text-xs",
+                "px-3 pb-2.5 pt-1 text-xs",
                 cond(
                   size === "lg",
-                  "px-5 pb-4 pt-0 text-base",
-                  "px-4 pb-3.5 pt-0 text-sm"
+                  "px-4.5 pb-4 pt-1.5 text-base",
+                  "px-3.5 pb-3 pt-1 text-sm"
                 )
               )
             )}
@@ -50,4 +50,3 @@ export const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps
 );
 
 AccordionContent.displayName = "Accordion.Content";
-

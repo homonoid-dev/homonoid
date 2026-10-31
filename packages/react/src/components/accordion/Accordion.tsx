@@ -6,7 +6,6 @@ import {
   useCallback,
   useMemo,
   useRef,
-  type KeyboardEvent,
 } from "react";
 import { cn } from "../../utils/cn";
 import { cond } from "../../utils/condition";
@@ -56,7 +55,6 @@ const AccordionRoot = forwardRef<HTMLDivElement, AccordionProps>(
       color = "surface",
       size = "md",
       disabled = false,
-      headingLevel = "h3",
       items,
       className,
       children,
@@ -123,41 +121,6 @@ const AccordionRoot = forwardRef<HTMLDivElement, AccordionProps>(
       [disabled, multiple, activeValues, isControlled, collapsible, onValueChange]
     );
 
-    const handleKeyDown = useCallback(
-      (event: KeyboardEvent<HTMLButtonElement>) => {
-        const container = internalRef.current;
-        if (!container) return;
-
-        const triggers = Array.from(
-          container.querySelectorAll<HTMLButtonElement>(
-            '[data-accordion-trigger]:not([disabled]):not([aria-disabled="true"])'
-          )
-        );
-
-        if (triggers.length === 0) return;
-
-        const currentIndex = triggers.indexOf(event.currentTarget);
-        if (currentIndex === -1) return;
-
-        if (event.key === "ArrowDown") {
-          event.preventDefault();
-          const nextIndex = (currentIndex + 1) % triggers.length;
-          triggers[nextIndex]?.focus();
-        } else if (event.key === "ArrowUp") {
-          event.preventDefault();
-          const prevIndex = (currentIndex - 1 + triggers.length) % triggers.length;
-          triggers[prevIndex]?.focus();
-        } else if (event.key === "Home") {
-          event.preventDefault();
-          triggers[0]?.focus();
-        } else if (event.key === "End") {
-          event.preventDefault();
-          triggers[triggers.length - 1]?.focus();
-        }
-      },
-      []
-    );
-
     const contextValue: AccordionContextValue = useMemo(
       () => ({
         value: activeValues,
@@ -169,9 +132,7 @@ const AccordionRoot = forwardRef<HTMLDivElement, AccordionProps>(
         color,
         size,
         disabled,
-        headingLevel,
         containerRef: internalRef,
-        handleKeyDown,
       }),
       [
         activeValues,
@@ -183,14 +144,12 @@ const AccordionRoot = forwardRef<HTMLDivElement, AccordionProps>(
         color,
         size,
         disabled,
-        headingLevel,
-        handleKeyDown,
       ]
     );
 
     const rootClasses = cond(
       variant === "bordered",
-      "w-full border border-border rounded-2xl overflow-hidden bg-background",
+      "w-full border border-border rounded-xl overflow-hidden bg-background",
       cond(variant === "separated", "w-full flex flex-col gap-2", "w-full")
     );
 
@@ -214,6 +173,7 @@ const AccordionRoot = forwardRef<HTMLDivElement, AccordionProps>(
                 <AccordionTrigger
                   leading={item.leading}
                   description={item.description}
+                  trailing={item.trailing}
                 >
                   {item.trigger}
                 </AccordionTrigger>
