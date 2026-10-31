@@ -104,6 +104,7 @@ const PREVIEWS: Record<string, ReactNode> = {
       size="sm"
       defaultValue={1}
       steps={[{ value: 1 }, { value: 2 }]}
+      className="pointer-events-none [&_*]:!pointer-events-none"
     />
   ),
   Switch: <Switch defaultChecked />,
