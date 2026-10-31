@@ -36,13 +36,12 @@ const CATEGORIES = [
 
 const PREVIEWS: Record<string, ReactNode> = {
   Accordion: (
-    <Card padding="sm" variant="filled" className="rounded-xl">
+    <Card padding="none" variant="filled" className="p-2 rounded-lg">
       <div className="flex flex-col gap-1 w-20">
         <div className="flex items-center justify-between">
           <div className="w-12 h-1.5 rounded-full bg-muted/40" />
           <ChevronDown className="size-2 text-muted" />
         </div>
-        <div className="w-14 h-1 rounded-full bg-muted/20" />
         <div className="w-full h-px bg-border/40" />
         <div className="flex items-center justify-between">
           <div className="w-10 h-1.5 rounded-full bg-muted/40" />
@@ -50,6 +49,20 @@ const PREVIEWS: Record<string, ReactNode> = {
         </div>
       </div>
     </Card>
+  ),
+  Autocomplete: (
+    <div className="flex flex-col gap-1.5">
+      <Card padding="none" variant="filled" className="flex flex-col p-2 gap-1.5 rounded-lg">
+        <div className="flex flex-row gap-0.5 items-center w-20">
+          <div className="h-1.5 shrink-0 aspect-square rounded-full bg-muted/30" />
+          <div className="w-full h-1.5 rounded-full bg-muted/30" />
+        </div>
+      </Card>
+      <Card padding="none" variant="filled" className="flex flex-col p-2 gap-1.5 rounded-lg">
+        <div className="w-full h-1.5 rounded-full bg-muted/20" />
+        <div className="w-3/4 h-1.5 rounded-full bg-muted/20" />
+      </Card>
+    </div>
   ),
   Badge: (
     <Badge size="sm" count={3} placement="top-right" color="destructive">
@@ -75,7 +88,7 @@ const PREVIEWS: Record<string, ReactNode> = {
     </div>
   ),
   Dropdown: (
-    <Card padding="sm" variant="filled" className="rounded-xl">
+    <Card padding="none" variant="filled" className="p-2 rounded-lg">
       <div className="flex flex-col gap-1 w-20">
         {[0, 1, 2].map((i) => (
           <div key={i} className="flex flex-row gap-0.5 items-center">

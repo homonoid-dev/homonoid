@@ -11,7 +11,6 @@ import {
 import { cn } from "../../utils/cn";
 import { cond } from "../../utils/condition";
 import { useMergeRefs } from "@floating-ui/react";
-import { Label } from "../label/Label";
 import { AccordionContext, type AccordionContextValue } from "./AccordionContext";
 import { AccordionItem } from "./AccordionItem";
 import { AccordionTrigger } from "./AccordionTrigger";
@@ -41,10 +40,9 @@ interface AccordionComponent
   Item: typeof AccordionItem;
   Trigger: typeof AccordionTrigger;
   Content: typeof AccordionContent;
-  Label: typeof Label;
 }
 
-const AccordionRoot = forwardRef<HTMLDivElement, AccordionProps>(
+export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
   function Accordion(
     {
       value: controlledValue,
@@ -226,11 +224,9 @@ const AccordionRoot = forwardRef<HTMLDivElement, AccordionProps>(
       </AccordionContext.Provider>
     );
   }
-);
+) as AccordionComponent;
 
-export const Accordion = Object.assign(AccordionRoot, {
-  Item: AccordionItem,
-  Trigger: AccordionTrigger,
-  Content: AccordionContent,
-  Label: Label,
-}) as AccordionComponent;
+Accordion.displayName = "Accordion";
+Accordion.Item = AccordionItem;
+Accordion.Trigger = AccordionTrigger;
+Accordion.Content = AccordionContent;

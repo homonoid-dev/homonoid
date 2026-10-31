@@ -68,29 +68,29 @@ export const ACCORDION_DEFAULT_CODE_SAMPLE = `import { Accordion } from "@homono
 export function Example() {
   const items = [
     {
-      value: "accessibility",
-      trigger: "Is it accessible?",
+      value: "architecture",
+      trigger: "How does the compound pattern work?",
       content:
-        "Yes. It adheres to the WAI ARIA design pattern with full keyboard navigation.",
+        "Subcomponents connect through React context to synchronize disclosure states and keyboard navigation automatically.",
     },
     {
-      value: "styling",
-      trigger: "Is it styled with tokens?",
+      value: "theming",
+      trigger: "Can themes be overridden dynamically?",
       disabled: true,
       content:
-        "Yes. It consumes styling exclusively from Homonoid design tokens.",
+        "Theme tokens adapt across light and dark modes through CSS custom properties defined at the root.",
     },
     {
-      value: "animation",
-      trigger: "Is it animated?",
+      value: "motion",
+      trigger: "How is object continuity preserved?",
       content:
-        "Yes. CSS grid row interpolation guarantees smooth dimensional continuity.",
+        "Transitions utilize CSS grid template rows and motion duration tokens to eliminate abrupt layout jumps.",
     },
   ];
 
   return (
     <div className="w-full max-w-lg mx-auto">
-      <Accordion defaultValue="accessibility" items={items} />
+      <Accordion defaultValue="architecture" items={items} />
     </div>
   );
 }`;
@@ -181,30 +181,25 @@ export function Example() {
   );
 }`;
 
-export const ACCORDION_COMPOUND_CODE_SAMPLE = `import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@homonoid/react";
+export const ACCORDION_COMPOUND_CODE_SAMPLE = `import { Accordion } from "@homonoid/react";
 
 export function Example() {
   return (
     <div className="w-full max-w-lg mx-auto">
       <Accordion defaultValue="item-1">
-        <AccordionItem value="item-1">
-          <AccordionTrigger>Custom Header Structure</AccordionTrigger>
-          <AccordionContent>
+        <Accordion.Item value="item-1">
+          <Accordion.Trigger>Custom Header Structure</Accordion.Trigger>
+          <Accordion.Content>
             Compound primitives allow explicit customization of slots and triggers.
-          </AccordionContent>
-        </AccordionItem>
+          </Accordion.Content>
+        </Accordion.Item>
 
-        <AccordionItem value="item-2">
-          <AccordionTrigger>Dedicated Subcomponents</AccordionTrigger>
-          <AccordionContent>
-            Dot notation or named imports give developers total layout flexibility.
-          </AccordionContent>
-        </AccordionItem>
+        <Accordion.Item value="item-2">
+          <Accordion.Trigger>Dedicated Subcomponents</Accordion.Trigger>
+          <Accordion.Content>
+            Dot notation gives developers total layout flexibility.
+          </Accordion.Content>
+        </Accordion.Item>
       </Accordion>
     </div>
   );
