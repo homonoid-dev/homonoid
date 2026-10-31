@@ -3,14 +3,21 @@
 import { forwardRef } from "react";
 import { useAutocompleteContext } from "./AutocompleteContext";
 import { cn } from "../../utils/cn";
+import { match } from "../../utils/condition";
 import type { AutocompleteEmptyProps } from "./types";
+
+const heightClasses: Record<string, string> = {
+  sm: "min-h-control-sm px-3 text-xs",
+  md: "min-h-control-md px-3.5 text-xs",
+  lg: "min-h-control-lg px-4.5 text-sm",
+};
 
 export const AutocompleteEmpty = forwardRef<HTMLDivElement, AutocompleteEmptyProps>(
   function AutocompleteEmpty(
     { children = "No results found.", className, ...props },
     ref
   ) {
-    const { registeredItems, loading } = useAutocompleteContext();
+    const { registeredItems, loading, size } = useAutocompleteContext();
 
     if (loading || registeredItems.length > 0) {
       return null;
@@ -23,7 +30,8 @@ export const AutocompleteEmpty = forwardRef<HTMLDivElement, AutocompleteEmptyPro
         aria-live="polite"
         data-empty="true"
         className={cn(
-          "px-4 py-6 text-center text-xs text-muted select-none",
+          "flex w-full items-center justify-center text-center text-muted select-none",
+          match(size, heightClasses, "min-h-control-md px-3.5 text-xs"),
           className
         )}
         {...props}

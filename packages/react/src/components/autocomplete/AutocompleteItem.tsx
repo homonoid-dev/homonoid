@@ -133,7 +133,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         description={description}
         trailing={trailing}
         className={cn(
-          "cursor-pointer select-none",
+          "shrink-0 cursor-pointer select-none",
           cond(isHighlighted && !isSelected, "bg-surface-hover", ""),
           className
         )}
