@@ -1,4 +1,4 @@
-import type { ReactNode, HTMLAttributes } from "react";
+import type { ReactNode, HTMLAttributes, ButtonHTMLAttributes } from "react";
 import type { TileColor } from "../tile/types";
 
 export type AccordionVariant = "flush" | "bordered" | "separated";
@@ -37,7 +37,7 @@ export interface AccordionItemProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export interface AccordionTriggerProps
-  extends Omit<HTMLAttributes<HTMLElement>, "title"> {
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   leading?: ReactNode;
   description?: ReactNode;
   trailing?: ReactNode;
