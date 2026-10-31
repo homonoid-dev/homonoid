@@ -92,27 +92,6 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
       return null;
     }
 
-    const checkmarkIcon = (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-        className="size-4 shrink-0 text-foreground"
-      >
-        <polyline points="20 6 9 17 4 12" />
-      </svg>
-    );
-
-    const computedTrailing = cond(
-      trailing !== undefined,
-      trailing,
-      cond(isSelected, checkmarkIcon, undefined)
-    );
-
     const handleClick = (e: MouseEvent<HTMLDivElement>) => {
       if (disabled || rootDisabled) return;
       onClick?.(e);
@@ -121,7 +100,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         label: itemLabel,
         description,
         leading,
-        trailing: computedTrailing,
+        trailing,
       });
     };
 
@@ -152,7 +131,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         leading={leading}
         label={labelContent}
         description={description}
-        trailing={computedTrailing}
+        trailing={trailing}
         className={cn(
           "cursor-pointer select-none",
           cond(isHighlighted && !isSelected, "bg-surface-hover", ""),

@@ -5,12 +5,11 @@ import {
   type ChangeEvent,
   type FocusEvent,
   type KeyboardEvent,
-  type MouseEvent,
 } from "react";
 import { useMergeRefs } from "@floating-ui/react";
 import { Input } from "../input/Input";
 import { Spinner } from "../spinner/Spinner";
-import { cond, when } from "../../utils/condition";
+import { cond } from "../../utils/condition";
 import { useAutocompleteContext } from "./AutocompleteContext";
 import type { AutocompleteInputProps } from "./types";
 
@@ -54,67 +53,7 @@ export const AutocompleteInput = forwardRef<HTMLInputElement, AutocompleteInputP
       clear,
     } = useAutocompleteContext();
 
-    const mergedRef = useMergeRefs([inputRef, setReference, ref]);
-
-    const defaultSearchIcon = (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-        className="size-4 shrink-0 text-muted"
-      >
-        <circle cx="11" cy="11" r="8" />
-        <path d="m21 21-4.3-4.3" />
-      </svg>
-    );
-
-    const clearButton = (
-      <button
-        type="button"
-        tabIndex={-1}
-        aria-label="Clear search input"
-        className="inline-flex size-4 items-center justify-center rounded-full text-muted hover:text-foreground transition-colors cursor-pointer"
-        onClick={(e: MouseEvent<HTMLButtonElement>) => {
-          e.preventDefault();
-          e.stopPropagation();
-          clear();
-          inputRef.current?.focus();
-        }}
-      >
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-          className="size-3.5"
-        >
-          <path d="M18 6 6 18M6 6l12 12" />
-        </svg>
-      </button>
-    );
-
-    const computedLeading = cond(
-      leading !== undefined,
-      leading,
-      defaultSearchIcon
-    );
-
-    const computedTrailing = cond(
-      loading,
-      <Spinner size="sm" aria-hidden="true" />,
-      cond(
-        Boolean(clearable && query.length > 0),
-        clearButton,
-        trailing
-      )
-    );
+    const mergedInputRef = useMergeRefs([inputRef, ref]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       setQuery(e.target.value);
@@ -201,17 +140,19 @@ export const AutocompleteInput = forwardRef<HTMLInputElement, AutocompleteInputP
     });
 
     return (
-      <Input
-        ref={mergedRef}
-        size={size}
-        radius={radius}
-        invalid={invalid}
-        disabled={disabled}
-        leading={computedLeading}
-        trailing={computedTrailing}
-        className={className}
-        {...referenceProps}
-      />
+      <div ref={setReference} className="w-full">
+        <Input
+          ref={mergedInputRef}
+          size={size}
+          radius={radius}
+          invalid={invalid}
+          disabled={disabled}
+          leading={leading}
+          trailing={cond(loading, <Spinner size="sm" aria-hidden="true" />, trailing)}
+          className={className}
+          {...referenceProps}
+        />
+      </div>
     );
   }
 );

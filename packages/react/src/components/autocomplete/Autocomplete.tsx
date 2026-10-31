@@ -70,6 +70,8 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       color = "surface",
       placeholder = "Search...",
       options,
+      leading,
+      trailing,
       loading = false,
       filter,
       clearable = true,
@@ -195,7 +197,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
         sizeMiddleware({
           apply({ rects, elements }) {
             Object.assign(elements.floating.style, {
-              minWidth: `${rects.reference.width}px`,
+              width: `${rects.reference.width}px`,
             });
           },
         }),
@@ -258,7 +260,11 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
           {cond(
             hasOptions,
             <>
-              <AutocompleteInput placeholder={placeholder} />
+              <AutocompleteInput
+                placeholder={placeholder}
+                leading={leading}
+                trailing={trailing}
+              />
               <AutocompleteContent>
                 <AutocompleteLoading />
                 <AutocompleteList>

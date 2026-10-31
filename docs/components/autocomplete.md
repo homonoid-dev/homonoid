@@ -35,10 +35,10 @@ Do not use autocomplete when:
 The autocomplete adheres to a compound component architecture exposing dedicated primitives through dot notation while simultaneously providing a zero boilerplate atomic interface through the root component:
 
 * `Autocomplete`: The root context coordinator managing input query value, selected item value, open state, active highlighted index, and keyboard event routing.
-* `Autocomplete.Input`: The interactive combobox text field managing typing input, clear actions, focus indicators, leading search icons, and trailing status accessories.
+* `Autocomplete.Input`: The interactive combobox text field managing typing input, focus indicators, leading accessories, and trailing status accessories.
 * `Autocomplete.Content`: The floating surface container managing portal rendering, spatial positioning coordinates, and entrance animations.
 * `Autocomplete.List`: The bounded scrolling container implementing listbox semantics, focus isolation, and maximum height constraints.
-* `Autocomplete.Item`: The selectable choice row built directly upon the Tile component, inheriting standardized leading, label, description, and trailing checkmark accessories with zero code duplication.
+* `Autocomplete.Item`: The selectable choice row built directly upon the Tile component, inheriting standardized leading, label, description, and trailing accessories with zero code duplication.
 * `Autocomplete.Group`: The logical container grouping related options beneath a shared category label.
 * `Autocomplete.Label`: The category heading caption powered by the Label component.
 * `Autocomplete.Empty`: The fallback presentation displayed when the active query yields zero matching options.
@@ -50,8 +50,8 @@ The autocomplete adheres to a compound component architecture exposing dedicated
 
 The autocomplete composes core Homonoid primitives under the hood to ensure token consistency:
 
-* `Input`: Powers `Autocomplete.Input`, inheriting standardized sizing scales, focus rings, leading icon slots, and trailing clear button triggers.
-* `Tile`: Powers `Autocomplete.Item`, providing structured horizontal rhythm, interactive hover surfaces, description typography, and trailing check accessories.
+* `Input`: Powers `Autocomplete.Input`, inheriting standardized sizing scales, focus rings, and custom accessory slots.
+* `Tile`: Powers `Autocomplete.Item`, providing structured horizontal rhythm, interactive hover surfaces, and description typography.
 * `Label`: Powers heading captions for option categories through `Autocomplete.Label`.
 * `Description`: Powers supporting explanatory text inside option rows.
 * `Spinner`: Provides subtle visual feedback inside `Autocomplete.Loading` during asynchronous data retrieval.
@@ -142,7 +142,7 @@ Autocomplete components support consistent sizing and structural treatments thro
 
 * Sizes: Supports `sm`, `md`, and `lg` sizing scales matching standard Homonoid input and control dimensions.
 * Visual Surfaces: Floating option lists render on the elevated surface token layer with subtle border contrast and elevation shadow tokens.
-* Item Treatments: Selected items display subtle background tinting paired with high contrast foreground text and trailing checkmark indicators.
+* Item Treatments: Selected items display subtle background tinting paired with high contrast foreground text.
 
 <br>
 

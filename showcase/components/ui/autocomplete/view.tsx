@@ -4,6 +4,7 @@ import {
   Autocomplete,
   Description,
 } from "@homonoid/react";
+import { Search } from "lucide-react";
 import { Exhibit } from "@/components/ui/exhibit";
 import {
   AUTOCOMPLETE_SECTIONS,
@@ -97,7 +98,11 @@ export function AutocompleteView() {
       {/* Atomic Usage Section */}
       <Exhibit.Stage section={sections.atomic} code={AUTOCOMPLETE_ATOMIC_CODE_SAMPLE}>
         <div className="w-full max-w-sm mx-auto">
-          <Autocomplete placeholder="Select destination city..." options={atomicOptions} />
+          <Autocomplete
+            leading={<Search className="size-4 text-muted" />}
+            placeholder="Select destination city..."
+            options={atomicOptions}
+          />
         </div>
       </Exhibit.Stage>
 
@@ -165,7 +170,7 @@ export function AutocompleteView() {
           Arrow Down and Arrow Up keys traverse available options sequentially while keeping keyboard focus anchored within the input field.
         </Description>
         <Description>
-          Selected items declare explicit aria selected attributes paired with visual trailing checkmark indicators for clear status feedback.
+          Selected items declare explicit aria selected attributes paired with high contrast foreground styling for clear status feedback.
         </Description>
       </Exhibit.Section>
 

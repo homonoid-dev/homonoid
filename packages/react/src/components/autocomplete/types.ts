@@ -115,6 +115,16 @@ export interface AutocompleteProps
   loading?: boolean;
 
   /**
+   * Leading accessory element.
+   */
+  leading?: ReactNode;
+
+  /**
+   * Trailing accessory element.
+   */
+  trailing?: ReactNode;
+
+  /**
    * Custom filter predicate function.
    */
   filter?: (option: AutocompleteOption, query: string) => boolean;

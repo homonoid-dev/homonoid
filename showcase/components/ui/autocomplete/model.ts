@@ -97,6 +97,7 @@ export function Example() {
 }`;
 
 export const AUTOCOMPLETE_ATOMIC_CODE_SAMPLE = `import { Autocomplete } from "@homonoid/react";
+import { Search } from "lucide-react";
 
 export function Example() {
   const options = [
@@ -124,7 +125,11 @@ export function Example() {
 
   return (
     <div className="w-full max-w-sm mx-auto">
-      <Autocomplete placeholder="Select destination city..." options={options} />
+      <Autocomplete
+        leading={<Search className="size-4 text-muted" />}
+        placeholder="Select destination city..."
+        options={options}
+      />
     </div>
   );
 }`;
