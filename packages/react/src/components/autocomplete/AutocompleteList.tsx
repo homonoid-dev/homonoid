@@ -1,13 +1,18 @@
 "use client";
 
-import { forwardRef } from "react";
+import { forwardRef, type MouseEvent } from "react";
 import { useAutocompleteContext } from "./AutocompleteContext";
 import { cn } from "../../utils/cn";
 import type { AutocompleteListProps } from "./types";
 
 export const AutocompleteList = forwardRef<HTMLDivElement, AutocompleteListProps>(
-  function AutocompleteList({ children, className, ...props }, ref) {
-    const { listboxId, inputId } = useAutocompleteContext();
+  function AutocompleteList({ children, className, onMouseLeave, ...props }, ref) {
+    const { listboxId, inputId, setHighlightedIndex } = useAutocompleteContext();
+
+    const handleMouseLeave = (e: MouseEvent<HTMLDivElement>) => {
+      setHighlightedIndex(null);
+      onMouseLeave?.(e);
+    };
 
     return (
       <div
@@ -20,6 +25,7 @@ export const AutocompleteList = forwardRef<HTMLDivElement, AutocompleteListProps
           "relative flex max-h-72 flex-col overflow-y-auto p-0.5 gap-0.5 select-none focus:outline-none",
           className
         )}
+        onMouseLeave={handleMouseLeave}
         {...props}
       >
         {children}

@@ -22,6 +22,7 @@ export const AutocompleteInput = forwardRef<HTMLInputElement, AutocompleteInputP
       value,
       onChange,
       onFocus,
+      onBlur,
       onKeyDown,
       className,
       ...props
@@ -31,6 +32,8 @@ export const AutocompleteInput = forwardRef<HTMLInputElement, AutocompleteInputP
     const {
       open,
       setOpen,
+      value: selectedValue,
+      setValue,
       query,
       setQuery,
       disabled,
@@ -68,6 +71,13 @@ export const AutocompleteInput = forwardRef<HTMLInputElement, AutocompleteInputP
         setOpen(true);
       }
       onFocus?.(e);
+    };
+
+    const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+      if (!query.trim()) {
+        setValue("");
+      }
+      onBlur?.(e);
     };
 
     const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -135,6 +145,7 @@ export const AutocompleteInput = forwardRef<HTMLInputElement, AutocompleteInputP
       placeholder: placeholder || contextPlaceholder,
       onChange: handleChange,
       onFocus: handleFocus,
+      onBlur: handleBlur,
       onKeyDown: handleKeyDown,
       ...props,
     });

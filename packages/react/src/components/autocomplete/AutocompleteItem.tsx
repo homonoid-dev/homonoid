@@ -78,7 +78,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
       return unregister;
     }, [isMatch, itemId, value, itemLabel, description, disabled, rootDisabled, registerItem]);
 
-    const isSelected = selectedValue === value;
+    const isSelected = Boolean(selectedValue) && selectedValue === value;
     const currentIndex = registeredItems.findIndex((item) => item.id === itemId);
     const isHighlighted = highlightedIndex !== null && currentIndex === highlightedIndex;
 

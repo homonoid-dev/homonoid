@@ -117,9 +117,13 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
         onOpenChange?.(nextOpen);
         if (!nextOpen) {
           setHighlightedIndex(null);
+          if (!activeQuery.trim() && !isValueControlled) {
+            setUncontrolledValue("");
+            onValueChange?.("");
+          }
         }
       },
-      [disabled, isOpenControlled, onOpenChange]
+      [disabled, isOpenControlled, onOpenChange, activeQuery, isValueControlled, onValueChange]
     );
 
     const handleQueryChange = useCallback(
