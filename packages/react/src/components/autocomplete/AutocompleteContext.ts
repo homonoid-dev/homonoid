@@ -58,6 +58,7 @@ export interface AutocompleteContextValue {
   highlightedIndex: number | null;
   setHighlightedIndex: (index: number | null) => void;
   highlightedId: string | undefined;
+  itemCount: number;
   registeredItems: RegisteredItem[];
   registerItem: (item: RegisteredItem) => () => void;
   onSelectOption: (val: string, option?: AutocompleteOption) => void;

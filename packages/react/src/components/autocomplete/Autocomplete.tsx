@@ -7,6 +7,7 @@ import {
   useId,
   useCallback,
   useEffect,
+  useMemo,
   type ReactNode,
 } from "react";
 import {
@@ -234,6 +235,28 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
         ? registeredItems[highlightedIndex]?.id
         : undefined;
 
+    const hasOptions = Boolean(options && options.length > 0);
+
+    const matchingOptions: AutocompleteOption[] = useMemo(() => {
+      if (!options) return [];
+      if (!activeQuery.trim()) return options;
+      if (filter) {
+        return options.filter((opt) => filter(opt, activeQuery));
+      }
+      const q = activeQuery.toLowerCase();
+      return options.filter((opt) => {
+        const text = (opt.label || opt.value).toLowerCase();
+        const desc = (opt.description || "").toLowerCase();
+        return text.includes(q) || desc.includes(q);
+      });
+    }, [options, activeQuery, filter]);
+
+    const itemCount = cond(
+      hasOptions,
+      matchingOptions.length,
+      registeredItems.length
+    );
+
     const contextValue: AutocompleteContextValue = {
       open: isOpen,
       setOpen: handleOpenChange,
@@ -262,14 +285,13 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       highlightedIndex,
       setHighlightedIndex,
       highlightedId,
+      itemCount,
       registeredItems,
       registerItem,
       onSelectOption,
       clear,
       customFilter: filter,
     };
-
-    const hasOptions = Boolean(options && options.length > 0);
 
     return (
       <AutocompleteContext.Provider value={contextValue}>
@@ -283,20 +305,23 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
                 trailing={trailing}
               />
               <AutocompleteContent>
-                <AutocompleteList>
-                  {options?.map((option) => (
-                    <AutocompleteItem
-                      key={option.value}
-                      value={option.value}
-                      label={option.label}
-                      description={option.description}
-                      leading={option.leading}
-                      trailing={option.trailing}
-                      disabled={option.disabled}
-                    />
-                  ))}
-                </AutocompleteList>
-                <AutocompleteEmpty />
+                {cond(
+                  matchingOptions.length > 0,
+                  <AutocompleteList>
+                    {matchingOptions.map((option) => (
+                      <AutocompleteItem
+                        key={option.value}
+                        value={option.value}
+                        label={option.label}
+                        description={option.description}
+                        leading={option.leading}
+                        trailing={option.trailing}
+                        disabled={option.disabled}
+                      />
+                    ))}
+                  </AutocompleteList>,
+                  <AutocompleteEmpty />
+                )}
               </AutocompleteContent>
             </>,
             children

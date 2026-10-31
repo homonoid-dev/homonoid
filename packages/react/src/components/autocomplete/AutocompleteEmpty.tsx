@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { forwardRef, useState, useEffect } from "react";
 import { useAutocompleteContext } from "./AutocompleteContext";
 import { cn } from "../../utils/cn";
 import { match } from "../../utils/condition";
@@ -17,9 +17,14 @@ export const AutocompleteEmpty = forwardRef<HTMLDivElement, AutocompleteEmptyPro
     { children = "No results found.", className, ...props },
     ref
   ) {
-    const { registeredItems, size } = useAutocompleteContext();
+    const { itemCount, size } = useAutocompleteContext();
+    const [mounted, setMounted] = useState(false);
 
-    if (registeredItems.length > 0) {
+    useEffect(() => {
+      setMounted(true);
+    }, []);
+
+    if (!mounted || itemCount > 0) {
       return null;
     }
 
