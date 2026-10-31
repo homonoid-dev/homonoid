@@ -19,5 +19,6 @@ export * from "./components/searchbar/index";
 export * from "./components/kbd/index";
 export * from "./components/stepper/index";
 export * from "./components/badge/index";
+export * from "./components/accordion/index";
 export * from "./utils/cn";
 export * from "./utils/condition";

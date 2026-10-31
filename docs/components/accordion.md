@@ -36,9 +36,9 @@ The accordion adheres to a compound component architecture exposing dedicated pr
 
 * `Accordion`: The root context coordinator managing open keys, multiple expansion modes, collapsible rules, and orientation.
 * `Accordion.Item`: The individual section container encapsulating active disclosure state and border treatments.
-* `Accordion.Header`: The semantic heading wrapper providing structural context for assistive technologies.
-* `Accordion.Trigger`: The interactive button toggle managing focus rings, touch targets, tactile feedback, and disclosure chevrons.
+* `Accordion.Trigger`: The interactive button toggle managing focus rings, touch targets, tactile feedback, heading semantics, and disclosure chevrons.
 * `Accordion.Content`: The collapsible panel container managing height interpolation, overflow containment, and landmark semantics.
+* `Accordion.Label`: The typography primitive powered by Label for custom trigger headers without artificial wrapper bloat.
 
 <br>
 
@@ -47,7 +47,7 @@ The accordion adheres to a compound component architecture exposing dedicated pr
 The accordion composes core Homonoid primitives under the hood to ensure token consistency:
 
 * `Button`: Powers interactive behavior for `Accordion.Trigger`, inheriting focus rings, pressed tactile feedback, and keyboard activation semantics.
-* `Label`: Powers heading typography within `Accordion.Trigger`, delivering calibrated font weights and tokenized text colors.
+* `Label`: Powers heading typography within `Accordion.Trigger` and is exposed via `Accordion.Label` for explicit header copy styling.
 * `ChevronDown`: Serves as the standard disclosure indicator, rotating smoothly during state transitions without arbitrary icon decorations.
 
 <br>
@@ -92,13 +92,12 @@ export function Example() {
 
 ### Compound Usage
 
-When customized trigger accessories, custom header layouts, or embedded action buttons are needed, developers compose primitives directly:
+When customized trigger accessories, custom header layouts, or embedded action buttons are needed, developers compose primitives directly without artificial wrapper layers:
 
 ```tsx
 import {
   Accordion,
   AccordionItem,
-  AccordionHeader,
   AccordionTrigger,
   AccordionContent,
 } from "@homonoid/react";
@@ -107,18 +106,14 @@ export function CompoundExample() {
   return (
     <Accordion multiple={false} defaultValue="item-1">
       <AccordionItem value="item-1">
-        <AccordionHeader>
-          <AccordionTrigger>Is it accessible?</AccordionTrigger>
-        </AccordionHeader>
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
         <AccordionContent>
           Yes. It adheres to the WAI ARIA design pattern with complete keyboard navigation.
         </AccordionContent>
       </AccordionItem>
 
       <AccordionItem value="item-2">
-        <AccordionHeader>
-          <AccordionTrigger>Is it styled?</AccordionTrigger>
-        </AccordionHeader>
+        <AccordionTrigger>Is it styled?</AccordionTrigger>
         <AccordionContent>
           Yes. It consumes styling exclusively from Homonoid design tokens.
         </AccordionContent>
@@ -177,8 +172,7 @@ Transitions preserve visual stability without abrupt jumps:
 
 Accordions enforce rigorous accessibility standards:
 
-* Heading Wrapping: Triggers render inside native HTML heading elements, configurable via the `level` prop with a level three default.
+* Heading Wrapping: Triggers render inside native HTML heading elements, configurable via the `asHeading` or `headingLevel` prop with a level three default.
 * State Semantics: Triggers specify `aria-expanded` and link directly to content containers using `aria-controls`.
 * Region Landmarks: Content panels declare `role="region"` and bind back to triggers through `aria-labelledby`.
 * Native Buttons: Triggers render as native HTML button elements, ensuring native spacebar and enter key activation.
-
