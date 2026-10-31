@@ -214,11 +214,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         <span
           aria-hidden="true"
           className={cn(
-            "col-start-1 row-start-1 h-full w-full px-1 rounded-xs",
+            "col-start-1 row-start-1 h-full w-full px-1.5 -my-1 rounded-xs",
             "transform-gpu origin-left scale-85",
             "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
             floatingLabelBg,
-            cond(isFloated, "-translate-y-0.5 opacity-100", "translate-y-0 opacity-0")
+            cond(isFloated, "opacity-100", "opacity-0")
           )}
         />
 
@@ -234,7 +234,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
             "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
             restingLabelSize,
             floatingLabelColor,
-            cond(isFloated, "scale-85 -translate-y-0.5", "scale-100 translate-y-0"),
+            cond(isFloated, "scale-85", "scale-100 translate-y-0"),
             cond(disabled, "opacity-50", undefined)
           )}
         >

@@ -240,38 +240,49 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       "text-sm"
     );
 
-    const restingLabelOffset = match(
+    const floatingLabelLeft = match(
       size,
       {
-        sm: "translate-y-2",
-        md: "translate-y-2.5",
-        lg: "translate-y-3",
+        sm: "left-2.5",
+        md: "left-3",
+        lg: "left-3.5",
       },
-      "translate-y-2.5"
+      "left-3"
+    );
+
+    const restingLabelTop = match(
+      size,
+      {
+        sm: "top-2",
+        md: "top-2.5",
+        lg: "top-3",
+      },
+      "top-2.5"
     );
 
     const floatingLabelElement = when(
       all(isFloating, Boolean(label)),
       <div
         className={cn(
-          "pointer-events-none absolute inset-x-0 top-0 select-none z-10 flex items-start",
-          "transform-gpu transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
-          cond(isFloated, "-translate-y-1/2", restingLabelOffset)
+          "pointer-events-none absolute select-none z-10 flex items-center",
+          "transform-gpu transition-all duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
+          floatingLabelLeft,
+          cond(
+            isFloated,
+            "top-0 -translate-y-1/2",
+            cn(restingLabelTop, "translate-y-0")
+          )
         )}
       >
         <div className="relative inline-grid items-center -ml-1">
           <span
             aria-hidden="true"
             className={cn(
-              "col-start-1 row-start-1 h-full w-full px-1 rounded-xs",
+              "col-start-1 row-start-1 h-full w-full px-1.5 -my-1 rounded-xs",
               "transform-gpu origin-left scale-85",
               "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
               floatingLabelBg,
-              cond(
-                isFloated,
-                "-translate-y-0.5 opacity-100",
-                "translate-y-0 opacity-0"
-              )
+              cond(isFloated, "opacity-100", "opacity-0")
             )}
           />
 
@@ -286,11 +297,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
               restingLabelSize,
               floatingLabelColor,
-              cond(
-                isFloated,
-                "scale-85 -translate-y-0.5",
-                "scale-100 translate-y-0"
-              ),
+              cond(isFloated, "scale-85", "scale-100 translate-y-0"),
               cond(disabled, "opacity-50", undefined)
             )}
           >
@@ -358,6 +365,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           cond(!needsOuterWrapper, className, undefined)
         )}
       >
+        {floatingLabelElement}
+
         {when(
           leading,
           <span
@@ -368,14 +377,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           </span>
         )}
 
-        {cond(
-          isFloating,
-          <div className="relative w-full flex-1 min-w-0">
-            {textareaElement}
-            {floatingLabelElement}
-          </div>,
-          textareaElement
-        )}
+        {textareaElement}
 
         {when(
           trailing,
