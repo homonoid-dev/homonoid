@@ -181,30 +181,25 @@ export function Example() {
   );
 }`;
 
-export const ACCORDION_COMPOUND_CODE_SAMPLE = `import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@homonoid/react";
+export const ACCORDION_COMPOUND_CODE_SAMPLE = `import { Accordion } from "@homonoid/react";
 
 export function Example() {
   return (
     <div className="w-full max-w-lg mx-auto">
       <Accordion defaultValue="item-1">
-        <AccordionItem value="item-1">
-          <AccordionTrigger>Custom Header Structure</AccordionTrigger>
-          <AccordionContent>
+        <Accordion.Item value="item-1">
+          <Accordion.Trigger>Custom Header Structure</Accordion.Trigger>
+          <Accordion.Content>
             Compound primitives allow explicit customization of slots and triggers.
-          </AccordionContent>
-        </AccordionItem>
+          </Accordion.Content>
+        </Accordion.Item>
 
-        <AccordionItem value="item-2">
-          <AccordionTrigger>Dedicated Subcomponents</AccordionTrigger>
-          <AccordionContent>
-            Dot notation or named imports give developers total layout flexibility.
-          </AccordionContent>
-        </AccordionItem>
+        <Accordion.Item value="item-2">
+          <Accordion.Trigger>Dedicated Subcomponents</Accordion.Trigger>
+          <Accordion.Content>
+            Dot notation gives developers total layout flexibility.
+          </Accordion.Content>
+        </Accordion.Item>
       </Accordion>
     </div>
   );

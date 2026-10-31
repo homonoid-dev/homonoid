@@ -38,7 +38,6 @@ The accordion adheres to a compound component architecture exposing dedicated pr
 * `Accordion.Item`: The individual section container encapsulating active disclosure state and border treatments.
 * `Accordion.Trigger`: The interactive button toggle managing focus rings, touch targets, tactile feedback, heading semantics, and disclosure chevrons.
 * `Accordion.Content`: The collapsible panel container managing height interpolation, overflow containment, and landmark semantics.
-* `Accordion.Label`: The typography primitive powered by Label for custom trigger headers without artificial wrapper bloat.
 
 <br>
 
@@ -46,9 +45,8 @@ The accordion adheres to a compound component architecture exposing dedicated pr
 
 The accordion composes core Homonoid primitives under the hood to ensure token consistency:
 
-* `Tile`: Powers `Accordion.Trigger`, inheriting structured horizontal row rhythm, leading and trailing accessories, description support, and high contrast focus rings.
-* `Label`: Powers heading typography within the trigger row and is exposed via `Accordion.Label` for explicit header copy styling.
-* `ChevronDown`: Serves as the trailing accessory within the tile container, rotating smoothly during state transitions without arbitrary icon decorations.
+* `Label`: Powers heading typography within the trigger row, automatically formatting string values to matched size tokens.
+* `ChevronDown`: Serves as the trailing accessory within the trigger container, rotating smoothly during state transitions without arbitrary icon decorations.
 
 <br>
 
@@ -95,29 +93,24 @@ export function Example() {
 When customized trigger accessories, custom header layouts, or embedded action buttons are needed, developers compose primitives directly without artificial wrapper layers:
 
 ```tsx
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@homonoid/react";
+import { Accordion } from "@homonoid/react";
 
 export function CompoundExample() {
   return (
     <Accordion multiple={false} defaultValue="item-1">
-      <AccordionItem value="item-1">
-        <AccordionTrigger>Is it accessible?</AccordionTrigger>
-        <AccordionContent>
+      <Accordion.Item value="item-1">
+        <Accordion.Trigger>Is it accessible?</Accordion.Trigger>
+        <Accordion.Content>
           Yes. It adheres to the WAI ARIA design pattern with complete keyboard navigation.
-        </AccordionContent>
-      </AccordionItem>
+        </Accordion.Content>
+      </Accordion.Item>
 
-      <AccordionItem value="item-2">
-        <AccordionTrigger>Is it styled?</AccordionTrigger>
-        <AccordionContent>
+      <Accordion.Item value="item-2">
+        <Accordion.Trigger>Is it styled?</Accordion.Trigger>
+        <Accordion.Content>
           Yes. It consumes styling exclusively from Homonoid design tokens.
-        </AccordionContent>
-      </AccordionItem>
+        </Accordion.Content>
+      </Accordion.Item>
     </Accordion>
   );
 }
