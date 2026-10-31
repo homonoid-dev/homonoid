@@ -103,6 +103,10 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
     const valueRef = useRef(activeValue);
     valueRef.current = activeValue;
 
+    const initialDefaultResolvedRef = useRef(
+      Boolean((defaultValue && options) || (!defaultValue && !controlledValue))
+    );
+
     const isOpenControlled = controlledOpen !== undefined;
     const [uncontrolledOpen, setUncontrolledOpen] = useState<boolean>(Boolean(defaultOpen));
     const isOpen = cond(isOpenControlled, Boolean(controlledOpen), uncontrolledOpen);
@@ -125,6 +129,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
         if (!nextOpen) {
           setHighlightedIndex(null);
           if (!queryRef.current.trim() && !isValueControlled) {
+            valueRef.current = "";
             setUncontrolledValue("");
             onValueChange?.("");
           }
@@ -135,6 +140,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
 
     const handleQueryChange = useCallback(
       (nextQuery: string) => {
+        initialDefaultResolvedRef.current = true;
         queryRef.current = nextQuery;
         if (!isQueryControlled) {
           setUncontrolledQuery(nextQuery);
@@ -166,7 +172,13 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
         return [...prev, item];
       });
 
-      if (valueRef.current && item.value === valueRef.current && !queryRef.current) {
+      if (
+        !initialDefaultResolvedRef.current &&
+        valueRef.current &&
+        item.value === valueRef.current &&
+        !queryRef.current
+      ) {
+        initialDefaultResolvedRef.current = true;
         queryRef.current = item.label || item.value;
         handleQueryChange(item.label || item.value);
       }
@@ -178,6 +190,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
 
     const onSelectOption = useCallback(
       (val: string, option?: AutocompleteOption) => {
+        initialDefaultResolvedRef.current = true;
         const nextQuery = option?.label || val;
         queryRef.current = nextQuery;
         valueRef.current = val;
@@ -190,6 +203,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
     );
 
     const clear = useCallback(() => {
+      initialDefaultResolvedRef.current = true;
       handleQueryChange("");
       handleValueChange("");
       setHighlightedIndex(null);
