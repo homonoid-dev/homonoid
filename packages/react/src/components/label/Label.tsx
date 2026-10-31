@@ -6,9 +6,9 @@ import type { LabelProps } from "./types";
 export const variants = cva("font-medium", {
   variants: {
     size: {
-      sm: "text-sm leading-4",
-      md: "text-md leading-5",
-      lg: "text-lg leading-6 font-semibold",
+      sm: "text-xs leading-4",
+      md: "text-sm leading-5",
+      lg: "text-md leading-6 font-semibold",
     },
     disabled: {
       true: "text-muted cursor-not-allowed",
