@@ -190,7 +190,7 @@ export function AutocompleteView() {
       {/* Style Reference Section */}
       <Exhibit.Section section={sections.styleReference}>
         <Description>
-          The root Autocomplete component exposes Input, Content, List, Item, Group, Empty, and Loading primitives through dot notation.
+          The root Autocomplete component exposes Input, Content, List, Item, Group, and Empty primitives through dot notation.
         </Description>
         <Description>
           Developers can configure custom filter predicates, asynchronous loading indicators, and clearable triggers effortlessly.

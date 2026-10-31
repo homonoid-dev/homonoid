@@ -33,7 +33,6 @@ import { AutocompleteList } from "./AutocompleteList";
 import { AutocompleteItem } from "./AutocompleteItem";
 import { AutocompleteGroup } from "./AutocompleteGroup";
 import { AutocompleteEmpty } from "./AutocompleteEmpty";
-import { AutocompleteLoading } from "./AutocompleteLoading";
 import type { AutocompleteOption, AutocompleteProps } from "./types";
 
 export interface AutocompleteComponent
@@ -47,7 +46,6 @@ export interface AutocompleteComponent
   Group: typeof AutocompleteGroup;
   Label: typeof Label;
   Empty: typeof AutocompleteEmpty;
-  Loading: typeof AutocompleteLoading;
 }
 
 export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
@@ -266,7 +264,6 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
                 trailing={trailing}
               />
               <AutocompleteContent>
-                <AutocompleteLoading />
                 <AutocompleteList>
                   {options?.map((option) => (
                     <AutocompleteItem
@@ -299,4 +296,3 @@ Autocomplete.Item = AutocompleteItem;
 Autocomplete.Group = AutocompleteGroup;
 Autocomplete.Label = Label;
 Autocomplete.Empty = AutocompleteEmpty;
-Autocomplete.Loading = AutocompleteLoading;

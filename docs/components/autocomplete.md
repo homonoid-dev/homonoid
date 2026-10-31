@@ -42,7 +42,6 @@ The autocomplete adheres to a compound component architecture exposing dedicated
 * `Autocomplete.Group`: The logical container grouping related options beneath a shared category label.
 * `Autocomplete.Label`: The category heading caption powered by the Label component.
 * `Autocomplete.Empty`: The fallback presentation displayed when the active query yields zero matching options.
-* `Autocomplete.Loading`: The status container presenting a Spinner when options are being fetched asynchronously.
 
 <br>
 
@@ -54,7 +53,7 @@ The autocomplete composes core Homonoid primitives under the hood to ensure toke
 * `Tile`: Powers `Autocomplete.Item`, providing structured horizontal rhythm, interactive hover surfaces, and description typography.
 * `Label`: Powers heading captions for option categories through `Autocomplete.Label`.
 * `Description`: Powers supporting explanatory text inside option rows.
-* `Spinner`: Provides subtle visual feedback inside `Autocomplete.Loading` during asynchronous data retrieval.
+* `Spinner`: Provides subtle visual feedback in the input trailing slot during asynchronous data retrieval.
 
 <br>
 
@@ -105,7 +104,7 @@ export function Example() {
 
 ### Compound Usage
 
-When customized trigger accessories, custom item layouts, grouped collections, or async loading panels are needed, developers compose primitives directly without artificial wrapper layers:
+When customized trigger accessories, custom item layouts, grouped collections, or custom empty panels are needed, developers compose primitives directly without artificial wrapper layers:
 
 ```tsx
 import { Autocomplete } from "@homonoid/react";

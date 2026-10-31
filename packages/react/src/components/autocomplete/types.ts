@@ -170,7 +170,3 @@ export interface AutocompleteEmptyProps extends HTMLAttributes<HTMLDivElement> {
   ref?: Ref<HTMLDivElement>;
 }
 
-export interface AutocompleteLoadingProps extends HTMLAttributes<HTMLDivElement> {
-  ref?: Ref<HTMLDivElement>;
-}
-
