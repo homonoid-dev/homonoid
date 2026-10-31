@@ -78,7 +78,9 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
       return unregister;
     }, [isMatch, itemId, value, itemLabel, description, disabled, rootDisabled, registerItem]);
 
-    const isSelected = Boolean(selectedValue) && selectedValue === value;
+    const isSelected =
+      (Boolean(selectedValue) && selectedValue === value) ||
+      (Boolean(query.trim()) && query.trim().toLowerCase() === itemLabel.toLowerCase());
     const currentIndex = registeredItems.findIndex((item) => item.id === itemId);
     const isHighlighted = highlightedIndex !== null && currentIndex === highlightedIndex;
 
@@ -134,7 +136,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         trailing={trailing}
         className={cn(
           "shrink-0 cursor-pointer select-none",
-          cond(isHighlighted && !isSelected, "bg-surface-hover", ""),
+          cond(isSelected, "bg-surface-hover font-medium", cond(isHighlighted, "bg-surface-hover/50", "")),
           className
         )}
         onClick={handleClick}

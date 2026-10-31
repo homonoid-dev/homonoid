@@ -96,6 +96,12 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
     });
     const activeQuery = cond(isQueryControlled, controlledQuery ?? "", uncontrolledQuery);
 
+    const queryRef = useRef(activeQuery);
+    queryRef.current = activeQuery;
+
+    const valueRef = useRef(activeValue);
+    valueRef.current = activeValue;
+
     const isOpenControlled = controlledOpen !== undefined;
     const [uncontrolledOpen, setUncontrolledOpen] = useState<boolean>(Boolean(defaultOpen));
     const isOpen = cond(isOpenControlled, Boolean(controlledOpen), uncontrolledOpen);
@@ -117,17 +123,18 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
         onOpenChange?.(nextOpen);
         if (!nextOpen) {
           setHighlightedIndex(null);
-          if (!activeQuery.trim() && !isValueControlled) {
+          if (!queryRef.current.trim() && !isValueControlled) {
             setUncontrolledValue("");
             onValueChange?.("");
           }
         }
       },
-      [disabled, isOpenControlled, onOpenChange, activeQuery, isValueControlled, onValueChange]
+      [disabled, isOpenControlled, onOpenChange, isValueControlled, onValueChange]
     );
 
     const handleQueryChange = useCallback(
       (nextQuery: string) => {
+        queryRef.current = nextQuery;
         if (!isQueryControlled) {
           setUncontrolledQuery(nextQuery);
         }
@@ -138,6 +145,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
 
     const handleValueChange = useCallback(
       (nextValue: string) => {
+        valueRef.current = nextValue;
         if (!isValueControlled) {
           setUncontrolledValue(nextValue);
         }
@@ -157,15 +165,22 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
         return [...prev, item];
       });
 
+      if (valueRef.current && item.value === valueRef.current && !queryRef.current) {
+        queryRef.current = item.label || item.value;
+        handleQueryChange(item.label || item.value);
+      }
+
       return () => {
         setRegisteredItems((prev) => prev.filter((i) => i.id !== item.id));
       };
-    }, []);
+    }, [handleQueryChange]);
 
     const onSelectOption = useCallback(
       (val: string, option?: AutocompleteOption) => {
-        handleValueChange(val);
         const nextQuery = option?.label || val;
+        queryRef.current = nextQuery;
+        valueRef.current = val;
+        handleValueChange(val);
         handleQueryChange(nextQuery);
         handleOpenChange(false);
         onSelect?.(val, option);

@@ -17,9 +17,9 @@ export const AutocompleteEmpty = forwardRef<HTMLDivElement, AutocompleteEmptyPro
     { children = "No results found.", className, ...props },
     ref
   ) {
-    const { registeredItems, loading, size } = useAutocompleteContext();
+    const { registeredItems, size } = useAutocompleteContext();
 
-    if (loading || registeredItems.length > 0) {
+    if (registeredItems.length > 0) {
       return null;
     }
 
