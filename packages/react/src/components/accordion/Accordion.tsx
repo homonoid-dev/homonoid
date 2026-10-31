@@ -6,6 +6,7 @@ import {
   useCallback,
   useMemo,
   useRef,
+  type KeyboardEvent,
 } from "react";
 import { cn } from "../../utils/cn";
 import { cond } from "../../utils/condition";
@@ -121,6 +122,43 @@ const AccordionRoot = forwardRef<HTMLDivElement, AccordionProps>(
       [disabled, multiple, activeValues, isControlled, collapsible, onValueChange]
     );
 
+    const handleKeyDown = useCallback(
+      (event: KeyboardEvent<HTMLButtonElement>) => {
+        const container = internalRef.current;
+        if (!container) return;
+
+        if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) {
+          return;
+        }
+
+        const triggers = Array.from(
+          container.querySelectorAll<HTMLButtonElement>(
+            '[data-accordion-trigger]:not([disabled]):not([aria-disabled="true"])'
+          )
+        );
+
+        if (triggers.length === 0) return;
+
+        const currentIndex = triggers.indexOf(event.currentTarget);
+        if (currentIndex === -1) return;
+
+        event.preventDefault();
+
+        if (event.key === "ArrowDown") {
+          const nextIndex = (currentIndex + 1) % triggers.length;
+          triggers[nextIndex]?.focus();
+        } else if (event.key === "ArrowUp") {
+          const prevIndex = (currentIndex - 1 + triggers.length) % triggers.length;
+          triggers[prevIndex]?.focus();
+        } else if (event.key === "Home") {
+          triggers[0]?.focus();
+        } else if (event.key === "End") {
+          triggers[triggers.length - 1]?.focus();
+        }
+      },
+      []
+    );
+
     const contextValue: AccordionContextValue = useMemo(
       () => ({
         value: activeValues,
@@ -133,6 +171,7 @@ const AccordionRoot = forwardRef<HTMLDivElement, AccordionProps>(
         size,
         disabled,
         containerRef: internalRef,
+        handleKeyDown,
       }),
       [
         activeValues,
@@ -144,6 +183,7 @@ const AccordionRoot = forwardRef<HTMLDivElement, AccordionProps>(
         color,
         size,
         disabled,
+        handleKeyDown,
       ]
     );
 

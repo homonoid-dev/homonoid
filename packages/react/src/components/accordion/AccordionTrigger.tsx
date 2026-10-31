@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, type MouseEvent } from "react";
+import { forwardRef, type MouseEvent, type KeyboardEvent } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import { cond, when } from "../../utils/condition";
@@ -9,7 +9,7 @@ import { useAccordionItemContext } from "./AccordionItemContext";
 import type { AccordionTriggerProps } from "./types";
 
 const triggerVariants = cva(
-  "flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 bg-transparent text-foreground hover:text-foreground",
+  "flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:pointer-events-none disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40 bg-transparent text-foreground hover:text-foreground",
   {
     variants: {
       size: {
@@ -33,11 +33,12 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
       className,
       children,
       onClick,
+      onKeyDown,
       ...props
     },
     ref
   ) {
-    const { toggle, size } = useAccordionContext();
+    const { toggle, size, handleKeyDown } = useAccordionContext();
     const { value, disabled, open, triggerId, contentId } =
       useAccordionItemContext();
 
@@ -65,6 +66,11 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
       onClick?.(event);
     };
 
+    const handleKey = (event: KeyboardEvent<HTMLButtonElement>) => {
+      handleKeyDown(event);
+      onKeyDown?.(event);
+    };
+
     const hasStructuredContent = Boolean(leading || description);
 
     return (
@@ -80,6 +86,7 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
         data-state={cond(open, "open", "closed")}
         className={cn(triggerVariants({ size }), className)}
         onClick={handleClick}
+        onKeyDown={handleKey}
         {...props}
       >
         {cond(

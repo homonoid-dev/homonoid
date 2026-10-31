@@ -31,6 +31,7 @@ export function AccordionView() {
     {
       value: "styling",
       trigger: "Is it styled with tokens?",
+      disabled: true,
       content:
         "Yes. It consumes styling exclusively from Homonoid design tokens.",
     },
