@@ -11,7 +11,7 @@ export const StepperSeparator = forwardRef<
   HTMLDivElement,
   StepperSeparatorProps
 >(function StepperSeparator({ className, ...props }, ref) {
-  const { orientation, color } = useStepperContext();
+  const { orientation, color, size } = useStepperContext();
   const { isCompleted } = useStepperItemContext();
 
   const isHorizontal = orientation === "horizontal";
@@ -27,6 +27,16 @@ export const StepperSeparator = forwardRef<
     "bg-primary"
   );
 
+  const horizontalSizeClass = match(
+    size,
+    {
+      sm: "top-4 px-6",
+      md: "top-5 px-7",
+      lg: "top-6 px-8",
+    },
+    "top-5 px-7"
+  );
+
   return (
     <div
       ref={ref}
@@ -37,7 +47,7 @@ export const StepperSeparator = forwardRef<
         "transition-colors pointer-events-none",
         cond(
           isHorizontal,
-          "absolute top-5 left-1/2 w-full -translate-y-1/2 px-8",
+          cn("absolute left-1/2 w-full -translate-y-1/2", horizontalSizeClass),
           "w-0.5 flex-1 min-h-6 my-2 ml-5 self-stretch"
         ),
         className
