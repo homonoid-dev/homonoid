@@ -1,9 +1,16 @@
 "use client";
 
-import { forwardRef, type MouseEvent, type KeyboardEvent } from "react";
+import {
+  forwardRef,
+  isValidElement,
+  type MouseEvent,
+  type KeyboardEvent,
+} from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import { cond, when } from "../../utils/condition";
+import { Label } from "../label/Label";
+import { Description } from "../description/Description";
 import { useAccordionContext } from "./AccordionContext";
 import { useAccordionItemContext } from "./AccordionItemContext";
 import type { AccordionTriggerProps } from "./types";
@@ -73,6 +80,30 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
 
     const hasStructuredContent = Boolean(leading || description);
 
+    const labelNode = cond(
+      isValidElement(children),
+      children,
+      <Label as="span" size={size} disabled={disabled} className="truncate">
+        {children}
+      </Label>
+    );
+
+    const descriptionNode = when(
+      Boolean(description),
+      cond(
+        isValidElement(description),
+        description,
+        <Description
+          as="span"
+          size={cond(size === "lg", "md", "sm")}
+          disabled={disabled}
+          className="truncate"
+        >
+          {description}
+        </Description>
+      )
+    );
+
     return (
       <button
         ref={ref}
@@ -94,16 +125,11 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
           <span className="flex min-w-0 flex-1 items-center gap-3 text-left">
             {when(leading, <span className="shrink-0">{leading}</span>)}
             <span className="flex min-w-0 flex-1 flex-col justify-center">
-              <span className="truncate">{children}</span>
-              {when(
-                description,
-                <span className="truncate text-xs font-normal text-muted">
-                  {description}
-                </span>
-              )}
+              {labelNode}
+              {descriptionNode}
             </span>
           </span>,
-          <span className="flex-1 min-w-0 text-left">{children}</span>
+          <span className="flex-1 min-w-0 text-left">{labelNode}</span>
         )}
 
         {trailing !== undefined ? trailing : defaultChevron}
