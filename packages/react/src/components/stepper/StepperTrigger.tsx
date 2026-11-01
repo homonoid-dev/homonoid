@@ -14,7 +14,7 @@ export const StepperTrigger = forwardRef<
   { className, onClick, onKeyDown, children, disabled: propDisabled, ...props },
   ref
 ) {
-  const { value, setValue, linear, variant, stepValues } = useStepperContext();
+  const { setValue, linear, variant, stepValues } = useStepperContext();
   const {
     step,
     index,

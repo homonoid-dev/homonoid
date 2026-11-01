@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -13,13 +17,34 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "noUnusedLocals": true,
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ],
+      "@homonoid/react": [
+        "../packages/react/src/index.ts"
+      ],
+      "@homonoid/react/cn": [
+        "../packages/react/src/utils/cn.ts"
+      ],
+      "@homonoid/react/condition": [
+        "../packages/react/src/utils/condition.ts"
+      ],
+      "@homonoid/react/*": [
+        "../packages/react/src/*"
+      ],
+      "@homonoid/tokens": [
+        "../packages/tokens/src/index.ts"
+      ],
+      "@homonoid/tokens/*": [
+        "../packages/tokens/src/*"
+      ]
     }
   },
   "include": [
@@ -30,5 +55,8 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    ".next"
+  ]
 }

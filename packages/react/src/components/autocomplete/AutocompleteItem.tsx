@@ -10,7 +10,7 @@ import {
 } from "react";
 import { useMergeRefs } from "@floating-ui/react";
 import { Tile } from "../tile/Tile";
-import { cond, when } from "../../utils/condition";
+import { cond } from "../../utils/condition";
 import { cn } from "../../utils/cn";
 import { useAutocompleteContext } from "./AutocompleteContext";
 import type { AutocompleteItemProps } from "./types";

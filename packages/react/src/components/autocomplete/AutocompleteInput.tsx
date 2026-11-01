@@ -32,7 +32,6 @@ export const AutocompleteInput = forwardRef<HTMLInputElement, AutocompleteInputP
     const {
       open,
       setOpen,
-      value: selectedValue,
       setValue,
       query,
       setQuery,
@@ -41,7 +40,6 @@ export const AutocompleteInput = forwardRef<HTMLInputElement, AutocompleteInputP
       size,
       radius,
       placeholder: contextPlaceholder,
-      clearable,
       loading,
       inputRef,
       inputId,
@@ -53,7 +51,6 @@ export const AutocompleteInput = forwardRef<HTMLInputElement, AutocompleteInputP
       highlightedId,
       registeredItems,
       onSelectOption,
-      clear,
     } = useAutocompleteContext();
 
     const mergedInputRef = useMergeRefs([inputRef, ref]);

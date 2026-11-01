@@ -10,6 +10,7 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponentItem[] = [
   { name: "Accordion", href: "/components/accordion", description: "Vertically collapsible content panels with disclosure headers", category: "Layout", related: ["Card", "Tile", "Separator"] },
   { name: "Autocomplete", href: "/components/autocomplete", description: "Searchable combobox with interactive suggestions list", category: "Inputs", related: ["Input", "Select", "Tile"] },
   { name: "Badge", href: "/components/badge", description: "Metadata tags, notification counts, and status indicators", category: "Feedback", related: ["Button", "Label", "Kbd"] },
+  { name: "Breadcrumb", href: "/components/breadcrumb", description: "Hierarchical navigational path with collapsible tiers", category: "Layout", related: ["Stepper", "Button", "Label"] },
   { name: "Button", href: "/components/button", description: "Trigger actions and operations", category: "Actions", related: ["Kbd", "Spinner"] },
   { name: "Card", href: "/components/card", description: "Structured content grouping", category: "Layout", related: ["Tile", "Separator"] },
   { name: "Checkbox", href: "/components/checkbox", description: "Binary choice selection", category: "Inputs", related: ["Switch", "Tile", "Label"] },

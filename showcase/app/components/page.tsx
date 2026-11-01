@@ -2,7 +2,7 @@
 
 import { useState, useMemo, type ReactNode } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronsUpDown, Plus, Bell } from "lucide-react";
+import { ChevronDown, ChevronsUpDown, ChevronRight, Plus, Bell } from "lucide-react";
 import { Resource } from "@/components/ui/resource";
 import { Exhibit } from "@/components/ui/exhibit";
 import { SHOWCASE_COMPONENTS } from "@/config/components";
@@ -71,6 +71,15 @@ const PREVIEWS: Record<string, ReactNode> = {
         <Bell className="size-3" />
       </Button>
     </Badge>
+  ),
+  Breadcrumb: (
+    <div className="flex items-center gap-1">
+      <div className="w-5 h-1.5 rounded-full bg-muted/40" />
+      <ChevronRight className="size-2 text-muted/40" />
+      <div className="w-7 h-1.5 rounded-full bg-muted/40" />
+      <ChevronRight className="size-2 text-muted/40" />
+      <div className="w-6 h-1.5 rounded-full bg-foreground" />
+    </div>
   ),
   Button: (<Button size="sm" variant="contained">Action</Button>),
   Card: (
