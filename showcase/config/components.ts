@@ -17,6 +17,7 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponentItem[] = [
   { name: "Checkbox", href: "/components/checkbox", description: "Binary choice selection", category: "Inputs", related: ["Switch", "Tile", "Label"] },
   { name: "Description", href: "/components/description", description: "Contextual guidance and supportive copy", category: "Typography", related: ["Label", "Input"] },
   { name: "Dropdown", href: "/components/dropdown", description: "Floating menu of contextual actions and commands", category: "Overlays", related: ["Select", "Popover", "Tile"] },
+  { name: "Empty", href: "/components/empty", description: "Placeholder guidance when records or queries yield zero content", category: "Feedback", related: ["Card", "Description", "Button"] },
   { name: "Input", href: "/components/input", description: "Capture user text input", category: "Inputs", related: ["Searchbar", "Label", "Description"] },
   { name: "Kbd", href: "/components/kbd", description: "Keyboard shortcut keys and command combination badges", category: "Feedback", related: ["Button", "Tooltip"] },
   { name: "Label", href: "/components/label", description: "Accessible captions and headers", category: "Typography", related: ["Description", "Input"] },

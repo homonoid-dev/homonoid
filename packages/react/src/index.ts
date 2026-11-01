@@ -25,5 +25,6 @@ export * from "./components/textarea/index";
 export * from "./components/breadcrumb/index";
 export * from "./components/avatar/index";
 export * from "./components/toggle/index";
+export * from "./components/empty/index";
 export * from "./utils/cn";
 export * from "./utils/condition";

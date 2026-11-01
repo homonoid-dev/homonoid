@@ -2,7 +2,7 @@
 
 import { useState, useMemo, type ReactNode } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronsUpDown, ChevronRight, Plus, Bell, Bold, Italic, Underline } from "lucide-react";
+import { ChevronDown, ChevronsUpDown, ChevronRight, Plus, Bell, Bold, Italic, Underline, Inbox } from "lucide-react";
 import { Resource } from "@/components/ui/resource";
 import { Exhibit } from "@/components/ui/exhibit";
 import { SHOWCASE_COMPONENTS } from "@/config/components";
@@ -24,6 +24,7 @@ import {
   Stepper,
   Textarea,
   Avatar,
+  Empty,
   Toggle,
 } from "@homonoid/react";
 
@@ -118,6 +119,15 @@ const PREVIEWS: Record<string, ReactNode> = {
         ))}
       </div>
     </Card>
+  ),
+  Empty: (
+    <Empty
+      size="sm"
+      icon={<Inbox className="size-4" />}
+      title="No items"
+      description="List is clear"
+      className="p-1 gap-1 pointer-events-none [&_*]:!pointer-events-none"
+    />
   ),
   Input: <Input size="sm" placeholder="Text..." className="w-28 text-xs" readOnly />,
   Kbd: <Kbd keyValue="command" content="K" />,
