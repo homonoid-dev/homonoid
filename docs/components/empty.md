@@ -79,3 +79,4 @@ Empty states uphold platform accessibility guidelines across every presentation:
 * Heading Hierarchy: Empty titles render appropriate heading tags to allow screen reader users to jump directly to the state explanation.
 * Action Focus: Action buttons maintain native keyboard focus rings and logical tab order immediately following descriptive copy.
 * Contrast Compliance: Media glyphs and supportive guidance copy preserve contrast standards across both light and dark modes.
+

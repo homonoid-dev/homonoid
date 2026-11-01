@@ -43,3 +43,4 @@ export const EmptyTitle = forwardRef<HTMLHeadingElement, EmptyTitleProps>(
 );
 
 EmptyTitle.displayName = "Empty.Title";
+

@@ -16,3 +16,4 @@ export const EmptyContext = createContext<EmptyContextValue>({
 export function useEmptyContext(): EmptyContextValue {
   return useContext(EmptyContext);
 }
+

@@ -49,3 +49,4 @@ export const EmptyMedia = forwardRef<HTMLDivElement, EmptyMediaProps>(
 );
 
 EmptyMedia.displayName = "Empty.Media";
+

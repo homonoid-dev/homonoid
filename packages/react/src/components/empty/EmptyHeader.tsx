@@ -23,3 +23,4 @@ export const EmptyHeader = forwardRef<HTMLDivElement, EmptyHeaderProps>(
 );
 
 EmptyHeader.displayName = "Empty.Header";
+
