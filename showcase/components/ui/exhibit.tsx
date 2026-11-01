@@ -2,8 +2,8 @@
 
 import type { ComponentType, ReactNode, MouseEvent } from "react";
 import Link from "next/link";
-import { Component, List, type LucideIcon } from "lucide-react";
-import { Heading, Description, Card, Tile, Button } from "@homonoid/react";
+import { Component, type LucideIcon } from "lucide-react";
+import { Heading, Description, Card, Tile, Button, Breadcrumb } from "@homonoid/react";
 import { cn } from "@homonoid/react/cn";
 import { any, cond, when } from "@homonoid/react";
 import { highlighter } from "./code";
@@ -179,6 +179,13 @@ export function Exhibit({
     <div className={cn("flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0", className)}>
       {/* View Header */}
       <div className="flex flex-col gap-layout-gap">
+        <Breadcrumb
+          size="sm"
+          items={[
+            { label: "Components", href: "/components" },
+            { label: title },
+          ]}
+        />
         <div className="flex flex-col gap-control-gap">
           <Heading size="lg">{title}</Heading>
           {when(
