@@ -20,13 +20,24 @@ const triggerVariants = cva(
   {
     variants: {
       size: {
-        sm: "min-h-control-sm px-3 py-2 text-xs gap-2",
-        md: "min-h-control-md px-4 py-3 text-sm gap-3",
-        lg: "min-h-control-lg px-5 py-4 text-base gap-4",
+        sm: "min-h-control-sm py-2 text-xs gap-2",
+        md: "min-h-control-md py-3 text-sm gap-3",
+        lg: "min-h-control-lg py-4 text-base gap-4",
+      },
+      variant: {
+        flush: "px-0",
+        bordered: "",
+        separated: "",
       },
     },
+    compoundVariants: [
+      { variant: ["bordered", "separated"], size: "sm", className: "px-3" },
+      { variant: ["bordered", "separated"], size: "md", className: "px-4" },
+      { variant: ["bordered", "separated"], size: "lg", className: "px-5" },
+    ],
     defaultVariants: {
       size: "md",
+      variant: "flush",
     },
   }
 );
@@ -45,7 +56,7 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
     },
     ref
   ) {
-    const { toggle, size, handleKeyDown } = useAccordionContext();
+    const { toggle, size, variant, handleKeyDown } = useAccordionContext();
     const { value, disabled, open, triggerId, contentId } =
       useAccordionItemContext();
 
@@ -115,7 +126,7 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
         aria-controls={contentId}
         data-accordion-trigger=""
         data-state={cond(open, "open", "closed")}
-        className={cn(triggerVariants({ size }), className)}
+        className={cn(triggerVariants({ size, variant }), className)}
         onClick={handleClick}
         onKeyDown={handleKey}
         {...props}
