@@ -6,7 +6,7 @@ import { cn } from "../../utils/cn";
 import { cond, match, when } from "../../utils/condition";
 import type { AvatarGroupProps, AvatarRadius, AvatarSize } from "./types";
 
-const groupVariants = cva("flex items-center", {
+const groupVariants = cva("flex items-center [&>[data-slot=avatar]]:ring-2 [&>[data-slot=avatar]]:ring-background", {
   variants: {
     size: {
       sm: "-space-x-2",

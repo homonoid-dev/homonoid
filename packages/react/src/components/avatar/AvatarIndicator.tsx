@@ -63,44 +63,40 @@ export const AvatarIndicator = forwardRef<HTMLSpanElement, AvatarIndicatorProps>
     const resolvedColor = propColor ?? statusMeta?.color ?? "primary";
     const resolvedLabel = ariaLabel ?? statusMeta?.label;
 
-    const placementClasses = match<AvatarPlacement, string>(
+    const placementClass = match<AvatarPlacement, string>(
       placement,
       {
-        "top-right": "top-0 right-0 -translate-y-1/12 translate-x-1/12",
-        "top-left": "top-0 left-0 -translate-y-1/12 -translate-x-1/12",
-        "bottom-right": "bottom-0 right-0 translate-y-1/12 translate-x-1/12",
-        "bottom-left": "bottom-0 left-0 translate-y-1/12 -translate-x-1/12",
+        "top-right": "top-0.5 right-0.5",
+        "top-left": "top-0.5 left-0.5",
+        "bottom-right": "bottom-0.5 right-0.5",
+        "bottom-left": "bottom-0.5 left-0.5",
       },
-      "bottom-0 right-0 translate-y-1/12 translate-x-1/12"
+      "bottom-0.5 right-0.5"
     );
 
     return (
-      <span
-        data-slot="avatar-indicator"
-        className={cn(
-          "absolute z-10 pointer-events-none ring-2 ring-background rounded-full",
-          placementClasses,
-          className
-        )}
-      >
-        <BadgeContext.Provider value={{ size, color: resolvedColor, radius: "full" }}>
-          <BadgeIndicator
-            ref={ref}
-            dot={!Boolean(children)}
-            color={resolvedColor}
-            size={size}
-            radius="full"
-            aria-label={resolvedLabel}
-            className={cn(statusMeta?.className)}
-            {...props}
-          >
-            {children}
-          </BadgeIndicator>
-        </BadgeContext.Provider>
-      </span>
+      <BadgeContext.Provider value={{ size, color: resolvedColor, radius: "full" }}>
+        <BadgeIndicator
+          ref={ref}
+          data-slot="avatar-indicator"
+          dot={!Boolean(children)}
+          color={resolvedColor}
+          size={size}
+          radius="full"
+          aria-label={resolvedLabel}
+          className={cn(
+            "absolute z-10 pointer-events-none ring-2 ring-background",
+            placementClass,
+            statusMeta?.className,
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </BadgeIndicator>
+      </BadgeContext.Provider>
     );
   }
 );
 
 AvatarIndicator.displayName = "AvatarIndicator";
-

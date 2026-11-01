@@ -52,7 +52,7 @@ const compounds = (Object.keys(PALETTES) as PaletteColor[]).flatMap((color) => [
 ]);
 
 export const avatarVariants = cva(
-  "relative inline-flex items-center justify-center font-medium select-none shrink-0 ring-2 ring-background",
+  "relative inline-flex items-center justify-center font-medium select-none shrink-0",
   {
     variants: {
       variant: {
