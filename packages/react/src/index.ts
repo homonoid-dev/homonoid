@@ -23,5 +23,6 @@ export * from "./components/accordion/index";
 export * from "./components/autocomplete/index";
 export * from "./components/textarea/index";
 export * from "./components/breadcrumb/index";
+export * from "./components/avatar/index";
 export * from "./utils/cn";
 export * from "./utils/condition";

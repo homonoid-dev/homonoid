@@ -23,6 +23,7 @@ import {
   Badge,
   Stepper,
   Textarea,
+  Avatar,
 } from "@homonoid/react";
 
 const CATEGORIES = [
@@ -64,6 +65,14 @@ const PREVIEWS: Record<string, ReactNode> = {
         <div className="w-3/4 h-1.5 rounded-full bg-muted/20" />
       </Card>
     </div>
+  ),
+  Avatar: (
+    <Avatar
+      alt="Claire Redfield"
+      name="Claire Redfield"
+      src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80"
+      status="online"
+    />
   ),
   Badge: (
     <Badge size="sm" count={3} placement="top-right" color="destructive">

@@ -9,8 +9,20 @@ import type { AccordionContentProps } from "./types";
 
 export const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps>(
   function AccordionContent({ className, children, ...props }, ref) {
-    const { size } = useAccordionContext();
+    const { size, variant } = useAccordionContext();
     const { open, triggerId, contentId } = useAccordionItemContext();
+
+    const paddingX = cond(
+      variant === "flush",
+      "px-0",
+      cond(size === "sm", "px-3", cond(size === "lg", "px-5", "px-4"))
+    );
+
+    const paddingY = cond(
+      size === "sm",
+      "pb-3 pt-1.5 text-xs",
+      cond(size === "lg", "pb-5 pt-2 text-base", "pb-4 pt-1.5 text-sm")
+    );
 
     return (
       <div
@@ -30,15 +42,8 @@ export const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps
           <div
             className={cn(
               "text-muted leading-relaxed",
-              cond(
-                size === "sm",
-                "px-3 pb-3 pt-1.5 text-xs",
-                cond(
-                  size === "lg",
-                  "px-5 pb-5 pt-2 text-base",
-                  "px-4 pb-4 pt-1.5 text-sm"
-                )
-              )
+              paddingX,
+              paddingY
             )}
           >
             {children}
