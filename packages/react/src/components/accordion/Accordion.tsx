@@ -130,9 +130,9 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
         }
 
         const triggers = Array.from(
-          container.querySelectorAll<HTMLButtonElement>(
+          container.querySelectorAll(
             '[data-accordion-trigger]:not([disabled]):not([aria-disabled="true"])'
-          )
+          ) as NodeListOf<HTMLButtonElement>
         );
 
         if (triggers.length === 0) return;
