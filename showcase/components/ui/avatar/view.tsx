@@ -32,6 +32,7 @@ export function AvatarView() {
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Avatar
             src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+            alt="Elena Rostova"
             name="Elena Rostova"
             status="online"
           />
@@ -75,7 +76,8 @@ export function AvatarView() {
             <Avatar
               key={size}
               size={size}
-              name="Samira Khan"
+              alt="Claire Redfield"
+              name="Claire Redfield"
               src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80"
               status="online"
             />
@@ -117,15 +119,18 @@ export function AvatarView() {
         <div className="flex flex-col items-center gap-6">
           <Avatar.Group max={3} size="md">
             <Avatar
+              alt="Alex Rivera"
               name="Alex Rivera"
               src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
             />
             <Avatar
-              name="Beatriz Silva"
+              alt="David Miller"
+              name="David Miller"
               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
             />
             <Avatar
-              name="Chen Wei"
+              alt="Lucas Bennett"
+              name="Lucas Bennett"
               src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
             />
             <Avatar name="Devon Lane" />
@@ -133,9 +138,9 @@ export function AvatarView() {
           </Avatar.Group>
 
           <Avatar.Group size="sm">
-            <Avatar name="Kavita Patel" color="primary" />
+            <Avatar name="Chloe Bennett" color="primary" />
             <Avatar name="Liam Thorne" color="subtle" />
-            <Avatar name="Maya Lin" color="surface" />
+            <Avatar name="Sophie Martin" color="surface" />
           </Avatar.Group>
         </div>
       </Exhibit.Stage>
@@ -191,4 +196,3 @@ export function AvatarView() {
     </Exhibit>
   );
 }
-
