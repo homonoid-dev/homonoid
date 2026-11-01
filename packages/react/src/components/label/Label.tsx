@@ -8,7 +8,7 @@ export const variants = cva("font-medium", {
     size: {
       sm: "text-xs leading-4",
       md: "text-sm leading-5",
-      lg: "text-md leading-6 font-semibold",
+      lg: "text-base leading-6 font-semibold",
     },
     disabled: {
       true: "text-muted cursor-not-allowed",

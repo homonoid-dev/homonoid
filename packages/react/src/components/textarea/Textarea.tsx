@@ -407,8 +407,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               cond(isInvalid, "text-destructive", "text-foreground"),
               match(
                 size,
-                { sm: "text-[11px]", md: "text-xs", lg: "text-sm" },
-                "text-xs"
+                { sm: "text-xs", md: "text-sm", lg: "text-base" },
+                "text-sm"
               ),
               cond(disabled, "opacity-60 cursor-not-allowed", "cursor-pointer")
             )}

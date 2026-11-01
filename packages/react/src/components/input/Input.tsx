@@ -344,7 +344,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           className={cn(
             "font-medium",
             cond(isInvalid, "text-destructive", "text-foreground"),
-            match(size, { sm: "text-[11px]", md: "text-xs", lg: "text-sm" }, "text-xs"),
+            match(size, { sm: "text-xs", md: "text-sm", lg: "text-base" }, "text-sm"),
             cond(disabled, "opacity-60 cursor-not-allowed", "cursor-pointer")
           )}
         >
