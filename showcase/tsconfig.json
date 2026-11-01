@@ -20,7 +20,13 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@homonoid/react": ["../packages/react/src/index.ts"],
+      "@homonoid/react/cn": ["../packages/react/src/utils/cn.ts"],
+      "@homonoid/react/condition": ["../packages/react/src/utils/condition.ts"],
+      "@homonoid/react/*": ["../packages/react/src/*"],
+      "@homonoid/tokens": ["../packages/tokens/src/index.ts"],
+      "@homonoid/tokens/*": ["../packages/tokens/src/*"]
     }
   },
   "include": [
