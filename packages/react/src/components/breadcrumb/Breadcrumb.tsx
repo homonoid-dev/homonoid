@@ -37,7 +37,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
           <BreadcrumbPage>
             {when(
               Boolean(item.icon),
-              <span className="inline-flex shrink-0 mr-1.5">{item.icon}</span>
+              <span className="inline-flex shrink-0 items-center justify-center">{item.icon}</span>
             )}
             {item.label}
           </BreadcrumbPage>
@@ -52,7 +52,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
         >
           {when(
             Boolean(item.icon),
-            <span className="inline-flex shrink-0 mr-1.5">{item.icon}</span>
+            <span className="inline-flex shrink-0 items-center justify-center">{item.icon}</span>
           )}
           {item.label}
         </BreadcrumbLink>

@@ -148,7 +148,7 @@ export function Example() {
 }`;
 
 export const BREADCRUMB_SEPARATORS_CODE_SAMPLE = `import { Breadcrumb } from "@homonoid/react";
-import { Slash, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export function Example() {
   const items = [
@@ -159,10 +159,7 @@ export function Example() {
 
   return (
     <div className="flex flex-col gap-4 items-center justify-center">
-      <Breadcrumb
-        items={items}
-        separator={<Slash className="size-3.5 text-muted" />}
-      />
+      <Breadcrumb items={items} separator="/" />
       <Breadcrumb
         items={items}
         separator={<ArrowRight className="size-3.5 text-muted" />}

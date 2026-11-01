@@ -2,7 +2,7 @@
 
 import { Breadcrumb, Description } from "@homonoid/react";
 import { Exhibit } from "@/components/ui/exhibit";
-import { Home, ChevronRight, Slash, ArrowRight } from "lucide-react";
+import { Home, ChevronRight, ArrowRight } from "lucide-react";
 import {
   BREADCRUMB_SECTIONS,
   BREADCRUMB_SECTIONS_LIST,
@@ -25,7 +25,7 @@ export function BreadcrumbView() {
   ];
 
   const atomicItems = [
-    { label: "Dashboard", href: "/", icon: <Home className="size-3.5" /> },
+    { label: "Dashboard", href: "/", icon: <Home className="size-4" /> },
     { label: "Settings", href: "/settings" },
     { label: "Security", href: "/settings/security" },
     { label: "Two Factor Authentication" },
@@ -108,10 +108,7 @@ export function BreadcrumbView() {
       {/* Custom Separators Section */}
       <Exhibit.Stage section={sections.separators} code={BREADCRUMB_SEPARATORS_CODE_SAMPLE}>
         <div className="flex flex-col gap-4 items-center justify-center">
-          <Breadcrumb
-            items={separatorItems}
-            separator={<Slash className="size-3.5 text-muted" />}
-          />
+          <Breadcrumb items={separatorItems} separator="/" />
           <Breadcrumb
             items={separatorItems}
             separator={<ArrowRight className="size-3.5 text-muted" />}

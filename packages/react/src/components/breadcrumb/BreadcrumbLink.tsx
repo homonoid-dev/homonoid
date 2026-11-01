@@ -16,6 +16,7 @@ export const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>
     ref
   ) {
     const linkClasses = cn(
+      "inline-flex items-center gap-1.5",
       "transition-colors duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)]",
       "text-muted hover:text-foreground",
       "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded-xs",

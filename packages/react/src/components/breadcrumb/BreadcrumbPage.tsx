@@ -12,7 +12,7 @@ export const BreadcrumbPage = forwardRef<HTMLSpanElement, BreadcrumbPageProps>(
         role="link"
         aria-disabled="true"
         aria-current="page"
-        className={cn("font-medium text-foreground select-none", className)}
+        className={cn("inline-flex items-center gap-1.5 font-medium text-foreground select-none", className)}
         {...props}
       >
         {children}
