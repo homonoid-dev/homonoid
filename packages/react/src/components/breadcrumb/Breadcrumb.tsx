@@ -120,7 +120,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
         <nav
           ref={ref}
           aria-label={props["aria-label"] || "Breadcrumb"}
-          className={cn("relative w-full", className)}
+          className={cn("relative", className)}
           {...props}
         >
           {cond(isAtomic, renderAtomicList(), children)}

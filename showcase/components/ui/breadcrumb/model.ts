@@ -79,11 +79,7 @@ export function Example() {
     { label: "Breadcrumb" },
   ];
 
-  return (
-    <div className="w-full max-w-lg mx-auto flex items-center justify-center">
-      <Breadcrumb items={items} />
-    </div>
-  );
+  return <Breadcrumb items={items} />;
 }`;
 
 export const BREADCRUMB_ATOMIC_CODE_SAMPLE = `import { Breadcrumb } from "@homonoid/react";
@@ -97,11 +93,7 @@ export function Example() {
     { label: "Two Factor Authentication" },
   ];
 
-  return (
-    <div className="w-full max-w-lg mx-auto flex items-center justify-center">
-      <Breadcrumb items={items} />
-    </div>
-  );
+  return <Breadcrumb items={items} />;
 }`;
 
 export const BREADCRUMB_COMPOUND_CODE_SAMPLE = `import { Breadcrumb } from "@homonoid/react";
@@ -109,33 +101,31 @@ import { ChevronRight } from "lucide-react";
 
 export function Example() {
   return (
-    <div className="w-full max-w-lg mx-auto flex items-center justify-center">
-      <Breadcrumb>
-        <Breadcrumb.List>
-          <Breadcrumb.Item>
-            <Breadcrumb.Link href="/">Home</Breadcrumb.Link>
-          </Breadcrumb.Item>
-          <Breadcrumb.Separator>
-            <ChevronRight className="size-3.5 text-muted" />
-          </Breadcrumb.Separator>
-          <Breadcrumb.Item>
-            <Breadcrumb.Link href="/store">Store</Breadcrumb.Link>
-          </Breadcrumb.Item>
-          <Breadcrumb.Separator>
-            <ChevronRight className="size-3.5 text-muted" />
-          </Breadcrumb.Separator>
-          <Breadcrumb.Item>
-            <Breadcrumb.Link href="/store/apparel">Apparel</Breadcrumb.Link>
-          </Breadcrumb.Item>
-          <Breadcrumb.Separator>
-            <ChevronRight className="size-3.5 text-muted" />
-          </Breadcrumb.Separator>
-          <Breadcrumb.Item>
-            <Breadcrumb.Page>Jackets</Breadcrumb.Page>
-          </Breadcrumb.Item>
-        </Breadcrumb.List>
-      </Breadcrumb>
-    </div>
+    <Breadcrumb>
+      <Breadcrumb.List>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="/">Home</Breadcrumb.Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Separator>
+          <ChevronRight className="size-3.5 text-muted" />
+        </Breadcrumb.Separator>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="/store">Store</Breadcrumb.Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Separator>
+          <ChevronRight className="size-3.5 text-muted" />
+        </Breadcrumb.Separator>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="/store/apparel">Apparel</Breadcrumb.Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Separator>
+          <ChevronRight className="size-3.5 text-muted" />
+        </Breadcrumb.Separator>
+        <Breadcrumb.Item>
+          <Breadcrumb.Page>Jackets</Breadcrumb.Page>
+        </Breadcrumb.Item>
+      </Breadcrumb.List>
+    </Breadcrumb>
   );
 }`;
 
@@ -149,7 +139,7 @@ export function Example() {
   ];
 
   return (
-    <div className="w-full max-w-lg mx-auto flex flex-col gap-4 items-center justify-center">
+    <div className="flex flex-col gap-4 items-center justify-center">
       <Breadcrumb size="sm" items={items} />
       <Breadcrumb size="md" items={items} />
       <Breadcrumb size="lg" items={items} />
@@ -168,7 +158,7 @@ export function Example() {
   ];
 
   return (
-    <div className="w-full max-w-lg mx-auto flex flex-col gap-4 items-center justify-center">
+    <div className="flex flex-col gap-4 items-center justify-center">
       <Breadcrumb
         items={items}
         separator={<Slash className="size-3.5 text-muted" />}
@@ -193,14 +183,12 @@ export function Example() {
   ];
 
   return (
-    <div className="w-full max-w-lg mx-auto flex items-center justify-center">
-      <Breadcrumb
-        items={items}
-        maxItems={3}
-        itemsBeforeCollapse={1}
-        itemsAfterCollapse={1}
-      />
-    </div>
+    <Breadcrumb
+      items={items}
+      maxItems={3}
+      itemsBeforeCollapse={1}
+      itemsAfterCollapse={1}
+    />
   );
 }`;
 

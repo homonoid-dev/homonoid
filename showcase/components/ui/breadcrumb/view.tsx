@@ -59,54 +59,46 @@ export function BreadcrumbView() {
       component="breadcrumb"
       importCode='import { Breadcrumb } from "@homonoid/react";'
       defaultCode={BREADCRUMB_DEFAULT_CODE_SAMPLE}
-      defaultStage={
-        <div className="w-full max-w-lg mx-auto flex items-center justify-center">
-          <Breadcrumb items={defaultItems} />
-        </div>
-      }
+      defaultStage={<Breadcrumb items={defaultItems} />}
       sections={BREADCRUMB_SECTIONS_LIST}
     >
       {/* Atomic Usage Section */}
       <Exhibit.Stage section={sections.atomic} code={BREADCRUMB_ATOMIC_CODE_SAMPLE}>
-        <div className="w-full max-w-lg mx-auto flex items-center justify-center">
-          <Breadcrumb items={atomicItems} />
-        </div>
+        <Breadcrumb items={atomicItems} />
       </Exhibit.Stage>
 
       {/* Compound Composition Section */}
       <Exhibit.Stage section={sections.compound} code={BREADCRUMB_COMPOUND_CODE_SAMPLE}>
-        <div className="w-full max-w-lg mx-auto flex items-center justify-center">
-          <Breadcrumb>
-            <Breadcrumb.List>
-              <Breadcrumb.Item>
-                <Breadcrumb.Link href="/">Home</Breadcrumb.Link>
-              </Breadcrumb.Item>
-              <Breadcrumb.Separator>
-                <ChevronRight className="size-3.5 text-muted" />
-              </Breadcrumb.Separator>
-              <Breadcrumb.Item>
-                <Breadcrumb.Link href="/store">Store</Breadcrumb.Link>
-              </Breadcrumb.Item>
-              <Breadcrumb.Separator>
-                <ChevronRight className="size-3.5 text-muted" />
-              </Breadcrumb.Separator>
-              <Breadcrumb.Item>
-                <Breadcrumb.Link href="/store/apparel">Apparel</Breadcrumb.Link>
-              </Breadcrumb.Item>
-              <Breadcrumb.Separator>
-                <ChevronRight className="size-3.5 text-muted" />
-              </Breadcrumb.Separator>
-              <Breadcrumb.Item>
-                <Breadcrumb.Page>Jackets</Breadcrumb.Page>
-              </Breadcrumb.Item>
-            </Breadcrumb.List>
-          </Breadcrumb>
-        </div>
+        <Breadcrumb>
+          <Breadcrumb.List>
+            <Breadcrumb.Item>
+              <Breadcrumb.Link href="/">Home</Breadcrumb.Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Separator>
+              <ChevronRight className="size-3.5 text-muted" />
+            </Breadcrumb.Separator>
+            <Breadcrumb.Item>
+              <Breadcrumb.Link href="/store">Store</Breadcrumb.Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Separator>
+              <ChevronRight className="size-3.5 text-muted" />
+            </Breadcrumb.Separator>
+            <Breadcrumb.Item>
+              <Breadcrumb.Link href="/store/apparel">Apparel</Breadcrumb.Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Separator>
+              <ChevronRight className="size-3.5 text-muted" />
+            </Breadcrumb.Separator>
+            <Breadcrumb.Item>
+              <Breadcrumb.Page>Jackets</Breadcrumb.Page>
+            </Breadcrumb.Item>
+          </Breadcrumb.List>
+        </Breadcrumb>
       </Exhibit.Stage>
 
       {/* Sizing Variants Section */}
       <Exhibit.Stage section={sections.sizes} code={BREADCRUMB_SIZES_CODE_SAMPLE}>
-        <div className="w-full max-w-lg mx-auto flex flex-col gap-4 items-center justify-center">
+        <div className="flex flex-col gap-4 items-center justify-center">
           <Breadcrumb size="sm" items={sizeItems} />
           <Breadcrumb size="md" items={sizeItems} />
           <Breadcrumb size="lg" items={sizeItems} />
@@ -115,7 +107,7 @@ export function BreadcrumbView() {
 
       {/* Custom Separators Section */}
       <Exhibit.Stage section={sections.separators} code={BREADCRUMB_SEPARATORS_CODE_SAMPLE}>
-        <div className="w-full max-w-lg mx-auto flex flex-col gap-4 items-center justify-center">
+        <div className="flex flex-col gap-4 items-center justify-center">
           <Breadcrumb
             items={separatorItems}
             separator={<Slash className="size-3.5 text-muted" />}
@@ -129,14 +121,12 @@ export function BreadcrumbView() {
 
       {/* Collapsed Overflow Section */}
       <Exhibit.Stage section={sections.collapsed} code={BREADCRUMB_COLLAPSED_CODE_SAMPLE}>
-        <div className="w-full max-w-lg mx-auto flex items-center justify-center">
-          <Breadcrumb
-            items={collapsedItems}
-            maxItems={3}
-            itemsBeforeCollapse={1}
-            itemsAfterCollapse={1}
-          />
-        </div>
+        <Breadcrumb
+          items={collapsedItems}
+          maxItems={3}
+          itemsBeforeCollapse={1}
+          itemsAfterCollapse={1}
+        />
       </Exhibit.Stage>
 
       {/* Object Continuity Section */}
