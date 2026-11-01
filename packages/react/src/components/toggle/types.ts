@@ -48,6 +48,7 @@ export interface ToggleGroupProps extends HTMLAttributes<HTMLDivElement> {
   orientation?: ToggleOrientation;
   disabled?: boolean;
   rovingFocus?: boolean;
+  docked?: boolean;
   children?: ReactNode;
 }
 

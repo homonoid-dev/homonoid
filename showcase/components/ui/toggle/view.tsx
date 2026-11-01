@@ -21,7 +21,7 @@ import {
   TOGGLE_SIZES_CODE_SAMPLE,
   TOGGLE_COLORS_CODE_SAMPLE,
   TOGGLE_GROUPS_CODE_SAMPLE,
-  TOGGLE_DOCKED_CODE_SAMPLE,
+  TOGGLE_MULTIPLE_CODE_SAMPLE,
 } from "./model";
 
 export function ToggleView() {
@@ -140,8 +140,8 @@ export function ToggleView() {
         </Toggle.Group>
       </Exhibit.Stage>
 
-      {/* Docked Toolbar Section */}
-      <Exhibit.Stage section={sections.docked} code={TOGGLE_DOCKED_CODE_SAMPLE}>
+      {/* Multiple Selection Section */}
+      <Exhibit.Stage section={sections.multiple} code={TOGGLE_MULTIPLE_CODE_SAMPLE}>
         <Toggle.Group
           type="multiple"
           defaultValue={["bold"]}

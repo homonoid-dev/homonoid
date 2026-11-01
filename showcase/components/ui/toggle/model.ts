@@ -39,9 +39,9 @@ export const TOGGLE_SECTIONS: Record<string, ToggleSectionItem> = {
     label: "Toggle Groups",
     icon: Sliders,
   },
-  docked: {
-    id: "docked-toolbar",
-    label: "Docked Toolbar",
+  multiple: {
+    id: "multiple-selection",
+    label: "Multiple Selection",
     icon: StretchHorizontal,
   },
   continuity: {
@@ -197,7 +197,7 @@ export function Example() {
   );
 }`;
 
-export const TOGGLE_DOCKED_CODE_SAMPLE = `import { Toggle } from "@homonoid/react";
+export const TOGGLE_MULTIPLE_CODE_SAMPLE = `import { Toggle } from "@homonoid/react";
 import { Bold, Italic, Underline } from "lucide-react";
 
 export function Example() {

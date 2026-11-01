@@ -28,8 +28,12 @@ const groupVariants = cva(
       },
       variant: {
         contained: "gap-1 p-1 bg-surface border border-border",
-        outlined: "-space-x-px",
+        outlined: "gap-1",
         plain: "gap-1",
+      },
+      docked: {
+        true: "",
+        false: "",
       },
       radius: {
         none: "rounded-none [&>[data-slot=toggle]]:rounded-none",
@@ -41,26 +45,22 @@ const groupVariants = cva(
     },
     compoundVariants: [
       {
-        orientation: "vertical",
-        variant: "outlined",
-        className: "-space-x-0 -space-y-px",
-      },
-      {
+        docked: true,
         orientation: "horizontal",
-        variant: "outlined",
         className:
-          "[&>[data-slot=toggle]]:rounded-none first:[&>[data-slot=toggle]]:rounded-l-[inherit] last:[&>[data-slot=toggle]]:rounded-r-[inherit] [&>[data-slot=toggle]:focus-visible]:z-10",
+          "-space-x-px gap-0 [&>[data-slot=toggle]]:rounded-none [&>[data-slot=toggle]:first-child]:rounded-l-[inherit] [&>[data-slot=toggle]:last-child]:rounded-r-[inherit] [&>[data-slot=toggle]:focus-visible]:z-10",
       },
       {
+        docked: true,
         orientation: "vertical",
-        variant: "outlined",
         className:
-          "[&>[data-slot=toggle]]:rounded-none first:[&>[data-slot=toggle]]:rounded-t-[inherit] last:[&>[data-slot=toggle]]:rounded-b-[inherit] [&>[data-slot=toggle]:focus-visible]:z-10",
+          "-space-y-px -space-x-0 gap-0 [&>[data-slot=toggle]]:rounded-none [&>[data-slot=toggle]:first-child]:rounded-t-[inherit] [&>[data-slot=toggle]:last-child]:rounded-b-[inherit] [&>[data-slot=toggle]:focus-visible]:z-10",
       },
     ],
     defaultVariants: {
       orientation: "horizontal",
       variant: "plain",
+      docked: false,
       radius: "md",
     },
   }
@@ -90,6 +90,7 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(
       orientation = "horizontal",
       disabled = false,
       rovingFocus = true,
+      docked = false,
       className,
       children,
       ...props
@@ -224,7 +225,10 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(
           data-slot="toggle-group"
           data-orientation={orientation}
           data-variant={variant}
-          className={cn(groupVariants({ orientation, variant, radius }), className)}
+          className={cn(
+            groupVariants({ orientation, variant, docked, radius }),
+            className
+          )}
           {...props}
         >
           {children}
