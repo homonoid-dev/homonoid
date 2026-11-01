@@ -2,7 +2,7 @@
 
 import { useState, useMemo, type ReactNode } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronsUpDown, ChevronRight, Plus, Bell } from "lucide-react";
+import { ChevronDown, ChevronsUpDown, ChevronRight, Plus, Bell, Bold, Italic, Underline } from "lucide-react";
 import { Resource } from "@/components/ui/resource";
 import { Exhibit } from "@/components/ui/exhibit";
 import { SHOWCASE_COMPONENTS } from "@/config/components";
@@ -24,6 +24,7 @@ import {
   Stepper,
   Textarea,
   Avatar,
+  Toggle,
 } from "@homonoid/react";
 
 const CATEGORIES = [
@@ -161,6 +162,26 @@ const PREVIEWS: Record<string, ReactNode> = {
     <Tile size="sm" variant="contained" className="w-30">
       Item
     </Tile>
+  ),
+  Toggle: (
+    <Toggle.Group
+      type="multiple"
+      defaultValue={["bold"]}
+      variant="outlined"
+      color="surface"
+      size="sm"
+      className="pointer-events-none [&_*]:!pointer-events-none"
+    >
+      <Toggle.Item value="bold" layout="icon" aria-label="Bold" tabIndex={-1}>
+        <Bold className="size-3" />
+      </Toggle.Item>
+      <Toggle.Item value="italic" layout="icon" aria-label="Italic" tabIndex={-1}>
+        <Italic className="size-3" />
+      </Toggle.Item>
+      <Toggle.Item value="underline" layout="icon" aria-label="Underline" tabIndex={-1}>
+        <Underline className="size-3" />
+      </Toggle.Item>
+    </Toggle.Group>
   ),
   Tooltip: (
     <Tooltip open side="bottom" content="Tooltip">
