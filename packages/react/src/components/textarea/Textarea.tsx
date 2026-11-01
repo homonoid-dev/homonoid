@@ -17,20 +17,20 @@ import { all, any, cond, match, when } from "../../utils/condition";
 import type { TextareaProps, TextareaResize } from "./types";
 
 export const variants = cva(
-  "relative w-full inline-flex items-start transform-gpu origin-center transition-[color,background-color,border-color,opacity] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)]",
+  "w-full transform-gpu origin-center transition-[color,background-color,border-color,opacity] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] outline-none focus:outline-none focus:ring-0 leading-normal selection:bg-primary/30",
   {
     variants: {
       variant: {
         outlined:
-          "border border-border bg-transparent hover:border-foreground/30 focus-within:border-primary focus-within:hover:border-primary",
+          "border border-border bg-transparent hover:border-foreground/30 focus:border-primary focus:hover:border-primary",
         contained:
-          "border border-transparent bg-surface hover:bg-surface-hover focus-within:border-primary",
+          "border border-transparent bg-surface hover:bg-surface-hover focus:border-primary",
         plain: "border border-transparent bg-transparent hover:bg-surface-hover",
       },
       size: {
-        sm: "min-h-control-sm px-2.5 gap-2 text-xs",
-        md: "min-h-control-md px-3 gap-2.5 text-sm",
-        lg: "min-h-control-lg px-3.5 gap-3 text-base",
+        sm: "min-h-control-sm px-2.5 py-1.5 text-xs",
+        md: "min-h-control-md px-3 py-2 text-sm",
+        lg: "min-h-control-lg px-3.5 py-2.5 text-base",
       },
       radius: {
         none: "rounded-none",
@@ -40,12 +40,12 @@ export const variants = cva(
         full: "rounded-2xl",
       },
       invalid: {
-        true: "border-destructive/30 hover:border-destructive hover:focus-within:border-destructive focus-within:border-destructive",
-        false: "",
+        true: "border-destructive/30 hover:border-destructive focus:border-destructive text-destructive placeholder:text-destructive/60",
+        false: "text-foreground placeholder:text-muted",
       },
       disabled: {
         true: "opacity-50 cursor-not-allowed pointer-events-none bg-surface/50",
-        false: "cursor-text",
+        false: "",
       },
     },
     compoundVariants: [
@@ -53,13 +53,13 @@ export const variants = cva(
         invalid: true,
         variant: "contained",
         className:
-          "border-destructive focus-within:border-destructive bg-destructive/10 hover:bg-destructive/20",
+          "border-destructive focus:border-destructive bg-destructive/10 hover:bg-destructive/20",
       },
       {
         invalid: true,
         variant: "plain",
         className:
-          "border-transparent hover:border-transparent hover:bg-destructive/20 focus-within:border-transparent focus-within:hover:border-transparent focus-within:ring-transparent",
+          "border-transparent hover:border-transparent hover:bg-destructive/20 focus:border-transparent",
       },
     ],
     defaultVariants: {
@@ -313,28 +313,34 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       </div>
     );
 
+    const hasExternalLabel = all(!isFloating, Boolean(label));
+    const hasFooter = any(Boolean(error), Boolean(description));
+    const needsOuterWrapper = any(hasExternalLabel, hasFooter);
+
     const activeResize = cond(autoResize, "none", resize);
     const resizeClass = match(activeResize, resizeClasses, "resize-y");
 
-    const textareaSizeClasses = match(
-      size,
-      {
-        sm: "min-h-control-sm py-1.5",
-        md: "min-h-control-md py-2",
-        lg: "min-h-control-lg py-2.5",
-      },
-      "min-h-control-md py-2"
+    const leadingPadding = when(
+      Boolean(leading),
+      match(size, { sm: "pl-8", md: "pl-9", lg: "pl-10" }, "pl-9")
+    );
+
+    const trailingPadding = when(
+      Boolean(trailing),
+      match(size, { sm: "pr-8", md: "pr-9", lg: "pr-10" }, "pr-9")
     );
 
     const iconTopClass = match(
       size,
       {
-        sm: "pt-1.5",
-        md: "pt-2",
-        lg: "pt-2.5",
+        sm: "top-1.5",
+        md: "top-2",
+        lg: "top-2.5",
       },
-      "pt-2"
+      "top-2"
     );
+
+    const hasDecorations = any(Boolean(leading), Boolean(trailing), isFloating);
 
     const textareaElement = (
       <textarea
@@ -355,27 +361,6 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           placeholder
         )}
         className={cn(
-          "w-full p-0 m-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30 leading-normal",
-          textareaSizeClasses,
-          cond(
-            isInvalid,
-            "text-destructive placeholder:text-destructive/60",
-            "text-foreground placeholder:text-muted"
-          ),
-          resizeClass
-        )}
-        {...props}
-      />
-    );
-
-    const hasExternalLabel = all(!isFloating, Boolean(label));
-    const hasFooter = any(Boolean(error), Boolean(description));
-    const needsOuterWrapper = any(hasExternalLabel, hasFooter);
-
-    const controlContainer = (
-      <div
-        onClick={handleContainerClick}
-        className={cn(
           variants({
             variant,
             size,
@@ -383,6 +368,21 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             invalid: isInvalid,
             disabled,
           }),
+          leadingPadding,
+          trailingPadding,
+          resizeClass,
+          cond(!needsOuterWrapper && !hasDecorations, className, undefined)
+        )}
+        {...props}
+      />
+    );
+
+    const controlWrapper = cond(
+      hasDecorations,
+      <div
+        onClick={handleContainerClick}
+        className={cn(
+          "relative w-full",
           cond(!needsOuterWrapper, className, undefined)
         )}
       >
@@ -393,7 +393,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           <span
             data-slot="textarea-leading"
             className={cn(
-              "inline-flex shrink-0 items-start pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto",
+              "absolute left-3 items-start pointer-events-none z-10 [&_button]:pointer-events-auto [&_a]:pointer-events-auto",
               iconTopClass
             )}
           >
@@ -408,18 +408,19 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           <span
             data-slot="textarea-trailing"
             className={cn(
-              "inline-flex shrink-0 items-start pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto",
+              "absolute right-3 items-start pointer-events-none z-10 [&_button]:pointer-events-auto [&_a]:pointer-events-auto",
               iconTopClass
             )}
           >
             {trailing}
           </span>
         )}
-      </div>
+      </div>,
+      textareaElement
     );
 
     if (!needsOuterWrapper) {
-      return controlContainer;
+      return controlWrapper;
     }
 
     return (
@@ -444,7 +445,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           </label>
         )}
 
-        {controlContainer}
+        {controlWrapper}
 
         {when(
           error,
