@@ -2,7 +2,6 @@
 
 import { forwardRef } from "react";
 import { cn } from "../../utils/cn";
-import { when } from "../../utils/condition";
 import { useStepperContext } from "./StepperContext";
 import type { StepperViewProps } from "./types";
 

@@ -4,7 +4,6 @@ import { forwardRef } from "react";
 import { Kbd } from "../kbd/Kbd";
 import { cn } from "../../utils/cn";
 import type { DropdownShortcutProps } from "./types";
-import { cond } from "../../utils/condition";
 
 export const DropdownShortcut = forwardRef<HTMLElement, DropdownShortcutProps>(
   function DropdownShortcut(

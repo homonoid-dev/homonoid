@@ -3,8 +3,7 @@
 import { forwardRef, useEffect, type MouseEvent } from "react";
 import { Tile } from "../tile/Tile";
 import { useSelectContext } from "./SelectContext";
-import { cn } from "../../utils/cn";
-import { cond, when } from "../../utils/condition";
+import { cond } from "../../utils/condition";
 import type { SelectItemProps } from "./types";
 
 export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(

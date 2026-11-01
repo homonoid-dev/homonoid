@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, Fragment, type ReactNode } from "react";
+import { forwardRef, Fragment } from "react";
 import { cn } from "../../utils/cn";
 import { cond, when } from "../../utils/condition";
 import { BreadcrumbContext } from "./BreadcrumbContext";

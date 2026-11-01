@@ -10,7 +10,7 @@
     "setup:showcase": "node tools/setup-homonoid.mjs showcase",
     "dev": "npm run dev --workspace=showcase",
     "build": "npm run build --workspaces --if-present",
-    "lint": "npm run lint --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present && node tools/check-deprecations.mjs",
     "test": "npm run test --workspaces --if-present"
   },
   "devDependencies": {
