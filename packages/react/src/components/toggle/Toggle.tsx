@@ -16,10 +16,8 @@ import { ToggleGroup } from "./ToggleGroup";
 import { ToggleItem } from "./ToggleItem";
 import type { ToggleProps } from "./types";
 
-const toggleVariants = cva(
-  "transition-colors duration-[var(--motion-duration-fast)]",
-  {
-    variants: {
+const toggleVariants = cva("", {
+  variants: {
       variant: {
         contained: "",
         outlined: "",
