@@ -123,7 +123,7 @@ const PREVIEWS: Record<string, ReactNode> = {
   Empty: (
     <Empty
       size="sm"
-      icon={<Inbox className="size-4" />}
+      icon={<Inbox className="size-3" />}
       title="No items"
       description="List is clear"
       className="p-1 gap-1 pointer-events-none [&_*]:!pointer-events-none"
