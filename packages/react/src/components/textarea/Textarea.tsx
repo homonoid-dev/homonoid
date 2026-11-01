@@ -253,11 +253,11 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     const restingLabelTop = match(
       size,
       {
-        sm: "top-1.5",
-        md: "top-2",
-        lg: "top-2.5",
+        sm: "top-2",
+        md: "top-2.5",
+        lg: "top-3",
       },
-      "top-2"
+      "top-2.5"
     );
 
     const floatingLabelElement = when(
