@@ -28,9 +28,9 @@ export const variants = cva(
         plain: "border border-transparent bg-transparent hover:bg-surface-hover",
       },
       size: {
-        sm: "min-h-control-sm px-2.5 py-1.5 gap-2 text-xs",
-        md: "min-h-control-md px-3 py-2 gap-2.5 text-sm",
-        lg: "min-h-control-lg px-3.5 py-2.5 gap-3 text-base",
+        sm: "min-h-control-sm px-2.5 gap-2 text-xs",
+        md: "min-h-control-md px-3 gap-2.5 text-sm",
+        lg: "min-h-control-lg px-3.5 gap-3 text-base",
       },
       radius: {
         none: "rounded-none",
@@ -316,6 +316,26 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     const activeResize = cond(autoResize, "none", resize);
     const resizeClass = match(activeResize, resizeClasses, "resize-y");
 
+    const textareaSizeClasses = match(
+      size,
+      {
+        sm: "min-h-control-sm py-1.5",
+        md: "min-h-control-md py-2",
+        lg: "min-h-control-lg py-2.5",
+      },
+      "min-h-control-md py-2"
+    );
+
+    const iconTopClass = match(
+      size,
+      {
+        sm: "pt-1.5",
+        md: "pt-2",
+        lg: "pt-2.5",
+      },
+      "pt-2"
+    );
+
     const textareaElement = (
       <textarea
         ref={setRefs}
@@ -335,7 +355,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           placeholder
         )}
         className={cn(
-          "w-full min-h-[1lh] p-0 m-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30 leading-normal",
+          "w-full p-0 m-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30 leading-normal",
+          textareaSizeClasses,
           cond(
             isInvalid,
             "text-destructive placeholder:text-destructive/60",
@@ -371,7 +392,10 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           leading,
           <span
             data-slot="textarea-leading"
-            className="inline-flex shrink-0 items-start pt-0.5 pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto"
+            className={cn(
+              "inline-flex shrink-0 items-start pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto",
+              iconTopClass
+            )}
           >
             {leading}
           </span>
@@ -383,7 +407,10 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           trailing,
           <span
             data-slot="textarea-trailing"
-            className="inline-flex shrink-0 items-start pt-0.5 pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto"
+            className={cn(
+              "inline-flex shrink-0 items-start pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto",
+              iconTopClass
+            )}
           >
             {trailing}
           </span>
