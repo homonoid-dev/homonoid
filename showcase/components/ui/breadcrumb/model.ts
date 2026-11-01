@@ -5,6 +5,7 @@ import {
   Sliders,
   Split,
   FoldHorizontal,
+  Square,
   Infinity,
   Accessibility,
   Palette,
@@ -43,6 +44,11 @@ export const BREADCRUMB_SECTIONS: Record<string, BreadcrumbSectionItem> = {
     id: "collapsed-overflow",
     label: "Collapsed Overflow",
     icon: FoldHorizontal,
+  },
+  card: {
+    id: "card-container",
+    label: "Card Container",
+    icon: Square,
   },
   continuity: {
     id: "object-continuity",
@@ -186,6 +192,23 @@ export function Example() {
       itemsBeforeCollapse={1}
       itemsAfterCollapse={1}
     />
+  );
+}`;
+
+export const BREADCRUMB_CARD_CODE_SAMPLE = `import { Breadcrumb, Card } from "@homonoid/react";
+
+export function Example() {
+  const items = [
+    { label: "Dashboard", href: "/" },
+    { label: "Projects", href: "/projects" },
+    { label: "Design System", href: "/projects/design-system" },
+    { label: "Tokens" },
+  ];
+
+  return (
+    <Card variant="filled" padding="none" className="px-5 py-2.5">
+      <Breadcrumb items={items} />
+    </Card>
   );
 }`;
 

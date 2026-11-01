@@ -1,6 +1,6 @@
 "use client";
 
-import { Breadcrumb, Description } from "@homonoid/react";
+import { Breadcrumb, Card, Description } from "@homonoid/react";
 import { Exhibit } from "@/components/ui/exhibit";
 import { Home, ChevronRight, ArrowRight } from "lucide-react";
 import {
@@ -12,6 +12,7 @@ import {
   BREADCRUMB_SIZES_CODE_SAMPLE,
   BREADCRUMB_SEPARATORS_CODE_SAMPLE,
   BREADCRUMB_COLLAPSED_CODE_SAMPLE,
+  BREADCRUMB_CARD_CODE_SAMPLE,
 } from "./model";
 
 export function BreadcrumbView() {
@@ -49,6 +50,13 @@ export function BreadcrumbView() {
     { label: "Profiles", href: "/users/profiles" },
     { label: "Preferences", href: "/users/profiles/preferences" },
     { label: "Notification Channels" },
+  ];
+
+  const cardItems = [
+    { label: "Dashboard", href: "/" },
+    { label: "Projects", href: "/projects" },
+    { label: "Design System", href: "/projects/design-system" },
+    { label: "Tokens" },
   ];
 
   return (
@@ -124,6 +132,13 @@ export function BreadcrumbView() {
           itemsBeforeCollapse={1}
           itemsAfterCollapse={1}
         />
+      </Exhibit.Stage>
+
+      {/* Card Container Section */}
+      <Exhibit.Stage section={sections.card} code={BREADCRUMB_CARD_CODE_SAMPLE}>
+        <Card variant="filled" padding="none" className="px-5 py-2.5">
+          <Breadcrumb items={cardItems} />
+        </Card>
       </Exhibit.Stage>
 
       {/* Object Continuity Section */}
