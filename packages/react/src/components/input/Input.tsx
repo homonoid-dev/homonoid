@@ -214,11 +214,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         <span
           aria-hidden="true"
           className={cn(
-            "col-start-1 row-start-1 h-full w-full px-1 rounded-xs",
+            "col-start-1 row-start-1 h-full w-full px-1.5 -my-1 rounded-xs",
             "transform-gpu origin-left scale-85",
             "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
             floatingLabelBg,
-            cond(isFloated, "-translate-y-0.5 opacity-100", "translate-y-0 opacity-0")
+            cond(isFloated, "opacity-100", "opacity-0")
           )}
         />
 
@@ -229,7 +229,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           data-slot="input-floating-label"
           data-floated={cond(isFloated, "true", "false")}
           className={cn(
-            "col-start-1 row-start-1 inline-flex items-center px-1 rounded-xs truncate font-medium leading-normal origin-left",
+            "col-start-1 row-start-1 inline-flex items-center px-1 rounded-xs truncate leading-normal origin-left",
             "transform-gpu subpixel-antialiased",
             "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
             restingLabelSize,
@@ -344,7 +344,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           className={cn(
             "font-medium",
             cond(isInvalid, "text-destructive", "text-foreground"),
-            match(size, { sm: "text-[11px]", md: "text-xs", lg: "text-sm" }, "text-xs"),
+            match(size, { sm: "text-xs", md: "text-sm", lg: "text-base" }, "text-sm"),
             cond(disabled, "opacity-60 cursor-not-allowed", "cursor-pointer")
           )}
         >
