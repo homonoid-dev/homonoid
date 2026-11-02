@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import type { LucideIcon } from "lucide-react";
-import { Rows3, RectangleHorizontal, Layers } from "lucide-react";
 import {
   Accordion,
   Button,
@@ -24,10 +22,10 @@ import {
 export function AccordionView() {
   const sections = ACCORDION_SECTIONS;
   const [selectedVariant, setSelectedVariant] = useState<AccordionVariant>("flush");
-  const variantActions: { id: AccordionVariant; label: string; icon: LucideIcon }[] = [
-    { id: "flush", label: "Flush", icon: Rows3 },
-    { id: "bordered", label: "Bordered", icon: RectangleHorizontal },
-    { id: "separated", label: "Separated", icon: Layers },
+  const variantActions: { id: AccordionVariant; label: string }[] = [
+    { id: "flush", label: "Flush" },
+    { id: "bordered", label: "Bordered" },
+    { id: "separated", label: "Separated" },
   ];
   const activeAction = variantActions.find((a) => a.id === selectedVariant) ?? variantActions[0];
 
@@ -143,19 +141,15 @@ export function AccordionView() {
             </Dropdown.Trigger>
             <Dropdown.Content>
               <Dropdown.List>
-                {variantActions.map((action) => {
-                  const Icon = action.icon;
-                  return (
-                    <Dropdown.Item
-                      key={action.id}
-                      selected={selectedVariant === action.id}
-                      leading={<Icon className="size-3.5" />}
-                      onClick={() => setSelectedVariant(action.id)}
-                    >
-                      {action.label}
-                    </Dropdown.Item>
-                  );
-                })}
+                {variantActions.map((action) => (
+                  <Dropdown.Item
+                    key={action.id}
+                    selected={selectedVariant === action.id}
+                    onClick={() => setSelectedVariant(action.id)}
+                  >
+                    {action.label}
+                  </Dropdown.Item>
+                ))}
               </Dropdown.List>
             </Dropdown.Content>
           </Dropdown>

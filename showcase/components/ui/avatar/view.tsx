@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { LucideIcon } from "lucide-react";
-import { CircleDot, Circle, CircleDashed, Palette } from "lucide-react";
+import { Palette } from "lucide-react";
 import {
   Avatar,
   Button,
@@ -27,10 +26,10 @@ export function AvatarView() {
   const sections = AVATAR_SECTIONS;
   const [selectedVariant, setSelectedVariant] = useState<AvatarVariant>("contained");
   const [selectedColor, setSelectedColor] = useState<Color>("primary");
-  const variantActions: { id: AvatarVariant; label: string; icon: LucideIcon }[] = [
-    { id: "contained", label: "Contained", icon: CircleDot },
-    { id: "outlined", label: "Outlined", icon: Circle },
-    { id: "plain", label: "Plain", icon: CircleDashed },
+  const variantActions: { id: AvatarVariant; label: string }[] = [
+    { id: "contained", label: "Contained" },
+    { id: "outlined", label: "Outlined" },
+    { id: "plain", label: "Plain" },
   ];
   const colorActions: { id: Color; label: string }[] = [
     { id: "primary", label: "Primary" },
@@ -78,19 +77,15 @@ export function AvatarView() {
               </Dropdown.Trigger>
               <Dropdown.Content>
                 <Dropdown.List>
-                  {variantActions.map((action) => {
-                    const Icon = action.icon;
-                    return (
-                      <Dropdown.Item
-                        key={action.id}
-                        selected={selectedVariant === action.id}
-                        leading={<Icon className="size-3.5" />}
-                        onClick={() => setSelectedVariant(action.id)}
-                      >
-                        {action.label}
-                      </Dropdown.Item>
-                    );
-                  })}
+                  {variantActions.map((action) => (
+                    <Dropdown.Item
+                      key={action.id}
+                      selected={selectedVariant === action.id}
+                      onClick={() => setSelectedVariant(action.id)}
+                    >
+                      {action.label}
+                    </Dropdown.Item>
+                  ))}
                 </Dropdown.List>
               </Dropdown.Content>
             </Dropdown>
