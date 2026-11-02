@@ -94,6 +94,10 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
       return null;
     }
 
+    const handleMouseDown = (e: MouseEvent<HTMLDivElement>) => {
+      e.preventDefault();
+    };
+
     const handleClick = (e: MouseEvent<HTMLDivElement>) => {
       if (disabled || rootDisabled) return;
       onClick?.(e);
@@ -140,6 +144,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
           className
         )}
         onClick={handleClick}
+        onMouseDown={handleMouseDown}
         onMouseEnter={handleMouseEnter}
         {...props}
       >

@@ -68,6 +68,9 @@ export const AutocompleteContent = forwardRef<HTMLDivElement, AutocompleteConten
           ref={mergedRef}
           tabIndex={-1}
           style={floatingStyles}
+          onMouseDown={(e) => {
+            e.preventDefault();
+          }}
           {...getFloatingProps(props as Record<string, unknown>)}
           className="z-50 outline-none"
         >
