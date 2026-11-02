@@ -12,7 +12,7 @@ import {
 export function SidebarView() {
   const sections = SIDEBAR_SECTIONS;
 
-  const livePreviewCard = (
+  const defaultStage = (
     <div className="flex flex-col items-center justify-center text-center p-8 gap-3 max-w-md mx-auto">
       <div className="size-10 rounded-xl bg-surface border-[0.5px] border-border flex items-center justify-center text-foreground">
         <ArrowLeft className="size-5 text-muted animate-pulse" />
@@ -34,7 +34,7 @@ export function SidebarView() {
       component="sidebar"
       importCode='import { Sidebar } from "@homonoid/react";'
       defaultCode={SIDEBAR_DEFAULT_CODE_SAMPLE}
-      defaultStage={livePreviewCard}
+      defaultStage={defaultStage}
       sections={SIDEBAR_SECTIONS_LIST}
     >
       {/* Object Continuity Section */}
