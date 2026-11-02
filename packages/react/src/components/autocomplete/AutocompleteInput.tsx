@@ -9,7 +9,7 @@ import {
 import { useMergeRefs } from "@floating-ui/react";
 import { Input } from "../input/Input";
 import { Spinner } from "../spinner/Spinner";
-import { cond } from "../../utils/condition";
+import { any, cond } from "../../utils/condition";
 import { useAutocompleteContext } from "./AutocompleteContext";
 import type { AutocompleteInputProps } from "./types";
 
@@ -25,6 +25,8 @@ export const AutocompleteInput = forwardRef<HTMLInputElement, AutocompleteInputP
       onBlur,
       onKeyDown,
       className,
+      label,
+      floating,
       ...props
     },
     ref
@@ -41,6 +43,8 @@ export const AutocompleteInput = forwardRef<HTMLInputElement, AutocompleteInputP
       radius,
       placeholder: contextPlaceholder,
       loading,
+      label: contextLabel,
+      floating: contextFloating,
       inputRef,
       inputId,
       listboxId,
@@ -130,6 +134,9 @@ export const AutocompleteInput = forwardRef<HTMLInputElement, AutocompleteInputP
       onKeyDown?.(e);
     };
 
+    const resolvedLabel = cond(label !== undefined, label, contextLabel);
+    const resolvedFloating = any(floating, contextFloating);
+
     const referenceProps = getReferenceProps({
       id: inputId,
       role: "combobox",
@@ -157,6 +164,8 @@ export const AutocompleteInput = forwardRef<HTMLInputElement, AutocompleteInputP
           disabled={disabled}
           leading={cond(loading, <Spinner size="sm" aria-hidden="true" />, leading)}
           trailing={trailing}
+          label={resolvedLabel}
+          floating={resolvedFloating}
           className={className}
           {...referenceProps}
         />

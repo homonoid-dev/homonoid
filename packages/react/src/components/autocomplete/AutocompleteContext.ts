@@ -4,6 +4,7 @@ import {
   createContext,
   useContext,
   type CSSProperties,
+  type ReactNode,
   type RefObject,
 } from "react";
 import type { FloatingContext } from "@floating-ui/react";
@@ -37,6 +38,8 @@ export interface AutocompleteContextValue {
   placeholder?: string;
   clearable: boolean;
   loading: boolean;
+  label?: ReactNode;
+  floating?: boolean;
   inputRef: RefObject<HTMLInputElement | null>;
   inputId: string;
   listboxId: string;

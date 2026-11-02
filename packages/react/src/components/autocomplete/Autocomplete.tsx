@@ -73,6 +73,8 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       loading = false,
       filter,
       clearable = true,
+      label,
+      floating = false,
       className,
       children,
       ...props
@@ -285,6 +287,8 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       placeholder,
       clearable,
       loading,
+      label,
+      floating,
       inputRef,
       inputId,
       listboxId,
@@ -316,6 +320,8 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
                 placeholder={placeholder}
                 leading={leading}
                 trailing={trailing}
+                label={label}
+                floating={floating}
               />
               <AutocompleteContent>
                 {cond(
