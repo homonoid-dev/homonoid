@@ -12,6 +12,7 @@ import {
   AUTOCOMPLETE_DEFAULT_CODE_SAMPLE,
   AUTOCOMPLETE_ATOMIC_CODE_SAMPLE,
   AUTOCOMPLETE_SIZES_CODE_SAMPLE,
+  AUTOCOMPLETE_FLOATING_CODE_SAMPLE,
   AUTOCOMPLETE_ASYNC_CODE_SAMPLE,
   AUTOCOMPLETE_COMPOUND_CODE_SAMPLE,
 } from "./model";
@@ -72,6 +73,29 @@ export function AutocompleteView() {
     { value: "de", label: "Germany" },
   ];
 
+  const floatingOptions = [
+    {
+      value: "ca",
+      label: "California",
+      description: "Pacific coast state with major tech and cultural hubs.",
+    },
+    {
+      value: "ny",
+      label: "New York",
+      description: "Mid Atlantic state known for finance and media.",
+    },
+    {
+      value: "tx",
+      label: "Texas",
+      description: "Southern state celebrated for energy and technology centers.",
+    },
+    {
+      value: "wa",
+      label: "Washington",
+      description: "Pacific Northwest hub for cloud infrastructure and aviation.",
+    },
+  ];
+
   const asyncOptions = [
     {
       value: "cache",
@@ -112,6 +136,18 @@ export function AutocompleteView() {
           <Autocomplete size="sm" placeholder="Small autocomplete..." options={sizeOptions} />
           <Autocomplete size="md" placeholder="Medium autocomplete..." options={sizeOptions} />
           <Autocomplete size="lg" placeholder="Large autocomplete..." options={sizeOptions} />
+        </div>
+      </Exhibit.Stage>
+
+      {/* Floating Label Section */}
+      <Exhibit.Stage section={sections.floating} code={AUTOCOMPLETE_FLOATING_CODE_SAMPLE}>
+        <div className="w-full max-w-sm mx-auto">
+          <Autocomplete
+            floating
+            label="Select State"
+            placeholder="Type state name..."
+            options={floatingOptions}
+          />
         </div>
       </Exhibit.Stage>
 

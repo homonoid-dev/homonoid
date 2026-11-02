@@ -8,6 +8,7 @@ import {
   Accessibility,
   Palette,
   BookOpen,
+  ArrowUpToLine,
 } from "lucide-react";
 import type { TocItemModel } from "@/components/ui/toc";
 
@@ -27,6 +28,11 @@ export const AUTOCOMPLETE_SECTIONS: Record<string, AutocompleteSectionItem> = {
     id: "sizes",
     label: "Sizes",
     icon: Sliders,
+  },
+  floating: {
+    id: "floating-label",
+    label: "Floating Label",
+    icon: ArrowUpToLine,
   },
   async: {
     id: "async-loading",
@@ -149,6 +155,44 @@ export function Example() {
       <Autocomplete size="sm" placeholder="Small autocomplete..." options={options} />
       <Autocomplete size="md" placeholder="Medium autocomplete..." options={options} />
       <Autocomplete size="lg" placeholder="Large autocomplete..." options={options} />
+    </div>
+  );
+}`;
+
+export const AUTOCOMPLETE_FLOATING_CODE_SAMPLE = `import { Autocomplete } from "@homonoid/react";
+
+export function Example() {
+  const options = [
+    {
+      value: "ca",
+      label: "California",
+      description: "Pacific coast state with major tech and cultural hubs.",
+    },
+    {
+      value: "ny",
+      label: "New York",
+      description: "Mid Atlantic state known for finance and media.",
+    },
+    {
+      value: "tx",
+      label: "Texas",
+      description: "Southern state celebrated for energy and technology centers.",
+    },
+    {
+      value: "wa",
+      label: "Washington",
+      description: "Pacific Northwest hub for cloud infrastructure and aviation.",
+    },
+  ];
+
+  return (
+    <div className="w-full max-w-sm mx-auto">
+      <Autocomplete
+        floating
+        label="Select State"
+        placeholder="Type state name..."
+        options={options}
+      />
     </div>
   );
 }`;
