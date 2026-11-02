@@ -71,17 +71,7 @@ export const SidebarItem = forwardRef<HTMLElement, SidebarItemProps>(
         leading={leading}
         trailing={trailingElement}
         className={cn(
-          "w-full select-none cursor-pointer",
-          cond(
-            collapsed,
-            "justify-center px-0 min-h-control-md w-control-md h-control-md mx-auto aspect-square",
-            undefined
-          ),
-          cond(
-            active,
-            undefined,
-            "text-muted hover:text-foreground"
-          ),
+          cond(collapsed, "justify-center px-0", undefined),
           className
         )}
         {...props}

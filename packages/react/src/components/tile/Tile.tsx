@@ -124,22 +124,22 @@ export const variants = cva(
       {
         selected: true,
         color: "surface",
-        className: "bg-surface-hover font-medium"
+        className: "bg-surface-hover"
       },
       {
         selected: true,
         color: "subtle",
-        className: "bg-subtle-hover font-medium"
+        className: "bg-subtle-hover"
       },
       {
         selected: true,
         color: "primary",
-        className: "bg-subtle-active font-medium"
+        className: "bg-subtle-active"
       },
       {
         selected: true,
         color: "destructive",
-        className: "bg-destructive-hover/10 font-medium"
+        className: "bg-destructive-hover/10"
       }
     ],
     defaultVariants: {
