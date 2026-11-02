@@ -104,10 +104,10 @@ export function Dock({
         className
       )}
     >
-      <div className="flex items-center p-1 rounded-full bg-surface/90 backdrop-blur-md border-[0.5px] border-border/80 shadow-md w-full overflow-hidden">
+      <div className="flex items-center p-1.5 rounded-full bg-surface/90 backdrop-blur-md border-[0.5px] border-border/80 shadow-md w-full overflow-hidden">
         <div
           ref={scrollContainerRef}
-          className="flex items-center gap-1.5 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-2.5 w-full"
+          className="flex items-center gap-1.5 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden w-full"
         >
           {items.map((item) => {
             const isSelected = effectiveActiveId === item.id;
