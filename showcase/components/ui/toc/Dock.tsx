@@ -69,20 +69,20 @@ export function Dock({
     const container = containerRef.current;
     const track = trackRef.current;
     const itemEl = itemRefs.current.get(effectiveActiveId);
-    if (!container || !track || !itemEl) return;
-
-    const isLast = items[items.length - 1]?.id === effectiveActiveId;
-    const isFirst = items[0]?.id === effectiveActiveId;
+    if (!container || !track) return;
 
     const containerWidth = container.clientWidth;
     const trackWidth = track.scrollWidth;
     const calculatedMax = Math.max(0, trackWidth - containerWidth);
     setMaxScroll(calculatedMax);
 
-    if (calculatedMax <= 0) {
+    if (calculatedMax <= 0 || !itemEl) {
       setScrollOffset(0);
       return;
     }
+
+    const isLast = items[items.length - 1]?.id === effectiveActiveId;
+    const isFirst = items[0]?.id === effectiveActiveId;
 
     let target = 0;
     if (isFirst) {
@@ -103,6 +103,8 @@ export function Dock({
   useEffect(() => {
     if (!effectiveActiveId || isPointerFine) return;
     updateScrollOffset();
+    const frame = requestAnimationFrame(updateScrollOffset);
+    return () => cancelAnimationFrame(frame);
   }, [effectiveActiveId, isPointerFine, updateScrollOffset]);
 
   useEffect(() => {
@@ -127,34 +129,39 @@ export function Dock({
 
   if (isPointerFine || !items || items.length === 0) return null;
 
+  const canScroll = maxScroll > 0;
+
   return (
     <nav
       data-slot="toc-dock"
       aria-label="Table of contents dock"
       className={cn(
         "fixed bottom-[calc(env(safe-area-inset-bottom,0px)+1rem)] left-1/2 -translate-x-1/2 z-30 lg:hidden",
-        "max-w-[calc(100vw-var(--p-layout-x)*2)] pointer-events-auto select-none",
+        "w-[calc(100vw-var(--p-layout-x)*2)] pointer-events-auto select-none",
         className
       )}
     >
-      <div className="flex items-center p-1.5 rounded-full bg-surface/90 backdrop-blur-md border-[0.5px] border-border/80 shadow-md overflow-hidden">
+      <div className="flex items-center p-1.5 rounded-full bg-surface/90 backdrop-blur-md border-[0.5px] border-border/80 shadow-md overflow-hidden w-full">
         <div
           ref={containerRef}
-          className="overflow-hidden max-w-full"
+          className={cn(
+            "overflow-hidden w-full flex items-center",
+            cond(canScroll, "justify-start", "justify-center")
+          )}
         >
           <motion.div
             ref={trackRef}
-            drag="x"
+            drag={canScroll ? "x" : false}
             dragConstraints={{ left: -maxScroll, right: 0 }}
             dragElastic={0.12}
-            animate={{ x: -scrollOffset }}
+            animate={{ x: canScroll ? -scrollOffset : 0 }}
             transition={{
               type: "spring",
               stiffness: 300,
               damping: 30,
               mass: 0.8,
             }}
-            className="flex items-center gap-1 px-1 touch-pan-x"
+            className="flex items-center gap-1 touch-pan-x px-1 shrink-0 w-fit"
           >
             {items.map((item) => {
               const isSelected = effectiveActiveId === item.id;
