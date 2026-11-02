@@ -1,6 +1,5 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  Navigation,
   Infinity,
   Accessibility,
   Palette,
@@ -15,11 +14,6 @@ export interface SidebarSectionItem extends TocItemModel {
 }
 
 export const SIDEBAR_SECTIONS: Record<string, SidebarSectionItem> = {
-  live: {
-    id: "live-navigation",
-    label: "Live Navigation",
-    icon: Navigation,
-  },
   continuity: {
     id: "object-continuity",
     label: "Continuity",

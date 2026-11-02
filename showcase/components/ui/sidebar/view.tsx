@@ -7,7 +7,6 @@ import {
   SIDEBAR_SECTIONS,
   SIDEBAR_SECTIONS_LIST,
   SIDEBAR_DEFAULT_CODE_SAMPLE,
-  SIDEBAR_LIVE_CODE_SAMPLE,
 } from "./model";
 
 export function SidebarView() {
@@ -38,11 +37,6 @@ export function SidebarView() {
       defaultStage={livePreviewCard}
       sections={SIDEBAR_SECTIONS_LIST}
     >
-      {/* Live Navigation Stage */}
-      <Exhibit.Stage section={sections.live} code={SIDEBAR_LIVE_CODE_SAMPLE}>
-        {livePreviewCard}
-      </Exhibit.Stage>
-
       {/* Object Continuity Section */}
       <Exhibit.Section section={sections.continuity}>
         <Description>
