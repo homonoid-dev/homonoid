@@ -18,7 +18,6 @@ import {
   BUTTON_CONTAINED_CODE_SAMPLE,
   getButtonVariantsCodeSample,
   BUTTON_SIZES_CODE_SAMPLE,
-  BUTTON_OUTLINED_CODE_SAMPLE,
   BUTTON_WITH_ICON_CODE_SAMPLE,
   BUTTON_ICON_ONLY_CODE_SAMPLE,
   BUTTON_LOADING_CODE_SAMPLE,
@@ -136,13 +135,6 @@ export function ButtonView() {
             Large
           </Button>
         </div>
-      </Exhibit.Stage>
-
-      {/* Outlined Section */}
-      <Exhibit.Stage section={sections.outlined} code={BUTTON_OUTLINED_CODE_SAMPLE}>
-        <Button variant="outlined">
-          Click me
-        </Button>
       </Exhibit.Stage>
 
       {/* With Icon Section */}

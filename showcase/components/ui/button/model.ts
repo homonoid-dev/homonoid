@@ -1,7 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Layers,
-  Circle,
   ArrowRight,
   Plus,
   Loader2,
@@ -33,11 +32,6 @@ export const BUTTON_SECTIONS: Record<string, ButtonSectionItem> = {
     id: "sizes",
     label: "Sizes",
     icon: Ruler,
-  },
-  outlined: {
-    id: "outlined",
-    label: "Outlined",
-    icon: Circle,
   },
   withIcon: {
     id: "with-icon",
@@ -118,16 +112,6 @@ export function Example() {
 }`;
 
 export const BUTTON_VARIANTS_CODE_SAMPLE = getButtonVariantsCodeSample("contained", "primary");
-
-export const BUTTON_OUTLINED_CODE_SAMPLE = `import { Button } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <Button variant="outlined">
-      Click me
-    </Button>
-  );
-}`;
 
 export const BUTTON_WITH_ICON_CODE_SAMPLE = `import { Button } from "@homonoid/react";
 import { ArrowRight } from "lucide-react";
