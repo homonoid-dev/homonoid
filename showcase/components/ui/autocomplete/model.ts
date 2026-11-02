@@ -197,7 +197,7 @@ export function Example() {
   );
 }`;
 
-export const AUTOCOMPLETE_ASYNC_CODE_SAMPLE = `import { Autocomplete } from "@homonoid/react";
+export const getAutocompleteAsyncCodeSample = (loading: boolean = true) => `import { Autocomplete } from "@homonoid/react";
 
 export function Example() {
   const options = [
@@ -210,14 +210,15 @@ export function Example() {
 
   return (
     <div className="w-full max-w-sm mx-auto">
-      <Autocomplete
-        loading
-        placeholder="Searching remote database..."
+      <Autocomplete${loading ? "\n        loading" : ""}
+        placeholder="${loading ? "Searching" : "Search"} remote database..."
         options={options}
       />
     </div>
   );
 }`;
+
+export const AUTOCOMPLETE_ASYNC_CODE_SAMPLE = getAutocompleteAsyncCodeSample(true);
 
 export const AUTOCOMPLETE_COMPOUND_CODE_SAMPLE = `import { Autocomplete } from "@homonoid/react";
 

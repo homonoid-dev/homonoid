@@ -1,8 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import {
   Accordion,
+  Button,
   Description,
+  Dropdown,
+  type AccordionVariant,
 } from "@homonoid/react";
 import { Exhibit } from "@/components/ui/exhibit";
 import {
@@ -10,13 +14,20 @@ import {
   ACCORDION_SECTIONS_LIST,
   ACCORDION_DEFAULT_CODE_SAMPLE,
   ACCORDION_ATOMIC_CODE_SAMPLE,
-  ACCORDION_VARIANTS_CODE_SAMPLE,
+  getAccordionVariantsCodeSample,
   ACCORDION_MULTIPLE_CODE_SAMPLE,
   ACCORDION_COMPOUND_CODE_SAMPLE,
 } from "./model";
 
 export function AccordionView() {
   const sections = ACCORDION_SECTIONS;
+  const [selectedVariant, setSelectedVariant] = useState<AccordionVariant>("flush");
+  const variantActions: { id: AccordionVariant; label: string }[] = [
+    { id: "flush", label: "Flush" },
+    { id: "bordered", label: "Bordered" },
+    { id: "separated", label: "Separated" },
+  ];
+  const activeAction = variantActions.find((a) => a.id === selectedVariant) ?? variantActions[0];
 
   const defaultItems = [
     {
@@ -61,7 +72,7 @@ export function AccordionView() {
     },
   ];
 
-  const separatedItems = [
+  const variantItems = [
     {
       value: "profile",
       trigger: "Account Security",
@@ -115,9 +126,37 @@ export function AccordionView() {
       </Exhibit.Stage>
 
       {/* Variants Section */}
-      <Exhibit.Stage section={sections.variants} code={ACCORDION_VARIANTS_CODE_SAMPLE}>
+      <Exhibit.Stage
+        section={sections.variants}
+        code={getAccordionVariantsCodeSample(selectedVariant)}
+        actions={
+          <Dropdown placement="bottom-end">
+            <Dropdown.Trigger asChild>
+              <Button
+                color="subtle"
+                aria-label={`Select variant, current: ${activeAction.label}`}
+              >
+                {activeAction.label}
+              </Button>
+            </Dropdown.Trigger>
+            <Dropdown.Content>
+              <Dropdown.List>
+                {variantActions.map((action) => (
+                  <Dropdown.Item
+                    key={action.id}
+                    selected={selectedVariant === action.id}
+                    onClick={() => setSelectedVariant(action.id)}
+                  >
+                    {action.label}
+                  </Dropdown.Item>
+                ))}
+              </Dropdown.List>
+            </Dropdown.Content>
+          </Dropdown>
+        }
+      >
         <div className="w-full max-w-lg mx-auto">
-          <Accordion variant="separated" defaultValue="profile" items={separatedItems} />
+          <Accordion variant={selectedVariant} defaultValue="profile" items={variantItems} />
         </div>
       </Exhibit.Stage>
 

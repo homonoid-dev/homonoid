@@ -73,50 +73,31 @@ export const AVATAR_DEFAULT_CODE_SAMPLE = `import { Avatar } from "@homonoid/rea
 
 export function Example() {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-4">
-      <Avatar
-        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
-        alt="Elena Rostova"
-        name="Elena Rostova"
-        status="online"
-      />
-      <Avatar name="Marcus Vance" color="primary" />
-      <Avatar name="Sarah Connor" color="surface" variant="outlined" />
-      <Avatar color="subtle" status="away" />
-    </div>
+    <Avatar
+      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+      alt="Elena Rostova"
+      name="Elena Rostova"
+      status="online"
+    />
   );
 }`;
 
-export const AVATAR_VARIANTS_CODE_SAMPLE = `import { Avatar } from "@homonoid/react";
+export const getAvatarVariantsCodeSample = (
+  variant: string = "contained",
+  color: string = "primary"
+) => `import { Avatar } from "@homonoid/react";
 
 export function Example() {
-  const variants = ["contained", "outlined", "plain"] as const;
-
   return (
-    <div className="flex flex-col items-center gap-4">
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        {variants.map((variant) => (
-          <Avatar
-            key={variant}
-            variant={variant}
-            color="primary"
-            name="Alex Morgan"
-          />
-        ))}
-      </div>
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        {variants.map((variant) => (
-          <Avatar
-            key={variant}
-            variant={variant}
-            color="surface"
-            name="Jordan Lee"
-          />
-        ))}
-      </div>
-    </div>
+    <Avatar
+      variant="${variant}"
+      color="${color}"
+      name="Alex Morgan"
+    />
   );
 }`;
+
+export const AVATAR_VARIANTS_CODE_SAMPLE = getAvatarVariantsCodeSample("contained", "primary");
 
 export const AVATAR_SIZES_CODE_SAMPLE = `import { Avatar } from "@homonoid/react";
 

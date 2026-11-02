@@ -13,6 +13,7 @@ export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
       onSelect,
       onClick,
       disabled = false,
+      selected = false,
       color = "surface",
       closeOnSelect = true,
       leading,
@@ -53,6 +54,7 @@ export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
         color={color}
         size={size}
         radius={radius}
+        selected={selected}
         disabled={disabled}
         interactive={!disabled}
         leading={leading}

@@ -1,7 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Layers,
-  Circle,
   ArrowRight,
   Plus,
   Loader2,
@@ -33,11 +32,6 @@ export const BUTTON_SECTIONS: Record<string, ButtonSectionItem> = {
     id: "sizes",
     label: "Sizes",
     icon: Ruler,
-  },
-  outlined: {
-    id: "outlined",
-    label: "Outlined",
-    icon: Circle,
   },
   withIcon: {
     id: "with-icon",
@@ -104,39 +98,20 @@ export function Example() {
   );
 }`;
 
-export const BUTTON_VARIANTS_CODE_SAMPLE = `import { Button } from "@homonoid/react";
+export const getButtonVariantsCodeSample = (
+  variant: string = "contained",
+  color: string = "primary"
+) => `import { Button } from "@homonoid/react";
 
 export function Example() {
   return (
-    <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-      <Button variant="contained" color="primary">
-        Primary
-      </Button>
-      <Button variant="contained" color="subtle">
-        Subtle
-      </Button>
-      <Button variant="outlined">
-        Outline
-      </Button>
-      <Button variant="plain">
-        Ghost
-      </Button>
-      <Button variant="contained" color="destructive">
-        Destructive
-      </Button>
-    </div>
-  );
-}`;
-
-export const BUTTON_OUTLINED_CODE_SAMPLE = `import { Button } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <Button variant="outlined">
+    <Button variant="${variant}" color="${color}">
       Click me
     </Button>
   );
 }`;
+
+export const BUTTON_VARIANTS_CODE_SAMPLE = getButtonVariantsCodeSample("contained", "primary");
 
 export const BUTTON_WITH_ICON_CODE_SAMPLE = `import { Button } from "@homonoid/react";
 import { ArrowRight } from "lucide-react";

@@ -1,7 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Description } from "@homonoid/react";
+import {
+  Button,
+  Description,
+  Dropdown,
+  type ButtonVariant,
+  type Color,
+} from "@homonoid/react";
+import { Palette } from "lucide-react";
 import { Exhibit } from "@/components/ui/exhibit";
 import { InteractiveStates } from "@/components/ui/interactive-states";
 import {
@@ -9,9 +16,8 @@ import {
   BUTTON_SECTIONS_LIST,
   BUTTON_INTERACTIVE_STATES,
   BUTTON_CONTAINED_CODE_SAMPLE,
-  BUTTON_VARIANTS_CODE_SAMPLE,
+  getButtonVariantsCodeSample,
   BUTTON_SIZES_CODE_SAMPLE,
-  BUTTON_OUTLINED_CODE_SAMPLE,
   BUTTON_WITH_ICON_CODE_SAMPLE,
   BUTTON_ICON_ONLY_CODE_SAMPLE,
   BUTTON_LOADING_CODE_SAMPLE,
@@ -21,6 +27,21 @@ import {
 
 export function ButtonView() {
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedVariant, setSelectedVariant] = useState<ButtonVariant>("contained");
+  const [selectedColor, setSelectedColor] = useState<Color>("primary");
+  const variantActions: { id: ButtonVariant; label: string }[] = [
+    { id: "contained", label: "Contained" },
+    { id: "outlined", label: "Outlined" },
+    { id: "plain", label: "Plain" },
+  ];
+  const colorActions: { id: Color; label: string }[] = [
+    { id: "primary", label: "Primary" },
+    { id: "subtle", label: "Subtle" },
+    { id: "surface", label: "Surface" },
+    { id: "destructive", label: "Destructive" },
+  ];
+  const activeAction =
+    variantActions.find((a) => a.id === selectedVariant) ?? variantActions[0];
   const sections = BUTTON_SECTIONS;
 
   return (
@@ -39,24 +60,66 @@ export function ButtonView() {
       sections={BUTTON_SECTIONS_LIST}
     >
       {/* Variants Section */}
-      <Exhibit.Stage section={sections.variants} code={BUTTON_VARIANTS_CODE_SAMPLE}>
-        <div className="flex flex-row flex-wrap items-center justify-center gap-surface-gap">
-          <Button variant="contained" color="primary">
-            Primary
-          </Button>
-          <Button variant="contained" color="subtle">
-            Subtle
-          </Button>
-          <Button variant="outlined">
-            Outline
-          </Button>
-          <Button variant="plain">
-            Ghost
-          </Button>
-          <Button variant="contained" color="destructive">
-            Destructive
-          </Button>
-        </div>
+      <Exhibit.Stage
+        section={sections.variants}
+        code={getButtonVariantsCodeSample(selectedVariant, selectedColor)}
+        actions={
+          <div className="flex items-center gap-1">
+            <Dropdown placement="bottom-end">
+              <Dropdown.Trigger asChild>
+                <Button
+                  color="subtle"
+                  aria-label={`Select variant, current: ${activeAction.label}`}
+                >
+                  {activeAction.label}
+                </Button>
+              </Dropdown.Trigger>
+              <Dropdown.Content>
+                <Dropdown.List>
+                  {variantActions.map((action) => (
+                    <Dropdown.Item
+                      key={action.id}
+                      selected={selectedVariant === action.id}
+                      onClick={() => setSelectedVariant(action.id)}
+                    >
+                      {action.label}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.List>
+              </Dropdown.Content>
+            </Dropdown>
+
+            <Dropdown placement="bottom-end">
+              <Dropdown.Trigger asChild>
+                <Button
+                  layout="icon"
+                  variant="plain"
+                  color="subtle"
+                  aria-label={`Select color, current: ${selectedColor}`}
+                >
+                  <Palette className="size-4" />
+                </Button>
+              </Dropdown.Trigger>
+              <Dropdown.Content>
+                <Dropdown.List>
+                  {colorActions.map((action) => (
+                    <Dropdown.Item
+                      key={action.id}
+                      selected={selectedColor === action.id}
+                      onClick={() => setSelectedColor(action.id)}
+                    >
+                      {action.label}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.List>
+              </Dropdown.Content>
+            </Dropdown>
+          </div>
+        }
+      >
+        <Button variant={selectedVariant} color={selectedColor}>
+          Click me
+        </Button>
       </Exhibit.Stage>
 
       {/* Sizes Section */}
@@ -72,13 +135,6 @@ export function ButtonView() {
             Large
           </Button>
         </div>
-      </Exhibit.Stage>
-
-      {/* Outlined Section */}
-      <Exhibit.Stage section={sections.outlined} code={BUTTON_OUTLINED_CODE_SAMPLE}>
-        <Button variant="outlined">
-          Click me
-        </Button>
       </Exhibit.Stage>
 
       {/* With Icon Section */}
