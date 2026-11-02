@@ -155,8 +155,8 @@ export const AutocompleteInput = forwardRef<HTMLInputElement, AutocompleteInputP
           radius={radius}
           invalid={invalid}
           disabled={disabled}
-          leading={leading}
-          trailing={cond(loading, <Spinner size="sm" aria-hidden="true" />, trailing)}
+          leading={cond(loading, <Spinner size="sm" aria-hidden="true" />, leading)}
+          trailing={trailing}
           className={className}
           {...referenceProps}
         />
