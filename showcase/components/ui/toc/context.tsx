@@ -67,7 +67,7 @@ export function TocProvider({ children }: { children: ReactNode }) {
         const readingLine = 140;
         const isNearBottom =
           window.innerHeight + window.scrollY >=
-          document.documentElement.scrollHeight - 80;
+          document.documentElement.scrollHeight - 140;
 
         if (isNearBottom) {
           const lastId = items[items.length - 1]?.id;
