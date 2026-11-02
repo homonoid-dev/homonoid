@@ -5,12 +5,14 @@ import {
   useRef,
   useState,
   useEffect,
+  useCallback,
   useMemo,
   isValidElement,
   type ReactNode,
   type ComponentType,
 } from "react";
 import type { LucideIcon } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@homonoid/react/cn";
 import { cond, when } from "@homonoid/react";
 import { TocContext } from "./context";
@@ -56,52 +58,58 @@ export function Dock({
     defaultActiveId ?? items[0]?.id ?? ""
   );
 
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+
+  const [scrollOffset, setScrollOffset] = useState(0);
+  const [maxScroll, setMaxScroll] = useState(0);
+
+  const updateScrollOffset = useCallback(() => {
+    const container = containerRef.current;
+    const track = trackRef.current;
+    const itemEl = itemRefs.current.get(effectiveActiveId);
+    if (!container || !track || !itemEl) return;
+
+    const isLast = items[items.length - 1]?.id === effectiveActiveId;
+    const isFirst = items[0]?.id === effectiveActiveId;
+
+    const containerWidth = container.clientWidth;
+    const trackWidth = track.scrollWidth;
+    const calculatedMax = Math.max(0, trackWidth - containerWidth);
+    setMaxScroll(calculatedMax);
+
+    if (calculatedMax <= 0) {
+      setScrollOffset(0);
+      return;
+    }
+
+    let target = 0;
+    if (isFirst) {
+      target = 0;
+    } else if (isLast) {
+      target = calculatedMax;
+    } else {
+      const itemLeft = itemEl.offsetLeft;
+      const itemWidth = itemEl.offsetWidth;
+      const itemCenter = itemLeft + itemWidth / 2;
+      target = itemCenter - containerWidth / 2;
+    }
+
+    const clamped = Math.max(0, Math.min(calculatedMax, target));
+    setScrollOffset(clamped);
+  }, [effectiveActiveId, items]);
 
   useEffect(() => {
     if (!effectiveActiveId || isPointerFine) return;
+    updateScrollOffset();
+  }, [effectiveActiveId, isPointerFine, updateScrollOffset]);
 
-    const performScroll = () => {
-      const container = scrollRef.current;
-      const itemEl = itemRefs.current.get(effectiveActiveId);
-      if (!container || !itemEl) return;
-
-      const isLast = items[items.length - 1]?.id === effectiveActiveId;
-      const isFirst = items[0]?.id === effectiveActiveId;
-
-      const containerWidth = container.clientWidth;
-      const scrollWidth = container.scrollWidth;
-      const maxScroll = Math.max(0, scrollWidth - containerWidth);
-      if (maxScroll <= 0) return;
-
-      let targetScroll = 0;
-      if (isFirst) {
-        targetScroll = 0;
-      } else if (isLast) {
-        targetScroll = maxScroll;
-      } else {
-        const itemLeft = itemEl.offsetLeft;
-        const itemWidth = itemEl.offsetWidth;
-        const itemCenter = itemLeft + itemWidth / 2;
-        targetScroll = itemCenter - containerWidth / 2;
-      }
-
-      const clampedScroll = Math.max(0, Math.min(maxScroll, targetScroll));
-      container.scrollTo({
-        left: clampedScroll,
-        behavior: "smooth",
-      });
-    };
-
-    const frame = requestAnimationFrame(performScroll);
-    const timer = setTimeout(performScroll, 220);
-
-    return () => {
-      cancelAnimationFrame(frame);
-      clearTimeout(timer);
-    };
-  }, [effectiveActiveId, isPointerFine, items]);
+  useEffect(() => {
+    const handleResize = () => updateScrollOffset();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [updateScrollOffset]);
 
   const handleSelect = (id: string) => {
     if (context?.scrollToSection) {
@@ -129,47 +137,81 @@ export function Dock({
         className
       )}
     >
-      <div className="flex items-center p-1.5 rounded-full bg-surface/90 backdrop-blur-md border-[0.5px] border-border/80 shadow-md">
+      <div className="flex items-center p-1.5 rounded-full bg-surface/90 backdrop-blur-md border-[0.5px] border-border/80 shadow-md overflow-hidden">
         <div
-          ref={scrollRef}
-          className="flex items-center gap-1 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-1"
+          ref={containerRef}
+          className="overflow-hidden max-w-xs sm:max-w-sm md:max-w-md"
         >
-          {items.map((item) => {
-            const isSelected = effectiveActiveId === item.id;
-            return (
-              <button
-                key={item.id}
-                ref={(el) => {
-                  if (el) itemRefs.current.set(item.id, el);
-                  else itemRefs.current.delete(item.id);
-                }}
-                type="button"
-                onClick={() => handleSelect(item.id)}
-                aria-label={item.label}
-                aria-current={cond(isSelected, "location", undefined)}
-                className={cn(
-                  "flex items-center rounded-full text-xs font-medium cursor-pointer shrink-0",
-                  "transition-all duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] motion-reduce:transition-none",
-                  cond(
-                    isSelected,
-                    "h-8 px-3 gap-1.5 bg-foreground text-background shadow-xs",
-                    "size-8 justify-center text-muted hover:text-foreground hover:bg-surface-hover active:bg-surface-active"
-                  )
-                )}
-              >
-                {when(
-                  Boolean(item.icon),
-                  <span className="shrink-0">{renderIcon(item.icon)}</span>
-                )}
-                {when(
-                  isSelected,
-                  <span className="whitespace-nowrap truncate max-w-32">
-                    {item.label}
-                  </span>
-                )}
-              </button>
-            );
-          })}
+          <motion.div
+            ref={trackRef}
+            drag="x"
+            dragConstraints={{ left: -maxScroll, right: 0 }}
+            dragElastic={0.12}
+            animate={{ x: -scrollOffset }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 30,
+              mass: 0.8,
+            }}
+            className="flex items-center gap-1 px-1 touch-pan-x"
+          >
+            {items.map((item) => {
+              const isSelected = effectiveActiveId === item.id;
+              return (
+                <motion.button
+                  key={item.id}
+                  ref={(el) => {
+                    if (el) itemRefs.current.set(item.id, el);
+                    else itemRefs.current.delete(item.id);
+                  }}
+                  layout
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 30,
+                    mass: 0.8,
+                  }}
+                  type="button"
+                  onClick={() => handleSelect(item.id)}
+                  aria-label={item.label}
+                  aria-current={cond(isSelected, "location", undefined)}
+                  className={cn(
+                    "flex items-center rounded-full text-xs font-medium cursor-pointer shrink-0",
+                    cond(
+                      isSelected,
+                      "h-8 px-3 gap-1.5 bg-foreground text-background shadow-xs",
+                      "size-8 justify-center text-muted hover:text-foreground hover:bg-surface-hover active:bg-surface-active"
+                    )
+                  )}
+                >
+                  {when(
+                    Boolean(item.icon),
+                    <span className="shrink-0">{renderIcon(item.icon)}</span>
+                  )}
+                  <AnimatePresence initial={false}>
+                    {when(
+                      isSelected,
+                      <motion.span
+                        initial={{ opacity: 0, width: 0 }}
+                        animate={{ opacity: 1, width: "auto" }}
+                        exit={{ opacity: 0, width: 0 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 30,
+                          mass: 0.8,
+                        }}
+                        className="whitespace-nowrap truncate max-w-32 overflow-hidden inline-block"
+                      >
+                        {item.label}
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
+              );
+            })}
+          </motion.div>
         </div>
       </div>
     </nav>
