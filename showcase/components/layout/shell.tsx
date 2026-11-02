@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import { cn } from "@homonoid/react/cn";
 
 // ---------------------------------------------------------------------------
 // Shell Layout Subcomponents
@@ -10,11 +11,13 @@ import React, { memo } from "react";
  */
 export const Header = memo(function Head({
   children,
+  className,
 }: {
   children?: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <header className="shrink-0 h-15 w-full">
+    <header className={cn("shrink-0 h-15 w-full", className)}>
       {children}
     </header>
   );
@@ -26,11 +29,19 @@ export const Header = memo(function Head({
  */
 export const Sidebar = memo(function Side({
   children,
+  className,
 }: {
   children?: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <div className="sticky top-0 h-screen shrink-0 flex overflow-hidden">
+    <div
+      data-slot="shell-sidebar"
+      className={cn(
+        "sticky top-0 h-screen shrink-0 hidden lg:flex overflow-hidden",
+        className
+      )}
+    >
       {children}
     </div>
   );
@@ -42,11 +53,13 @@ export const Sidebar = memo(function Side({
  */
 export const Main = memo(function Main({
   children,
+  className,
 }: {
   children?: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <main className="flex-1 min-w-0">
+    <main className={cn("flex-1 min-w-0", className)}>
       {children}
     </main>
   );
@@ -62,8 +75,10 @@ export const Main = memo(function Main({
  */
 export function Shell({
   children,
+  className,
 }: {
   children?: React.ReactNode;
+  className?: string;
 }) {
   const items = React.Children.toArray(children);
   const header = items.find(
@@ -72,7 +87,12 @@ export function Shell({
   const body = items.filter((child) => child !== header);
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-background text-foreground">
+    <div
+      className={cn(
+        "min-h-screen w-full flex flex-col bg-background text-foreground",
+        className
+      )}
+    >
       {header}
       <div className="flex-1 flex min-h-screen">
         {body}

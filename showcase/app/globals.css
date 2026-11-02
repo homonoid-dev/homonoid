@@ -12,4 +12,8 @@
   [data-slot="toc-sidebar"] {
     display: block !important;
   }
+
+  [data-slot="shell-sidebar"] {
+    display: flex !important;
+  }
 }
