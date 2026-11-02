@@ -1,10 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import {
   Autocomplete,
+  Button,
   Description,
+  Tooltip,
+  cond,
 } from "@homonoid/react";
-import { Search } from "lucide-react";
+import { Search, RotateCcw } from "lucide-react";
 import { Exhibit } from "@/components/ui/exhibit";
 import {
   AUTOCOMPLETE_SECTIONS,
@@ -13,12 +17,14 @@ import {
   AUTOCOMPLETE_ATOMIC_CODE_SAMPLE,
   AUTOCOMPLETE_SIZES_CODE_SAMPLE,
   AUTOCOMPLETE_FLOATING_CODE_SAMPLE,
-  AUTOCOMPLETE_ASYNC_CODE_SAMPLE,
+  getAutocompleteAsyncCodeSample,
   AUTOCOMPLETE_COMPOUND_CODE_SAMPLE,
 } from "./model";
 
 export function AutocompleteView() {
   const sections = AUTOCOMPLETE_SECTIONS;
+  const [isAsyncLoading, setIsAsyncLoading] = useState(true);
+  const [asyncKey, setAsyncKey] = useState(0);
 
   const defaultOptions = [
     {
@@ -96,13 +102,46 @@ export function AutocompleteView() {
     },
   ];
 
-  const asyncOptions = [
+  const initialAsyncOptions = [
     {
       value: "cache",
       label: "Cached Results",
       description: "Recently indexed items ready for instant selection.",
     },
   ];
+
+  const resolvedAsyncOptions = [
+    {
+      value: "cache",
+      label: "Cached Results",
+      description: "Recently indexed items ready for instant selection.",
+    },
+    {
+      value: "remote-1",
+      label: "Federated Catalog",
+      description: "Real time records retrieved from the primary shard.",
+    },
+    {
+      value: "remote-2",
+      label: "Distributed Pipeline",
+      description: "Aggregated query results synced across nodes.",
+    },
+  ];
+
+  const handleAsyncQueryChange = (query: string) => {
+    if (query.trim().length > 0 && isAsyncLoading) {
+      setIsAsyncLoading(false);
+    }
+  };
+
+  const handleToggleAsyncLoading = () => {
+    if (!isAsyncLoading) {
+      setIsAsyncLoading(true);
+      setAsyncKey((prev) => prev + 1);
+    } else {
+      setIsAsyncLoading(false);
+    }
+  };
 
   return (
     <Exhibit
@@ -152,12 +191,30 @@ export function AutocompleteView() {
       </Exhibit.Stage>
 
       {/* Async Loading Section */}
-      <Exhibit.Stage section={sections.async} code={AUTOCOMPLETE_ASYNC_CODE_SAMPLE}>
+      <Exhibit.Stage
+        section={sections.async}
+        code={getAutocompleteAsyncCodeSample(isAsyncLoading)}
+        actions={
+          <Tooltip side="bottom" content="Reset loading state">
+            <Button
+              layout="icon"
+              variant="plain"
+              color="subtle"
+              onClick={handleToggleAsyncLoading}
+              aria-label="Reset loading state"
+            >
+              <RotateCcw className="size-4" />
+            </Button>
+          </Tooltip>
+        }
+      >
         <div className="w-full max-w-sm mx-auto">
           <Autocomplete
-            loading
-            placeholder="Searching remote database..."
-            options={asyncOptions}
+            key={asyncKey}
+            loading={isAsyncLoading}
+            placeholder={cond(isAsyncLoading, "Searching remote database...", "Search remote database...")}
+            options={cond(isAsyncLoading, initialAsyncOptions, resolvedAsyncOptions)}
+            onQueryChange={handleAsyncQueryChange}
           />
         </div>
       </Exhibit.Stage>
