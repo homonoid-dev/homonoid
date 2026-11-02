@@ -197,12 +197,18 @@ export function Dock({
                         animate={{ opacity: 1, width: "auto" }}
                         exit={{ opacity: 0, width: 0 }}
                         transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 30,
-                          mass: 0.8,
+                          width: {
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 30,
+                            mass: 0.8,
+                          },
+                          opacity: {
+                            duration: 0.18,
+                            ease: "easeOut",
+                          },
                         }}
-                        className="whitespace-nowrap truncate max-w-32 overflow-hidden inline-block"
+                        className="whitespace-nowrap overflow-hidden inline-block"
                       >
                         {item.label}
                       </motion.span>
