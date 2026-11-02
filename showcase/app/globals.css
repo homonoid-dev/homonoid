@@ -3,3 +3,13 @@
 @import "@homonoid/react/styles.css";
 @source "..";
 @source "../../packages/react/src";
+
+@media (pointer: fine) {
+  [data-slot="toc-dock"] {
+    display: none !important;
+  }
+
+  [data-slot="toc-sidebar"] {
+    display: block !important;
+  }
+}

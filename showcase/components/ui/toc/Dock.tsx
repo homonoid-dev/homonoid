@@ -3,6 +3,7 @@
 import {
   useContext,
   useRef,
+  useState,
   useEffect,
   useMemo,
   isValidElement,
@@ -37,6 +38,16 @@ export function Dock({
     [explicitItems, context?.items]
   );
 
+  const [isPointerFine, setIsPointerFine] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(pointer: fine)");
+    setIsPointerFine(mql.matches);
+    const update = (e: MediaQueryListEvent) => setIsPointerFine(e.matches);
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+
   const activeId = context?.activeId ?? defaultActiveId ?? items[0]?.id ?? "";
   const isCurrentActiveValid = items.some((item) => item.id === activeId);
   const effectiveActiveId = cond(
@@ -49,7 +60,7 @@ export function Dock({
   const itemRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
 
   useEffect(() => {
-    if (!effectiveActiveId) return;
+    if (!effectiveActiveId || isPointerFine) return;
 
     const timer = setTimeout(() => {
       const container = scrollRef.current;
@@ -74,7 +85,7 @@ export function Dock({
     }, 60);
 
     return () => clearTimeout(timer);
-  }, [effectiveActiveId]);
+  }, [effectiveActiveId, isPointerFine]);
 
   const handleSelect = (id: string) => {
     if (context?.scrollToSection) {
@@ -90,13 +101,14 @@ export function Dock({
     }
   };
 
-  if (!items || items.length === 0) return null;
+  if (isPointerFine || !items || items.length === 0) return null;
 
   return (
     <nav
+      data-slot="toc-dock"
       aria-label="Table of contents dock"
       className={cn(
-        "fixed bottom-[calc(env(safe-area-inset-bottom,0px)+1rem)] left-1/2 -translate-x-1/2 z-30 md:hidden",
+        "fixed bottom-[calc(env(safe-area-inset-bottom,0px)+1rem)] left-1/2 -translate-x-1/2 z-30 lg:hidden",
         "max-w-[calc(100vw-2.5rem)] pointer-events-auto select-none",
         className
       )}
