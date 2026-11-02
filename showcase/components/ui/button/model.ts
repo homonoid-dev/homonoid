@@ -104,29 +104,20 @@ export function Example() {
   );
 }`;
 
-export const BUTTON_VARIANTS_CODE_SAMPLE = `import { Button } from "@homonoid/react";
+export const getButtonVariantsCodeSample = (
+  variant: string = "contained",
+  color: string = "primary"
+) => `import { Button } from "@homonoid/react";
 
 export function Example() {
   return (
-    <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-      <Button variant="contained" color="primary">
-        Primary
-      </Button>
-      <Button variant="contained" color="subtle">
-        Subtle
-      </Button>
-      <Button variant="outlined">
-        Outline
-      </Button>
-      <Button variant="plain">
-        Ghost
-      </Button>
-      <Button variant="contained" color="destructive">
-        Destructive
-      </Button>
-    </div>
+    <Button variant="${variant}" color="${color}">
+      Click me
+    </Button>
   );
 }`;
+
+export const BUTTON_VARIANTS_CODE_SAMPLE = getButtonVariantsCodeSample("contained", "primary");
 
 export const BUTTON_OUTLINED_CODE_SAMPLE = `import { Button } from "@homonoid/react";
 
