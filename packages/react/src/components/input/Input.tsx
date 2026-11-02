@@ -159,7 +159,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     Boolean(innerRef.current?.value),
     isDateType
   );
-  const isFloated = any(isFocused, hasValue);
+  const isExpanded = Boolean(props["aria-expanded"]);
+  const isFloated = any(isFocused, hasValue, isExpanded);
 
   // Accessibility bindings
   const userDescribedBy = props["aria-describedby"];
@@ -187,7 +188,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const floatingLabelColor = cond(
     isInvalid,
     "text-destructive",
-    cond(isFocused, "text-primary", "text-muted")
+    cond(any(isFocused, isExpanded), "text-primary", "text-muted")
   );
 
   const restingLabelSize = match(

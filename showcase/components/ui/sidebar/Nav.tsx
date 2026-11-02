@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Search } from "lucide-react";
-import { Searchbar } from "@homonoid/react";
-import { Sidebar } from "./Sidebar";
+import { Searchbar, Sidebar } from "@homonoid/react";
 import { SHOWCASE_COMPONENTS } from "@/config/components";
 
 export function Nav() {
@@ -24,7 +24,7 @@ export function Nav() {
   }, [query]);
 
   return (
-    <Sidebar>
+    <Sidebar width="w-58" className="select-none">
       <Sidebar.Header sticky>
         <Searchbar
           size="sm"
@@ -37,16 +37,19 @@ export function Nav() {
           className="w-full"
         />
       </Sidebar.Header>
-      {filteredComponents.map((component) => (
-        <Sidebar.Item
-          key={component.href}
-          href={component.href}
-          onClick={() => setQuery("")}
-        >
-          {component.name}
-        </Sidebar.Item>
-      ))}
+      <Sidebar.Content className="gap-control-gap px-surface-sm pb-surface-sm">
+        {filteredComponents.map((component) => (
+          <Sidebar.Item
+            key={component.href}
+            as={Link}
+            href={component.href}
+            active={pathname === component.href}
+            onClick={() => setQuery("")}
+          >
+            {component.name}
+          </Sidebar.Item>
+        ))}
+      </Sidebar.Content>
     </Sidebar>
   );
 }
-

@@ -96,15 +96,15 @@ const PREVIEWS: Record<string, ReactNode> = {
   Card: (
     <Card padding="sm" variant="filled" className="rounded-xl" >
       <div className="flex flex-col gap-1 w-20">
-        <div className="w-full h-1.5 rounded-full bg-muted/30" />
-        <div className="w-3/4 h-1.5 rounded-full bg-muted/15" />
+        <div className="w-full h-1.5 rounded-full bg-muted/20" />
+        <div className="w-3/4 h-1.5 rounded-full bg-muted/20" />
       </div>
     </Card>
   ),
   Checkbox: <Checkbox defaultChecked />,
   Description: (
     <div className="flex flex-col gap-1 w-30 p-surface-sm">
-      <div className="w-full h-1.5 rounded-full bg-muted/40" />
+      <div className="w-full h-1.5 rounded-full bg-muted/20" />
       <div className="w-3/4 h-1.5 rounded-full bg-muted/20" />
     </div>
   ),
@@ -157,6 +157,19 @@ const PREVIEWS: Record<string, ReactNode> = {
     </Button>
   ),
   Separator: <div className="w-20 h-[0.5px] bg-border" />,
+  Sidebar: (
+    <Card padding="none" variant="filled" className="flex flex-col p-2 gap-1.5 rounded-lg w-20">
+      <div className="flex items-center justify-end gap-1">
+        <div className="size-1.5 rounded-full bg-muted/20" />
+        <div className="size-1.5 rounded-full bg-muted/40" />
+      </div>
+      <div className="w-full h-1.5 rounded-full bg-muted/20" />
+      <div className="w-3/6 h-1.5 rounded-full bg-muted/20" />
+      <div className="w-3/4 h-1.5 rounded-full bg-muted/20" />
+      <div className="w-3/8 h-1.5 rounded-full bg-muted/20" />
+      <div className="w-3/6 h-1.5 rounded-full bg-muted/20" />
+    </Card>
+  ),
   Spinner: <Spinner size="md" />,
   Stepper: (
     <Stepper

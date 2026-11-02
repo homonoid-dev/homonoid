@@ -1,13 +1,16 @@
 "use client";
 
 import {
+  Children,
   forwardRef,
+  isValidElement,
   useState,
   useRef,
   useId,
   useCallback,
   useEffect,
   useMemo,
+  type ReactNode,
 } from "react";
 import {
   useFloating,
@@ -48,6 +51,40 @@ export interface AutocompleteComponent
   Empty: typeof AutocompleteEmpty;
 }
 
+function findItemLabelFromChildren(
+  children: ReactNode,
+  targetValue: string
+): string | undefined {
+  let result: string | undefined;
+
+  Children.forEach(children, (child) => {
+    if (result || !isValidElement(child)) return;
+
+    const props = child.props as Record<string, unknown> | undefined;
+    if (props?.value === targetValue) {
+      if (typeof props.label === "string" && props.label) {
+        result = props.label;
+        return;
+      }
+      if (typeof props.children === "string" && props.children) {
+        result = props.children;
+        return;
+      }
+      result = String(props.value);
+      return;
+    }
+
+    if (props?.children) {
+      const nested = findItemLabelFromChildren(props.children as ReactNode, targetValue);
+      if (nested) {
+        result = nested;
+      }
+    }
+  });
+
+  return result;
+}
+
 export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
   function Autocomplete(
     {
@@ -73,6 +110,8 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       loading = false,
       filter,
       clearable = true,
+      label,
+      floating = false,
       className,
       children,
       ...props
@@ -88,9 +127,13 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
     const isQueryControlled = controlledQuery !== undefined;
     const [uncontrolledQuery, setUncontrolledQuery] = useState<string>(() => {
       if (defaultQuery !== undefined) return defaultQuery;
-      if (defaultValue && options) {
-        const found = options.find((opt) => opt.value === defaultValue);
-        return found?.label || found?.value || "";
+      if (defaultValue) {
+        if (options) {
+          const found = options.find((opt) => opt.value === defaultValue);
+          return found?.label || found?.value || defaultValue;
+        }
+        const fromChildren = findItemLabelFromChildren(children, defaultValue);
+        return fromChildren || defaultValue;
       }
       return "";
     });
@@ -103,7 +146,10 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
     valueRef.current = activeValue;
 
     const initialDefaultResolvedRef = useRef(
-      Boolean((defaultValue && options) || (!defaultValue && !controlledValue))
+      Boolean(
+        (defaultValue && (options || findItemLabelFromChildren(children, defaultValue))) ||
+        (!defaultValue && !controlledValue)
+      )
     );
 
     const isOpenControlled = controlledOpen !== undefined;
@@ -285,6 +331,8 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       placeholder,
       clearable,
       loading,
+      label,
+      floating,
       inputRef,
       inputId,
       listboxId,
@@ -316,6 +364,8 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
                 placeholder={placeholder}
                 leading={leading}
                 trailing={trailing}
+                label={label}
+                floating={floating}
               />
               <AutocompleteContent>
                 {cond(

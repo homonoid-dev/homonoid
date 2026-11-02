@@ -133,27 +133,32 @@ export function Example() {
 
 export const SPINNER_COLORS_CODE_SAMPLE = `import { Spinner } from "@homonoid/react";
 
-export function ColorsExample() {
+export function Example() {
+  const colors = ["primary", "subtle", "surface", "destructive", "current"] as const;
+
   return (
     <div className="flex flex-row items-center gap-surface-gap">
-      <Spinner color="subtle" />
-      <Spinner color="foreground" />
-      <Spinner color="destructive" />
+      {colors.map((color) => (
+        <div key={color} className="flex flex-col items-center gap-2">
+          <Spinner color={color} />
+          <span className="text-xs text-muted capitalize">{color}</span>
+        </div>
+      ))}
     </div>
   );
 }`;
 
 export const SPINNER_EMBEDDED_CODE_SAMPLE = `import { Button, Input, Spinner } from "@homonoid/react";
 
-export function EmbeddedExample() {
+export function Example() {
   return (
     <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-      <Button loading>
+      <Button variant="contained" loading>
         Submitting
       </Button>
       <Input
         placeholder="Searching components..."
-        trailing={<Spinner size="sm" color="subtle" />}
+        leading={<Spinner size="sm" color="subtle" />}
       />
     </div>
   );

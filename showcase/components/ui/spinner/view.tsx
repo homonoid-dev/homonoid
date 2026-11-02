@@ -16,6 +16,7 @@ import {
 
 export function SpinnerView() {
   const sections = SPINNER_SECTIONS;
+  const colors = ["primary", "subtle", "surface", "destructive", "current"] as const;
 
   return (
     <Exhibit
@@ -61,22 +62,25 @@ export function SpinnerView() {
 
       {/* Colors Section */}
       <Exhibit.Stage section={sections.colors} code={SPINNER_COLORS_CODE_SAMPLE}>
-        <div className="flex flex-row items-center gap-8">
-          <Spinner color="subtle" />
-          <Spinner color="foreground" />
-          <Spinner color="destructive" />
+        <div className="flex flex-row items-center gap-surface-gap">
+          {colors.map((color) => (
+            <div key={color} className="flex flex-col items-center gap-2">
+              <Spinner color={color} />
+              <span className="text-xs text-muted capitalize">{color}</span>
+            </div>
+          ))}
         </div>
       </Exhibit.Stage>
 
       {/* Embedded Section */}
       <Exhibit.Stage section={sections.embedded} code={SPINNER_EMBEDDED_CODE_SAMPLE}>
         <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-          <Button loading>
+          <Button variant="contained" loading>
             Submitting
           </Button>
           <Input
             placeholder="Searching components..."
-            trailing={<Spinner size="sm" color="subtle" />}
+            leading={<Spinner size="sm" color="subtle" />}
           />
         </div>
       </Exhibit.Stage>

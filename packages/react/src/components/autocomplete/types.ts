@@ -132,6 +132,17 @@ export interface AutocompleteProps
    * Custom clear action handler or whether clear button is enabled.
    */
   clearable?: boolean;
+
+  /**
+   * Primary textual or visual label associated with the input.
+   */
+  label?: ReactNode;
+
+  /**
+   * Whether the label transitions smoothly into a floating state upon focus or input content presence.
+   * @default false
+   */
+  floating?: boolean;
 }
 
 export interface AutocompleteInputProps
@@ -139,6 +150,17 @@ export interface AutocompleteInputProps
   ref?: Ref<HTMLInputElement>;
   leading?: ReactNode;
   trailing?: ReactNode;
+
+  /**
+   * Primary textual or visual label associated with the input.
+   */
+  label?: ReactNode;
+
+  /**
+   * Whether the label transitions smoothly into a floating state upon focus or input content presence.
+   * @default false
+   */
+  floating?: boolean;
 }
 
 export interface AutocompleteContentProps extends HTMLAttributes<HTMLDivElement> {
