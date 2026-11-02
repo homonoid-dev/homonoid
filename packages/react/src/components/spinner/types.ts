@@ -1,8 +1,8 @@
 import type { HTMLAttributes, Ref } from "react";
-import type { Size } from "../../types";
+import type { Color, Size } from "../../types";
 
 export type SpinnerSize = Size;
-export type SpinnerColor = "current" | "subtle" | "foreground" | "destructive";
+export type SpinnerColor = Color | "current";
 export type SpinnerAnimation = "border" | "grow" | "orbit" | "dash";
 
 export interface SpinnerProps extends HTMLAttributes<HTMLSpanElement> {
