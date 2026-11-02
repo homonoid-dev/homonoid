@@ -73,17 +73,12 @@ export const AVATAR_DEFAULT_CODE_SAMPLE = `import { Avatar } from "@homonoid/rea
 
 export function Example() {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-4">
-      <Avatar
-        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
-        alt="Elena Rostova"
-        name="Elena Rostova"
-        status="online"
-      />
-      <Avatar name="Marcus Vance" color="primary" />
-      <Avatar name="Sarah Connor" color="surface" variant="outlined" />
-      <Avatar color="subtle" status="away" />
-    </div>
+    <Avatar
+      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+      alt="Elena Rostova"
+      name="Elena Rostova"
+      status="online"
+    />
   );
 }`;
 
