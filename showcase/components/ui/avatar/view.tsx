@@ -30,9 +30,7 @@ export function AvatarView() {
     { id: "outlined", label: "Outlined", icon: Circle },
     { id: "plain", label: "Plain", icon: CircleDashed },
   ];
-  const activeAction =
-    variantActions.find((a) => a.id === selectedVariant) ?? variantActions[0];
-  const ActiveIcon = activeAction.icon;
+  const activeAction = variantActions.find((a) => a.id === selectedVariant) ?? variantActions[0];
   const sizes = ["sm", "md", "lg"] as const;
   const colors = ["primary", "subtle", "surface", "destructive"] as const;
   const statuses = ["online", "away", "busy", "offline"] as const;
@@ -64,7 +62,6 @@ export function AvatarView() {
             <Dropdown.Trigger asChild>
               <Button
                 color="subtle"
-                leading={<ActiveIcon className="size-3.5" />}
                 aria-label={`Select variant, current: ${activeAction.label}`}
               >
                 {activeAction.label}
