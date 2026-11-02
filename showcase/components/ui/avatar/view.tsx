@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import type { LucideIcon } from "lucide-react";
-import { CircleDot, Circle, CircleDashed } from "lucide-react";
+import { CircleDot, Circle, CircleDashed, Palette } from "lucide-react";
 import {
   Avatar,
   Button,
   Description,
   Dropdown,
   type AvatarVariant,
+  type Color,
 } from "@homonoid/react";
 import { Exhibit } from "@/components/ui/exhibit";
 import {
@@ -25,10 +26,17 @@ import {
 export function AvatarView() {
   const sections = AVATAR_SECTIONS;
   const [selectedVariant, setSelectedVariant] = useState<AvatarVariant>("contained");
+  const [selectedColor, setSelectedColor] = useState<Color>("primary");
   const variantActions: { id: AvatarVariant; label: string; icon: LucideIcon }[] = [
     { id: "contained", label: "Contained", icon: CircleDot },
     { id: "outlined", label: "Outlined", icon: Circle },
     { id: "plain", label: "Plain", icon: CircleDashed },
+  ];
+  const colorActions: { id: Color; label: string }[] = [
+    { id: "primary", label: "Primary" },
+    { id: "subtle", label: "Subtle" },
+    { id: "surface", label: "Surface" },
+    { id: "destructive", label: "Destructive" },
   ];
   const activeAction = variantActions.find((a) => a.id === selectedVariant) ?? variantActions[0];
   const sizes = ["sm", "md", "lg"] as const;
@@ -56,40 +64,68 @@ export function AvatarView() {
       {/* Structural Variants Section */}
       <Exhibit.Stage
         section={sections.variants}
-        code={getAvatarVariantsCodeSample(selectedVariant)}
+        code={getAvatarVariantsCodeSample(selectedVariant, selectedColor)}
         actions={
-          <Dropdown placement="bottom-end">
-            <Dropdown.Trigger asChild>
-              <Button
-                color="subtle"
-                aria-label={`Select variant, current: ${activeAction.label}`}
-              >
-                {activeAction.label}
-              </Button>
-            </Dropdown.Trigger>
-            <Dropdown.Content>
-              <Dropdown.List>
-                {variantActions.map((action) => {
-                  const Icon = action.icon;
-                  return (
+          <div className="flex items-center gap-1">
+            <Dropdown placement="bottom-end">
+              <Dropdown.Trigger asChild>
+                <Button
+                  color="subtle"
+                  aria-label={`Select variant, current: ${activeAction.label}`}
+                >
+                  {activeAction.label}
+                </Button>
+              </Dropdown.Trigger>
+              <Dropdown.Content>
+                <Dropdown.List>
+                  {variantActions.map((action) => {
+                    const Icon = action.icon;
+                    return (
+                      <Dropdown.Item
+                        key={action.id}
+                        selected={selectedVariant === action.id}
+                        leading={<Icon className="size-3.5" />}
+                        onClick={() => setSelectedVariant(action.id)}
+                      >
+                        {action.label}
+                      </Dropdown.Item>
+                    );
+                  })}
+                </Dropdown.List>
+              </Dropdown.Content>
+            </Dropdown>
+
+            <Dropdown placement="bottom-end">
+              <Dropdown.Trigger asChild>
+                <Button
+                  layout="icon"
+                  variant="plain"
+                  color="subtle"
+                  aria-label={`Select color, current: ${selectedColor}`}
+                >
+                  <Palette className="size-4" />
+                </Button>
+              </Dropdown.Trigger>
+              <Dropdown.Content>
+                <Dropdown.List>
+                  {colorActions.map((action) => (
                     <Dropdown.Item
                       key={action.id}
-                      selected={selectedVariant === action.id}
-                      leading={<Icon className="size-3.5" />}
-                      onClick={() => setSelectedVariant(action.id)}
+                      selected={selectedColor === action.id}
+                      onClick={() => setSelectedColor(action.id)}
                     >
                       {action.label}
                     </Dropdown.Item>
-                  );
-                })}
-              </Dropdown.List>
-            </Dropdown.Content>
-          </Dropdown>
+                  ))}
+                </Dropdown.List>
+              </Dropdown.Content>
+            </Dropdown>
+          </div>
         }
       >
         <Avatar
           variant={selectedVariant}
-          color="primary"
+          color={selectedColor}
           name="Alex Morgan"
         />
       </Exhibit.Stage>

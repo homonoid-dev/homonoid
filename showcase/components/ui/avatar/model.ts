@@ -82,19 +82,22 @@ export function Example() {
   );
 }`;
 
-export const getAvatarVariantsCodeSample = (variant: string = "contained") => `import { Avatar } from "@homonoid/react";
+export const getAvatarVariantsCodeSample = (
+  variant: string = "contained",
+  color: string = "primary"
+) => `import { Avatar } from "@homonoid/react";
 
 export function Example() {
   return (
     <Avatar
       variant="${variant}"
-      color="primary"
+      color="${color}"
       name="Alex Morgan"
     />
   );
 }`;
 
-export const AVATAR_VARIANTS_CODE_SAMPLE = getAvatarVariantsCodeSample("contained");
+export const AVATAR_VARIANTS_CODE_SAMPLE = getAvatarVariantsCodeSample("contained", "primary");
 
 export const AVATAR_SIZES_CODE_SAMPLE = `import { Avatar } from "@homonoid/react";
 
