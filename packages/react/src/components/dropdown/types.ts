@@ -175,6 +175,13 @@ export interface DropdownItemProps extends Omit<HTMLAttributes<HTMLDivElement>, 
   disabled?: boolean;
 
   /**
+   * Whether the item is currently selected.
+   * Renders with visual selected surface treatment via Tile.
+   * @default false
+   */
+  selected?: boolean;
+
+  /**
    * Whether activating the item automatically dismisses the dropdown menu.
    * @default true
    */

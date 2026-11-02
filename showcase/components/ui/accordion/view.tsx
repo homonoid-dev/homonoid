@@ -2,13 +2,12 @@
 
 import { useState } from "react";
 import type { LucideIcon } from "lucide-react";
-import { Rows3, RectangleHorizontal, Layers, Check } from "lucide-react";
+import { Rows3, RectangleHorizontal, Layers } from "lucide-react";
 import {
   Accordion,
   Button,
   Description,
   Dropdown,
-  when,
   type AccordionVariant,
 } from "@homonoid/react";
 import { Exhibit } from "@/components/ui/exhibit";
@@ -150,12 +149,11 @@ export function AccordionView() {
               <Dropdown.List>
                 {variantActions.map((action) => {
                   const Icon = action.icon;
-                  const isSelected = selectedVariant === action.id;
                   return (
                     <Dropdown.Item
                       key={action.id}
+                      selected={selectedVariant === action.id}
                       leading={<Icon className="size-4" />}
-                      trailing={when(isSelected, <Check className="size-3.5 text-primary" />)}
                       onClick={() => setSelectedVariant(action.id)}
                     >
                       {action.label}
