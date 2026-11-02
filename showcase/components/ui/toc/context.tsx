@@ -54,46 +54,55 @@ export function TocProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!items || items.length === 0) return;
 
-    setActiveId((prev) => {
-      if (items.some((item) => item.id === prev)) return prev;
-      return items[0]?.id ?? "";
-    });
+    let rafId: number | null = null;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
+    const handleScroll = () => {
+      if (isLockedRef.current) return;
+
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
         if (isLockedRef.current) return;
 
-        const visibleEntries = entries.filter((e) => e.isIntersecting);
-        if (visibleEntries.length === 0) return;
+        const readingLine = 140;
+        const isNearBottom =
+          window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 80;
 
-        visibleEntries.sort(
-          (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
-        );
-
-        const target =
-          visibleEntries.find((e) => e.boundingClientRect.top >= 0) ??
-          visibleEntries[0];
-
-        if (target) {
-          setActiveId(target.target.id);
+        if (isNearBottom) {
+          const lastId = items[items.length - 1]?.id;
+          if (lastId) {
+            setActiveId(lastId);
+            return;
+          }
         }
-      },
-      {
-        rootMargin: "-80px 0px -40% 0px",
-        threshold: 0,
-      }
-    );
 
-    for (const item of items) {
-      const el = document.getElementById(item.id);
-      if (el) observer.observe(el);
-    }
+        let currentId = items[0]?.id ?? "";
+        for (const item of items) {
+          const el = document.getElementById(item.id);
+          if (!el) continue;
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= readingLine) {
+            currentId = item.id;
+          } else {
+            break;
+          }
+        }
+
+        setActiveId((prev) => (prev === currentId ? prev : currentId));
+      });
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
 
     return () => {
-      observer.disconnect();
-      if (lockTimerRef.current) {
-        clearTimeout(lockTimerRef.current);
-      }
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      if (lockTimerRef.current) clearTimeout(lockTimerRef.current);
     };
   }, [items]);
 

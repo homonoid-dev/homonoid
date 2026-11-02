@@ -62,30 +62,46 @@ export function Dock({
   useEffect(() => {
     if (!effectiveActiveId || isPointerFine) return;
 
-    const timer = setTimeout(() => {
+    const performScroll = () => {
       const container = scrollRef.current;
       const itemEl = itemRefs.current.get(effectiveActiveId);
       if (!container || !itemEl) return;
 
+      const isLast = items[items.length - 1]?.id === effectiveActiveId;
+      const isFirst = items[0]?.id === effectiveActiveId;
+
       const containerWidth = container.clientWidth;
       const scrollWidth = container.scrollWidth;
-      const maxScroll = scrollWidth - containerWidth;
+      const maxScroll = Math.max(0, scrollWidth - containerWidth);
       if (maxScroll <= 0) return;
 
-      const itemLeft = itemEl.offsetLeft;
-      const itemWidth = itemEl.offsetWidth;
-      const itemCenter = itemLeft + itemWidth / 2;
-      const targetScroll = itemCenter - containerWidth / 2;
+      let targetScroll = 0;
+      if (isFirst) {
+        targetScroll = 0;
+      } else if (isLast) {
+        targetScroll = maxScroll;
+      } else {
+        const itemLeft = itemEl.offsetLeft;
+        const itemWidth = itemEl.offsetWidth;
+        const itemCenter = itemLeft + itemWidth / 2;
+        targetScroll = itemCenter - containerWidth / 2;
+      }
 
       const clampedScroll = Math.max(0, Math.min(maxScroll, targetScroll));
       container.scrollTo({
         left: clampedScroll,
         behavior: "smooth",
       });
-    }, 60);
+    };
 
-    return () => clearTimeout(timer);
-  }, [effectiveActiveId, isPointerFine]);
+    const frame = requestAnimationFrame(performScroll);
+    const timer = setTimeout(performScroll, 220);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      clearTimeout(timer);
+    };
+  }, [effectiveActiveId, isPointerFine, items]);
 
   const handleSelect = (id: string) => {
     if (context?.scrollToSection) {
@@ -116,7 +132,7 @@ export function Dock({
       <div className="flex items-center p-1.5 rounded-full bg-surface/90 backdrop-blur-md border-[0.5px] border-border/80 shadow-md">
         <div
           ref={scrollRef}
-          className="flex items-center gap-1 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-0.5"
+          className="flex items-center gap-1 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-1"
         >
           {items.map((item) => {
             const isSelected = effectiveActiveId === item.id;
