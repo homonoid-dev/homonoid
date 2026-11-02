@@ -1,7 +1,7 @@
 "use client";
 
 import { Badge, Button, Description } from "@homonoid/react";
-import { Check, Bell, Mail, ShieldAlert } from "lucide-react";
+import { Bell, Mail, ShieldAlert } from "lucide-react";
 import { Exhibit } from "@/components/ui/exhibit";
 import {
   BADGE_SECTIONS,
@@ -26,18 +26,9 @@ export function BadgeView() {
       importCode='import { Badge } from "@homonoid/react";'
       defaultCode={BADGE_DEFAULT_CODE_SAMPLE}
       defaultStage={
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <Badge color="primary" variant="contained">
-            Operational
-          </Badge>
-          <Badge leading={<Check className="size-3" />} color="surface" variant="contained">
-            Verified
-          </Badge>
-          <Badge count={24} color="destructive" variant="contained" />
-          <Badge color="subtle" variant="outlined">
-            v2.4.0
-          </Badge>
-        </div>
+        <Badge>
+          Operational
+        </Badge>
       }
       sections={BADGE_SECTIONS_LIST}
     >
