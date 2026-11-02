@@ -38,7 +38,7 @@ export const Sidebar = memo(function Side({
     <div
       data-slot="shell-sidebar"
       className={cn(
-        "sticky top-0 h-screen shrink-0 hidden lg:flex overflow-hidden",
+        "sticky top-0 h-screen shrink-0 hidden md:flex overflow-hidden",
         className
       )}
     >

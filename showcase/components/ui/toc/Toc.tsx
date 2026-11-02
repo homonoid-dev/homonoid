@@ -46,16 +46,7 @@ export function Toc({
   );
   const activeId = context?.activeId || internalActiveId;
 
-  const [isPointerFine, setIsPointerFine] = useState(false);
   const [internalCollapsed, setInternalCollapsed] = useState(false);
-
-  useEffect(() => {
-    const pointerMql = window.matchMedia("(pointer: fine)");
-    setIsPointerFine(pointerMql.matches);
-    const updatePointer = (e: MediaQueryListEvent) => setIsPointerFine(e.matches);
-    pointerMql.addEventListener("change", updatePointer);
-    return () => pointerMql.removeEventListener("change", updatePointer);
-  }, []);
 
   useEffect(() => {
     if (controlledCollapsed !== undefined) return;
@@ -103,7 +94,7 @@ export function Toc({
       aria-label="Table of contents"
       className={cn(
         "sticky top-0 self-start h-screen shrink-0 border-l-[0.5px] border-border/50 bg-background transition-[width] duration-300 ease-in-out select-none",
-        cond(isPointerFine, "block", "hidden lg:block"),
+        "hidden md:block",
         cond(isCollapsed, "w-[calc(var(--p-layout-x)*2+1rem)]", "w-58"),
         className
       )}
