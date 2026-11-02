@@ -29,9 +29,7 @@ export function AccordionView() {
     { id: "bordered", label: "Bordered", icon: RectangleHorizontal },
     { id: "separated", label: "Separated", icon: Layers },
   ];
-  const activeAction =
-    variantActions.find((a) => a.id === selectedVariant) ?? variantActions[0];
-  const ActiveIcon = activeAction.icon;
+  const activeAction = variantActions.find((a) => a.id === selectedVariant) ?? variantActions[0];
 
   const defaultItems = [
     {
@@ -137,12 +135,10 @@ export function AccordionView() {
           <Dropdown placement="bottom-end">
             <Dropdown.Trigger asChild>
               <Button
-                layout="icon"
-                variant="plain"
-                color="surface"
+                color="subtle"
                 aria-label={`Select variant, current: ${activeAction.label}`}
               >
-                <ActiveIcon className="size-4" />
+                {activeAction.label}
               </Button>
             </Dropdown.Trigger>
             <Dropdown.Content>
@@ -153,7 +149,7 @@ export function AccordionView() {
                     <Dropdown.Item
                       key={action.id}
                       selected={selectedVariant === action.id}
-                      leading={<Icon className="size-4" />}
+                      leading={<Icon className="size-3.5" />}
                       onClick={() => setSelectedVariant(action.id)}
                     >
                       {action.label}
