@@ -1,13 +1,21 @@
 "use client";
 
-import { Badge, Button, Description } from "@homonoid/react";
-import { Bell, Mail, ShieldAlert } from "lucide-react";
+import { useState } from "react";
+import {
+  Badge,
+  Button,
+  Description,
+  Dropdown,
+  type BadgeVariant,
+  type Color,
+} from "@homonoid/react";
+import { Palette, Bell, Mail, ShieldAlert } from "lucide-react";
 import { Exhibit } from "@/components/ui/exhibit";
 import {
   BADGE_SECTIONS,
   BADGE_SECTIONS_LIST,
   BADGE_DEFAULT_CODE_SAMPLE,
-  BADGE_VARIANTS_CODE_SAMPLE,
+  getBadgeVariantsCodeSample,
   BADGE_SIZES_CODE_SAMPLE,
   BADGE_COLORS_CODE_SAMPLE,
   BADGE_ANCHORS_CODE_SAMPLE,
@@ -15,6 +23,21 @@ import {
 
 export function BadgeView() {
   const sections = BADGE_SECTIONS;
+  const [selectedVariant, setSelectedVariant] = useState<BadgeVariant>("contained");
+  const [selectedColor, setSelectedColor] = useState<Color>("primary");
+  const variantActions: { id: BadgeVariant; label: string }[] = [
+    { id: "contained", label: "Contained" },
+    { id: "outlined", label: "Outlined" },
+    { id: "plain", label: "Plain" },
+  ];
+  const colorActions: { id: Color; label: string }[] = [
+    { id: "primary", label: "Primary" },
+    { id: "subtle", label: "Subtle" },
+    { id: "surface", label: "Surface" },
+    { id: "destructive", label: "Destructive" },
+  ];
+  const activeAction =
+    variantActions.find((a) => a.id === selectedVariant) ?? variantActions[0];
   const colors = ["primary", "subtle", "surface", "destructive"] as const;
 
   return (
@@ -33,19 +56,66 @@ export function BadgeView() {
       sections={BADGE_SECTIONS_LIST}
     >
       {/* Structural Variants Section */}
-      <Exhibit.Stage section={sections.variants} code={BADGE_VARIANTS_CODE_SAMPLE}>
-        <div className="flex flex-col items-center gap-4">
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Badge variant="contained" color="primary">Contained</Badge>
-            <Badge variant="outlined" color="primary">Outlined</Badge>
-            <Badge variant="plain" color="primary">Plain</Badge>
+      <Exhibit.Stage
+        section={sections.variants}
+        code={getBadgeVariantsCodeSample(selectedVariant, selectedColor)}
+        actions={
+          <div className="flex items-center gap-1">
+            <Dropdown placement="bottom-end">
+              <Dropdown.Trigger asChild>
+                <Button
+                  color="subtle"
+                  aria-label={`Select variant, current: ${activeAction.label}`}
+                >
+                  {activeAction.label}
+                </Button>
+              </Dropdown.Trigger>
+              <Dropdown.Content>
+                <Dropdown.List>
+                  {variantActions.map((action) => (
+                    <Dropdown.Item
+                      key={action.id}
+                      selected={selectedVariant === action.id}
+                      onClick={() => setSelectedVariant(action.id)}
+                    >
+                      {action.label}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.List>
+              </Dropdown.Content>
+            </Dropdown>
+
+            <Dropdown placement="bottom-end">
+              <Dropdown.Trigger asChild>
+                <Button
+                  layout="icon"
+                  variant="plain"
+                  color="subtle"
+                  aria-label={`Select color, current: ${selectedColor}`}
+                >
+                  <Palette className="size-4" />
+                </Button>
+              </Dropdown.Trigger>
+              <Dropdown.Content>
+                <Dropdown.List>
+                  {colorActions.map((action) => (
+                    <Dropdown.Item
+                      key={action.id}
+                      selected={selectedColor === action.id}
+                      onClick={() => setSelectedColor(action.id)}
+                    >
+                      {action.label}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.List>
+              </Dropdown.Content>
+            </Dropdown>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Badge variant="contained" color="surface">Contained</Badge>
-            <Badge variant="outlined" color="surface">Outlined</Badge>
-            <Badge variant="plain" color="surface">Plain</Badge>
-          </div>
-        </div>
+        }
+      >
+        <Badge variant={selectedVariant} color={selectedColor}>
+          Operational
+        </Badge>
       </Exhibit.Stage>
 
       {/* Dimensional Scales Section */}

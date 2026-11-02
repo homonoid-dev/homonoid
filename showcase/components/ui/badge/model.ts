@@ -72,24 +72,20 @@ export function Example() {
   );
 }`;
 
-export const BADGE_VARIANTS_CODE_SAMPLE = `import { Badge } from "@homonoid/react";
+export const getBadgeVariantsCodeSample = (
+  variant: string = "contained",
+  color: string = "primary"
+) => `import { Badge } from "@homonoid/react";
 
 export function Example() {
   return (
-    <div className="flex flex-col items-center gap-4">
-      <div className="flex flex-wrap items-center justify-center gap-3">
-        <Badge variant="contained" color="primary">Contained</Badge>
-        <Badge variant="outlined" color="primary">Outlined</Badge>
-        <Badge variant="plain" color="primary">Plain</Badge>
-      </div>
-      <div className="flex flex-wrap items-center justify-center gap-3">
-        <Badge variant="contained" color="surface">Contained</Badge>
-        <Badge variant="outlined" color="surface">Outlined</Badge>
-        <Badge variant="plain" color="surface">Plain</Badge>
-      </div>
-    </div>
+    <Badge variant="${variant}" color="${color}">
+      Operational
+    </Badge>
   );
 }`;
+
+export const BADGE_VARIANTS_CODE_SAMPLE = getBadgeVariantsCodeSample("contained", "primary");
 
 export const BADGE_SIZES_CODE_SAMPLE = `import { Badge, Button } from "@homonoid/react";
 import { Bell } from "lucide-react";
