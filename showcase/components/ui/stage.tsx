@@ -27,6 +27,8 @@ export interface StageProps {
   defaultTab?: "preview" | "code";
   /** Optional callback to reset component preview state */
   onReset?: () => void;
+  /** Optional custom action elements displayed in the stage toolbar */
+  actions?: ReactNode;
 }
 
 export function Stage({
@@ -38,6 +40,7 @@ export function Stage({
   minPreviewHeight = 220,
   defaultTab = "preview",
   onReset,
+  actions,
 }: StageProps) {
   const [activeTab, setActiveTab] = useState<"preview" | "code">(defaultTab);
   const [copied, setCopied] = useState(false);
@@ -135,6 +138,8 @@ export function Stage({
         </div>
 
         <div className="flex items-center gap-1">
+          {actions}
+
           {when(
             Boolean(onReset),
             <Tooltip side="bottom" content="Reset stage">

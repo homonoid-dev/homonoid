@@ -126,7 +126,7 @@ export function Example() {
   );
 }`;
 
-export const ACCORDION_VARIANTS_CODE_SAMPLE = `import { Accordion } from "@homonoid/react";
+export const getAccordionVariantsCodeSample = (variant: string = "flush") => `import { Accordion } from "@homonoid/react";
 
 export function Example() {
   const items = [
@@ -144,10 +144,12 @@ export function Example() {
 
   return (
     <div className="w-full max-w-lg mx-auto">
-      <Accordion variant="separated" defaultValue="profile" items={items} />
+      <Accordion variant="${variant}" defaultValue="profile" items={items} />
     </div>
   );
 }`;
+
+export const ACCORDION_VARIANTS_CODE_SAMPLE = getAccordionVariantsCodeSample("flush");
 
 export const ACCORDION_MULTIPLE_CODE_SAMPLE = `import { Accordion } from "@homonoid/react";
 

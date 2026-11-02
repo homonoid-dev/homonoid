@@ -28,6 +28,7 @@ export interface ExhibitStageProps {
   section?: ExhibitSectionItem;
   code?: string;
   onReset?: () => void;
+  actions?: ReactNode;
   children: ReactNode;
   className?: string;
 }
@@ -40,6 +41,7 @@ export function ExhibitStage({
   section,
   code,
   onReset,
+  actions,
   children,
   className,
 }: ExhibitStageProps) {
@@ -76,7 +78,7 @@ export function ExhibitStage({
       >
         {resolvedTitle}
       </Button>
-      <Stage code={code ?? ""} onReset={onReset}>
+      <Stage code={code ?? ""} onReset={onReset} actions={actions}>
         {children}
       </Stage>
     </section>
