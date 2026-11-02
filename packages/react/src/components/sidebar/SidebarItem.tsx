@@ -16,11 +16,13 @@ export const SidebarItem = forwardRef<HTMLElement, SidebarItemProps>(
       href,
       active = false,
       disabled = false,
+      size = "sm",
       leading,
       trailing,
       badge,
       tooltip,
       variant = "plain",
+      color,
       children,
       className,
       ...props
@@ -60,7 +62,8 @@ export const SidebarItem = forwardRef<HTMLElement, SidebarItemProps>(
         as={Component}
         href={href}
         variant={variant}
-        size="sm"
+        color={color}
+        size={size}
         radius="lg"
         selected={active}
         disabled={disabled}
@@ -68,16 +71,16 @@ export const SidebarItem = forwardRef<HTMLElement, SidebarItemProps>(
         leading={leading}
         trailing={trailingElement}
         className={cn(
-          "w-full select-none cursor-pointer text-sm font-medium",
+          "w-full select-none cursor-pointer",
           cond(
             collapsed,
             "justify-center px-0 min-h-control-md w-control-md h-control-md mx-auto aspect-square",
-            "min-h-control-sm px-2.5 py-1.5 gap-2.5"
+            undefined
           ),
           cond(
             active,
-            "bg-surface-hover text-foreground font-semibold",
-            "text-muted hover:text-foreground hover:bg-surface-hover/60"
+            undefined,
+            "text-muted hover:text-foreground"
           ),
           className
         )}

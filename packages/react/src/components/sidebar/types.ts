@@ -5,7 +5,7 @@ import type {
   ReactNode,
   Ref,
 } from "react";
-import type { TileColor, TileVariant } from "../tile/types";
+import type { TileColor, TileSize, TileVariant } from "../tile/types";
 
 export type SidebarCollapsible = "none" | "icon" | "offcanvas";
 export type SidebarVariant = "fixed" | "floating" | "bordered";
@@ -191,6 +191,12 @@ export interface SidebarItemProps extends Omit<HTMLAttributes<HTMLElement>, "col
    * @default "surface"
    */
   color?: TileColor;
+
+  /**
+   * Control scale size determining typography and spatial padding from Tile.
+   * @default "sm"
+   */
+  size?: TileSize;
 }
 
 export interface SidebarFooterProps extends HTMLAttributes<HTMLDivElement> {
