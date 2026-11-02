@@ -1,12 +1,21 @@
 "use client";
 
-import { Avatar, Description } from "@homonoid/react";
+import { useState } from "react";
+import type { LucideIcon } from "lucide-react";
+import { CircleDot, Circle, CircleDashed } from "lucide-react";
+import {
+  Avatar,
+  Button,
+  Description,
+  Dropdown,
+  type AvatarVariant,
+} from "@homonoid/react";
 import { Exhibit } from "@/components/ui/exhibit";
 import {
   AVATAR_SECTIONS,
   AVATAR_SECTIONS_LIST,
   AVATAR_DEFAULT_CODE_SAMPLE,
-  AVATAR_VARIANTS_CODE_SAMPLE,
+  getAvatarVariantsCodeSample,
   AVATAR_SIZES_CODE_SAMPLE,
   AVATAR_COLORS_CODE_SAMPLE,
   AVATAR_PRESENCE_CODE_SAMPLE,
@@ -15,7 +24,15 @@ import {
 
 export function AvatarView() {
   const sections = AVATAR_SECTIONS;
-  const variants = ["contained", "outlined", "plain"] as const;
+  const [selectedVariant, setSelectedVariant] = useState<AvatarVariant>("contained");
+  const variantActions: { id: AvatarVariant; label: string; icon: LucideIcon }[] = [
+    { id: "contained", label: "Contained", icon: CircleDot },
+    { id: "outlined", label: "Outlined", icon: Circle },
+    { id: "plain", label: "Plain", icon: CircleDashed },
+  ];
+  const activeAction =
+    variantActions.find((a) => a.id === selectedVariant) ?? variantActions[0];
+  const ActiveIcon = activeAction.icon;
   const sizes = ["sm", "md", "lg"] as const;
   const colors = ["primary", "subtle", "surface", "destructive"] as const;
   const statuses = ["online", "away", "busy", "offline"] as const;
@@ -39,29 +56,45 @@ export function AvatarView() {
       sections={AVATAR_SECTIONS_LIST}
     >
       {/* Structural Variants Section */}
-      <Exhibit.Stage section={sections.variants} code={AVATAR_VARIANTS_CODE_SAMPLE}>
-        <div className="flex flex-col items-center gap-4">
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            {variants.map((variant) => (
-              <Avatar
-                key={variant}
-                variant={variant}
-                color="primary"
-                name="Alex Morgan"
-              />
-            ))}
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            {variants.map((variant) => (
-              <Avatar
-                key={variant}
-                variant={variant}
-                color="surface"
-                name="Jordan Lee"
-              />
-            ))}
-          </div>
-        </div>
+      <Exhibit.Stage
+        section={sections.variants}
+        code={getAvatarVariantsCodeSample(selectedVariant)}
+        actions={
+          <Dropdown placement="bottom-end">
+            <Dropdown.Trigger asChild>
+              <Button
+                color="subtle"
+                leading={<ActiveIcon className="size-3.5" />}
+                aria-label={`Select variant, current: ${activeAction.label}`}
+              >
+                {activeAction.label}
+              </Button>
+            </Dropdown.Trigger>
+            <Dropdown.Content>
+              <Dropdown.List>
+                {variantActions.map((action) => {
+                  const Icon = action.icon;
+                  return (
+                    <Dropdown.Item
+                      key={action.id}
+                      selected={selectedVariant === action.id}
+                      leading={<Icon className="size-3.5" />}
+                      onClick={() => setSelectedVariant(action.id)}
+                    >
+                      {action.label}
+                    </Dropdown.Item>
+                  );
+                })}
+              </Dropdown.List>
+            </Dropdown.Content>
+          </Dropdown>
+        }
+      >
+        <Avatar
+          variant={selectedVariant}
+          color="primary"
+          name="Alex Morgan"
+        />
       </Exhibit.Stage>
 
       {/* Dimensional Scales Section */}

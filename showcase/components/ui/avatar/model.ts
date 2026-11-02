@@ -82,36 +82,19 @@ export function Example() {
   );
 }`;
 
-export const AVATAR_VARIANTS_CODE_SAMPLE = `import { Avatar } from "@homonoid/react";
+export const getAvatarVariantsCodeSample = (variant: string = "contained") => `import { Avatar } from "@homonoid/react";
 
 export function Example() {
-  const variants = ["contained", "outlined", "plain"] as const;
-
   return (
-    <div className="flex flex-col items-center gap-4">
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        {variants.map((variant) => (
-          <Avatar
-            key={variant}
-            variant={variant}
-            color="primary"
-            name="Alex Morgan"
-          />
-        ))}
-      </div>
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        {variants.map((variant) => (
-          <Avatar
-            key={variant}
-            variant={variant}
-            color="surface"
-            name="Jordan Lee"
-          />
-        ))}
-      </div>
-    </div>
+    <Avatar
+      variant="${variant}"
+      color="primary"
+      name="Alex Morgan"
+    />
   );
 }`;
+
+export const AVATAR_VARIANTS_CODE_SAMPLE = getAvatarVariantsCodeSample("contained");
 
 export const AVATAR_SIZES_CODE_SAMPLE = `import { Avatar } from "@homonoid/react";
 
