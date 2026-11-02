@@ -133,14 +133,14 @@ export function Dock({
       aria-label="Table of contents dock"
       className={cn(
         "fixed bottom-[calc(env(safe-area-inset-bottom,0px)+1rem)] left-1/2 -translate-x-1/2 z-30 lg:hidden",
-        "max-w-[calc(100vw-2.5rem)] pointer-events-auto select-none",
+        "max-w-[calc(100vw-var(--p-layout-x)*2)] pointer-events-auto select-none",
         className
       )}
     >
       <div className="flex items-center p-1.5 rounded-full bg-surface/90 backdrop-blur-md border-[0.5px] border-border/80 shadow-md overflow-hidden">
         <div
           ref={containerRef}
-          className="overflow-hidden max-w-xs sm:max-w-sm md:max-w-md"
+          className="overflow-hidden max-w-full"
         >
           <motion.div
             ref={trackRef}
