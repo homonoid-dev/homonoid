@@ -29,6 +29,7 @@ export interface DockProps {
   items?: TocItemModel[];
   className?: string;
   defaultActiveId?: string;
+  children?: ReactNode;
 }
 
 export interface TocContextValue {
