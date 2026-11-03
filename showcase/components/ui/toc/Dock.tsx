@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
+import { motion, AnimatePresence, useScroll, useSpring, useMotionValueEvent } from "motion/react";
 import { ChevronsUpDown } from "lucide-react";
-import { Label } from "@homonoid/react";
+import { Label, Progress } from "@homonoid/react";
 import { cn } from "@homonoid/react/cn";
 import { SHOWCASE_COMPONENTS } from "@/config/components";
 import type { DockProps } from "./types";
@@ -30,6 +30,12 @@ export function Dock({ className, children }: DockProps = {}) {
     damping: 30,
     mass: 0.5,
     restDelta: 0.001,
+  });
+
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useMotionValueEvent(smoothProgress, "change", (latest) => {
+    setScrollProgress(Math.round(latest * 100));
   });
 
   const openModal = () => {
@@ -113,32 +119,13 @@ export function Dock({ className, children }: DockProps = {}) {
               className="flex items-center gap-2 min-w-0"
             >
               {/* Smooth spring scroll progress indicator */}
-              <div className="flex items-center justify-center size-4 shrink-0 text-foreground" aria-hidden="true">
-                <svg
-                  className="w-full h-full -rotate-90 origin-center"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="9.5"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    className="opacity-20"
-                  />
-                  <motion.circle
-                    cx="12"
-                    cy="12"
-                    r="9.5"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    style={{ pathLength: smoothProgress }}
-                  />
-                </svg>
-              </div>
+              <Progress
+                value={scrollProgress}
+                variant="circular"
+                size="sm"
+                color="surface"
+                aria-hidden="true"
+              />
 
               {/* Component Name Label */}
               <Label size="sm" className="truncate leading-none select-none">
