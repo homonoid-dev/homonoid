@@ -96,7 +96,7 @@ export function Dock({ className, children }: DockProps = {}) {
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 350, damping: 28, mass: 0.8 }}
             className={cn(
-              "fixed bottom-layout inset-x-layout mx-auto h-10 rounded-full bg-surface/50 backdrop-blur-md border border-border/60 z-30 pointer-events-auto cursor-pointer flex items-center justify-between px-3 overflow-hidden",
+              "fixed bottom-layout inset-x-layout mx-auto h-control-lg rounded-full bg-surface/50 backdrop-blur-md border border-border z-30 pointer-events-auto cursor-pointer flex items-center justify-between px-control-x overflow-hidden",
               className
             )}
           >
@@ -161,6 +161,9 @@ export function Dock({ className, children }: DockProps = {}) {
           <motion.div
             key="dock-modal"
             layoutId="dock-surface"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation dock"
             drag="y"
             dragConstraints={{ top: 0, bottom: 0 }}
             dragElastic={{ top: 0, bottom: 0.6 }}

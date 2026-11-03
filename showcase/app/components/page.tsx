@@ -20,7 +20,6 @@ import {
   Spinner,
   Switch,
   Tile,
-  Tooltip,
   Badge,
   Stepper,
   Textarea,
@@ -209,11 +208,14 @@ const PREVIEWS: Record<string, ReactNode> = {
     </Toggle.Group>
   ),
   Tooltip: (
-    <Tooltip open side="bottom" content="Tooltip">
-      <Button size="sm" variant="contained" layout="icon">
+    <div className="flex flex-col items-center gap-1.5" aria-hidden="true">
+      <Button size="sm" variant="contained" layout="icon" tabIndex={-1}>
         <Plus className="size-3" />
       </Button>
-    </Tooltip>
+      <div className="px-2.5 py-1 text-xs rounded-full bg-foreground text-background border border-foreground/10 font-medium whitespace-nowrap">
+        Tooltip
+      </div>
+    </div>
   ),
 };
 
