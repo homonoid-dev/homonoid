@@ -110,7 +110,7 @@ export const StepperItem = forwardRef<HTMLLIElement, StepperItemProps>(
                 cond(
                   placement === "inline",
                   "flex-none flex items-center",
-                  "flex-none flex flex-col items-center"
+                  "flex-1 flex-col items-center"
                 )
               ),
               "flex-col items-start w-full"
