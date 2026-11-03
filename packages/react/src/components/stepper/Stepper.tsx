@@ -43,7 +43,6 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
       orientation = "horizontal",
       variant = "circle",
       placement = "bottom",
-      expanded = false,
       color = "primary",
       size = "md",
       linear = false,
@@ -98,7 +97,6 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
         orientation,
         variant,
         placement,
-        expanded: Boolean(expanded || placement === "inline"),
         color,
         size,
         linear,
@@ -112,7 +110,6 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
         orientation,
         variant,
         placement,
-        expanded,
         color,
         size,
         linear,
@@ -124,7 +121,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
 
     const isHorizontal = orientation === "horizontal";
     const isInline = placement === "inline";
-    const isExpandedCircle = variant === "circle" && (isInline || expanded);
+    const isCircle = variant === "circle";
 
     const activeIndex = useMemo(() => {
       const idx = stepValues.indexOf(activeValue);
@@ -150,7 +147,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
             <>
               <StepperList>
                 {cond(
-                  isExpandedCircle,
+                  isCircle,
                   steps?.map((stepDef, idx) => (
                     <Fragment key={stepDef.value}>
                       <StepperItem
@@ -193,7 +190,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
                       )}
                     </Fragment>
                   )),
-                  steps?.map((stepDef, idx) => (
+                  steps?.map((stepDef) => (
                     <StepperItem
                       key={stepDef.value}
                       step={stepDef.value}
@@ -208,16 +205,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
 
                         {when(
                           any(stepDef.title, stepDef.description),
-                          <div
-                            className={cn(
-                              "flex flex-col gap-0.5",
-                              cond(
-                                variant === "bar",
-                                "items-start text-left",
-                                "items-center text-center"
-                              )
-                            )}
-                          >
+                          <div className="flex flex-col gap-0.5 items-start text-left">
                             {when(stepDef.title, <StepperTitle>{stepDef.title}</StepperTitle>)}
                             {when(stepDef.description, (
                               <StepperDescription>
@@ -227,13 +215,6 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
                           </div>
                         )}
                       </StepperTrigger>
-
-                      {when(
-                        any(variant !== "bar", idx < (steps?.length ?? 0) - 1),
-                        when(variant !== "bar" && idx < (steps?.length ?? 0) - 1, (
-                          <StepperSeparator />
-                        ))
-                      )}
                     </StepperItem>
                   ))
                 )}

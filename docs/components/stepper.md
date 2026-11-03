@@ -139,7 +139,6 @@ Milestone copy can align beneath or alongside indicators via the `placement` pro
 
 * Bottom (`placement="bottom"`): The default stacked configuration positioning title and description copy directly beneath the milestone indicator.
 * Inline (`placement="inline"`): A compact horizontal configuration aligning indicator and title side by side, allowing flexible separators to expand edge to edge across the full available container width.
-* Expanded (`expanded`): When enabled alongside bottom placement, milestone indicators anchor at the extreme edges while flexible separators expand across all remaining available width.
 
 <br>
 
@@ -149,8 +148,8 @@ Steppers adapt their geometry to available canvas dimensions, workflow orientati
 
 * Horizontal: The standard layout for wide desktop surfaces where steps advance from left to right along a shared baseline.
 * Vertical: The ideal orientation for narrow screens or workflows with extensive step descriptions, expanding downward sequentially.
-* Proportional Distribution: Milestone items distribute evenly across the navigation container utilizing CSS grid or flexbox with equal column widths.
-* Full Width Flexible Separators: Connectors expand dynamically to bridge milestone checkpoints across wide dialogs and viewports, eliminating empty flanks.
+* Proportional Distribution: Steppers occupy the full width of their parent container by default, anchoring milestone indicators at the outer bounds while connectors expand flexibly to bridge the span.
+* Width Constraints: Workflows requiring narrower horizontal bounds can constrain the stepper by wrapping it in standard container width utilities.
 * Panel Isolation: `Stepper.View` separates navigation chrome from active form controls, preventing layout shifts during step transitions.
 
 <br>

@@ -26,7 +26,7 @@ export const StepperItem = forwardRef<HTMLLIElement, StepperItemProps>(
     },
     ref
   ) {
-    const { value, orientation, stepValues, registerStep, placement, expanded } =
+    const { value, orientation, stepValues, registerStep, placement, variant } =
       useStepperContext();
     const autoId = useId();
     const titleId = `stepper-title-${autoId}`;
@@ -105,12 +105,12 @@ export const StepperItem = forwardRef<HTMLLIElement, StepperItemProps>(
             cond(
               isHorizontal,
               cond(
-                placement === "inline",
-                "flex-none flex items-center",
+                variant === "bar",
+                "flex-1 flex-col items-start",
                 cond(
-                  expanded,
-                  "flex-none flex flex-col items-center",
-                  "flex-1 flex-col items-center"
+                  placement === "inline",
+                  "flex-none flex items-center",
+                  "flex-none flex flex-col items-center"
                 )
               ),
               "flex-col items-start w-full"

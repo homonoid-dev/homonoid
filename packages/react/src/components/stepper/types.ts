@@ -74,13 +74,6 @@ export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
   placement?: StepperPlacement;
 
   /**
-   * Whether separators expand flexibly to occupy the full available container width.
-   * Automatically enabled when placement is "inline".
-   * @default false
-   */
-  expanded?: boolean;
-
-  /**
    * Whether steps must be traversed in strict sequential order.
    * @default false
    */
