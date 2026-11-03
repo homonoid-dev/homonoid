@@ -89,42 +89,54 @@ export function Dock({ className, children }: DockProps = {}) {
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 350, damping: 28, mass: 0.8 }}
             className={cn(
-              "fixed bottom-layout inset-x-layout mx-auto h-10 rounded-full bg-surface/50 backdrop-blur-md border border-border/60 z-30 pointer-events-auto cursor-pointer flex items-center gap-2 px-3",
+              "fixed bottom-layout inset-x-layout mx-auto h-10 rounded-full bg-surface/50 backdrop-blur-md border border-border/60 z-30 pointer-events-auto cursor-pointer flex items-center px-3 overflow-hidden",
               className
             )}
           >
-            {/* Smooth spring scroll progress indicator */}
-            <div className="flex items-center justify-center size-4 shrink-0 text-foreground" aria-hidden="true">
-              <svg
-                className="w-full h-full -rotate-90 origin-center"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="9.5"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  className="opacity-20"
-                />
-                <motion.circle
-                  cx="12"
-                  cy="12"
-                  r="9.5"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  style={{ pathLength: smoothProgress }}
-                />
-              </svg>
-            </div>
+            <motion.div
+              layout="position"
+              initial={{ opacity: 0, x: -24 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -32 }}
+              transition={{
+                duration: 0.18,
+                ease: [0.2, 0, 0, 1],
+              }}
+              className="flex items-center gap-2 min-w-0"
+            >
+              {/* Smooth spring scroll progress indicator */}
+              <div className="flex items-center justify-center size-4 shrink-0 text-foreground" aria-hidden="true">
+                <svg
+                  className="w-full h-full -rotate-90 origin-center"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="9.5"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    className="opacity-20"
+                  />
+                  <motion.circle
+                    cx="12"
+                    cy="12"
+                    r="9.5"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    style={{ pathLength: smoothProgress }}
+                  />
+                </svg>
+              </div>
 
-            {/* Component Name Label */}
-            <Label size="sm" className="truncate leading-none select-none">
-              {componentName}
-            </Label>
+              {/* Component Name Label */}
+              <Label size="sm" className="truncate leading-none select-none">
+                {componentName}
+              </Label>
+            </motion.div>
 
             {children}
           </motion.div>
@@ -142,7 +154,7 @@ export function Dock({ className, children }: DockProps = {}) {
             }}
             onClick={closeModal}
             transition={{ type: "spring", stiffness: 350, damping: 28, mass: 0.8 }}
-            className="fixed inset-0 z-50 pointer-events-auto flex flex-col w-full h-full rounded-none bg-surface/50 backdrop-blur-md border border-border/60 overflow-hidden cursor-pointer"
+            className="fixed inset-0 z-50 pointer-events-auto flex flex-col w-full h-full rounded-none bg-surface overflow-hidden cursor-pointer"
           >
             {children}
           </motion.div>
