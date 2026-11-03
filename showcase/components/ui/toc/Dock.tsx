@@ -55,8 +55,9 @@ export function Dock({ className, children }: DockProps = {}) {
   return (
     <div className={cn("md:hidden pointer-events-none", className)}>
       <AnimatePresence>
-        {!isOpen && (
+        {!isOpen ? (
           <motion.div
+            key="dock-pill"
             layoutId="dock-surface"
             onClick={openModal}
             whileTap={{ scale: 0.96 }}
@@ -71,32 +72,27 @@ export function Dock({ className, children }: DockProps = {}) {
           >
             {children}
           </motion.div>
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {isOpen && (
-          <div className="fixed inset-0 z-50 pointer-events-auto flex flex-col">
-            <motion.div
-              layoutId="dock-surface"
-              drag="y"
-              dragConstraints={{ top: 0, bottom: 0 }}
-              dragElastic={{ top: 0, bottom: 0.6 }}
-              onDragEnd={(_, info) => {
-                if (info.offset.y > 80 || info.velocity.y > 400) {
-                  closeModal();
-                }
-              }}
-              onClick={closeModal}
-              initial={{ borderRadius: 9999 }}
-              animate={{ borderRadius: 0 }}
-              exit={{ borderRadius: 9999 }}
-              transition={{ type: "spring", stiffness: 350, damping: 28, mass: 0.8 }}
-              className="flex-1 w-full h-full bg-surface/50 backdrop-blur-md border border-border/60 overflow-hidden cursor-pointer"
-            >
-              {children}
-            </motion.div>
-          </div>
+        ) : (
+          <motion.div
+            key="dock-modal"
+            layoutId="dock-surface"
+            drag="y"
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={{ top: 0, bottom: 0.6 }}
+            onDragEnd={(_, info) => {
+              if (info.offset.y > 80 || info.velocity.y > 400) {
+                closeModal();
+              }
+            }}
+            onClick={closeModal}
+            initial={{ borderRadius: 9999 }}
+            animate={{ borderRadius: 0 }}
+            exit={{ borderRadius: 9999 }}
+            transition={{ type: "spring", stiffness: 350, damping: 28, mass: 0.8 }}
+            className="fixed inset-0 z-50 pointer-events-auto flex flex-col w-full h-full bg-surface/50 backdrop-blur-md border border-border/60 overflow-hidden cursor-pointer"
+          >
+            {children}
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
