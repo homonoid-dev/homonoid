@@ -95,12 +95,19 @@ export function Dock({ className, children }: DockProps = {}) {
           >
             <motion.div
               layout="position"
-              initial={{ opacity: 0, x: -24 }}
+              initial={{ opacity: 0, x: -56 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -32 }}
+              exit={{
+                opacity: 0,
+                x: -36,
+                transition: { duration: 0.15, ease: "easeOut" },
+              }}
               transition={{
-                duration: 0.18,
-                ease: [0.2, 0, 0, 1],
+                type: "spring",
+                stiffness: 280,
+                damping: 24,
+                mass: 0.7,
+                delay: 0.25,
               }}
               className="flex items-center gap-2 min-w-0"
             >
