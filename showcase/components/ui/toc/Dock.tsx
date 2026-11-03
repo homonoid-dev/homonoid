@@ -1,10 +1,18 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { usePathname } from "next/navigation";
-import { motion, AnimatePresence, useScroll, useSpring, useMotionValueEvent } from "motion/react";
-import { ChevronsUpDown } from "lucide-react";
-import { Label, Progress } from "@homonoid/react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useSpring,
+  useMotionValueEvent,
+  useDragControls,
+} from "motion/react";
+import { ChevronsUpDown, Search } from "lucide-react";
+import { Label, Progress, Searchbar, Sidebar } from "@homonoid/react";
 import { cn } from "@homonoid/react/cn";
 import { SHOWCASE_COMPONENTS } from "@/config/components";
 import type { DockProps } from "./types";
@@ -12,6 +20,12 @@ import type { DockProps } from "./types";
 export function Dock({ className, children }: DockProps = {}) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const dragControls = useDragControls();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   const componentItem = useMemo(
     () => SHOWCASE_COMPONENTS.find((item) => item.href === pathname),
@@ -33,10 +47,23 @@ export function Dock({ className, children }: DockProps = {}) {
   });
 
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useMotionValueEvent(smoothProgress, "change", (latest) => {
     setScrollProgress(Math.round(latest * 100));
   });
+
+  useEffect(() => {
+    setSearchQuery("");
+  }, [pathname, isOpen]);
+
+  const filteredComponents = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return SHOWCASE_COMPONENTS;
+    return SHOWCASE_COMPONENTS.filter((component) =>
+      component.name.toLowerCase().includes(q)
+    );
+  }, [searchQuery]);
 
   const openModal = () => {
     setIsOpen(true);
@@ -128,7 +155,7 @@ export function Dock({ className, children }: DockProps = {}) {
               />
 
               {/* Component Name Label */}
-              <Label className="truncate select-none">
+              <Label size="sm" className="truncate select-none">
                 {componentName}
               </Label>
             </motion.div>
@@ -165,6 +192,8 @@ export function Dock({ className, children }: DockProps = {}) {
             aria-modal="true"
             aria-label="Navigation dock"
             drag="y"
+            dragControls={dragControls}
+            dragListener={false}
             dragConstraints={{ top: 0, bottom: 0 }}
             dragElastic={{ top: 0, bottom: 0.6 }}
             onDragEnd={(_, info) => {
@@ -172,11 +201,53 @@ export function Dock({ className, children }: DockProps = {}) {
                 closeModal();
               }
             }}
-            onClick={closeModal}
             transition={{ type: "spring", stiffness: 350, damping: 28, mass: 0.8 }}
-            className="fixed inset-0 z-50 pointer-events-auto flex flex-col w-full h-full rounded-none bg-surface overflow-hidden cursor-pointer"
+            className="fixed inset-0 z-50 pointer-events-auto flex flex-col w-full h-full rounded-none bg-surface overflow-hidden"
           >
-            {children}
+            <Sidebar width="w-full" className="w-full h-full select-none">
+              <Sidebar.Header
+                sticky
+                onPointerDown={(e) => {
+                  if ((e.target as HTMLElement).tagName !== "INPUT") {
+                    dragControls.start(e);
+                  }
+                }}
+                className="bg-transparent"
+              >
+                <div
+                  onPointerDown={(e) => dragControls.start(e)}
+                  className="w-10 h-1.5 rounded-full mx-auto mb-2 shrink-0 cursor-grab active:cursor-grabbing touch-none"
+                />
+                <Searchbar
+                  size="sm"
+                  radius="lg"
+                  variant="contained"
+                  placeholder="Search components"
+                  leading={<Search className="size-3.5 text-muted shrink-0" />}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full"
+                />
+              </Sidebar.Header>
+              <Sidebar.Content className="gap-control-gap px-surface-sm pb-surface-sm">
+                {filteredComponents.map((component) => (
+                  <Sidebar.Item
+                    key={component.href}
+                    as={Link}
+                    href={component.href}
+                    active={pathname === component.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setSearchQuery("");
+                      setIsOpen(false);
+                      router.push(component.href);
+                    }}
+                  >
+                    {component.name}
+                  </Sidebar.Item>
+                ))}
+              </Sidebar.Content>
+            </Sidebar>
           </motion.div>
         )}
       </AnimatePresence>
