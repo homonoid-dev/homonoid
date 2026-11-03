@@ -25,9 +25,21 @@ export interface TocItemProps {
   className?: string;
 }
 
+export interface DockProps {
+  items?: TocItemModel[];
+  className?: string;
+  defaultActiveId?: string;
+  children?: ReactNode;
+}
+
 export interface TocContextValue {
   items: TocItemModel[];
   setItems: (items: TocItemModel[]) => void;
+  activeId: string;
+  setActiveId: (id: string | ((prev: string) => string)) => void;
   collapsed: boolean;
   setCollapsed: (collapsed: boolean | ((prev: boolean) => boolean)) => void;
+  isLocked?: boolean;
+  setIsLocked?: (locked: boolean) => void;
+  scrollToSection?: (id: string) => void;
 }

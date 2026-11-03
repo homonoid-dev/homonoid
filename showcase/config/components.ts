@@ -23,6 +23,7 @@ export const SHOWCASE_COMPONENTS: ShowcaseComponentItem[] = [
   { name: "Label", href: "/components/label", description: "Accessible captions and headers", category: "Typography", related: ["Description", "Input"] },
   { name: "Modal", href: "/components/modal", description: "Elevated dialog surfaces and focus containers", category: "Overlays", related: ["Popover", "Card"] },
   { name: "Popover", href: "/components/popover", description: "Transient floating surface anchored to interactive triggers", category: "Overlays", related: ["Modal", "Dropdown", "Tooltip"] },
+  { name: "Progress", href: "/components/progress", description: "Quantified completion metrics across circular and linear indicators", category: "Feedback", related: ["Spinner", "Stepper"] },
   { name: "Searchbar", href: "/components/searchbar", description: "Search query entry with instant discovery actions", category: "Inputs", related: ["Input", "Kbd"] },
   { name: "Select", href: "/components/select", description: "Collapsible floating listbox with single choice selection", category: "Inputs", related: ["Dropdown", "Tile"] },
   { name: "Separator", href: "/components/separator", description: "Hairline visual partition across layout axes", category: "Layout", related: ["Card", "Tile"] },

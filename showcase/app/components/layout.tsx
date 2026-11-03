@@ -1,6 +1,6 @@
 import { Shell } from "@/components/layout/shell";
 import { Nav } from "@/components/ui/sidebar";
-import { TocProvider, Toc } from "@/components/ui/toc";
+import { TocProvider, Toc, Dock } from "@/components/ui/toc";
 
 export default function ComponentsLayout({
   children,
@@ -18,9 +18,9 @@ export default function ComponentsLayout({
             <div className="flex-1 min-w-0">{children}</div>
             <Toc />
           </div>
+          <Dock />
         </TocProvider>
       </Shell.Main>
     </Shell>
   );
 }
-

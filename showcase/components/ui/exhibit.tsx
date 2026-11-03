@@ -178,7 +178,7 @@ export function Exhibit({
     .filter(Boolean);
 
   return (
-    <div className={cn("flex flex-col px-layout-x py-layout-y gap-layout-gap max-w-4xl min-w-0", className)}>
+    <div className={cn("flex flex-col px-layout-x pt-layout-y pb-28 lg:pb-layout-y gap-layout-gap max-w-4xl min-w-0", className)}>
       {/* View Header */}
       <div className="flex flex-col gap-layout-gap">
         <Breadcrumb

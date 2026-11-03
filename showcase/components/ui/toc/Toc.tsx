@@ -14,6 +14,7 @@ import { cn } from "@homonoid/react/cn";
 import { cond } from "@homonoid/react";
 import { TocContext } from "./context";
 import { TocItem } from "./TocItem";
+import { Dock } from "./Dock";
 import type { TocProps, TocItemModel } from "./types";
 
 const EMPTY_ITEMS: TocItemModel[] = [];
@@ -40,9 +41,11 @@ export function Toc({
     [explicitItems, context?.items]
   );
 
-  const [activeId, setActiveId] = useState<string>(
+  const [internalActiveId, setInternalActiveId] = useState<string>(
     defaultActiveId ?? items[0]?.id ?? ""
   );
+  const activeId = context?.activeId || internalActiveId;
+
   const [internalCollapsed, setInternalCollapsed] = useState(false);
 
   useEffect(() => {
@@ -69,37 +72,17 @@ export function Toc({
     internalCollapsed
   );
 
-  useEffect(() => {
-    if (!items || items.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-            break;
-          }
-        }
-      },
-      {
-        rootMargin: "-80px 0px -70% 0px",
-        threshold: 0,
+  const handleSelect = (id: string) => {
+    if (context?.scrollToSection) {
+      context.scrollToSection(id);
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        setInternalActiveId(id);
+        const yOffset = -24;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
       }
-    );
-
-    for (const item of items) {
-      const el = document.getElementById(item.id);
-      if (el) observer.observe(el);
-    }
-
-    return () => observer.disconnect();
-  }, [items]);
-
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      setActiveId(id);
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -107,9 +90,11 @@ export function Toc({
 
   return (
     <nav
+      data-slot="toc-sidebar"
       aria-label="Table of contents"
       className={cn(
         "sticky top-0 self-start h-screen shrink-0 border-l-[0.5px] border-border/50 bg-background transition-[width] duration-300 ease-in-out select-none",
+        "hidden md:block",
         cond(isCollapsed, "w-[calc(var(--p-layout-x)*2+1rem)]", "w-58"),
         className
       )}
@@ -130,7 +115,7 @@ export function Toc({
             collapsed={isCollapsed}
             onClick={(e) => {
               e.preventDefault();
-              scrollToSection(item.id);
+              handleSelect(item.id);
             }}
           />
         ))}
@@ -140,3 +125,4 @@ export function Toc({
 }
 
 Toc.Item = TocItem;
+Toc.Dock = Dock;
