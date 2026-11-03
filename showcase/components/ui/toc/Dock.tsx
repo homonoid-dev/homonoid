@@ -128,7 +128,7 @@ export function Dock({ className, children }: DockProps = {}) {
               />
 
               {/* Component Name Label */}
-              <Label size="sm" className="truncate leading-none select-none">
+              <Label className="truncate select-none">
                 {componentName}
               </Label>
             </motion.div>
