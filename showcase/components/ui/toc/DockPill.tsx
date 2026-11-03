@@ -43,7 +43,7 @@ export function DockPill({
       exit={{ opacity: 0, scale: 0.98 }}
       transition={{ type: "spring", stiffness: 350, damping: 28, mass: 0.8 }}
       className={cn(
-        "fixed bottom-layout inset-x-layout mx-auto h-10 rounded-full bg-surface/50 backdrop-blur-md border border-border/60 z-30 pointer-events-auto cursor-pointer flex items-center justify-between px-3 overflow-hidden",
+        "fixed bottom-layout inset-x-layout mx-auto h-control-lg rounded-full bg-surface/50 backdrop-blur-md border border-border/60 z-30 pointer-events-auto cursor-pointer flex items-center justify-between p-control-x overflow-hidden",
         className
       )}
     >

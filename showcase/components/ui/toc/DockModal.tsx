@@ -142,7 +142,8 @@ export function DockModal({ pathname, onClose, onSelect }: DockModalProps) {
         }}
         className="flex flex-col w-full h-full overflow-hidden"
       >
-        <Sidebar width="w-full" className="w-full h-full select-none">
+
+        <Sidebar width="w-full" className="w-full h-full bg-transparent select-none">
           <Sidebar.Header
             sticky
             onPointerDown={(e) => {
@@ -166,7 +167,7 @@ export function DockModal({ pathname, onClose, onSelect }: DockModalProps) {
               <Searchbar
                 size="sm"
                 radius="lg"
-                variant="contained"
+                variant="outlined"
                 placeholder="Search components"
                 leading={<Search className="size-3.5 text-muted shrink-0" />}
                 value={searchQuery}
