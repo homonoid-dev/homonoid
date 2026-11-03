@@ -204,50 +204,91 @@ export function Dock({ className, children }: DockProps = {}) {
             transition={{ type: "spring", stiffness: 350, damping: 28, mass: 0.8 }}
             className="fixed inset-0 z-50 pointer-events-auto flex flex-col w-full h-full rounded-none bg-surface overflow-hidden"
           >
-            <Sidebar width="w-full" className="w-full h-full select-none">
-              <Sidebar.Header
-                sticky
-                onPointerDown={(e) => {
-                  if ((e.target as HTMLElement).tagName !== "INPUT") {
-                    dragControls.start(e);
-                  }
-                }}
-                className="bg-transparent"
-              >
-                <div
-                  onPointerDown={(e) => dragControls.start(e)}
-                  className="w-10 h-1.5 rounded-full mx-auto mb-2 shrink-0 cursor-grab active:cursor-grabbing touch-none"
-                />
-                <Searchbar
-                  size="sm"
-                  radius="lg"
-                  variant="contained"
-                  placeholder="Search components"
-                  leading={<Search className="size-3.5 text-muted shrink-0" />}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full"
-                />
-              </Sidebar.Header>
-              <Sidebar.Content className="gap-control-gap px-surface-sm pb-surface-sm">
-                {filteredComponents.map((component) => (
-                  <Sidebar.Item
-                    key={component.href}
-                    as={Link}
-                    href={component.href}
-                    active={pathname === component.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setSearchQuery("");
-                      setIsOpen(false);
-                      router.push(component.href);
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    delayChildren: 0.08,
+                    staggerChildren: 0.018,
+                  },
+                },
+                exit: {
+                  opacity: 0,
+                  transition: { duration: 0.10, ease: "easeOut" },
+                },
+              }}
+              className="flex flex-col w-full h-full overflow-hidden"
+            >
+              <Sidebar width="w-full" className="w-full h-full select-none">
+                <Sidebar.Header
+                  sticky
+                  onPointerDown={(e) => {
+                    if ((e.target as HTMLElement).tagName !== "INPUT") {
+                      dragControls.start(e);
+                    }
+                  }}
+                  className="bg-transparent"
+                >
+                  <motion.div
+                    variants={{
+                      hidden: { opacity: 0, y: -8 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { type: "spring", stiffness: 350, damping: 28 },
+                      },
+                      exit: { opacity: 0, transition: { duration: 0.08 } },
                     }}
                   >
-                    {component.name}
-                  </Sidebar.Item>
-                ))}
-              </Sidebar.Content>
-            </Sidebar>
+                    <Searchbar
+                      size="sm"
+                      radius="lg"
+                      variant="contained"
+                      placeholder="Search components"
+                      leading={<Search className="size-3.5 text-muted shrink-0" />}
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full"
+                    />
+                  </motion.div>
+                </Sidebar.Header>
+                <Sidebar.Content className="gap-control-gap px-surface-sm pb-surface-sm">
+                  {filteredComponents.map((component) => (
+                    <motion.div
+                      key={component.href}
+                      variants={{
+                        hidden: { opacity: 0, y: 12 },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          transition: { type: "spring", stiffness: 350, damping: 28 },
+                        },
+                        exit: { opacity: 0, transition: { duration: 0.08 } },
+                      }}
+                    >
+                      <Sidebar.Item
+                        as={Link}
+                        href={component.href}
+                        active={pathname === component.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setSearchQuery("");
+                          setIsOpen(false);
+                          router.push(component.href);
+                        }}
+                      >
+                        {component.name}
+                      </Sidebar.Item>
+                    </motion.div>
+                  ))}
+                </Sidebar.Content>
+              </Sidebar>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
