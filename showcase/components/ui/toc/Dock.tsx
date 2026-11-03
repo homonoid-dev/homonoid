@@ -85,11 +85,8 @@ export function Dock({ className, children }: DockProps = {}) {
               }
             }}
             onClick={closeModal}
-            initial={{ borderRadius: 9999 }}
-            animate={{ borderRadius: 0 }}
-            exit={{ borderRadius: 9999 }}
             transition={{ type: "spring", stiffness: 350, damping: 28, mass: 0.8 }}
-            className="fixed inset-0 z-50 pointer-events-auto flex flex-col w-full h-full bg-surface/50 backdrop-blur-md border border-border/60 overflow-hidden cursor-pointer"
+            className="fixed inset-0 z-50 pointer-events-auto flex flex-col w-full h-full rounded-none bg-surface overflow-hidden cursor-pointer"
           >
             {children}
           </motion.div>
