@@ -1,12 +1,27 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
+import { Label } from "@homonoid/react";
 import { cn } from "@homonoid/react/cn";
+import { SHOWCASE_COMPONENTS } from "@/config/components";
 import type { DockProps } from "./types";
 
 export function Dock({ className, children }: DockProps = {}) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  const componentItem = useMemo(
+    () => SHOWCASE_COMPONENTS.find((item) => item.href === pathname),
+    [pathname]
+  );
+  const componentName = useMemo(() => {
+    if (componentItem?.name) return componentItem.name;
+    const segment = pathname?.split("/").filter(Boolean).pop();
+    if (!segment) return "Components";
+    return segment.charAt(0).toUpperCase() + segment.slice(1);
+  }, [componentItem, pathname]);
 
   const { scrollYProgress } = useScroll();
   const smoothProgress = useSpring(scrollYProgress, {
@@ -74,7 +89,7 @@ export function Dock({ className, children }: DockProps = {}) {
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 350, damping: 28, mass: 0.8 }}
             className={cn(
-              "fixed bottom-layout inset-x-layout mx-auto h-10 rounded-full bg-surface/50 backdrop-blur-md border border-border/60 z-30 pointer-events-auto cursor-pointer flex items-center px-3",
+              "fixed bottom-layout inset-x-layout mx-auto h-10 rounded-full bg-surface/50 backdrop-blur-md border border-border/60 z-30 pointer-events-auto cursor-pointer flex items-center gap-2 px-3",
               className
             )}
           >
@@ -105,6 +120,12 @@ export function Dock({ className, children }: DockProps = {}) {
                 />
               </svg>
             </div>
+
+            {/* Component Name Label */}
+            <Label size="sm" className="truncate leading-none select-none">
+              {componentName}
+            </Label>
+
             {children}
           </motion.div>
         ) : (
