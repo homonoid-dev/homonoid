@@ -78,7 +78,7 @@ export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
    * Automatically enabled when placement is "inline".
    * @default false
    */
-  fullWidth?: boolean;
+  expanded?: boolean;
 
   /**
    * Whether steps must be traversed in strict sequential order.

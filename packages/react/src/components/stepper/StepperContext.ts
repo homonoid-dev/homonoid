@@ -15,7 +15,7 @@ export interface StepperContextValue {
   orientation: StepperOrientation;
   variant: StepperVariant;
   placement: StepperPlacement;
-  fullWidth: boolean;
+  expanded: boolean;
   color: Color;
   size: Size;
   linear: boolean;

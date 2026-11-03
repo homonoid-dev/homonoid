@@ -30,9 +30,9 @@ export const STEPPER_SECTIONS: Record<string, StepperSectionItem> = {
     label: "Inline Placement",
     icon: StretchHorizontal,
   },
-  fullWidth: {
-    id: "full-width",
-    label: "Full Width",
+  expanded: {
+    id: "expanded-layout",
+    label: "Expanded Layout",
     icon: MoveHorizontal,
   },
   indicators: {
@@ -176,7 +176,7 @@ export function Example() {
   );
 }`;
 
-export const STEPPER_FULL_WIDTH_CODE_SAMPLE = `import { Stepper } from "@homonoid/react";
+export const STEPPER_EXPANDED_CODE_SAMPLE = `import { Stepper } from "@homonoid/react";
 
 export function Example() {
   const steps = [
@@ -203,7 +203,7 @@ export function Example() {
         defaultValue={2}
         variant="circle"
         placement="bottom"
-        fullWidth
+        expanded
         steps={steps}
       />
     </div>

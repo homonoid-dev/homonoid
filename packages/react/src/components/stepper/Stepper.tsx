@@ -43,7 +43,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
       orientation = "horizontal",
       variant = "circle",
       placement = "bottom",
-      fullWidth = false,
+      expanded = false,
       color = "primary",
       size = "md",
       linear = false,
@@ -98,7 +98,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
         orientation,
         variant,
         placement,
-        fullWidth: Boolean(fullWidth || placement === "inline"),
+        expanded: Boolean(expanded || placement === "inline"),
         color,
         size,
         linear,
@@ -112,7 +112,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
         orientation,
         variant,
         placement,
-        fullWidth,
+        expanded,
         color,
         size,
         linear,
@@ -124,7 +124,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
 
     const isHorizontal = orientation === "horizontal";
     const isInline = placement === "inline";
-    const isFullWidthCircle = variant === "circle" && (isInline || fullWidth);
+    const isExpandedCircle = variant === "circle" && (isInline || expanded);
 
     const activeIndex = useMemo(() => {
       const idx = stepValues.indexOf(activeValue);
@@ -150,7 +150,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
             <>
               <StepperList>
                 {cond(
-                  isFullWidthCircle,
+                  isExpandedCircle,
                   steps?.map((stepDef, idx) => (
                     <Fragment key={stepDef.value}>
                       <StepperItem
