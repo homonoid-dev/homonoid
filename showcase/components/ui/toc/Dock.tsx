@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -10,6 +10,8 @@ import {
   useSpring,
   useMotionValueEvent,
   useDragControls,
+  useMotionValue,
+  animate,
 } from "motion/react";
 import { ChevronsUpDown, Search } from "lucide-react";
 import { Label, Progress, Searchbar, Sidebar } from "@homonoid/react";
@@ -72,13 +74,87 @@ export function Dock({ className, children }: DockProps = {}) {
     }
   };
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     if (typeof window !== "undefined" && window.location.hash === "#dock") {
       window.history.back();
     } else {
       setIsOpen(false);
     }
-  };
+  }, []);
+
+  const modalY = useMotionValue(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      modalY.set(0);
+    }
+  }, [isOpen, modalY]);
+
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el || !isOpen) return;
+
+    let startY = 0;
+    let startTime = 0;
+    let isPullingDown = false;
+
+    const onTouchStart = (e: TouchEvent) => {
+      startY = e.touches[0].clientY;
+      startTime = Date.now();
+      isPullingDown = false;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      const currentY = e.touches[0].clientY;
+      const deltaY = currentY - startY;
+      const scrollTop = el.scrollTop;
+
+      // When at the very top of the list and scrolling downward
+      if (scrollTop <= 0 && deltaY > 0) {
+        isPullingDown = true;
+        if (e.cancelable) {
+          e.preventDefault();
+        }
+        modalY.set(deltaY);
+      } else if (isPullingDown && deltaY <= 0) {
+        modalY.set(0);
+        isPullingDown = false;
+      }
+    };
+
+    const onTouchEnd = () => {
+      if (isPullingDown) {
+        const currentY = modalY.get();
+        const elapsed = Date.now() - startTime;
+        const velocity = (currentY / Math.max(elapsed, 1)) * 1000;
+
+        if (currentY > 80 || velocity > 400) {
+          closeModal();
+        } else {
+          animate(modalY, 0, {
+            type: "spring",
+            stiffness: 350,
+            damping: 28,
+            mass: 0.8,
+          });
+        }
+      }
+      isPullingDown = false;
+    };
+
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    el.addEventListener("touchcancel", onTouchEnd, { passive: true });
+
+    return () => {
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchend", onTouchEnd);
+      el.removeEventListener("touchcancel", onTouchEnd);
+    };
+  }, [isOpen, closeModal, modalY]);
 
   useEffect(() => {
     const handlePopState = () => {
@@ -201,6 +277,7 @@ export function Dock({ className, children }: DockProps = {}) {
                 closeModal();
               }
             }}
+            style={{ y: modalY }}
             transition={{ type: "spring", stiffness: 350, damping: 28, mass: 0.8 }}
             className="fixed inset-0 z-50 pointer-events-auto flex flex-col w-full h-full rounded-none bg-surface overflow-hidden"
           >
@@ -257,7 +334,7 @@ export function Dock({ className, children }: DockProps = {}) {
                     />
                   </motion.div>
                 </Sidebar.Header>
-                <Sidebar.Content className="gap-control-gap px-surface-sm pb-surface-sm">
+                <Sidebar.Content ref={contentRef} className="gap-control-gap px-surface-sm pb-surface-sm overscroll-contain">
                   {filteredComponents.map((component) => (
                     <motion.div
                       key={component.href}
