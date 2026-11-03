@@ -11,12 +11,12 @@ export const StepperSeparator = forwardRef<
   HTMLDivElement,
   StepperSeparatorProps
 >(function StepperSeparator({ className, completed, ...props }, ref) {
-  const { orientation, color, size, labelPlacement, fullWidth } =
+  const { orientation, color, size, placement, fullWidth } =
     useStepperContext();
   const itemContext = useOptionalStepperItemContext();
 
   const isHorizontal = orientation === "horizontal";
-  const isInline = labelPlacement === "inline";
+  const isInline = placement === "inline";
   const isStandalone = !itemContext || isInline || fullWidth;
 
   const resolvedCompleted = cond(

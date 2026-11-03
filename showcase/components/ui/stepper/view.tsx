@@ -9,6 +9,7 @@ import {
   STEPPER_DEFAULT_CODE_SAMPLE,
   STEPPER_ATOMIC_CODE_SAMPLE,
   STEPPER_INLINE_CODE_SAMPLE,
+  STEPPER_FULL_WIDTH_CODE_SAMPLE,
   STEPPER_INDICATORS_CODE_SAMPLE,
   STEPPER_VARIANTS_CODE_SAMPLE,
   STEPPER_INTERACTIVE_CODE_SAMPLE,
@@ -78,6 +79,24 @@ export function StepperView() {
     },
   ];
 
+  const fullWidthSteps = [
+    {
+      value: 1,
+      title: "Acquire",
+      description: "Select scan file",
+    },
+    {
+      value: 2,
+      title: "Verify & Input",
+      description: "Validate translation",
+    },
+    {
+      value: 3,
+      title: "Emboss",
+      description: "Output document",
+    },
+  ];
+
   const indicatorOnlySteps = [
     { value: 1 },
     { value: 2 },
@@ -126,14 +145,27 @@ export function StepperView() {
         </div>
       </Exhibit.Stage>
 
-      {/* Inline Labels Section */}
+      {/* Inline Placement Section */}
       <Exhibit.Stage section={sections.inline} code={STEPPER_INLINE_CODE_SAMPLE}>
         <div className="w-full max-w-2xl mx-auto">
           <Stepper
             defaultValue={2}
             variant="circle"
-            labelPlacement="inline"
+            placement="inline"
             steps={inlineSteps}
+          />
+        </div>
+      </Exhibit.Stage>
+
+      {/* Full Width Section */}
+      <Exhibit.Stage section={sections.fullWidth} code={STEPPER_FULL_WIDTH_CODE_SAMPLE}>
+        <div className="w-full max-w-2xl mx-auto">
+          <Stepper
+            defaultValue={2}
+            variant="circle"
+            placement="bottom"
+            fullWidth
+            steps={fullWidthSteps}
           />
         </div>
       </Exhibit.Stage>

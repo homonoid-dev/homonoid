@@ -42,7 +42,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
       onValueChange,
       orientation = "horizontal",
       variant = "circle",
-      labelPlacement = "bottom",
+      placement = "bottom",
       fullWidth = false,
       color = "primary",
       size = "md",
@@ -97,8 +97,8 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
         setValue: handleValueChange,
         orientation,
         variant,
-        labelPlacement,
-        fullWidth: Boolean(fullWidth || labelPlacement === "inline"),
+        placement,
+        fullWidth: Boolean(fullWidth || placement === "inline"),
         color,
         size,
         linear,
@@ -111,7 +111,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
         handleValueChange,
         orientation,
         variant,
-        labelPlacement,
+        placement,
         fullWidth,
         color,
         size,
@@ -123,7 +123,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
     );
 
     const isHorizontal = orientation === "horizontal";
-    const isInline = labelPlacement === "inline";
+    const isInline = placement === "inline";
     const isFullWidthCircle = variant === "circle" && (isInline || fullWidth);
 
     const activeIndex = useMemo(() => {

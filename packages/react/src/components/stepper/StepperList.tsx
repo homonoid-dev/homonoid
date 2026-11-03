@@ -8,7 +8,7 @@ import type { StepperListProps } from "./types";
 
 export const StepperList = forwardRef<HTMLOListElement, StepperListProps>(
   function StepperList({ className, children, ...props }, ref) {
-    const { orientation, labelPlacement } = useStepperContext();
+    const { orientation, placement } = useStepperContext();
     const isHorizontal = orientation === "horizontal";
 
     return (
@@ -22,7 +22,7 @@ export const StepperList = forwardRef<HTMLOListElement, StepperListProps>(
           cond(
             isHorizontal,
             cond(
-              labelPlacement === "inline",
+              placement === "inline",
               "flex items-center justify-between",
               "flex items-start justify-between"
             ),

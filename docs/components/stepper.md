@@ -133,12 +133,13 @@ export default function Example() {
 
 <br>
 
-### Label Placement
+### Placement
 
-Milestone copy can align beneath or alongside indicators via the `labelPlacement` prop:
+Milestone copy can align beneath or alongside indicators via the `placement` prop:
 
-* Bottom (`labelPlacement="bottom"`): The default stacked configuration positioning title and description copy directly beneath the milestone indicator.
-* Inline (`labelPlacement="inline"`): A compact horizontal configuration aligning indicator and title side by side, allowing flexible separators to expand edge to edge across the full available container width.
+* Bottom (`placement="bottom"`): The default stacked configuration positioning title and description copy directly beneath the milestone indicator.
+* Inline (`placement="inline"`): A compact horizontal configuration aligning indicator and title side by side, allowing flexible separators to expand edge to edge across the full available container width.
+* Full Width (`fullWidth`): When enabled alongside bottom placement, milestone indicators anchor at the extreme edges while flexible separators expand across all remaining available width.
 
 <br>
 
