@@ -15,6 +15,7 @@ import {
   Checkbox,
   Input,
   Kbd,
+  Progress,
   Searchbar,
   Spinner,
   Switch,
@@ -150,6 +151,7 @@ const PREVIEWS: Record<string, ReactNode> = {
       </div>
     </Card>
   ),
+  Progress: <Progress value={75} size="md" color="surface" />,
   Searchbar: <Searchbar size="sm" placeholder="Search..." className="w-28 text-xs" readOnly />,
   Select: (
     <Button size="sm" radius="md" variant="outlined" color="surface" trailing={<ChevronsUpDown className="size-3" />}>
