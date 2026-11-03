@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
+import { ChevronsUpDown } from "lucide-react";
 import { Label } from "@homonoid/react";
 import { cn } from "@homonoid/react/cn";
 import { SHOWCASE_COMPONENTS } from "@/config/components";
@@ -89,7 +90,7 @@ export function Dock({ className, children }: DockProps = {}) {
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 350, damping: 28, mass: 0.8 }}
             className={cn(
-              "fixed bottom-layout inset-x-layout mx-auto h-10 rounded-full bg-surface/50 backdrop-blur-md border border-border/60 z-30 pointer-events-auto cursor-pointer flex items-center px-3 overflow-hidden",
+              "fixed bottom-layout inset-x-layout mx-auto h-10 rounded-full bg-surface/50 backdrop-blur-md border border-border/60 z-30 pointer-events-auto cursor-pointer flex items-center justify-between px-3 overflow-hidden",
               className
             )}
           >
@@ -100,7 +101,7 @@ export function Dock({ className, children }: DockProps = {}) {
               exit={{
                 opacity: 0,
                 x: -36,
-                transition: { duration: 0.15, ease: "easeOut" },
+                transition: { duration: 0.10, ease: "easeOut" },
               }}
               transition={{
                 type: "spring",
@@ -145,6 +146,28 @@ export function Dock({ className, children }: DockProps = {}) {
               </Label>
             </motion.div>
 
+            {/* Expand indicator with up and down arrows */}
+            <motion.div
+              layout="position"
+              initial={{ opacity: 0, x: 56 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{
+                opacity: 0,
+                x: 36,
+                transition: { duration: 0.10, ease: "easeOut" },
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 280,
+                damping: 24,
+                mass: 0.7,
+                delay: 0.25,
+              }}
+              className="flex items-center justify-center size-4 shrink-0 text-muted"
+              aria-hidden="true"
+            >
+              <ChevronsUpDown className="size-3.5" />
+            </motion.div>
             {children}
           </motion.div>
         ) : (
