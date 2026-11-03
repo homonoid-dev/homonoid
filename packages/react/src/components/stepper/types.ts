@@ -5,6 +5,7 @@ import type { DescriptionProps } from "../description/types";
 
 export type StepperOrientation = "horizontal" | "vertical";
 export type StepperVariant = "circle" | "bar";
+export type StepperLabelPlacement = "bottom" | "inline";
 export type StepperState = "inactive" | "active" | "completed" | "loading" | "disabled" | "error";
 
 export interface StepperIndicators {
@@ -65,6 +66,19 @@ export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
    * @default "md"
    */
   size?: Size;
+
+  /**
+   * Label and description alignment relative to milestone indicators.
+   * @default "bottom"
+   */
+  labelPlacement?: StepperLabelPlacement;
+
+  /**
+   * Whether separators expand flexibly to occupy the full available container width.
+   * Automatically enabled when labelPlacement is "inline".
+   * @default false
+   */
+  fullWidth?: boolean;
 
   /**
    * Whether steps must be traversed in strict sequential order.
@@ -134,7 +148,13 @@ export type StepperTitleProps = LabelProps;
 
 export type StepperDescriptionProps = DescriptionProps;
 
-export interface StepperSeparatorProps extends HTMLAttributes<HTMLDivElement> {}
+export interface StepperSeparatorProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * Explicitly marks this separator track as completed.
+   * When rendered inside a Stepper.Item, defaults to the item's completion state.
+   */
+  completed?: boolean;
+}
 
 export interface StepperViewProps extends HTMLAttributes<HTMLDivElement> {
   /**

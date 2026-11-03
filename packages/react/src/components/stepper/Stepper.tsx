@@ -5,6 +5,7 @@ import {
   useCallback,
   useMemo,
   forwardRef,
+  Fragment,
 } from "react";
 import { cn } from "../../utils/cn";
 import { any, cond, when } from "../../utils/condition";
@@ -41,6 +42,8 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
       onValueChange,
       orientation = "horizontal",
       variant = "circle",
+      labelPlacement = "bottom",
+      fullWidth = false,
       color = "primary",
       size = "md",
       linear = false,
@@ -94,6 +97,8 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
         setValue: handleValueChange,
         orientation,
         variant,
+        labelPlacement,
+        fullWidth: Boolean(fullWidth || labelPlacement === "inline"),
         color,
         size,
         linear,
@@ -106,6 +111,8 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
         handleValueChange,
         orientation,
         variant,
+        labelPlacement,
+        fullWidth,
         color,
         size,
         linear,
@@ -116,6 +123,13 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
     );
 
     const isHorizontal = orientation === "horizontal";
+    const isInline = labelPlacement === "inline";
+    const isFullWidthCircle = variant === "circle" && (isInline || fullWidth);
+
+    const activeIndex = useMemo(() => {
+      const idx = stepValues.indexOf(activeValue);
+      return cond(idx >= 0, idx, typeof activeValue === "number" ? activeValue - 1 : 0);
+    }, [stepValues, activeValue]);
 
     return (
       <StepperContext.Provider value={contextValue}>
@@ -135,49 +149,94 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
             Boolean(steps),
             <>
               <StepperList>
-                {steps?.map((stepDef, idx) => (
-                  <StepperItem
-                    key={stepDef.value}
-                    step={stepDef.value}
-                    disabled={stepDef.disabled}
-                    error={stepDef.error}
-                    loading={stepDef.loading}
-                  >
-                    <StepperTrigger>
-                      <StepperIndicator>
-                        {stepDef.icon}
-                      </StepperIndicator>
+                {cond(
+                  isFullWidthCircle,
+                  steps?.map((stepDef, idx) => (
+                    <Fragment key={stepDef.value}>
+                      <StepperItem
+                        step={stepDef.value}
+                        disabled={stepDef.disabled}
+                        error={stepDef.error}
+                        loading={stepDef.loading}
+                      >
+                        <StepperTrigger>
+                          <StepperIndicator>
+                            {stepDef.icon}
+                          </StepperIndicator>
+
+                          {when(
+                            any(stepDef.title, stepDef.description),
+                            <div
+                              className={cn(
+                                "flex flex-col gap-0.5",
+                                cond(
+                                  isInline,
+                                  "items-start text-left",
+                                  "items-center text-center"
+                                )
+                              )}
+                            >
+                              {when(stepDef.title, <StepperTitle>{stepDef.title}</StepperTitle>)}
+                              {when(stepDef.description, (
+                                <StepperDescription>
+                                  {stepDef.description}
+                                </StepperDescription>
+                              ))}
+                            </div>
+                          )}
+                        </StepperTrigger>
+                      </StepperItem>
 
                       {when(
-                        any(stepDef.title, stepDef.description),
-                        <div
-                          className={cn(
-                            "flex flex-col gap-0.5",
-                            cond(
-                              variant === "bar",
-                              "items-start text-left",
-                              "items-center text-center"
-                            )
-                          )}
-                        >
-                          {when(stepDef.title, <StepperTitle>{stepDef.title}</StepperTitle>)}
-                          {when(stepDef.description, (
-                            <StepperDescription>
-                              {stepDef.description}
-                            </StepperDescription>
-                          ))}
-                        </div>
+                        idx < (steps?.length ?? 0) - 1,
+                        <StepperSeparator completed={idx < activeIndex} />
                       )}
-                    </StepperTrigger>
+                    </Fragment>
+                  )),
+                  steps?.map((stepDef, idx) => (
+                    <StepperItem
+                      key={stepDef.value}
+                      step={stepDef.value}
+                      disabled={stepDef.disabled}
+                      error={stepDef.error}
+                      loading={stepDef.loading}
+                    >
+                      <StepperTrigger>
+                        <StepperIndicator>
+                          {stepDef.icon}
+                        </StepperIndicator>
 
-                    {when(
-                      any(variant !== "bar", idx < (steps?.length ?? 0) - 1),
-                      when(variant !== "bar" && idx < (steps?.length ?? 0) - 1, (
-                        <StepperSeparator />
-                      ))
-                    )}
-                  </StepperItem>
-                ))}
+                        {when(
+                          any(stepDef.title, stepDef.description),
+                          <div
+                            className={cn(
+                              "flex flex-col gap-0.5",
+                              cond(
+                                variant === "bar",
+                                "items-start text-left",
+                                "items-center text-center"
+                              )
+                            )}
+                          >
+                            {when(stepDef.title, <StepperTitle>{stepDef.title}</StepperTitle>)}
+                            {when(stepDef.description, (
+                              <StepperDescription>
+                                {stepDef.description}
+                              </StepperDescription>
+                            ))}
+                          </div>
+                        )}
+                      </StepperTrigger>
+
+                      {when(
+                        any(variant !== "bar", idx < (steps?.length ?? 0) - 1),
+                        when(variant !== "bar" && idx < (steps?.length ?? 0) - 1, (
+                          <StepperSeparator />
+                        ))
+                      )}
+                    </StepperItem>
+                  ))
+                )}
               </StepperList>
 
               {when(

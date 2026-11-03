@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import {
   Layers,
   Component,
+  StretchHorizontal,
   CircleDot,
   MousePointerClick,
   Infinity,
@@ -22,6 +23,11 @@ export const STEPPER_SECTIONS: Record<string, StepperSectionItem> = {
     id: "atomic-usage",
     label: "Atomic Usage",
     icon: Component,
+  },
+  inline: {
+    id: "inline-labels",
+    label: "Inline Labels",
+    icon: StretchHorizontal,
   },
   indicators: {
     id: "indicators-only",
@@ -125,6 +131,39 @@ export function Example() {
       <Stepper
         defaultValue={1}
         variant="circle"
+        steps={steps}
+      />
+    </div>
+  );
+}`;
+
+export const STEPPER_INLINE_CODE_SAMPLE = `import { Stepper } from "@homonoid/react";
+
+export function Example() {
+  const steps = [
+    {
+      value: 1,
+      title: "Acquire",
+      description: "Select scan file",
+    },
+    {
+      value: 2,
+      title: "Verify & Input",
+      description: "Validate translation",
+    },
+    {
+      value: 3,
+      title: "Emboss",
+      description: "Output document",
+    },
+  ];
+
+  return (
+    <div className="w-full max-w-2xl mx-auto">
+      <Stepper
+        defaultValue={2}
+        variant="circle"
+        labelPlacement="inline"
         steps={steps}
       />
     </div>

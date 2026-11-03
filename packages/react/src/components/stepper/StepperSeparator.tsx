@@ -4,17 +4,26 @@ import { forwardRef } from "react";
 import { cn } from "../../utils/cn";
 import { cond, match } from "../../utils/condition";
 import { useStepperContext } from "./StepperContext";
-import { useStepperItemContext } from "./StepperItemContext";
+import { useOptionalStepperItemContext } from "./StepperItemContext";
 import type { StepperSeparatorProps } from "./types";
 
 export const StepperSeparator = forwardRef<
   HTMLDivElement,
   StepperSeparatorProps
->(function StepperSeparator({ className, ...props }, ref) {
-  const { orientation, color, size } = useStepperContext();
-  const { isCompleted } = useStepperItemContext();
+>(function StepperSeparator({ className, completed, ...props }, ref) {
+  const { orientation, color, size, labelPlacement, fullWidth } =
+    useStepperContext();
+  const itemContext = useOptionalStepperItemContext();
 
   const isHorizontal = orientation === "horizontal";
+  const isInline = labelPlacement === "inline";
+  const isStandalone = !itemContext || isInline || fullWidth;
+
+  const resolvedCompleted = cond(
+    completed !== undefined,
+    Boolean(completed),
+    itemContext?.isCompleted ?? false
+  );
 
   const activeColorClass = match(
     color,
@@ -37,6 +46,16 @@ export const StepperSeparator = forwardRef<
     "top-5 px-7"
   );
 
+  const standaloneTopMargin = match(
+    size,
+    {
+      sm: "mt-4",
+      md: "mt-5",
+      lg: "mt-6",
+    },
+    "mt-5"
+  );
+
   return (
     <div
       ref={ref}
@@ -47,7 +66,14 @@ export const StepperSeparator = forwardRef<
         "transition-colors pointer-events-none",
         cond(
           isHorizontal,
-          cn("absolute left-1/2 w-full -translate-y-1/2", horizontalSizeClass),
+          cond(
+            isStandalone,
+            cn(
+              "flex-1",
+              cond(isInline, "mx-3 self-center", cn("mx-3 self-start", standaloneTopMargin))
+            ),
+            cn("absolute left-1/2 w-full -translate-y-1/2", horizontalSizeClass)
+          ),
           "w-0.5 flex-1 min-h-6 my-2 ml-5 self-stretch"
         ),
         className
@@ -59,13 +85,13 @@ export const StepperSeparator = forwardRef<
         <div
           className={cn(
             "h-0.5 w-full rounded-full transition-colors",
-            cond(isCompleted, activeColorClass, "bg-border")
+            cond(resolvedCompleted, activeColorClass, "bg-border")
           )}
         />,
         <div
           className={cn(
             "w-0.5 h-full rounded-full transition-colors",
-            cond(isCompleted, activeColorClass, "bg-border")
+            cond(resolvedCompleted, activeColorClass, "bg-border")
           )}
         />
       )}

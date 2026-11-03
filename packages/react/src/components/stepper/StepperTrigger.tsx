@@ -14,7 +14,8 @@ export const StepperTrigger = forwardRef<
   { className, onClick, onKeyDown, children, disabled: propDisabled, ...props },
   ref
 ) {
-  const { setValue, linear, variant, stepValues } = useStepperContext();
+  const { setValue, linear, variant, stepValues, labelPlacement } =
+    useStepperContext();
   const {
     step,
     index,
@@ -78,7 +79,11 @@ export const StepperTrigger = forwardRef<
         cond(
           isBar,
           "w-full flex-col items-start gap-2.5 text-left",
-          "w-full flex-col items-center gap-2 text-center"
+          cond(
+            labelPlacement === "inline",
+            "inline-flex flex-row items-center gap-3 text-left w-auto",
+            "w-full flex-col items-center gap-2 text-center"
+          )
         ),
         className
       )}

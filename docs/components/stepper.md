@@ -40,7 +40,7 @@ The stepper adheres to a compound component architecture exposing dedicated prim
 * `Stepper.Indicator`: The visual milestone marker encapsulating the Button primitive under the hood to render circular surfaces or horizontal progress bars.
 * `Stepper.Title`: The primary step heading encapsulating the Label component under the hood to ensure consistent typography and semantic hierarchy.
 * `Stepper.Description`: Auxiliary text encapsulating the Description component under the hood to deliver standard secondary typography tokens.
-* `Stepper.Separator`: The connector line joining sequential milestone indicators.
+* `Stepper.Separator`: The connector line joining sequential milestone indicators, supporting both nested placement within items and flexible standalone placement across milestone lists.
 * `Stepper.View`: The content panel container associated with a specific step value, rendering only when that milestone is active.
 
 <br>
@@ -133,13 +133,23 @@ export default function Example() {
 
 <br>
 
+### Label Placement
+
+Milestone copy can align beneath or alongside indicators via the `labelPlacement` prop:
+
+* Bottom (`labelPlacement="bottom"`): The default stacked configuration positioning title and description copy directly beneath the milestone indicator.
+* Inline (`labelPlacement="inline"`): A compact horizontal configuration aligning indicator and title side by side, allowing flexible separators to expand edge to edge across the full available container width.
+
+<br>
+
 ### Layout
 
-Steppers adapt their geometry to available canvas dimensions and workflow orientation:
+Steppers adapt their geometry to available canvas dimensions, workflow orientation, and separator distribution:
 
 * Horizontal: The standard layout for wide desktop surfaces where steps advance from left to right along a shared baseline.
 * Vertical: The ideal orientation for narrow screens or workflows with extensive step descriptions, expanding downward sequentially.
 * Proportional Distribution: Milestone items distribute evenly across the navigation container utilizing CSS grid or flexbox with equal column widths.
+* Full Width Flexible Separators: Connectors expand dynamically to bridge milestone checkpoints across wide dialogs and viewports, eliminating empty flanks.
 * Panel Isolation: `Stepper.View` separates navigation chrome from active form controls, preventing layout shifts during step transitions.
 
 <br>

@@ -28,3 +28,7 @@ export function useStepperItemContext(): StepperItemContextValue {
   return context;
 }
 
+export function useOptionalStepperItemContext(): StepperItemContextValue | null {
+  return useContext(StepperItemContext);
+}
+

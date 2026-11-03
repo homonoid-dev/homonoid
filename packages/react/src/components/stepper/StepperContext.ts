@@ -4,6 +4,7 @@ import { createContext, useContext } from "react";
 import type { Size, Color } from "../../types";
 import type {
   StepperIndicators,
+  StepperLabelPlacement,
   StepperOrientation,
   StepperVariant,
 } from "./types";
@@ -13,6 +14,8 @@ export interface StepperContextValue {
   setValue: (value: number | string) => void;
   orientation: StepperOrientation;
   variant: StepperVariant;
+  labelPlacement: StepperLabelPlacement;
+  fullWidth: boolean;
   color: Color;
   size: Size;
   linear: boolean;
