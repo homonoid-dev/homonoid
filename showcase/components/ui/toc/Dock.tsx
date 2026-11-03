@@ -166,7 +166,7 @@ export function Dock({ className, children }: DockProps = {}) {
               className="flex items-center justify-center size-4 shrink-0 text-muted"
               aria-hidden="true"
             >
-              <ChevronsUpDown className="size-3.5" />
+              <ChevronsUpDown className="size-4" />
             </motion.div>
             {children}
           </motion.div>
