@@ -55,6 +55,9 @@ export const tokens = {
     "duration-normal": "var(--motion-duration-normal)",
     "duration-slow": "var(--motion-duration-slow)",
     easing: "var(--motion-easing)",
+    "press-scale-sm": "var(--motion-press-scale-sm)",
+    "press-scale-md": "var(--motion-press-scale-md)",
+    "press-scale-lg": "var(--motion-press-scale-lg)",
     "press-scale": "var(--motion-press-scale)"
   }
 } as const;
