@@ -6,7 +6,7 @@ import {
   Button,
   Description,
   Dropdown,
-  type AccordionVariant,
+  type Variant,
 } from "@homonoid/react";
 import { Exhibit } from "@/components/ui/exhibit";
 import {
@@ -21,8 +21,8 @@ import {
 
 export function AccordionView() {
   const sections = ACCORDION_SECTIONS;
-  const [selectedVariant, setSelectedVariant] = useState<AccordionVariant>("plain");
-  const variantActions: { id: AccordionVariant; label: string }[] = [
+  const [selectedVariant, setSelectedVariant] = useState<Variant>("plain");
+  const variantActions: { id: Variant; label: string }[] = [
     { id: "plain", label: "Plain" },
     { id: "outlined", label: "Outlined" },
     { id: "contained", label: "Contained" },

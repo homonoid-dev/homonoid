@@ -11,9 +11,6 @@ export type {
   AccordionTriggerProps,
   AccordionContentProps,
   AccordionItemDefinition,
-  AccordionVariant,
-  AccordionSize,
-  AccordionColor,
 } from "./types";
 export type { AccordionContextValue } from "./AccordionContext";
 export type { AccordionItemContextValue } from "./AccordionItemContext";

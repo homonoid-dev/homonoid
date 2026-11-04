@@ -1,10 +1,5 @@
 import type { ReactNode, HTMLAttributes, ButtonHTMLAttributes } from "react";
-import type { TileColor } from "../tile/types";
-import type { Variant } from "../../types";
-
-export type AccordionVariant = Variant;
-export type AccordionSize = "sm" | "md" | "lg";
-export type AccordionColor = TileColor;
+import type { Variant, Color, Size } from "../../types";
 
 export interface AccordionItemDefinition {
   value: string;
@@ -23,9 +18,9 @@ export interface AccordionProps
   onValueChange?: (value: string | string[]) => void;
   multiple?: boolean;
   collapsible?: boolean;
-  variant?: AccordionVariant;
-  color?: AccordionColor;
-  size?: AccordionSize;
+  variant?: Variant;
+  color?: Color;
+  size?: Size;
   disabled?: boolean;
   items?: AccordionItemDefinition[];
   children?: ReactNode;
