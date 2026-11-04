@@ -8,6 +8,7 @@ import {
   useRef,
   type KeyboardEvent,
 } from "react";
+import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import { cond } from "../../utils/condition";
 import { useMergeRefs } from "@floating-ui/react";
@@ -16,6 +17,19 @@ import { AccordionItem } from "./AccordionItem";
 import { AccordionTrigger } from "./AccordionTrigger";
 import { AccordionContent } from "./AccordionContent";
 import type { AccordionProps } from "./types";
+
+export const accordionVariants = cva("w-full", {
+  variants: {
+    variant: {
+      plain: "",
+      outlined: "border border-border rounded-xl overflow-hidden bg-background",
+      contained: "flex flex-col gap-surface-gap",
+    },
+  },
+  defaultVariants: {
+    variant: "plain",
+  },
+});
 
 function normalizeValues(
   val: string | string[] | undefined,
@@ -50,7 +64,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
       onValueChange,
       multiple = false,
       collapsible = true,
-      variant = "flush",
+      variant = "plain",
       color = "surface",
       size = "md",
       disabled = false,
@@ -185,19 +199,13 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
       ]
     );
 
-    const rootClasses = cond(
-      variant === "bordered",
-      "w-full border border-border rounded-xl overflow-hidden bg-background",
-      cond(variant === "separated", "w-full flex flex-col gap-2", "w-full")
-    );
-
     return (
       <AccordionContext.Provider value={contextValue}>
         <div
           ref={mergedRef}
           data-orientation="vertical"
           data-variant={variant}
-          className={cn(rootClasses, className)}
+          className={cn(accordionVariants({ variant }), className)}
           {...props}
         >
           {cond(

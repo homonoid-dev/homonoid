@@ -1,7 +1,7 @@
-export { Accordion } from "./Accordion";
-export { AccordionItem } from "./AccordionItem";
-export { AccordionTrigger } from "./AccordionTrigger";
-export { AccordionContent } from "./AccordionContent";
+export { Accordion, accordionVariants } from "./Accordion";
+export { AccordionItem, accordionItemVariants } from "./AccordionItem";
+export { AccordionTrigger, accordionTriggerVariants, triggerVariants } from "./AccordionTrigger";
+export { AccordionContent, accordionContentVariants, accordionRegionVariants } from "./AccordionContent";
 export { AccordionContext, useAccordionContext } from "./AccordionContext";
 export { AccordionItemContext, useAccordionItemContext } from "./AccordionItemContext";
 
@@ -11,9 +11,6 @@ export type {
   AccordionTriggerProps,
   AccordionContentProps,
   AccordionItemDefinition,
-  AccordionVariant,
-  AccordionSize,
-  AccordionColor,
 } from "./types";
 export type { AccordionContextValue } from "./AccordionContext";
 export type { AccordionItemContextValue } from "./AccordionItemContext";

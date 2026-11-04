@@ -24,9 +24,9 @@ export const variants = cva(
         plain: "border border-transparent bg-transparent hover:bg-surface-hover",
       },
       size: {
-        sm: "h-control-sm px-2.5 gap-2 text-xs",
-        md: "h-control-md px-3 gap-2.5 text-sm",
-        lg: "h-control-lg px-3.5 gap-3 text-base",
+        sm: "h-control-sm px-control-sm-x gap-control-gap text-xs",
+        md: "h-control-md px-control-md-x gap-control-gap text-sm",
+        lg: "h-control-lg px-control-lg-x gap-control-gap text-base",
       },
       radius: {
         none: "rounded-none",

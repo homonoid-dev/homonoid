@@ -138,12 +138,12 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
       >
         <nav
           aria-label={props["aria-label"] || "Sidebar navigation"}
-          className="flex flex-col h-full w-full overflow-hidden"
+          className="relative flex flex-col h-full w-full overflow-y-auto overflow-x-hidden"
         >
           {cond(
             isAtomic,
             <>
-              {when(header, <SidebarHeader>{header}</SidebarHeader>)}
+              {when(header, <SidebarHeader sticky>{header}</SidebarHeader>)}
               <SidebarContent>
                 {groups?.map((group, groupIdx) => (
                   <SidebarGroup key={group.id || groupIdx} label={group.label}>
@@ -179,7 +179,7 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
                 ))}
                 {children}
               </SidebarContent>
-              {when(footer, <SidebarFooter>{footer}</SidebarFooter>)}
+              {when(footer, <SidebarFooter sticky>{footer}</SidebarFooter>)}
             </>,
             children
           )}

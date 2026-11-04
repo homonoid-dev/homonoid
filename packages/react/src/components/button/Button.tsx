@@ -52,9 +52,9 @@ export const variants = cva(
         destructive: "",
       },
       size: {
-        sm: "h-control-sm px-3.5 gap-control-gap text-sm",
-        md: "h-control-md px-control-x gap-control-gap text-sm",
-        lg: "h-control-lg px-5 gap-control-gap text-base",
+        sm: "h-control-sm px-control-sm-x gap-control-gap text-sm active:scale-[var(--motion-press-scale-sm)] aria-expanded:scale-[var(--motion-press-scale-sm)] data-[state=open]:scale-[var(--motion-press-scale-sm)]",
+        md: "h-control-md px-control-md-x gap-control-gap text-sm active:scale-[var(--motion-press-scale-md)] aria-expanded:scale-[var(--motion-press-scale-md)] data-[state=open]:scale-[var(--motion-press-scale-md)]",
+        lg: "h-control-lg px-control-lg-x gap-control-gap text-base active:scale-[var(--motion-press-scale-lg)] aria-expanded:scale-[var(--motion-press-scale-lg)] data-[state=open]:scale-[var(--motion-press-scale-lg)]",
       },
       radius: {
         none: "rounded-none",
@@ -73,6 +73,16 @@ export const variants = cva(
       { layout: "icon", size: "sm", className: "w-control-sm" },
       { layout: "icon", size: "md", className: "w-control-md" },
       { layout: "icon", size: "lg", className: "w-control-lg" },
+      {
+        layout: "icon",
+        className:
+          "active:scale-[var(--motion-press-scale-sm)] aria-expanded:scale-[var(--motion-press-scale-sm)] data-[state=open]:scale-[var(--motion-press-scale-sm)]",
+      },
+      {
+        layout: "full",
+        className:
+          "active:scale-[var(--motion-press-scale-expanded)] aria-expanded:scale-[var(--motion-press-scale-expanded)] data-[state=open]:scale-[var(--motion-press-scale-expanded)]",
+      },
       ...compounds,
     ],
     defaultVariants: {

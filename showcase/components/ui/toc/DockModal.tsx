@@ -120,7 +120,7 @@ export function DockModal({ pathname, onClose, onSelect }: DockModalProps) {
       }}
       style={{ y: modalY }}
       transition={{ type: "spring", stiffness: 350, damping: 28, mass: 0.8 }}
-      className="fixed inset-0 z-50 pointer-events-auto flex flex-col w-full h-full rounded-none bg-surface overflow-hidden"
+      className="fixed inset-0 z-50 pointer-events-auto flex flex-col w-full h-full rounded-none overflow-hidden"
     >
       <motion.div
         initial="hidden"
@@ -143,7 +143,7 @@ export function DockModal({ pathname, onClose, onSelect }: DockModalProps) {
         className="flex flex-col w-full h-full overflow-hidden"
       >
 
-        <Sidebar width="w-full" className="w-full h-full bg-transparent select-none">
+        <Sidebar width="w-full">
           <Sidebar.Header
             sticky
             onPointerDown={(e) => {
@@ -151,7 +151,6 @@ export function DockModal({ pathname, onClose, onSelect }: DockModalProps) {
                 dragControls.start(e);
               }
             }}
-            className="bg-transparent"
           >
             <motion.div
               variants={{
@@ -167,18 +166,17 @@ export function DockModal({ pathname, onClose, onSelect }: DockModalProps) {
               <Searchbar
                 size="sm"
                 radius="lg"
-                variant="outlined"
                 placeholder="Search components"
                 leading={<Search className="size-3.5 text-muted shrink-0" />}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full"
+                className="w-full backdrop-blur-sm"
+
               />
             </motion.div>
           </Sidebar.Header>
           <Sidebar.Content
             ref={contentRef}
-            className="gap-control-gap px-surface-sm pb-surface-sm overscroll-contain"
           >
             {filteredComponents.map((component) => (
               <motion.div

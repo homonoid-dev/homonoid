@@ -30,7 +30,13 @@ export const tokens = {
     "h-control-sm": "var(--h-control-sm)",
     "h-control-md": "var(--h-control-md)",
     "h-control-lg": "var(--h-control-lg)",
+    "p-control-sm-x": "var(--p-control-sm-x)",
+    "p-control-md-x": "var(--p-control-md-x)",
+    "p-control-lg-x": "var(--p-control-lg-x)",
     "p-control-x": "var(--p-control-x)",
+    "p-control-sm-y": "var(--p-control-sm-y)",
+    "p-control-md-y": "var(--p-control-md-y)",
+    "p-control-lg-y": "var(--p-control-lg-y)",
     "p-control-y": "var(--p-control-y)",
     "gap-control": "var(--gap-control)",
     "p-surface-sm": "var(--p-surface-sm)",
@@ -49,6 +55,9 @@ export const tokens = {
     "duration-normal": "var(--motion-duration-normal)",
     "duration-slow": "var(--motion-duration-slow)",
     easing: "var(--motion-easing)",
+    "press-scale-sm": "var(--motion-press-scale-sm)",
+    "press-scale-md": "var(--motion-press-scale-md)",
+    "press-scale-lg": "var(--motion-press-scale-lg)",
     "press-scale": "var(--motion-press-scale)"
   }
 } as const;

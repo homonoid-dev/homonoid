@@ -15,32 +15,34 @@ import { useAccordionContext } from "./AccordionContext";
 import { useAccordionItemContext } from "./AccordionItemContext";
 import type { AccordionTriggerProps } from "./types";
 
-const triggerVariants = cva(
-  "flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:pointer-events-none disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40 bg-transparent text-foreground hover:text-foreground",
+export const accordionTriggerVariants = cva(
+  "flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale-expanded)] focus-ring cursor-pointer disabled:pointer-events-none disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40 bg-transparent text-foreground hover:text-foreground",
   {
     variants: {
       size: {
-        sm: "min-h-control-sm py-2 text-xs gap-2",
-        md: "min-h-control-md py-3 text-sm gap-3",
-        lg: "min-h-control-lg py-4 text-base gap-4",
+        sm: "min-h-control-sm py-control-sm-y text-xs gap-control-gap",
+        md: "min-h-control-md py-control-md-y text-sm gap-control-gap",
+        lg: "min-h-control-lg py-control-lg-y text-base gap-control-gap",
       },
       variant: {
-        flush: "px-0",
-        bordered: "",
-        separated: "",
+        plain: "px-0",
+        outlined: "",
+        contained: "",
       },
     },
     compoundVariants: [
-      { variant: ["bordered", "separated"], size: "sm", className: "px-3" },
-      { variant: ["bordered", "separated"], size: "md", className: "px-4" },
-      { variant: ["bordered", "separated"], size: "lg", className: "px-5" },
+      { variant: ["outlined", "contained"], size: "sm", className: "px-control-sm-x" },
+      { variant: ["outlined", "contained"], size: "md", className: "px-control-md-x" },
+      { variant: ["outlined", "contained"], size: "lg", className: "px-control-lg-x" },
     ],
     defaultVariants: {
       size: "md",
-      variant: "flush",
+      variant: "plain",
     },
   }
 );
+
+export const triggerVariants = accordionTriggerVariants;
 
 export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(
   function AccordionTrigger(
@@ -126,7 +128,7 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
         aria-controls={contentId}
         data-accordion-trigger=""
         data-state={cond(open, "open", "closed")}
-        className={cn(triggerVariants({ size, variant }), className)}
+        className={cn(accordionTriggerVariants({ size, variant }), className)}
         onClick={handleClick}
         onKeyDown={handleKey}
         {...props}

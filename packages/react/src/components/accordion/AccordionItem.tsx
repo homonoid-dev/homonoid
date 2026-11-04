@@ -1,6 +1,7 @@
 "use client";
 
 import { forwardRef, useId } from "react";
+import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import { cond } from "../../utils/condition";
 import { useAccordionContext } from "./AccordionContext";
@@ -9,6 +10,19 @@ import {
   type AccordionItemContextValue,
 } from "./AccordionItemContext";
 import type { AccordionItemProps } from "./types";
+
+export const accordionItemVariants = cva("", {
+  variants: {
+    variant: {
+      plain: "border-b border-border last:border-b-0",
+      outlined: "border-b border-border last:border-b-0",
+      contained: "border border-border rounded-xl overflow-hidden bg-surface",
+    },
+  },
+  defaultVariants: {
+    variant: "plain",
+  },
+});
 
 export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
   function AccordionItem({ value, disabled = false, className, children, ...props }, ref) {
@@ -27,19 +41,13 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
       contentId,
     };
 
-    const variantStyles = cond(
-      variant === "separated",
-      "border border-border rounded-xl overflow-hidden bg-surface mb-2 last:mb-0",
-      "border-b border-border last:border-b-0"
-    );
-
     return (
       <AccordionItemContext.Provider value={contextValue}>
         <div
           ref={ref}
           data-state={cond(open, "open", "closed")}
           data-disabled={cond(disabled, "", undefined)}
-          className={cn(variantStyles, className)}
+          className={cn(accordionItemVariants({ variant }), className)}
           {...props}
         >
           {children}

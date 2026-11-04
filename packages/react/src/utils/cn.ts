@@ -2,7 +2,17 @@ import { clsx, type ClassValue } from "clsx";
 import { extendTailwindMerge } from "tailwind-merge";
 
 const SPACING_SURFACE = ["surface", "surface-sm", "surface-md", "surface-lg", "surface-gap"];
-const SPACING_CONTROL = ["control", "control-sm", "control-md", "control-lg", "control-x", "control-y", "control-gap"];
+const SPACING_CONTROL_X = ["control-x", "control-sm-x", "control-md-x", "control-lg-x"];
+const SPACING_CONTROL_Y = ["control-y", "control-sm-y", "control-md-y", "control-lg-y"];
+const SPACING_CONTROL = [
+  "control",
+  "control-sm",
+  "control-md",
+  "control-lg",
+  ...SPACING_CONTROL_X,
+  ...SPACING_CONTROL_Y,
+  "control-gap",
+];
 const SPACING_LAYOUT = ["layout", "layout-x", "layout-y", "layout-gap"];
 
 const ALL_SPACING = [
@@ -15,12 +25,12 @@ const customTwMerge = extendTailwindMerge({
   extend: {
     classGroups: {
       p: [{ p: ALL_SPACING }],
-      px: [{ px: ["control-x", "layout-x", ...SPACING_SURFACE] }],
-      py: [{ py: ["control-y", "layout-y", ...SPACING_SURFACE] }],
-      pt: [{ pt: ["control-y", "layout-y", ...SPACING_SURFACE] }],
-      pb: [{ pb: ["control-y", "layout-y", ...SPACING_SURFACE] }],
-      pl: [{ pl: ["control-x", "layout-x", ...SPACING_SURFACE] }],
-      pr: [{ pr: ["control-x", "layout-x", ...SPACING_SURFACE] }],
+      px: [{ px: [...SPACING_CONTROL_X, "layout-x", ...SPACING_SURFACE] }],
+      py: [{ py: [...SPACING_CONTROL_Y, "layout-y", ...SPACING_SURFACE] }],
+      pt: [{ pt: [...SPACING_CONTROL_Y, "layout-y", ...SPACING_SURFACE] }],
+      pb: [{ pb: [...SPACING_CONTROL_Y, "layout-y", ...SPACING_SURFACE] }],
+      pl: [{ pl: [...SPACING_CONTROL_X, "layout-x", ...SPACING_SURFACE] }],
+      pr: [{ pr: [...SPACING_CONTROL_X, "layout-x", ...SPACING_SURFACE] }],
       gap: [{ gap: ["control-gap", "surface-gap", "surface", "layout-gap", "layout"] }],
       "gap-x": [{ "gap-x": ["control-gap", "surface-gap", "surface", "layout-gap", "layout"] }],
       "gap-y": [{ "gap-y": ["control-gap", "surface-gap", "surface", "layout-gap", "layout"] }],

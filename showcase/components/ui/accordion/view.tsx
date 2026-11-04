@@ -6,7 +6,7 @@ import {
   Button,
   Description,
   Dropdown,
-  type AccordionVariant,
+  type Variant,
 } from "@homonoid/react";
 import { Exhibit } from "@/components/ui/exhibit";
 import {
@@ -21,11 +21,11 @@ import {
 
 export function AccordionView() {
   const sections = ACCORDION_SECTIONS;
-  const [selectedVariant, setSelectedVariant] = useState<AccordionVariant>("flush");
-  const variantActions: { id: AccordionVariant; label: string }[] = [
-    { id: "flush", label: "Flush" },
-    { id: "bordered", label: "Bordered" },
-    { id: "separated", label: "Separated" },
+  const [selectedVariant, setSelectedVariant] = useState<Variant>("plain");
+  const variantActions: { id: Variant; label: string }[] = [
+    { id: "plain", label: "Plain" },
+    { id: "outlined", label: "Outlined" },
+    { id: "contained", label: "Contained" },
   ];
   const activeAction = variantActions.find((a) => a.id === selectedVariant) ?? variantActions[0];
 
@@ -112,7 +112,7 @@ export function AccordionView() {
       importCode='import { Accordion } from "@homonoid/react";'
       defaultCode={ACCORDION_DEFAULT_CODE_SAMPLE}
       defaultStage={
-        <div className="w-full max-w-lg mx-auto">
+        <div className="w-full max-w-lg mx-auto self-start">
           <Accordion defaultValue="architecture" items={defaultItems} />
         </div>
       }
@@ -120,8 +120,8 @@ export function AccordionView() {
     >
       {/* Atomic Usage Section */}
       <Exhibit.Stage section={sections.atomic} code={ACCORDION_ATOMIC_CODE_SAMPLE}>
-        <div className="w-full max-w-lg mx-auto">
-          <Accordion variant="bordered" defaultValue="item-1" items={atomicItems} />
+        <div className="w-full max-w-lg mx-auto self-start">
+          <Accordion variant="outlined" defaultValue="item-1" items={atomicItems} />
         </div>
       </Exhibit.Stage>
 
@@ -155,14 +155,14 @@ export function AccordionView() {
           </Dropdown>
         }
       >
-        <div className="w-full max-w-lg mx-auto">
+        <div className="w-full max-w-lg mx-auto self-start">
           <Accordion variant={selectedVariant} defaultValue="profile" items={variantItems} />
         </div>
       </Exhibit.Stage>
 
       {/* Multiple Expansion Section */}
       <Exhibit.Stage section={sections.multiple} code={ACCORDION_MULTIPLE_CODE_SAMPLE}>
-        <div className="w-full max-w-lg mx-auto">
+        <div className="w-full max-w-lg mx-auto self-start">
           <Accordion
             multiple
             defaultValue={["general", "billing"]}
@@ -173,7 +173,7 @@ export function AccordionView() {
 
       {/* Compound Composition Section */}
       <Exhibit.Stage section={sections.interactive} code={ACCORDION_COMPOUND_CODE_SAMPLE}>
-        <div className="w-full max-w-lg mx-auto">
+        <div className="w-full max-w-lg mx-auto self-start">
           <Accordion defaultValue="item-1">
             <Accordion.Item value="item-1">
               <Accordion.Trigger>Custom Header Structure</Accordion.Trigger>
@@ -196,6 +196,9 @@ export function AccordionView() {
       <Exhibit.Section section={sections.continuity}>
         <Description>
           Content panels preserve dimensional stability by animating CSS grid template rows smoothly from zero fractions to one fraction.
+        </Description>
+        <Description>
+          Content bodies enter with synchronized top anchored scale and opacity transitions that expand from ninety eight percent to full dimensional scale matching the expanded press scale token.
         </Description>
         <Description>
           The trailing disclosure chevron rotates smoothly across one hundred eighty degrees with calibrated timing and zero layout displacement.

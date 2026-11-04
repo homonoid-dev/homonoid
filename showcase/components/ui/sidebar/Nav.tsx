@@ -29,15 +29,14 @@ export function Nav() {
         <Searchbar
           size="sm"
           radius="lg"
-          variant="contained"
           placeholder="Search components"
           leading={<Search className="size-3.5 text-muted shrink-0" />}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full"
+          className="w-full backdrop-blur-sm"
         />
       </Sidebar.Header>
-      <Sidebar.Content className="gap-control-gap px-surface-sm pb-surface-sm">
+      <Sidebar.Content>
         {filteredComponents.map((component) => (
           <Sidebar.Item
             key={component.href}

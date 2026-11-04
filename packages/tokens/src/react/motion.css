@@ -6,7 +6,11 @@
     --motion-duration-normal: 250ms;
     --motion-duration-slow: 350ms;
     --motion-easing: cubic-bezier(0.4, 0, 0.2, 1);
-    --motion-press-scale: 0.97;
+    --motion-press-scale-sm: 0.94;
+    --motion-press-scale-md: 0.95;
+    --motion-press-scale-lg: 0.96;
+    --motion-press-scale-expanded: 0.98;
+    --motion-press-scale: var(--motion-press-scale-md);
   }
 }
 
