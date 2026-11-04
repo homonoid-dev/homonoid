@@ -13,7 +13,7 @@ export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
         data-slot="sidebar-header"
         data-sticky={cond(sticky, "true", undefined)}
         className={cn(
-          "relative flex flex-col px-surface-sm py-surface-sm shrink-0",
+          "relative flex flex-col p-surface-sm shrink-0",
           cond(sticky, "sticky top-0 z-10", undefined),
           className
         )}
@@ -26,7 +26,7 @@ export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
             className="pointer-events-none absolute inset-0 z-0 bg-background backdrop-blur-xl [mask-image:linear-gradient(to_bottom,black_0%,black_35%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_35%,transparent_100%)]"
           />
         )}
-        <div className="relative z-10 flex flex-col gap-surface-gap w-full">
+        <div className="relative z-10 flex flex-col gap-control-gap w-full">
           {children}
         </div>
       </div>
