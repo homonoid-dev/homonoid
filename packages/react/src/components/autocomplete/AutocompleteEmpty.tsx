@@ -7,9 +7,9 @@ import { match } from "../../utils/condition";
 import type { AutocompleteEmptyProps } from "./types";
 
 const heightClasses: Record<string, string> = {
-  sm: "min-h-control-sm px-3 text-xs",
-  md: "min-h-control-md px-3.5 text-xs",
-  lg: "min-h-control-lg px-4.5 text-sm",
+  sm: "min-h-control-sm px-control-sm-x text-xs",
+  md: "min-h-control-md px-control-md-x text-xs",
+  lg: "min-h-control-lg px-control-lg-x text-sm",
 };
 
 export const AutocompleteEmpty = forwardRef<HTMLDivElement, AutocompleteEmptyProps>(
@@ -36,7 +36,7 @@ export const AutocompleteEmpty = forwardRef<HTMLDivElement, AutocompleteEmptyPro
         data-empty="true"
         className={cn(
           "flex w-full items-center justify-center text-center text-muted select-none",
-          match(size, heightClasses, "min-h-control-md px-3.5 text-xs"),
+          match(size, heightClasses, "min-h-control-md px-control-md-x text-xs"),
           className
         )}
         {...props}

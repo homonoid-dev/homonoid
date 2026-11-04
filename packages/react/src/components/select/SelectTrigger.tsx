@@ -67,9 +67,9 @@ export const variants = cva(
         destructive: "",
       },
       size: {
-        sm: "h-control-sm px-2.5 text-xs gap-2",
-        md: "h-control-md px-3 text-sm gap-2.5",
-        lg: "h-control-lg px-3.5 text-base gap-3",
+        sm: "h-control-sm px-control-sm-x text-xs gap-control-gap",
+        md: "h-control-md px-control-md-x text-sm gap-control-gap",
+        lg: "h-control-lg px-control-lg-x text-base gap-control-gap",
       },
       radius: {
         none: "rounded-none",

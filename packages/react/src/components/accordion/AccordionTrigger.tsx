@@ -20,9 +20,9 @@ const triggerVariants = cva(
   {
     variants: {
       size: {
-        sm: "min-h-control-sm py-2 text-xs gap-2",
-        md: "min-h-control-md py-3 text-sm gap-3",
-        lg: "min-h-control-lg py-4 text-base gap-4",
+        sm: "min-h-control-sm py-control-sm-y text-xs gap-control-gap",
+        md: "min-h-control-md py-control-md-y text-sm gap-control-gap",
+        lg: "min-h-control-lg py-control-lg-y text-base gap-control-gap",
       },
       variant: {
         flush: "px-0",
@@ -31,9 +31,9 @@ const triggerVariants = cva(
       },
     },
     compoundVariants: [
-      { variant: ["bordered", "separated"], size: "sm", className: "px-3" },
-      { variant: ["bordered", "separated"], size: "md", className: "px-4" },
-      { variant: ["bordered", "separated"], size: "lg", className: "px-5" },
+      { variant: ["bordered", "separated"], size: "sm", className: "px-control-sm-x" },
+      { variant: ["bordered", "separated"], size: "md", className: "px-control-md-x" },
+      { variant: ["bordered", "separated"], size: "lg", className: "px-control-lg-x" },
     ],
     defaultVariants: {
       size: "md",

@@ -25,9 +25,9 @@ export const variants = cva(
         destructive: "text-destructive"
       },
       size: {
-        sm: "min-h-control-sm px-3 py-1.5 gap-2.5 text-xs",
-        md: "min-h-control-md px-3.5 py-2.5 gap-3 text-sm",
-        lg: "min-h-control-lg px-4.5 py-3.5 gap-3.5 text-sm"
+        sm: "min-h-control-sm px-control-sm-x py-control-sm-y gap-control-gap text-xs",
+        md: "min-h-control-md px-control-md-x py-control-md-y gap-control-gap text-sm",
+        lg: "min-h-control-lg px-control-lg-x py-control-lg-y gap-control-gap text-sm",
       },
       radius: {
         none: "rounded-none",

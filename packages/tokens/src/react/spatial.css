@@ -9,8 +9,16 @@
     --h-control-lg: 3.0rem;
 
     /* Control Insets & Gaps */
-    --p-control-x: 1.0rem;
-    --p-control-y: 0.75rem;
+    --p-control-sm-x: 0.75rem;
+    --p-control-md-x: 1.0rem;
+    --p-control-lg-x: 1.25rem;
+    --p-control-x: var(--p-control-md-x);
+
+    --p-control-sm-y: 0.375rem;
+    --p-control-md-y: 0.5rem;
+    --p-control-lg-y: 0.75rem;
+    --p-control-y: var(--p-control-md-y);
+
     --gap-control: 0.5rem;
 
     /* Surface Spacing (sm: 16px, md: 24px, lg: 32px) */
@@ -36,8 +44,16 @@
   --spacing-control-lg: var(--h-control-lg);
 
   /* Control Insets & Gaps */
+  --spacing-control-sm-x: var(--p-control-sm-x);
+  --spacing-control-md-x: var(--p-control-md-x);
+  --spacing-control-lg-x: var(--p-control-lg-x);
   --spacing-control-x: var(--p-control-x);
+
+  --spacing-control-sm-y: var(--p-control-sm-y);
+  --spacing-control-md-y: var(--p-control-md-y);
+  --spacing-control-lg-y: var(--p-control-lg-y);
   --spacing-control-y: var(--p-control-y);
+
   --spacing-control-gap: var(--gap-control);
 
   /* Surface Spacing */
