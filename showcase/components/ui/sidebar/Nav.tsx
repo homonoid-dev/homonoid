@@ -15,7 +15,7 @@ export function Nav() {
     setQuery("");
   }, [pathname]);
 
-  const filteredComponents = useMemo(() => {
+  const components = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return COMPONENTS;
     return COMPONENTS.filter((component) =>
@@ -37,7 +37,7 @@ export function Nav() {
         />
       </Sidebar.Header>
       <Sidebar.Content>
-        {filteredComponents.map((component) => (
+        {components.map((component) => (
           <Sidebar.Item
             key={component.href}
             as={Link}
