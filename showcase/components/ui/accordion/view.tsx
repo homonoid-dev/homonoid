@@ -112,7 +112,7 @@ export function AccordionView() {
       importCode='import { Accordion } from "@homonoid/react";'
       defaultCode={ACCORDION_DEFAULT_CODE_SAMPLE}
       defaultStage={
-        <div className="w-full max-w-lg mx-auto">
+        <div className="w-full max-w-lg mx-auto self-start">
           <Accordion defaultValue="architecture" items={defaultItems} />
         </div>
       }
@@ -120,7 +120,7 @@ export function AccordionView() {
     >
       {/* Atomic Usage Section */}
       <Exhibit.Stage section={sections.atomic} code={ACCORDION_ATOMIC_CODE_SAMPLE}>
-        <div className="w-full max-w-lg mx-auto">
+        <div className="w-full max-w-lg mx-auto self-start">
           <Accordion variant="outlined" defaultValue="item-1" items={atomicItems} />
         </div>
       </Exhibit.Stage>
@@ -155,14 +155,14 @@ export function AccordionView() {
           </Dropdown>
         }
       >
-        <div className="w-full max-w-lg mx-auto">
+        <div className="w-full max-w-lg mx-auto self-start">
           <Accordion variant={selectedVariant} defaultValue="profile" items={variantItems} />
         </div>
       </Exhibit.Stage>
 
       {/* Multiple Expansion Section */}
       <Exhibit.Stage section={sections.multiple} code={ACCORDION_MULTIPLE_CODE_SAMPLE}>
-        <div className="w-full max-w-lg mx-auto">
+        <div className="w-full max-w-lg mx-auto self-start">
           <Accordion
             multiple
             defaultValue={["general", "billing"]}
@@ -173,7 +173,7 @@ export function AccordionView() {
 
       {/* Compound Composition Section */}
       <Exhibit.Stage section={sections.interactive} code={ACCORDION_COMPOUND_CODE_SAMPLE}>
-        <div className="w-full max-w-lg mx-auto">
+        <div className="w-full max-w-lg mx-auto self-start">
           <Accordion defaultValue="item-1">
             <Accordion.Item value="item-1">
               <Accordion.Trigger>Custom Header Structure</Accordion.Trigger>

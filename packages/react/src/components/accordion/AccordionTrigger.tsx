@@ -16,7 +16,7 @@ import { useAccordionItemContext } from "./AccordionItemContext";
 import type { AccordionTriggerProps } from "./types";
 
 export const accordionTriggerVariants = cva(
-  "flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale-lg)] focus-ring cursor-pointer disabled:pointer-events-none disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40 bg-transparent text-foreground hover:text-foreground",
+  "flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale-expanded)] focus-ring cursor-pointer disabled:pointer-events-none disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40 bg-transparent text-foreground hover:text-foreground",
   {
     variants: {
       size: {

@@ -16,7 +16,7 @@ export const accordionItemVariants = cva("", {
     variant: {
       plain: "border-b border-border last:border-b-0",
       outlined: "border-b border-border last:border-b-0",
-      contained: "border border-border rounded-xl overflow-hidden bg-surface mb-2 last:mb-0",
+      contained: "border border-border rounded-xl overflow-hidden bg-surface",
     },
   },
   defaultVariants: {
