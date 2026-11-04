@@ -10,7 +10,7 @@ import {
 } from "motion/react";
 import { Search } from "lucide-react";
 import { Searchbar, Sidebar } from "@homonoid/react";
-import { SHOWCASE_COMPONENTS } from "@/config/components";
+import { COMPONENTS } from "@/config/components";
 
 export interface DockModalProps {
   pathname: string;
@@ -26,8 +26,8 @@ export function DockModal({ pathname, onClose, onSelect }: DockModalProps) {
 
   const filteredComponents = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
-    if (!q) return SHOWCASE_COMPONENTS;
-    return SHOWCASE_COMPONENTS.filter((component) =>
+    if (!q) return COMPONENTS;
+    return COMPONENTS.filter((component) =>
       component.name.toLowerCase().includes(q)
     );
   }, [searchQuery]);

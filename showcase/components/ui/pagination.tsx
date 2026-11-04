@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 import { Button, cond } from "@homonoid/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@homonoid/react/cn";
-import { SHOWCASE_COMPONENTS, type ShowcaseComponentItem } from "@/config/components";
+import { COMPONENTS, type ComponentItem } from "@/config/components";
 
 export interface PaginationProps {
-  prev?: ShowcaseComponentItem | null;
-  next?: ShowcaseComponentItem | null;
+  prev?: ComponentItem | null;
+  next?: ComponentItem | null;
   className?: string;
 }
 
@@ -20,22 +20,22 @@ export function Pagination({
 }: PaginationProps) {
   const pathname = usePathname();
 
-  const currentIndex = SHOWCASE_COMPONENTS.findIndex(
+  const currentIndex = COMPONENTS.findIndex(
     (item) => item.href === pathname
   );
 
   const prevItem = cond(
     explicitPrev !== undefined,
     explicitPrev,
-    cond(currentIndex > 0, SHOWCASE_COMPONENTS[currentIndex - 1], null)
+    cond(currentIndex > 0, COMPONENTS[currentIndex - 1], null)
   );
 
   const nextItem = cond(
     explicitNext !== undefined,
     explicitNext,
     cond(
-      currentIndex >= 0 && currentIndex < SHOWCASE_COMPONENTS.length - 1,
-      SHOWCASE_COMPONENTS[currentIndex + 1],
+      currentIndex >= 0 && currentIndex < COMPONENTS.length - 1,
+      COMPONENTS[currentIndex + 1],
       null
     )
   );

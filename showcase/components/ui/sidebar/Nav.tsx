@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Search } from "lucide-react";
 import { Searchbar, Sidebar } from "@homonoid/react";
-import { SHOWCASE_COMPONENTS } from "@/config/components";
+import { COMPONENTS } from "@/config/components";
 
 export function Nav() {
   const [query, setQuery] = useState("");
@@ -17,8 +17,8 @@ export function Nav() {
 
   const filteredComponents = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return SHOWCASE_COMPONENTS;
-    return SHOWCASE_COMPONENTS.filter((component) =>
+    if (!q) return COMPONENTS;
+    return COMPONENTS.filter((component) =>
       component.name.toLowerCase().includes(q)
     );
   }, [query]);

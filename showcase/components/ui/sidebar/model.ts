@@ -58,8 +58,8 @@ export function Example() {
 
   const filteredComponents = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return SHOWCASE_COMPONENTS;
-    return SHOWCASE_COMPONENTS.filter((component) =>
+    if (!q) return COMPONENTS;
+    return COMPONENTS.filter((component) =>
       component.name.toLowerCase().includes(q)
     );
   }, [query]);

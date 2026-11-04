@@ -11,7 +11,7 @@ import { Stage } from "./stage";
 import { Resource } from "./resource";
 import { Pagination } from "./pagination";
 import { useToc, type TocItemModel } from "./toc";
-import { SHOWCASE_COMPONENTS, type ShowcaseComponentItem } from "@/config/components";
+import { COMPONENTS, type ComponentItem } from "@/config/components";
 
 export interface ExhibitSectionItem {
   id: string;
@@ -132,7 +132,7 @@ export interface ExhibitProps {
   defaultCode?: string;
   defaultStage?: ReactNode;
   sections?: TocItemModel[];
-  related?: (string | ShowcaseComponentItem)[];
+  related?: (string | ComponentItem)[];
   relatedDescription?: ReactNode;
   children?: ReactNode;
   className?: string;
@@ -157,7 +157,7 @@ export function Exhibit({
 
   const resolvedImport = importCode ?? cond(Boolean(component), `import { ${title} } from "@homonoid/react";`, undefined);
 
-  const configItem = SHOWCASE_COMPONENTS.find(
+  const configItem = COMPONENTS.find(
     (item) =>
       (component && item.href === `/components/${component}`) ||
       item.name.toLowerCase() === title.toLowerCase()
@@ -165,10 +165,10 @@ export function Exhibit({
 
   const rawRelated = related ?? configItem?.related;
 
-  const resolvedRelated: ShowcaseComponentItem[] = (rawRelated ?? [])
+  const resolvedRelated: ComponentItem[] = (rawRelated ?? [])
     .map((entry) => {
       if (typeof entry !== "string") return entry;
-      const match = SHOWCASE_COMPONENTS.find(
+      const match = COMPONENTS.find(
         (c) =>
           c.name.toLowerCase() === entry.toLowerCase() ||
           c.href.replace("/components/", "").toLowerCase() === entry.toLowerCase()
