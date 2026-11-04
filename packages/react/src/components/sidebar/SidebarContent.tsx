@@ -11,7 +11,7 @@ export const SidebarContent = forwardRef<HTMLDivElement, SidebarContentProps>(
         ref={ref}
         data-slot="sidebar-content"
         className={cn(
-          "flex-1 flex flex-col gap-3 overflow-y-auto overflow-x-hidden p-2 min-h-0",
+          "flex-1 flex flex-col gap-surface-gap p-surface-sm overflow-y-auto overflow-x-hidden",
           className
         )}
         {...props}

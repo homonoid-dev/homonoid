@@ -13,8 +13,8 @@ export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
         data-slot="sidebar-header"
         data-sticky={cond(sticky, "true", undefined)}
         className={cn(
-          "flex flex-col gap-2 p-3 shrink-0",
-          cond(sticky, "sticky top-0 z-10 bg-background/95 backdrop-blur-xs", undefined),
+          "flex flex-col gap-surface-gap px-surface-sm pt-surface-sm shrink-0",
+          cond(sticky, "sticky top-0 z-10", undefined),
           className
         )}
         {...props}
