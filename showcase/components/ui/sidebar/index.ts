@@ -1,3 +1,3 @@
-export { Nav } from "./Nav";
+export { Sidebar } from "./Sidebar";
 export { SidebarView } from "./view";
 export * from "./model";

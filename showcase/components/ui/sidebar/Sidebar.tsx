@@ -4,10 +4,10 @@ import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Search } from "lucide-react";
-import { Searchbar, Sidebar } from "@homonoid/react";
+import { Searchbar, Sidebar as _Sidebar } from "@homonoid/react";
 import { COMPONENTS } from "@/config/components";
 
-export function Nav() {
+export function Sidebar() {
   const [query, setQuery] = useState("");
   const pathname = usePathname();
 
@@ -24,8 +24,8 @@ export function Nav() {
   }, [query]);
 
   return (
-    <Sidebar width="w-58" className="select-none">
-      <Sidebar.Header sticky>
+    <_Sidebar width="w-58" className="select-none">
+      <_Sidebar.Header sticky>
         <Searchbar
           size="sm"
           radius="lg"
@@ -35,10 +35,10 @@ export function Nav() {
           onChange={(e) => setQuery(e.target.value)}
           className="w-full backdrop-blur-sm"
         />
-      </Sidebar.Header>
-      <Sidebar.Content>
+      </_Sidebar.Header>
+      <_Sidebar.Content>
         {components.map((component) => (
-          <Sidebar.Item
+          <_Sidebar.Item
             key={component.href}
             as={Link}
             href={component.href}
@@ -46,9 +46,9 @@ export function Nav() {
             onClick={() => setQuery("")}
           >
             {component.name}
-          </Sidebar.Item>
+          </_Sidebar.Item>
         ))}
-      </Sidebar.Content>
-    </Sidebar>
+      </_Sidebar.Content>
+    </_Sidebar>
   );
 }
