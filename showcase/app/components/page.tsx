@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Resource } from "@/components/ui/resource";
 import { Exhibit } from "@/components/ui/exhibit";
-import { SHOWCASE_COMPONENTS } from "@/config/components";
+import { COMPONENTS } from "@/config/components";
 import {
   Card,
   Label,
@@ -32,7 +32,7 @@ export default function Page() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-surface">
-        {SHOWCASE_COMPONENTS.map((component) => (
+        {COMPONENTS.map((component) => (
           <Link
             key={component.name}
             href={component.href}

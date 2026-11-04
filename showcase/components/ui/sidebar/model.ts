@@ -46,7 +46,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Search } from "lucide-react";
 import { Searchbar, Sidebar } from "@homonoid/react";
-import { SHOWCASE_COMPONENTS } from "@/config/components";
+import { COMPONENTS } from "@/config/components";
 
 export function Example() {
   const [query, setQuery] = useState("");

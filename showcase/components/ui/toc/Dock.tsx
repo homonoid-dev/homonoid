@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence } from "motion/react";
 import { cn } from "@homonoid/react/cn";
-import { SHOWCASE_COMPONENTS } from "@/config/components";
+import { COMPONENTS } from "@/config/components";
 import { DockPill } from "./DockPill";
 import { DockModal } from "./DockModal";
 import type { DockProps } from "./types";
@@ -19,7 +19,7 @@ export function Dock({ className, children }: DockProps = {}) {
   }, [pathname]);
 
   const componentItem = useMemo(
-    () => SHOWCASE_COMPONENTS.find((item) => item.href === pathname),
+    () => COMPONENTS.find((item) => item.href === pathname),
     [pathname]
   );
   const componentName = useMemo(() => {
