@@ -16,7 +16,7 @@ import { useAccordionItemContext } from "./AccordionItemContext";
 import type { AccordionTriggerProps } from "./types";
 
 const triggerVariants = cva(
-  "flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:pointer-events-none disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40 bg-transparent text-foreground hover:text-foreground",
+  "flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale-lg)] focus-ring cursor-pointer disabled:pointer-events-none disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40 bg-transparent text-foreground hover:text-foreground",
   {
     variants: {
       size: {
@@ -25,19 +25,19 @@ const triggerVariants = cva(
         lg: "min-h-control-lg py-control-lg-y text-base gap-control-gap",
       },
       variant: {
-        flush: "px-0",
-        bordered: "",
-        separated: "",
+        plain: "px-0",
+        outlined: "",
+        contained: "",
       },
     },
     compoundVariants: [
-      { variant: ["bordered", "separated"], size: "sm", className: "px-control-sm-x" },
-      { variant: ["bordered", "separated"], size: "md", className: "px-control-md-x" },
-      { variant: ["bordered", "separated"], size: "lg", className: "px-control-lg-x" },
+      { variant: ["outlined", "contained"], size: "sm", className: "px-control-sm-x" },
+      { variant: ["outlined", "contained"], size: "md", className: "px-control-md-x" },
+      { variant: ["outlined", "contained"], size: "lg", className: "px-control-lg-x" },
     ],
     defaultVariants: {
       size: "md",
-      variant: "flush",
+      variant: "plain",
     },
   }
 );

@@ -13,15 +13,23 @@ export const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps
     const { open, triggerId, contentId } = useAccordionItemContext();
 
     const paddingX = cond(
-      variant === "flush",
+      variant === "plain",
       "px-0",
-      cond(size === "sm", "px-3", cond(size === "lg", "px-5", "px-4"))
+      cond(
+        size === "sm",
+        "px-control-sm-x",
+        cond(size === "lg", "px-control-lg-x", "px-control-md-x")
+      )
     );
 
     const paddingY = cond(
       size === "sm",
-      "pb-3 pt-1.5 text-xs",
-      cond(size === "lg", "pb-5 pt-2 text-base", "pb-4 pt-1.5 text-sm")
+      "pb-control-md-y pt-control-sm-y text-xs",
+      cond(
+        size === "lg",
+        "pb-control-lg-y pt-control-sm-y text-base",
+        "pb-control-md-y pt-control-sm-y text-sm"
+      )
     );
 
     return (

@@ -28,7 +28,7 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
     };
 
     const variantStyles = cond(
-      variant === "separated",
+      variant === "contained",
       "border border-border rounded-xl overflow-hidden bg-surface mb-2 last:mb-0",
       "border-b border-border last:border-b-0"
     );

@@ -122,9 +122,9 @@ export function CompoundExample() {
 
 Accordions support distinct structural presentations through the `variant` prop:
 
-* Flush (`variant="flush"`): Clean horizontal dividing lines between panels without outer border wrappers, ideal for clean article FAQs and documentation.
-* Bordered (`variant="bordered"`): An enclosed container featuring an outer perimeter border and rounded corners, suited for settings sidebars and form groups.
-* Separated (`variant="separated"`): Detached cards where each item sits as an independent surface separated by vertical spacing tokens.
+* Plain (`variant="plain"`): Clean horizontal dividing lines between panels without outer border wrappers, ideal for clean article FAQs and documentation.
+* Outlined (`variant="outlined"`): An enclosed container featuring an outer perimeter border and rounded corners, suited for settings sidebars and form groups.
+* Contained (`variant="contained"`): Detached cards where each item sits as an independent surface separated by vertical spacing tokens.
 
 <br>
 

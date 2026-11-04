@@ -1,7 +1,8 @@
 import type { ReactNode, HTMLAttributes, ButtonHTMLAttributes } from "react";
 import type { TileColor } from "../tile/types";
+import type { Variant } from "../../types";
 
-export type AccordionVariant = "flush" | "bordered" | "separated";
+export type AccordionVariant = Variant;
 export type AccordionSize = "sm" | "md" | "lg";
 export type AccordionColor = TileColor;
 

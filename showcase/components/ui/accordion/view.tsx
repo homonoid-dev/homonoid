@@ -21,11 +21,11 @@ import {
 
 export function AccordionView() {
   const sections = ACCORDION_SECTIONS;
-  const [selectedVariant, setSelectedVariant] = useState<AccordionVariant>("flush");
+  const [selectedVariant, setSelectedVariant] = useState<AccordionVariant>("plain");
   const variantActions: { id: AccordionVariant; label: string }[] = [
-    { id: "flush", label: "Flush" },
-    { id: "bordered", label: "Bordered" },
-    { id: "separated", label: "Separated" },
+    { id: "plain", label: "Plain" },
+    { id: "outlined", label: "Outlined" },
+    { id: "contained", label: "Contained" },
   ];
   const activeAction = variantActions.find((a) => a.id === selectedVariant) ?? variantActions[0];
 
@@ -121,7 +121,7 @@ export function AccordionView() {
       {/* Atomic Usage Section */}
       <Exhibit.Stage section={sections.atomic} code={ACCORDION_ATOMIC_CODE_SAMPLE}>
         <div className="w-full max-w-lg mx-auto">
-          <Accordion variant="bordered" defaultValue="item-1" items={atomicItems} />
+          <Accordion variant="outlined" defaultValue="item-1" items={atomicItems} />
         </div>
       </Exhibit.Stage>
 

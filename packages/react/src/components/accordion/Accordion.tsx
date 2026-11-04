@@ -50,7 +50,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
       onValueChange,
       multiple = false,
       collapsible = true,
-      variant = "flush",
+      variant = "plain",
       color = "surface",
       size = "md",
       disabled = false,
@@ -186,9 +186,9 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
     );
 
     const rootClasses = cond(
-      variant === "bordered",
+      variant === "outlined",
       "w-full border border-border rounded-xl overflow-hidden bg-background",
-      cond(variant === "separated", "w-full flex flex-col gap-2", "w-full")
+      cond(variant === "contained", "w-full flex flex-col gap-surface-gap", "w-full")
     );
 
     return (
