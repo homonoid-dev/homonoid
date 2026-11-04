@@ -198,6 +198,9 @@ export function AccordionView() {
           Content panels preserve dimensional stability by animating CSS grid template rows smoothly from zero fractions to one fraction.
         </Description>
         <Description>
+          Content bodies enter with synchronized top anchored scale and opacity transitions that expand from ninety eight percent to full dimensional scale matching the expanded press scale token.
+        </Description>
+        <Description>
           The trailing disclosure chevron rotates smoothly across one hundred eighty degrees with calibrated timing and zero layout displacement.
         </Description>
         <Description>
