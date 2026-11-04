@@ -15,7 +15,7 @@ import { useAccordionContext } from "./AccordionContext";
 import { useAccordionItemContext } from "./AccordionItemContext";
 import type { AccordionTriggerProps } from "./types";
 
-const triggerVariants = cva(
+export const accordionTriggerVariants = cva(
   "flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale-lg)] focus-ring cursor-pointer disabled:pointer-events-none disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40 bg-transparent text-foreground hover:text-foreground",
   {
     variants: {
@@ -41,6 +41,8 @@ const triggerVariants = cva(
     },
   }
 );
+
+export const triggerVariants = accordionTriggerVariants;
 
 export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(
   function AccordionTrigger(
@@ -126,7 +128,7 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
         aria-controls={contentId}
         data-accordion-trigger=""
         data-state={cond(open, "open", "closed")}
-        className={cn(triggerVariants({ size, variant }), className)}
+        className={cn(accordionTriggerVariants({ size, variant }), className)}
         onClick={handleClick}
         onKeyDown={handleKey}
         {...props}
