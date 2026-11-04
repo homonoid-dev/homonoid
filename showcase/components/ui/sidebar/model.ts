@@ -75,7 +75,7 @@ export function Example() {
           leading={<Search className="size-3.5 text-muted shrink-0" />}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full"
+          className="w-full bg-surface/80 backdrop-blur-sm border-border/40"
         />
       </Sidebar.Header>
       <Sidebar.Content className="gap-control-gap px-surface-sm pb-surface-sm">
