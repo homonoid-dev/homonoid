@@ -1,17 +1,10 @@
 "use client";
 
-import type { ComponentType, ReactNode, MouseEvent } from "react";
-import Link from "next/link";
-import { Component, type LucideIcon } from "lucide-react";
-import { Heading, Description, Card, Tile, Button, Breadcrumb } from "@homonoid/react";
-import { cn } from "@homonoid/react/cn";
-import { any, cond, when } from "@homonoid/react";
-import { highlighter } from "./code";
-import { Stage } from "./legacy-stage";
-import { Resource } from "./resource";
-import { Pagination } from "./pagination";
-import { useToc, type TocItemModel } from "./toc";
-import { COMPONENTS, type ComponentItem } from "@/config/components";
+import type { ComponentType, ReactNode } from "react";
+import type { LucideIcon } from "lucide-react";
+import { Stage } from "./stage";
+import type { TocItemModel } from "./toc";
+import type { ComponentItem } from "@/config/components";
 
 export interface ExhibitSectionItem {
   id: string;
@@ -29,60 +22,12 @@ export interface ExhibitStageProps {
   code?: string;
   onReset?: () => void;
   actions?: ReactNode;
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
 }
 
-export function ExhibitStage({
-  id: explicitId,
-  title: explicitTitle,
-  label: explicitLabel,
-  icon: explicitIcon,
-  section,
-  code,
-  onReset,
-  actions,
-  children,
-  className,
-}: ExhibitStageProps) {
-  const resolvedId = explicitId ?? section?.id ?? "";
-  const resolvedTitle = explicitTitle ?? explicitLabel ?? section?.title ?? section?.label ?? "";
-  const resolvedIcon = explicitIcon ?? section?.icon;
-
-  const scrollToSelf = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    if (!resolvedId) return;
-    const el = document.getElementById(resolvedId);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      window.history.pushState(null, "", `#${resolvedId}`);
-    }
-  };
-
-  const leadingIcon = when(Boolean(resolvedIcon), () => {
-    const IconComponent = resolvedIcon!;
-    return <IconComponent className="size-4 shrink-0" />;
-  });
-
-  return (
-    <section
-      id={resolvedId}
-      className={cn("flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y", className)}
-    >
-      <Button
-        variant="outlined"
-        color="surface"
-        leading={leadingIcon}
-        onClick={scrollToSelf}
-        className="w-fit"
-      >
-        {resolvedTitle}
-      </Button>
-      <Stage code={code ?? ""} onReset={onReset} actions={actions}>
-        {children}
-      </Stage>
-    </section>
-  );
+export function ExhibitStage(_props: ExhibitStageProps) {
+  return null;
 }
 
 export interface ExhibitSectionProps {
@@ -90,40 +35,17 @@ export interface ExhibitSectionProps {
   title?: string;
   label?: string;
   section?: ExhibitSectionItem;
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
 }
 
-export function ExhibitSection({
-  id: explicitId,
-  title: explicitTitle,
-  label: explicitLabel,
-  section,
-  children,
-  className,
-}: ExhibitSectionProps) {
-  const resolvedId = explicitId ?? section?.id ?? "";
-  const resolvedTitle = explicitTitle ?? explicitLabel ?? section?.title ?? section?.label ?? "";
-
-  return (
-    <section
-      id={resolvedId}
-      className={cn("flex flex-col gap-control-gap pb-layout-y scroll-mt-layout-y", className)}
-    >
-      {when(
-        resolvedTitle,
-        <Heading size="md" as="h2">
-          {resolvedTitle}
-        </Heading>
-      )}
-      {children}
-    </section>
-  );
+export function ExhibitSection(_props: ExhibitSectionProps) {
+  return null;
 }
 
 export interface ExhibitProps {
   title: string;
-  summary: ReactNode;
+  summary?: ReactNode;
   description?: ReactNode;
   component?: string;
   githubUrl?: string;
@@ -133,7 +55,6 @@ export interface ExhibitProps {
   defaultStage?: ReactNode;
   sections?: TocItemModel[];
   related?: (string | ComponentItem)[];
-  relatedDescription?: ReactNode;
   children?: ReactNode;
   className?: string;
 }
@@ -145,148 +66,24 @@ export function Exhibit({
   component,
   githubUrl,
   figmaUrl = "https://www.figma.com/@homonoid",
-  importCode,
   defaultCode,
   defaultStage,
-  sections,
   related,
-  children,
   className,
 }: ExhibitProps) {
-  useToc(sections);
-
-  const resolvedImport = importCode ?? cond(Boolean(component), `import { ${title} } from "@homonoid/react";`, undefined);
-
-  const configItem = COMPONENTS.find(
-    (item) =>
-      (component && item.href === `/components/${component}`) ||
-      item.name.toLowerCase() === title.toLowerCase()
-  );
-
-  const rawRelated = related ?? configItem?.related;
-
-  const resolvedRelated: ComponentItem[] = (rawRelated ?? [])
-    .map((entry) => {
-      if (typeof entry !== "string") return entry;
-      const match = COMPONENTS.find(
-        (c) =>
-          c.name.toLowerCase() === entry.toLowerCase() ||
-          c.href.replace("/components/", "").toLowerCase() === entry.toLowerCase()
-      );
-      return match ?? { name: entry, href: `/components/${entry.toLowerCase()}` };
-    })
-    .filter(Boolean);
-
   return (
-    <div className={cn("flex flex-col px-layout-x pt-layout-y pb-28 lg:pb-layout-y gap-layout-gap max-w-4xl min-w-0", className)}>
-      {/* View Header */}
-      <div className="flex flex-col gap-layout-gap">
-        <Breadcrumb
-          size="sm"
-          items={[
-            { label: "Components", href: "/components" },
-            { label: title },
-          ]}
-        />
-        <div className="flex flex-col gap-control-gap">
-          <Heading size="lg">{title}</Heading>
-          {when(
-            summary,
-            <Description>{summary}</Description>
-          )}
-        </div>
-        {when(
-          description,
-          <Description>{description}</Description>
-        )}
-      </div>
-
-      {/* Resource Badges */}
-      <div className="flex items-center gap-surface-gap">
-        {when(
-          component,
-          <Resource type="github" component={component} />
-        )}
-        {when(
-          githubUrl,
-          <Resource type="github" href={githubUrl} />
-        )}
-        {when(
-          figmaUrl,
-          <Resource type="figma" href={figmaUrl} />
-        )}
-      </div>
-
-      {/* Default Stage & Import Code Area */}
-      {when(
-        any(Boolean(resolvedImport), Boolean(defaultStage)),
-        <section className="flex flex-col gap-surface-gap pb-layout-y">
-          {when(
-            resolvedImport,
-            <Card
-              color="subtle"
-              variant="filled"
-              className="font-mono text-xs"
-            >
-              <code>{highlighter(resolvedImport as string)}</code>
-            </Card>
-          )}
-          {when(
-            defaultStage,
-            <Stage code={defaultCode ?? ""}>
-              {defaultStage}
-            </Stage>
-          )}
-        </section>
-      )}
-
-      {/* Main Content & Interactive Stages */}
-      {children}
-
-      {/* Related Components Outlined Tiles */}
-      {when(
-        resolvedRelated.length > 0,
-        <section id="related" className="flex flex-col gap-surface-gap pb-layout-y scroll-mt-layout-y">
-          <Button
-            variant="outlined"
-            color="surface"
-            leading={<Component className="size-4 shrink-0" />}
-            onClick={(e) => {
-              e.preventDefault();
-              const el = document.getElementById("related");
-              if (el) {
-                el.scrollIntoView({ behavior: "smooth", block: "start" });
-                window.history.pushState(null, "", "#related");
-              }
-            }}
-            className="w-fit"
-          >
-            Related
-          </Button>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-surface-gap">
-            {resolvedRelated.map((item) => (
-              <Tile
-                key={item.href}
-                as={Link}
-                href={item.href}
-                variant="outlined"
-                size="lg"
-                className="rounded-3xl"
-              >
-                <Tile.Content>
-                  <Tile.Label size="md" className="truncate">{item.name}</Tile.Label>
-                  <Tile.Description size="sm" className="truncate">{item.description}</Tile.Description>
-                </Tile.Content>
-              </Tile>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Terminal Pagination Navigation */}
-      <Pagination />
-    </div>
+    <Stage
+      title={title}
+      description={description ?? summary}
+      component={component}
+      githubUrl={githubUrl}
+      figmaUrl={figmaUrl}
+      code={defaultCode}
+      related={related}
+      className={className}
+    >
+      {defaultStage}
+    </Stage>
   );
 }
 
