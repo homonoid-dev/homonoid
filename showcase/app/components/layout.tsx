@@ -1,23 +1,21 @@
+import type { ReactNode } from "react";
 import { Shell } from "@/components/layout/shell";
 import { Sidebar } from "@/components/ui/sidebar";
 import { Inspector } from "@/components/ui/inspector";
 
-export default function ComponentsLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export interface ComponentsLayoutProps {
+  children: ReactNode;
+}
+
+export default function ComponentsLayout({ children }: ComponentsLayoutProps) {
   return (
     <Shell>
-      <Shell.Sidebar>
-        <Sidebar />
-      </Shell.Sidebar>
+      <Sidebar />
       <Shell.Main>
-        <div className="flex justify-between w-full min-h-full">
-          <div className="flex-1 min-w-0">{children}</div>
-          <Inspector />
-        </div>
+        {children}
       </Shell.Main>
+      <Inspector />
     </Shell>
   );
 }
+

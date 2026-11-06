@@ -5,9 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Search } from "lucide-react";
 import { Searchbar, Sidebar as _Sidebar } from "@homonoid/react";
+import { cn } from "@homonoid/react/cn";
 import { COMPONENTS } from "@/config/components";
 
-export function Sidebar() {
+export interface SidebarProps {
+  className?: string;
+}
+
+export function Sidebar({ className }: SidebarProps = {}) {
   const [query, setQuery] = useState("");
   const pathname = usePathname();
 
@@ -24,7 +29,13 @@ export function Sidebar() {
   }, [query]);
 
   return (
-    <_Sidebar width="w-58" className="select-none">
+    <_Sidebar
+      width="w-58"
+      className={cn(
+        "sticky top-0 self-start h-screen shrink-0 hidden md:flex select-none",
+        className
+      )}
+    >
       <_Sidebar.Header sticky>
         <Searchbar
           size="sm"
@@ -52,3 +63,4 @@ export function Sidebar() {
     </_Sidebar>
   );
 }
+
