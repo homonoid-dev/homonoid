@@ -7,7 +7,7 @@ import { Heading, Description, Card, Tile, Button, Breadcrumb } from "@homonoid/
 import { cn } from "@homonoid/react/cn";
 import { any, cond, when } from "@homonoid/react";
 import { highlighter } from "./code";
-import { Stage } from "./stage";
+import { Stage } from "./legacy-stage";
 import { Resource } from "./resource";
 import { Pagination } from "./pagination";
 import { useToc, type TocItemModel } from "./toc";
