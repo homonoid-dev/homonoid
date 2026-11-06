@@ -25,7 +25,7 @@ export function Studio({
 
       <div className="flex flex-col gap-surface-gap w-full">
         <div className="flex items-center justify-between">
-          <Tabs defaultValue="preview">
+          <Tabs defaultValue="preview" size="sm">
             <Tabs.List>
               <Tabs.Tab
                 value="preview"
@@ -46,7 +46,7 @@ export function Studio({
             </Tabs.List>
           </Tabs>
 
-          <Tabs defaultValue="desktop">
+          <Tabs defaultValue="desktop" size="sm">
             <Tabs.List>
               <Tabs.Tab
                 value="desktop"
