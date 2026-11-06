@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { Sidebar as _Sidebar } from "@homonoid/react";
 import { cn } from "@homonoid/react/cn";
 
@@ -9,6 +10,12 @@ export interface InspectorProps {
 }
 
 export function Inspector({ className, children }: InspectorProps) {
+  const pathname = usePathname();
+
+  if (pathname === "/components") {
+    return null;
+  }
+
   return (
     <_Sidebar
       side="right"
@@ -22,4 +29,3 @@ export function Inspector({ className, children }: InspectorProps) {
     </_Sidebar>
   );
 }
-
