@@ -1,6 +1,5 @@
-import { BreadcrumbView } from "@/components/ui/breadcrumb/view";
+import { Page } from "@/components/ui/page";
 
 export default function BreadcrumbPage() {
-  return <BreadcrumbView />;
+  return <Page />;
 }
-

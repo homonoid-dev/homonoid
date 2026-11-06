@@ -1,6 +1,5 @@
-import { ToggleView } from "@/components/ui/toggle";
+import { Page } from "@/components/ui/page";
 
 export default function TogglePage() {
-  return <ToggleView />;
+  return <Page />;
 }
-

@@ -1,5 +1,5 @@
-import { SwitchView } from "@/components/ui/switch";
+import { Page } from "@/components/ui/page";
 
 export default function SwitchPage() {
-  return <SwitchView />;
+  return <Page />;
 }

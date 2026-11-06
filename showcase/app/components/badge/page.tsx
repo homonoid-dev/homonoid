@@ -1,6 +1,5 @@
-import { BadgeView } from "@/components/ui/badge";
+import { Page } from "@/components/ui/page";
 
 export default function BadgePage() {
-  return <BadgeView />;
+  return <Page />;
 }
-

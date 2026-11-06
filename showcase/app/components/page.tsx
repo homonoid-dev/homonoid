@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Resource } from "@/components/ui/resource";
-import { Exhibit } from "@/components/ui/exhibit";
 import { COMPONENTS } from "@/config/components";
 import {
   Card,
@@ -46,30 +45,34 @@ export default function Page() {
       </div>
 
       {/* Homonoid Core Values and Considerations */}
-      <div className="flex flex-col pt-layout-y">
-        <Exhibit.Section title="Object Continuity">
+      <div className="flex flex-col pt-layout-y gap-layout-gap">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="md" as="h2">Object Continuity</Heading>
           <Description>
             Interfaces behave as coherent systems where every component maintains permanence and spatial identity. State transitions evolve smoothly rather than reconstructing elements abruptly, ensuring users preserve visual orientation during interaction.
           </Description>
-        </Exhibit.Section>
+        </div>
 
-        <Exhibit.Section title="Physical Motion">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="md" as="h2">Physical Motion</Heading>
           <Description>
             Motion in Homonoid is never decorative filler. Fluid spring curves and micro scale compressions convey tactile feedback, communicate hierarchy shifts, and reinforce physical manipulation across every interaction.
           </Description>
-        </Exhibit.Section>
+        </div>
 
-        <Exhibit.Section title="Inclusive Architecture">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="md" as="h2">Inclusive Architecture</Heading>
           <Description>
             Native accessibility is engineered directly into component foundations. Complete semantic landmarks, compliant contrast ratios, and intuitive keyboard navigation ensure every interface adapts effortlessly across assistive technologies.
           </Description>
-        </Exhibit.Section>
+        </div>
 
-        <Exhibit.Section title="Token Hierarchy">
+        <div className="flex flex-col gap-control-gap">
+          <Heading size="md" as="h2">Token Hierarchy</Heading>
           <Description>
             All styling consumes standardized spatial, typographic, and surface tokens with zero hardcoded values. Design tokens adapt dynamically across light and dark modes while maintaining rigorous aesthetic harmony.
           </Description>
-        </Exhibit.Section>
+        </div>
       </div>
     </div>
   );

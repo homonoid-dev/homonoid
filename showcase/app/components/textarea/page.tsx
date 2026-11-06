@@ -1,6 +1,5 @@
-import { TextareaView } from "@/components/ui/textarea/view";
+import { Page } from "@/components/ui/page";
 
 export default function TextareaPage() {
-  return <TextareaView />;
+  return <Page />;
 }
-

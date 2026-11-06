@@ -1,5 +1,5 @@
-import { InputView } from "@/components/ui/input/view";
+import { Page } from "@/components/ui/page";
 
 export default function InputPage() {
-  return <InputView />;
+  return <Page />;
 }

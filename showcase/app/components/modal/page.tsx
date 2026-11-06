@@ -1,5 +1,5 @@
-import { ModalView } from "@/components/ui/modal";
+import { Page } from "@/components/ui/page";
 
 export default function ModalPage() {
-  return <ModalView />;
+  return <Page />;
 }

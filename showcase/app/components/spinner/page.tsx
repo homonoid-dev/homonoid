@@ -1,5 +1,5 @@
-import { SpinnerView } from "@/components/ui/spinner/view";
+import { Page } from "@/components/ui/page";
 
 export default function SpinnerPage() {
-  return <SpinnerView />;
+  return <Page />;
 }

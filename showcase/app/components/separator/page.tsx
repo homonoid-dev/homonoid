@@ -1,5 +1,5 @@
-import { SeparatorView } from "@/components/ui/separator";
+import { Page } from "@/components/ui/page";
 
 export default function SeparatorPage() {
-  return <SeparatorView />;
+  return <Page />;
 }

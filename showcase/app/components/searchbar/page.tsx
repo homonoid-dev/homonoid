@@ -1,5 +1,5 @@
-import { SearchbarView } from "@/components/ui/searchbar";
+import { Page } from "@/components/ui/page";
 
 export default function SearchbarPage() {
-  return <SearchbarView />;
+  return <Page />;
 }

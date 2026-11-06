@@ -1,6 +1,5 @@
-import { EmptyView } from "@/components/ui/empty";
+import { Page } from "@/components/ui/page";
 
 export default function EmptyPage() {
-  return <EmptyView />;
+  return <Page />;
 }
-

@@ -1,5 +1,5 @@
-import { DescriptionView } from "@/components/ui/description/view";
+import { Page } from "@/components/ui/page";
 
 export default function DescriptionPage() {
-  return <DescriptionView />
+  return <Page />;
 }

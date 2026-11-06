@@ -1,2 +1,0 @@
-export { EmptyView } from "./view";
-

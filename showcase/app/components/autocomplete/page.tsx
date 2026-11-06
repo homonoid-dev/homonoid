@@ -1,6 +1,5 @@
-import { AutocompleteView } from "@/components/ui/autocomplete";
+import { Page } from "@/components/ui/page";
 
 export default function AutocompletePage() {
-  return <AutocompleteView />;
+  return <Page />;
 }
-

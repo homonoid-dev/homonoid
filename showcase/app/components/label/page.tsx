@@ -1,5 +1,5 @@
-import { LabelView } from "@/components/ui/label";
+import { Page } from "@/components/ui/page";
 
 export default function LabelPage() {
-  return <LabelView />;
+  return <Page />;
 }

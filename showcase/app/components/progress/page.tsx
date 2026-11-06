@@ -1,6 +1,5 @@
-import { ProgressView } from "@/components/ui/progress/view";
+import { Page } from "@/components/ui/page";
 
 export default function ProgressPage() {
-  return <ProgressView />;
+  return <Page />;
 }
-
