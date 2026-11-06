@@ -11,7 +11,7 @@ export function Stage({ children, className }: StageProps) {
     <div
       data-slot="studio-stage"
       className={cn(
-        "relative w-full min-h-[400px] md:min-h-[420px] lg:min-h-[520px] rounded-2xl border border-border flex items-center justify-center p-surface overflow-hidden",
+        "relative w-full h-[clamp(340px,45vw,540px)] rounded-2xl border border-border flex items-center justify-center p-surface",
         className
       )}
     >
