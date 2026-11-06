@@ -1,5 +1,5 @@
-import { Page } from "@/components/ui/page";
+import { AccordionView } from "@/components/ui/accordion/view";
 
 export default function AccordionPage() {
-  return <Page />;
+  return <AccordionView />;
 }
