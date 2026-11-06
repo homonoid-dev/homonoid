@@ -16,8 +16,8 @@ export function Studio({
   children,
 }: StudioProps) {
   return (
-    <div className="flex flex-col px-layout-x pt-layout-y gap-layout-gap w-full">
-      <div className="flex flex-col gap-control-gap">
+    <div className="flex flex-col px-layout-x pt-layout-y gap-layout-gap">
+      <div className="flex flex-col gap-surface-gap">
         <Heading size="lg">{title}</Heading>
         {description && (
           <Description>
@@ -27,7 +27,7 @@ export function Studio({
       </div>
 
       <div className="flex items-center justify-between">
-        <Tabs defaultValue="preview" size="md">
+        <Tabs defaultValue="preview">
           <Tabs.List>
             <Tabs.Tab
               value="preview"
@@ -48,7 +48,7 @@ export function Studio({
           </Tabs.List>
         </Tabs>
 
-        <Tabs defaultValue="desktop" size="md">
+        <Tabs defaultValue="desktop">
           <Tabs.List>
             <Tabs.Tab
               value="desktop"
