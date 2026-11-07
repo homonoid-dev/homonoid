@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import { Sidebar as _Sidebar, Switch, Tabs } from "@homonoid/react";
+import { Select, Sidebar as _Sidebar, Switch } from "@homonoid/react";
 import { cn } from "@homonoid/react/cn";
 
 export interface InspectorControlVariant {
@@ -53,6 +53,12 @@ export function useInspector() {
   return useContext(InspectorContext);
 }
 
+const SIZE_LABELS: Record<string, string> = {
+  sm: "Small",
+  md: "Medium",
+  lg: "Large",
+};
+
 export interface InspectorProps {
   className?: string;
 }
@@ -79,48 +85,31 @@ export function Inspector({ className }: InspectorProps = {}) {
     >
       <_Sidebar.Content className="p-3 flex flex-col gap-3">
         {variant && (
-          <Tabs
+          <Select
             value={variant.value}
             onValueChange={variant.onChange}
             size="sm"
-            color="primary"
-          >
-            <Tabs.List className="w-full">
-              {(variant.options ?? ["plain", "outlined", "contained"]).map(
-                (opt) => (
-                  <Tabs.Tab
-                    key={opt}
-                    value={opt}
-                    layout="full"
-                    className="capitalize"
-                  >
-                    {opt}
-                  </Tabs.Tab>
-                )
-              )}
-            </Tabs.List>
-          </Tabs>
+            placeholder="Select variant"
+            options={(variant.options ?? ["plain", "outlined", "contained"]).map(
+              (opt) => ({
+                value: opt,
+                label: opt.charAt(0).toUpperCase() + opt.slice(1),
+              })
+            )}
+          />
         )}
 
         {size && (
-          <Tabs
+          <Select
             value={size.value}
             onValueChange={size.onChange}
             size="sm"
-          >
-            <Tabs.List className="w-full">
-              {(size.options ?? ["sm", "md", "lg"]).map((opt) => (
-                <Tabs.Tab
-                  key={opt}
-                  value={opt}
-                  layout="full"
-                  className="uppercase"
-                >
-                  {opt}
-                </Tabs.Tab>
-              ))}
-            </Tabs.List>
-          </Tabs>
+            placeholder="Select size"
+            options={(size.options ?? ["sm", "md", "lg"]).map((opt) => ({
+              value: opt,
+              label: SIZE_LABELS[opt] ?? opt.charAt(0).toUpperCase() + opt.slice(1),
+            }))}
+          />
         )}
 
         {switches && switches.length > 0 && (
