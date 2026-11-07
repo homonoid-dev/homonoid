@@ -4,11 +4,10 @@ import { forwardRef, useRef } from "react";
 import { cva } from "class-variance-authority";
 import { useMergeRefs } from "@floating-ui/react";
 import { cn } from "../../utils/cn";
-import { cond } from "../../utils/condition";
 import { useTabsContext } from "./TabsContext";
 import type { TabsListProps } from "./types";
 
-export const listVariants = cva(
+export const variatns = cva(
   "inline-flex items-center isolate select-none",
   {
     variants: {
@@ -17,10 +16,15 @@ export const listVariants = cva(
         vertical: "flex-col",
       },
       variant: {
-        pill: "p-1 bg-surface border border-border gap-1",
-        outlined: "p-1 border border-border gap-1",
-        plain: "gap-1",
-        underlined: "border-b border-border gap-2 w-full",
+        contained: "p-1 gap-1",
+        outlined: "p-1 bg-transparent border gap-1",
+        plain: "bg-transparent gap-1",
+      },
+      color: {
+        surface: "",
+        subtle: "",
+        primary: "",
+        destructive: "",
       },
       radius: {
         none: "rounded-none",
@@ -30,9 +34,52 @@ export const listVariants = cva(
         full: "rounded-full",
       },
     },
+    compoundVariants: [
+      {
+        variant: "contained",
+        color: "surface",
+        className: "bg-surface",
+      },
+      {
+        variant: "contained",
+        color: "subtle",
+        className: "bg-subtle",
+      },
+      {
+        variant: "contained",
+        color: "primary",
+        className: "bg-primary/10",
+      },
+      {
+        variant: "contained",
+        color: "destructive",
+        className: "bg-destructive/10",
+      },
+      {
+        variant: "outlined",
+        color: "surface",
+        className: "border-border",
+      },
+      {
+        variant: "outlined",
+        color: "subtle",
+        className: "border-subtle-border",
+      },
+      {
+        variant: "outlined",
+        color: "primary",
+        className: "border-primary-border",
+      },
+      {
+        variant: "outlined",
+        color: "destructive",
+        className: "border-destructive-border",
+      },
+    ],
     defaultVariants: {
       orientation: "horizontal",
-      variant: "pill",
+      variant: "contained",
+      color: "surface",
       radius: "full",
     },
   }
@@ -42,7 +89,7 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
   function TabsList(
     {
       variant: explicitVariant,
-      color: _explicitColor,
+      color: explicitColor,
       size: _explicitSize,
       radius: explicitRadius,
       orientation: explicitOrientation,
@@ -55,6 +102,7 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
     const context = useTabsContext();
 
     const effectiveVariant = explicitVariant ?? context.variant;
+    const effectiveColor = explicitColor ?? context.color;
     const effectiveRadius = explicitRadius ?? context.radius;
     const effectiveOrientation = explicitOrientation ?? context.orientation;
 
@@ -68,11 +116,13 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
         aria-orientation={effectiveOrientation}
         data-slot="tabs-list"
         data-variant={effectiveVariant}
+        data-color={effectiveColor}
         data-orientation={effectiveOrientation}
         className={cn(
-          listVariants({
+          variatns({
             variant: effectiveVariant,
-            radius: cond(effectiveVariant === "underlined", "none", effectiveRadius),
+            color: effectiveColor,
+            radius: effectiveRadius,
             orientation: effectiveOrientation,
           }),
           className
@@ -86,4 +136,3 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
 );
 
 TabsList.displayName = "Tabs.List";
-

@@ -83,6 +83,7 @@ export function Inspector({ className }: InspectorProps = {}) {
             value={variant.value}
             onValueChange={variant.onChange}
             size="sm"
+            color="primary"
           >
             <Tabs.List className="w-full">
               {(variant.options ?? ["plain", "outlined", "contained"]).map(

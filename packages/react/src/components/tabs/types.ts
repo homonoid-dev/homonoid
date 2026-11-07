@@ -7,9 +7,9 @@ import type {
   Ref,
   ComponentType,
 } from "react";
-import type { Color, Radius, Size } from "../../types";
+import type { Color, Radius, Size, Variant } from "../../types";
 
-export type TabsVariant = "pill" | "outlined" | "plain" | "underlined";
+export type TabsVariant = Variant;
 export type TabsColor = Color;
 export type TabsSize = Size;
 export type TabsRadius = Radius;
@@ -74,4 +74,3 @@ export interface TabsPanelProps extends HTMLAttributes<HTMLDivElement> {
   value: string;
   children?: ReactNode;
 }
-

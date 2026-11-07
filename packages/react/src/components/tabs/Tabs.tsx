@@ -33,7 +33,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
     value: controlledValue,
     defaultValue,
     onValueChange,
-    variant = "pill",
+    variant = "contained",
     color = "surface",
     size = "md",
     radius = "full",

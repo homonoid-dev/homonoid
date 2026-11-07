@@ -42,7 +42,7 @@ Tabs adapt to their content while maintaining consistent structural rhythm:
 - Alignment: Content within each tab centers horizontally and vertically by default.
 - Orientation: Supports horizontal row alignment as standard, alongside vertical column alignment for dense side panels.
 - Sizing Modes: Supports auto content hugging where tabs size to their labels and icons, or full width equal distribution across the list.
-- Docked Spacing: In pill and contained variants, tabs sit docked adjacent to one another inside a shared track with uniform control padding.
+- Docked Spacing: In contained variants, tabs sit docked adjacent to one another inside a shared track with uniform control padding.
 
 <br>
 
@@ -50,10 +50,9 @@ Tabs adapt to their content while maintaining consistent structural rhythm:
 
 Homonoid separates structural treatment into dedicated visual variants:
 
-- `Pill` (`variant="pill"`): Rounded capsule container enclosing tabs where a physical sliding pill indicator glides behind the active selection.
-- `Outlined` (`variant="outlined"`): Segmented container enclosed by a subtle hairline border stroke with quiet resting tabs.
+- `Contained` (`variant="contained"`): Enclosed container with surface background fill where an active tile highlights the active selection.
+- `Outlined` (`variant="outlined"`): Segmented container enclosed by a subtle hairline border stroke with transparent resting track.
 - `Plain` (`variant="plain"`): Minimal transparent presentation where only the active indicator and typography communicate selection.
-- `Underlined` (`variant="underlined"`): Classic structural tabs where an animated hairline indicator slides along the bottom border.
 
 <br>
 

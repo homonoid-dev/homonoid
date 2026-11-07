@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { cn } from "@homonoid/react/cn";
-import { Handle } from "./handle";
 
 export interface StageProps {
   children?: ReactNode;
@@ -16,9 +15,7 @@ export function Stage({ children, className }: StageProps) {
         className
       )}
     >
-      <Handle side="left" />
       {children}
-      <Handle side="right" />
     </div>
   );
 }

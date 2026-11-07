@@ -76,6 +76,7 @@ export const TabsTab = forwardRef<HTMLButtonElement, TabsTabProps>(
     const effectiveDisabled = context.disabled || disabled;
 
     const isSelected = context.value === value;
+    const isContainedOrOutlined = effectiveVariant === "contained" || effectiveVariant === "outlined";
 
     const handleClick = useCallback(
       (event: MouseEvent<HTMLButtonElement>) => {
@@ -98,7 +99,7 @@ export const TabsTab = forwardRef<HTMLButtonElement, TabsTabProps>(
 
     // Style resolution based on variant, color, and selected state
     const stateStyles = cond(
-      effectiveVariant === "pill",
+      isContainedOrOutlined,
       cond(
         isSelected,
         cond(
@@ -114,57 +115,33 @@ export const TabsTab = forwardRef<HTMLButtonElement, TabsTabProps>(
             )
           )
         ),
-        "text-muted hover:text-foreground hover:bg-surface-hover/60"
-      ),
-      cond(
-        effectiveVariant === "outlined",
         cond(
-          isSelected,
+          effectiveColor === "primary",
+          "text-primary/70 hover:text-primary hover:bg-primary/10",
           cond(
-            effectiveColor === "primary",
-            "bg-primary/10 text-primary border border-primary-border shadow-xs",
-            cond(
-              effectiveColor === "subtle",
-              "bg-subtle text-subtle-foreground border border-subtle-border shadow-xs",
-              cond(
-                effectiveColor === "destructive",
-                "bg-destructive/10 text-destructive border border-destructive-border shadow-xs",
-                "bg-surface-active text-foreground border border-border shadow-xs"
-              )
-            )
-          ),
-          "text-muted hover:text-foreground hover:bg-surface-hover/60 border border-transparent"
-        ),
-        cond(
-          effectiveVariant === "underlined",
-          cond(
-            isSelected,
-            cond(
-              effectiveColor === "primary",
-              "border-b-2 border-primary text-primary font-semibold -mb-px rounded-none",
-              cond(
-                effectiveColor === "destructive",
-                "border-b-2 border-destructive text-destructive font-semibold -mb-px rounded-none",
-                "border-b-2 border-foreground text-foreground font-semibold -mb-px rounded-none"
-              )
-            ),
-            "border-b-2 border-transparent text-muted hover:text-foreground rounded-none -mb-px"
-          ),
-          // plain
-          cond(
-            isSelected,
-            cond(
-              effectiveColor === "primary",
-              "text-primary bg-primary/10",
-              cond(
-                effectiveColor === "destructive",
-                "text-destructive bg-destructive/10",
-                "text-foreground bg-surface-active"
-              )
-            ),
-            "text-muted hover:text-foreground hover:bg-surface-hover/40"
+            effectiveColor === "destructive",
+            "text-destructive/70 hover:text-destructive hover:bg-destructive/10",
+            "text-muted hover:text-foreground hover:bg-surface-hover/60"
           )
         )
+      ),
+      // plain variant
+      cond(
+        isSelected,
+        cond(
+          effectiveColor === "primary",
+          "text-primary bg-primary/10",
+          cond(
+            effectiveColor === "destructive",
+            "text-destructive bg-destructive/10",
+            cond(
+              effectiveColor === "subtle",
+              "text-subtle-foreground bg-subtle",
+              "text-foreground bg-surface-active"
+            )
+          )
+        ),
+        "text-muted hover:text-foreground hover:bg-surface-hover/40"
       )
     );
 
@@ -186,7 +163,7 @@ export const TabsTab = forwardRef<HTMLButtonElement, TabsTabProps>(
         className={cn(
           tabVariants({
             size: effectiveSize,
-            radius: cond(effectiveVariant === "underlined", "none", effectiveRadius),
+            radius: effectiveRadius,
             layout,
           }),
           stateStyles,
@@ -205,4 +182,3 @@ export const TabsTab = forwardRef<HTMLButtonElement, TabsTabProps>(
 );
 
 TabsTab.displayName = "Tabs.Tab";
-
