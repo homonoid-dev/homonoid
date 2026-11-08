@@ -9,7 +9,7 @@
     --h-control-lg: 3.0rem;
 
     /* Control Insets & Gaps */
-    --p-control-sm-x: 0.60rem;
+    --p-control-sm-x: 0.70rem;
     --p-control-md-x: 0.85rem;
     --p-control-lg-x: 1.10rem;
     --p-control-x: var(--p-control-md-x);
