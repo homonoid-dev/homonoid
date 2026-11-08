@@ -16,7 +16,7 @@ import { useAccordionItemContext } from "./AccordionItemContext";
 import type { AccordionTriggerProps } from "./types";
 
 export const accordionTriggerVariants = cva(
-  "flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale-expanded)] focus-ring cursor-pointer disabled:pointer-events-none disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40 bg-transparent text-foreground hover:text-foreground",
+  "flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale-expanded)] focus-ring cursor-pointer disabled:pointer-events-none disabled:cursor-not-allowed aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed bg-transparent text-foreground hover:text-foreground",
   {
     variants: {
       size: {
@@ -72,7 +72,8 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
         strokeLinejoin="round"
         aria-hidden="true"
         className={cn(
-          "size-4 shrink-0 text-muted transition-transform duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] motion-reduce:transition-none",
+          "size-4 shrink-0 transition-transform duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] motion-reduce:transition-none",
+          cond(disabled, "text-muted/40", "text-muted"),
           cond(open, "rotate-180", "rotate-0")
         )}
       >

@@ -11,22 +11,31 @@ import {
 } from "./AccordionItemContext";
 import type { AccordionItemProps } from "./types";
 
-export const accordionItemVariants = cva("", {
-  variants: {
-    variant: {
-      plain: "border-b border-border last:border-b-0",
-      outlined: "border-b border-border last:border-b-0",
-      contained: "border border-border rounded-xl overflow-hidden bg-surface",
+export const accordionItemVariants = cva(
+  "transition-opacity duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)]",
+  {
+    variants: {
+      variant: {
+        plain: "border-b border-border last:border-b-0",
+        outlined: "border-b border-border last:border-b-0",
+        contained: "border border-border rounded-xl overflow-hidden bg-surface",
+      },
+      disabled: {
+        true: "opacity-50 pointer-events-none select-none",
+        false: "",
+      },
     },
-  },
-  defaultVariants: {
-    variant: "plain",
-  },
-});
+    defaultVariants: {
+      variant: "plain",
+      disabled: false,
+    },
+  }
+);
 
 export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
   function AccordionItem({ value, disabled = false, className, children, ...props }, ref) {
-    const { isExpanded, variant } = useAccordionContext();
+    const { isExpanded, variant, disabled: rootDisabled } = useAccordionContext();
+    const isItemDisabled = Boolean(rootDisabled || disabled);
     const open = isExpanded(value);
 
     const generatedId = useId();
@@ -35,7 +44,7 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
 
     const contextValue: AccordionItemContextValue = {
       value,
-      disabled,
+      disabled: isItemDisabled,
       open,
       triggerId,
       contentId,
@@ -46,8 +55,8 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
         <div
           ref={ref}
           data-state={cond(open, "open", "closed")}
-          data-disabled={cond(disabled, "", undefined)}
-          className={cn(accordionItemVariants({ variant }), className)}
+          data-disabled={cond(isItemDisabled, "", undefined)}
+          className={cn(accordionItemVariants({ variant, disabled: isItemDisabled }), className)}
           {...props}
         >
           {children}
