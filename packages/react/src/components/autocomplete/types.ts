@@ -129,11 +129,6 @@ export interface AutocompleteProps
   filter?: (option: AutocompleteOption, query: string) => boolean;
 
   /**
-   * Custom clear action handler or whether clear button is enabled.
-   */
-  clearable?: boolean;
-
-  /**
    * Primary textual or visual label associated with the input.
    */
   label?: ReactNode;

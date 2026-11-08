@@ -50,7 +50,6 @@ export function AutocompleteView() {
   const [disabled, setDisabled] = useState(false);
   const [invalid, setInvalid] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [clearable, setClearable] = useState(true);
   const [showLeading, setShowLeading] = useState(true);
   const [showDescription, setShowDescription] = useState(true);
 
@@ -87,13 +86,6 @@ export function AutocompleteView() {
             onChange: setLoading,
           },
           {
-            id: "clearable",
-            label: "Clearable",
-            description: "Allow resetting input",
-            checked: clearable,
-            onChange: setClearable,
-          },
-          {
             id: "icons",
             label: "Icons",
             description: "Show option icons",
@@ -118,7 +110,6 @@ export function AutocompleteView() {
           disabled={disabled}
           invalid={invalid}
           loading={loading}
-          clearable={clearable}
           placeholder="Search components..."
           leading={cond(showLeading, <Search className="size-4 text-muted shrink-0" />, undefined)}
           options={OPTIONS.map((item) => {

@@ -36,7 +36,6 @@ export interface AutocompleteContextValue {
   radius: AutocompleteRadius;
   color: AutocompleteColor;
   placeholder?: string;
-  clearable: boolean;
   loading: boolean;
   label?: ReactNode;
   floating?: boolean;
