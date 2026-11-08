@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import { Select, Sidebar as _Sidebar, Switch } from "@homonoid/react";
+import { match, when, Select, Sidebar as _Sidebar, Switch } from "@homonoid/react";
 import { cn } from "@homonoid/react/cn";
 
 export interface InspectorControlVariant {
@@ -84,14 +84,15 @@ export function Inspector({ className }: InspectorProps = {}) {
       )}
     >
       <_Sidebar.Content className="p-3 flex flex-col gap-3">
-        {variant && (
+        {when(
+          Boolean(variant),
           <Select
-            value={variant.value}
-            onValueChange={variant.onChange}
+            value={variant?.value}
+            onValueChange={variant?.onChange}
             size="sm"
             placeholder="Select variant"
-            options={(variant.options ?? ["plain", "outlined", "contained"]).map(
-              (opt) => ({
+            options={(variant?.options ?? ["plain", "outlined", "contained"]).map(
+              (opt: string) => ({
                 value: opt,
                 label: opt.charAt(0).toUpperCase() + opt.slice(1),
               })
@@ -99,22 +100,24 @@ export function Inspector({ className }: InspectorProps = {}) {
           />
         )}
 
-        {size && (
+        {when(
+          Boolean(size),
           <Select
-            value={size.value}
-            onValueChange={size.onChange}
+            value={size?.value}
+            onValueChange={size?.onChange}
             size="sm"
             placeholder="Select size"
-            options={(size.options ?? ["sm", "md", "lg"]).map((opt) => ({
+            options={(size?.options ?? ["sm", "md", "lg"]).map((opt: string) => ({
               value: opt,
-              label: SIZE_LABELS[opt] ?? opt.charAt(0).toUpperCase() + opt.slice(1),
+              label: match(opt, SIZE_LABELS, opt.charAt(0).toUpperCase() + opt.slice(1)),
             }))}
           />
         )}
 
-        {switches && switches.length > 0 && (
+        {when(
+          Boolean(switches && switches.length > 0),
           <div className="flex flex-col gap-1">
-            {switches.map((item) => (
+            {switches?.map((item) => (
               <Switch.Tile
                 key={item.id}
                 size="sm"

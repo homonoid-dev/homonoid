@@ -2,7 +2,7 @@
 
 import { useEffect, type ReactNode } from "react";
 import { Eye, Code2, Monitor, Tablet, Smartphone } from "lucide-react";
-import { Heading, Description, Tabs } from "@homonoid/react";
+import { all, when, Heading, Description, Tabs } from "@homonoid/react";
 import { Stage } from "./stage";
 import { useInspector, type InspectorConfig } from "./inspector";
 
@@ -22,16 +22,16 @@ export function Studio({
   const inspectorContext = useInspector();
 
   useEffect(() => {
-    if (inspectorContext && controls) {
-      inspectorContext.setConfig(controls);
-      return () => inspectorContext.setConfig(null);
+    if (all(inspectorContext, controls)) {
+      inspectorContext?.setConfig(controls ?? null);
+      return () => inspectorContext?.setConfig(null);
     }
   }, [inspectorContext, controls]);
   return (
     <div className="flex flex-col px-layout-x pt-layout-y gap-layout-gap">
       <div className="flex flex-col gap-surface-gap">
         <Heading>{title}</Heading>
-        {description && <Description>{description}</Description>}
+        {when(Boolean(description), <Description>{description}</Description>)}
       </div>
 
       <div className="flex flex-col gap-surface-gap w-full">

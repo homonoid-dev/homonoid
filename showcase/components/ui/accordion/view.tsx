@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { HelpCircle, Activity, Shield } from "lucide-react";
-import { Accordion, type Size } from "@homonoid/react";
+import { Accordion, cond, type Size } from "@homonoid/react";
 import { Studio } from "@/components/ui/studio";
 
 export function AccordionView() {
@@ -80,8 +80,8 @@ export function AccordionView() {
       >
         <Accordion.Item value="item-1">
           <Accordion.Trigger
-            leading={showLeading ? <HelpCircle className="size-4 text-muted shrink-0" /> : undefined}
-            description={showDescription ? "Tactile continuous aesthetics" : undefined}
+            leading={cond(showLeading, <HelpCircle className="size-4 text-muted shrink-0" />, undefined)}
+            description={cond(showDescription, "Tactile continuous aesthetics", undefined)}
           >
             What is Homonoid?
           </Accordion.Trigger>
@@ -91,8 +91,8 @@ export function AccordionView() {
         </Accordion.Item>
         <Accordion.Item value="item-2">
           <Accordion.Trigger
-            leading={showLeading ? <Activity className="size-4 text-muted shrink-0" /> : undefined}
-            description={showDescription ? "Dynamic scale transitions" : undefined}
+            leading={cond(showLeading, <Activity className="size-4 text-muted shrink-0" />, undefined)}
+            description={cond(showDescription, "Dynamic scale transitions", undefined)}
           >
             How does motion work?
           </Accordion.Trigger>
@@ -102,8 +102,8 @@ export function AccordionView() {
         </Accordion.Item>
         <Accordion.Item value="item-3">
           <Accordion.Trigger
-            leading={showLeading ? <Shield className="size-4 text-muted shrink-0" /> : undefined}
-            description={showDescription ? "Accessible keyboard semantics" : undefined}
+            leading={cond(showLeading, <Shield className="size-4 text-muted shrink-0" />, undefined)}
+            description={cond(showDescription, "Accessible keyboard semantics", undefined)}
           >
             Is it accessible?
           </Accordion.Trigger>
