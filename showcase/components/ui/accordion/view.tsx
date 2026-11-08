@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { HelpCircle, Sparkles, Shield } from "lucide-react";
+import { HelpCircle, Activity, Shield } from "lucide-react";
 import { Accordion, type Size } from "@homonoid/react";
 import { Studio } from "@/components/ui/studio";
 
@@ -91,7 +91,7 @@ export function AccordionView() {
         </Accordion.Item>
         <Accordion.Item value="item-2">
           <Accordion.Trigger
-            leading={showLeading ? <Sparkles className="size-4 text-muted shrink-0" /> : undefined}
+            leading={showLeading ? <Activity className="size-4 text-muted shrink-0" /> : undefined}
             description={showDescription ? "Dynamic scale transitions" : undefined}
           >
             How does motion work?
