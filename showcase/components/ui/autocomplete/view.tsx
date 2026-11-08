@@ -47,6 +47,7 @@ const OPTIONS = [
 export function AutocompleteView() {
   const [size, setSize] = useState<Size>("md");
   const [value, setValue] = useState("");
+  const [floating, setFloating] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [invalid, setInvalid] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -64,6 +65,13 @@ export function AutocompleteView() {
           onChange: setSize,
         },
         switches: [
+          {
+            id: "floating",
+            label: "Floating",
+            description: "Float label inside frame",
+            checked: floating,
+            onChange: setFloating,
+          },
           {
             id: "disabled",
             label: "Disabled",
@@ -107,6 +115,8 @@ export function AutocompleteView() {
           value={value}
           onValueChange={setValue}
           size={size}
+          label={cond(floating, "Component", undefined)}
+          floating={floating}
           disabled={disabled}
           invalid={invalid}
           loading={loading}
