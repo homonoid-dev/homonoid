@@ -3,12 +3,13 @@
 import React, { useMemo, useRef, useEffect } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@homonoid/react/cn";
-import { any, cond } from "@homonoid/react";
+import { all, cond, when } from "@homonoid/react";
 
 export interface CodeProps {
   code: string;
   className?: string;
   animated?: boolean;
+  lineNumbers?: boolean;
 }
 
 const REGEX = /(\/\/.*)|("[^"]*"|'[^']*'|`[^`]*`)|(<\/?[A-Za-z0-9_.]+|\/?>)|(\b[a-zA-Z_][a-zA-Z0-9_-]*(?=\s*=))|(\b(?:import|export|from|function|return|const|let|var|default|type|interface|switch|case|break|if|else)\b|\bas(?=\s+const\b))/g;
@@ -76,7 +77,12 @@ export function highlighter(code: string): React.ReactNode[] {
   return nodes;
 }
 
-export function Code({ code, className, animated = false }: CodeProps) {
+export function Code({
+  code,
+  className,
+  animated = false,
+  lineNumbers = true,
+}: CodeProps) {
   const shouldReduceMotion = useReducedMotion();
   const lines = useMemo(() => code.split("\n"), [code]);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -87,27 +93,8 @@ export function Code({ code, className, animated = false }: CodeProps) {
     }
   }, [code]);
 
-  if (any(!animated, shouldReduceMotion)) {
-    return (
-      <div
-        ref={scrollRef}
-        className={cn(
-          "w-full h-full overflow-auto text-xs font-mono leading-relaxed select-text",
-          className
-        )}
-      >
-        <pre className="p-surface text-foreground w-fit min-w-full">
-          <code className="block w-fit min-w-full">
-            {lines.map((line, index) => (
-              <span key={index} className="block min-h-[1.5em] w-fit min-w-full pr-surface">
-                {cond(line.length > 0, highlighter(line), "\u00A0")}
-              </span>
-            ))}
-          </code>
-        </pre>
-      </div>
-    );
-  }
+  const isAnimated = all(animated, !shouldReduceMotion);
+  const Line = cond(isAnimated, motion.span, "span");
 
   return (
     <div
@@ -117,22 +104,34 @@ export function Code({ code, className, animated = false }: CodeProps) {
         className
       )}
     >
-      <pre className="p-surface text-foreground w-fit min-w-full">
+      <pre className="py-surface-sm pr-surface-sm pl-0 text-foreground w-fit min-w-full">
         <code className="block w-fit min-w-full">
           {lines.map((line, index) => (
-            <motion.span
+            <Line
               key={index}
-              className="block min-h-[1.5em] w-fit min-w-full pr-surface"
-              initial={{ opacity: 0, y: 3 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.18,
-                delay: Math.min(index * 0.015, 0.35),
-                ease: [0.15, 1, 0.35, 1],
-              }}
+              className="flex min-h-[1.5em] w-fit min-w-full pr-surface-sm"
+              {...(isAnimated
+                ? {
+                  initial: { opacity: 0, y: 4 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: {
+                    duration: 0.20,
+                    delay: Math.min(index * 0.015, 0.35),
+                    ease: [0.15, 1, 0.35, 1],
+                  },
+                }
+                : {})}
             >
-              {cond(line.length > 0, highlighter(line), "\u00A0")}
-            </motion.span>
+              {when(
+                lineNumbers,
+                <span className="sticky left-0 z-10 inline-block w-10 text-center select-none text-muted/40 bg-background tabular-nums shrink-0 font-mono">
+                  {index + 1}
+                </span>
+              )}
+              <span className="flex-1 min-w-0 pl-1">
+                {cond(line.length > 0, highlighter(line), "\u00A0")}
+              </span>
+            </Line>
           ))}
         </code>
       </pre>
