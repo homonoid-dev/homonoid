@@ -157,7 +157,6 @@ export function Example() {
               variant="contained"
               color="surface"
               layout="icon"
-              radius="full"
               aria-label={cond(copied, "Copied code", "Copy code")}
               title={cond(copied, "Copied", "Copy code")}
               onClick={handleCopy}
