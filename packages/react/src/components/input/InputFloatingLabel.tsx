@@ -51,41 +51,47 @@ export function InputFloatingLabel({
   );
 
 
+  const outlineMotionDuration = cond(
+    isFloated,
+    "duration-[var(--motion-duration-fast)]",
+    "duration-[var(--motion-duration-normal)]"
+  );
+
   return when(
     all(isFloating, Boolean(label)),
     <div
       className={cn(
         "pointer-events-none absolute inset-0 select-none z-10 flex items-center",
         "transform-gpu transition ease-[var(--motion-easing)] motion-reduce:transition-none",
+        outlineMotionDuration,
         cond(isFloated, "-translate-y-1/2", "translate-y-0")
       )}
     >
-      <div className="relative inline-grid items-center">
-        <label
-          ref={labelRef}
-          id={id}
-          htmlFor={htmlFor}
-          data-slot="input-floating-label"
-          data-floated={cond(isFloated, "true", "false")}
-          className={cn(
-            "col-start-1 row-start-1 inline-flex items-center rounded-xs truncate leading-normal origin-left",
-            "transform-gpu antialiased font-normal",
-            "transition ease-[var(--motion-easing)] motion-reduce:transition-none",
-            restingLabelSize,
-            floatingLabelColor,
-            cond(isFloated, "scale-85", "scale-100"),
-            cond(disabled, "opacity-50", undefined)
-          )}
-        >
-          {label}
-          {when(
-            required,
-            <span className="text-destructive ml-0.5" aria-hidden="true">
-              *
-            </span>
-          )}
-        </label>
-      </div>
+      <label
+        ref={labelRef}
+        id={id}
+        htmlFor={htmlFor}
+        data-slot="input-floating-label"
+        data-floated={cond(isFloated, "true", "false")}
+        className={cn(
+          "inline-flex items-center rounded-xs truncate leading-normal origin-left",
+          "transform-gpu antialiased font-normal",
+          "transition ease-[var(--motion-easing)] motion-reduce:transition-none",
+          outlineMotionDuration,
+          restingLabelSize,
+          floatingLabelColor,
+          cond(isFloated, "scale-85", "scale-100"),
+          cond(disabled, "opacity-50", undefined)
+        )}
+      >
+        {label}
+        {when(
+          required,
+          <span className="text-destructive ml-0.5" aria-hidden="true">
+            *
+          </span>
+        )}
+      </label>
     </div>
   );
 }

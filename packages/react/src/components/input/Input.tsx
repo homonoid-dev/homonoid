@@ -231,7 +231,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           placeholder={cond(isFloating, cond(isFloated, placeholder, undefined), placeholder)}
           className={cn(
             "w-full h-full min-w-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30",
-            "font-normal placeholder:opacity-100 leading-normal",
+            "font-normal antialiased placeholder:opacity-100 placeholder:antialiased leading-normal",
             cond(
               isInvalid,
               "text-destructive placeholder:text-destructive/60",
