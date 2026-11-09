@@ -10,10 +10,26 @@ import {
 } from "react";
 import { useMergeRefs } from "@floating-ui/react";
 import { Tile } from "../tile/Tile";
-import { cond } from "../../utils/condition";
+import { cond, match } from "../../utils/condition";
 import { cn } from "../../utils/cn";
 import { useAutocompleteContext } from "./AutocompleteContext";
-import type { AutocompleteItemProps } from "./types";
+import type { AutocompleteItemProps, AutocompleteRadius } from "./types";
+
+const CONCENTRIC_RADIUS_MAP: Record<AutocompleteRadius, AutocompleteRadius> = {
+  none: "none",
+  sm: "sm",
+  md: "sm",
+  lg: "md",
+  full: "lg",
+};
+
+const CONCENTRIC_RADIUS_CLASSES: Record<AutocompleteRadius, string> = {
+  none: "rounded-none",
+  sm: "rounded-xs",
+  md: "rounded-sm",
+  lg: "rounded-lg",
+  full: "rounded-xl",
+};
 
 export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps>(
   function AutocompleteItem(
@@ -27,6 +43,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
       children,
       className,
       onClick,
+      radius: propRadius,
       ...props
     },
     ref
@@ -36,7 +53,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
       value: selectedValue,
       onSelectOption,
       size,
-      radius,
+      radius: contextRadius,
       color,
       disabled: rootDisabled,
       registerItem,
@@ -117,6 +134,11 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
       }
     };
 
+    const concentricRadius = match(contextRadius, CONCENTRIC_RADIUS_MAP, "sm");
+    const concentricRadiusClass = match(contextRadius, CONCENTRIC_RADIUS_CLASSES, "rounded-sm");
+    const effectiveRadius = propRadius ?? concentricRadius;
+    const effectiveRadiusClass = cond(Boolean(propRadius), undefined, concentricRadiusClass);
+
     return (
       <Tile
         ref={mergedRef}
@@ -130,7 +152,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         variant="plain"
         color={color}
         size={size}
-        radius={radius}
+        radius={effectiveRadius}
         disabled={disabled || rootDisabled}
         interactive={!disabled && !rootDisabled}
         selected={isSelected}
@@ -140,6 +162,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         trailing={trailing}
         className={cn(
           "shrink-0 cursor-pointer select-none",
+          effectiveRadiusClass,
           cond(isSelected, "bg-surface-hover font-medium", cond(isHighlighted, "bg-surface-hover/50", "")),
           className
         )}

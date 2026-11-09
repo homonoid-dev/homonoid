@@ -17,6 +17,7 @@ export interface AutocompleteOption {
   leading?: ReactNode;
   trailing?: ReactNode;
   disabled?: boolean;
+  radius?: AutocompleteRadius;
 }
 
 export interface AutocompleteProps
@@ -175,6 +176,7 @@ export interface AutocompleteItemProps
   leading?: ReactNode;
   trailing?: ReactNode;
   disabled?: boolean;
+  radius?: AutocompleteRadius;
 }
 
 export interface AutocompleteGroupProps extends HTMLAttributes<HTMLDivElement> {

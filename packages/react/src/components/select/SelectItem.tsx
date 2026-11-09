@@ -3,8 +3,25 @@
 import { forwardRef, useEffect, type MouseEvent } from "react";
 import { Tile } from "../tile/Tile";
 import { useSelectContext } from "./SelectContext";
-import { cond } from "../../utils/condition";
-import type { SelectItemProps } from "./types";
+import { cond, match } from "../../utils/condition";
+import { cn } from "../../utils/cn";
+import type { SelectItemProps, SelectRadius } from "./types";
+
+const CONCENTRIC_RADIUS_MAP: Record<SelectRadius, SelectRadius> = {
+  none: "none",
+  sm: "sm",
+  md: "sm",
+  lg: "md",
+  full: "lg",
+};
+
+const CONCENTRIC_RADIUS_CLASSES: Record<SelectRadius, string> = {
+  none: "rounded-none",
+  sm: "rounded-xs",
+  md: "rounded-sm",
+  lg: "rounded-lg",
+  full: "rounded-xl",
+};
 
 export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
   function SelectItem(
@@ -56,6 +73,9 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
       onClick: handleClick,
     });
 
+    const concentricRadius = match(radius, CONCENTRIC_RADIUS_MAP, "sm");
+    const concentricRadiusClass = match(radius, CONCENTRIC_RADIUS_CLASSES, "rounded-sm");
+
     return (
       <Tile
         ref={ref}
@@ -66,7 +86,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
         variant="plain"
         color="surface"
         size={size}
-        radius={radius}
+        radius={concentricRadius}
         disabled={disabled}
         interactive={!disabled}
         selected={isSelected}
@@ -74,7 +94,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
         label={labelContent}
         description={description}
         trailing={trailing}
-        className={className}
+        className={cn(concentricRadiusClass, className)}
         {...itemProps}
         {...props}
       >

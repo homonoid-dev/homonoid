@@ -4,8 +4,24 @@ import { forwardRef, type MouseEvent } from "react";
 import { Tile } from "../tile/Tile";
 import { useDropdownContext } from "./DropdownContext";
 import { cn } from "../../utils/cn";
-import { cond } from "../../utils/condition";
-import type { DropdownItemProps } from "./types";
+import { cond, match } from "../../utils/condition";
+import type { DropdownItemProps, DropdownRadius } from "./types";
+
+const CONCENTRIC_RADIUS_MAP: Record<DropdownRadius, DropdownRadius> = {
+  none: "none",
+  sm: "sm",
+  md: "sm",
+  lg: "md",
+  full: "lg",
+};
+
+const CONCENTRIC_RADIUS_CLASSES: Record<DropdownRadius, string> = {
+  none: "rounded-none",
+  sm: "rounded-xs",
+  md: "rounded-sm",
+  lg: "rounded-lg",
+  full: "rounded-xl",
+};
 
 export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
   function DropdownItem(
@@ -44,6 +60,9 @@ export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
       onClick: handleClick,
     });
 
+    const concentricRadius = match(radius, CONCENTRIC_RADIUS_MAP, "sm");
+    const concentricRadiusClass = match(radius, CONCENTRIC_RADIUS_CLASSES, "rounded-sm");
+
     return (
       <Tile
         ref={ref}
@@ -53,7 +72,7 @@ export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
         variant="plain"
         color={color}
         size={size}
-        radius={radius}
+        radius={concentricRadius}
         selected={selected}
         disabled={disabled}
         interactive={!disabled}
@@ -61,7 +80,7 @@ export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
         label={labelContent}
         description={description}
         trailing={trailing}
-        className={cn("w-full select-none", className)}
+        className={cn("w-full select-none", concentricRadiusClass, className)}
         {...itemProps}
         {...props}
       >
