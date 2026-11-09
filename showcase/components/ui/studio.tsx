@@ -3,7 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { Eye, Code2, Monitor, Tablet, Smartphone, ChevronLeft, ChevronRight, Maximize } from "lucide-react";
+import { Eye, Code2, Monitor, Tablet, Smartphone, ChevronLeft, ChevronRight, Maximize, Copy, Check } from "lucide-react";
 import { all, cond, when, Heading, Description, Tabs, Button, Breadcrumb } from "@homonoid/react";
 import { COMPONENTS } from "@/config/components";
 import { Stage } from "./stage";
@@ -27,8 +27,17 @@ export function Studio({
 }: StudioProps) {
   const inspectorContext = useInspector();
   const [viewMode, setViewMode] = useState<"preview" | "code">("preview");
+  const [copied, setCopied] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+
+  const handleCopy = () => {
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(code ?? defaultCode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   const currentIndex = COMPONENTS.findIndex(
     (c) => c.href === pathname || c.name.toLowerCase() === title.toLowerCase()
@@ -106,42 +115,60 @@ export function Example() {
             </Tabs.List>
           </Tabs>
 
-          <Tabs defaultValue="desktop" size="sm">
-            <Tabs.List>
-              <Tabs.Tab
-                value="desktop"
-                layout="icon"
-                aria-label="Desktop viewport"
-                title="Desktop"
-              >
-                <Monitor className="size-3.5 shrink-0" />
-              </Tabs.Tab>
-              <Tabs.Tab
-                value="tablet"
-                layout="icon"
-                aria-label="Tablet viewport"
-                title="Tablet"
-              >
-                <Tablet className="size-3.5 shrink-0" />
-              </Tabs.Tab>
-              <Tabs.Tab
-                value="mobile"
-                layout="icon"
-                aria-label="Mobile viewport"
-                title="Mobile"
-              >
-                <Smartphone className="size-3.5 shrink-0" />
-              </Tabs.Tab>
-              <Tabs.Tab
-                value="fullscreen"
-                layout="icon"
-                aria-label="Fullscreen"
-                title="Fullscreen"
-              >
-                <Maximize className="size-3.5 shrink-0" />
-              </Tabs.Tab>
-            </Tabs.List>
-          </Tabs>
+          <div className="flex items-center gap-control-gap">
+            <Tabs defaultValue="desktop" size="sm">
+              <Tabs.List>
+                <Tabs.Tab
+                  value="desktop"
+                  layout="icon"
+                  aria-label="Desktop viewport"
+                  title="Desktop"
+                >
+                  <Monitor className="size-3.5 shrink-0" />
+                </Tabs.Tab>
+                <Tabs.Tab
+                  value="tablet"
+                  layout="icon"
+                  aria-label="Tablet viewport"
+                  title="Tablet"
+                >
+                  <Tablet className="size-3.5 shrink-0" />
+                </Tabs.Tab>
+                <Tabs.Tab
+                  value="mobile"
+                  layout="icon"
+                  aria-label="Mobile viewport"
+                  title="Mobile"
+                >
+                  <Smartphone className="size-3.5 shrink-0" />
+                </Tabs.Tab>
+                <Tabs.Tab
+                  value="fullscreen"
+                  layout="icon"
+                  aria-label="Fullscreen"
+                  title="Fullscreen"
+                >
+                  <Maximize className="size-3.5 shrink-0" />
+                </Tabs.Tab>
+              </Tabs.List>
+            </Tabs>
+
+            <Button
+              variant="contained"
+              color="surface"
+              layout="icon"
+              radius="full"
+              aria-label={cond(copied, "Copied code", "Copy code")}
+              title={cond(copied, "Copied", "Copy code")}
+              onClick={handleCopy}
+            >
+              {cond(
+                copied,
+                <Check className="size-3.5 text-primary shrink-0" />,
+                <Copy className="size-3.5 shrink-0" />
+              )}
+            </Button>
+          </div>
         </div>
 
         <Stage
