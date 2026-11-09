@@ -59,6 +59,14 @@ const SIZE_LABELS: Record<string, string> = {
   lg: "Large",
 };
 
+const RADIUS_LABELS: Record<string, string> = {
+  none: "None",
+  sm: "Small",
+  md: "Medium",
+  lg: "Large",
+  full: "Full",
+};
+
 export interface InspectorProps {
   className?: string;
 }
@@ -140,7 +148,7 @@ export function Inspector({ className }: InspectorProps = {}) {
             options={(radius?.options ?? ["full", "lg", "md", "sm", "none"]).map(
               (opt: string) => ({
                 value: opt,
-                label: opt.charAt(0).toUpperCase() + opt.slice(1),
+                label: match(opt, RADIUS_LABELS, opt.charAt(0).toUpperCase() + opt.slice(1)),
               })
             )}
           />
