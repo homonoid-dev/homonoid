@@ -34,7 +34,7 @@ export function Studio({
 
   const defaultCode = `import { ${title} } from "@homonoid/react";
 
-export default function Example() {
+export function Example() {
   return (
     <${title} />
   );

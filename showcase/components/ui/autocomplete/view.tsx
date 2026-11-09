@@ -44,17 +44,23 @@ const OPTIONS = [
   },
 ];
 
-const CODE_EXAMPLE = `<Autocomplete
-  placeholder="Component"
-  options={[
-    { value: "button", label: "Button", description: "Interactive tactile trigger" },
-    { value: "accordion", label: "Accordion", description: "Vertically stacked disclosures" },
-    { value: "autocomplete", label: "Autocomplete", description: "Combobox with fuzzy filtering" },
-    { value: "input", label: "Input", description: "Text entry field with floating label" },
-    { value: "select", label: "Select", description: "Overlay option menu picker" },
-    { value: "tabs", label: "Tabs", description: "Segmented container switcher" },
-  ]}
-/>`;
+const CODE_EXAMPLE = `import { Autocomplete } from "@homonoid/react";
+
+export function Example() {
+  return (
+    <Autocomplete
+      placeholder="Component"
+      options={[
+        { value: "button", label: "Button", description: "Interactive tactile trigger" },
+        { value: "accordion", label: "Accordion", description: "Vertically stacked disclosures" },
+        { value: "autocomplete", label: "Autocomplete", description: "Combobox with fuzzy filtering" },
+        { value: "input", label: "Input", description: "Text entry field with floating label" },
+        { value: "select", label: "Select", description: "Overlay option menu picker" },
+        { value: "tabs", label: "Tabs", description: "Segmented container switcher" },
+      ]}
+    />
+  );
+}`;
 
 export function AutocompleteView() {
   const [size, setSize] = useState<Size>("md");
