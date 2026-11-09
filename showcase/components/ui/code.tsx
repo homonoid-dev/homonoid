@@ -100,8 +100,13 @@ export function Code({
     }
   }, [code]);
 
-  const isAnimated = all(animated, !shouldReduceMotion);
-  const Line = cond(isAnimated, motion.span, "span");
+  const isFirstMountRef = useRef(true);
+
+  useEffect(() => {
+    isFirstMountRef.current = false;
+  }, []);
+
+  const shouldAnimate = all(animated, !shouldReduceMotion, isFirstMountRef.current);
 
   return (
     <div
@@ -114,20 +119,20 @@ export function Code({
       <pre className="py-surface-sm pr-surface-sm pl-0 text-foreground w-fit min-w-full">
         <code className="block w-fit min-w-full">
           {lines.map((line, index) => (
-            <Line
+            <motion.span
               key={index}
               className="flex min-h-[1.5em] w-fit min-w-full pr-surface-sm"
-              {...(isAnimated
-                ? {
-                  initial: { opacity: 0, y: 4 },
-                  animate: { opacity: 1, y: 0 },
-                  transition: {
-                    duration: 0.20,
-                    delay: Math.min(index * 0.015, 0.35),
-                    ease: [0.15, 1, 0.35, 1],
-                  },
-                }
-                : {})}
+              initial={cond(shouldAnimate, { opacity: 0, y: 4 }, false)}
+              animate={{ opacity: 1, y: 0 }}
+              transition={cond(
+                shouldAnimate,
+                {
+                  duration: 0.20,
+                  delay: Math.min(index * 0.015, 0.35),
+                  ease: [0.15, 1, 0.35, 1],
+                },
+                { duration: 0 }
+              )}
             >
               {when(
                 lineNumbers,
@@ -138,7 +143,7 @@ export function Code({
               <span className="flex-1 min-w-0 pl-1">
                 {cond(line.length > 0, highlighter(line), "\u00A0")}
               </span>
-            </Line>
+            </motion.span>
           ))}
         </code>
       </pre>
