@@ -3,7 +3,7 @@
 import React, { useMemo, useRef, useEffect } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@homonoid/react/cn";
-import { all, cond, when } from "@homonoid/react";
+import { all, any, cond, when } from "@homonoid/react";
 
 export interface CodeProps {
   code: string;
@@ -63,7 +63,14 @@ export function highlighter(code: string): React.ReactNode[] {
       );
     } else if (keyword) {
       nodes.push(
-        <span key={match.index} className="text-primary">
+        <span
+          key={match.index}
+          className={cond(
+            any(keyword === "function", keyword === "const"),
+            "text-primary font-medium",
+            "text-destructive font-medium"
+          )}
+        >
           {keyword}
         </span>
       );
