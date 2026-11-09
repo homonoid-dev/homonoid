@@ -5,15 +5,16 @@ import {
   useId,
   useRef,
   useState,
-  useLayoutEffect,
-  useEffect,
   type ChangeEvent,
   type FocusEvent,
-  type MouseEvent
+  type MouseEvent,
 } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import { all, any, cond, match, when } from "../../utils/condition";
+import { useInputNotchedOutline } from "./useInputNotchedOutline";
+import { InputNotchedOutline } from "./InputNotchedOutline";
+import { InputFloatingLabel } from "./InputFloatingLabel";
 import type { InputProps } from "./types";
 
 export const variants = cva(
@@ -21,7 +22,7 @@ export const variants = cva(
   {
     variants: {
       variant: {
-        outlined: "border border-border bg-transparent hover:border-foreground/30 focus-within:border-primary focus-within:hover:border-primary",
+        outlined: "border border-transparent bg-transparent",
         contained: "border border-transparent bg-surface hover:bg-surface-hover focus-within:border-primary",
         plain: "border border-transparent bg-transparent hover:bg-surface-hover",
       },
@@ -73,10 +74,8 @@ const DATE_INPUT_TYPES = new Set([
   "time",
   "datetime-local",
   "month",
-  "week"
+  "week",
 ]);
-
-const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   {
@@ -87,7 +86,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     label,
     floating = false,
     floatingLabel = false,
-    floatingLabelClassName,
+    floatingLabelClassName: _floatingLabelClassName,
     description,
     error,
     invalid = false,
@@ -117,28 +116,27 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const errorId = `${inputId}-error`;
 
   const innerRef = useRef<HTMLInputElement | null>(null);
-  const labelRef = useRef<HTMLLabelElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [notchGeometry, setNotchGeometry] = useState<{ left: number; width: number } | null>(null);
   const isInvalid = any(invalid, Boolean(error));
 
-  useIsomorphicLayoutEffect(() => {
-    if (!isFloating || variant !== "outlined") return;
-    const labelEl = labelRef.current;
-    const containerEl = containerRef.current;
-    if (!labelEl || !containerEl) return;
+  const currentValue = cond(isControlled, value, internalValue);
+  const isDateType = Boolean(props.type && DATE_INPUT_TYPES.has(props.type));
+  const hasValue = any(
+    currentValue !== undefined && currentValue !== null && currentValue !== "",
+    Boolean(innerRef.current?.value),
+    isDateType
+  );
+  const isExpanded = props["aria-expanded"] === true || props["aria-expanded"] === "true";
+  const isFloated = any(isFocused, hasValue, isExpanded);
+  const isOutlined = variant === "outlined";
 
-    const labelRect = labelEl.getBoundingClientRect();
-    const containerRect = containerEl.getBoundingClientRect();
-
-    const left = Math.round(labelRect.left - containerRect.left);
-    const unscaledWidth = labelEl.offsetWidth || labelRect.width;
-    const width = Math.round(unscaledWidth * 0.85);
-
-    if (width > 0) {
-      setNotchGeometry({ left, width });
-    }
-  }, [isFloating, variant, label, leading, size]);
+  const { labelRef, containerRef, clipPath } = useInputNotchedOutline({
+    isFloating,
+    isFloated,
+    isOutlined,
+    label,
+    leading,
+    size,
+  });
 
   const setRefs = (element: HTMLInputElement | null) => {
     innerRef.current = element;
@@ -177,173 +175,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     onBlur?.(e);
   };
 
-  const currentValue = cond(isControlled, value, internalValue);
-  const isDateType = Boolean(props.type && DATE_INPUT_TYPES.has(props.type));
-  const hasValue = any(
-    currentValue !== undefined && currentValue !== null && currentValue !== "",
-    Boolean(innerRef.current?.value),
-    isDateType
-  );
-  const isExpanded = props["aria-expanded"] === true || props["aria-expanded"] === "true";
-  const isFloated = any(isFocused, hasValue, isExpanded);
-
   // Accessibility bindings
   const userDescribedBy = props["aria-describedby"];
   const describedByParts = [
     userDescribedBy,
     error ? errorId : undefined,
-    description ? descriptionId : undefined
+    description ? descriptionId : undefined,
   ].filter(Boolean);
   const finalDescribedBy = describedByParts.length > 0 ? describedByParts.join(" ") : undefined;
-
-  const floatingLabelColor = cond(
-    isInvalid,
-    "text-destructive",
-    cond(any(isFocused, isExpanded), "text-primary", "text-muted")
-  );
-
-  const restingLabelSize = match(
-    size,
-    {
-      sm: "text-xs",
-      md: "text-sm",
-      lg: "text-base",
-    },
-    "text-sm"
-  );
-
-  const isOutlined = variant === "outlined";
-
-  const defaultNotchLeft = cond(
-    Boolean(leading),
-    match(size, { sm: 34, md: 38, lg: 44 }, 38),
-    match(size, { sm: 10, md: 12, lg: 16 }, 12)
-  );
-
-  const notchX1 = cond(
-    notchGeometry !== null,
-    Math.max(0, (notchGeometry?.left ?? defaultNotchLeft) - 4),
-    defaultNotchLeft
-  );
-  const notchX2 = cond(
-    notchGeometry !== null,
-    notchX1 + (notchGeometry?.width ?? 64) + 8,
-    notchX1 + 72
-  );
-
-  // Directional GPU sweep:
-  // Open: sweeps from right to left (notch spans from notchX1 to notchX2 with 10px depth)
-  // Closed: notch collapses to notchX2 and retreats above border (-4px depth)
-  const currentClipPath = cond(
-    all(isFloating, isOutlined),
-    cond(
-      isFloated,
-      `polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, ${notchX2}px 0%, ${notchX2}px 10px, ${notchX1}px 10px, ${notchX1}px 0%)`,
-      `polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, ${notchX2}px 0%, ${notchX2}px -4px, ${notchX2}px -4px, ${notchX2}px 0%)`
-    ),
-    undefined
-  );
-
-  const outlineBorderColor = cond(
-    isInvalid,
-    "border-destructive",
-    cond(
-      disabled,
-      "border-border opacity-50",
-      cond(
-        isFocused,
-        "border-primary",
-        "border-border group-hover:border-foreground/30 group-focus-within:border-primary"
-      )
-    )
-  );
-
-  const outlineMotionDuration = cond(
-    isFloated,
-    "duration-[var(--motion-duration-fast)]",
-    "duration-500"
-  );
-
-  const notchedOutlineElement = when(
-    isOutlined,
-    <div
-      aria-hidden="true"
-      style={{ clipPath: currentClipPath }}
-      className={cn(
-        "pointer-events-none absolute inset-0 rounded-[inherit] border z-10",
-        "transition-[clip-path,border-color] ease-[var(--motion-easing)] motion-reduce:transition-none",
-        outlineMotionDuration,
-        outlineBorderColor
-      )}
-    />
-  );
-
-  const floatingLabelElement = when(
-    all(isFloating, Boolean(label)),
-    <div
-      className={cn(
-        "pointer-events-none absolute inset-0 select-none z-10 flex items-center",
-        "transform-gpu transition ease-[var(--motion-easing)] motion-reduce:transition-none",
-        outlineMotionDuration,
-        cond(isFloated, "-translate-y-1/2", "translate-y-0")
-      )}
-    >
-      <div className="relative inline-grid items-center">
-        {/* Text Label Scaling Layer */}
-        <label
-          ref={labelRef}
-          id={labelId}
-          htmlFor={inputId}
-          data-slot="input-floating-label"
-          data-floated={cond(isFloated, "true", "false")}
-          className={cn(
-            "col-start-1 row-start-1 inline-flex items-center rounded-xs truncate leading-normal origin-left",
-            "transform-gpu antialiased font-normal",
-            "transition ease-[var(--motion-easing)] motion-reduce:transition-none",
-            outlineMotionDuration,
-            restingLabelSize,
-            floatingLabelColor,
-            cond(isFloated, "scale-85", "scale-100"),
-            cond(disabled, "opacity-50", undefined)
-          )}
-        >
-          {label}
-          {when(
-            props.required,
-            <span className="text-destructive ml-0.5" aria-hidden="true">
-              *
-            </span>
-          )}
-        </label>
-      </div>
-    </div>
-  );
-
-  const inputElement = (
-    <input
-      ref={setRefs}
-      id={inputId}
-      disabled={disabled}
-      aria-invalid={cond(isInvalid, true, undefined)}
-      aria-describedby={finalDescribedBy}
-      value={value}
-      defaultValue={defaultValue}
-      onChange={handleChange}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      placeholder={cond(isFloating, cond(isFloated, placeholder, undefined), placeholder)}
-      className={cn(
-        "w-full h-full min-w-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30",
-        "font-normal placeholder:opacity-100 leading-normal",
-        cond(
-          isInvalid,
-          "text-destructive placeholder:text-destructive/60",
-          "text-foreground placeholder:text-muted"
-        )
-      )}
-      {...props}
-    />
-  );
 
   const hasExternalLabel = all(!isFloating, Boolean(label));
   const hasFooter = any(Boolean(error), Boolean(description));
@@ -362,11 +201,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           invalid: isInvalid,
           disabled,
         }),
-        cond(
-          isOutlined,
-          "border-transparent hover:border-transparent focus-within:border-transparent focus-within:hover:border-transparent",
-          undefined
-        ),
         cond(!needsOuterWrapper, className, undefined)
       )}
     >
@@ -383,8 +217,43 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 
       {/* Native Input Element / Floating Slot */}
       <div className="relative flex-1 min-w-0 flex items-center h-full">
-        {inputElement}
-        {floatingLabelElement}
+        <input
+          ref={setRefs}
+          id={inputId}
+          disabled={disabled}
+          aria-invalid={cond(isInvalid, true, undefined)}
+          aria-describedby={finalDescribedBy}
+          value={value}
+          defaultValue={defaultValue}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          placeholder={cond(isFloating, cond(isFloated, placeholder, undefined), placeholder)}
+          className={cn(
+            "w-full h-full min-w-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30",
+            "font-normal placeholder:opacity-100 leading-normal",
+            cond(
+              isInvalid,
+              "text-destructive placeholder:text-destructive/60",
+              "text-foreground placeholder:text-muted"
+            )
+          )}
+          {...props}
+        />
+        <InputFloatingLabel
+          id={labelId}
+          htmlFor={inputId}
+          label={label}
+          required={props.required}
+          isFloating={isFloating}
+          isFloated={isFloated}
+          isFocused={isFocused}
+          isExpanded={isExpanded}
+          isInvalid={isInvalid}
+          disabled={disabled}
+          size={size}
+          labelRef={labelRef}
+        />
       </div>
 
       {/* Trailing Slot */}
@@ -399,7 +268,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       )}
 
       {/* Unified Notched Border Overlay */}
-      {notchedOutlineElement}
+      <InputNotchedOutline
+        isOutlined={isOutlined}
+        isFloated={isFloated}
+        isFocused={isFocused}
+        isInvalid={isInvalid}
+        disabled={disabled}
+        clipPath={clipPath}
+      />
     </div>
   );
 
@@ -445,3 +321,5 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     </div>
   );
 });
+
+Input.displayName = "Input";
