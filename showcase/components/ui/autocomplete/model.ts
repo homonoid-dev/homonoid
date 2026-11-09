@@ -1,6 +1,6 @@
 import { Search, Layers, Boxes, FileCode, Palette, Component } from "lucide-react";
 import type { ComponentType } from "react";
-import type { Size } from "@homonoid/react";
+import type { Radius, Size } from "@homonoid/react";
 
 export interface AutocompleteDemoOption {
   value: string;
@@ -57,6 +57,7 @@ export const AUTOCOMPLETE_OPTIONS: AutocompleteDemoOption[] = [
 
 export interface AutocompleteCodeOptions {
   size: Size;
+  radius: Radius;
   floating: boolean;
   disabled: boolean;
   invalid: boolean;
@@ -68,6 +69,7 @@ export interface AutocompleteCodeOptions {
 export function getAutocompleteCode(options: AutocompleteCodeOptions): string {
   const {
     size,
+    radius,
     floating,
     disabled,
     invalid,
@@ -93,6 +95,7 @@ export function getAutocompleteCode(options: AutocompleteCodeOptions): string {
 
   const props: string[] = ['placeholder="Component"'];
   if (size !== "md") props.push(`size="${size}"`);
+  if (radius !== "md") props.push(`radius="${radius}"`);
   if (floating) {
     props.push('label="Component"');
     props.push("floating");

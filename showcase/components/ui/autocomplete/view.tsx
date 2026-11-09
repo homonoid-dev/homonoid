@@ -2,12 +2,13 @@
 
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
-import { Autocomplete, cond, type Size } from "@homonoid/react";
+import { Autocomplete, cond, type Radius, type Size } from "@homonoid/react";
 import { Studio } from "@/components/ui/studio";
 import { AUTOCOMPLETE_OPTIONS, getAutocompleteCode } from "./model";
 
 export function AutocompleteView() {
   const [size, setSize] = useState<Size>("md");
+  const [radius, setRadius] = useState<Radius>("md");
   const [value, setValue] = useState("");
   const [floating, setFloating] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -20,6 +21,7 @@ export function AutocompleteView() {
     () =>
       getAutocompleteCode({
         size,
+        radius,
         floating,
         disabled,
         invalid,
@@ -27,7 +29,7 @@ export function AutocompleteView() {
         showLeading,
         showDescription,
       }),
-    [size, floating, disabled, invalid, loading, showLeading, showDescription]
+    [size, radius, floating, disabled, invalid, loading, showLeading, showDescription]
   );
 
   return (
@@ -40,6 +42,11 @@ export function AutocompleteView() {
           value: size,
           options: ["sm", "md", "lg"],
           onChange: setSize,
+        },
+        radius: {
+          value: radius,
+          options: ["full", "lg", "md", "sm", "none"],
+          onChange: setRadius,
         },
         switches: [
           {
@@ -92,6 +99,7 @@ export function AutocompleteView() {
           value={value}
           onValueChange={setValue}
           size={size}
+          radius={radius}
           label={cond(floating, "Component", undefined)}
           floating={floating}
           disabled={disabled}
