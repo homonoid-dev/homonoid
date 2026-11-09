@@ -1,5 +1,5 @@
-import { Page } from "@/components/ui/page";
+import { AvatarView } from "@/components/ui/avatar/view";
 
 export default function AvatarPage() {
-  return <Page />;
+  return <AvatarView />;
 }

@@ -5,17 +5,15 @@ import { usePathname } from "next/navigation";
 import { match, when, Select, Sidebar as _Sidebar, Switch } from "@homonoid/react";
 import { cn } from "@homonoid/react/cn";
 
-export interface InspectorControlVariant {
+export interface InspectorControlSelect {
   value: string;
   options?: string[];
   onChange: (val: any) => void;
+  placeholder?: string;
 }
 
-export interface InspectorControlSize {
-  value: string;
-  options?: string[];
-  onChange: (val: any) => void;
-}
+export type InspectorControlVariant = InspectorControlSelect;
+export type InspectorControlSize = InspectorControlSelect;
 
 export interface InspectorControlSwitch {
   id: string;
@@ -28,7 +26,9 @@ export interface InspectorControlSwitch {
 
 export interface InspectorConfig {
   variant?: InspectorControlVariant;
+  color?: InspectorControlSelect;
   size?: InspectorControlSize;
+  radius?: InspectorControlSelect;
   switches?: InspectorControlSwitch[];
   children?: ReactNode;
 }
@@ -72,7 +72,7 @@ export function Inspector({ className }: InspectorProps = {}) {
     return null;
   }
 
-  const { variant, size, switches, children } = config;
+  const { variant, color, size, radius, switches, children } = config;
 
   return (
     <_Sidebar
@@ -90,8 +90,24 @@ export function Inspector({ className }: InspectorProps = {}) {
             value={variant?.value}
             onValueChange={variant?.onChange}
             size="sm"
-            placeholder="Select variant"
+            placeholder={variant?.placeholder ?? "Select variant"}
             options={(variant?.options ?? ["plain", "outlined", "contained"]).map(
+              (opt: string) => ({
+                value: opt,
+                label: opt.charAt(0).toUpperCase() + opt.slice(1),
+              })
+            )}
+          />
+        )}
+
+        {when(
+          Boolean(color),
+          <Select
+            value={color?.value}
+            onValueChange={color?.onChange}
+            size="sm"
+            placeholder={color?.placeholder ?? "Select color"}
+            options={(color?.options ?? ["surface", "primary", "subtle", "destructive"]).map(
               (opt: string) => ({
                 value: opt,
                 label: opt.charAt(0).toUpperCase() + opt.slice(1),
@@ -106,11 +122,27 @@ export function Inspector({ className }: InspectorProps = {}) {
             value={size?.value}
             onValueChange={size?.onChange}
             size="sm"
-            placeholder="Select size"
+            placeholder={size?.placeholder ?? "Select size"}
             options={(size?.options ?? ["sm", "md", "lg"]).map((opt: string) => ({
               value: opt,
               label: match(opt, SIZE_LABELS, opt.charAt(0).toUpperCase() + opt.slice(1)),
             }))}
+          />
+        )}
+
+        {when(
+          Boolean(radius),
+          <Select
+            value={radius?.value}
+            onValueChange={radius?.onChange}
+            size="sm"
+            placeholder={radius?.placeholder ?? "Select radius"}
+            options={(radius?.options ?? ["full", "lg", "md", "sm", "none"]).map(
+              (opt: string) => ({
+                value: opt,
+                label: opt.charAt(0).toUpperCase() + opt.slice(1),
+              })
+            )}
           />
         )}
 
