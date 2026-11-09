@@ -50,11 +50,6 @@ export function InputFloatingLabel({
     "text-sm"
   );
 
-  const outlineMotionDuration = cond(
-    isFloated,
-    "duration-[var(--motion-duration-fast)]",
-    "duration-500"
-  );
 
   return when(
     all(isFloating, Boolean(label)),
@@ -62,7 +57,6 @@ export function InputFloatingLabel({
       className={cn(
         "pointer-events-none absolute inset-0 select-none z-10 flex items-center",
         "transform-gpu transition ease-[var(--motion-easing)] motion-reduce:transition-none",
-        outlineMotionDuration,
         cond(isFloated, "-translate-y-1/2", "translate-y-0")
       )}
     >
@@ -77,7 +71,6 @@ export function InputFloatingLabel({
             "col-start-1 row-start-1 inline-flex items-center rounded-xs truncate leading-normal origin-left",
             "transform-gpu antialiased font-normal",
             "transition ease-[var(--motion-easing)] motion-reduce:transition-none",
-            outlineMotionDuration,
             restingLabelSize,
             floatingLabelColor,
             cond(isFloated, "scale-85", "scale-100"),
