@@ -132,7 +132,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     const containerRect = containerEl.getBoundingClientRect();
 
     const left = Math.round(labelRect.left - containerRect.left);
-    const width = Math.round(labelRect.width * 0.85);
+    const unscaledWidth = labelEl.offsetWidth || labelRect.width;
+    const width = Math.round(unscaledWidth * 0.85);
 
     if (width > 0) {
       setNotchGeometry({ left, width });
@@ -211,7 +212,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     "text-sm"
   );
 
-  const isNotchedOutline = all(isFloating, variant === "outlined");
+  const isOutlined = variant === "outlined";
 
   const defaultNotchLeft = cond(
     Boolean(leading),
@@ -231,15 +232,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   );
 
   // Directional GPU sweep:
-  // Closed: collapsed at notchX2 (far right side of the notch)
-  // Open: sweeps leftward to notchX1 (opening from far right to left)
-  // Closing: sweeps rightward from notchX1 to notchX2 (closing from left to right)
+  // Open: sweeps from right to left (notch spans from notchX1 to notchX2 with 10px depth)
+  // Closed: notch collapses to notchX2 and retreats above border (-4px depth)
   const currentClipPath = cond(
-    isNotchedOutline,
+    all(isFloating, isOutlined),
     cond(
       isFloated,
       `polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, ${notchX2}px 0%, ${notchX2}px 10px, ${notchX1}px 10px, ${notchX1}px 0%)`,
-      `polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, ${notchX2}px 0%, ${notchX2}px 0%, ${notchX2}px 0%, ${notchX2}px 0%)`
+      `polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, ${notchX2}px 0%, ${notchX2}px -4px, ${notchX2}px -4px, ${notchX2}px 0%)`
     ),
     undefined
   );
@@ -261,11 +261,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const outlineMotionDuration = cond(
     isFloated,
     "duration-[var(--motion-duration-fast)]",
-    "duration-1000"
+    "duration-500"
   );
 
   const notchedOutlineElement = when(
-    isNotchedOutline,
+    isOutlined,
     <div
       aria-hidden="true"
       style={{ clipPath: currentClipPath }}
@@ -288,7 +288,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         cond(isFloated, "-translate-y-1/2", "translate-y-0")
       )}
     >
-      <div className="relative inline-grid items-center -ml-1">
+      <div className="relative inline-grid items-center">
         {/* Text Label Scaling Layer */}
         <label
           ref={labelRef}
@@ -297,13 +297,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           data-slot="input-floating-label"
           data-floated={cond(isFloated, "true", "false")}
           className={cn(
-            "col-start-1 row-start-1 inline-flex items-center px-1 rounded-xs truncate leading-normal origin-left",
+            "col-start-1 row-start-1 inline-flex items-center rounded-xs truncate leading-normal origin-left",
             "transform-gpu antialiased font-normal",
             "transition ease-[var(--motion-easing)] motion-reduce:transition-none",
             outlineMotionDuration,
             restingLabelSize,
             floatingLabelColor,
-            cond(isFloated, "scale-85 -translate-y-0.5", "scale-100 translate-y-0"),
+            cond(isFloated, "scale-85", "scale-100"),
             cond(disabled, "opacity-50", undefined)
           )}
         >
@@ -333,9 +333,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       onBlur={handleBlur}
       placeholder={cond(isFloating, cond(isFloated, placeholder, undefined), placeholder)}
       className={cn(
-        cond(!isFloating, "order-2 flex-1", "w-full h-full"),
-        "min-w-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30",
-        "font-normal placeholder:opacity-100",
+        "w-full h-full min-w-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30",
+        "font-normal placeholder:opacity-100 leading-normal",
         cond(
           isInvalid,
           "text-destructive placeholder:text-destructive/60",
@@ -364,40 +363,36 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           disabled,
         }),
         cond(
-          isNotchedOutline,
-          "border-0 border-transparent hover:border-transparent focus-within:border-transparent focus-within:hover:border-transparent",
+          isOutlined,
+          "border-transparent hover:border-transparent focus-within:border-transparent focus-within:hover:border-transparent",
           undefined
         ),
         cond(!needsOuterWrapper, className, undefined)
       )}
     >
-      {/* Native Input Element / Floating Slot */}
-      {cond(
-        isFloating,
-        <div className="relative order-2 flex-1 min-w-0 flex items-center h-full">
-          {inputElement}
-          {floatingLabelElement}
-        </div>,
-        inputElement
-      )}
-
       {/* Leading Slot */}
       {when(
         leading,
         <span
           data-slot="input-leading"
-          className="order-1 inline-flex shrink-0 items-center justify-center pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto"
+          className="inline-flex shrink-0 items-center justify-center pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto"
         >
           {leading}
         </span>
       )}
+
+      {/* Native Input Element / Floating Slot */}
+      <div className="relative flex-1 min-w-0 flex items-center h-full">
+        {inputElement}
+        {floatingLabelElement}
+      </div>
 
       {/* Trailing Slot */}
       {when(
         trailing,
         <span
           data-slot="input-trailing"
-          className="order-3 inline-flex shrink-0 items-center justify-center pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto"
+          className="inline-flex shrink-0 items-center justify-center pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto"
         >
           {trailing}
         </span>

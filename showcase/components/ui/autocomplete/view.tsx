@@ -120,7 +120,7 @@ export function AutocompleteView() {
           disabled={disabled}
           invalid={invalid}
           loading={loading}
-          placeholder="Search components..."
+          placeholder="Component"
           leading={cond(showLeading, <Search className="size-4 text-muted shrink-0" />, undefined)}
           options={OPTIONS.map((item) => {
             const Icon = item.icon;
