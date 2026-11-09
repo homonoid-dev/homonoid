@@ -3,7 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { Eye, Code2, Monitor, Tablet, Smartphone, ChevronLeft, ChevronRight } from "lucide-react";
+import { Eye, Code2, Monitor, Tablet, Smartphone, ChevronLeft, ChevronRight, Maximize } from "lucide-react";
 import { all, cond, when, Heading, Description, Tabs, Button, Breadcrumb } from "@homonoid/react";
 import { COMPONENTS } from "@/config/components";
 import { Stage } from "./stage";
@@ -131,6 +131,14 @@ export function Example() {
                 title="Mobile"
               >
                 <Smartphone className="size-3.5 shrink-0" />
+              </Tabs.Tab>
+              <Tabs.Tab
+                value="fullscreen"
+                layout="icon"
+                aria-label="Fullscreen"
+                title="Fullscreen"
+              >
+                <Maximize className="size-3.5 shrink-0" />
               </Tabs.Tab>
             </Tabs.List>
           </Tabs>
