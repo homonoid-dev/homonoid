@@ -37,7 +37,7 @@ export function InputNotchedOutline({
   const outlineMotionDuration = cond(
     isFloated,
     "duration-[var(--motion-duration-fast)]",
-    "duration-500"
+    "duration-[var(--motion-duration-slow)]"
   );
 
   return when(
