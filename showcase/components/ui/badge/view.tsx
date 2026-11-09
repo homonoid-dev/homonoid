@@ -1,13 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Sparkles } from "lucide-react";
+import { Bell, Zap } from "lucide-react";
 import {
   any,
   cond,
   when,
   Avatar,
   Badge,
+  Button,
   Select,
   type BadgeColor,
   type BadgePlacement,
@@ -16,13 +17,18 @@ import {
   type BadgeVariant,
 } from "@homonoid/react";
 import { Studio } from "@/components/ui/studio";
-import { getBadgeCode } from "./model";
+import { getBadgeCode, type BadgeAnchorTarget } from "./model";
 
 const PLACEMENT_OPTIONS = [
   { value: "top-right", label: "Top Right" },
   { value: "top-left", label: "Top Left" },
   { value: "bottom-right", label: "Bottom Right" },
   { value: "bottom-left", label: "Bottom Left" },
+];
+
+const TARGET_OPTIONS = [
+  { value: "avatar", label: "Avatar" },
+  { value: "button", label: "Button" },
 ];
 
 const COUNT_OPTIONS = [
@@ -41,6 +47,7 @@ export function BadgeView() {
   const [showCount, setShowCount] = useState(false);
   const [countValue, setCountValue] = useState(5);
   const [anchor, setAnchor] = useState(false);
+  const [anchorTarget, setAnchorTarget] = useState<BadgeAnchorTarget>("avatar");
   const [placement, setPlacement] = useState<BadgePlacement>("top-right");
   const [label] = useState("Featured");
 
@@ -56,6 +63,7 @@ export function BadgeView() {
         showCount,
         countValue,
         anchor,
+        anchorTarget,
         placement,
         label,
       }),
@@ -69,6 +77,7 @@ export function BadgeView() {
       showCount,
       countValue,
       anchor,
+      anchorTarget,
       placement,
       label,
     ]
@@ -104,7 +113,7 @@ export function BadgeView() {
           {
             id: "anchor",
             label: "Anchor",
-            description: "Overlay corner on avatar target",
+            description: "Overlay corner on target element",
             checked: anchor,
             onChange: setAnchor,
           },
@@ -114,7 +123,7 @@ export function BadgeView() {
             description: "Render presence indicator dot",
             checked: dot,
             onChange: setDot,
-            disabled: showCount,
+            disabled: any(anchor, showCount),
           },
           {
             id: "icon",
@@ -145,6 +154,16 @@ export function BadgeView() {
               />
             )}
             {when(
+              anchor,
+              <Select
+                value={anchorTarget}
+                onValueChange={(val) => setAnchorTarget(val as BadgeAnchorTarget)}
+                size="sm"
+                placeholder="Anchor target"
+                options={TARGET_OPTIONS}
+              />
+            )}
+            {when(
               showCount,
               <Select
                 value={String(countValue)}
@@ -160,21 +179,43 @@ export function BadgeView() {
     >
       {cond(
         anchor,
-        <Badge
-          variant={variant}
-          color={color}
-          size={size}
-          radius={radius}
-          placement={placement}
-          dot={dot && !showCount}
-          count={cond(showCount, countValue, undefined)}
-        >
-          <Avatar
-            name="Alex Rivera"
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
-            size="lg"
-          />
-        </Badge>,
+        cond(
+          anchorTarget === "button",
+          <Badge
+            variant={variant}
+            color={color}
+            size={size}
+            radius={radius}
+            placement={placement}
+            dot={cond(showCount, false, true)}
+            count={cond(showCount, countValue, undefined)}
+          >
+            <Button
+              variant="outlined"
+              color="surface"
+              size="md"
+              layout="icon"
+              aria-label="Notifications"
+            >
+              <Bell className="size-4" />
+            </Button>
+          </Badge>,
+          <Badge
+            variant={variant}
+            color={color}
+            size={size}
+            radius={radius}
+            placement={placement}
+            dot={cond(showCount, false, true)}
+            count={cond(showCount, countValue, undefined)}
+          >
+            <Avatar
+              name="Alex Rivera"
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+              size="lg"
+            />
+          </Badge>
+        ),
         cond(
           showCount,
           <Badge
@@ -192,7 +233,7 @@ export function BadgeView() {
             dot={dot}
             leading={when(
               showIcon,
-              <Sparkles
+              <Zap
                 className={cond(
                   size === "sm",
                   "size-3",
@@ -208,4 +249,3 @@ export function BadgeView() {
     </Studio>
   );
 }
-

@@ -33,6 +33,9 @@
     --p-layout-x: var(--p-layout);
     --p-layout-y: 2.0rem;
     --gap-layout: 1.5rem;
+
+    /* Badge Anchor Circular Offset (1 - 1/sqrt(2) ≈ 14.64%) */
+    --offset-badge-circular: 14.64%;
   }
 }
 
@@ -68,4 +71,7 @@
   --spacing-layout-x: var(--p-layout-x);
   --spacing-layout-y: var(--p-layout-y);
   --spacing-layout-gap: var(--gap-layout);
+
+  /* Badge Insets */
+  --spacing-badge-circular: var(--offset-badge-circular);
 }

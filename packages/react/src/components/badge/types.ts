@@ -5,6 +5,7 @@ export type BadgeVariant = "contained" | "outlined" | "plain";
 export type BadgeColor = Color;
 export type BadgeSize = Size;
 export type BadgeRadius = Radius;
+export type BadgeOverlap = "rectangular" | "circular";
 export type BadgePlacement =
   | "top-right"
   | "top-left"
@@ -68,6 +69,12 @@ export interface BadgeProps extends HTMLAttributes<HTMLElement> {
    * Corner overlay placement when anchored over target children.
    */
   placement?: BadgePlacement;
+
+  /**
+   * Shape geometry of the target element when anchored.
+   * @default "rectangular"
+   */
+  overlap?: BadgeOverlap;
 
   /**
    * Optional leading slot element such as a status dot or icon.
@@ -143,6 +150,12 @@ export interface BadgeIndicatorProps extends HTMLAttributes<HTMLSpanElement> {
    * Corner anchor placement.
    */
   placement?: BadgePlacement;
+
+  /**
+   * Shape geometry of the target element when anchored.
+   * @default "rectangular"
+   */
+  overlap?: BadgeOverlap;
 }
 
 export interface BadgeLabelProps extends HTMLAttributes<HTMLSpanElement> {

@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useMemo } from "react";
+import { forwardRef, isValidElement, useMemo, type ReactNode } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import { any, cond, when } from "../../utils/condition";
@@ -102,6 +102,27 @@ interface BadgeComponent
   Trailing: typeof BadgeTrailing;
 }
 
+function isCircularTarget(node: ReactNode): boolean {
+  if (!isValidElement(node)) return false;
+  const type = node.type as { displayName?: string; name?: string };
+  const typeName = type?.displayName ?? type?.name ?? "";
+  const props = node.props as { radius?: string; layout?: string };
+
+  if (props?.radius && props.radius !== "full") {
+    return false;
+  }
+
+  if (props?.radius === "full") {
+    return true;
+  }
+
+  if (typeName === "Avatar" || typeName === "Button") {
+    return true;
+  }
+
+  return false;
+}
+
 export const Badge = forwardRef<HTMLElement, BadgeProps>(function Badge(
   {
     as: Component = "span",
@@ -113,6 +134,7 @@ export const Badge = forwardRef<HTMLElement, BadgeProps>(function Badge(
     count,
     max = 99,
     placement,
+    overlap,
     leading,
     trailing,
     label,
@@ -122,9 +144,11 @@ export const Badge = forwardRef<HTMLElement, BadgeProps>(function Badge(
   },
   ref
 ) {
+  const resolvedOverlap = overlap ?? cond(isCircularTarget(children), "circular", "rectangular");
+
   const contextValue = useMemo<BadgeContextValue>(
-    () => ({ variant, color, size, radius }),
-    [variant, color, size, radius]
+    () => ({ variant, color, size, radius, overlap: resolvedOverlap }),
+    [variant, color, size, radius, resolvedOverlap]
   );
 
   // When placement is provided, act as an anchored overlay wrapping children
@@ -142,7 +166,10 @@ export const Badge = forwardRef<HTMLElement, BadgeProps>(function Badge(
             count={count}
             max={max}
             placement={placement}
-          />
+            overlap={resolvedOverlap}
+          >
+            {label}
+          </BadgeIndicator>
         </BadgeAnchor>
       </BadgeContext.Provider>
     );

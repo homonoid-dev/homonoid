@@ -96,6 +96,7 @@ export const BadgeIndicator = forwardRef<HTMLSpanElement, BadgeIndicatorProps>(
       color: propColor,
       size: propSize,
       radius: propRadius,
+      overlap: propOverlap,
       dot = false,
       count,
       max = 99,
@@ -111,6 +112,7 @@ export const BadgeIndicator = forwardRef<HTMLSpanElement, BadgeIndicatorProps>(
     const color = propColor ?? context.color ?? "primary";
     const size = propSize ?? context.size ?? "md";
     const radius = propRadius ?? context.radius ?? "full";
+    const overlap = propOverlap ?? context.overlap ?? "rectangular";
 
     const displayCount = cond(
       count !== undefined,
@@ -119,8 +121,9 @@ export const BadgeIndicator = forwardRef<HTMLSpanElement, BadgeIndicatorProps>(
     );
 
     const resolvedContent = children ?? displayCount;
+    const isDot = dot || (!Boolean(resolvedContent) && count === undefined);
     const isSingle = cond(
-      dot,
+      isDot,
       false,
       cond(
         typeof resolvedContent === "string" || typeof resolvedContent === "number",
@@ -131,40 +134,33 @@ export const BadgeIndicator = forwardRef<HTMLSpanElement, BadgeIndicatorProps>(
 
     const placementClasses = cond(
       Boolean(placement),
-      cond(
-        dot,
+      cn(
+        "absolute z-10 ring-2 ring-background",
         match(
-          placement as NonNullable<typeof placement>,
+          overlap,
           {
-            "top-right": "absolute top-0.5 right-0.5 z-10",
-            "top-left": "absolute top-0.5 left-0.5 z-10",
-            "bottom-right": "absolute bottom-0.5 right-0.5 z-10",
-            "bottom-left": "absolute bottom-0.5 left-0.5 z-10",
+            circular: match(
+              placement as NonNullable<typeof placement>,
+              {
+                "top-right": "top-badge-circular right-badge-circular -translate-y-1/2 translate-x-1/2",
+                "top-left": "top-badge-circular left-badge-circular -translate-y-1/2 -translate-x-1/2",
+                "bottom-right": "bottom-badge-circular right-badge-circular translate-y-1/2 translate-x-1/2",
+                "bottom-left": "bottom-badge-circular left-badge-circular translate-y-1/2 -translate-x-1/2",
+              },
+              "top-badge-circular right-badge-circular -translate-y-1/2 translate-x-1/2"
+            ),
+            rectangular: match(
+              placement as NonNullable<typeof placement>,
+              {
+                "top-right": "top-0 right-0 -translate-y-1/2 translate-x-1/2",
+                "top-left": "top-0 left-0 -translate-y-1/2 -translate-x-1/2",
+                "bottom-right": "bottom-0 right-0 translate-y-1/2 translate-x-1/2",
+                "bottom-left": "bottom-0 left-0 translate-y-1/2 -translate-x-1/2",
+              },
+              "top-0 right-0 -translate-y-1/2 translate-x-1/2"
+            ),
           },
-          ""
-        ),
-        cond(
-          isSingle,
-          match(
-            placement as NonNullable<typeof placement>,
-            {
-              "top-right": "absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 z-10",
-              "top-left": "absolute top-0 left-0 -translate-y-1/4 -translate-x-1/4 z-10",
-              "bottom-right": "absolute bottom-0 right-0 translate-y-1/4 translate-x-1/4 z-10",
-              "bottom-left": "absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 z-10",
-            },
-            ""
-          ),
-          match(
-            placement as NonNullable<typeof placement>,
-            {
-              "top-right": "absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 z-10",
-              "top-left": "absolute top-0 left-0 -translate-y-1/2 -translate-x-1/3 z-10",
-              "bottom-right": "absolute bottom-0 right-0 translate-y-1/2 translate-x-1/3 z-10",
-              "bottom-left": "absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/3 z-10",
-            },
-            ""
-          )
+          "top-0 right-0 -translate-y-1/2 translate-x-1/2"
         )
       ),
       ""
@@ -177,15 +173,16 @@ export const BadgeIndicator = forwardRef<HTMLSpanElement, BadgeIndicatorProps>(
         data-variant={variant}
         data-color={color}
         data-size={size}
+        data-overlap={overlap}
         className={cn(
-          indicatorVariants({ variant, color, size, radius, dot }),
+          indicatorVariants({ variant, color, size, radius, dot: isDot }),
           cond(isSingle, "aspect-square p-0 min-w-0 shrink-0", ""),
           placementClasses,
           className
         )}
         {...props}
       >
-        {cond(dot, null, resolvedContent)}
+        {cond(isDot, null, resolvedContent)}
       </span>
     );
   }

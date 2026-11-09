@@ -6,6 +6,8 @@ import type {
   BadgeVariant,
 } from "@homonoid/react";
 
+export type BadgeAnchorTarget = "avatar" | "button";
+
 export interface BadgeCodeOptions {
   variant: BadgeVariant;
   color: BadgeColor;
@@ -16,6 +18,7 @@ export interface BadgeCodeOptions {
   showCount: boolean;
   countValue: number;
   anchor: boolean;
+  anchorTarget: BadgeAnchorTarget;
   placement: BadgePlacement;
   label: string;
 }
@@ -31,6 +34,7 @@ export function getBadgeCode(options: BadgeCodeOptions): string {
     showCount,
     countValue,
     anchor,
+    anchorTarget,
     placement,
     label,
   } = options;
@@ -59,6 +63,27 @@ export function getBadgeCode(options: BadgeCodeOptions): string {
     }
 
     const propsStr = props.length > 0 ? ` ${props.join(" ")}` : "";
+
+    if (anchorTarget === "button") {
+      return `import { Badge, Button } from "@homonoid/react";
+import { Bell } from "lucide-react";
+
+export function Example() {
+  return (
+    <Badge${propsStr}>
+      <Button
+        variant="outlined"
+        color="surface"
+        size="md"
+        layout="icon"
+        aria-label="Notifications"
+      >
+        <Bell className="size-4" />
+      </Button>
+    </Badge>
+  );
+}`;
+    }
 
     return `import { Badge, Avatar } from "@homonoid/react";
 
@@ -93,11 +118,11 @@ export function Example() {
   }
 
   if (showIcon) {
-    props.push('leading={<Sparkles className="size-3.5" />}');
+    props.push('leading={<Zap className="size-3.5" />}');
     const propsStr = props.length > 0 ? ` ${props.join(" ")}` : "";
 
     return `import { Badge } from "@homonoid/react";
-import { Sparkles } from "lucide-react";
+import { Zap } from "lucide-react";
 
 export function Example() {
   return (

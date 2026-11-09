@@ -16,6 +16,7 @@ export type {
   BadgeColor,
   BadgeSize,
   BadgeRadius,
+  BadgeOverlap,
   BadgePlacement,
 } from "./types";
 
