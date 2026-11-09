@@ -135,7 +135,7 @@ export function Example() {
 
         {when(
           Boolean(prevComponent || nextComponent),
-          <nav aria-label="Component pagination" className="flex items-center w-full pt-surface">
+          <nav aria-label="Component pagination" className="flex items-center justify-between w-full pt-surface">
             {when(
               Boolean(prevComponent),
               <Button
@@ -144,7 +144,7 @@ export function Example() {
                 radius="full"
                 leading={<ChevronLeft className="size-3.5 shrink-0" />}
                 onClick={() => prevComponent && router.push(prevComponent.href)}
-                className="pr-5"
+                className="pr-6"
               >
                 {prevComponent?.name}
               </Button>
@@ -158,7 +158,7 @@ export function Example() {
                 radius="full"
                 trailing={<ChevronRight className="size-3.5 shrink-0" />}
                 onClick={() => nextComponent && router.push(nextComponent.href)}
-                className="ml-auto pl-5"
+                className="pl-6"
               >
                 {nextComponent?.name}
               </Button>

@@ -153,7 +153,9 @@ export const Avatar = forwardRef<HTMLElement, AvatarProps>(function Avatar(
     useState<ImageLoadingStatus>(cond(Boolean(src), "loading", "idle"));
 
   useEffect(() => {
-    setImageLoadingStatus(cond(Boolean(src), "loading", "idle"));
+    if (!src) {
+      setImageLoadingStatus("idle");
+    }
   }, [src]);
 
   const contextValue = useMemo<AvatarContextValue>(
