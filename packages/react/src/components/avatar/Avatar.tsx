@@ -59,7 +59,7 @@ export const avatarVariants = cva(
       variant: {
         contained: "border border-transparent",
         outlined: "border",
-        plain: "border-transparent",
+        plain: "border border-transparent",
       },
       color: {
         primary: "",
