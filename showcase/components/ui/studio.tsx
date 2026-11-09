@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { Eye, Code2, Monitor, Tablet, Smartphone, ChevronLeft, ChevronRight } from "lucide-react";
-import { all, cond, when, Heading, Description, Tabs, Button } from "@homonoid/react";
+import { all, cond, when, Heading, Description, Tabs, Button, Breadcrumb } from "@homonoid/react";
 import { COMPONENTS } from "@/config/components";
 import { Stage } from "./stage";
 import { Code } from "./code";
@@ -56,10 +57,26 @@ export function Example() {
 }`;
 
   return (
-    <div className="flex flex-col px-layout-x pt-layout-y pb-layout-y gap-layout-gap">
-      <div className="flex flex-col gap-surface-gap">
-        <Heading>{title}</Heading>
-        {when(Boolean(description), <Description>{description}</Description>)}
+    <div className="flex flex-col px-layout-x py-layout-y gap-layout-gap">
+      <div className="flex flex-col gap-surface-sm">
+        <Breadcrumb size="sm">
+          <Breadcrumb.List>
+            <Breadcrumb.Item>
+              <Breadcrumb.Link as={Link} href="/components">
+                Components
+              </Breadcrumb.Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Separator />
+            <Breadcrumb.Item>
+              <Breadcrumb.Page>{title}</Breadcrumb.Page>
+            </Breadcrumb.Item>
+          </Breadcrumb.List>
+        </Breadcrumb>
+
+        <div className="flex flex-col gap-1.5">
+          <Heading>{title}</Heading>
+          {when(Boolean(description), <Description>{description}</Description>)}
+        </div>
       </div>
 
       <div className="flex flex-col gap-surface-gap w-full">
