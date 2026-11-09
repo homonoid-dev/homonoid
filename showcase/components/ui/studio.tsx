@@ -107,7 +107,7 @@ export function Example() {
         <Stage
           className={cond(
             viewMode === "code",
-            "items-start justify-start overflow-auto p-6",
+            "block p-0 overflow-hidden",
             undefined
           )}
         >

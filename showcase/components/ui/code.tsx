@@ -92,14 +92,14 @@ export function Code({ code, className, animated = false }: CodeProps) {
       <div
         ref={scrollRef}
         className={cn(
-          "overflow-x-auto text-xs font-mono leading-relaxed select-text",
+          "w-full h-full overflow-auto text-xs font-mono leading-relaxed select-text",
           className
         )}
       >
-        <pre className="text-foreground w-fit min-w-full">
+        <pre className="p-surface text-foreground w-fit min-w-full">
           <code className="block w-fit min-w-full">
             {lines.map((line, index) => (
-              <span key={index} className="block min-h-[1.5em] w-fit min-w-full pr-8">
+              <span key={index} className="block min-h-[1.5em] w-fit min-w-full pr-surface">
                 {cond(line.length > 0, highlighter(line), "\u00A0")}
               </span>
             ))}
@@ -113,16 +113,16 @@ export function Code({ code, className, animated = false }: CodeProps) {
     <div
       ref={scrollRef}
       className={cn(
-        "overflow-x-auto text-xs font-mono leading-relaxed select-text",
+        "w-full h-full overflow-auto text-xs font-mono leading-relaxed select-text",
         className
       )}
     >
-      <pre className="text-foreground w-fit min-w-full">
+      <pre className="p-surface text-foreground w-fit min-w-full">
         <code className="block w-fit min-w-full">
           {lines.map((line, index) => (
             <motion.span
               key={index}
-              className="block min-h-[1.5em] w-fit min-w-full pr-8"
+              className="block min-h-[1.5em] w-fit min-w-full pr-surface"
               initial={{ opacity: 0, y: 3 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
