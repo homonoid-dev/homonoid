@@ -34,21 +34,22 @@ export function InputNotchedOutline({
     )
   );
 
-  const outlineMotionDuration = cond(
+  const clipPathDuration = cond(
     isFloated,
-    "duration-[var(--motion-duration-fast)]",
-    "duration-[var(--motion-duration-slow)]"
+    "var(--motion-duration-fast)",
+    "var(--motion-duration-normal)"
   );
 
   return when(
     isOutlined,
     <div
       aria-hidden="true"
-      style={{ clipPath }}
+      style={{
+        clipPath,
+        transition: `clip-path ${clipPathDuration} var(--motion-easing), border-color var(--motion-duration-fast) var(--motion-easing)`,
+      }}
       className={cn(
-        "pointer-events-none absolute inset-0 rounded-[inherit] border z-10",
-        "transition-[clip-path,border-color] ease-[var(--motion-easing)] motion-reduce:transition-none",
-        outlineMotionDuration,
+        "pointer-events-none absolute inset-0 rounded-[inherit] border z-10 motion-reduce:transition-none",
         outlineBorderColor
       )}
     />

@@ -73,15 +73,18 @@ export function useInputNotchedOutline({
     notchX1 + 72
   );
 
-  // Directional GPU sweep:
-  // Open: sweeps right to left from notchX1 to notchX2 with 10px depth
-  // Closed: collapses to notchX2 and retreats above border with -4px depth
+  const notchMid = Math.round((notchX1 + notchX2) / 2);
+  const isNotchActive = all(isFloating, isFloated, isOutlined);
+
+  // Symmetrical center-out GPU transition:
+  // Open: notch expands symmetrically outward from center to notchX1 and notchX2 with 10px depth
+  // Closed: notch contracts symmetrically inward to center and retreats above border with -4px depth
   const clipPath = cond(
-    all(isFloating, isOutlined),
+    isOutlined,
     cond(
-      isFloated,
+      isNotchActive,
       `polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, ${notchX2}px 0%, ${notchX2}px 10px, ${notchX1}px 10px, ${notchX1}px 0%)`,
-      `polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, ${notchX2}px 0%, ${notchX2}px -4px, ${notchX2}px -4px, ${notchX2}px 0%)`
+      `polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, ${notchMid}px 0%, ${notchMid}px -4px, ${notchMid}px -4px, ${notchMid}px 0%)`
     ),
     undefined
   );
