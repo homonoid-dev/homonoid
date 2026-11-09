@@ -40,6 +40,10 @@ export const AvatarImage = forwardRef<HTMLImageElement, AvatarImageProps>(
 
       setImageLoadingStatus("loading");
       onLoadingStatusChange?.("loading");
+
+      return () => {
+        setImageLoadingStatus("idle");
+      };
     }, [src, setImageLoadingStatus, onLoadingStatusChange]);
 
     if (!src || imageLoadingStatus === "error") {

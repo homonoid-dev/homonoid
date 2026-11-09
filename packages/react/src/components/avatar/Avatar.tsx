@@ -4,6 +4,7 @@ import {
   Children,
   forwardRef,
   isValidElement,
+  useEffect,
   useMemo,
   useState,
   type ForwardRefExoticComponent,
@@ -150,6 +151,10 @@ export const Avatar = forwardRef<HTMLElement, AvatarProps>(function Avatar(
 ) {
   const [imageLoadingStatus, setImageLoadingStatus] =
     useState<ImageLoadingStatus>(cond(Boolean(src), "loading", "idle"));
+
+  useEffect(() => {
+    setImageLoadingStatus(cond(Boolean(src), "loading", "idle"));
+  }, [src]);
 
   const contextValue = useMemo<AvatarContextValue>(
     () => ({
