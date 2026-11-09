@@ -109,7 +109,6 @@ export function AvatarView() {
       {cond(
         group,
         <Avatar.Group
-          key={`${variant}-${color}-${size}-${radius}-${showImage}-${showStatus}-${status}-group`}
           max={3}
           size={size}
           radius={radius}
@@ -128,7 +127,6 @@ export function AvatarView() {
           ))}
         </Avatar.Group>,
         <Avatar
-          key={`${variant}-${color}-${size}-${radius}-${showImage}-${showStatus}-${status}`}
           name={AVATAR_USERS[0].name}
           src={cond(showImage, AVATAR_USERS[0].src, undefined)}
           variant={variant}
