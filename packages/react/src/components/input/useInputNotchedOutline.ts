@@ -63,13 +63,13 @@ export function useInputNotchedOutline({
 
   const notchX1 = cond(
     notchGeometry !== null,
-    Math.max(0, (notchGeometry?.left ?? defaultNotchLeft) - 4),
+    Math.max(0, (notchGeometry?.left ?? defaultNotchLeft) - 5),
     defaultNotchLeft
   );
 
   const notchX2 = cond(
     notchGeometry !== null,
-    notchX1 + (notchGeometry?.width ?? 64) + 8,
+    notchX1 + (notchGeometry?.width ?? 64) + 7,
     notchX1 + 72
   );
 
