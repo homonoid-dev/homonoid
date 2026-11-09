@@ -1,68 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { Search, Layers, Boxes, FileCode, Palette, Component } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Search } from "lucide-react";
 import { Autocomplete, cond, type Size } from "@homonoid/react";
 import { Studio } from "@/components/ui/studio";
-
-const OPTIONS = [
-  {
-    value: "button",
-    label: "Button",
-    description: "Interactive tactile trigger",
-    icon: Component,
-  },
-  {
-    value: "accordion",
-    label: "Accordion",
-    description: "Vertically stacked disclosures",
-    icon: Layers,
-  },
-  {
-    value: "autocomplete",
-    label: "Autocomplete",
-    description: "Combobox with fuzzy filtering",
-    icon: Search,
-  },
-  {
-    value: "input",
-    label: "Input",
-    description: "Text entry field with floating label",
-    icon: FileCode,
-  },
-  {
-    value: "select",
-    label: "Select",
-    description: "Overlay option menu picker",
-    icon: Boxes,
-  },
-  {
-    value: "tabs",
-    label: "Tabs",
-    description: "Segmented container switcher",
-    icon: Palette,
-  },
-];
-
-const CODE_EXAMPLE = `import { Autocomplete } from "@homonoid/react";
-
-const OPTIONS = [
-  { value: "button", label: "Button", description: "Interactive tactile trigger" },
-  { value: "accordion", label: "Accordion", description: "Vertically stacked disclosures" },
-  { value: "autocomplete", label: "Autocomplete", description: "Combobox with fuzzy filtering" },
-  { value: "input", label: "Input", description: "Text entry field with floating label" },
-  { value: "select", label: "Select", description: "Overlay option menu picker" },
-  { value: "tabs", label: "Tabs", description: "Segmented container switcher" },
-];
-
-export function Example() {
-  return (
-    <Autocomplete
-      placeholder="Component"
-      options={OPTIONS}
-    />
-  );
-}`;
+import { AUTOCOMPLETE_OPTIONS, getAutocompleteCode } from "./model";
 
 export function AutocompleteView() {
   const [size, setSize] = useState<Size>("md");
@@ -74,11 +16,25 @@ export function AutocompleteView() {
   const [showLeading, setShowLeading] = useState(true);
   const [showDescription, setShowDescription] = useState(true);
 
+  const code = useMemo(
+    () =>
+      getAutocompleteCode({
+        size,
+        floating,
+        disabled,
+        invalid,
+        loading,
+        showLeading,
+        showDescription,
+      }),
+    [size, floating, disabled, invalid, loading, showLeading, showDescription]
+  );
+
   return (
     <Studio
       title="Autocomplete"
       description="Dynamic suggestion surfaces engineered with fuzzy filtering and floating positioning. Delivers accessible combobox semantics with tactile keyboard navigation and continuous transition physics."
-      code={CODE_EXAMPLE}
+      code={code}
       controls={{
         size: {
           value: size,
@@ -143,7 +99,7 @@ export function AutocompleteView() {
           loading={loading}
           placeholder="Component"
           leading={cond(showLeading, <Search className="size-4 text-muted shrink-0" />, undefined)}
-          options={OPTIONS.map((item) => {
+          options={AUTOCOMPLETE_OPTIONS.map((item) => {
             const Icon = item.icon;
             return {
               value: item.value,

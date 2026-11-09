@@ -1,36 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { HelpCircle, Activity, Shield } from "lucide-react";
+import { useMemo, useState } from "react";
 import { Accordion, cond, type Size } from "@homonoid/react";
 import { Studio } from "@/components/ui/studio";
-
-const CODE_EXAMPLE = `import { Accordion } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <Accordion defaultValue="item-1">
-      <Accordion.Item value="item-1">
-        <Accordion.Trigger>What is Homonoid?</Accordion.Trigger>
-        <Accordion.Content>
-          A tactile design system built with continuous aesthetics and object continuity.
-        </Accordion.Content>
-      </Accordion.Item>
-      <Accordion.Item value="item-2">
-        <Accordion.Trigger>How does motion work?</Accordion.Trigger>
-        <Accordion.Content>
-          Interactive surfaces respond with continuous easing and dynamic scale transitions.
-        </Accordion.Content>
-      </Accordion.Item>
-      <Accordion.Item value="item-3">
-        <Accordion.Trigger>Is it accessible?</Accordion.Trigger>
-        <Accordion.Content>
-          Built with full keyboard navigation and comprehensive assistive technology support.
-        </Accordion.Content>
-      </Accordion.Item>
-    </Accordion>
-  );
-}`;
+import { ACCORDION_ITEMS, getAccordionCode } from "./model";
 
 export function AccordionView() {
   const [variant, setVariant] = useState<"plain" | "outlined" | "contained">("plain");
@@ -41,11 +14,25 @@ export function AccordionView() {
   const [showLeading, setShowLeading] = useState(false);
   const [showDescription, setShowDescription] = useState(false);
 
+  const code = useMemo(
+    () =>
+      getAccordionCode({
+        variant,
+        size,
+        multiple,
+        collapsible,
+        disabled,
+        showLeading,
+        showDescription,
+      }),
+    [variant, size, multiple, collapsible, disabled, showLeading, showDescription]
+  );
+
   return (
     <Studio
       title="Accordion"
       description="Vertically stacked disclosure surfaces engineered with continuous motion physics and dimensional height stability. Delivers intuitive keyboard navigation and reliable assistive technology semantics across all expansion states."
-      code={CODE_EXAMPLE}
+      code={code}
       controls={{
         variant: {
           value: variant,
@@ -106,39 +93,22 @@ export function AccordionView() {
         disabled={disabled}
         className="w-full max-w-md"
       >
-        <Accordion.Item value="item-1">
-          <Accordion.Trigger
-            leading={cond(showLeading, <HelpCircle className="size-4 text-muted shrink-0" />, undefined)}
-            description={cond(showDescription, "Tactile continuous aesthetics", undefined)}
-          >
-            What is Homonoid?
-          </Accordion.Trigger>
-          <Accordion.Content>
-            A tactile design system built with continuous aesthetics and object continuity.
-          </Accordion.Content>
-        </Accordion.Item>
-        <Accordion.Item value="item-2">
-          <Accordion.Trigger
-            leading={cond(showLeading, <Activity className="size-4 text-muted shrink-0" />, undefined)}
-            description={cond(showDescription, "Dynamic scale transitions", undefined)}
-          >
-            How does motion work?
-          </Accordion.Trigger>
-          <Accordion.Content>
-            Interactive surfaces respond with continuous easing and dynamic scale transitions.
-          </Accordion.Content>
-        </Accordion.Item>
-        <Accordion.Item value="item-3">
-          <Accordion.Trigger
-            leading={cond(showLeading, <Shield className="size-4 text-muted shrink-0" />, undefined)}
-            description={cond(showDescription, "Accessible keyboard semantics", undefined)}
-          >
-            Is it accessible?
-          </Accordion.Trigger>
-          <Accordion.Content>
-            Built with full keyboard navigation and comprehensive assistive technology support.
-          </Accordion.Content>
-        </Accordion.Item>
+        {ACCORDION_ITEMS.map((item) => {
+          const Icon = item.icon;
+          return (
+            <Accordion.Item key={item.value} value={item.value}>
+              <Accordion.Trigger
+                leading={cond(showLeading, <Icon className="size-4 text-muted shrink-0" />, undefined)}
+                description={cond(showDescription, item.description, undefined)}
+              >
+                {item.title}
+              </Accordion.Trigger>
+              <Accordion.Content>
+                {item.content}
+              </Accordion.Content>
+            </Accordion.Item>
+          );
+        })}
       </Accordion>
     </Studio>
   );
