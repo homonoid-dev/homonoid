@@ -4,7 +4,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { Eye, Code2, Monitor, Tablet, Smartphone, ChevronLeft, ChevronRight, Maximize, Copy, Check } from "lucide-react";
-import { all, cond, when, Heading, Description, Tabs, Button, Breadcrumb } from "@homonoid/react";
+import { all, cond, when, Heading, Description, Tabs, Button, Breadcrumb, Tooltip } from "@homonoid/react";
 import { COMPONENTS } from "@/config/components";
 import { Stage } from "./stage";
 import { Code } from "./code";
@@ -153,20 +153,21 @@ export function Example() {
               </Tabs.List>
             </Tabs>
 
-            <Button
-              variant="contained"
-              color="surface"
-              layout="icon"
-              aria-label={cond(copied, "Copied code", "Copy code")}
-              title={cond(copied, "Copied", "Copy code")}
-              onClick={handleCopy}
-            >
-              {cond(
-                copied,
-                <Check className="size-3.5 text-primary shrink-0" />,
-                <Copy className="size-3.5 shrink-0" />
-              )}
-            </Button>
+            <Tooltip content={cond(copied, "Copied", "Copy code")}>
+              <Button
+                variant="contained"
+                color="surface"
+                layout="icon"
+                aria-label={cond(copied, "Copied code", "Copy code")}
+                onClick={handleCopy}
+              >
+                {cond(
+                  copied,
+                  <Check className="size-3.5 text-primary shrink-0" />,
+                  <Copy className="size-3.5 shrink-0" />
+                )}
+              </Button>
+            </Tooltip>
           </div>
         </div>
 
