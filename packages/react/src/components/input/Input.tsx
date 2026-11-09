@@ -39,7 +39,7 @@ export const variants = cva(
         full: "rounded-full",
       },
       invalid: {
-        true: "border-destructive/30 hover:border-destructive hover:focus-within:border-destructive focus-within:border-destructive",
+        true: "",
         false: "",
       },
       disabled: {
@@ -48,6 +48,11 @@ export const variants = cva(
       },
     },
     compoundVariants: [
+      {
+        invalid: true,
+        variant: "outlined",
+        className: "border-transparent hover:border-transparent focus-within:border-transparent",
+      },
       {
         invalid: true,
         variant: "contained",
