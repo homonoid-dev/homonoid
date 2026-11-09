@@ -52,7 +52,7 @@ export function getAvatarCode(options: AvatarCodeOptions): string {
     group,
   } = options;
 
-  const buildProps = (user: AvatarDemoUser) => {
+  const buildProps = (user: AvatarDemoUser, userStatus?: AvatarStatus) => {
     const props: string[] = [`name="${user.name}"`];
     if (showImage) {
       props.push(`src="${user.src}"`);
@@ -70,14 +70,14 @@ export function getAvatarCode(options: AvatarCodeOptions): string {
       props.push(`radius="${radius}"`);
     }
     if (showStatus) {
-      props.push(`status="${user.status || status}"`);
+      props.push(`status="${userStatus ?? status}"`);
     }
     return props;
   };
 
   if (group) {
     const itemsCode = AVATAR_USERS.map((user) => {
-      const props = buildProps(user);
+      const props = buildProps(user, user.status);
       const propsStr = props.join(" ");
       return `      <Avatar ${propsStr} />`;
     }).join("\n");
@@ -101,7 +101,7 @@ ${itemsCode}
 }`;
   }
 
-  const singleProps = buildProps(AVATAR_USERS[0]);
+  const singleProps = buildProps(AVATAR_USERS[0], status);
   const formattedProps = singleProps.map((p) => `      ${p}`).join("\n");
 
   return `import { Avatar } from "@homonoid/react";
