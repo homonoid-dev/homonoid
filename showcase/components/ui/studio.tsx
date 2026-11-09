@@ -1,15 +1,17 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Eye, Code2, Monitor, Tablet, Smartphone } from "lucide-react";
-import { all, when, Heading, Description, Tabs } from "@homonoid/react";
+import { all, cond, when, Heading, Description, Tabs } from "@homonoid/react";
 import { Stage } from "./stage";
+import { Code } from "./code";
 import { useInspector, type InspectorConfig } from "./inspector";
 
 export interface StudioProps {
   title: string;
   description?: string;
   controls?: InspectorConfig;
+  code?: string;
   children?: ReactNode;
 }
 
@@ -17,9 +19,11 @@ export function Studio({
   title,
   description,
   controls,
+  code,
   children,
 }: StudioProps) {
   const inspectorContext = useInspector();
+  const [viewMode, setViewMode] = useState<"preview" | "code">("preview");
 
   useEffect(() => {
     if (all(inspectorContext, controls)) {
@@ -27,6 +31,15 @@ export function Studio({
       return () => inspectorContext?.setConfig(null);
     }
   }, [inspectorContext, controls]);
+
+  const defaultCode = `import { ${title} } from "@homonoid/react";
+
+export default function Example() {
+  return (
+    <${title} />
+  );
+}`;
+
   return (
     <div className="flex flex-col px-layout-x pt-layout-y gap-layout-gap">
       <div className="flex flex-col gap-surface-gap">
@@ -36,7 +49,11 @@ export function Studio({
 
       <div className="flex flex-col gap-surface-gap w-full">
         <div className="flex items-center justify-between">
-          <Tabs defaultValue="preview" size="sm">
+          <Tabs
+            value={viewMode}
+            onValueChange={(val) => setViewMode(val as "preview" | "code")}
+            size="sm"
+          >
             <Tabs.List>
               <Tabs.Tab
                 value="preview"
@@ -87,11 +104,20 @@ export function Studio({
           </Tabs>
         </div>
 
-        <Stage>
-          {children}
+        <Stage
+          className={cond(
+            viewMode === "code",
+            "items-start justify-start overflow-auto p-6",
+            undefined
+          )}
+        >
+          {cond(
+            viewMode === "code",
+            <Code code={code ?? defaultCode} className="w-full" animated />,
+            children
+          )}
         </Stage>
       </div>
     </div>
   );
 }
-

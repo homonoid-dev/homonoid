@@ -44,6 +44,18 @@ const OPTIONS = [
   },
 ];
 
+const CODE_EXAMPLE = `<Autocomplete
+  placeholder="Component"
+  options={[
+    { value: "button", label: "Button", description: "Interactive tactile trigger" },
+    { value: "accordion", label: "Accordion", description: "Vertically stacked disclosures" },
+    { value: "autocomplete", label: "Autocomplete", description: "Combobox with fuzzy filtering" },
+    { value: "input", label: "Input", description: "Text entry field with floating label" },
+    { value: "select", label: "Select", description: "Overlay option menu picker" },
+    { value: "tabs", label: "Tabs", description: "Segmented container switcher" },
+  ]}
+/>`;
+
 export function AutocompleteView() {
   const [size, setSize] = useState<Size>("md");
   const [value, setValue] = useState("");
@@ -58,6 +70,7 @@ export function AutocompleteView() {
     <Studio
       title="Autocomplete"
       description="Dynamic suggestion surfaces engineered with fuzzy filtering and floating positioning. Delivers accessible combobox semantics with tactile keyboard navigation and continuous transition physics."
+      code={CODE_EXAMPLE}
       controls={{
         size: {
           value: size,
