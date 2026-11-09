@@ -231,7 +231,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           data-floated={cond(isFloated, "true", "false")}
           className={cn(
             "col-start-1 row-start-1 inline-flex items-center px-1 rounded-xs truncate leading-normal origin-left",
-            "transform-gpu subpixel-antialiased",
+            "transform-gpu antialiased font-normal",
             "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
             restingLabelSize,
             floatingLabelColor,
@@ -266,7 +266,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       placeholder={cond(isFloating, cond(isFloated, placeholder, undefined), placeholder)}
       className={cn(
         cond(!isFloating, "order-2 flex-1", "w-full h-full"),
-        "min-w-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none",
+        "min-w-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30",
+        "font-normal placeholder:opacity-100",
         cond(
           isInvalid,
           "text-destructive placeholder:text-destructive/60",
