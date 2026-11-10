@@ -1,5 +1,5 @@
-import { Page } from "@/components/ui/page";
+import { SelectView } from "@/components/ui/select/view";
 
 export default function SelectPage() {
-  return <Page />;
+  return <SelectView />;
 }
