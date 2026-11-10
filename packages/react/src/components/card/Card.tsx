@@ -18,8 +18,8 @@ export const variants = cva(
         destructive: "text-destructive-foreground",
       },
       border: {
-        true: "border-[0.5px]",
-        false: "border-0",
+        true: "border",
+        false: "border border-transparent",
       },
       padding: {
         none: "p-0",
