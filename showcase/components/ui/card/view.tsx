@@ -58,7 +58,7 @@ export function CardView() {
         },
         color: {
           value: color,
-          options: ["primary", "subtle", "surface", "destructive"],
+          options: ["surface", "subtle", "primary", "destructive"],
           onChange: setColor,
         },
         switches: [

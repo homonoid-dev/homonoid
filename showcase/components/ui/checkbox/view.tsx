@@ -73,7 +73,7 @@ export function CheckboxView() {
           tile,
           {
             value: tileVariant,
-            options: ["outlined", "contained", "plain"],
+            options: ["contained", "outlined", "plain"],
             onChange: setTileVariant,
           },
           undefined
@@ -82,7 +82,7 @@ export function CheckboxView() {
           tile,
           {
             value: tileColor,
-            options: ["primary", "subtle", "surface", "destructive"],
+            options: ["surface", "subtle", "primary", "destructive"],
             onChange: setTileColor,
           },
           undefined
@@ -94,7 +94,7 @@ export function CheckboxView() {
         },
         radius: {
           value: radius,
-          options: ["md", "full", "lg", "sm", "none"],
+          options: ["full", "lg", "md", "sm", "none"],
           onChange: setRadius,
         },
         switches: [
