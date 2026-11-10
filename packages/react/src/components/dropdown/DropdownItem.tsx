@@ -10,17 +10,17 @@ import type { DropdownItemProps, DropdownRadius } from "./types";
 const CONCENTRIC_RADIUS_MAP: Record<DropdownRadius, DropdownRadius> = {
   none: "none",
   sm: "sm",
-  md: "sm",
-  lg: "md",
-  full: "lg",
+  md: "md",
+  lg: "lg",
+  full: "full",
 };
 
 const CONCENTRIC_RADIUS_CLASSES: Record<DropdownRadius, string> = {
   none: "rounded-none",
-  sm: "rounded-xs",
-  md: "rounded-sm",
-  lg: "rounded-lg",
-  full: "rounded-xl",
+  sm: "rounded-md",
+  md: "rounded-lg",
+  lg: "rounded-xl",
+  full: "rounded-full",
 };
 
 export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(

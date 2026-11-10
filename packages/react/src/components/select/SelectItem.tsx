@@ -10,17 +10,17 @@ import type { SelectItemProps, SelectRadius } from "./types";
 const CONCENTRIC_RADIUS_MAP: Record<SelectRadius, SelectRadius> = {
   none: "none",
   sm: "sm",
-  md: "sm",
-  lg: "md",
-  full: "lg",
+  md: "md",
+  lg: "lg",
+  full: "full",
 };
 
 const CONCENTRIC_RADIUS_CLASSES: Record<SelectRadius, string> = {
   none: "rounded-none",
-  sm: "rounded-xs",
-  md: "rounded-sm",
-  lg: "rounded-lg",
-  full: "rounded-xl",
+  sm: "rounded-md",
+  md: "rounded-lg",
+  lg: "rounded-xl",
+  full: "rounded-full",
 };
 
 export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
