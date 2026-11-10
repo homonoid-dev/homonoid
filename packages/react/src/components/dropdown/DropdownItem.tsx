@@ -5,23 +5,7 @@ import { Tile } from "../tile/Tile";
 import { useDropdownContext } from "./DropdownContext";
 import { cn } from "../../utils/cn";
 import { cond, match } from "../../utils/condition";
-import type { DropdownItemProps, DropdownRadius } from "./types";
-
-const CONCENTRIC_RADIUS_MAP: Record<DropdownRadius, DropdownRadius> = {
-  none: "none",
-  sm: "sm",
-  md: "md",
-  lg: "lg",
-  full: "lg",
-};
-
-const CONCENTRIC_RADIUS_CLASSES: Record<DropdownRadius, string> = {
-  none: "rounded-none",
-  sm: "rounded-sm",
-  md: "rounded-lg",
-  lg: "rounded-xl",
-  full: "rounded-2xl",
-};
+import type { DropdownItemProps } from "./types";
 
 export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
   function DropdownItem(
@@ -60,8 +44,29 @@ export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
       onClick: handleClick,
     });
 
-    const concentricRadius = match(radius, CONCENTRIC_RADIUS_MAP, "sm");
-    const concentricRadiusClass = match(radius, CONCENTRIC_RADIUS_CLASSES, "rounded-sm");
+    const concentricRadius = match(
+      radius,
+      {
+        none: "none" as const,
+        sm: "sm" as const,
+        md: "md" as const,
+        lg: "lg" as const,
+        full: "xl" as const,
+      },
+      "sm" as const
+    );
+
+    const concentricRadiusClass = match(
+      radius,
+      {
+        none: "rounded-none",
+        sm: "rounded-sm",
+        md: "rounded-lg",
+        lg: "rounded-xl",
+        full: "rounded-concentric-full",
+      },
+      "rounded-sm"
+    );
 
     return (
       <Tile

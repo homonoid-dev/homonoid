@@ -34,6 +34,7 @@ export const variants = cva(
         sm: "rounded-md",
         md: "rounded-lg",
         lg: "rounded-xl",
+        xl: "rounded-concentric-full",
         full: "rounded-full"
       },
       interactive: {

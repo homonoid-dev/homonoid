@@ -62,6 +62,9 @@ export const tokens = {
     "press-scale-md": "var(--motion-press-scale-md)",
     "press-scale-lg": "var(--motion-press-scale-lg)",
     "press-scale": "var(--motion-press-scale)"
+  },
+  radius: {
+    "concentric-full": "var(--r-concentric-full)"
   }
 } as const;
 

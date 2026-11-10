@@ -5,23 +5,7 @@ import { Tile } from "../tile/Tile";
 import { useSelectContext } from "./SelectContext";
 import { cond, match } from "../../utils/condition";
 import { cn } from "../../utils/cn";
-import type { SelectItemProps, SelectRadius } from "./types";
-
-const CONCENTRIC_RADIUS_MAP: Record<SelectRadius, SelectRadius> = {
-  none: "none",
-  sm: "sm",
-  md: "md",
-  lg: "lg",
-  full: "lg",
-};
-
-const CONCENTRIC_RADIUS_CLASSES: Record<SelectRadius, string> = {
-  none: "rounded-none",
-  sm: "rounded-sm",
-  md: "rounded-lg",
-  lg: "rounded-xl",
-  full: "rounded-2xl",
-};
+import type { SelectItemProps } from "./types";
 
 export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
   function SelectItem(
@@ -73,8 +57,29 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
       onClick: handleClick,
     });
 
-    const concentricRadius = match(radius, CONCENTRIC_RADIUS_MAP, "sm");
-    const concentricRadiusClass = match(radius, CONCENTRIC_RADIUS_CLASSES, "rounded-sm");
+    const concentricRadius = match(
+      radius,
+      {
+        none: "none" as const,
+        sm: "sm" as const,
+        md: "md" as const,
+        lg: "lg" as const,
+        full: "xl" as const,
+      },
+      "sm" as const
+    );
+
+    const concentricRadiusClass = match(
+      radius,
+      {
+        none: "rounded-none",
+        sm: "rounded-sm",
+        md: "rounded-lg",
+        lg: "rounded-xl",
+        full: "rounded-concentric-full",
+      },
+      "rounded-sm"
+    );
 
     return (
       <Tile

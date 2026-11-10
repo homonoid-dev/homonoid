@@ -13,23 +13,7 @@ import { Tile } from "../tile/Tile";
 import { cond, match } from "../../utils/condition";
 import { cn } from "../../utils/cn";
 import { useAutocompleteContext } from "./AutocompleteContext";
-import type { AutocompleteItemProps, AutocompleteRadius } from "./types";
-
-const CONCENTRIC_RADIUS_MAP: Record<AutocompleteRadius, AutocompleteRadius> = {
-  none: "none",
-  sm: "sm",
-  md: "md",
-  lg: "lg",
-  full: "lg",
-};
-
-const CONCENTRIC_RADIUS_CLASSES: Record<AutocompleteRadius, string> = {
-  none: "rounded-none",
-  sm: "rounded-sm",
-  md: "rounded-lg",
-  lg: "rounded-xl",
-  full: "rounded-2xl",
-};
+import type { AutocompleteItemProps } from "./types";
 
 export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps>(
   function AutocompleteItem(
@@ -134,8 +118,29 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
       }
     };
 
-    const concentricRadius = match(contextRadius, CONCENTRIC_RADIUS_MAP, "sm");
-    const concentricRadiusClass = match(contextRadius, CONCENTRIC_RADIUS_CLASSES, "rounded-sm");
+    const concentricRadius = match(
+      contextRadius,
+      {
+        none: "none" as const,
+        sm: "sm" as const,
+        md: "md" as const,
+        lg: "lg" as const,
+        full: "xl" as const,
+      },
+      "sm" as const
+    );
+
+    const concentricRadiusClass = match(
+      contextRadius,
+      {
+        none: "rounded-none",
+        sm: "rounded-sm",
+        md: "rounded-lg",
+        lg: "rounded-xl",
+        full: "rounded-concentric-full",
+      },
+      "rounded-sm"
+    );
     const effectiveRadius = propRadius ?? concentricRadius;
     const effectiveRadiusClass = cond(Boolean(propRadius), undefined, concentricRadiusClass);
 
