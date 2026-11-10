@@ -4,7 +4,7 @@ export type CardVariant = "outlined" | "filled";
 
 export type CardColor = "surface" | "subtle" | "primary" | "destructive";
 
-export type CardPadding = "none" | "sm" | "md" | "lg" | "surface";
+export type CardPadding = "none" | "sm" | "md" | "lg";
 
 export interface CardProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -48,8 +48,7 @@ export interface CardProps extends HTMLAttributes<HTMLElement> {
    * - `sm`: Compact surface padding (p-surface-sm)
    * - `md`: Medium surface padding (p-surface-md)
    * - `lg`: Large surface padding (p-surface-lg)
-   * - `surface`: Standard token surface padding (p-surface)
-   * @default "surface"
+   * @default "md"
    */
   padding?: CardPadding;
 

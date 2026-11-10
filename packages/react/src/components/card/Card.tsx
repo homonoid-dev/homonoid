@@ -26,7 +26,6 @@ export const variants = cva(
         sm: "p-surface-sm",
         md: "p-surface-md",
         lg: "p-surface-lg",
-        surface: "p-surface",
       },
     },
     compoundVariants: [
@@ -46,7 +45,7 @@ export const variants = cva(
       variant: "outlined",
       color: "surface",
       border: true,
-      padding: "surface",
+      padding: "md",
     },
   }
 );

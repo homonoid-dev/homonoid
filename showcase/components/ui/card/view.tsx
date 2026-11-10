@@ -18,9 +18,8 @@ import { Studio } from "@/components/ui/studio";
 import { getCardCode } from "./model";
 
 const PADDING_OPTIONS = [
-  { value: "surface", label: "Surface (Default)" },
+  { value: "md", label: "Medium (Default)" },
   { value: "sm", label: "Small" },
-  { value: "md", label: "Medium" },
   { value: "lg", label: "Large" },
   { value: "none", label: "None" },
 ];
@@ -28,7 +27,7 @@ const PADDING_OPTIONS = [
 export function CardView() {
   const [variant, setVariant] = useState<CardVariant>("outlined");
   const [color, setColor] = useState<CardColor>("surface");
-  const [padding, setPadding] = useState<CardPadding>("surface");
+  const [padding, setPadding] = useState<CardPadding>("md");
   const [border, setBorder] = useState(true);
   const [showBadge, setShowBadge] = useState(true);
   const [showActions, setShowActions] = useState(true);

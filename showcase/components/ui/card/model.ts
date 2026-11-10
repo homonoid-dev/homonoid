@@ -20,7 +20,7 @@ export function getCardCode(options: CardCodeOptions): string {
   if (color !== "surface") {
     props.push(`color="${color}"`);
   }
-  if (padding !== "surface") {
+  if (padding !== "md") {
     props.push(`padding="${padding}"`);
   }
   if (!border) {
