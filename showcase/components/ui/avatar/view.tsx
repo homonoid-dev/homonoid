@@ -52,7 +52,7 @@ export function AvatarView() {
         },
         color: {
           value: color,
-          options: ["surface", "primary", "subtle", "destructive"],
+          options: ["primary", "subtle", "surface", "destructive"],
           onChange: setColor,
         },
         size: {

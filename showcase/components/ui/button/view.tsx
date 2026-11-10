@@ -83,7 +83,7 @@ export function ButtonView() {
         },
         color: {
           value: color,
-          options: ["primary", "surface", "subtle", "destructive"],
+          options: ["primary", "subtle", "surface", "destructive"],
           onChange: setColor,
         },
         size: {
