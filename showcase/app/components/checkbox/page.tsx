@@ -1,5 +1,5 @@
-import { Page } from "@/components/ui/page";
+import { CheckboxView } from "@/components/ui/checkbox/view";
 
 export default function CheckboxPage() {
-  return <Page />;
+  return <CheckboxView />;
 }
