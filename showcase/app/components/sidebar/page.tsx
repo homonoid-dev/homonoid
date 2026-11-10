@@ -1,5 +1,5 @@
-import { Page } from "@/components/ui/page";
+import { SidebarView } from "@/components/ui/sidebar/view";
 
 export default function SidebarPage() {
-  return <Page />;
+  return <SidebarView />;
 }

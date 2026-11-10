@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Shell } from "@/components/layout/shell";
-import { Sidebar } from "@/components/ui/sidebar";
+import { Sidebar } from "@/components/ui/app-sidebar";
 import { Inspector, InspectorProvider } from "@/components/ui/inspector";
 
 export interface ComponentsLayoutProps {
