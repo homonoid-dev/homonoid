@@ -15,7 +15,7 @@ export const variants = cva("leading-relaxed font-normal", {
       lg: "text-base leading-relaxed",
     },
     disabled: {
-      true: "text-muted",
+      true: "opacity-50 select-none cursor-not-allowed",
       false: "",
     },
   },
