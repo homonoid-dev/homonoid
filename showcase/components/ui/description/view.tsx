@@ -1,138 +1,99 @@
 "use client";
 
-import { Description, Label, Input, Card } from "@homonoid/react";
-import { Exhibit } from "@/components/ui/exhibit";
+import { useMemo, useState } from "react";
 import {
-  DESCRIPTION_SECTIONS,
-  DESCRIPTION_SECTIONS_LIST,
-  DESCRIPTION_DEFAULT_CODE_SAMPLE,
-  DESCRIPTION_VARIANTS_CODE_SAMPLE,
-  DESCRIPTION_POLYMORPHISM_CODE_SAMPLE,
-  DESCRIPTION_CONTEXT_CODE_SAMPLE,
-} from "./model";
+  cond,
+  Description,
+  Heading,
+  type DescriptionSize,
+  type DescriptionVariant,
+} from "@homonoid/react";
+import { Studio } from "@/components/ui/studio";
+import { getDescriptionCode } from "./model";
 
 export function DescriptionView() {
-  const sections = DESCRIPTION_SECTIONS;
+  const [variant, setVariant] = useState<DescriptionVariant>("muted");
+  const [size, setSize] = useState<DescriptionSize>("md");
+  const [disabled, setDisabled] = useState(false);
+  const [paired, setPaired] = useState(true);
+  const [extended, setExtended] = useState(false);
+
+  const code = useMemo(
+    () =>
+      getDescriptionCode({
+        variant,
+        size,
+        disabled,
+        paired,
+        extended,
+      }),
+    [variant, size, disabled, paired, extended]
+  );
+
+  const text = cond(
+    extended,
+    "Two factor authentication adds an extra layer of security to your account. In addition to your password, you will need to enter a verification code sent to your authenticated device.",
+    "Two factor authentication is enabled across all workspace accounts."
+  );
 
   return (
-    <Exhibit
+    <Studio
       title="Description"
-      summary="A description provides supportive, secondary context to accompany headers, form fields, and interactive stages."
-      description="Descriptions anchor comprehension, elucidating functionality and purpose while preserving visual continuum across views."
-      component="description"
-      importCode='import { Description } from "@homonoid/react";'
-      defaultCode={DESCRIPTION_DEFAULT_CODE_SAMPLE}
-      defaultStage={
-        <Description className="max-w-md text-center">
-          A description delivers supportive guidance and contextual information beneath controls and views.
-        </Description>
-      }
-      sections={DESCRIPTION_SECTIONS_LIST}
+      description="Supportive explanatory typography providing secondary guidance and contextual clarification beneath headings, form controls, and cards."
+      code={code}
+      controls={{
+        variant: {
+          value: variant,
+          options: ["muted", "surface"],
+          onChange: setVariant,
+        },
+        size: {
+          value: size,
+          options: ["sm", "md", "lg"],
+          onChange: setSize,
+        },
+        switches: [
+          {
+            id: "paired",
+            label: "Heading Pairing",
+            description: "Display below primary heading",
+            checked: paired,
+            onChange: setPaired,
+          },
+          {
+            id: "extended",
+            label: "Extended Copy",
+            description: "Show multiline paragraph text",
+            checked: extended,
+            onChange: setExtended,
+          },
+          {
+            id: "disabled",
+            label: "Disabled",
+            description: "Dim text presentation",
+            checked: disabled,
+            onChange: setDisabled,
+          },
+        ],
+      }}
     >
-      {/* Variants Section */}
-      <Exhibit.Stage section={sections.variants} code={DESCRIPTION_VARIANTS_CODE_SAMPLE}>
-        <div className="flex flex-col gap-3 max-w-md">
-          <Description variant="muted">
-            Muted variant provides secondary contrast for subtitles and auxiliary hints.
-          </Description>
-          <Description variant="surface">
-            Surface variant delivers full foreground contrast for primary readability on tinted containers.
-          </Description>
-        </div>
-      </Exhibit.Stage>
-
-      {/* Polymorphism Section */}
-      <Exhibit.Stage section={sections.polymorphism} code={DESCRIPTION_POLYMORPHISM_CODE_SAMPLE}>
-        <div className="flex flex-col gap-3 max-w-md">
-          <Description as="p">
-            Standard paragraph container for general instructional text.
-          </Description>
-          <Description as="span">
-            Inline span container for inline annotations and supplementary badges.
-          </Description>
-          <Description as="small">
-            Small element for legal disclaimers and secondary metadata footers.
-          </Description>
-        </div>
-      </Exhibit.Stage>
-
-      {/* Context Section */}
-      <Exhibit.Stage section={sections.context} code={DESCRIPTION_CONTEXT_CODE_SAMPLE}>
-        <Card className="flex flex-col gap-3 max-w-sm w-full">
-          <div className="flex flex-col gap-1">
-            <Label size="sm" as="h3">
-              Two Factor Authentication
-            </Label>
-            <Description>
-              Protect your account with biometric keys or authenticator codes.
+      <div className="flex items-center justify-center p-4">
+        {cond(
+          paired,
+          <div className="flex flex-col gap-1 max-w-md w-full text-left">
+            <Heading as="h3">Security Overview</Heading>
+            <Description variant={variant} size={size} disabled={disabled}>
+              {text}
+            </Description>
+          </div>,
+          <div className="max-w-md w-full text-left">
+            <Description variant={variant} size={size} disabled={disabled}>
+              {text}
             </Description>
           </div>
-          <Input placeholder="Enter verification code" />
-          <Description variant="muted" as="small">
-            Verification codes expire ten minutes after generation.
-          </Description>
-        </Card>
-      </Exhibit.Stage>
-
-      {/* Object Continuity Section */}
-      <Exhibit.Section section={sections.continuity}>
-        <Description>
-          Descriptions maintain reading cadence and typographical balance across themes and surfaces. Letterforms and baseline geometry stay optically stable when moving between container backgrounds.
-        </Description>
-
-        <Description>
-          Relaxed vertical line height preserves comfortable scanning ergonomics across varied viewport widths without causing abrupt layout shifts.
-        </Description>
-
-        <Description>
-          Color contrast adheres to accessible reading thresholds, ensuring that muted guidance remains legible without visually competing against primary headers.
-        </Description>
-      </Exhibit.Section>
-
-      {/* Accessibility Section */}
-      <Exhibit.Section section={sections.accessibility}>
-        <Description>
-          Accessibility ensures supportive information reaches all people equally. Homonoid descriptions bridge visual cues with rich assistive text, reinforcing clarity across every workflow.
-        </Description>
-
-        <Description>
-          Descriptions connect seamlessly to parent inputs and complex controls using aria describedby attributes, giving screen reader users immediate access to helper text and constraints.
-        </Description>
-
-        <Description>
-          Contrast levels for both default and muted variants are calibrated against accessibility guidelines, maintaining high legibility while signaling appropriate visual hierarchy.
-        </Description>
-      </Exhibit.Section>
-
-      {/* Design Tokens Section */}
-      <Exhibit.Section section={sections.tokens}>
-        <Description>
-          Color values consume muted and foreground tokens exclusively, ensuring harmonious tonality and dynamic adaptation between light and dark themes.
-        </Description>
-
-        <Description>
-          Line height maps to the relaxed leading token, providing proportional vertical spacing that balances with the tight tracking of accompanying labels.
-        </Description>
-
-        <Description>
-          Font sizing automatically harmonizes with the surrounding typographic scale, maintaining clear hierarchy when nested inside cards and form rows.
-        </Description>
-      </Exhibit.Section>
-
-      {/* Style Reference Section */}
-      <Exhibit.Section section={sections.styleReference}>
-        <Description>
-          Accessible forms leverage descriptive text via programmatic associations such as described by attributes, ensuring assistive readers announce context accurately.
-        </Description>
-
-        <Description>
-          Polymorphic flexibility allows descriptions to render as semantic paragraphs, inline spans, or small text runs without altering optical weights.
-        </Description>
-
-        <Description>
-          Subdued contrast provides clear separation between structural labels and supportive guidance, fostering predictable reading hierarchy across complex interfaces.
-        </Description>
-      </Exhibit.Section>
-    </Exhibit>
+        )}
+      </div>
+    </Studio>
   );
 }
+

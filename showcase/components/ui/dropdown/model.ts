@@ -1,288 +1,93 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  Compass,
-  Layers,
-  Ruler,
-  FolderTree,
-  Ban,
-  Infinity,
-  Accessibility,
-  Palette,
-  BookOpen,
-} from "lucide-react";
-import type { TocItemModel } from "@/components/ui/toc";
+import type { DropdownRadius, DropdownSize } from "@homonoid/react";
 
-export interface DropdownSectionItem extends TocItemModel {
-  id: string;
-  label: string;
-  icon: LucideIcon;
+export interface DropdownCodeOptions {
+  size: DropdownSize;
+  radius: DropdownRadius;
+  placement: string;
+  showShortcuts: boolean;
+  showDestructive: boolean;
+  showGroups: boolean;
+  disabled: boolean;
 }
 
-export const DROPDOWN_SECTIONS: Record<string, DropdownSectionItem> = {
-  placements: {
-    id: "placements",
-    label: "Placements",
-    icon: Compass,
-  },
-  variants: {
-    id: "variants",
-    label: "Variants",
-    icon: Layers,
-  },
-  sizes: {
-    id: "sizes",
-    label: "Sizes",
-    icon: Ruler,
-  },
-  groups: {
-    id: "groups",
-    label: "Groups",
-    icon: FolderTree,
-  },
-  disabled: {
-    id: "disabled",
-    label: "Disabled",
-    icon: Ban,
-  },
-  continuity: {
-    id: "object-continuity",
-    label: "Continuity",
-    icon: Infinity,
-  },
-  accessibility: {
-    id: "accessibility",
-    label: "Accessibility",
-    icon: Accessibility,
-  },
-  tokens: {
-    id: "design-tokens",
-    label: "Design Tokens",
-    icon: Palette,
-  },
-  styleReference: {
-    id: "style-reference",
-    label: "Style Reference",
-    icon: BookOpen,
-  },
-};
+export function getDropdownCode(options: DropdownCodeOptions): string {
+  const {
+    size,
+    radius,
+    placement,
+    showShortcuts,
+    showDestructive,
+    showGroups,
+    disabled,
+  } = options;
 
-export const DROPDOWN_SECTIONS_LIST: DropdownSectionItem[] =
-  Object.values(DROPDOWN_SECTIONS);
+  const props: string[] = [];
+  if (size !== "md") {
+    props.push(`size="${size}"`);
+  }
+  if (radius !== "lg") {
+    props.push(`radius="${radius}"`);
+  }
+  if (placement !== "bottom-start") {
+    props.push(`placement="${placement}"`);
+  }
+  if (disabled) {
+    props.push("disabled");
+  }
 
-export const DROPDOWN_DEFAULT_CODE_SAMPLE = `import { Dropdown, Button, Separator } from "@homonoid/react";
-import { MoreHorizontal, Edit, Copy, Share2, Trash2 } from "lucide-react";
+  const propsString = props.length > 0 ? ` ${props.join(" ")}` : "";
 
-export function Example() {
-  return (
-    <Dropdown>
-      <Dropdown.Trigger asChild>
-        <Button
-          variant="outlined"
-          layout="icon"
-          leading={<MoreHorizontal className="size-4" />}
-        />
-      </Dropdown.Trigger>
-      <Dropdown.Content>
-        <Dropdown.List>
-          <Dropdown.Item
-            leading={<Edit className="size-4" />}
-            trailing={<Dropdown.Shortcut keyValue="command" content="E" />}
-          >
-            Edit
-          </Dropdown.Item>
-          <Dropdown.Item
-            leading={<Copy className="size-4" />}
-            trailing={<Dropdown.Shortcut keyValue="command" content="C" />}
-          >
-            Duplicate
-          </Dropdown.Item>
-          <Dropdown.Item leading={<Share2 className="size-4" />}>
-            Share
-          </Dropdown.Item>
-          <Separator />
-          <Dropdown.Item
-            color="destructive"
-            leading={<Trash2 className="size-4" />}
-          >
-            Delete
-          </Dropdown.Item>
-        </Dropdown.List>
-      </Dropdown.Content>
-    </Dropdown>
-  );
-}`;
+  const imports = ["Dropdown", "Button"];
+  if (showShortcuts) {
+    imports.push("Kbd");
+  }
+  if (showDestructive || showGroups) {
+    imports.push("Separator");
+  }
 
-export const DROPDOWN_PLACEMENTS_CODE_SAMPLE = `import { Dropdown, Button } from "@homonoid/react";
-import {
-  ArrowDownLeft,
-  ArrowDownRight,
-  ArrowUpLeft,
-  ArrowUpRight,
-} from "lucide-react";
-
-export function Example() {
-  const placements = [
-    { placement: "bottom-start" as const, label: "Bottom Start", icon: <ArrowDownLeft className="size-4" /> },
-    { placement: "bottom-end" as const, label: "Bottom End", icon: <ArrowDownRight className="size-4" /> },
-    { placement: "top-start" as const, label: "Top Start", icon: <ArrowUpLeft className="size-4" /> },
-    { placement: "top-end" as const, label: "Top End", icon: <ArrowUpRight className="size-4" /> },
+  const lines: string[] = [
+    `import { ${imports.join(", ")} } from "@homonoid/react";`,
+    'import { Copy, Edit3, Trash2, UserPlus } from "lucide-react";',
+    "",
+    "export function Example() {",
+    "  return (",
+    `    <Dropdown${propsString}>`,
+    "      <Dropdown.Trigger>",
+    '        <Button variant="outlined">Options</Button>',
+    "      </Dropdown.Trigger>",
+    "      <Dropdown.Content>",
+    "        <Dropdown.List>",
   ];
 
-  return (
-    <div className="flex flex-wrap gap-4 items-center justify-center">
-      {placements.map((item) => (
-        <Dropdown key={item.placement} placement={item.placement}>
-          <Dropdown.Trigger asChild>
-            <Button
-              layout="icon"
-              variant="outlined"
-              aria-label={item.label}
-            >
-              {item.icon}
-            </Button>
-          </Dropdown.Trigger>
-          <Dropdown.Content>
-            <Dropdown.List>
-              <Dropdown.Item>Action Item</Dropdown.Item>
-              <Dropdown.Item>Second Item</Dropdown.Item>
-            </Dropdown.List>
-          </Dropdown.Content>
-        </Dropdown>
-      ))}
-    </div>
-  );
-}`;
+  if (showGroups) {
+    lines.push("          <Dropdown.Group>");
+    lines.push("            <Dropdown.Label>Manage</Dropdown.Label>");
+  }
 
-export const DROPDOWN_VARIANTS_CODE_SAMPLE = `import { Dropdown, Button } from "@homonoid/react";
-import { Check, Info, Star, AlertTriangle } from "lucide-react";
+  const shortcutEdit = showShortcuts ? ' trailing={<Kbd size="sm">⌘E</Kbd>}' : "";
+  const shortcutCopy = showShortcuts ? ' trailing={<Kbd size="sm">⌘C</Kbd>}' : "";
+  const shortcutInvite = showShortcuts ? ' trailing={<Kbd size="sm">⌘I</Kbd>}' : "";
+  const shortcutDelete = showShortcuts ? ' trailing={<Kbd size="sm">⌫</Kbd>}' : "";
 
-export function Example() {
-  const actions = [
-    { label: "Standard Action", color: "surface" as const, icon: <Check className="size-4" /> },
-    { label: "Subtle Action", color: "subtle" as const, icon: <Info className="size-4" /> },
-    { label: "Primary Action", color: "primary" as const, icon: <Star className="size-4" /> },
-    { label: "Destructive Action", color: "destructive" as const, icon: <AlertTriangle className="size-4" /> },
-  ];
+  lines.push(`          <Dropdown.Item leading={<Edit3 className="size-4" />}${shortcutEdit}>Edit</Dropdown.Item>`);
+  lines.push(`          <Dropdown.Item leading={<Copy className="size-4" />}${shortcutCopy}>Duplicate</Dropdown.Item>`);
+  lines.push(`          <Dropdown.Item leading={<UserPlus className="size-4" />}${shortcutInvite}>Invite</Dropdown.Item>`);
 
-  return (
-    <Dropdown>
-      <Dropdown.Trigger asChild>
-        <Button variant="outlined">Item Variants</Button>
-      </Dropdown.Trigger>
-      <Dropdown.Content>
-        <Dropdown.List>
-          {actions.map((item) => (
-            <Dropdown.Item key={item.label} color={item.color} leading={item.icon}>
-              {item.label}
-            </Dropdown.Item>
-          ))}
-        </Dropdown.List>
-      </Dropdown.Content>
-    </Dropdown>
-  );
-}`;
+  if (showGroups) {
+    lines.push("          </Dropdown.Group>");
+  }
 
-export const DROPDOWN_SIZES_CODE_SAMPLE = `import { Dropdown, Button } from "@homonoid/react";
+  if (showDestructive) {
+    lines.push("          <Separator />");
+    lines.push(`          <Dropdown.Item color="destructive" leading={<Trash2 className="size-4" />}${shortcutDelete}>Delete</Dropdown.Item>`);
+  }
 
-export function Example() {
-  const sizes = [
-    { size: "sm" as const, label: "Small Menu" },
-    { size: "md" as const, label: "Medium Menu" },
-    { size: "lg" as const, label: "Large Menu" },
-  ];
+  lines.push("        </Dropdown.List>");
+  lines.push("      </Dropdown.Content>");
+  lines.push("    </Dropdown>");
+  lines.push("  );");
+  lines.push("}");
 
-  return (
-    <div className="flex flex-wrap gap-4 items-center justify-center">
-      {sizes.map((item) => (
-        <Dropdown key={item.size} size={item.size}>
-          <Dropdown.Trigger asChild>
-            <Button size={item.size} variant="outlined">
-              {item.label}
-            </Button>
-          </Dropdown.Trigger>
-          <Dropdown.Content>
-            <Dropdown.List>
-              <Dropdown.Item>First Option</Dropdown.Item>
-              <Dropdown.Item>Second Option</Dropdown.Item>
-            </Dropdown.List>
-          </Dropdown.Content>
-        </Dropdown>
-      ))}
-    </div>
-  );
-}`;
+  return lines.join("\n");
+}
 
-export const DROPDOWN_GROUPS_CODE_SAMPLE = `import { Dropdown, Button, Separator } from "@homonoid/react";
-import { User, Settings, CreditCard, LogOut } from "lucide-react";
-
-export function Example() {
-  return (
-    <Dropdown>
-      <Dropdown.Trigger asChild>
-        <Button variant="outlined">Account</Button>
-      </Dropdown.Trigger>
-      <Dropdown.Content>
-        <Dropdown.List>
-          <Dropdown.Group>
-            <Dropdown.Label className="px-3 py-1.5 text-xs text-muted font-medium">
-              Profile
-            </Dropdown.Label>
-            <Dropdown.Item leading={<User className="size-4" />}>
-              Personal Info
-            </Dropdown.Item>
-            <Dropdown.Item leading={<Settings className="size-4" />}>
-              Preferences
-            </Dropdown.Item>
-          </Dropdown.Group>
-          <Separator />
-          <Dropdown.Group>
-            <Dropdown.Label className="px-3 py-1.5 text-xs text-muted font-medium">
-              Billing
-            </Dropdown.Label>
-            <Dropdown.Item leading={<CreditCard className="size-4" />}>
-              Subscriptions
-            </Dropdown.Item>
-          </Dropdown.Group>
-          <Separator />
-          <Dropdown.Item color="destructive" leading={<LogOut className="size-4" />}>
-            Sign Out
-          </Dropdown.Item>
-        </Dropdown.List>
-      </Dropdown.Content>
-    </Dropdown>
-  );
-}`;
-
-export const DROPDOWN_DISABLED_CODE_SAMPLE = `import { Dropdown, Button } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-wrap gap-6 items-center justify-center">
-      <Dropdown disabled>
-        <Dropdown.Trigger asChild>
-          <Button disabled variant="outlined">
-            Disabled Menu
-          </Button>
-        </Dropdown.Trigger>
-        <Dropdown.Content>
-          <Dropdown.List>
-            <Dropdown.Item>Unavailable</Dropdown.Item>
-          </Dropdown.List>
-        </Dropdown.Content>
-      </Dropdown>
-
-      <Dropdown>
-        <Dropdown.Trigger asChild>
-          <Button variant="outlined">Disabled Items</Button>
-        </Dropdown.Trigger>
-        <Dropdown.Content>
-          <Dropdown.List>
-            <Dropdown.Item>Available Option</Dropdown.Item>
-            <Dropdown.Item disabled>Locked Feature</Dropdown.Item>
-            <Dropdown.Item>Active Option</Dropdown.Item>
-          </Dropdown.List>
-        </Dropdown.Content>
-      </Dropdown>
-    </div>
-  );
-}`;

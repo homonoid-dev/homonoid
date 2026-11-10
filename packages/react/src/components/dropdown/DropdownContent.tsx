@@ -85,7 +85,7 @@ export const DropdownContent = forwardRef<HTMLDivElement, DropdownContentProps>(
               }}
               data-state={cond(open, "open", "closed")}
               className={cn(
-                "transform-gpu overflow-hidden bg-surface border-[0.5px] border-border shadow-lg p-1 min-w-48 focus:outline-none",
+                "transform-gpu overflow-hidden bg-surface border border-border shadow-lg p-1 min-w-48 focus:outline-none",
                 cond(context.placement.startsWith("top"), "origin-bottom", "origin-top"),
                 match(radius, radiusClasses, "rounded-2xl"),
                 className

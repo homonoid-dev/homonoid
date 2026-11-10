@@ -1,295 +1,123 @@
 "use client";
 
-import { useState } from "react";
-import {
-  Autocomplete,
-  Button,
-  Description,
-  Tooltip,
-  cond,
-} from "@homonoid/react";
-import { Search, RotateCcw } from "lucide-react";
-import { Exhibit } from "@/components/ui/exhibit";
-import {
-  AUTOCOMPLETE_SECTIONS,
-  AUTOCOMPLETE_SECTIONS_LIST,
-  AUTOCOMPLETE_DEFAULT_CODE_SAMPLE,
-  AUTOCOMPLETE_ATOMIC_CODE_SAMPLE,
-  AUTOCOMPLETE_SIZES_CODE_SAMPLE,
-  AUTOCOMPLETE_FLOATING_CODE_SAMPLE,
-  getAutocompleteAsyncCodeSample,
-  AUTOCOMPLETE_COMPOUND_CODE_SAMPLE,
-} from "./model";
+import { useMemo, useState } from "react";
+import { Search } from "lucide-react";
+import { Autocomplete, cond, type Radius, type Size } from "@homonoid/react";
+import { Studio } from "@/components/ui/studio";
+import { AUTOCOMPLETE_OPTIONS, getAutocompleteCode } from "./model";
 
 export function AutocompleteView() {
-  const sections = AUTOCOMPLETE_SECTIONS;
-  const [isAsyncLoading, setIsAsyncLoading] = useState(true);
-  const [asyncKey, setAsyncKey] = useState(0);
+  const [size, setSize] = useState<Size>("md");
+  const [radius, setRadius] = useState<Radius>("md");
+  const [value, setValue] = useState("");
+  const [floating, setFloating] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const [invalid, setInvalid] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [showLeading, setShowLeading] = useState(true);
+  const [showDescription, setShowDescription] = useState(true);
 
-  const defaultOptions = [
-    {
-      value: "react",
-      label: "React",
-      description: "A declarative component library for modern user interfaces.",
-    },
-    {
-      value: "vue",
-      label: "Vue",
-      description: "The progressive framework for building web applications.",
-    },
-    {
-      value: "svelte",
-      label: "Svelte",
-      description: "Cybernetically enhanced web applications with zero runtime.",
-    },
-    {
-      value: "angular",
-      label: "Angular",
-      description: "A unified platform for scalable enterprise web development.",
-    },
-  ];
-
-  const atomicOptions = [
-    {
-      value: "tokyo",
-      label: "Tokyo",
-      description: "Capital of Japan, largest metropolitan area in the world.",
-    },
-    {
-      value: "paris",
-      label: "Paris",
-      description: "Capital of France, celebrated center of art and culture.",
-    },
-    {
-      value: "london",
-      label: "London",
-      description: "Capital of the United Kingdom, global financial center.",
-    },
-    {
-      value: "newyork",
-      label: "New York",
-      description: "Major financial and media hub in the United States.",
-    },
-  ];
-
-  const sizeOptions = [
-    { value: "us", label: "United States" },
-    { value: "ca", label: "Canada" },
-    { value: "gb", label: "United Kingdom" },
-    { value: "de", label: "Germany" },
-  ];
-
-  const floatingOptions = [
-    {
-      value: "ca",
-      label: "California",
-      description: "Pacific coast state with major tech and cultural hubs.",
-    },
-    {
-      value: "ny",
-      label: "New York",
-      description: "Mid Atlantic state known for finance and media.",
-    },
-    {
-      value: "tx",
-      label: "Texas",
-      description: "Southern state celebrated for energy and technology centers.",
-    },
-    {
-      value: "wa",
-      label: "Washington",
-      description: "Pacific Northwest hub for cloud infrastructure and aviation.",
-    },
-  ];
-
-  const initialAsyncOptions = [
-    {
-      value: "cache",
-      label: "Cached Results",
-      description: "Recently indexed items ready for instant selection.",
-    },
-  ];
-
-  const resolvedAsyncOptions = [
-    {
-      value: "cache",
-      label: "Cached Results",
-      description: "Recently indexed items ready for instant selection.",
-    },
-    {
-      value: "remote-1",
-      label: "Federated Catalog",
-      description: "Real time records retrieved from the primary shard.",
-    },
-    {
-      value: "remote-2",
-      label: "Distributed Pipeline",
-      description: "Aggregated query results synced across nodes.",
-    },
-  ];
-
-  const handleAsyncQueryChange = (query: string) => {
-    if (query.trim().length > 0 && isAsyncLoading) {
-      setIsAsyncLoading(false);
-    }
-  };
-
-  const handleToggleAsyncLoading = () => {
-    if (!isAsyncLoading) {
-      setIsAsyncLoading(true);
-      setAsyncKey((prev) => prev + 1);
-    } else {
-      setIsAsyncLoading(false);
-    }
-  };
+  const code = useMemo(
+    () =>
+      getAutocompleteCode({
+        size,
+        radius,
+        floating,
+        disabled,
+        invalid,
+        loading,
+        showLeading,
+        showDescription,
+      }),
+    [size, radius, floating, disabled, invalid, loading, showLeading, showDescription]
+  );
 
   return (
-    <Exhibit
+    <Studio
       title="Autocomplete"
-      summary="An autocomplete combines a text input with an interactive suggestions panel to filter, search, and select items rapidly."
-      description="Homonoid autocompletes support both zero boilerplate atomic declarations and fully composable compound subcomponents with WAI ARIA combobox keyboard navigation."
-      component="autocomplete"
-      importCode='import { Autocomplete } from "@homonoid/react";'
-      defaultCode={AUTOCOMPLETE_DEFAULT_CODE_SAMPLE}
-      defaultStage={
-        <div className="w-full max-w-sm mx-auto">
-          <Autocomplete placeholder="Search framework..." options={defaultOptions} />
-        </div>
-      }
-      sections={AUTOCOMPLETE_SECTIONS_LIST}
+      description="Dynamic suggestion surfaces engineered with fuzzy filtering and floating positioning. Delivers accessible combobox semantics with tactile keyboard navigation and continuous transition physics."
+      code={code}
+      controls={{
+        size: {
+          value: size,
+          options: ["sm", "md", "lg"],
+          onChange: setSize,
+        },
+        radius: {
+          value: radius,
+          options: ["full", "lg", "md", "sm", "none"],
+          onChange: setRadius,
+        },
+        switches: [
+          {
+            id: "floating",
+            label: "Floating",
+            description: "Float label inside frame",
+            checked: floating,
+            onChange: setFloating,
+          },
+          {
+            id: "disabled",
+            label: "Disabled",
+            description: "Disable all interactions",
+            checked: disabled,
+            onChange: setDisabled,
+          },
+          {
+            id: "invalid",
+            label: "Invalid",
+            description: "Show error boundary",
+            checked: invalid,
+            onChange: setInvalid,
+          },
+          {
+            id: "loading",
+            label: "Loading",
+            description: "Show loading indicator",
+            checked: loading,
+            onChange: setLoading,
+          },
+          {
+            id: "icons",
+            label: "Icons",
+            description: "Show option icons",
+            checked: showLeading,
+            onChange: setShowLeading,
+          },
+          {
+            id: "descriptions",
+            label: "Descriptions",
+            description: "Show option details",
+            checked: showDescription,
+            onChange: setShowDescription,
+          },
+        ],
+      }}
     >
-      {/* Atomic Usage Section */}
-      <Exhibit.Stage section={sections.atomic} code={AUTOCOMPLETE_ATOMIC_CODE_SAMPLE}>
-        <div className="w-full max-w-sm mx-auto">
-          <Autocomplete
-            leading={<Search className="size-4 text-muted" />}
-            placeholder="Select destination city..."
-            options={atomicOptions}
-          />
-        </div>
-      </Exhibit.Stage>
-
-      {/* Sizing Variants Section */}
-      <Exhibit.Stage section={sections.sizes} code={AUTOCOMPLETE_SIZES_CODE_SAMPLE}>
-        <div className="w-full max-w-sm mx-auto flex flex-col gap-4">
-          <Autocomplete size="sm" placeholder="Small autocomplete..." options={sizeOptions} />
-          <Autocomplete size="md" placeholder="Medium autocomplete..." options={sizeOptions} />
-          <Autocomplete size="lg" placeholder="Large autocomplete..." options={sizeOptions} />
-        </div>
-      </Exhibit.Stage>
-
-      {/* Floating Label Section */}
-      <Exhibit.Stage section={sections.floating} code={AUTOCOMPLETE_FLOATING_CODE_SAMPLE}>
-        <div className="w-full max-w-sm mx-auto">
-          <Autocomplete
-            floating
-            label="Select State"
-            placeholder="Type state name..."
-            options={floatingOptions}
-          />
-        </div>
-      </Exhibit.Stage>
-
-      {/* Async Loading Section */}
-      <Exhibit.Stage
-        section={sections.async}
-        code={getAutocompleteAsyncCodeSample(isAsyncLoading)}
-        actions={
-          <Tooltip side="bottom" content="Reset loading state">
-            <Button
-              layout="icon"
-              variant="plain"
-              color="subtle"
-              onClick={handleToggleAsyncLoading}
-              aria-label="Reset loading state"
-            >
-              <RotateCcw className="size-4" />
-            </Button>
-          </Tooltip>
-        }
-      >
-        <div className="w-full max-w-sm mx-auto">
-          <Autocomplete
-            key={asyncKey}
-            loading={isAsyncLoading}
-            placeholder={cond(isAsyncLoading, "Searching remote database...", "Search remote database...")}
-            options={cond(isAsyncLoading, initialAsyncOptions, resolvedAsyncOptions)}
-            onQueryChange={handleAsyncQueryChange}
-          />
-        </div>
-      </Exhibit.Stage>
-
-      {/* Compound Composition Section */}
-      <Exhibit.Stage section={sections.interactive} code={AUTOCOMPLETE_COMPOUND_CODE_SAMPLE}>
-        <div className="w-full max-w-sm mx-auto">
-          <Autocomplete defaultValue="react">
-            <Autocomplete.Input placeholder="Select framework..." />
-            <Autocomplete.Content>
-              <Autocomplete.List>
-                <Autocomplete.Group heading="Popular">
-                  <Autocomplete.Item value="react">React</Autocomplete.Item>
-                  <Autocomplete.Item value="vue">Vue</Autocomplete.Item>
-                </Autocomplete.Group>
-                <Autocomplete.Group heading="Emerging">
-                  <Autocomplete.Item value="svelte">Svelte</Autocomplete.Item>
-                  <Autocomplete.Item value="solid">Solid</Autocomplete.Item>
-                </Autocomplete.Group>
-              </Autocomplete.List>
-              <Autocomplete.Empty>No frameworks found.</Autocomplete.Empty>
-            </Autocomplete.Content>
-          </Autocomplete>
-        </div>
-      </Exhibit.Stage>
-
-      {/* Object Continuity Section */}
-      <Exhibit.Section section={sections.continuity}>
-        <Description>
-          Suggestions surfaces open using micro scale and opacity transitions that prevent abrupt layout jumps across the viewport.
-        </Description>
-        <Description>
-          Native input focus remains completely uninterrupted throughout query typing, menu navigation, and item selection.
-        </Description>
-        <Description>
-          Hover highlights and active keyboard navigation coordinate through roving active descendant references without moving DOM focus.
-        </Description>
-      </Exhibit.Section>
-
-      {/* Accessibility Section */}
-      <Exhibit.Section section={sections.accessibility}>
-        <Description>
-          The text field conforms to the WAI ARIA Combobox design pattern declaring combobox roles and aria autocomplete attributes.
-        </Description>
-        <Description>
-          Arrow Down and Arrow Up keys traverse available options sequentially while keeping keyboard focus anchored within the input field.
-        </Description>
-        <Description>
-          Selected items declare explicit aria selected attributes paired with high contrast foreground styling for clear status feedback.
-        </Description>
-      </Exhibit.Section>
-
-      {/* Design Tokens Section */}
-      <Exhibit.Section section={sections.tokens}>
-        <Description>
-          All floating panels, item rows, and border outlines consume semantic surface and border tokens from the Homonoid design system.
-        </Description>
-        <Description>
-          Input heights, padding scales, and font sizes strictly follow standard control sizing scales for small, medium, and large dimensions.
-        </Description>
-        <Description>
-          Focus rings and active descendant states apply high contrast focus styling matching platform visual standards.
-        </Description>
-      </Exhibit.Section>
-
-      {/* Style Reference Section */}
-      <Exhibit.Section section={sections.styleReference}>
-        <Description>
-          The root Autocomplete component exposes Input, Content, List, Item, Group, and Empty primitives through dot notation.
-        </Description>
-        <Description>
-          Developers can configure custom filter predicates, asynchronous loading indicators, and clearable triggers effortlessly.
-        </Description>
-      </Exhibit.Section>
-    </Exhibit>
+      <div className="w-full max-w-sm">
+        <Autocomplete
+          value={value}
+          onValueChange={setValue}
+          size={size}
+          radius={radius}
+          label={cond(floating, "Component", undefined)}
+          floating={floating}
+          disabled={disabled}
+          invalid={invalid}
+          loading={loading}
+          placeholder="Component"
+          leading={cond(showLeading, <Search className="size-4 text-muted shrink-0" />, undefined)}
+          options={AUTOCOMPLETE_OPTIONS.map((item) => {
+            const Icon = item.icon;
+            return {
+              value: item.value,
+              label: item.label,
+              description: cond(showDescription, item.description, undefined),
+              leading: cond(showLeading, <Icon className="size-4 text-muted shrink-0" />, undefined),
+            };
+          })}
+        />
+      </div>
+    </Studio>
   );
 }
-

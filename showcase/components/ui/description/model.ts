@@ -1,122 +1,59 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  Layers,
-  Type,
-  Tag,
-  Infinity,
-  Accessibility,
-  Palette,
-  BookOpen,
-} from "lucide-react";
-import type { TocItemModel } from "@/components/ui/toc";
+import type { DescriptionSize, DescriptionVariant } from "@homonoid/react";
 
-export interface DescriptionSectionItem extends TocItemModel {
-  id: string;
-  label: string;
-  icon: LucideIcon;
+export interface DescriptionCodeOptions {
+  variant: DescriptionVariant;
+  size: DescriptionSize;
+  disabled: boolean;
+  paired: boolean;
+  extended: boolean;
 }
 
-export const DESCRIPTION_SECTIONS: Record<string, DescriptionSectionItem> = {
-  variants: {
-    id: "variants",
-    label: "Variants",
-    icon: Layers,
-  },
-  polymorphism: {
-    id: "polymorphism",
-    label: "Polymorphism",
-    icon: Type,
-  },
-  context: {
-    id: "context",
-    label: "Context",
-    icon: Tag,
-  },
-  continuity: {
-    id: "object-continuity",
-    label: "Continuity",
-    icon: Infinity,
-  },
-  accessibility: {
-    id: "accessibility",
-    label: "Accessibility",
-    icon: Accessibility,
-  },
-  tokens: {
-    id: "design-tokens",
-    label: "Design Tokens",
-    icon: Palette,
-  },
-  styleReference: {
-    id: "style-reference",
-    label: "Style Reference",
-    icon: BookOpen,
-  },
-};
+export function getDescriptionCode(options: DescriptionCodeOptions): string {
+  const { variant, size, disabled, paired, extended } = options;
 
-export const DESCRIPTION_SECTIONS_LIST: DescriptionSectionItem[] =
-  Object.values(DESCRIPTION_SECTIONS);
+  const props: string[] = [];
+  if (variant !== "muted") {
+    props.push(`variant="${variant}"`);
+  }
+  if (size !== "md") {
+    props.push(`size="${size}"`);
+  }
+  if (disabled) {
+    props.push("disabled");
+  }
 
-export const DESCRIPTION_DEFAULT_CODE_SAMPLE = `import { Description } from "@homonoid/react";
+  const propsString = props.length > 0 ? ` ${props.join(" ")}` : "";
+  const text = extended
+    ? "Two factor authentication adds an extra layer of security to your account. In addition to your password, you will need to enter a verification code sent to your authenticated device."
+    : "Two factor authentication is enabled across all workspace accounts.";
 
-export function Example() {
-  return (
-    <Description className="max-w-md text-center">
-      A description delivers supportive guidance and contextual information beneath controls and views.
-    </Description>
-  );
-}`;
+  if (paired) {
+    return [
+      'import { Heading, Description } from "@homonoid/react";',
+      "",
+      "export function Example() {",
+      "  return (",
+      '    <div className="flex flex-col gap-1">',
+      '      <Heading as="h3">Security Overview</Heading>',
+      `      <Description${propsString}>`,
+      `        ${text}`,
+      "      </Description>",
+      "    </div>",
+      "  );",
+      "}",
+    ].join("\n");
+  }
 
-export const DESCRIPTION_VARIANTS_CODE_SAMPLE = `import { Description } from "@homonoid/react";
+  return [
+    'import { Description } from "@homonoid/react";',
+    "",
+    "export function Example() {",
+    "  return (",
+    `    <Description${propsString}>`,
+    `      ${text}`,
+    "    </Description>",
+    "  );",
+    "}",
+  ].join("\n");
+}
 
-export function Example() {
-  return (
-    <div className="flex flex-col gap-3">
-      <Description variant="muted">
-        Muted variant provides secondary contrast for subtitles and auxiliary hints.
-      </Description>
-      <Description variant="surface">
-        Surface variant delivers full foreground contrast for primary readability on tinted containers.
-      </Description>
-    </div>
-  );
-}`;
-
-export const DESCRIPTION_POLYMORPHISM_CODE_SAMPLE = `import { Description } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-col gap-3">
-      <Description as="p">
-        Standard paragraph container for general instructional text.
-      </Description>
-      <Description as="span">
-        Inline span container for inline annotations and supplementary badges.
-      </Description>
-      <Description as="small">
-        Small element for legal disclaimers and secondary metadata footers.
-      </Description>
-    </div>
-  );
-}`;
-
-export const DESCRIPTION_CONTEXT_CODE_SAMPLE = `import { Label, Description, Input, Card } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <Card className="flex flex-col gap-3 max-w-sm w-full p-surface">
-      <div className="flex flex-col gap-1">
-        <Label size="sm" as="h3">
-          Two Factor Authentication
-        </Label>
-        <Description>
-          Protect your account with biometric keys or authenticator codes.
-        </Description>
-      </div>
-      <Input placeholder="Enter verification code" />
-      <Description variant="muted" as="small">
-        Verification codes expire ten minutes after generation.
-      </Description>
-    </Card>
-  );
-}`;

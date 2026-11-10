@@ -45,9 +45,9 @@ Homonoid defines two primary structural variants:
 Cards support semantic color intent palettes aligned with Homonoid design tokens:
 
 - `Surface` (`surface`): Neutral container background and border (`bg-surface` / `border-border`).
-- `Subtle` (`subtle`): Low contrast Chroma subtle wash tint and border (`bg-primary/8` / `border-subtle-border`).
-- `Primary` (`primary`): Chroma brand primary highlight tint and border (`bg-primary/25` / `border-primary-border`).
-- `Destructive` (`destructive`): Danger alert or error callout tint and border (`bg-destructive/15` / `border-destructive-border`).
+- `Subtle` (`subtle`): Low contrast Chroma subtle wash tint and border (`bg-subtle-background` / `border-subtle-border`).
+- `Primary` (`primary`): Chroma brand primary highlight tint and border (`bg-primary-background` / `border-primary-border`).
+- `Destructive` (`destructive`): Danger alert or error callout tint and border (`bg-destructive-background` / `border-destructive-border`).
 
 <br>
 
@@ -55,8 +55,8 @@ Cards support semantic color intent palettes aligned with Homonoid design tokens
 
 Cards support toggling the hairline border stroke via the `border` property:
 
-- `true` (default): Renders a precise `0.5px` border stroke matching the active color token.
-- `false`: Omits the border stroke (`border-0`), enabling borderless filled cards for flat surfaces or nested containers.
+- `true` (default): Renders a precise border stroke matching the active color token.
+- `false`: Omits the border stroke (`border-transparent`), enabling borderless filled cards for flat surfaces or nested containers while preserving boundary metrics.
 
 <br>
 
@@ -64,7 +64,7 @@ Cards support toggling the hairline border stroke via the `border` property:
 
 Cards consume spatial boundaries, padding, and surface palettes exclusively from `@homonoid/tokens`:
 
-- Surface: `bg-surface` (`--surface`), `bg-subtle` (`--subtle`), or `bg-transparent`.
-- Border: `border-[0.5px]` with color matched to `--border`, `--subtle-border`, `--primary-border`, or `--destructive-border`.
+- Surface: `bg-surface` (`--surface`), `bg-subtle-background` (`--subtle-background`), `bg-primary-background` (`--primary-background`), `bg-destructive-background` (`--destructive-background`), or `bg-transparent`.
+- Border: `border` with color matched to `--border`, `--subtle-border`, `--primary-border`, or `--destructive-border`.
 - Corner Radius: `rounded-3xl` by default to preserve the fluid, rounded aesthetic of Homonoid.
-- Inset Padding: `p-surface` (`--p-surface`) by default, aligning internal elements with standardized layout rhythm.
+- Inset Padding: `p-surface-md` (`--p-surface-md`) by default, aligning internal elements with standardized layout rhythm.

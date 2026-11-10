@@ -1,178 +1,89 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  CheckSquare,
-  Ruler,
-  Tag,
-  Square,
-  Ban,
-  LayoutList,
-  Infinity,
-  Accessibility,
-  Palette,
-  BookOpen,
-} from "lucide-react";
-import type { TocItemModel } from "@/components/ui/toc";
+import type {
+  CheckboxPlacement,
+  CheckboxRadius,
+  CheckboxSize,
+  Color,
+  Variant,
+} from "@homonoid/react";
 
-export interface CheckboxSectionItem extends TocItemModel {
-  id: string;
-  label: string;
-  icon: LucideIcon;
+export interface CheckboxCodeOptions {
+  size: CheckboxSize;
+  radius: CheckboxRadius;
+  checked: boolean;
+  indeterminate: boolean;
+  invalid: boolean;
+  disabled: boolean;
+  showDescription: boolean;
+  tile: boolean;
+  tileVariant: Variant;
+  tileColor: Color;
+  tilePlacement: CheckboxPlacement;
 }
 
-export const CHECKBOX_SECTIONS: Record<string, CheckboxSectionItem> = {
-  states: {
-    id: "states",
-    label: "States",
-    icon: CheckSquare,
-  },
-  sizes: {
-    id: "sizes",
-    label: "Sizes",
-    icon: Ruler,
-  },
-  labelAndHelper: {
-    id: "label-and-helper",
-    label: "Label & Helper",
-    icon: Tag,
-  },
-  radius: {
-    id: "radius",
-    label: "Radius",
-    icon: Square,
-  },
-  disabled: {
-    id: "disabled",
-    label: "Disabled",
-    icon: Ban,
-  },
-  tile: {
-    id: "tile",
-    label: "Tile",
-    icon: LayoutList,
-  },
-  continuity: {
-    id: "object-continuity",
-    label: "Continuity",
-    icon: Infinity,
-  },
-  accessibility: {
-    id: "accessibility",
-    label: "Accessibility",
-    icon: Accessibility,
-  },
-  tokens: {
-    id: "design-tokens",
-    label: "Design Tokens",
-    icon: Palette,
-  },
-  styleReference: {
-    id: "style-reference",
-    label: "Style Reference",
-    icon: BookOpen,
-  },
-};
+export function getCheckboxCode(options: CheckboxCodeOptions): string {
+  const {
+    size,
+    radius,
+    checked,
+    indeterminate,
+    invalid,
+    disabled,
+    showDescription,
+    tile,
+    tileVariant,
+    tileColor,
+    tilePlacement,
+  } = options;
 
-export const CHECKBOX_SECTIONS_LIST: CheckboxSectionItem[] =
-  Object.values(CHECKBOX_SECTIONS);
+  const props: string[] = [];
 
-export const CHECKBOX_DEFAULT_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
+  if (tile) {
+    if (tileVariant !== "outlined") {
+      props.push(`variant="${tileVariant}"`);
+    }
+    if (tileColor !== "surface") {
+      props.push(`color="${tileColor}"`);
+    }
+    if (tilePlacement !== "trailing") {
+      props.push(`placement="${tilePlacement}"`);
+    }
+  }
 
-export function Example() {
-  return (
-    <Checkbox
-      label="I agree to terms and conditions"
-      defaultChecked
-    />
-  );
-}`;
+  if (size !== "md") {
+    props.push(`size="${size}"`);
+  }
+  if (radius !== "md") {
+    props.push(`radius="${radius}"`);
+  }
+  if (indeterminate) {
+    props.push("indeterminate");
+  } else if (checked) {
+    props.push("defaultChecked");
+  }
+  if (invalid) {
+    props.push("invalid");
+  }
+  if (disabled) {
+    props.push("disabled");
+  }
 
-export const CHECKBOX_STATES_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
+  props.push('label="Accept terms and conditions"');
+  if (showDescription) {
+    props.push('description="You agree to our privacy policy and service terms."');
+  }
 
-export function Example() {
-  return (
-    <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-      <Checkbox aria-label="Unchecked option" />
-      <Checkbox aria-label="Checked option" defaultChecked />
-      <Checkbox aria-label="Indeterminate option" indeterminate />
-      <Checkbox invalid aria-label="Invalid unchecked option" />
-      <Checkbox invalid defaultChecked aria-label="Invalid checked option" />
-    </div>
-  );
-}`;
+  const componentName = tile ? "Checkbox.Tile" : "Checkbox";
+  const propsString = props.map((p) => `\n      ${p}`).join("");
 
-export const CHECKBOX_SIZES_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-      <Checkbox size="sm" defaultChecked aria-label="Small checkbox" />
-      <Checkbox size="md" defaultChecked aria-label="Medium checkbox" />
-      <Checkbox size="lg" defaultChecked aria-label="Large checkbox" />
-    </div>
-  );
-}`;
-
-export const CHECKBOX_LABEL_HELPER_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-col gap-4 max-w-sm">
-      <Checkbox
-        defaultChecked
-        label="Subscribe to weekly product digests"
-        description="Receive curated feature release notes and ecosystem updates once per week."
-      />
-    </div>
-  );
-}`;
-
-export const CHECKBOX_RADIUS_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-      <Checkbox radius="full" defaultChecked aria-label="Circular radius checkbox" />
-      <Checkbox radius="lg" defaultChecked aria-label="Large radius checkbox" />
-      <Checkbox radius="md" defaultChecked aria-label="Medium radius checkbox" />
-      <Checkbox radius="sm" defaultChecked aria-label="Small radius checkbox" />
-      <Checkbox radius="none" defaultChecked aria-label="Sharp radius checkbox" />
-    </div>
-  );
-}`;
-
-export const CHECKBOX_DISABLED_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-      <Checkbox disabled aria-label="Disabled unchecked" />
-      <Checkbox disabled defaultChecked aria-label="Disabled checked" />
-      <Checkbox disabled indeterminate aria-label="Disabled indeterminate" />
-    </div>
-  );
-}`;
-
-export const CHECKBOX_TILE_CODE_SAMPLE = `import { Checkbox } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-col gap-control-gap w-full max-w-sm">
-      <Checkbox.Tile
-        label="I agree to terms and conditions"
-        defaultChecked
-      />
-      <Checkbox.Tile
-        variant="outlined"
-        label="Push Notifications"
-        description="Receive instant alerts for incoming messages"
-        defaultChecked
-      />
-      <Checkbox.Tile
-        placement="leading"
-        label="Leading Selection"
-        description="Checkbox control positioned on the leading edge"
-      />
-    </div>
-  );
-}`;
+  return [
+    'import { Checkbox } from "@homonoid/react";',
+    "",
+    "export function Example() {",
+    "  return (",
+    `    <${componentName}${propsString}`,
+    "    />",
+    "  );",
+    "}",
+  ].join("\n");
+}
 

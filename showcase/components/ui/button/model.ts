@@ -1,233 +1,106 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  Layers,
-  ArrowRight,
-  Plus,
-  Loader2,
-  Ruler,
-  Ban,
-  StretchHorizontal,
-  Infinity,
-  Accessibility,
-  MousePointerClick,
-  Palette,
-  BookOpen,
-} from "lucide-react";
-import type { TocItemModel } from "@/components/ui/toc";
-import type { InteractiveStateItem } from "@/components/ui/interactive-states";
+import type {
+  ButtonColor,
+  ButtonLayout,
+  ButtonRadius,
+  ButtonSize,
+  ButtonVariant,
+} from "@homonoid/react";
 
-export interface ButtonSectionItem extends TocItemModel {
-  id: string;
+export interface ButtonCodeOptions {
+  variant: ButtonVariant;
+  color: ButtonColor;
+  size: ButtonSize;
+  radius: ButtonRadius;
+  layout: ButtonLayout;
+  loading: boolean;
+  disabled: boolean;
+  showLeading: boolean;
+  showTrailing: boolean;
   label: string;
-  icon: LucideIcon;
 }
 
-export const BUTTON_SECTIONS: Record<string, ButtonSectionItem> = {
-  variants: {
-    id: "variants",
-    label: "Variants",
-    icon: Layers,
-  },
-  sizes: {
-    id: "sizes",
-    label: "Sizes",
-    icon: Ruler,
-  },
-  withIcon: {
-    id: "with-icon",
-    label: "With Icon",
-    icon: ArrowRight,
-  },
-  iconOnly: {
-    id: "icon-only",
-    label: "Icon Only",
-    icon: Plus,
-  },
-  loading: {
-    id: "loading",
-    label: "Loading",
-    icon: Loader2,
-  },
-  disabled: {
-    id: "disabled",
-    label: "Disabled",
-    icon: Ban,
-  },
-  fullWidth: {
-    id: "full-width",
-    label: "Full Width",
-    icon: StretchHorizontal,
-  },
-  continuity: {
-    id: "object-continuity",
-    label: "Continuity",
-    icon: Infinity,
-  },
-  accessibility: {
-    id: "accessibility",
-    label: "Accessibility",
-    icon: Accessibility,
-  },
-  interactiveStates: {
-    id: "interactive-states",
-    label: "Interactive States",
-    icon: MousePointerClick,
-  },
-  tokens: {
-    id: "design-tokens",
-    label: "Design Tokens",
-    icon: Palette,
-  },
-  styleReference: {
-    id: "style-reference",
-    label: "Style Reference",
-    icon: BookOpen,
-  },
-};
+export function getButtonCode(options: ButtonCodeOptions): string {
+  const {
+    variant,
+    color,
+    size,
+    radius,
+    layout,
+    loading,
+    disabled,
+    showLeading,
+    showTrailing,
+    label,
+  } = options;
 
-export const BUTTON_SECTIONS_LIST: ButtonSectionItem[] =
-  Object.values(BUTTON_SECTIONS);
+  const props: string[] = [];
 
-export const BUTTON_CONTAINED_CODE_SAMPLE = `import { Button } from "@homonoid/react";
+  if (variant !== "contained") {
+    props.push(`variant="${variant}"`);
+  }
+  if (color !== "primary") {
+    props.push(`color="${color}"`);
+  }
+  if (size !== "md") {
+    props.push(`size="${size}"`);
+  }
+  if (radius !== "full") {
+    props.push(`radius="${radius}"`);
+  }
+  if (layout !== "inline") {
+    props.push(`layout="${layout}"`);
+  }
+  if (loading) {
+    props.push("loading");
+  }
+  if (disabled) {
+    props.push("disabled");
+  }
 
-export function Example() {
-  return (
-    <Button variant="contained">
-      Click me
-    </Button>
-  );
-}`;
+  const iconImports: string[] = [];
 
-export const getButtonVariantsCodeSample = (
-  variant: string = "contained",
-  color: string = "primary"
-) => `import { Button } from "@homonoid/react";
+  if (layout === "icon") {
+    props.push('aria-label="Add item"');
+    const propsString = props.length > 0 ? ` ${props.join(" ")}` : "";
 
-export function Example() {
-  return (
-    <Button variant="${variant}" color="${color}">
-      Click me
-    </Button>
-  );
-}`;
-
-export const BUTTON_VARIANTS_CODE_SAMPLE = getButtonVariantsCodeSample("contained", "primary");
-
-export const BUTTON_WITH_ICON_CODE_SAMPLE = `import { Button } from "@homonoid/react";
-import { ArrowRight } from "lucide-react";
-
-export function Example() {
-  return (
-    <Button
-      variant="contained"
-      leading={<ArrowRight className="size-4" />}
-    >
-      Click me
-    </Button>
-  );
-}`;
-
-export const BUTTON_ICON_ONLY_CODE_SAMPLE = `import { Button } from "@homonoid/react";
+    return `import { Button } from "@homonoid/react";
 import { Plus } from "lucide-react";
 
 export function Example() {
   return (
-    <Button
-      layout="icon"
-      variant="contained"
-      aria-label="Add item"
-    >
+    <Button${propsString}>
       <Plus className="size-4" />
     </Button>
   );
 }`;
+  }
 
-export const BUTTON_LOADING_CODE_SAMPLE = `import { useState } from "react";
-import { Button } from "@homonoid/react";
+  if (showLeading) {
+    iconImports.push("Plus");
+    props.push('leading={<Plus className="size-4" />}');
+  }
 
-export function Example() {
-  const [loading, setLoading] = useState(false);
+  if (showTrailing) {
+    iconImports.push("ArrowRight");
+    props.push('trailing={<ArrowRight className="size-4" />}');
+  }
 
-  return (
-    <Button
-      variant="contained"
-      loading={loading}
-      onClick={() => setLoading(true)}
-    >
-      Click me
-    </Button>
-  );
-}`;
+  const lines: string[] = ['import { Button } from "@homonoid/react";'];
+  if (iconImports.length > 0) {
+    lines.push(`import { ${iconImports.join(", ")} } from "lucide-react";`);
+  }
 
-export const BUTTON_SIZES_CODE_SAMPLE = `import { Button } from "@homonoid/react";
+  lines.push("");
+  lines.push("export function Example() {");
+  lines.push("  return (");
 
-export function Example() {
-  return (
-    <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-      <Button variant="contained" size="sm">
-        Small
-      </Button>
-      <Button variant="contained" size="md">
-        Medium
-      </Button>
-      <Button variant="contained" size="lg">
-        Large
-      </Button>
-    </div>
-  );
-}`;
+  const propsString = props.length > 0 ? ` ${props.join(" ")}` : "";
+  lines.push(`    <Button${propsString}>`);
+  lines.push(`      ${label}`);
+  lines.push("    </Button>");
+  lines.push("  );");
+  lines.push("}");
 
-export const BUTTON_DISABLED_CODE_SAMPLE = `import { Button } from "@homonoid/react";
+  return lines.join("\n");
+}
 
-export function Example() {
-  return (
-    <div className="flex flex-row flex-wrap items-center gap-surface-gap">
-      <Button variant="contained" disabled>
-        Contained
-      </Button>
-      <Button variant="outlined" disabled>
-        Outlined
-      </Button>
-      <Button variant="plain" disabled>
-        Plain
-      </Button>
-    </div>
-  );
-}`;
-
-export const BUTTON_FULL_WIDTH_CODE_SAMPLE = `import { Button } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <Button variant="contained" layout="full">
-      Full Width
-    </Button>
-  );
-}`;
-
-export const BUTTON_INTERACTIVE_STATES: InteractiveStateItem[] = [
-  {
-    label: "Hover",
-    selectors: [":hover", '[data-hovered="true"]'],
-  },
-  {
-    label: "Active/Pressed",
-    selectors: [":active", '[data-pressed="true"]'],
-    note: "includes scale transform",
-  },
-  {
-    label: "Focus",
-    selectors: [":focus-visible", '[data-focus-visible="true"]'],
-    note: "shows focus ring",
-  },
-  {
-    label: "Disabled",
-    selectors: [":disabled", '[aria-disabled="true"]'],
-    note: "reduced opacity, no pointer events",
-  },
-  {
-    label: "Pending",
-    selectors: ["[data-pending]"],
-    note: "no pointer events during loading",
-  },
-];

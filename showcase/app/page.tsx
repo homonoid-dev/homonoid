@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button, Heading, Description } from "@homonoid/react";
 
-export default function HomePage() {
+export default function Page() {
   return (
     <div className="flex flex-col px-layout-x pt-layout-y gap-layout-gap max-w-4xl">
       <div className="flex flex-col gap-control-gap">

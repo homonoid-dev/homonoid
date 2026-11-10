@@ -52,7 +52,7 @@ export const variants = cva(
         destructive: "",
       },
       size: {
-        sm: "h-control-sm px-control-sm-x gap-control-gap text-sm active:scale-[var(--motion-press-scale-sm)] aria-expanded:scale-[var(--motion-press-scale-sm)] data-[state=open]:scale-[var(--motion-press-scale-sm)]",
+        sm: "h-control-sm px-control-sm-x gap-control-gap text-xs active:scale-[var(--motion-press-scale-sm)] aria-expanded:scale-[var(--motion-press-scale-sm)] data-[state=open]:scale-[var(--motion-press-scale-sm)]",
         md: "h-control-md px-control-md-x gap-control-gap text-sm active:scale-[var(--motion-press-scale-md)] aria-expanded:scale-[var(--motion-press-scale-md)] data-[state=open]:scale-[var(--motion-press-scale-md)]",
         lg: "h-control-lg px-control-lg-x gap-control-gap text-base active:scale-[var(--motion-press-scale-lg)] aria-expanded:scale-[var(--motion-press-scale-lg)] data-[state=open]:scale-[var(--motion-press-scale-lg)]",
       },

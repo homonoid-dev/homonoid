@@ -1,5 +1,5 @@
 import type { ReactNode, HTMLAttributes, ButtonHTMLAttributes } from "react";
-import type { Variant, Color, Size } from "../../types";
+import type { Variant, Size } from "../../types";
 
 export interface AccordionItemDefinition {
   value: string;
@@ -19,7 +19,6 @@ export interface AccordionProps
   multiple?: boolean;
   collapsible?: boolean;
   variant?: Variant;
-  color?: Color;
   size?: Size;
   disabled?: boolean;
   items?: AccordionItemDefinition[];

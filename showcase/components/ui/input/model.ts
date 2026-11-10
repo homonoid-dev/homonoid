@@ -1,220 +1,99 @@
-import {
-  Layers,
-  AtSign,
-  Tag,
-  AlertCircle,
-  Ban,
-  Infinity,
-  Accessibility,
-  MousePointerClick,
-  Palette,
-  BookOpen,
-  ArrowUpToLine,
-  LucideIcon,
-} from "lucide-react";
-import type { TocItemModel } from "@/components/ui/toc";
-import type { InteractiveStateItem } from "@/components/ui/interactive-states";
+import type { InputRadius, InputSize, InputVariant } from "@homonoid/react";
 
-export interface InputSectionItem extends TocItemModel {
-  id: string;
-  label: string;
-  icon: LucideIcon;
+export interface InputCodeOptions {
+  variant: InputVariant;
+  size: InputSize;
+  radius: InputRadius;
+  floating: boolean;
+  showLeading: boolean;
+  showTrailing: boolean;
+  showDescription: boolean;
+  invalid: boolean;
+  disabled: boolean;
+  readOnly: boolean;
 }
 
-export const INPUT_SECTIONS: Record<string, InputSectionItem> = {
-  variants: {
-    id: "variants",
-    label: "Variants",
-    icon: Layers,
-  },
-  adornments: {
-    id: "adornments",
-    label: "Adornments",
-    icon: AtSign,
-  },
-  labelAndHelper: {
-    id: "label-and-helper",
-    label: "Label & Helper",
-    icon: Tag,
-  },
-  floatingLabel: {
-    id: "floating-label",
-    label: "Floating Label",
-    icon: ArrowUpToLine,
-  },
-  validation: {
-    id: "validation",
-    label: "Validation",
-    icon: AlertCircle,
-  },
-  disabled: {
-    id: "disabled",
-    label: "Disabled",
-    icon: Ban,
-  },
-  continuity: {
-    id: "object-continuity",
-    label: "Continuity",
-    icon: Infinity,
-  },
-  accessibility: {
-    id: "accessibility",
-    label: "Accessibility",
-    icon: Accessibility,
-  },
-  interactiveStates: {
-    id: "interactive-states",
-    label: "Interactive States",
-    icon: MousePointerClick,
-  },
-  tokens: {
-    id: "design-tokens",
-    label: "Design Tokens",
-    icon: Palette,
-  },
-  styleReference: {
-    id: "style-reference",
-    label: "Style Reference",
-    icon: BookOpen,
-  },
-};
+export function getInputCode(options: InputCodeOptions): string {
+  const {
+    variant,
+    size,
+    radius,
+    floating,
+    showLeading,
+    showTrailing,
+    showDescription,
+    invalid,
+    disabled,
+    readOnly,
+  } = options;
 
-export const INPUT_SECTIONS_LIST: InputSectionItem[] =
-  Object.values(INPUT_SECTIONS);
+  const props: string[] = [];
 
-export const INPUT_INTERACTIVE_STATES: InteractiveStateItem[] = [
-  {
-    label: "Hover",
-    selectors: [":hover", '[data-hovered="true"]'],
-  },
-  {
-    label: "Focus",
-    selectors: [":focus-within", '[data-focused="true"]'],
-    note: "shows primary focus ring",
-  },
-  {
-    label: "Invalid",
-    selectors: ['[aria-invalid="true"]', '[data-invalid="true"]'],
-    note: "shows destructive border and ring",
-  },
-  {
-    label: "Disabled",
-    selectors: [":disabled", '[aria-disabled="true"]'],
-    note: "reduced opacity, no pointer events",
-  },
-  {
-    label: "Read Only",
-    selectors: [":read-only", '[aria-readonly="true"]'],
-    note: "prevents text modification",
-  },
-];
+  if (variant !== "outlined") {
+    props.push(`variant="${variant}"`);
+  }
+  if (size !== "md") {
+    props.push(`size="${size}"`);
+  }
+  if (radius !== "lg") {
+    props.push(`radius="${radius}"`);
+  }
+  if (floating) {
+    props.push("floating");
+    props.push('label="Email address"');
+  } else {
+    props.push('label="Email address"');
+    props.push('placeholder="name@example.com"');
+  }
+  if (showDescription && !invalid) {
+    props.push('description="We will send an authentication link."');
+  }
+  if (invalid) {
+    props.push("invalid");
+    props.push('error="Please provide a valid email format."');
+  }
+  if (disabled) {
+    props.push("disabled");
+  }
+  if (readOnly) {
+    props.push("readOnly");
+  }
 
-export const INPUT_DEFAULT_CODE_SAMPLE = `import { Input } from "@homonoid/react";
+  const imports = ["Input"];
+  if (showTrailing) {
+    imports.push("Kbd");
+  }
 
-export function Example() {
-  return <Input placeholder="Enter text..." className="max-w-sm" />;
-}`;
+  const lucideImports: string[] = [];
+  if (showLeading) {
+    lucideImports.push("Mail");
+  }
 
-export const INPUT_VARIANTS_CODE_SAMPLE = `import { Input } from "@homonoid/react";
+  const lines: string[] = [
+    `import { ${imports.join(", ")} } from "@homonoid/react";`,
+  ];
 
-export function Example() {
-  return (
-    <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-      <Input variant="outlined" placeholder="Outlined input" />
-      <Input variant="contained" placeholder="Contained input" />
-      <Input variant="plain" placeholder="Plain input" />
-    </div>
-  );
-}`;
+  if (lucideImports.length > 0) {
+    lines.push(`import { ${lucideImports.join(", ")} } from "lucide-react";`);
+  }
 
-export const INPUT_ADORNMENTS_CODE_SAMPLE = `import { Input } from "@homonoid/react";
-import { Search, Mail, Eye } from "lucide-react";
+  lines.push("");
+  lines.push("export function Example() {");
+  lines.push("  return (");
+  lines.push(`    <Input`);
+  for (const prop of props) {
+    lines.push(`      ${prop}`);
+  }
+  if (showLeading) {
+    lines.push('      leading={<Mail className="size-4" />}');
+  }
+  if (showTrailing) {
+    lines.push('      trailing={<Kbd size="sm" keyValue="command" content="K" />}');
+  }
+  lines.push("    />");
+  lines.push("  );");
+  lines.push("}");
 
-export function Example() {
-  return (
-    <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-      <Input
-        leading={<Search className="size-4 text-muted" />}
-        placeholder="Search components..."
-      />
-      <Input
-        leading={<Mail className="size-4 text-muted" />}
-        placeholder="Email address"
-      />
-      <Input
-        type="password"
-        trailing={<Eye className="size-4 text-muted cursor-pointer" />}
-        placeholder="Password"
-      />
-    </div>
-  );
-}`;
+  return lines.join("\n");
+}
 
-export const INPUT_LABEL_HELPER_CODE_SAMPLE = `import { Input } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-      <Input
-        label="Email Address"
-        description="We will only use this to send transaction receipts."
-        placeholder="name@company.com"
-      />
-    </div>
-  );
-}`;
-
-export const INPUT_FLOATING_LABEL_CODE_SAMPLE = `import { Input } from "@homonoid/react";
-import { Search } from "lucide-react";
-
-export function Example() {
-  return (
-    <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-      <Input
-        floating
-        label="First Name"
-        placeholder="Enter your first name"
-      />
-      <Input
-        floating
-        label="Email Address"
-        defaultValue="ada@homonoid.dev"
-      />
-      <Input
-        floating
-        label="Search Library"
-        leading={<Search className="size-4 text-muted" />}
-      />
-    </div>
-  );
-}`;
-
-export const INPUT_VALIDATION_CODE_SAMPLE = `import { Input } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-      <Input
-        invalid
-        label="Username"
-        error="This username is already taken."
-        defaultValue="lumunar"
-      />
-    </div>
-  );
-}`;
-
-export const INPUT_DISABLED_CODE_SAMPLE = `import { Input } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-      <Input
-        disabled
-        label="Account ID"
-        defaultValue="acc_983142"
-        description="System managed identifier cannot be modified."
-      />
-    </div>
-  );
-}`;

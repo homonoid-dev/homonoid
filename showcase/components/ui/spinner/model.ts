@@ -1,165 +1,40 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  RotateCw,
-  Ruler,
-  Paintbrush,
-  Box,
-  Infinity,
-  Accessibility,
-  MousePointerClick,
-  Palette,
-  BookOpen,
-} from "lucide-react";
-import type { TocItemModel } from "@/components/ui/toc";
-import type { InteractiveStateItem } from "@/components/ui/interactive-states";
+import type { SpinnerAnimation, SpinnerColor, SpinnerSize } from "@homonoid/react";
 
-export interface SpinnerSectionItem extends TocItemModel {
-  id: string;
-  label: string;
-  icon: LucideIcon;
+export interface SpinnerCodeOptions {
+  animation: SpinnerAnimation;
+  size: SpinnerSize;
+  color: SpinnerColor;
+  showLabel: boolean;
 }
 
-export const SPINNER_SECTIONS: Record<string, SpinnerSectionItem> = {
-  animations: {
-    id: "animations",
-    label: "Animations",
-    icon: RotateCw,
-  },
-  sizes: {
-    id: "sizes",
-    label: "Sizes",
-    icon: Ruler,
-  },
-  colors: {
-    id: "colors",
-    label: "Colors",
-    icon: Paintbrush,
-  },
-  embedded: {
-    id: "embedded",
-    label: "Embedded",
-    icon: Box,
-  },
-  continuity: {
-    id: "object-continuity",
-    label: "Continuity",
-    icon: Infinity,
-  },
-  accessibility: {
-    id: "accessibility",
-    label: "Accessibility",
-    icon: Accessibility,
-  },
-  interactiveStates: {
-    id: "interactive-states",
-    label: "Interactive States",
-    icon: MousePointerClick,
-  },
-  tokens: {
-    id: "design-tokens",
-    label: "Design Tokens",
-    icon: Palette,
-  },
-  styleReference: {
-    id: "style-reference",
-    label: "Style Reference",
-    icon: BookOpen,
-  },
-};
+export function getSpinnerCode(options: SpinnerCodeOptions): string {
+  const { animation, size, color, showLabel } = options;
 
-export const SPINNER_SECTIONS_LIST: SpinnerSectionItem[] =
-  Object.values(SPINNER_SECTIONS);
+  const props: string[] = [];
 
-export const SPINNER_INTERACTIVE_STATES: InteractiveStateItem[] = [
-  {
-    label: "Active",
-    selectors: ['role="status"', 'aria-label="Loading"'],
-    note: "live region announcement",
-  },
-  {
-    label: "Decorative",
-    selectors: ['aria-hidden="true"'],
-    note: "paired with accompanying label",
-  },
-  {
-    label: "Reduced Motion",
-    selectors: ["@media (prefers-reduced-motion: reduce)"],
-    note: "calm opacity breathing cadence",
-  },
-];
+  if (animation !== "border") {
+    props.push(`animation="${animation}"`);
+  }
+  if (size !== "md") {
+    props.push(`size="${size}"`);
+  }
+  if (color !== "primary") {
+    props.push(`color="${color}"`);
+  }
+  if (!showLabel) {
+    props.push('label=""');
+  }
 
-export const SPINNER_DEFAULT_CODE_SAMPLE = `import { Spinner } from "@homonoid/react";
+  const propsString = props.length > 0 ? ` ${props.join(" ")}` : "";
 
-export function Example() {
-  return <Spinner />;
-}`;
+  return [
+    'import { Spinner } from "@homonoid/react";',
+    "",
+    "export function Example() {",
+    "  return (",
+    `    <Spinner${propsString} />`,
+    "  );",
+    "}",
+  ].join("\n");
+}
 
-export const SPINNER_ANIMATIONS_CODE_SAMPLE = `import { Spinner } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-row items-center gap-surface-gap">
-      <div className="flex flex-col items-center gap-2">
-        <Spinner animation="border" />
-        <span className="text-xs text-muted">Border</span>
-      </div>
-      <div className="flex flex-col items-center gap-2">
-        <Spinner animation="grow" />
-        <span className="text-xs text-muted">Grow</span>
-      </div>
-      <div className="flex flex-col items-center gap-2">
-        <Spinner animation="orbit" />
-        <span className="text-xs text-muted">Orbit</span>
-      </div>
-      <div className="flex flex-col items-center gap-2">
-        <Spinner animation="dash" />
-        <span className="text-xs text-muted">Dash</span>
-      </div>
-    </div>
-  );
-}`;
-
-export const SPINNER_SIZES_CODE_SAMPLE = `import { Spinner } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-row items-center gap-surface-gap">
-      <Spinner size="sm" />
-      <Spinner size="md" />
-      <Spinner size="lg" />
-    </div>
-  );
-}`;
-
-export const SPINNER_COLORS_CODE_SAMPLE = `import { Spinner } from "@homonoid/react";
-
-export function Example() {
-  const colors = ["primary", "subtle", "surface", "destructive", "current"] as const;
-
-  return (
-    <div className="flex flex-row items-center gap-surface-gap">
-      {colors.map((color) => (
-        <div key={color} className="flex flex-col items-center gap-2">
-          <Spinner color={color} />
-          <span className="text-xs text-muted capitalize">{color}</span>
-        </div>
-      ))}
-    </div>
-  );
-}`;
-
-export const SPINNER_EMBEDDED_CODE_SAMPLE = `import { Button, Input, Spinner } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="flex flex-col gap-surface-gap w-full max-w-sm">
-      <Button variant="contained" loading>
-        Submitting
-      </Button>
-      <Input
-        placeholder="Searching components..."
-        leading={<Spinner size="sm" color="subtle" />}
-      />
-    </div>
-  );
-}`;

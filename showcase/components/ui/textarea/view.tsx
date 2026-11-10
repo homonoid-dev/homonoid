@@ -1,151 +1,143 @@
 "use client";
 
-import { Textarea, Description } from "@homonoid/react";
-import { Exhibit } from "@/components/ui/exhibit";
+import { useMemo, useState } from "react";
 import {
-  TEXTAREA_SECTIONS,
-  TEXTAREA_SECTIONS_LIST,
-  TEXTAREA_DEFAULT_CODE_SAMPLE,
-  TEXTAREA_VARIANTS_CODE_SAMPLE,
-  TEXTAREA_SIZES_CODE_SAMPLE,
-  TEXTAREA_AUTO_RESIZE_CODE_SAMPLE,
-  TEXTAREA_FLOATING_LABEL_CODE_SAMPLE,
-  TEXTAREA_VALIDATION_CODE_SAMPLE,
-} from "./model";
+  cond,
+  Textarea,
+  type TextareaRadius,
+  type TextareaSize,
+  type TextareaVariant,
+} from "@homonoid/react";
+import { Studio } from "@/components/ui/studio";
+import { getTextareaCode } from "./model";
 
 export function TextareaView() {
-  const sections = TEXTAREA_SECTIONS;
+  const [variant, setVariant] = useState<TextareaVariant>("outlined");
+  const [size, setSize] = useState<TextareaSize>("md");
+  const [radius, setRadius] = useState<TextareaRadius>("lg");
+  const [floating, setFloating] = useState(false);
+  const [autoResize, setAutoResize] = useState(false);
+  const [showDescription, setShowDescription] = useState(true);
+  const [invalid, setInvalid] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const [readOnly, setReadOnly] = useState(false);
+
+  const code = useMemo(
+    () =>
+      getTextareaCode({
+        variant,
+        size,
+        radius,
+        floating,
+        autoResize,
+        showDescription,
+        invalid,
+        disabled,
+        readOnly,
+      }),
+    [
+      variant,
+      size,
+      radius,
+      floating,
+      autoResize,
+      showDescription,
+      invalid,
+      disabled,
+      readOnly,
+    ]
+  );
 
   return (
-    <Exhibit
+    <Studio
       title="Textarea"
-      summary="A textarea allows users to enter, edit, and submit multi line text content through direct keyboard interaction."
-      description="Textareas represent foundational interface controls for capturing paragraph copy, descriptions, feedback messages, and structured code snippets while maintaining dimensional stability, fluid auto resizing, and visual continuity across interactive states."
-      component="textarea"
-      importCode='import { Textarea } from "@homonoid/react";'
-      defaultCode={TEXTAREA_DEFAULT_CODE_SAMPLE}
-      defaultStage={
-        <div className="w-full max-w-sm mx-auto">
-          <Textarea
-            label="Feedback"
-            placeholder="Share your thoughts with the team..."
-            description="Write concise feedback regarding your experience."
-            rows={4}
-          />
-        </div>
-      }
-      sections={TEXTAREA_SECTIONS_LIST}
+      description="Multi line text entry control supporting dynamic auto expansion, notched floating labels, and structured validation feedback."
+      code={code}
+      controls={{
+        variant: {
+          value: variant,
+          options: ["outlined", "contained", "plain"],
+          onChange: setVariant,
+        },
+        size: {
+          value: size,
+          options: ["sm", "md", "lg"],
+          onChange: setSize,
+        },
+        radius: {
+          value: radius,
+          options: ["full", "lg", "md", "sm", "none"],
+          onChange: setRadius,
+        },
+        switches: [
+          {
+            id: "floating",
+            label: "Floating Label",
+            description: "Float label into border notch",
+            checked: floating,
+            onChange: setFloating,
+          },
+          {
+            id: "autoResize",
+            label: "Auto Resize",
+            description: "Expand height dynamically with content",
+            checked: autoResize,
+            onChange: setAutoResize,
+          },
+          {
+            id: "description",
+            label: "Helper Description",
+            description: "Display supportive format instructions",
+            checked: showDescription,
+            onChange: setShowDescription,
+          },
+          {
+            id: "invalid",
+            label: "Invalid State",
+            description: "Trigger validation error presentation",
+            checked: invalid,
+            onChange: setInvalid,
+          },
+          {
+            id: "disabled",
+            label: "Disabled",
+            description: "Inactivate text interaction",
+            checked: disabled,
+            onChange: setDisabled,
+          },
+          {
+            id: "readOnly",
+            label: "Read Only",
+            description: "Prevent modification while keeping focus",
+            checked: readOnly,
+            onChange: setReadOnly,
+          },
+        ],
+      }}
     >
-      {/* Variants Section */}
-      <Exhibit.Stage section={sections.variants} code={TEXTAREA_VARIANTS_CODE_SAMPLE}>
-        <div className="flex flex-col gap-4 w-full max-w-sm mx-auto">
-          <Textarea variant="outlined" placeholder="Outlined textarea..." rows={3} />
-          <Textarea variant="contained" placeholder="Contained textarea..." rows={3} />
-          <Textarea variant="plain" placeholder="Plain textarea..." rows={3} />
-        </div>
-      </Exhibit.Stage>
-
-      {/* Sizes Section */}
-      <Exhibit.Stage section={sections.sizes} code={TEXTAREA_SIZES_CODE_SAMPLE}>
-        <div className="flex flex-col gap-4 w-full max-w-sm mx-auto">
-          <Textarea size="sm" placeholder="Small textarea..." rows={2} />
-          <Textarea size="md" placeholder="Medium textarea..." rows={3} />
-          <Textarea size="lg" placeholder="Large textarea..." rows={4} />
-        </div>
-      </Exhibit.Stage>
-
-      {/* Auto Resizing Section */}
-      <Exhibit.Stage section={sections.autoResize} code={TEXTAREA_AUTO_RESIZE_CODE_SAMPLE}>
-        <div className="w-full max-w-sm mx-auto">
-          <Textarea
-            autoResize
-            minRows={3}
-            maxRows={8}
-            placeholder="Type continuous thoughts here to see smooth vertical auto expansion..."
-          />
-        </div>
-      </Exhibit.Stage>
-
-      {/* Floating Label Section */}
-      <Exhibit.Stage section={sections.floatingLabel} code={TEXTAREA_FLOATING_LABEL_CODE_SAMPLE}>
-        <div className="w-full max-w-sm mx-auto flex flex-col gap-4">
-          <Textarea
-            floating
-            label="Project Notes"
-            placeholder="Document implementation details..."
-            rows={3}
-          />
-          <Textarea
-            floating
-            label="Repository Summary"
-            defaultValue="Homonoid design system built with React 19 and Tailwind CSS v4."
-            rows={3}
-          />
-        </div>
-      </Exhibit.Stage>
-
-      {/* Validation Section */}
-      <Exhibit.Stage section={sections.validation} code={TEXTAREA_VALIDATION_CODE_SAMPLE}>
-        <div className="w-full max-w-sm mx-auto">
-          <Textarea
-            invalid
-            label="Submission Details"
-            defaultValue="Missing requirements"
-            error="Please provide at least three detailed bullet points."
-            rows={3}
-          />
-        </div>
-      </Exhibit.Stage>
-
-      {/* Object Continuity Section */}
-      <Exhibit.Section section={sections.continuity}>
-        <Description>
-          Container dimensions scale smoothly during content growth without causing scrollbar flickers or layout displacement.
-        </Description>
-        <Description>
-          Focus rings and border highlights preserve visual continuity using Chroma primary tokens across light and dark modes.
-        </Description>
-        <Description>
-          Floating labels animate upward into the container notch with calibrated easing curves and background masking.
-        </Description>
-      </Exhibit.Section>
-
-      {/* Accessibility Section */}
-      <Exhibit.Section section={sections.accessibility}>
-        <Description>
-          Native HTML textarea elements deliver complete keyboard navigation and native screen reader compatibility.
-        </Description>
-        <Description>
-          Validation error messages and helper descriptions bind programmatically to the control via accessible identifier references.
-        </Description>
-        <Description>
-          Floating labels maintain clear contrast ratios and associate explicitly with the underlying field via HTML for attributes.
-        </Description>
-      </Exhibit.Section>
-
-      {/* Design Tokens Section */}
-      <Exhibit.Section section={sections.tokens}>
-        <Description>
-          All border strokes, background fills, and hover highlights consume semantic surface and border tokens from the tokens package.
-        </Description>
-        <Description>
-          Typography scaling and padding insets adhere strictly to standard control tokens across small, medium, and large sizes.
-        </Description>
-        <Description>
-          Focus rings match platform visual standards with high contrast visibility across both light and dark themes.
-        </Description>
-      </Exhibit.Section>
-
-      {/* Style Reference Section */}
-      <Exhibit.Section section={sections.styleReference}>
-        <Description>
-          Textarea operates as a unified atomic control inheriting the layout foundation and styling mechanics of the Input component.
-        </Description>
-        <Description>
-          Developers can configure automatic height adjustments, row boundaries, manual resize directions, and floating label treatments.
-        </Description>
-      </Exhibit.Section>
-    </Exhibit>
+      <div className="w-full max-w-sm p-4">
+        <Textarea
+          variant={variant}
+          size={size}
+          radius={radius}
+          floating={floating}
+          autoResize={autoResize}
+          label="Feedback"
+          placeholder={cond(floating, undefined, "Share your observations or notes...")}
+          description={cond(
+            showDescription && !invalid,
+            "Markdown formatting is supported.",
+            undefined
+          )}
+          invalid={invalid}
+          error={cond(invalid, "Message must contain at least 10 characters.", undefined)}
+          disabled={disabled}
+          readOnly={readOnly}
+          minRows={3}
+          maxRows={8}
+        />
+      </div>
+    </Studio>
   );
 }
 

@@ -25,16 +25,14 @@ export const AvatarImage = forwardRef<HTMLImageElement, AvatarImageProps>(
 
     useEffect(() => {
       if (!src) {
-        setImageLoadingStatus("error");
-        onLoadingStatusChange?.("error");
+        setImageLoadingStatus("idle");
+        onLoadingStatusChange?.("idle");
         return;
       }
 
-      if (internalRef.current?.complete) {
-        const isLoaded = internalRef.current.naturalWidth > 0;
-        const nextStatus = cond(isLoaded, "loaded" as const, "error" as const);
-        setImageLoadingStatus(nextStatus);
-        onLoadingStatusChange?.(nextStatus);
+      if (internalRef.current?.complete && internalRef.current.naturalWidth > 0) {
+        setImageLoadingStatus("loaded");
+        onLoadingStatusChange?.("loaded");
         return;
       }
 

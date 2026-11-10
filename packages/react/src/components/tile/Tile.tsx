@@ -34,6 +34,7 @@ export const variants = cva(
         sm: "rounded-md",
         md: "rounded-lg",
         lg: "rounded-xl",
+        xl: "rounded-concentric-full",
         full: "rounded-full"
       },
       interactive: {
@@ -55,69 +56,69 @@ export const variants = cva(
         variant: "plain",
         color: "surface",
         interactive: true,
-        className: "text-foreground hover:bg-surface-hover active:bg-surface-active focus:bg-surface-hover aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
+        className: "text-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
       },
       {
         variant: "plain",
         color: "subtle",
         interactive: true,
-        className: "text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active focus:bg-subtle-hover aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
+        className: "text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
       },
       {
         variant: "plain",
         color: "primary",
         interactive: true,
-        className: "text-primary hover:bg-subtle active:bg-subtle-active focus:bg-subtle aria-expanded:bg-subtle data-[state=open]:bg-subtle"
+        className: "text-primary hover:bg-subtle active:bg-subtle-active aria-expanded:bg-subtle data-[state=open]:bg-subtle"
       },
       {
         variant: "plain",
         color: "destructive",
         interactive: true,
-        className: "text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20 focus:bg-destructive-hover/5 aria-expanded:bg-destructive-hover/5 data-[state=open]:bg-destructive-hover/5"
+        className: "text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20 aria-expanded:bg-destructive-hover/5 data-[state=open]:bg-destructive-hover/5"
       },
 
       // Contained Variants (Solid fills matching Button)
       {
         variant: "contained",
         color: "surface",
-        className: "bg-surface text-foreground hover:bg-surface-hover active:bg-surface-active focus:bg-surface-hover aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
+        className: "bg-surface text-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
       },
       {
         variant: "contained",
         color: "subtle",
-        className: "bg-subtle text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active focus:bg-subtle-hover aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
+        className: "bg-subtle text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
       },
       {
         variant: "contained",
         color: "primary",
-        className: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active focus:bg-primary-hover aria-expanded:bg-primary-hover data-[state=open]:bg-primary-hover"
+        className: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active aria-expanded:bg-primary-hover data-[state=open]:bg-primary-hover"
       },
       {
         variant: "contained",
         color: "destructive",
-        className: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-active focus:bg-destructive-hover aria-expanded:bg-destructive-hover data-[state=open]:bg-destructive-hover"
+        className: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-active aria-expanded:bg-destructive-hover data-[state=open]:bg-destructive-hover"
       },
 
       // Outlined Variants (Transparent + Border matching Button)
       {
         variant: "outlined",
         color: "surface",
-        className: "border-border text-foreground hover:bg-surface-hover active:bg-surface-active focus:bg-surface-hover aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
+        className: "border-border text-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
       },
       {
         variant: "outlined",
         color: "subtle",
-        className: "border-subtle-border text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active focus:bg-subtle-hover aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
+        className: "border-subtle-border text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
       },
       {
         variant: "outlined",
         color: "primary",
-        className: "border-primary-border text-primary hover:bg-subtle active:bg-subtle-active focus:bg-subtle aria-expanded:bg-subtle data-[state=open]:bg-subtle"
+        className: "border-primary-border text-primary hover:bg-subtle active:bg-subtle-active aria-expanded:bg-subtle data-[state=open]:bg-subtle"
       },
       {
         variant: "outlined",
         color: "destructive",
-        className: "border-destructive-border text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20 focus:bg-destructive-hover/5 aria-expanded:bg-destructive-hover/5 data-[state=open]:bg-destructive-hover/5"
+        className: "border-destructive-border text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20 aria-expanded:bg-destructive-hover/5 data-[state=open]:bg-destructive-hover/5"
       },
 
       // Selected states

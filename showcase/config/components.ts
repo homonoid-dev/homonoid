@@ -1,4 +1,4 @@
-export interface ShowcaseComponentItem {
+export interface ComponentItem {
   name: string;
   href: string;
   description?: string;
@@ -6,7 +6,7 @@ export interface ShowcaseComponentItem {
   related?: string[];
 }
 
-export const SHOWCASE_COMPONENTS: ShowcaseComponentItem[] = [
+export const COMPONENTS: ComponentItem[] = [
   { name: "Accordion", href: "/components/accordion", description: "Vertically collapsible content panels with disclosure headers", category: "Layout", related: ["Card", "Tile", "Separator"] },
   { name: "Autocomplete", href: "/components/autocomplete", description: "Searchable combobox with interactive suggestions list", category: "Inputs", related: ["Input", "Select", "Tile"] },
   { name: "Avatar", href: "/components/avatar", description: "Visual representation of user identity, initials, and presence", category: "Feedback", related: ["Badge", "Tooltip", "Button"] },

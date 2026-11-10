@@ -1,324 +1,107 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  Layers,
-  Ruler,
-  SlidersHorizontal,
-  FolderTree,
-  Ban,
-  Infinity,
-  Accessibility,
-  Palette,
-  BookOpen,
-} from "lucide-react";
-import type { TocItemModel } from "@/components/ui/toc";
+import type {
+  SelectRadius,
+  SelectSize,
+  SelectVariant,
+} from "@homonoid/react";
 
-export interface SelectSectionItem extends TocItemModel {
-  id: string;
-  label: string;
-  icon: LucideIcon;
+export interface SelectCodeOptions {
+  variant: SelectVariant;
+  size: SelectSize;
+  radius: SelectRadius;
+  descriptions: boolean;
+  leadingIcons: boolean;
+  disabled: boolean;
+  invalid: boolean;
 }
 
-export const SELECT_SECTIONS: Record<string, SelectSectionItem> = {
-  variants: {
-    id: "variants",
-    label: "Variants",
-    icon: Layers,
-  },
-  sizes: {
-    id: "sizes",
-    label: "Sizes",
-    icon: Ruler,
-  },
-  accessories: {
-    id: "accessories",
-    label: "Accessories",
-    icon: SlidersHorizontal,
-  },
-  groups: {
-    id: "groups",
-    label: "Groups",
-    icon: FolderTree,
-  },
-  disabled: {
-    id: "disabled",
-    label: "Disabled",
-    icon: Ban,
-  },
-  continuity: {
-    id: "object-continuity",
-    label: "Continuity",
-    icon: Infinity,
-  },
-  accessibility: {
-    id: "accessibility",
-    label: "Accessibility",
-    icon: Accessibility,
-  },
-  tokens: {
-    id: "design-tokens",
-    label: "Design Tokens",
-    icon: Palette,
-  },
-  styleReference: {
-    id: "style-reference",
-    label: "Style Reference",
-    icon: BookOpen,
-  },
-};
+export function getSelectCode(options: SelectCodeOptions): string {
+  const {
+    variant,
+    size,
+    radius,
+    descriptions,
+    leadingIcons,
+    disabled,
+    invalid,
+  } = options;
 
-export const SELECT_SECTIONS_LIST: SelectSectionItem[] =
-  Object.values(SELECT_SECTIONS);
+  const selectProps: string[] = [];
 
-export const SELECT_DEFAULT_CODE_SAMPLE = `import { Select } from "@homonoid/react";
+  if (variant !== "outlined") {
+    selectProps.push(`variant="${variant}"`);
+  }
+  if (size !== "md") {
+    selectProps.push(`size="${size}"`);
+  }
+  if (radius !== "lg") {
+    selectProps.push(`radius="${radius}"`);
+  }
+  if (disabled) {
+    selectProps.push("disabled");
+  }
+  if (invalid) {
+    selectProps.push("invalid");
+  }
 
-export function Example() {
-  const options = [
-    { value: "system", label: "System Theme" },
-    { value: "light", label: "Light Theme" },
-    { value: "dark", label: "Dark Theme" },
+  selectProps.push('placeholder="Choose environment"');
+
+  const imports = ["Select"];
+  const lucideImports: string[] = [];
+  if (leadingIcons) {
+    lucideImports.push("Server", "Cloud", "Cpu");
+  }
+
+  const lines = [
+    `import { ${imports.join(", ")} } from "@homonoid/react";`,
   ];
 
-  return (
-    <div className="w-full max-w-xs">
-      <Select
-        label="Interface Theme"
-        description="Select your preferred canvas color mode"
-      >
-        <Select.Trigger aria-label="Theme selector">
-          <Select.Value placeholder="Select theme" />
-        </Select.Trigger>
-        <Select.Content>
-          <Select.List>
-            {options.map((item) => (
-              <Select.Item key={item.value} value={item.value}>
-                {item.label}
-              </Select.Item>
-            ))}
-          </Select.List>
-        </Select.Content>
-      </Select>
-    </div>
-  );
-}`;
+  if (lucideImports.length > 0) {
+    lines.push(`import { ${lucideImports.join(", ")} } from "lucide-react";`);
+  }
 
-export const SELECT_VARIANTS_CODE_SAMPLE = `import { Select } from "@homonoid/react";
+  lines.push("");
+  lines.push("export function Example() {");
+  lines.push("  return (");
+  lines.push("    <Select");
+  for (const prop of selectProps) {
+    lines.push(`      ${prop}`);
+  }
+  lines.push("      options={[");
+  lines.push("        {");
+  lines.push('          value: "prod",');
+  lines.push('          label: "Production",');
+  if (descriptions) {
+    lines.push('          description: "Global high availability cluster",');
+  }
+  if (leadingIcons) {
+    lines.push('          leading: <Server className="size-4" />,');
+  }
+  lines.push("        },");
+  lines.push("        {");
+  lines.push('          value: "stage",');
+  lines.push('          label: "Staging",');
+  if (descriptions) {
+    lines.push('          description: "Pre release verification environment",');
+  }
+  if (leadingIcons) {
+    lines.push('          leading: <Cloud className="size-4" />,');
+  }
+  lines.push("        },");
+  lines.push("        {");
+  lines.push('          value: "dev",');
+  lines.push('          label: "Development",');
+  if (descriptions) {
+    lines.push('          description: "Local experimental sandbox",');
+  }
+  if (leadingIcons) {
+    lines.push('          leading: <Cpu className="size-4" />,');
+  }
+  lines.push("        },");
+  lines.push("      ]}");
+  lines.push("    />");
+  lines.push("  );");
+  lines.push("}");
 
-export function Example() {
-  const variants = [
-    { variant: "contained" as const, label: "Contained Variant" },
-    { variant: "outlined" as const, label: "Outlined Variant" },
-    { variant: "plain" as const, label: "Plain Variant" },
-  ];
+  return lines.join("\n");
+}
 
-  const frameworks = [
-    { value: "next", label: "Next.js" },
-    { value: "vite", label: "Vite" },
-    { value: "remix", label: "Remix" },
-  ];
-
-  return (
-    <div className="flex flex-col gap-4 w-full max-w-xs">
-      {variants.map((item) => (
-        <Select key={item.variant} variant={item.variant}>
-          <Select.Trigger aria-label={item.label}>
-            <Select.Value placeholder={item.label} />
-          </Select.Trigger>
-          <Select.Content>
-            <Select.List>
-              {frameworks.map((option) => (
-                <Select.Item key={option.value} value={option.value}>
-                  {option.label}
-                </Select.Item>
-              ))}
-            </Select.List>
-          </Select.Content>
-        </Select>
-      ))}
-    </div>
-  );
-}`;
-
-export const SELECT_SIZES_CODE_SAMPLE = `import { Select } from "@homonoid/react";
-
-export function Example() {
-  const sizes = [
-    { size: "sm" as const, label: "Small Size" },
-    { size: "md" as const, label: "Medium Size" },
-    { size: "lg" as const, label: "Large Size" },
-  ];
-
-  const environments = [
-    { value: "dev", label: "Development" },
-    { value: "staging", label: "Staging" },
-    { value: "prod", label: "Production" },
-  ];
-
-  return (
-    <div className="flex flex-col gap-4 w-full max-w-xs">
-      {sizes.map((item) => (
-        <Select key={item.size} size={item.size}>
-          <Select.Trigger aria-label={item.label}>
-            <Select.Value placeholder={item.label} />
-          </Select.Trigger>
-          <Select.Content>
-            <Select.List>
-              {environments.map((option) => (
-                <Select.Item key={option.value} value={option.value}>
-                  {option.label}
-                </Select.Item>
-              ))}
-            </Select.List>
-          </Select.Content>
-        </Select>
-      ))}
-    </div>
-  );
-}`;
-
-export const SELECT_ACCESSORIES_CODE_SAMPLE = `import { Select } from "@homonoid/react";
-import { Shield, Zap, Lock } from "lucide-react";
-
-export function Example() {
-  const roles = [
-    {
-      value: "admin",
-      label: "Administrator",
-      description: "Full access to organization assets",
-      icon: <Shield className="size-5" />,
-    },
-    {
-      value: "developer",
-      label: "Developer",
-      description: "Deploy and manage workspace code",
-      icon: <Zap className="size-5" />,
-    },
-    {
-      value: "viewer",
-      label: "Viewer",
-      description: "Read only access to reports and views",
-      icon: <Lock className="size-5" />,
-    },
-  ];
-
-  return (
-    <div className="w-full max-w-sm">
-      <Select
-        defaultValue="admin"
-        label="Organization Role"
-        description="Assign team permissions across repositories"
-      >
-        <Select.Trigger aria-label="Access role">
-          <Select.Value placeholder="Select member role" />
-        </Select.Trigger>
-        <Select.Content>
-          <Select.List>
-            {roles.map((item) => (
-              <Select.Item
-                key={item.value}
-                value={item.value}
-                leading={item.icon}
-                label={item.label}
-                description={item.description}
-              />
-            ))}
-          </Select.List>
-        </Select.Content>
-      </Select>
-    </div>
-  );
-}`;
-
-export const SELECT_GROUPS_CODE_SAMPLE = `import { Select } from "@homonoid/react";
-
-export function Example() {
-  const groups = [
-    {
-      name: "Americas",
-      regions: [
-        { value: "us-east", label: "US East (N. Virginia)" },
-        { value: "us-west", label: "US West (Oregon)" },
-      ],
-    },
-    {
-      name: "Europe",
-      regions: [
-        { value: "eu-west", label: "Europe (Ireland)" },
-        { value: "eu-central", label: "Europe (Frankfurt)" },
-      ],
-    },
-  ];
-
-  return (
-    <div className="w-full max-w-sm">
-      <Select>
-        <Select.Trigger aria-label="Server region">
-          <Select.Value placeholder="Select deployment region" />
-        </Select.Trigger>
-        <Select.Content>
-          <Select.List>
-            {groups.map((group) => (
-              <Select.Group key={group.name} label={group.name}>
-                {group.regions.map((region) => (
-                  <Select.Item key={region.value} value={region.value}>
-                    {region.label}
-                  </Select.Item>
-                ))}
-              </Select.Group>
-            ))}
-          </Select.List>
-        </Select.Content>
-      </Select>
-    </div>
-  );
-}`;
-
-export const SELECT_DISABLED_CODE_SAMPLE = `import { Select } from "@homonoid/react";
-
-export function Example() {
-  const options = [
-    { value: "standard", label: "Standard Plan" },
-    { value: "pro", label: "Pro Plan", disabled: true },
-    { value: "enterprise", label: "Enterprise Plan" },
-  ];
-
-  return (
-    <div className="flex flex-col gap-6 w-full max-w-sm">
-      <Select
-        disabled
-        label="Disabled Control"
-        description="Trigger surface and list interactions are inactive"
-      >
-        <Select.Trigger aria-label="Disabled select">
-          <Select.Value placeholder="Unavailable option" />
-        </Select.Trigger>
-        <Select.Content>
-          <Select.List>
-            <Select.Item value="one">Option One</Select.Item>
-          </Select.List>
-        </Select.Content>
-      </Select>
-
-      <Select
-        label="Disabled Option"
-        description="Specific choices can be individually deactivated"
-      >
-        <Select.Trigger aria-label="Select plan">
-          <Select.Value placeholder="Select subscription" />
-        </Select.Trigger>
-        <Select.Content>
-          <Select.List>
-            {options.map((option) => (
-              <Select.Item
-                key={option.value}
-                value={option.value}
-                disabled={option.disabled}
-              >
-                {option.label}
-              </Select.Item>
-            ))}
-          </Select.List>
-        </Select.Content>
-      </Select>
-    </div>
-  );
-}`;

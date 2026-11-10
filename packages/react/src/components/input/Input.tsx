@@ -7,11 +7,14 @@ import {
   useState,
   type ChangeEvent,
   type FocusEvent,
-  type MouseEvent
+  type MouseEvent,
 } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import { all, any, cond, match, when } from "../../utils/condition";
+import { useInputNotchedOutline } from "./useInputNotchedOutline";
+import { InputNotchedOutline } from "./InputNotchedOutline";
+import { InputFloatingLabel } from "./InputFloatingLabel";
 import type { InputProps } from "./types";
 
 export const variants = cva(
@@ -19,7 +22,7 @@ export const variants = cva(
   {
     variants: {
       variant: {
-        outlined: "border border-border bg-transparent hover:border-foreground/30 focus-within:border-primary focus-within:hover:border-primary",
+        outlined: "border border-transparent bg-transparent",
         contained: "border border-transparent bg-surface hover:bg-surface-hover focus-within:border-primary",
         plain: "border border-transparent bg-transparent hover:bg-surface-hover",
       },
@@ -36,7 +39,7 @@ export const variants = cva(
         full: "rounded-full",
       },
       invalid: {
-        true: "border-destructive/30 hover:border-destructive hover:focus-within:border-destructive focus-within:border-destructive",
+        true: "",
         false: "",
       },
       disabled: {
@@ -45,6 +48,11 @@ export const variants = cva(
       },
     },
     compoundVariants: [
+      {
+        invalid: true,
+        variant: "outlined",
+        className: "border-transparent hover:border-transparent focus-within:border-transparent",
+      },
       {
         invalid: true,
         variant: "contained",
@@ -71,7 +79,7 @@ const DATE_INPUT_TYPES = new Set([
   "time",
   "datetime-local",
   "month",
-  "week"
+  "week",
 ]);
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
@@ -83,7 +91,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     label,
     floating = false,
     floatingLabel = false,
-    floatingLabelClassName,
+    floatingLabelClassName: _floatingLabelClassName,
     description,
     error,
     invalid = false,
@@ -114,6 +122,26 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 
   const innerRef = useRef<HTMLInputElement | null>(null);
   const isInvalid = any(invalid, Boolean(error));
+
+  const currentValue = cond(isControlled, value, internalValue);
+  const isDateType = Boolean(props.type && DATE_INPUT_TYPES.has(props.type));
+  const hasValue = any(
+    currentValue !== undefined && currentValue !== null && currentValue !== "",
+    Boolean(innerRef.current?.value),
+    isDateType
+  );
+  const isExpanded = props["aria-expanded"] === true || props["aria-expanded"] === "true";
+  const isFloated = any(isFocused, hasValue, isExpanded);
+  const isOutlined = variant === "outlined";
+
+  const { labelRef, containerRef, clipPath } = useInputNotchedOutline({
+    isFloating,
+    isFloated,
+    isOutlined,
+    label,
+    leading,
+    size,
+  });
 
   const setRefs = (element: HTMLInputElement | null) => {
     innerRef.current = element;
@@ -152,139 +180,26 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     onBlur?.(e);
   };
 
-  const currentValue = cond(isControlled, value, internalValue);
-  const isDateType = Boolean(props.type && DATE_INPUT_TYPES.has(props.type));
-  const hasValue = any(
-    currentValue !== undefined && currentValue !== null && currentValue !== "",
-    Boolean(innerRef.current?.value),
-    isDateType
-  );
-  const isExpanded = Boolean(props["aria-expanded"]);
-  const isFloated = any(isFocused, hasValue, isExpanded);
-
   // Accessibility bindings
   const userDescribedBy = props["aria-describedby"];
   const describedByParts = [
     userDescribedBy,
     error ? errorId : undefined,
-    description ? descriptionId : undefined
+    description ? descriptionId : undefined,
   ].filter(Boolean);
   const finalDescribedBy = describedByParts.length > 0 ? describedByParts.join(" ") : undefined;
 
-  const floatingLabelBg = cond(
-    Boolean(floatingLabelClassName),
-    floatingLabelClassName,
-    match(
-      variant,
-      {
-        contained: "bg-surface",
-        outlined: "bg-background",
-        plain: "bg-transparent",
-      },
-      "bg-background"
-    )
-  );
-
-  const floatingLabelColor = cond(
-    isInvalid,
-    "text-destructive",
-    cond(any(isFocused, isExpanded), "text-primary", "text-muted")
-  );
-
-  const restingLabelSize = match(
-    size,
-    {
-      sm: "text-xs",
-      md: "text-sm",
-      lg: "text-base",
-    },
-    "text-sm"
-  );
-
-  const floatingLabelElement = when(
-    all(isFloating, Boolean(label)),
-    <div
-      className={cn(
-        "pointer-events-none absolute inset-0 select-none z-10 flex items-center",
-        "transform-gpu transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
-        cond(isFloated, "-translate-y-1/2", "translate-y-0")
-      )}
-    >
-      <div className="relative inline-grid items-center -ml-1">
-        {/* Fixed Width Background Mask Plate for Border Notch */}
-        <span
-          aria-hidden="true"
-          className={cn(
-            "col-start-1 row-start-1 h-full w-full px-1.5 -my-1 rounded-xs",
-            "transform-gpu origin-left scale-85",
-            "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
-            floatingLabelBg,
-            cond(isFloated, "opacity-100", "opacity-0")
-          )}
-        />
-
-        {/* Text Label Scaling Layer */}
-        <label
-          id={labelId}
-          htmlFor={inputId}
-          data-slot="input-floating-label"
-          data-floated={cond(isFloated, "true", "false")}
-          className={cn(
-            "col-start-1 row-start-1 inline-flex items-center px-1 rounded-xs truncate leading-normal origin-left",
-            "transform-gpu subpixel-antialiased",
-            "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
-            restingLabelSize,
-            floatingLabelColor,
-            cond(isFloated, "scale-85 -translate-y-0.5", "scale-100 translate-y-0"),
-            cond(disabled, "opacity-50", undefined)
-          )}
-        >
-          {label}
-          {when(
-            props.required,
-            <span className="text-destructive ml-0.5" aria-hidden="true">
-              *
-            </span>
-          )}
-        </label>
-      </div>
-    </div>
-  );
-
-  const inputElement = (
-    <input
-      ref={setRefs}
-      id={inputId}
-      disabled={disabled}
-      aria-invalid={cond(isInvalid, true, undefined)}
-      aria-describedby={finalDescribedBy}
-      value={value}
-      defaultValue={defaultValue}
-      onChange={handleChange}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      placeholder={cond(isFloating, cond(isFloated, placeholder, undefined), placeholder)}
-      className={cn(
-        cond(!isFloating, "order-2 flex-1", "w-full h-full"),
-        "min-w-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none",
-        cond(
-          isInvalid,
-          "text-destructive placeholder:text-destructive/60",
-          "text-foreground placeholder:text-muted"
-        )
-      )}
-      {...props}
-    />
-  );
-
-  const hasExternalLabel = all(!isFloating, Boolean(label));
+  const hasLabel = Boolean(label);
+  const hasExternalLabel = all(!isFloating, hasLabel);
   const hasFooter = any(Boolean(error), Boolean(description));
-  const needsOuterWrapper = any(hasExternalLabel, hasFooter);
+  const needsOuterWrapper = any(hasLabel, hasFooter);
 
   const controlContainer = (
     <div
+      ref={containerRef}
       onClick={handleContainerClick}
       className={cn(
+        "group",
         variants({
           variant,
           size,
@@ -295,37 +210,78 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         cond(!needsOuterWrapper, className, undefined)
       )}
     >
-      {/* Native Input Element / Floating Slot */}
-      {cond(
-        isFloating,
-        <div className="relative order-2 flex-1 min-w-0 flex items-center h-full">
-          {inputElement}
-          {floatingLabelElement}
-        </div>,
-        inputElement
-      )}
-
       {/* Leading Slot */}
       {when(
         leading,
         <span
           data-slot="input-leading"
-          className="order-1 inline-flex shrink-0 items-center justify-center pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto"
+          className="inline-flex shrink-0 items-center justify-center pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto"
         >
           {leading}
         </span>
       )}
+
+      {/* Native Input Element / Floating Slot */}
+      <div className="relative flex-1 min-w-0 flex items-center h-full">
+        <input
+          ref={setRefs}
+          id={inputId}
+          disabled={disabled}
+          aria-invalid={cond(isInvalid, true, undefined)}
+          aria-describedby={finalDescribedBy}
+          value={value}
+          defaultValue={defaultValue}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          placeholder={cond(isFloating, cond(isFloated, placeholder, undefined), placeholder)}
+          className={cn(
+            "w-full h-full min-w-0 bg-transparent outline-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed selection:bg-primary/30",
+            "font-normal antialiased placeholder:antialiased leading-normal",
+            cond(
+              isInvalid,
+              "text-destructive placeholder:text-destructive/60",
+              "text-foreground placeholder:text-muted/60"
+            )
+          )}
+          {...props}
+        />
+        <InputFloatingLabel
+          id={labelId}
+          htmlFor={inputId}
+          label={label}
+          required={props.required}
+          isFloating={isFloating}
+          isFloated={isFloated}
+          isFocused={isFocused}
+          isExpanded={isExpanded}
+          isInvalid={isInvalid}
+          disabled={disabled}
+          size={size}
+          labelRef={labelRef}
+        />
+      </div>
 
       {/* Trailing Slot */}
       {when(
         trailing,
         <span
           data-slot="input-trailing"
-          className="order-3 inline-flex shrink-0 items-center justify-center pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto"
+          className="inline-flex shrink-0 items-center justify-center pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto"
         >
           {trailing}
         </span>
       )}
+
+      {/* Unified Notched Border Overlay */}
+      <InputNotchedOutline
+        isOutlined={isOutlined}
+        isFloated={isFloated}
+        isFocused={isFocused}
+        isInvalid={isInvalid}
+        disabled={disabled}
+        clipPath={clipPath}
+      />
     </div>
   );
 
@@ -371,3 +327,5 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     </div>
   );
 });
+
+Input.displayName = "Input";

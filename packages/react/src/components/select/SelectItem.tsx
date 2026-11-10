@@ -3,7 +3,8 @@
 import { forwardRef, useEffect, type MouseEvent } from "react";
 import { Tile } from "../tile/Tile";
 import { useSelectContext } from "./SelectContext";
-import { cond } from "../../utils/condition";
+import { cond, match } from "../../utils/condition";
+import { cn } from "../../utils/cn";
 import type { SelectItemProps } from "./types";
 
 export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
@@ -56,6 +57,30 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
       onClick: handleClick,
     });
 
+    const concentricRadius = match(
+      radius,
+      {
+        none: "none" as const,
+        sm: "sm" as const,
+        md: "md" as const,
+        lg: "lg" as const,
+        full: "xl" as const,
+      },
+      "sm" as const
+    );
+
+    const concentricRadiusClass = match(
+      radius,
+      {
+        none: "rounded-none",
+        sm: "rounded-sm",
+        md: "rounded-lg",
+        lg: "rounded-xl",
+        full: "rounded-concentric-full",
+      },
+      "rounded-sm"
+    );
+
     return (
       <Tile
         ref={ref}
@@ -66,7 +91,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
         variant="plain"
         color="surface"
         size={size}
-        radius={radius}
+        radius={concentricRadius}
         disabled={disabled}
         interactive={!disabled}
         selected={isSelected}
@@ -74,7 +99,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
         label={labelContent}
         description={description}
         trailing={trailing}
-        className={className}
+        className={cn(concentricRadiusClass, className)}
         {...itemProps}
         {...props}
       >

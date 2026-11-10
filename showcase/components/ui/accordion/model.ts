@@ -1,208 +1,105 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  Layers,
-  Component,
-  Sliders,
-  MousePointerClick,
-  Infinity,
-  Accessibility,
-  Palette,
-  BookOpen,
-} from "lucide-react";
-import type { TocItemModel } from "@/components/ui/toc";
+import { HelpCircle, Activity, Shield } from "lucide-react";
+import type { ComponentType } from "react";
+import type { Size } from "@homonoid/react";
 
-export interface AccordionSectionItem extends TocItemModel {
-  id: string;
-  label: string;
-  icon: LucideIcon;
+export interface AccordionDemoItem {
+  value: string;
+  title: string;
+  description: string;
+  content: string;
+  icon: ComponentType<{ className?: string }>;
+  iconName: string;
 }
 
-export const ACCORDION_SECTIONS: Record<string, AccordionSectionItem> = {
-  atomic: {
-    id: "atomic-usage",
-    label: "Atomic Usage",
-    icon: Component,
+export const ACCORDION_ITEMS: AccordionDemoItem[] = [
+  {
+    value: "item-1",
+    title: "What is Homonoid?",
+    description: "Tactile continuous aesthetics",
+    content: "A tactile design system built with continuous aesthetics and object continuity.",
+    icon: HelpCircle,
+    iconName: "HelpCircle",
   },
-  variants: {
-    id: "variants",
-    label: "Variants",
-    icon: Layers,
+  {
+    value: "item-2",
+    title: "How does motion work?",
+    description: "Dynamic scale transitions",
+    content: "Interactive surfaces respond with continuous easing and dynamic scale transitions.",
+    icon: Activity,
+    iconName: "Activity",
   },
-  multiple: {
-    id: "multiple-expansion",
-    label: "Multiple Expansion",
-    icon: Sliders,
+  {
+    value: "item-3",
+    title: "Is it accessible?",
+    description: "Accessible keyboard semantics",
+    content: "Built with full keyboard navigation and comprehensive assistive technology support.",
+    icon: Shield,
+    iconName: "Shield",
   },
-  interactive: {
-    id: "compound-composition",
-    label: "Compound Composition",
-    icon: MousePointerClick,
-  },
-  continuity: {
-    id: "object-continuity",
-    label: "Continuity",
-    icon: Infinity,
-  },
-  accessibility: {
-    id: "accessibility",
-    label: "Accessibility",
-    icon: Accessibility,
-  },
-  tokens: {
-    id: "design-tokens",
-    label: "Design Tokens",
-    icon: Palette,
-  },
-  styleReference: {
-    id: "style-reference",
-    label: "Style Reference",
-    icon: BookOpen,
-  },
-};
+];
 
-export const ACCORDION_SECTIONS_LIST: AccordionSectionItem[] =
-  Object.values(ACCORDION_SECTIONS);
+export interface AccordionCodeOptions {
+  variant: "plain" | "outlined" | "contained";
+  size: Size;
+  multiple: boolean;
+  collapsible: boolean;
+  disabled: boolean;
+  showLeading: boolean;
+  showDescription: boolean;
+}
 
-export const ACCORDION_DEFAULT_CODE_SAMPLE = `import { Accordion } from "@homonoid/react";
+export function getAccordionCode(options: AccordionCodeOptions): string {
+  const {
+    variant,
+    size,
+    multiple,
+    collapsible,
+    disabled,
+    showLeading,
+    showDescription,
+  } = options;
 
-export function Example() {
-  const items = [
-    {
-      value: "architecture",
-      trigger: "How does the compound pattern work?",
-      content:
-        "Subcomponents connect through React context to synchronize disclosure states and keyboard navigation automatically.",
-    },
-    {
-      value: "theming",
-      trigger: "Can themes be overridden dynamically?",
-      disabled: true,
-      content:
-        "Theme tokens adapt across light and dark modes through CSS custom properties defined at the root.",
-    },
-    {
-      value: "motion",
-      trigger: "How is object continuity preserved?",
-      content:
-        "Transitions utilize CSS grid template rows and motion duration tokens to eliminate abrupt layout jumps.",
-    },
-  ];
+  const iconImports = showLeading
+    ? `import { HelpCircle, Activity, Shield } from "lucide-react";\n`
+    : "";
 
-  return (
-    <div className="w-full max-w-lg mx-auto">
-      <Accordion defaultValue="architecture" items={items} />
-    </div>
-  );
-}`;
+  const props: string[] = ['defaultValue="item-1"'];
+  if (variant !== "plain") props.push(`variant="${variant}"`);
+  if (size !== "md") props.push(`size="${size}"`);
+  if (multiple) props.push("multiple");
+  if (!collapsible) props.push("collapsible={false}");
+  if (disabled) props.push("disabled");
 
-export const ACCORDION_ATOMIC_CODE_SAMPLE = `import { Accordion } from "@homonoid/react";
+  const accordionProps = props.length > 0 ? " " + props.join(" ") : "";
 
-export function Example() {
-  const items = [
-    {
-      value: "item-1",
-      trigger: "What is Homonoid?",
-      content:
-        "Homonoid is an agentic design system crafted for modern web applications.",
-    },
-    {
-      value: "item-2",
-      trigger: "Can I customize variants?",
-      content:
-        "Yes. Choose between flush, bordered, or separated card treatments.",
-    },
-    {
-      value: "item-3",
-      trigger: "Does it support nested content?",
-      content:
-        "Any valid React node can be passed inside content panels seamlessly.",
-    },
-  ];
+  const itemsCode = ACCORDION_ITEMS.map((item) => {
+    const triggerProps: string[] = [];
+    if (showLeading) {
+      triggerProps.push(`leading={<${item.iconName} className="size-4 text-muted shrink-0" />}`);
+    }
+    if (showDescription) {
+      triggerProps.push(`description="${item.description}"`);
+    }
+    const triggerAttr = triggerProps.length > 0 ? " " + triggerProps.join(" ") : "";
 
-  return (
-    <div className="w-full max-w-lg mx-auto">
-      <Accordion variant="outlined" defaultValue="item-1" items={items} />
-    </div>
-  );
-}`;
+    return `      <Accordion.Item value="${item.value}">
+        <Accordion.Trigger${triggerAttr}>
+          ${item.title}
+        </Accordion.Trigger>
+        <Accordion.Content>
+          ${item.content}
+        </Accordion.Content>
+      </Accordion.Item>`;
+  }).join("\n");
 
-export const getAccordionVariantsCodeSample = (variant: string = "plain") => `import { Accordion } from "@homonoid/react";
-
-export function Example() {
-  const items = [
-    {
-      value: "profile",
-      trigger: "Account Security",
-      content: "Configure multi factor authentication and session duration.",
-    },
-    {
-      value: "notifications",
-      trigger: "Notification Preferences",
-      content: "Manage email digests, push alerts, and workspace mentions.",
-    },
-  ];
-
-  return (
-    <div className="w-full max-w-lg mx-auto">
-      <Accordion variant="${variant}" defaultValue="profile" items={items} />
-    </div>
-  );
-}`;
-
-export const ACCORDION_VARIANTS_CODE_SAMPLE = getAccordionVariantsCodeSample("plain");
-
-export const ACCORDION_MULTIPLE_CODE_SAMPLE = `import { Accordion } from "@homonoid/react";
-
-export function Example() {
-  const items = [
-    {
-      value: "general",
-      trigger: "General Settings",
-      content: "Workspace name, branding colors, and public directory options.",
-    },
-    {
-      value: "billing",
-      trigger: "Plan and Invoices",
-      content: "Subscription tier details, payment methods, and receipt history.",
-    },
-    {
-      value: "integrations",
-      trigger: "Connected Services",
-      content: "Manage API keys, webhooks, and third party developer connections.",
-    },
-  ];
-
-  return (
-    <div className="w-full max-w-lg mx-auto">
-      <Accordion
-        multiple
-        defaultValue={["general", "billing"]}
-        items={items}
-      />
-    </div>
-  );
-}`;
-
-export const ACCORDION_COMPOUND_CODE_SAMPLE = `import { Accordion } from "@homonoid/react";
+  return `${iconImports}import { Accordion } from "@homonoid/react";
 
 export function Example() {
   return (
-    <div className="w-full max-w-lg mx-auto">
-      <Accordion defaultValue="item-1">
-        <Accordion.Item value="item-1">
-          <Accordion.Trigger>Custom Header Structure</Accordion.Trigger>
-          <Accordion.Content>
-            Compound primitives allow explicit customization of slots and triggers.
-          </Accordion.Content>
-        </Accordion.Item>
-
-        <Accordion.Item value="item-2">
-          <Accordion.Trigger>Dedicated Subcomponents</Accordion.Trigger>
-          <Accordion.Content>
-            Dot notation gives developers total layout flexibility.
-          </Accordion.Content>
-        </Accordion.Item>
-      </Accordion>
-    </div>
+    <Accordion${accordionProps}>
+${itemsCode}
+    </Accordion>
   );
 }`;
+}
+

@@ -59,3 +59,12 @@ Descriptions consume typography and color exclusively from `@homonoid/tokens`:
 - Muted Variant: `text-muted` (`--muted`).
 - Surface Variant: `text-foreground` (`--foreground`).
 - Line Height: `leading-normal` for compact captions and `leading-relaxed` for open body copy.
+
+<br>
+
+### States
+
+Descriptions reflect the active state of their associated controls:
+
+- Default: Standard opacity at full presence consuming variant typography tokens.
+- Disabled: Calibrated reduction through `opacity-50` with non-interactive cursor styling (`cursor-not-allowed`) and semantic `aria-disabled` indicators.

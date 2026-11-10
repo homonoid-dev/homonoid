@@ -47,7 +47,7 @@ The textarea functions as a unified atomic component powered directly by the Inp
 The textarea composes core Homonoid primitives and styling systems under the hood to ensure complete ecosystem harmony:
 
 * `Input Foundation`: Inherits the container frame, border transitions, surface tokens, and Chroma focus ring mechanics established in the Input component.
-* `Floating Mask`: Reuses the background masking plate and notch translation math from the Input floating label system.
+* `Notched Outline`: Employs dynamic geometric polygon clip path cutting to carve an exact transparent notch in the top border during floating states.
 * `Label`: Powers the accessible external heading and floating text label.
 * `Description`: Powers subordinate guidance copy beneath the control surface.
 
@@ -141,7 +141,7 @@ Textareas support dynamic vertical expansion based on content volume:
 Textareas support the animated floating label system popularized by the Input component:
 
 * When `floating` is enabled, the label rests inside the upper area of the textarea and scales smoothly upward into the top border notch upon focus or content presence.
-* A solid background mask matching the container surface prevents border strokes from bleeding through during hover and active states.
+* An animated geometric notch cuts through the border stroke directly, preserving full transparency and eliminating background masking plates.
 * When `floating` is omitted, the label renders as a standard accessible heading element above the control surface.
 
 <br>

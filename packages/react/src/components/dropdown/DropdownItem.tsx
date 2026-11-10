@@ -4,7 +4,7 @@ import { forwardRef, type MouseEvent } from "react";
 import { Tile } from "../tile/Tile";
 import { useDropdownContext } from "./DropdownContext";
 import { cn } from "../../utils/cn";
-import { cond } from "../../utils/condition";
+import { cond, match } from "../../utils/condition";
 import type { DropdownItemProps } from "./types";
 
 export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
@@ -44,6 +44,30 @@ export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
       onClick: handleClick,
     });
 
+    const concentricRadius = match(
+      radius,
+      {
+        none: "none" as const,
+        sm: "sm" as const,
+        md: "md" as const,
+        lg: "lg" as const,
+        full: "xl" as const,
+      },
+      "sm" as const
+    );
+
+    const concentricRadiusClass = match(
+      radius,
+      {
+        none: "rounded-none",
+        sm: "rounded-sm",
+        md: "rounded-lg",
+        lg: "rounded-xl",
+        full: "rounded-concentric-full",
+      },
+      "rounded-sm"
+    );
+
     return (
       <Tile
         ref={ref}
@@ -53,7 +77,7 @@ export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
         variant="plain"
         color={color}
         size={size}
-        radius={radius}
+        radius={concentricRadius}
         selected={selected}
         disabled={disabled}
         interactive={!disabled}
@@ -61,7 +85,7 @@ export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
         label={labelContent}
         description={description}
         trailing={trailing}
-        className={cn("w-full select-none", className)}
+        className={cn("w-full select-none", concentricRadiusClass, className)}
         {...itemProps}
         {...props}
       >

@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - feat/showcase-studio
   pull_request:
     branches:
       - main
+      - feat/showcase-studio
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

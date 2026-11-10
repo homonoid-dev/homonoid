@@ -4,10 +4,15 @@ import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Search } from "lucide-react";
-import { Searchbar, Sidebar } from "@homonoid/react";
-import { SHOWCASE_COMPONENTS } from "@/config/components";
+import { Searchbar, Sidebar as _Sidebar } from "@homonoid/react";
+import { cn } from "@homonoid/react/cn";
+import { COMPONENTS } from "@/config/components";
 
-export function Nav() {
+export interface SidebarProps {
+  className?: string;
+}
+
+export function Sidebar({ className }: SidebarProps = {}) {
   const [query, setQuery] = useState("");
   const pathname = usePathname();
 
@@ -15,17 +20,23 @@ export function Nav() {
     setQuery("");
   }, [pathname]);
 
-  const filteredComponents = useMemo(() => {
+  const components = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return SHOWCASE_COMPONENTS;
-    return SHOWCASE_COMPONENTS.filter((component) =>
+    if (!q) return COMPONENTS;
+    return COMPONENTS.filter((component) =>
       component.name.toLowerCase().includes(q)
     );
   }, [query]);
 
   return (
-    <Sidebar width="w-58" className="select-none">
-      <Sidebar.Header sticky>
+    <_Sidebar
+      width="w-58"
+      className={cn(
+        "sticky top-0 self-start h-screen shrink-0 hidden md:flex select-none",
+        className
+      )}
+    >
+      <_Sidebar.Header sticky>
         <Searchbar
           size="sm"
           radius="lg"
@@ -35,10 +46,10 @@ export function Nav() {
           onChange={(e) => setQuery(e.target.value)}
           className="w-full backdrop-blur-sm"
         />
-      </Sidebar.Header>
-      <Sidebar.Content>
-        {filteredComponents.map((component) => (
-          <Sidebar.Item
+      </_Sidebar.Header>
+      <_Sidebar.Content>
+        {components.map((component) => (
+          <_Sidebar.Item
             key={component.href}
             as={Link}
             href={component.href}
@@ -46,9 +57,10 @@ export function Nav() {
             onClick={() => setQuery("")}
           >
             {component.name}
-          </Sidebar.Item>
+          </_Sidebar.Item>
         ))}
-      </Sidebar.Content>
-    </Sidebar>
+      </_Sidebar.Content>
+    </_Sidebar>
   );
 }
+

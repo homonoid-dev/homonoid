@@ -1,247 +1,127 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  Layers,
-  Component,
-  Sliders,
-  MousePointerClick,
-  Infinity,
-  Accessibility,
-  Palette,
-  BookOpen,
-  ArrowUpToLine,
-} from "lucide-react";
-import type { TocItemModel } from "@/components/ui/toc";
+import { Search, Layers, Boxes, FileCode, Palette, Component } from "lucide-react";
+import type { ComponentType } from "react";
+import type { Radius, Size } from "@homonoid/react";
 
-export interface AutocompleteSectionItem extends TocItemModel {
-  id: string;
+export interface AutocompleteDemoOption {
+  value: string;
   label: string;
-  icon: LucideIcon;
+  description: string;
+  icon: ComponentType<{ className?: string }>;
+  iconName: string;
 }
 
-export const AUTOCOMPLETE_SECTIONS: Record<string, AutocompleteSectionItem> = {
-  atomic: {
-    id: "atomic-usage",
-    label: "Atomic Usage",
+export const AUTOCOMPLETE_OPTIONS: AutocompleteDemoOption[] = [
+  {
+    value: "button",
+    label: "Button",
+    description: "Interactive tactile trigger",
     icon: Component,
+    iconName: "Component",
   },
-  sizes: {
-    id: "sizes",
-    label: "Sizes",
-    icon: Sliders,
-  },
-  floating: {
-    id: "floating-label",
-    label: "Floating Label",
-    icon: ArrowUpToLine,
-  },
-  async: {
-    id: "async-loading",
-    label: "Async Loading",
+  {
+    value: "accordion",
+    label: "Accordion",
+    description: "Vertically stacked disclosures",
     icon: Layers,
+    iconName: "Layers",
   },
-  interactive: {
-    id: "compound-composition",
-    label: "Compound Composition",
-    icon: MousePointerClick,
+  {
+    value: "autocomplete",
+    label: "Autocomplete",
+    description: "Combobox with fuzzy filtering",
+    icon: Search,
+    iconName: "Search",
   },
-  continuity: {
-    id: "object-continuity",
-    label: "Continuity",
-    icon: Infinity,
+  {
+    value: "input",
+    label: "Input",
+    description: "Text entry field with floating label",
+    icon: FileCode,
+    iconName: "FileCode",
   },
-  accessibility: {
-    id: "accessibility",
-    label: "Accessibility",
-    icon: Accessibility,
+  {
+    value: "select",
+    label: "Select",
+    description: "Overlay option menu picker",
+    icon: Boxes,
+    iconName: "Boxes",
   },
-  tokens: {
-    id: "design-tokens",
-    label: "Design Tokens",
+  {
+    value: "tabs",
+    label: "Tabs",
+    description: "Segmented container switcher",
     icon: Palette,
+    iconName: "Palette",
   },
-  styleReference: {
-    id: "style-reference",
-    label: "Style Reference",
-    icon: BookOpen,
-  },
-};
+];
 
-export const AUTOCOMPLETE_SECTIONS_LIST: AutocompleteSectionItem[] =
-  Object.values(AUTOCOMPLETE_SECTIONS);
+export interface AutocompleteCodeOptions {
+  size: Size;
+  radius: Radius;
+  floating: boolean;
+  disabled: boolean;
+  invalid: boolean;
+  loading: boolean;
+  showLeading: boolean;
+  showDescription: boolean;
+}
 
-export const AUTOCOMPLETE_DEFAULT_CODE_SAMPLE = `import { Autocomplete } from "@homonoid/react";
+export function getAutocompleteCode(options: AutocompleteCodeOptions): string {
+  const {
+    size,
+    radius,
+    floating,
+    disabled,
+    invalid,
+    loading,
+    showLeading,
+    showDescription,
+  } = options;
 
-export function Example() {
-  const options = [
-    {
-      value: "react",
-      label: "React",
-      description: "A declarative component library for modern user interfaces.",
-    },
-    {
-      value: "vue",
-      label: "Vue",
-      description: "The progressive framework for building web applications.",
-    },
-    {
-      value: "svelte",
-      label: "Svelte",
-      description: "Cybernetically enhanced web applications with zero runtime.",
-    },
-    {
-      value: "angular",
-      label: "Angular",
-      description: "A unified platform for scalable enterprise web development.",
-    },
-  ];
+  const iconImports = showLeading
+    ? `import { Search, Layers, Boxes, FileCode, Palette, Component } from "lucide-react";\n`
+    : "";
 
-  return (
-    <div className="w-full max-w-sm mx-auto">
-      <Autocomplete placeholder="Search framework..." options={options} />
-    </div>
-  );
-}`;
+  const optionsList = AUTOCOMPLETE_OPTIONS.map((item) => {
+    const fields: string[] = [`value: "${item.value}"`, `label: "${item.label}"`];
+    if (showDescription) {
+      fields.push(`description: "${item.description}"`);
+    }
+    if (showLeading) {
+      fields.push(`icon: ${item.iconName}`);
+    }
+    return `  { ${fields.join(", ")} },`;
+  }).join("\n");
 
-export const AUTOCOMPLETE_ATOMIC_CODE_SAMPLE = `import { Autocomplete } from "@homonoid/react";
-import { Search } from "lucide-react";
+  const props: string[] = ['placeholder="Component"'];
+  if (size !== "md") props.push(`size="${size}"`);
+  if (radius !== "md") props.push(`radius="${radius}"`);
+  if (floating) {
+    props.push('label="Component"');
+    props.push("floating");
+  }
+  if (disabled) props.push("disabled");
+  if (invalid) props.push("invalid");
+  if (loading) props.push("loading");
+  if (showLeading) {
+    props.push('leading={<Search className="size-4 text-muted shrink-0" />}');
+  }
+  props.push("options={OPTIONS}");
 
-export function Example() {
-  const options = [
-    {
-      value: "tokyo",
-      label: "Tokyo",
-      description: "Capital of Japan, largest metropolitan area in the world.",
-    },
-    {
-      value: "paris",
-      label: "Paris",
-      description: "Capital of France, celebrated center of art and culture.",
-    },
-    {
-      value: "london",
-      label: "London",
-      description: "Capital of the United Kingdom, global financial center.",
-    },
-    {
-      value: "newyork",
-      label: "New York",
-      description: "Major financial and media hub in the United States.",
-    },
-  ];
+  const formattedProps = props.map((p) => `      ${p}`).join("\n");
 
-  return (
-    <div className="w-full max-w-sm mx-auto">
-      <Autocomplete
-        leading={<Search className="size-4 text-muted" />}
-        placeholder="Select destination city..."
-        options={options}
-      />
-    </div>
-  );
-}`;
+  return `${iconImports}import { Autocomplete } from "@homonoid/react";
 
-export const AUTOCOMPLETE_SIZES_CODE_SAMPLE = `import { Autocomplete } from "@homonoid/react";
-
-export function Example() {
-  const options = [
-    { value: "us", label: "United States" },
-    { value: "ca", label: "Canada" },
-    { value: "gb", label: "United Kingdom" },
-    { value: "de", label: "Germany" },
-  ];
-
-  return (
-    <div className="w-full max-w-sm mx-auto flex flex-col gap-4">
-      <Autocomplete size="sm" placeholder="Small autocomplete..." options={options} />
-      <Autocomplete size="md" placeholder="Medium autocomplete..." options={options} />
-      <Autocomplete size="lg" placeholder="Large autocomplete..." options={options} />
-    </div>
-  );
-}`;
-
-export const AUTOCOMPLETE_FLOATING_CODE_SAMPLE = `import { Autocomplete } from "@homonoid/react";
-
-export function Example() {
-  const options = [
-    {
-      value: "ca",
-      label: "California",
-      description: "Pacific coast state with major tech and cultural hubs.",
-    },
-    {
-      value: "ny",
-      label: "New York",
-      description: "Mid Atlantic state known for finance and media.",
-    },
-    {
-      value: "tx",
-      label: "Texas",
-      description: "Southern state celebrated for energy and technology centers.",
-    },
-    {
-      value: "wa",
-      label: "Washington",
-      description: "Pacific Northwest hub for cloud infrastructure and aviation.",
-    },
-  ];
-
-  return (
-    <div className="w-full max-w-sm mx-auto">
-      <Autocomplete
-        floating
-        label="Select State"
-        placeholder="Type state name..."
-        options={options}
-      />
-    </div>
-  );
-}`;
-
-export const getAutocompleteAsyncCodeSample = (loading: boolean = true) => `import { Autocomplete } from "@homonoid/react";
-
-export function Example() {
-  const options = [
-    {
-      value: "cache",
-      label: "Cached Results",
-      description: "Recently indexed items ready for instant selection.",
-    },
-  ];
-
-  return (
-    <div className="w-full max-w-sm mx-auto">
-      <Autocomplete${loading ? "\n        loading" : ""}
-        placeholder="${loading ? "Searching" : "Search"} remote database..."
-        options={options}
-      />
-    </div>
-  );
-}`;
-
-export const AUTOCOMPLETE_ASYNC_CODE_SAMPLE = getAutocompleteAsyncCodeSample(true);
-
-export const AUTOCOMPLETE_COMPOUND_CODE_SAMPLE = `import { Autocomplete } from "@homonoid/react";
+const OPTIONS = [
+${optionsList}
+];
 
 export function Example() {
   return (
-    <div className="w-full max-w-sm mx-auto">
-      <Autocomplete defaultValue="react">
-        <Autocomplete.Input placeholder="Select framework..." />
-        <Autocomplete.Content>
-          <Autocomplete.List>
-            <Autocomplete.Group heading="Popular">
-              <Autocomplete.Item value="react">React</Autocomplete.Item>
-              <Autocomplete.Item value="vue">Vue</Autocomplete.Item>
-            </Autocomplete.Group>
-            <Autocomplete.Group heading="Emerging">
-              <Autocomplete.Item value="svelte">Svelte</Autocomplete.Item>
-              <Autocomplete.Item value="solid">Solid</Autocomplete.Item>
-            </Autocomplete.Group>
-          </Autocomplete.List>
-          <Autocomplete.Empty>No frameworks found.</Autocomplete.Empty>
-        </Autocomplete.Content>
-      </Autocomplete>
-    </div>
+    <Autocomplete
+${formattedProps}
+    />
   );
 }`;
+}
 

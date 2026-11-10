@@ -1,214 +1,150 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  Layers,
-  Component,
-  Sliders,
-  Split,
-  FoldHorizontal,
-  Square,
-  Infinity,
-  Accessibility,
-  Palette,
-  BookOpen,
-} from "lucide-react";
-import type { TocItemModel } from "@/components/ui/toc";
+import type { BreadcrumbSize } from "@homonoid/react";
 
-export interface BreadcrumbSectionItem extends TocItemModel {
-  id: string;
+export type BreadcrumbSeparatorType = "chevron" | "slash" | "dot";
+
+export interface DemoBreadcrumbItem {
   label: string;
-  icon: LucideIcon;
+  href?: string;
+  iconName?: "Home" | "Folder" | "Sliders" | "Shield";
 }
 
-export const BREADCRUMB_SECTIONS: Record<string, BreadcrumbSectionItem> = {
-  atomic: {
-    id: "atomic-usage",
-    label: "Atomic Usage",
-    icon: Component,
-  },
-  compound: {
-    id: "compound-composition",
-    label: "Compound Composition",
-    icon: Layers,
-  },
-  sizes: {
-    id: "sizes",
-    label: "Sizes",
-    icon: Sliders,
-  },
-  separators: {
-    id: "custom-separators",
-    label: "Custom Separators",
-    icon: Split,
-  },
-  collapsed: {
-    id: "collapsed-overflow",
-    label: "Collapsed Overflow",
-    icon: FoldHorizontal,
-  },
-  card: {
-    id: "card-container",
-    label: "Card Container",
-    icon: Square,
-  },
-  continuity: {
-    id: "object-continuity",
-    label: "Continuity",
-    icon: Infinity,
-  },
-  accessibility: {
-    id: "accessibility",
-    label: "Accessibility",
-    icon: Accessibility,
-  },
-  tokens: {
-    id: "design-tokens",
-    label: "Design Tokens",
-    icon: Palette,
-  },
-  styleReference: {
-    id: "style-reference",
-    label: "Style Reference",
-    icon: BookOpen,
-  },
-};
+export const BREADCRUMB_ITEMS: DemoBreadcrumbItem[] = [
+  { label: "Home", href: "/", iconName: "Home" },
+  { label: "Workspace", href: "/workspace", iconName: "Folder" },
+  { label: "Settings", href: "/workspace/settings", iconName: "Sliders" },
+  { label: "Security", href: "/workspace/settings/security", iconName: "Shield" },
+  { label: "Authentication" },
+];
 
-export const BREADCRUMB_SECTIONS_LIST: BreadcrumbSectionItem[] =
-  Object.values(BREADCRUMB_SECTIONS);
+export interface BreadcrumbCodeOptions {
+  size: BreadcrumbSize;
+  separatorType: BreadcrumbSeparatorType;
+  showIcons: boolean;
+  collapse: boolean;
+  compound: boolean;
+}
 
-export const BREADCRUMB_DEFAULT_CODE_SAMPLE = `import { Breadcrumb } from "@homonoid/react";
+export function getBreadcrumbCode(options: BreadcrumbCodeOptions): string {
+  const { size, separatorType, showIcons, collapse, compound } = options;
 
-export function Example() {
-  const items = [
-    { label: "Home", href: "/" },
-    { label: "Components", href: "/components" },
-    { label: "Navigation", href: "/components#navigation" },
-    { label: "Breadcrumb" },
-  ];
+  const props: string[] = [];
+  if (size !== "md") {
+    props.push(`size="${size}"`);
+  }
+  if (separatorType === "slash") {
+    props.push("separator={<span>/</span>}");
+  } else if (separatorType === "dot") {
+    props.push(
+      'separator={<span className="size-1 rounded-full bg-current opacity-60" />}'
+    );
+  }
 
-  return <Breadcrumb items={items} />;
-}`;
+  const iconImports: string[] = [];
+  if (showIcons) {
+    iconImports.push("Home", "Folder", "Sliders", "Shield");
+  }
 
-export const BREADCRUMB_ATOMIC_CODE_SAMPLE = `import { Breadcrumb } from "@homonoid/react";
-import { Home } from "lucide-react";
+  if (compound) {
+    const lines: string[] = [];
+    lines.push('import { Breadcrumb } from "@homonoid/react";');
+    if (iconImports.length > 0) {
+      lines.push(`import { ${iconImports.join(", ")} } from "lucide-react";`);
+    }
+    lines.push("");
+    lines.push("export function Example() {");
+    lines.push("  return (");
 
-export function Example() {
-  const items = [
-    { label: "Dashboard", href: "/", icon: <Home className="size-3.5" /> },
-    { label: "Settings", href: "/settings" },
-    { label: "Security", href: "/settings/security" },
-    { label: "Two Factor Authentication" },
-  ];
+    const breadcrumbTag =
+      props.length > 0 ? `    <Breadcrumb ${props.join(" ")}>` : "    <Breadcrumb>";
+    lines.push(breadcrumbTag);
+    lines.push("      <Breadcrumb.List>");
 
-  return <Breadcrumb items={items} />;
-}`;
+    if (collapse) {
+      // First item
+      lines.push("        <Breadcrumb.Item>");
+      lines.push('          <Breadcrumb.Link href="/">');
+      if (showIcons) {
+        lines.push('            <Home className="size-3.5" />');
+      }
+      lines.push("            Home");
+      lines.push("          </Breadcrumb.Link>");
+      lines.push("        </Breadcrumb.Item>");
+      lines.push("        <Breadcrumb.Separator />");
 
-export const BREADCRUMB_COMPOUND_CODE_SAMPLE = `import { Breadcrumb } from "@homonoid/react";
-import { ChevronRight } from "lucide-react";
+      // Ellipsis
+      lines.push("        <Breadcrumb.Item>");
+      lines.push("          <Breadcrumb.Ellipsis />");
+      lines.push("        </Breadcrumb.Item>");
+      lines.push("        <Breadcrumb.Separator />");
 
-export function Example() {
-  return (
-    <Breadcrumb>
-      <Breadcrumb.List>
-        <Breadcrumb.Item>
-          <Breadcrumb.Link href="/">Home</Breadcrumb.Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Separator>
-          <ChevronRight className="size-3.5 text-muted" />
-        </Breadcrumb.Separator>
-        <Breadcrumb.Item>
-          <Breadcrumb.Link href="/store">Store</Breadcrumb.Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Separator>
-          <ChevronRight className="size-3.5 text-muted" />
-        </Breadcrumb.Separator>
-        <Breadcrumb.Item>
-          <Breadcrumb.Link href="/store/apparel">Apparel</Breadcrumb.Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Separator>
-          <ChevronRight className="size-3.5 text-muted" />
-        </Breadcrumb.Separator>
-        <Breadcrumb.Item>
-          <Breadcrumb.Page>Jackets</Breadcrumb.Page>
-        </Breadcrumb.Item>
-      </Breadcrumb.List>
-    </Breadcrumb>
-  );
-}`;
+      // Last item
+      lines.push("        <Breadcrumb.Item>");
+      lines.push("          <Breadcrumb.Page>");
+      lines.push("            Authentication");
+      lines.push("          </Breadcrumb.Page>");
+      lines.push("        </Breadcrumb.Item>");
+    } else {
+      BREADCRUMB_ITEMS.forEach((item, index) => {
+        const isLast = index === BREADCRUMB_ITEMS.length - 1;
+        lines.push("        <Breadcrumb.Item>");
+        if (isLast) {
+          lines.push("          <Breadcrumb.Page>");
+          lines.push(`            ${item.label}`);
+          lines.push("          </Breadcrumb.Page>");
+        } else {
+          lines.push(`          <Breadcrumb.Link href="${item.href}">`);
+          if (showIcons && item.iconName) {
+            lines.push(`            <${item.iconName} className="size-3.5" />`);
+          }
+          lines.push(`            ${item.label}`);
+          lines.push("          </Breadcrumb.Link>");
+        }
+        lines.push("        </Breadcrumb.Item>");
+        if (!isLast) {
+          lines.push("        <Breadcrumb.Separator />");
+        }
+      });
+    }
 
-export const BREADCRUMB_SIZES_CODE_SAMPLE = `import { Breadcrumb } from "@homonoid/react";
+    lines.push("      </Breadcrumb.List>");
+    lines.push("    </Breadcrumb>");
+    lines.push("  );");
+    lines.push("}");
 
-export function Example() {
-  const items = [
-    { label: "Workspace", href: "/" },
-    { label: "Projects", href: "/projects" },
-    { label: "Overview" },
-  ];
+    return lines.join("\n");
+  }
 
-  return (
-    <div className="flex flex-col gap-4 items-center justify-center">
-      <Breadcrumb size="sm" items={items} />
-      <Breadcrumb size="md" items={items} />
-      <Breadcrumb size="lg" items={items} />
-    </div>
-  );
-}`;
+  // Atomic mode
+  if (collapse) {
+    props.push("maxItems={3}");
+  }
 
-export const BREADCRUMB_SEPARATORS_CODE_SAMPLE = `import { Breadcrumb } from "@homonoid/react";
-import { ArrowRight } from "lucide-react";
+  const lines: string[] = [];
+  lines.push('import { Breadcrumb } from "@homonoid/react";');
+  if (showIcons) {
+    lines.push(`import { ${iconImports.join(", ")} } from "lucide-react";`);
+  }
+  lines.push("");
+  lines.push("const items = [");
+  BREADCRUMB_ITEMS.forEach((item) => {
+    const fields: string[] = [`label: "${item.label}"`];
+    if (item.href) {
+      fields.push(`href: "${item.href}"`);
+    }
+    if (showIcons && item.iconName) {
+      fields.push(`icon: <${item.iconName} className="size-3.5" />`);
+    }
+    lines.push(`  { ${fields.join(", ")} },`);
+  });
+  lines.push("];");
+  lines.push("");
+  lines.push("export function Example() {");
+  lines.push("  return (");
+  const propsString = props.length > 0 ? ` ${props.join(" ")}` : "";
+  lines.push(`    <Breadcrumb items={items}${propsString} />`);
+  lines.push("  );");
+  lines.push("}");
 
-export function Example() {
-  const items = [
-    { label: "Home", href: "/" },
-    { label: "Documentation", href: "/docs" },
-    { label: "Architecture" },
-  ];
-
-  return (
-    <div className="flex flex-col gap-4 items-center justify-center">
-      <Breadcrumb items={items} separator="/" />
-      <Breadcrumb
-        items={items}
-        separator={<ArrowRight className="size-3.5 text-muted" />}
-      />
-    </div>
-  );
-}`;
-
-export const BREADCRUMB_COLLAPSED_CODE_SAMPLE = `import { Breadcrumb } from "@homonoid/react";
-
-export function Example() {
-  const items = [
-    { label: "Root", href: "/" },
-    { label: "Users", href: "/users" },
-    { label: "Profiles", href: "/users/profiles" },
-    { label: "Preferences", href: "/users/profiles/preferences" },
-    { label: "Notification Channels" },
-  ];
-
-  return (
-    <Breadcrumb
-      items={items}
-      maxItems={3}
-      itemsBeforeCollapse={1}
-      itemsAfterCollapse={1}
-    />
-  );
-}`;
-
-export const BREADCRUMB_CARD_CODE_SAMPLE = `import { Breadcrumb, Card } from "@homonoid/react";
-
-export function Example() {
-  const items = [
-    { label: "Dashboard", href: "/" },
-    { label: "Projects", href: "/projects" },
-    { label: "Design System", href: "/projects/design-system" },
-    { label: "Tokens" },
-  ];
-
-  return (
-    <Card variant="filled" padding="none" className="px-5 py-2.5">
-      <Breadcrumb items={items} />
-    </Card>
-  );
-}`;
+  return lines.join("\n");
+}
 

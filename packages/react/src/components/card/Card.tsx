@@ -12,21 +12,20 @@ export const variants = cva(
         filled: "",
       },
       color: {
-        primary: "text-primary-foreground",
+        primary: "text-foreground",
         subtle: "text-subtle-foreground",
         surface: "text-foreground",
-        destructive: "text-destructive-foreground",
+        destructive: "text-foreground",
       },
       border: {
-        true: "border-[0.5px]",
-        false: "border-0",
+        true: "border",
+        false: "border border-transparent",
       },
       padding: {
         none: "p-0",
         sm: "p-surface-sm",
         md: "p-surface-md",
         lg: "p-surface-lg",
-        surface: "p-surface",
       },
     },
     compoundVariants: [
@@ -37,16 +36,16 @@ export const variants = cva(
       { border: true, color: "destructive", className: "border-destructive-border" },
 
       // Fills when variant is filled
-      { variant: "filled", color: "primary", className: "bg-primary" },
-      { variant: "filled", color: "subtle", className: "bg-subtle" },
+      { variant: "filled", color: "primary", className: "bg-primary-background" },
+      { variant: "filled", color: "subtle", className: "bg-subtle-background" },
       { variant: "filled", color: "surface", className: "bg-surface" },
-      { variant: "filled", color: "destructive", className: "bg-destructive" },
+      { variant: "filled", color: "destructive", className: "bg-destructive-background" },
     ],
     defaultVariants: {
       variant: "outlined",
       color: "surface",
       border: true,
-      padding: "surface",
+      padding: "md",
     },
   }
 );

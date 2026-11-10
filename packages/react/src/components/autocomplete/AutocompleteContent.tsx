@@ -13,10 +13,10 @@ import type { AutocompleteContentProps } from "./types";
 
 const radiusClasses: Record<string, string> = {
   none: "rounded-none",
-  sm: "rounded-md",
-  md: "rounded-lg",
-  lg: "rounded-xl",
-  full: "rounded-2xl",
+  sm: "rounded-lg",
+  md: "rounded-xl",
+  lg: "rounded-2xl",
+  full: "rounded-3xl",
 };
 
 export const AutocompleteContent = forwardRef<HTMLDivElement, AutocompleteContentProps>(
@@ -81,7 +81,7 @@ export const AutocompleteContent = forwardRef<HTMLDivElement, AutocompleteConten
             }}
             data-state={cond(open, "open", "closed")}
             className={cn(
-              "transform-gpu overflow-hidden bg-surface border-[0.5px] border-border shadow-lg p-1 focus:outline-none",
+              "transform-gpu overflow-hidden bg-surface border border-border shadow-lg p-1 focus:outline-none",
               cond(context.placement.startsWith("top"), "origin-bottom", "origin-top"),
               match(radius, radiusClasses, "rounded-lg"),
               className

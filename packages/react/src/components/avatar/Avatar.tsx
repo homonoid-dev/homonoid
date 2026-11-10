@@ -4,6 +4,7 @@ import {
   Children,
   forwardRef,
   isValidElement,
+  useEffect,
   useMemo,
   useState,
   type ForwardRefExoticComponent,
@@ -58,7 +59,7 @@ export const avatarVariants = cva(
       variant: {
         contained: "border border-transparent",
         outlined: "border",
-        plain: "border-transparent",
+        plain: "border border-transparent",
       },
       color: {
         primary: "",
@@ -150,6 +151,12 @@ export const Avatar = forwardRef<HTMLElement, AvatarProps>(function Avatar(
 ) {
   const [imageLoadingStatus, setImageLoadingStatus] =
     useState<ImageLoadingStatus>(cond(Boolean(src), "loading", "idle"));
+
+  useEffect(() => {
+    if (!src) {
+      setImageLoadingStatus("idle");
+    }
+  }, [src]);
 
   const contextValue = useMemo<AvatarContextValue>(
     () => ({

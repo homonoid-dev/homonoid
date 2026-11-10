@@ -65,10 +65,10 @@ Homonoid separates structural surface treatments from semantic color palettes th
 
 Semantic color intent applies orthogonally across all variants through the `color` property:
 
-* `Primary` (`color="primary"`): Brand driven Chroma primary palette for focal statuses and active notifications.
-* `Subtle` (`color="subtle"`): Low contrast neutral palette for auxiliary classifications and quiet counts.
-* `Surface` (`color="surface"`): Monochromatic palette adapting cleanly across light and dark surface planes.
-* `Destructive` (`color="destructive"`): Red status palette signaling urgent notifications, critical errors, or destructive alerts.
+* `Primary` (`color="primary"`): Brand driven Chroma primary palette (`bg-primary` / `text-primary-foreground`) delivering high prominence for focal statuses and active notifications.
+* `Subtle` (`color="subtle"`): Low contrast neutral palette (`bg-subtle-background` / `text-subtle-foreground`) for auxiliary classifications and quiet counts.
+* `Surface` (`color="surface"`): Monochromatic palette (`bg-surface` / `text-foreground`) adapting cleanly across light and dark surface planes.
+* `Destructive` (`color="destructive"`): Red status palette (`bg-destructive-background` / `text-destructive`) signaling urgent notifications, critical errors, or destructive alerts.
 
 <br>
 

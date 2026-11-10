@@ -1,164 +1,80 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  Layers,
-  Paintbrush,
-  Square,
-  Infinity,
-  Accessibility,
-  Palette,
-  BookOpen,
-} from "lucide-react";
-import type { TocItemModel } from "@/components/ui/toc";
+import type { CardColor, CardPadding, CardVariant } from "@homonoid/react";
 
-export interface CardSectionItem extends TocItemModel {
-  id: string;
-  label: string;
-  icon: LucideIcon;
+export interface CardCodeOptions {
+  variant: CardVariant;
+  color: CardColor;
+  padding: CardPadding;
+  border: boolean;
+  showBadge: boolean;
+  showActions: boolean;
 }
 
-export const CARD_SECTIONS: Record<string, CardSectionItem> = {
-  variants: {
-    id: "variants",
-    label: "Variants",
-    icon: Layers,
-  },
-  colors: {
-    id: "colors",
-    label: "Colors",
-    icon: Paintbrush,
-  },
-  border: {
-    id: "border-control",
-    label: "Border Control",
-    icon: Square,
-  },
-  continuity: {
-    id: "object-continuity",
-    label: "Continuity",
-    icon: Infinity,
-  },
-  accessibility: {
-    id: "accessibility",
-    label: "Accessibility",
-    icon: Accessibility,
-  },
-  tokens: {
-    id: "design-tokens",
-    label: "Design Tokens",
-    icon: Palette,
-  },
-  styleReference: {
-    id: "style-reference",
-    label: "Style Reference",
-    icon: BookOpen,
-  },
-};
+export function getCardCode(options: CardCodeOptions): string {
+  const { variant, color, padding, border, showBadge, showActions } = options;
 
-export const CARD_SECTIONS_LIST: CardSectionItem[] =
-  Object.values(CARD_SECTIONS);
+  const props: string[] = [];
 
-export const CARD_DEFAULT_CODE_SAMPLE = `import { Card, Label, Description } from "@homonoid/react";
+  if (variant !== "outlined") {
+    props.push(`variant="${variant}"`);
+  }
+  if (color !== "surface") {
+    props.push(`color="${color}"`);
+  }
+  if (padding !== "md") {
+    props.push(`padding="${padding}"`);
+  }
+  if (!border) {
+    props.push("border={false}");
+  }
 
-export function Example() {
-  return (
-    <Card className="flex flex-col gap-2 max-w-sm w-full p-surface">
-      <Label as="h3">
-        Project Overview
-      </Label>
-      <Description>
-        Homonoid components provide continuous aesthetic fidelity and tactile physics.
-      </Description>
-    </Card>
+  const imports = ["Card", "Heading", "Description"];
+  if (showBadge) {
+    imports.push("Badge");
+  }
+  if (showActions) {
+    imports.push("Button");
+  }
+
+  const propsString = props.length > 0 ? ` ${props.join(" ")}` : "";
+
+  const lines: string[] = [
+    `import { ${imports.join(", ")} } from "@homonoid/react";`,
+    "",
+    "export function Example() {",
+    "  return (",
+    `    <Card${propsString}>`,
+    '      <div className="flex flex-col gap-surface-sm">',
+  ];
+
+  if (showBadge) {
+    lines.push('        <div className="flex items-center justify-between">');
+    lines.push('          <Badge variant="outlined" color="primary">Active</Badge>');
+    lines.push("        </div>");
+  }
+
+  lines.push('        <div className="flex flex-col gap-1">');
+  lines.push('          <Heading as="h3">Security Overview</Heading>');
+  lines.push(
+    "          <Description>Two factor authentication is enabled across all workspace accounts.</Description>"
   );
-}`;
+  lines.push("        </div>");
 
-export const CARD_VARIANTS_CODE_SAMPLE = `import { Card, Label, Description } from "@homonoid/react";
+  if (showActions) {
+    lines.push('        <div className="flex items-center gap-control-gap pt-2">');
+    lines.push(
+      '          <Button variant="contained" color="primary" size="sm">Manage</Button>'
+    );
+    lines.push(
+      '          <Button variant="outlined" color="surface" size="sm">Details</Button>'
+    );
+    lines.push("        </div>");
+  }
 
-export function Example() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap w-full max-w-lg">
-      <Card variant="outlined" className="flex flex-col gap-2">
-        <Label as="h3">
-          Outlined Card
-        </Label>
-        <Description>
-          Transparent surface framed by an optional hairline border stroke.
-        </Description>
-      </Card>
-      <Card variant="filled" className="flex flex-col gap-2">
-        <Label as="h3">
-          Filled Card
-        </Label>
-        <Description>
-          Solid surface fill providing grounded visual grouping across views.
-        </Description>
-      </Card>
-    </div>
-  );
-}`;
+  lines.push("      </div>");
+  lines.push("    </Card>");
+  lines.push("  );");
+  lines.push("}");
 
-export const CARD_COLORS_CODE_SAMPLE = `import { Card, Label, Description } from "@homonoid/react";
+  return lines.join("\n");
+}
 
-export function Example() {
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-surface-gap w-full max-w-lg">
-      <Card variant="filled" color="surface" className="flex flex-col gap-2">
-        <Label as="h3" className="text-inherit">
-          Surface
-        </Label>
-        <Description className="text-inherit opacity-80">
-          Neutral surface background.
-        </Description>
-      </Card>
-      <Card variant="filled" color="subtle" className="flex flex-col gap-2">
-        <Label as="h3" className="text-inherit">
-          Subtle
-        </Label>
-        <Description className="text-inherit opacity-80">
-          Chroma subtle wash tint.
-        </Description>
-      </Card>
-      <Card variant="filled" color="primary" className="flex flex-col gap-2">
-        <Label as="h3" className="text-inherit">
-          Primary
-        </Label>
-        <Description className="text-inherit opacity-80">
-          Brand highlight container.
-        </Description>
-      </Card>
-      <Card variant="filled" color="destructive" className="flex flex-col gap-2">
-        <Label as="h3" className="text-inherit">
-          Destructive
-        </Label>
-        <Description className="text-inherit opacity-80">
-          Danger alert container.
-        </Description>
-      </Card>
-    </div>
-  );
-}`;
-
-export const CARD_BORDER_CODE_SAMPLE = `import { Card, Label, Description } from "@homonoid/react";
-
-export function Example() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-surface-gap w-full max-w-lg">
-      <Card variant="filled" border={true} className="flex flex-col gap-2">
-        <Label as="h3">
-          With Border
-        </Label>
-        <Description>
-          Hairline border framing the card perimeter.
-        </Description>
-      </Card>
-      <Card variant="filled" border={false} className="flex flex-col gap-2">
-        <Label as="h3">
-          Borderless
-        </Label>
-        <Description>
-          Border stroke omitted for flat layered surfaces.
-        </Description>
-      </Card>
-    </div>
-  );
-}`;
