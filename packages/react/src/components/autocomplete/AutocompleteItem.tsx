@@ -18,17 +18,17 @@ import type { AutocompleteItemProps, AutocompleteRadius } from "./types";
 const CONCENTRIC_RADIUS_MAP: Record<AutocompleteRadius, AutocompleteRadius> = {
   none: "none",
   sm: "sm",
-  md: "sm",
-  lg: "md",
+  md: "md",
+  lg: "lg",
   full: "lg",
 };
 
 const CONCENTRIC_RADIUS_CLASSES: Record<AutocompleteRadius, string> = {
   none: "rounded-none",
-  sm: "rounded-xs",
-  md: "rounded-sm",
-  lg: "rounded-lg",
-  full: "rounded-xl",
+  sm: "rounded-sm",
+  md: "rounded-lg",
+  lg: "rounded-xl",
+  full: "rounded-2xl",
 };
 
 export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps>(

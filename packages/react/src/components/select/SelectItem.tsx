@@ -12,15 +12,15 @@ const CONCENTRIC_RADIUS_MAP: Record<SelectRadius, SelectRadius> = {
   sm: "sm",
   md: "md",
   lg: "lg",
-  full: "full",
+  full: "lg",
 };
 
 const CONCENTRIC_RADIUS_CLASSES: Record<SelectRadius, string> = {
   none: "rounded-none",
-  sm: "rounded-md",
+  sm: "rounded-sm",
   md: "rounded-lg",
   lg: "rounded-xl",
-  full: "rounded-full",
+  full: "rounded-2xl",
 };
 
 export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(

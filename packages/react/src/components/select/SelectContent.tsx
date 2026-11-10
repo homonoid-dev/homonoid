@@ -14,10 +14,10 @@ import type { SelectContentProps } from "./types";
 
 const radiusClasses: Record<string, string> = {
   none: "rounded-none",
-  sm: "rounded-md",
-  md: "rounded-lg",
-  lg: "rounded-xl",
-  full: "rounded-2xl",
+  sm: "rounded-lg",
+  md: "rounded-xl",
+  lg: "rounded-2xl",
+  full: "rounded-3xl",
 };
 
 export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
