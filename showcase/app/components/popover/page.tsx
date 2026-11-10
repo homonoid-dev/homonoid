@@ -1,5 +1,5 @@
-import { Page } from "@/components/ui/page";
+import { PopoverView } from "@/components/ui/popover/view";
 
 export default function PopoverPage() {
-  return <Page />;
+  return <PopoverView />;
 }
