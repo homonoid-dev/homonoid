@@ -1,7 +1,6 @@
-import type { Color, Size, StepperOrientation, StepperVariant } from "@homonoid/react";
+import type { Color, Size, StepperVariant } from "@homonoid/react";
 
 export interface StepperCodeOptions {
-  orientation: StepperOrientation;
   variant: StepperVariant;
   size: Size;
   color: Color;
@@ -12,7 +11,6 @@ export interface StepperCodeOptions {
 
 export function getStepperCode(options: StepperCodeOptions): string {
   const {
-    orientation,
     variant,
     size,
     color,
@@ -23,9 +21,6 @@ export function getStepperCode(options: StepperCodeOptions): string {
 
   const props: string[] = [];
 
-  if (orientation !== "horizontal") {
-    props.push(`orientation="${orientation}"`);
-  }
   if (variant !== "circle") {
     props.push(`variant="${variant}"`);
   }
@@ -63,7 +58,7 @@ export function getStepperCode(options: StepperCodeOptions): string {
     `  const [activeStep, setActiveStep] = useState(${activeStep});`,
     "",
     "  return (",
-    `    <div className="w-full ${orientation === "vertical" ? "max-w-md" : "max-w-xl"} flex flex-col gap-8 p-6">`,
+    '    <div className="w-full max-w-xl flex flex-col gap-8 p-6">',
     `      <Stepper${propsString}`,
     "      />",
     '      <div className="flex items-center justify-between pt-4 border-t border-border">',
@@ -89,4 +84,3 @@ export function getStepperCode(options: StepperCodeOptions): string {
     "}",
   ].join("\n");
 }
-

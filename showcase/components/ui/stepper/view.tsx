@@ -2,21 +2,16 @@
 
 import { useMemo, useState } from "react";
 import {
-  cond,
   Button,
   Stepper,
-  Tabs,
   type Color,
   type Size,
-  type StepperOrientation,
   type StepperVariant,
 } from "@homonoid/react";
-import { cn } from "@homonoid/react/cn";
 import { Studio } from "@/components/ui/studio";
 import { getStepperCode } from "./model";
 
 export function StepperView() {
-  const [orientation, setOrientation] = useState<StepperOrientation>("horizontal");
   const [variant, setVariant] = useState<StepperVariant>("circle");
   const [size, setSize] = useState<Size>("md");
   const [color, setColor] = useState<Color>("primary");
@@ -48,7 +43,6 @@ export function StepperView() {
   const code = useMemo(
     () =>
       getStepperCode({
-        orientation,
         variant,
         size,
         color,
@@ -57,7 +51,6 @@ export function StepperView() {
         activeStep,
       }),
     [
-      orientation,
       variant,
       size,
       color,
@@ -104,30 +97,12 @@ export function StepperView() {
             onChange: setShowDescriptions,
           },
         ],
-        children: (
-          <Tabs
-            value={orientation}
-            onValueChange={(val) => setOrientation(val as StepperOrientation)}
-            size="sm"
-          >
-            <Tabs.List>
-              <Tabs.Tab value="horizontal">Horizontal</Tabs.Tab>
-              <Tabs.Tab value="vertical">Vertical</Tabs.Tab>
-            </Tabs.List>
-          </Tabs>
-        ),
       }}
     >
-      <div
-        className={cn(
-          "w-full flex flex-col gap-8 p-6",
-          cond(orientation === "vertical", "max-w-md", "max-w-xl")
-        )}
-      >
+      <div className="w-full max-w-xl flex flex-col gap-8 p-6">
         <Stepper
           value={activeStep}
           onValueChange={(val) => setActiveStep(Number(val))}
-          orientation={orientation}
           variant={variant}
           size={size}
           color={color}
@@ -156,4 +131,3 @@ export function StepperView() {
     </Studio>
   );
 }
-

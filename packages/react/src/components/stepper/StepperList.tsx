@@ -2,14 +2,25 @@
 
 import { forwardRef } from "react";
 import { cn } from "../../utils/cn";
-import { cond } from "../../utils/condition";
+import { cond, match } from "../../utils/condition";
 import { useStepperContext } from "./StepperContext";
 import type { StepperListProps } from "./types";
 
 export const StepperList = forwardRef<HTMLOListElement, StepperListProps>(
   function StepperList({ className, children, ...props }, ref) {
-    const { orientation, placement } = useStepperContext();
+    const { orientation, placement, variant, size } = useStepperContext();
     const isHorizontal = orientation === "horizontal";
+    const isBar = variant === "bar";
+
+    const barGapClass = match(
+      size,
+      {
+        sm: "gap-2",
+        md: "gap-3",
+        lg: "gap-4",
+      },
+      "gap-3"
+    );
 
     return (
       <ol
@@ -22,9 +33,13 @@ export const StepperList = forwardRef<HTMLOListElement, StepperListProps>(
           cond(
             isHorizontal,
             cond(
-              placement === "inline",
-              "flex items-center justify-between",
-              "flex items-start justify-between"
+              isBar,
+              cn("flex items-start justify-between", barGapClass),
+              cond(
+                placement === "inline",
+                "flex items-center justify-between",
+                "flex items-start justify-between"
+              )
             ),
             "flex flex-col gap-6"
           ),
