@@ -71,7 +71,7 @@ export function InputView() {
         },
         radius: {
           value: radius,
-          options: ["none", "sm", "md", "lg", "full"],
+          options: ["full", "lg", "md", "sm", "none"],
           onChange: setRadius,
         },
         switches: [
