@@ -1,5 +1,5 @@
-import { Page } from "@/components/ui/page";
+import { StepperView } from "@/components/ui/stepper/view";
 
 export default function StepperPage() {
-  return <Page />;
+  return <StepperView />;
 }
