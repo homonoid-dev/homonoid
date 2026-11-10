@@ -1,5 +1,5 @@
-import { Page } from "@/components/ui/page";
+import { TileView } from "@/components/ui/tile/view";
 
 export default function TilePage() {
-  return <Page />;
+  return <TileView />;
 }

@@ -1,5 +1,5 @@
-import { Page } from "@/components/ui/page";
+import { TooltipView } from "@/components/ui/tooltip/view";
 
 export default function TooltipPage() {
-  return <Page />;
+  return <TooltipView />;
 }
