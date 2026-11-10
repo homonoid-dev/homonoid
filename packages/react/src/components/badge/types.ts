@@ -1,7 +1,7 @@
 import type { ElementType, HTMLAttributes, ReactNode, Ref } from "react";
-import type { Color, Radius, Size } from "../../types";
+import type { Color, Radius, Size, Variant } from "../../types";
 
-export type BadgeVariant = "contained" | "outlined" | "plain";
+export type BadgeVariant = Variant;
 export type BadgeColor = Color;
 export type BadgeSize = Size;
 export type BadgeRadius = Radius;
