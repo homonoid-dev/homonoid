@@ -2,10 +2,8 @@
 
 import { useMemo, useState } from "react";
 import {
-  cond,
   when,
   Description,
-  Input,
   Label,
   type LabelSize,
 } from "@homonoid/react";
@@ -16,7 +14,6 @@ export function LabelView() {
   const [size, setSize] = useState<LabelSize>("md");
   const [disabled, setDisabled] = useState(false);
   const [required, setRequired] = useState(false);
-  const [paired, setPaired] = useState(true);
   const [showDescription, setShowDescription] = useState(true);
 
   const code = useMemo(
@@ -25,10 +22,9 @@ export function LabelView() {
         size,
         disabled,
         required,
-        paired,
         showDescription,
       }),
-    [size, disabled, required, paired, showDescription]
+    [size, disabled, required, showDescription]
   );
 
   return (
@@ -51,15 +47,8 @@ export function LabelView() {
             onChange: setRequired,
           },
           {
-            id: "paired",
-            label: "Control Association",
-            description: "Link to interactive input target",
-            checked: paired,
-            onChange: setPaired,
-          },
-          {
             id: "description",
-            label: "Helper Description",
+            label: "Description",
             description: "Accompany with secondary caption",
             checked: showDescription,
             onChange: setShowDescription,
@@ -75,36 +64,19 @@ export function LabelView() {
       }}
     >
       <div className="w-full max-w-sm p-4">
-        {cond(
-          paired,
-          <div className="flex flex-col gap-1.5 w-full text-left">
-            <Label htmlFor="user-email" size={size} disabled={disabled}>
-              Email address
-              {when(required, <span className="text-destructive ml-0.5">*</span>)}
-            </Label>
-            <Input id="user-email" placeholder="name@example.com" disabled={disabled} />
-            {when(
-              showDescription,
-              <Description size="sm" disabled={disabled}>
-                We will never share your email address with third parties.
-              </Description>
-            )}
-          </div>,
-          <div className="flex flex-col gap-1 w-full text-left">
-            <Label size={size} disabled={disabled}>
-              Account Identifier
-              {when(required, <span className="text-destructive ml-0.5">*</span>)}
-            </Label>
-            {when(
-              showDescription,
-              <Description size="sm" disabled={disabled}>
-                Unique username or verified corporate email handle.
-              </Description>
-            )}
-          </div>
-        )}
+        <div className="flex flex-col gap-1 w-full text-left">
+          <Label size={size} disabled={disabled}>
+            Account Identifier
+            {when(required, <span className="text-destructive ml-0.5">*</span>)}
+          </Label>
+          {when(
+            showDescription,
+            <Description size="sm" disabled={disabled}>
+              Unique username or verified corporate email handle.
+            </Description>
+          )}
+        </div>
       </div>
     </Studio>
   );
 }
-
