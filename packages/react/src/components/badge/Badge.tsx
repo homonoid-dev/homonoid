@@ -19,7 +19,7 @@ const PALETTES = {
     plain: "text-primary border-transparent bg-transparent",
   },
   subtle: {
-    solid: "bg-subtle text-subtle-foreground border-transparent",
+    solid: "bg-subtle-background text-subtle-foreground border-transparent",
     ghost: "text-subtle-foreground border-subtle-border bg-transparent",
     plain: "text-subtle-foreground border-transparent bg-transparent",
   },
@@ -29,7 +29,7 @@ const PALETTES = {
     plain: "text-foreground border-transparent bg-transparent",
   },
   destructive: {
-    solid: "bg-destructive text-destructive-foreground border-transparent",
+    solid: "bg-destructive-background text-destructive border-transparent",
     ghost: "text-destructive border-destructive-border bg-transparent",
     plain: "text-destructive border-transparent bg-transparent",
   },
@@ -80,6 +80,7 @@ export const badgeVariants = cva(
       { dot: true, size: "md", className: "size-2" },
       { dot: true, size: "lg", className: "size-2.5" },
       ...compounds,
+      { dot: true, color: "destructive", className: "bg-destructive" },
     ],
     defaultVariants: {
       variant: "contained",
