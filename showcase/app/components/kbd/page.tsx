@@ -1,5 +1,5 @@
-import { Page } from "@/components/ui/page";
+import { KbdView } from "@/components/ui/kbd/view";
 
 export default function KbdPage() {
-  return <Page />;
+  return <KbdView />;
 }
