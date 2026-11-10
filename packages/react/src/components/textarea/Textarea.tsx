@@ -14,15 +14,16 @@ import {
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import { all, any, cond, match, when } from "../../utils/condition";
-import type { TextareaProps, TextareaResize } from "./types";
+import { TextareaNotchedOutline } from "./TextareaNotchedOutline";
+import { useTextareaNotchedOutline } from "./useTextareaNotchedOutline";
+import type { TextareaProps, TextareaRadius, TextareaResize } from "./types";
 
 export const variants = cva(
   "w-full transform-gpu origin-center transition-[color,background-color,border-color,opacity] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] outline-none focus:outline-none focus:ring-0 leading-normal selection:bg-primary/30",
   {
     variants: {
       variant: {
-        outlined:
-          "border border-border bg-transparent hover:border-foreground/30 focus:border-primary focus:hover:border-primary",
+        outlined: "border border-transparent bg-transparent",
         contained:
           "border border-transparent bg-surface hover:bg-surface-hover focus:border-primary",
         plain: "border border-transparent bg-transparent hover:bg-surface-hover",
@@ -40,7 +41,7 @@ export const variants = cva(
         full: "rounded-2xl",
       },
       invalid: {
-        true: "border-destructive/30 hover:border-destructive focus:border-destructive text-destructive placeholder:text-destructive/60",
+        true: "text-destructive placeholder:text-destructive/60",
         false: "text-foreground placeholder:text-muted",
       },
       disabled: {
@@ -72,6 +73,14 @@ export const variants = cva(
   }
 );
 
+const radiusClasses: Record<TextareaRadius, string> = {
+  none: "rounded-none",
+  sm: "rounded-md",
+  md: "rounded-lg",
+  lg: "rounded-xl",
+  full: "rounded-2xl",
+};
+
 const resizeClasses: Record<TextareaResize, string> = {
   none: "resize-none",
   vertical: "resize-y",
@@ -89,7 +98,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       label,
       floating = false,
       floatingLabel = false,
-      floatingLabelClassName,
+      floatingLabelClassName: _floatingLabelClassName,
       description,
       error,
       invalid = false,
@@ -155,13 +164,12 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       );
 
       element.style.height = `${targetHeight}px`;
-      element.style.overflowY =
-        element.scrollHeight > maxHeight ? "auto" : "hidden";
+      element.style.overflowY = element.scrollHeight > maxHeight ? "auto" : "hidden";
     }, [autoResize, minRows, maxRows, size]);
 
     useEffect(() => {
       adjustHeight();
-    }, [adjustHeight, value, internalValue]);
+    }, [value, internalValue, adjustHeight]);
 
     const handleContainerClick = (e: MouseEvent<HTMLDivElement>) => {
       if (
@@ -173,7 +181,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     };
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      if (!isControlled) {
+      if (isFloating && !isControlled) {
         setInternalValue(e.target.value);
       }
       adjustHeight();
@@ -200,6 +208,16 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       Boolean(innerRef.current?.value)
     );
     const isFloated = any(isFocused, hasValue);
+    const isOutlined = variant === "outlined";
+
+    const { labelRef, containerRef, clipPath } = useTextareaNotchedOutline({
+      isFloating,
+      isFloated,
+      isOutlined,
+      label,
+      leading,
+      size,
+    });
 
     const userDescribedBy = props["aria-describedby"];
     const describedByParts = [
@@ -209,20 +227,6 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     ].filter(Boolean);
     const finalDescribedBy =
       describedByParts.length > 0 ? describedByParts.join(" ") : undefined;
-
-    const floatingLabelBg = cond(
-      Boolean(floatingLabelClassName),
-      floatingLabelClassName,
-      match(
-        variant,
-        {
-          contained: "bg-surface",
-          outlined: "bg-background",
-          plain: "bg-transparent",
-        },
-        "bg-background"
-      )
-    );
 
     const floatingLabelColor = cond(
       isInvalid,
@@ -274,48 +278,37 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           )
         )}
       >
-        <div className="relative inline-grid items-center -ml-1">
-          <span
-            aria-hidden="true"
-            className={cn(
-              "col-start-1 row-start-1 h-full w-full px-1.5 -my-1 rounded-xs",
-              "transform-gpu origin-left scale-85",
-              "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
-              floatingLabelBg,
-              cond(isFloated, "opacity-100", "opacity-0")
-            )}
-          />
-
-          <label
-            id={labelId}
-            htmlFor={inputId}
-            data-slot="textarea-floating-label"
-            data-floated={cond(isFloated, "true", "false")}
-            className={cn(
-              "col-start-1 row-start-1 inline-flex items-center px-1 rounded-xs truncate leading-normal origin-left",
-              "transform-gpu subpixel-antialiased",
-              "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
-              restingLabelSize,
-              floatingLabelColor,
-              cond(isFloated, "scale-85 -translate-y-0.5", "scale-100 translate-y-0"),
-              cond(disabled, "opacity-50", undefined)
-            )}
-          >
-            {label}
-            {when(
-              props.required,
-              <span className="text-destructive ml-0.5" aria-hidden="true">
-                *
-              </span>
-            )}
-          </label>
-        </div>
+        <label
+          ref={labelRef}
+          id={labelId}
+          htmlFor={inputId}
+          data-slot="textarea-floating-label"
+          data-floated={cond(isFloated, "true", "false")}
+          className={cn(
+            "inline-flex items-center px-1 rounded-xs truncate leading-normal origin-left",
+            "transform-gpu subpixel-antialiased",
+            "transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] motion-reduce:transition-none",
+            restingLabelSize,
+            floatingLabelColor,
+            cond(isFloated, "scale-85 -translate-y-0.5", "scale-100 translate-y-0"),
+            cond(disabled, "opacity-50", undefined)
+          )}
+        >
+          {label}
+          {when(
+            props.required,
+            <span className="text-destructive ml-0.5" aria-hidden="true">
+              *
+            </span>
+          )}
+        </label>
       </div>
     );
 
-    const hasExternalLabel = all(!isFloating, Boolean(label));
+    const hasLabel = Boolean(label);
+    const hasExternalLabel = all(!isFloating, hasLabel);
     const hasFooter = any(Boolean(error), Boolean(description));
-    const needsOuterWrapper = any(hasExternalLabel, hasFooter);
+    const needsOuterWrapper = any(hasLabel, hasFooter);
 
     const activeResize = cond(autoResize, "none", resize);
     const resizeClass = match(activeResize, resizeClasses, "resize-y");
@@ -339,8 +332,6 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       },
       "top-2"
     );
-
-    const hasDecorations = any(Boolean(leading), Boolean(trailing), isFloating);
 
     const textareaElement = (
       <textarea
@@ -370,19 +361,19 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           }),
           leadingPadding,
           trailingPadding,
-          resizeClass,
-          cond(!needsOuterWrapper && !hasDecorations, className, undefined)
+          resizeClass
         )}
         {...props}
       />
     );
 
-    const controlWrapper = cond(
-      hasDecorations,
+    const controlContainer = (
       <div
+        ref={containerRef}
         onClick={handleContainerClick}
         className={cn(
-          "relative w-full",
+          "group relative w-full",
+          radiusClasses[radius],
           cond(!needsOuterWrapper, className, undefined)
         )}
       >
@@ -415,12 +406,20 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             {trailing}
           </span>
         )}
-      </div>,
-      textareaElement
+
+        <TextareaNotchedOutline
+          isOutlined={isOutlined}
+          isFloated={isFloated}
+          isFocused={isFocused}
+          isInvalid={isInvalid}
+          disabled={disabled}
+          clipPath={clipPath}
+        />
+      </div>
     );
 
     if (!needsOuterWrapper) {
-      return controlWrapper;
+      return controlContainer;
     }
 
     return (
@@ -445,7 +444,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           </label>
         )}
 
-        {controlWrapper}
+        {controlContainer}
 
         {when(
           error,
@@ -472,4 +471,3 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 );
 
 Textarea.displayName = "Textarea";
-
