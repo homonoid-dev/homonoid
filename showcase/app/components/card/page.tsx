@@ -1,5 +1,5 @@
-import { Page } from "@/components/ui/page";
+import { CardView } from "@/components/ui/card/view";
 
 export default function CardPage() {
-  return <Page />;
+  return <CardView />;
 }
