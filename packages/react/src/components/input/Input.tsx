@@ -189,9 +189,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   ].filter(Boolean);
   const finalDescribedBy = describedByParts.length > 0 ? describedByParts.join(" ") : undefined;
 
-  const hasExternalLabel = all(!isFloating, Boolean(label));
+  const hasLabel = Boolean(label);
+  const hasExternalLabel = all(!isFloating, hasLabel);
   const hasFooter = any(Boolean(error), Boolean(description));
-  const needsOuterWrapper = any(hasExternalLabel, hasFooter);
+  const needsOuterWrapper = any(hasLabel, hasFooter);
 
   const controlContainer = (
     <div
