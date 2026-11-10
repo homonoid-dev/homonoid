@@ -13,14 +13,14 @@
     --primary-active: color-mix(in srgb, var(--seed) 75%, black);
     --primary-foreground: #ffffff;
     --primary-border: color-mix(in srgb, var(--seed) 28%, white);
-    --primary-background: color-mix(in srgb, var(--seed) 10%, var(--surface));
+    --primary-background: color-mix(in srgb, var(--seed) 22%, var(--surface));
 
     /* Chroma Subtle Family (Light Mode) */
-    --subtle: color-mix(in srgb, var(--seed) 12%, var(--surface));
-    --subtle-hover: color-mix(in srgb, var(--seed) 18%, var(--surface));
-    --subtle-active: color-mix(in srgb, var(--seed) 25%, var(--surface));
+    --subtle: color-mix(in srgb, var(--seed) 7%, var(--surface));
+    --subtle-hover: color-mix(in srgb, var(--seed) 12%, var(--surface));
+    --subtle-active: color-mix(in srgb, var(--seed) 18%, var(--surface));
     --subtle-foreground: color-mix(in srgb, var(--seed) 85%, black);
-    --subtle-border: color-mix(in srgb, var(--seed) 28%, var(--border));
+    --subtle-border: color-mix(in srgb, var(--seed) 20%, var(--border));
     --subtle-background: var(--subtle);
 
     /* Pure Neutral Surfaces & Typography (Light Mode) */
@@ -38,7 +38,7 @@
     --destructive-active: color-mix(in srgb, var(--destructive) 75%, black);
     --destructive-foreground: #ffffff;
     --destructive-border: color-mix(in srgb, var(--destructive) 28%, white);
-    --destructive-background: color-mix(in srgb, var(--destructive) 10%, var(--surface));
+    --destructive-background: color-mix(in srgb, var(--destructive) 18%, var(--surface));
   }
 
   /* Chroma Auto-Derived Palette (Dark Mode) */
@@ -49,14 +49,14 @@
       --primary-active: color-mix(in srgb, var(--seed) 60%, white);
       --primary-foreground: #ffffff;
       --primary-border: color-mix(in srgb, var(--seed) 28%, transparent);
-      --primary-background: color-mix(in srgb, var(--seed) 15%, var(--surface));
+      --primary-background: color-mix(in srgb, var(--seed) 26%, var(--surface));
 
       /* Chroma Subtle Family (Dark Mode) */
-      --subtle: color-mix(in srgb, var(--seed) 18%, var(--surface));
-      --subtle-hover: color-mix(in srgb, var(--seed) 26%, var(--surface));
-      --subtle-active: color-mix(in srgb, var(--seed) 34%, var(--surface));
+      --subtle: color-mix(in srgb, var(--seed) 10%, var(--surface));
+      --subtle-hover: color-mix(in srgb, var(--seed) 16%, var(--surface));
+      --subtle-active: color-mix(in srgb, var(--seed) 22%, var(--surface));
       --subtle-foreground: color-mix(in srgb, var(--seed) 75%, white);
-      --subtle-border: color-mix(in srgb, var(--seed) 30%, var(--border));
+      --subtle-border: color-mix(in srgb, var(--seed) 22%, var(--border));
       --subtle-background: var(--subtle);
 
       --background: #000000;
@@ -72,7 +72,7 @@
       --destructive-active: color-mix(in srgb, var(--destructive) 70%, white);
       --destructive-foreground: #ffffff;
       --destructive-border: color-mix(in srgb, var(--destructive) 30%, transparent);
-      --destructive-background: color-mix(in srgb, var(--destructive) 15%, var(--surface));
+      --destructive-background: color-mix(in srgb, var(--destructive) 22%, var(--surface));
     }
   }
 
@@ -82,14 +82,14 @@
     --primary-active: color-mix(in srgb, var(--seed) 60%, white);
     --primary-foreground: #ffffff;
     --primary-border: color-mix(in srgb, var(--seed) 28%, transparent);
-    --primary-background: color-mix(in srgb, var(--seed) 15%, var(--surface));
+    --primary-background: color-mix(in srgb, var(--seed) 26%, var(--surface));
 
     /* Chroma Subtle Family (Dark Mode) */
-    --subtle: color-mix(in srgb, var(--seed) 18%, var(--surface));
-    --subtle-hover: color-mix(in srgb, var(--seed) 26%, var(--surface));
-    --subtle-active: color-mix(in srgb, var(--seed) 34%, var(--surface));
+    --subtle: color-mix(in srgb, var(--seed) 10%, var(--surface));
+    --subtle-hover: color-mix(in srgb, var(--seed) 16%, var(--surface));
+    --subtle-active: color-mix(in srgb, var(--seed) 22%, var(--surface));
     --subtle-foreground: color-mix(in srgb, var(--seed) 75%, white);
-    --subtle-border: color-mix(in srgb, var(--seed) 30%, var(--border));
+    --subtle-border: color-mix(in srgb, var(--seed) 22%, var(--border));
     --subtle-background: var(--subtle);
 
     --background: #000000;
@@ -105,7 +105,7 @@
     --destructive-active: color-mix(in srgb, var(--destructive) 70%, white);
     --destructive-foreground: #ffffff;
     --destructive-border: color-mix(in srgb, var(--destructive) 30%, transparent);
-    --destructive-background: color-mix(in srgb, var(--destructive) 15%, var(--surface));
+    --destructive-background: color-mix(in srgb, var(--destructive) 22%, var(--surface));
   }
 
   html,
