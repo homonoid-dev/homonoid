@@ -104,7 +104,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(function Progr
             cond(
               isDeterminate,
               "transition-[width] duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)]",
-              "w-1/3 animate-spinner-grow"
+              "w-1/3 animate-progress-indeterminate"
             )
           )}
           style={cond(isDeterminate, { width: `${percentage}%` }, undefined)}
