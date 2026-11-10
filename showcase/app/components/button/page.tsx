@@ -1,5 +1,5 @@
-import { Page } from "@/components/ui/page";
+import { ButtonView } from "@/components/ui/button/view";
 
 export default function ButtonPage() {
-  return <Page />;
+  return <ButtonView />;
 }
