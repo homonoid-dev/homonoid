@@ -8,11 +8,13 @@ export const tokens = {
     "primary-foreground": "var(--primary-foreground)",
     "primary-active": "var(--primary-active)",
     "primary-border": "var(--primary-border)",
+    "primary-background": "var(--primary-background)",
     subtle: "var(--subtle)",
     "subtle-hover": "var(--subtle-hover)",
     "subtle-active": "var(--subtle-active)",
     "subtle-foreground": "var(--subtle-foreground)",
     "subtle-border": "var(--subtle-border)",
+    "subtle-background": "var(--subtle-background)",
     background: "var(--background)",
     foreground: "var(--foreground)",
     muted: "var(--muted)",
@@ -24,7 +26,8 @@ export const tokens = {
     "destructive-hover": "var(--destructive-hover)",
     "destructive-active": "var(--destructive-active)",
     "destructive-foreground": "var(--destructive-foreground)",
-    "destructive-border": "var(--destructive-border)"
+    "destructive-border": "var(--destructive-border)",
+    "destructive-background": "var(--destructive-background)"
   },
   spacing: {
     "h-control-sm": "var(--h-control-sm)",
