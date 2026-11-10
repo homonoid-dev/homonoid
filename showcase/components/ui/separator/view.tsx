@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import {
   cond,
   Separator,
+  Tabs,
   type SeparatorOrientation,
 } from "@homonoid/react";
 import { Studio } from "@/components/ui/studio";
@@ -29,35 +30,21 @@ export function SeparatorView() {
       code={code}
       controls={{
         children: (
-          <div className="flex flex-col gap-3">
-            <label className="text-xs font-medium text-muted uppercase tracking-wider">
-              Orientation
-            </label>
-            <div className="flex rounded-md border border-border p-1 bg-surface">
-              <button
-                type="button"
-                onClick={() => setOrientation("horizontal")}
-                className={cond(
-                  orientation === "horizontal",
-                  "flex-1 px-3 py-1.5 text-xs font-medium rounded-sm bg-background text-foreground shadow-xs transition-colors",
-                  "flex-1 px-3 py-1.5 text-xs font-medium rounded-sm text-muted hover:text-foreground transition-colors"
-                )}
-              >
+          <Tabs
+            value={orientation}
+            onValueChange={(val) => setOrientation(val as SeparatorOrientation)}
+            size="sm"
+            radius="lg"
+          >
+            <Tabs.List className="w-full">
+              <Tabs.Tab value="horizontal" className="flex-1">
                 Horizontal
-              </button>
-              <button
-                type="button"
-                onClick={() => setOrientation("vertical")}
-                className={cond(
-                  orientation === "vertical",
-                  "flex-1 px-3 py-1.5 text-xs font-medium rounded-sm bg-background text-foreground shadow-xs transition-colors",
-                  "flex-1 px-3 py-1.5 text-xs font-medium rounded-sm text-muted hover:text-foreground transition-colors"
-                )}
-              >
+              </Tabs.Tab>
+              <Tabs.Tab value="vertical" className="flex-1">
                 Vertical
-              </button>
-            </div>
-          </div>
+              </Tabs.Tab>
+            </Tabs.List>
+          </Tabs>
         ),
         switches: [
           {
@@ -92,4 +79,3 @@ export function SeparatorView() {
     </Studio>
   );
 }
-

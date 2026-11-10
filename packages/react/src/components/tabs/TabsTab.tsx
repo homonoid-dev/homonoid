@@ -17,7 +17,7 @@ export const tabVariants = cva(
   {
     variants: {
       size: {
-        sm: "h-control-sm px-control-sm-x gap-control-gap text-sm active:scale-[var(--motion-press-scale-sm)]",
+        sm: "h-control-sm px-control-sm-x gap-control-gap text-xs active:scale-[var(--motion-press-scale-sm)]",
         md: "h-control-md px-control-md-x gap-control-gap text-sm active:scale-[var(--motion-press-scale-md)]",
         lg: "h-control-lg px-control-lg-x gap-control-gap text-base active:scale-[var(--motion-press-scale-lg)]",
       },
