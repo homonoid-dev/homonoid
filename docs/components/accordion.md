@@ -34,19 +34,22 @@ Do not use accordions when:
 
 The accordion adheres to a compound component architecture exposing dedicated primitives through dot notation while simultaneously providing a zero boilerplate atomic interface through the root component:
 
-* `Accordion`: The root context coordinator managing open keys, multiple expansion modes, collapsible rules, and orientation.
+* `Accordion`: The root context coordinator managing open keys, multiple expansion modes, collapsible rules, global indicator configurations, and orientation.
 * `Accordion.Item`: The individual section container encapsulating active disclosure state and border treatments.
-* `Accordion.Trigger`: The interactive button toggle managing focus rings, touch targets, tactile feedback, heading semantics, and disclosure chevrons.
+* `Accordion.Trigger`: The interactive button toggle managing focus rings, touch targets, tactile feedback, heading semantics, and custom accessory slots.
+* `Accordion.Indicator`: The rotating accessory primitive managing state based orientation transitions without forcing hardcoded icons.
 * `Accordion.Content`: The collapsible panel container managing height interpolation, overflow containment, and landmark semantics.
 
 <br>
 
-### Primitive Composition
+### Indicator and Accessory Architecture
 
-The accordion composes core Homonoid primitives under the hood to ensure token consistency:
+The accordion provides complete freedom over accessories with zero mandatory default icons:
 
-* `Label`: Powers heading typography within the trigger row, automatically formatting string values to matched size tokens.
-* `ChevronDown`: Serves as the trailing accessory within the trigger container, rotating smoothly during state transitions without arbitrary icon decorations.
+* Root Indicator Configuration: Pass the `indicator` prop to `Accordion` with an icon element or configuration object `{ icon, placement, rotate }` to apply consistent indicators across all panels automatically.
+* Custom Leading and Trailing Slots: Pass `leading` or `trailing` directly to `Accordion.Trigger` for custom item accessories or local overrides.
+* Zero Icon Baseline: When neither root nor items define accessories, triggers render clean typography without empty icon spacers.
+* Dedicated Rotation Primitive: Use `Accordion.Indicator` to wrap any custom icon or glyph, applying continuous rotation easing and reduced motion safety automatically.
 
 <br>
 
@@ -56,6 +59,7 @@ For standard declarative workflows, the accordion accepts an items collection di
 
 ```tsx
 import { Accordion, type AccordionItemDefinition } from "@homonoid/react";
+import { ChevronDown } from "lucide-react";
 
 const items: AccordionItemDefinition[] = [
   {
@@ -80,7 +84,16 @@ const items: AccordionItemDefinition[] = [
 export function Example() {
   return (
     <div className="mx-auto mb-auto w-full max-w-lg">
-      <Accordion multiple={false} defaultValue="item-1" items={items} />
+      <Accordion
+        multiple={false}
+        defaultValue="item-1"
+        indicator={{
+          icon: <ChevronDown className="size-4 text-muted shrink-0" />,
+          placement: "trailing",
+          rotate: true,
+        }}
+        items={items}
+      />
     </div>
   );
 }
@@ -94,10 +107,18 @@ When customized trigger accessories, custom header layouts, or embedded action b
 
 ```tsx
 import { Accordion } from "@homonoid/react";
+import { ChevronDown, Plus } from "lucide-react";
 
 export function CompoundExample() {
   return (
-    <Accordion multiple={false} defaultValue="item-1">
+    <Accordion
+      multiple={false}
+      defaultValue="item-1"
+      indicator={{
+        icon: <ChevronDown className="size-4 text-muted shrink-0" />,
+        placement: "trailing",
+      }}
+    >
       <Accordion.Item value="item-1">
         <Accordion.Trigger>Is it accessible?</Accordion.Trigger>
         <Accordion.Content>
@@ -106,9 +127,17 @@ export function CompoundExample() {
       </Accordion.Item>
 
       <Accordion.Item value="item-2">
-        <Accordion.Trigger>Is it styled?</Accordion.Trigger>
+        <Accordion.Trigger
+          trailing={
+            <Accordion.Indicator>
+              <Plus className="size-4 text-primary shrink-0" />
+            </Accordion.Indicator>
+          }
+        >
+          Can I override accessories per item?
+        </Accordion.Trigger>
         <Accordion.Content>
-          Yes. It consumes styling exclusively from Homonoid design tokens.
+          Yes. Local leading and trailing props take complete precedence over inherited root indicators.
         </Accordion.Content>
       </Accordion.Item>
     </Accordion>
@@ -132,8 +161,8 @@ Accordions support distinct structural presentations through the `variant` prop:
 
 Items communicate operational states through explicit data attributes:
 
-* Collapsed (`data-state="closed"`): Content panel height is zero and chevron points downward.
-* Expanded (`data-state="open"`): Content panel is fully visible and chevron rotates upward.
+* Collapsed (`data-state="closed"`): Content panel height is zero and indicator rests at zero rotation.
+* Expanded (`data-state="open"`): Content panel is fully visible and indicator rotates smoothly.
 * Disabled (`data-disabled`): Interactive trigger suppresses click and keyboard events while presenting muted foreground tokens.
 * Focused (`data-focus-visible`): Trigger button exhibits platform calibrated focus rings matching Homonoid accessibility standards.
 
@@ -157,7 +186,7 @@ Transitions preserve visual stability without abrupt jumps:
 
 * Single Layer Tactile Press: In separated card presentations, the entire `Accordion.Item` takes the physical press scale transition as one unified surface, preventing inner elements from pulling away or shrinking awkwardly inside container borders.
 * Height Interpolation: Panels utilize CSS grid row transitions moving from zero fractions to one fraction with zero minimum height, avoiding clipped text or jumping content.
-* Indicator Continuity: The trailing chevron rotates smoothly across one hundred eighty degrees with calibrated cubic bezier timing.
+* Indicator Continuity: The indicator rotates smoothly across one hundred eighty degrees with calibrated cubic bezier timing.
 * Motion Preference: Motion durations collapse automatically to zero when the user prefers reduced motion.
 
 <br>

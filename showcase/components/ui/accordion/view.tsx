@@ -1,9 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Accordion, cond, type Size } from "@homonoid/react";
+import { ChevronDown, Plus } from "lucide-react";
+import { Accordion, cond, when, type Size } from "@homonoid/react";
 import { Studio } from "@/components/ui/studio";
-import { ACCORDION_ITEMS, getAccordionCode } from "./model";
+import {
+  ACCORDION_ITEMS,
+  getAccordionCode,
+  type AccordionIndicatorType,
+  type AccordionIndicatorPlacement,
+} from "./model";
 
 export function AccordionView() {
   const [variant, setVariant] = useState<"plain" | "outlined" | "contained">("plain");
@@ -13,6 +19,21 @@ export function AccordionView() {
   const [disabled, setDisabled] = useState(false);
   const [showLeading, setShowLeading] = useState(false);
   const [showDescription, setShowDescription] = useState(false);
+  const [showIndicator, setShowIndicator] = useState(true);
+  const [indicatorLeading, setIndicatorLeading] = useState(false);
+  const [indicatorPlus, setIndicatorPlus] = useState(false);
+
+  const indicatorType: AccordionIndicatorType = cond(
+    !showIndicator,
+    "none",
+    cond(indicatorPlus, "plus", "chevron")
+  );
+
+  const indicatorPlacement: AccordionIndicatorPlacement = cond(
+    indicatorLeading,
+    "leading",
+    "trailing"
+  );
 
   const code = useMemo(
     () =>
@@ -24,8 +45,32 @@ export function AccordionView() {
         disabled,
         showLeading,
         showDescription,
+        indicatorType,
+        indicatorPlacement,
       }),
-    [variant, size, multiple, collapsible, disabled, showLeading, showDescription]
+    [
+      variant,
+      size,
+      multiple,
+      collapsible,
+      disabled,
+      showLeading,
+      showDescription,
+      indicatorType,
+      indicatorPlacement,
+    ]
+  );
+
+  const resolvedIndicator = when(
+    indicatorType !== "none",
+    {
+      icon: cond(
+        indicatorType === "plus",
+        <Plus className="size-4 text-muted shrink-0" />,
+        <ChevronDown className="size-4 text-muted shrink-0" />
+      ),
+      placement: indicatorPlacement,
+    }
   );
 
   return (
@@ -45,6 +90,29 @@ export function AccordionView() {
           onChange: setSize,
         },
         switches: [
+          {
+            id: "indicator",
+            label: "Indicator",
+            description: "Show root indicator",
+            checked: showIndicator,
+            onChange: setShowIndicator,
+          },
+          {
+            id: "indicator-leading",
+            label: "Leading Indicator",
+            description: "Place indicator on left",
+            checked: indicatorLeading,
+            onChange: setIndicatorLeading,
+            disabled: !showIndicator,
+          },
+          {
+            id: "indicator-plus",
+            label: "Plus Icon",
+            description: "Use plus instead of chevron",
+            checked: indicatorPlus,
+            onChange: setIndicatorPlus,
+            disabled: !showIndicator,
+          },
           {
             id: "multiple",
             label: "Multiple",
@@ -68,8 +136,8 @@ export function AccordionView() {
           },
           {
             id: "icons",
-            label: "Icons",
-            description: "Show leading icons",
+            label: "Custom Item Icons",
+            description: "Show trigger leading icons",
             checked: showLeading,
             onChange: setShowLeading,
           },
@@ -84,13 +152,14 @@ export function AccordionView() {
       }}
     >
       <Accordion
-        key={`${variant}-${size}-${multiple}-${collapsible}`}
+        key={`${variant}-${size}-${multiple}-${collapsible}-${indicatorType}-${indicatorPlacement}`}
         defaultValue="item-1"
         variant={variant}
         size={size}
         multiple={multiple}
         collapsible={collapsible}
         disabled={disabled}
+        indicator={resolvedIndicator}
         className="w-full max-w-md"
       >
         {ACCORDION_ITEMS.map((item) => {

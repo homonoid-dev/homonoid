@@ -38,6 +38,9 @@ export const ACCORDION_ITEMS: AccordionDemoItem[] = [
   },
 ];
 
+export type AccordionIndicatorType = "chevron" | "plus" | "none";
+export type AccordionIndicatorPlacement = "leading" | "trailing";
+
 export interface AccordionCodeOptions {
   variant: "plain" | "outlined" | "contained";
   size: Size;
@@ -46,6 +49,8 @@ export interface AccordionCodeOptions {
   disabled: boolean;
   showLeading: boolean;
   showDescription: boolean;
+  indicatorType: AccordionIndicatorType;
+  indicatorPlacement: AccordionIndicatorPlacement;
 }
 
 export function getAccordionCode(options: AccordionCodeOptions): string {
@@ -57,10 +62,22 @@ export function getAccordionCode(options: AccordionCodeOptions): string {
     disabled,
     showLeading,
     showDescription,
+    indicatorType,
+    indicatorPlacement,
   } = options;
 
-  const iconImports = showLeading
-    ? `import { HelpCircle, Activity, Shield } from "lucide-react";\n`
+  const lucideImports: string[] = [];
+  if (showLeading) {
+    lucideImports.push("HelpCircle", "Activity", "Shield");
+  }
+  if (indicatorType === "chevron") {
+    lucideImports.push("ChevronDown");
+  } else if (indicatorType === "plus") {
+    lucideImports.push("Plus");
+  }
+
+  const iconImports = lucideImports.length > 0
+    ? `import { ${lucideImports.join(", ")} } from "lucide-react";\n`
     : "";
 
   const props: string[] = ['defaultValue="item-1"'];
@@ -69,6 +86,16 @@ export function getAccordionCode(options: AccordionCodeOptions): string {
   if (multiple) props.push("multiple");
   if (!collapsible) props.push("collapsible={false}");
   if (disabled) props.push("disabled");
+
+  if (indicatorType === "chevron") {
+    props.push(
+      `indicator={{ icon: <ChevronDown className="size-4 text-muted shrink-0" />, placement: "${indicatorPlacement}" }}`
+    );
+  } else if (indicatorType === "plus") {
+    props.push(
+      `indicator={{ icon: <Plus className="size-4 text-muted shrink-0" />, placement: "${indicatorPlacement}" }}`
+    );
+  }
 
   const accordionProps = props.length > 0 ? " " + props.join(" ") : "";
 
@@ -102,4 +129,3 @@ ${itemsCode}
   );
 }`;
 }
-

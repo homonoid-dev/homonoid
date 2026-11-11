@@ -3,6 +3,7 @@
 import {
   forwardRef,
   isValidElement,
+  useMemo,
   type MouseEvent,
   type KeyboardEvent,
 } from "react";
@@ -11,12 +12,13 @@ import { cn } from "../../utils/cn";
 import { cond, when } from "../../utils/condition";
 import { Label } from "../label/Label";
 import { Description } from "../description/Description";
-import { useAccordionContext } from "./AccordionContext";
+import { useAccordionContext, resolveIndicator } from "./AccordionContext";
 import { useAccordionItemContext } from "./AccordionItemContext";
+import { AccordionIndicator } from "./AccordionIndicator";
 import type { AccordionTriggerProps } from "./types";
 
 export const accordionTriggerVariants = cva(
-  "flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale-expanded)] focus-ring cursor-pointer disabled:pointer-events-none disabled:cursor-not-allowed aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed bg-transparent text-foreground hover:text-foreground",
+  "group flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale-expanded)] focus-ring cursor-pointer disabled:pointer-events-none disabled:cursor-not-allowed aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed bg-transparent text-foreground hover:text-foreground",
   {
     variants: {
       size: {
@@ -50,6 +52,7 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
       leading,
       description,
       trailing,
+      indicator: localIndicator,
       className,
       children,
       onClick,
@@ -58,27 +61,33 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
     },
     ref
   ) {
-    const { toggle, size, variant, handleKeyDown } = useAccordionContext();
+    const { toggle, size, variant, handleKeyDown, indicator: rootIndicator } =
+      useAccordionContext();
     const { value, disabled, open, triggerId, contentId } =
       useAccordionItemContext();
 
-    const defaultChevron = (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-        className={cn(
-          "size-4 shrink-0 transition-transform duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] motion-reduce:transition-none",
-          cond(disabled, "text-muted/40", "text-muted"),
-          cond(open, "rotate-180", "rotate-0")
-        )}
-      >
-        <path d="m6 9 6 6 6-6" />
-      </svg>
+    const effectiveIndicator = useMemo(
+      () => resolveIndicator(localIndicator) ?? rootIndicator,
+      [localIndicator, rootIndicator]
+    );
+
+    const renderedIndicator = when(
+      Boolean(effectiveIndicator),
+      <AccordionIndicator rotate={effectiveIndicator?.rotate}>
+        {effectiveIndicator?.icon}
+      </AccordionIndicator>
+    );
+
+    const resolvedLeading = cond(
+      leading !== undefined,
+      leading,
+      cond(effectiveIndicator?.placement === "leading", renderedIndicator, undefined)
+    );
+
+    const resolvedTrailing = cond(
+      trailing !== undefined,
+      trailing,
+      cond(effectiveIndicator?.placement === "trailing", renderedIndicator, undefined)
     );
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
@@ -92,7 +101,7 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
       onKeyDown?.(event);
     };
 
-    const hasStructuredContent = Boolean(leading || description);
+    const hasStructuredContent = Boolean(resolvedLeading || description);
 
     const labelNode = cond(
       isValidElement(children),
@@ -137,7 +146,7 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
         {cond(
           hasStructuredContent,
           <span className="flex min-w-0 flex-1 items-center gap-3 text-left">
-            {when(leading, <span className="shrink-0">{leading}</span>)}
+            {when(Boolean(resolvedLeading), <span className="shrink-0">{resolvedLeading}</span>)}
             <span className="flex min-w-0 flex-1 flex-col justify-center">
               {labelNode}
               {descriptionNode}
@@ -146,7 +155,7 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
           <span className="flex-1 min-w-0 text-left">{labelNode}</span>
         )}
 
-        {trailing !== undefined ? trailing : defaultChevron}
+        {resolvedTrailing}
       </button>
     );
   }

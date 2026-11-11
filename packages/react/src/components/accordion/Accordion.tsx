@@ -12,10 +12,15 @@ import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import { cond } from "../../utils/condition";
 import { useMergeRefs } from "@floating-ui/react";
-import { AccordionContext, type AccordionContextValue } from "./AccordionContext";
+import {
+  AccordionContext,
+  resolveIndicator,
+  type AccordionContextValue,
+} from "./AccordionContext";
 import { AccordionItem } from "./AccordionItem";
 import { AccordionTrigger } from "./AccordionTrigger";
 import { AccordionContent } from "./AccordionContent";
+import { AccordionIndicator } from "./AccordionIndicator";
 import type { AccordionProps } from "./types";
 
 export const accordionVariants = cva("w-full", {
@@ -54,6 +59,7 @@ interface AccordionComponent
   Item: typeof AccordionItem;
   Trigger: typeof AccordionTrigger;
   Content: typeof AccordionContent;
+  Indicator: typeof AccordionIndicator;
 }
 
 export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
@@ -67,6 +73,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
       variant = "plain",
       size = "md",
       disabled = false,
+      indicator,
       items,
       className,
       children,
@@ -91,6 +98,11 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
 
     const internalRef = useRef<HTMLDivElement | null>(null);
     const mergedRef = useMergeRefs([internalRef, ref]);
+
+    const resolvedIndicator = useMemo(
+      () => resolveIndicator(indicator),
+      [indicator]
+    );
 
     const isExpanded = useCallback(
       (itemValue: string) => activeValues.includes(itemValue),
@@ -180,6 +192,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
         variant,
         size,
         disabled,
+        indicator: resolvedIndicator,
         containerRef: internalRef,
         handleKeyDown,
       }),
@@ -192,6 +205,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
         variant,
         size,
         disabled,
+        resolvedIndicator,
         handleKeyDown,
       ]
     );
@@ -217,6 +231,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
                   leading={item.leading}
                   description={item.description}
                   trailing={item.trailing}
+                  indicator={item.indicator}
                 >
                   {item.trigger}
                 </AccordionTrigger>
@@ -235,3 +250,4 @@ Accordion.displayName = "Accordion";
 Accordion.Item = AccordionItem;
 Accordion.Trigger = AccordionTrigger;
 Accordion.Content = AccordionContent;
+Accordion.Indicator = AccordionIndicator;
