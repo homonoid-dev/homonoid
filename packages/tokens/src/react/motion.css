@@ -9,7 +9,7 @@
     --motion-press-scale-sm: 0.94;
     --motion-press-scale-md: 0.95;
     --motion-press-scale-lg: 0.96;
-    --motion-press-scale-expanded: 0.99;
+    --motion-press-scale-expanded: 0.98;
     --motion-press-scale: var(--motion-press-scale-md);
   }
 }
