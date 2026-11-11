@@ -168,16 +168,16 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         size={size}
         radius={effectiveRadius}
         disabled={disabled || rootDisabled}
-        interactive={false}
-        selected={false}
+        interactive={!disabled && !rootDisabled}
+        selected={isSelected}
         leading={leading}
         label={labelContent}
         description={description}
         trailing={trailing}
         className={cn(
-          "shrink-0 cursor-pointer select-none transition-colors duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)]",
+          "shrink-0 cursor-pointer select-none",
           effectiveRadiusClass,
-          cond(isSelected, "font-medium text-foreground", ""),
+          cond(isSelected, "font-medium", ""),
           cond(isHighlighted, "bg-surface-hover", ""),
           className
         )}
