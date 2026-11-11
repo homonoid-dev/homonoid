@@ -51,6 +51,7 @@ export interface AccordionCodeOptions {
   showDescription: boolean;
   indicatorType: AccordionIndicatorType;
   indicatorPlacement: AccordionIndicatorPlacement;
+  compound: boolean;
 }
 
 export function getAccordionCode(options: AccordionCodeOptions): string {
@@ -64,6 +65,7 @@ export function getAccordionCode(options: AccordionCodeOptions): string {
     showDescription,
     indicatorType,
     indicatorPlacement,
+    compound,
   } = options;
 
   const lucideImports: string[] = [];
@@ -97,19 +99,20 @@ export function getAccordionCode(options: AccordionCodeOptions): string {
     );
   }
 
-  const accordionProps = props.length > 0 ? " " + props.join(" ") : "";
+  if (compound) {
+    const accordionProps = props.length > 0 ? " " + props.join(" ") : "";
 
-  const itemsCode = ACCORDION_ITEMS.map((item) => {
-    const triggerProps: string[] = [];
-    if (showLeading) {
-      triggerProps.push(`leading={<${item.iconName} className="size-4 text-muted shrink-0" />}`);
-    }
-    if (showDescription) {
-      triggerProps.push(`description="${item.description}"`);
-    }
-    const triggerAttr = triggerProps.length > 0 ? " " + triggerProps.join(" ") : "";
+    const itemsCode = ACCORDION_ITEMS.map((item) => {
+      const triggerProps: string[] = [];
+      if (showLeading) {
+        triggerProps.push(`leading={<${item.iconName} className="size-4 text-muted shrink-0" />}`);
+      }
+      if (showDescription) {
+        triggerProps.push(`description="${item.description}"`);
+      }
+      const triggerAttr = triggerProps.length > 0 ? " " + triggerProps.join(" ") : "";
 
-    return `      <Accordion.Item value="${item.value}">
+      return `      <Accordion.Item value="${item.value}">
         <Accordion.Trigger${triggerAttr}>
           ${item.title}
         </Accordion.Trigger>
@@ -117,15 +120,47 @@ export function getAccordionCode(options: AccordionCodeOptions): string {
           ${item.content}
         </Accordion.Content>
       </Accordion.Item>`;
-  }).join("\n");
+    }).join("\n");
 
-  return `${iconImports}import { Accordion } from "@homonoid/react";
+    return `${iconImports}import { Accordion } from "@homonoid/react";
 
 export function Example() {
   return (
     <Accordion${accordionProps}>
 ${itemsCode}
     </Accordion>
+  );
+}`;
+  }
+
+  // Atomic mode
+  const atomicItemsCode = ACCORDION_ITEMS.map((item) => {
+    const fields: string[] = [
+      `value: "${item.value}"`,
+      `trigger: "${item.title}"`,
+    ];
+    if (showDescription) {
+      fields.push(`description: "${item.description}"`);
+    }
+    if (showLeading) {
+      fields.push(`leading: <${item.iconName} className="size-4 text-muted shrink-0" />`);
+    }
+    fields.push(`content: "${item.content}"`);
+
+    return `  {\n    ${fields.join(",\n    ")},\n  },`;
+  }).join("\n");
+
+  const accordionProps = props.length > 0 ? " " + props.join(" ") : "";
+
+  return `${iconImports}import { Accordion, type AccordionItemDefinition } from "@homonoid/react";
+
+const items: AccordionItemDefinition[] = [
+${atomicItemsCode}
+];
+
+export function Example() {
+  return (
+    <Accordion${accordionProps} items={items} />
   );
 }`;
 }

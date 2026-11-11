@@ -2,7 +2,13 @@
 
 import { useMemo, useState } from "react";
 import { ChevronDown, Plus } from "lucide-react";
-import { Accordion, cond, when, type Size } from "@homonoid/react";
+import {
+  Accordion,
+  cond,
+  when,
+  type AccordionItemDefinition,
+  type Size,
+} from "@homonoid/react";
 import { Studio } from "@/components/ui/studio";
 import {
   ACCORDION_ITEMS,
@@ -22,6 +28,7 @@ export function AccordionView() {
   const [showIndicator, setShowIndicator] = useState(true);
   const [indicatorLeading, setIndicatorLeading] = useState(false);
   const [indicatorPlus, setIndicatorPlus] = useState(false);
+  const [compound, setCompound] = useState(false);
 
   const indicatorType: AccordionIndicatorType = cond(
     !showIndicator,
@@ -47,6 +54,7 @@ export function AccordionView() {
         showDescription,
         indicatorType,
         indicatorPlacement,
+        compound,
       }),
     [
       variant,
@@ -58,6 +66,7 @@ export function AccordionView() {
       showDescription,
       indicatorType,
       indicatorPlacement,
+      compound,
     ]
   );
 
@@ -71,6 +80,25 @@ export function AccordionView() {
       ),
       placement: indicatorPlacement,
     }
+  );
+
+  const atomicItems: AccordionItemDefinition[] = useMemo(
+    () =>
+      ACCORDION_ITEMS.map((item) => {
+        const Icon = item.icon;
+        return {
+          value: item.value,
+          trigger: item.title,
+          description: cond(showDescription, item.description, undefined),
+          leading: cond(
+            showLeading,
+            <Icon className="size-4 text-muted shrink-0" />,
+            undefined
+          ),
+          content: item.content,
+        };
+      }),
+    [showDescription, showLeading]
   );
 
   return (
@@ -148,37 +176,59 @@ export function AccordionView() {
             checked: showDescription,
             onChange: setShowDescription,
           },
+          {
+            id: "compound",
+            label: "Compound",
+            description: "Render using explicit subcomponents",
+            checked: compound,
+            onChange: setCompound,
+          },
         ],
       }}
     >
-      <Accordion
-        key={`${variant}-${size}-${multiple}-${collapsible}-${indicatorType}-${indicatorPlacement}`}
-        defaultValue="item-1"
-        variant={variant}
-        size={size}
-        multiple={multiple}
-        collapsible={collapsible}
-        disabled={disabled}
-        indicator={resolvedIndicator}
-        className="w-full max-w-md"
-      >
-        {ACCORDION_ITEMS.map((item) => {
-          const Icon = item.icon;
-          return (
-            <Accordion.Item key={item.value} value={item.value}>
-              <Accordion.Trigger
-                leading={cond(showLeading, <Icon className="size-4 text-muted shrink-0" />, undefined)}
-                description={cond(showDescription, item.description, undefined)}
-              >
-                {item.title}
-              </Accordion.Trigger>
-              <Accordion.Content>
-                {item.content}
-              </Accordion.Content>
-            </Accordion.Item>
-          );
-        })}
-      </Accordion>
+      {cond(
+        compound,
+        <Accordion
+          key={`${variant}-${size}-${multiple}-${collapsible}-${indicatorType}-${indicatorPlacement}-compound`}
+          defaultValue="item-1"
+          variant={variant}
+          size={size}
+          multiple={multiple}
+          collapsible={collapsible}
+          disabled={disabled}
+          indicator={resolvedIndicator}
+          className="w-full max-w-md"
+        >
+          {ACCORDION_ITEMS.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Accordion.Item key={item.value} value={item.value}>
+                <Accordion.Trigger
+                  leading={cond(showLeading, <Icon className="size-4 text-muted shrink-0" />, undefined)}
+                  description={cond(showDescription, item.description, undefined)}
+                >
+                  {item.title}
+                </Accordion.Trigger>
+                <Accordion.Content>
+                  {item.content}
+                </Accordion.Content>
+              </Accordion.Item>
+            );
+          })}
+        </Accordion>,
+        <Accordion
+          key={`${variant}-${size}-${multiple}-${collapsible}-${indicatorType}-${indicatorPlacement}-atomic`}
+          defaultValue="item-1"
+          variant={variant}
+          size={size}
+          multiple={multiple}
+          collapsible={collapsible}
+          disabled={disabled}
+          indicator={resolvedIndicator}
+          items={atomicItems}
+          className="w-full max-w-md"
+        />
+      )}
     </Studio>
   );
 }
