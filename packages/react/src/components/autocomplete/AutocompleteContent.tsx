@@ -16,7 +16,7 @@ const radiusClasses: Record<string, string> = {
   sm: "rounded-lg",
   md: "rounded-xl",
   lg: "rounded-2xl",
-  full: "rounded-concentric-full",
+  full: "rounded-3xl",
 };
 
 export const AutocompleteContent = forwardRef<HTMLDivElement, AutocompleteContentProps>(

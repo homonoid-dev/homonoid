@@ -64,7 +64,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
         sm: "sm" as const,
         md: "md" as const,
         lg: "lg" as const,
-        full: "xl" as const,
+        full: "lg" as const,
       },
       "sm" as const
     );
@@ -76,7 +76,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
         sm: "rounded-sm",
         md: "rounded-lg",
         lg: "rounded-xl",
-        full: "rounded-concentric-full",
+        full: "rounded-xl",
       },
       "rounded-sm"
     );

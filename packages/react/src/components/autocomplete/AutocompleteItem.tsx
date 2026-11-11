@@ -134,7 +134,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         sm: "sm" as const,
         md: "md" as const,
         lg: "lg" as const,
-        full: "xl" as const,
+        full: "lg" as const,
       },
       "sm" as const
     );
@@ -146,7 +146,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         sm: "rounded-sm",
         md: "rounded-lg",
         lg: "rounded-xl",
-        full: "rounded-concentric-full",
+        full: "rounded-xl",
       },
       "rounded-sm"
     );
@@ -168,16 +168,17 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         size={size}
         radius={effectiveRadius}
         disabled={disabled || rootDisabled}
-        interactive={!disabled && !rootDisabled}
-        selected={isSelected}
+        interactive={false}
+        selected={false}
         leading={leading}
         label={labelContent}
         description={description}
         trailing={trailing}
         className={cn(
-          "shrink-0 cursor-pointer select-none",
+          "shrink-0 cursor-pointer select-none transition-colors duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)]",
           effectiveRadiusClass,
-          cond(isSelected, "bg-surface-hover font-medium", cond(isHighlighted, "bg-surface-hover/50", "")),
+          cond(isSelected, "font-medium text-foreground", ""),
+          cond(isHighlighted, "bg-surface-hover", ""),
           className
         )}
         onClick={handleClick}

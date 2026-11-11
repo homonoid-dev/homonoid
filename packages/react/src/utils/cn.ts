@@ -19,17 +19,11 @@ const ALL_SPACING = [
   ...SPACING_SURFACE,
   ...SPACING_CONTROL,
   ...SPACING_LAYOUT,
-  "badge-circular",
 ];
 
 const customTwMerge = extendTailwindMerge({
   extend: {
     classGroups: {
-      inset: [{ inset: ["badge-circular"] }],
-      top: [{ top: ["badge-circular"] }],
-      right: [{ right: ["badge-circular"] }],
-      bottom: [{ bottom: ["badge-circular"] }],
-      left: [{ left: ["badge-circular"] }],
       p: [{ p: ALL_SPACING }],
       px: [{ px: [...SPACING_CONTROL_X, "layout-x", ...SPACING_SURFACE] }],
       py: [{ py: [...SPACING_CONTROL_Y, "layout-y", ...SPACING_SURFACE] }],

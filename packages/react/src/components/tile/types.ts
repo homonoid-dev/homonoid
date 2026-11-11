@@ -4,7 +4,7 @@ import type { Radius, Size } from "../../types";
 export type TileVariant = "plain" | "contained" | "outlined";
 export type TileColor = "surface" | "subtle" | "primary" | "destructive";
 export type TileSize = Size;
-export type TileRadius = Radius | "xl";
+export type TileRadius = Radius;
 
 export interface TileProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   /**
