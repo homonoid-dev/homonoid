@@ -16,6 +16,7 @@ export function AutocompleteView() {
   const [loading, setLoading] = useState(false);
   const [showLeading, setShowLeading] = useState(true);
   const [showDescription, setShowDescription] = useState(true);
+  const [compound, setCompound] = useState(false);
 
   const code = useMemo(
     () =>
@@ -28,8 +29,9 @@ export function AutocompleteView() {
         loading,
         showLeading,
         showDescription,
+        compound,
       }),
-    [size, radius, floating, disabled, invalid, loading, showLeading, showDescription]
+    [size, radius, floating, disabled, invalid, loading, showLeading, showDescription, compound]
   );
 
   return (
@@ -91,32 +93,76 @@ export function AutocompleteView() {
             checked: showDescription,
             onChange: setShowDescription,
           },
+          {
+            id: "compound",
+            label: "Compound",
+            description: "Render using explicit subcomponents",
+            checked: compound,
+            onChange: setCompound,
+          },
         ],
       }}
     >
       <div className="w-full max-w-sm">
-        <Autocomplete
-          value={value}
-          onValueChange={setValue}
-          size={size}
-          radius={radius}
-          label={cond(floating, "Component", undefined)}
-          floating={floating}
-          disabled={disabled}
-          invalid={invalid}
-          loading={loading}
-          placeholder="Component"
-          leading={cond(showLeading, <Search className="size-4 text-muted shrink-0" />, undefined)}
-          options={AUTOCOMPLETE_OPTIONS.map((item) => {
-            const Icon = item.icon;
-            return {
-              value: item.value,
-              label: item.label,
-              description: cond(showDescription, item.description, undefined),
-              leading: cond(showLeading, <Icon className="size-4 text-muted shrink-0" />, undefined),
-            };
-          })}
-        />
+        {cond(
+          compound,
+          <Autocomplete
+            key={`${size}-${radius}-${disabled}-${invalid}-${loading}-compound`}
+            value={value}
+            onValueChange={setValue}
+            size={size}
+            radius={radius}
+            disabled={disabled}
+            invalid={invalid}
+            loading={loading}
+          >
+            <Autocomplete.Input
+              placeholder="Component"
+              label={cond(floating, "Component", undefined)}
+              floating={floating}
+              leading={cond(showLeading, <Search className="size-4 text-muted shrink-0" />, undefined)}
+            />
+            <Autocomplete.Content>
+              <Autocomplete.List>
+                {AUTOCOMPLETE_OPTIONS.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Autocomplete.Item
+                      key={item.value}
+                      value={item.value}
+                      label={item.label}
+                      description={cond(showDescription, item.description, undefined)}
+                      leading={cond(showLeading, <Icon className="size-4 text-muted shrink-0" />, undefined)}
+                    />
+                  );
+                })}
+              </Autocomplete.List>
+            </Autocomplete.Content>
+          </Autocomplete>,
+          <Autocomplete
+            key={`${size}-${radius}-${floating}-${disabled}-${invalid}-${loading}-atomic`}
+            value={value}
+            onValueChange={setValue}
+            size={size}
+            radius={radius}
+            label={cond(floating, "Component", undefined)}
+            floating={floating}
+            disabled={disabled}
+            invalid={invalid}
+            loading={loading}
+            placeholder="Component"
+            leading={cond(showLeading, <Search className="size-4 text-muted shrink-0" />, undefined)}
+            options={AUTOCOMPLETE_OPTIONS.map((item) => {
+              const Icon = item.icon;
+              return {
+                value: item.value,
+                label: item.label,
+                description: cond(showDescription, item.description, undefined),
+                leading: cond(showLeading, <Icon className="size-4 text-muted shrink-0" />, undefined),
+              };
+            })}
+          />
+        )}
       </div>
     </Studio>
   );

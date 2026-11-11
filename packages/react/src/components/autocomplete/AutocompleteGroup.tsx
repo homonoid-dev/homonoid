@@ -17,7 +17,7 @@ import type { AutocompleteGroupProps } from "./types";
 export const AutocompleteGroup = forwardRef<HTMLDivElement, AutocompleteGroupProps>(
   function AutocompleteGroup({ heading, children, className, ...props }, ref) {
     const generatedId = useId();
-    const { query, customFilter } = useAutocompleteContext();
+    const { query, customFilter, size } = useAutocompleteContext();
 
     const hasVisibleChildren = useMemo(() => {
       if (!query.trim()) {
@@ -74,13 +74,18 @@ export const AutocompleteGroup = forwardRef<HTMLDivElement, AutocompleteGroupPro
       >
         {when(
           heading,
-          <Label
-            id={generatedId}
-            as="span"
-            className="px-3 py-1.5 text-xs text-muted font-medium select-none pointer-events-none cursor-default"
-          >
-            {heading}
-          </Label>
+          cond(
+            isValidElement(heading),
+            heading,
+            <Label
+              id={generatedId}
+              as="span"
+              size={cond(size === "lg", "md", "sm")}
+              className="px-control-md-x py-control-sm-y text-muted select-none pointer-events-none cursor-default truncate"
+            >
+              {heading}
+            </Label>
+          )
         )}
         {children}
       </div>
@@ -89,5 +94,3 @@ export const AutocompleteGroup = forwardRef<HTMLDivElement, AutocompleteGroupPro
 );
 
 AutocompleteGroup.displayName = "Autocomplete.Group";
-
-
