@@ -33,19 +33,10 @@
     --p-layout-x: var(--p-layout);
     --p-layout-y: 2.0rem;
     --gap-layout: 1.5rem;
-
-    /* Badge Anchor Circular Offset (1 - 1/sqrt(2) ≈ 14.64%) */
-    --offset-badge-circular: 14.64%;
-
-    /* Concentric Item Radii (rounded-3xl 24px minus p-1 4px = 20px) */
-    --r-concentric-full: 1.25rem;
   }
 }
 
 @theme inline {
-  /* Concentric Radius */
-  --radius-concentric-full: var(--r-concentric-full);
-
   /* Control Heights */
   --spacing-control-sm: var(--h-control-sm);
   --spacing-control-md: var(--h-control-md);
@@ -77,7 +68,4 @@
   --spacing-layout-x: var(--p-layout-x);
   --spacing-layout-y: var(--p-layout-y);
   --spacing-layout-gap: var(--gap-layout);
-
-  /* Badge Insets */
-  --spacing-badge-circular: var(--offset-badge-circular);
 }

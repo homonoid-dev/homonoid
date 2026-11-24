@@ -34,11 +34,14 @@ export const variants = cva(
         sm: "rounded-md",
         md: "rounded-lg",
         lg: "rounded-xl",
-        xl: "rounded-concentric-full",
         full: "rounded-full"
       },
       interactive: {
-        true: "transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] aria-expanded:scale-[var(--motion-press-scale)] data-[state=open]:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:opacity-50 disabled:pointer-events-none aria-disabled:opacity-50 aria-disabled:pointer-events-none",
+        true: "transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] focus-ring cursor-pointer disabled:opacity-50 disabled:pointer-events-none aria-disabled:opacity-50 aria-disabled:pointer-events-none",
+        false: ""
+      },
+      squish: {
+        true: "squish [--squish-x:var(--motion-squish-x)] [--squish-y:var(--motion-squish-y)]",
         false: ""
       },
       selected: {
@@ -141,6 +144,23 @@ export const variants = cva(
         selected: true,
         color: "destructive",
         className: "bg-destructive-hover/10"
+      },
+
+      // Squish size calibration
+      {
+        squish: true,
+        size: "sm",
+        className: "[--squish-x:var(--motion-squish-x-sm)] [--squish-y:var(--motion-squish-y-sm)]"
+      },
+      {
+        squish: true,
+        size: "md",
+        className: "[--squish-x:var(--motion-squish-x-md)] [--squish-y:var(--motion-squish-y-md)]"
+      },
+      {
+        squish: true,
+        size: "lg",
+        className: "[--squish-x:var(--motion-squish-x-lg)] [--squish-y:var(--motion-squish-y-lg)]"
       }
     ],
     defaultVariants: {
@@ -149,6 +169,7 @@ export const variants = cva(
       size: "md",
       radius: "lg",
       interactive: true,
+      squish: false,
       selected: false,
       disabled: false
     }
@@ -174,6 +195,7 @@ export const Tile = forwardRef<HTMLElement, TileProps>(function Tile(
     size = "md",
     radius = "lg",
     interactive,
+    squish = false,
     selected = false,
     disabled = false,
     leading,
@@ -252,6 +274,7 @@ export const Tile = forwardRef<HTMLElement, TileProps>(function Tile(
           size,
           radius,
           interactive: isInteractive,
+          squish: cond(isInteractive, squish, false),
           selected,
           disabled
         }),

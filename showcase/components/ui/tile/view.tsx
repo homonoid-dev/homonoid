@@ -19,6 +19,7 @@ export function TileView() {
   const [size, setSize] = useState<TileSize>("md");
   const [radius, setRadius] = useState<TileRadius>("lg");
   const [interactive, setInteractive] = useState(true);
+  const [squish, setSquish] = useState(false);
   const [selected, setSelected] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [showLeading, setShowLeading] = useState(true);
@@ -33,6 +34,7 @@ export function TileView() {
         size,
         radius,
         interactive,
+        squish,
         selected,
         disabled,
         showLeading,
@@ -45,6 +47,7 @@ export function TileView() {
       size,
       radius,
       interactive,
+      squish,
       selected,
       disabled,
       showLeading,
@@ -86,6 +89,13 @@ export function TileView() {
             description: "Enable tactile hover and press gestures",
             checked: interactive,
             onChange: setInteractive,
+          },
+          {
+            id: "squish",
+            label: "Squish Feedback",
+            description: "Enable tactile squish compression when pressed",
+            checked: squish,
+            onChange: setSquish,
           },
           {
             id: "selected",
@@ -132,6 +142,7 @@ export function TileView() {
           size={size}
           radius={radius}
           interactive={interactive}
+          squish={squish}
           selected={selected}
           disabled={disabled}
           label="Security Preferences"

@@ -38,6 +38,9 @@ export const ACCORDION_ITEMS: AccordionDemoItem[] = [
   },
 ];
 
+export type AccordionIndicatorType = "chevron" | "plus" | "none";
+export type AccordionIndicatorPlacement = "leading" | "trailing";
+
 export interface AccordionCodeOptions {
   variant: "plain" | "outlined" | "contained";
   size: Size;
@@ -46,6 +49,9 @@ export interface AccordionCodeOptions {
   disabled: boolean;
   showLeading: boolean;
   showDescription: boolean;
+  indicatorType: AccordionIndicatorType;
+  indicatorPlacement: AccordionIndicatorPlacement;
+  compound: boolean;
 }
 
 export function getAccordionCode(options: AccordionCodeOptions): string {
@@ -57,10 +63,23 @@ export function getAccordionCode(options: AccordionCodeOptions): string {
     disabled,
     showLeading,
     showDescription,
+    indicatorType,
+    indicatorPlacement,
+    compound,
   } = options;
 
-  const iconImports = showLeading
-    ? `import { HelpCircle, Activity, Shield } from "lucide-react";\n`
+  const lucideImports: string[] = [];
+  if (showLeading) {
+    lucideImports.push("HelpCircle", "Activity", "Shield");
+  }
+  if (indicatorType === "chevron") {
+    lucideImports.push("ChevronDown");
+  } else if (indicatorType === "plus") {
+    lucideImports.push("Plus");
+  }
+
+  const iconImports = lucideImports.length > 0
+    ? `import { ${lucideImports.join(", ")} } from "lucide-react";\n`
     : "";
 
   const props: string[] = ['defaultValue="item-1"'];
@@ -70,19 +89,30 @@ export function getAccordionCode(options: AccordionCodeOptions): string {
   if (!collapsible) props.push("collapsible={false}");
   if (disabled) props.push("disabled");
 
-  const accordionProps = props.length > 0 ? " " + props.join(" ") : "";
+  if (indicatorType === "chevron") {
+    props.push(
+      `indicator={{ icon: <ChevronDown className="size-4 text-muted shrink-0" />, placement: "${indicatorPlacement}" }}`
+    );
+  } else if (indicatorType === "plus") {
+    props.push(
+      `indicator={{ icon: <Plus className="size-4 text-muted shrink-0" />, placement: "${indicatorPlacement}" }}`
+    );
+  }
 
-  const itemsCode = ACCORDION_ITEMS.map((item) => {
-    const triggerProps: string[] = [];
-    if (showLeading) {
-      triggerProps.push(`leading={<${item.iconName} className="size-4 text-muted shrink-0" />}`);
-    }
-    if (showDescription) {
-      triggerProps.push(`description="${item.description}"`);
-    }
-    const triggerAttr = triggerProps.length > 0 ? " " + triggerProps.join(" ") : "";
+  if (compound) {
+    const accordionProps = props.length > 0 ? " " + props.join(" ") : "";
 
-    return `      <Accordion.Item value="${item.value}">
+    const itemsCode = ACCORDION_ITEMS.map((item) => {
+      const triggerProps: string[] = [];
+      if (showLeading) {
+        triggerProps.push(`leading={<${item.iconName} className="size-4 text-muted shrink-0" />}`);
+      }
+      if (showDescription) {
+        triggerProps.push(`description="${item.description}"`);
+      }
+      const triggerAttr = triggerProps.length > 0 ? " " + triggerProps.join(" ") : "";
+
+      return `      <Accordion.Item value="${item.value}">
         <Accordion.Trigger${triggerAttr}>
           ${item.title}
         </Accordion.Trigger>
@@ -90,9 +120,9 @@ export function getAccordionCode(options: AccordionCodeOptions): string {
           ${item.content}
         </Accordion.Content>
       </Accordion.Item>`;
-  }).join("\n");
+    }).join("\n");
 
-  return `${iconImports}import { Accordion } from "@homonoid/react";
+    return `${iconImports}import { Accordion } from "@homonoid/react";
 
 export function Example() {
   return (
@@ -101,5 +131,36 @@ ${itemsCode}
     </Accordion>
   );
 }`;
-}
+  }
 
+  // Atomic mode
+  const atomicItemsCode = ACCORDION_ITEMS.map((item) => {
+    const fields: string[] = [
+      `value: "${item.value}"`,
+      `trigger: "${item.title}"`,
+    ];
+    if (showDescription) {
+      fields.push(`description: "${item.description}"`);
+    }
+    if (showLeading) {
+      fields.push(`leading: <${item.iconName} className="size-4 text-muted shrink-0" />`);
+    }
+    fields.push(`content: "${item.content}"`);
+
+    return `  {\n    ${fields.join(",\n    ")},\n  },`;
+  }).join("\n");
+
+  const accordionProps = props.length > 0 ? " " + props.join(" ") : "";
+
+  return `${iconImports}import { Accordion, type AccordionItemDefinition } from "@homonoid/react";
+
+const items: AccordionItemDefinition[] = [
+${atomicItemsCode}
+];
+
+export function Example() {
+  return (
+    <Accordion${accordionProps} items={items} />
+  );
+}`;
+}

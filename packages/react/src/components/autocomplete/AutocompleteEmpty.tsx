@@ -1,15 +1,16 @@
 "use client";
 
-import { forwardRef, useState, useEffect } from "react";
+import { forwardRef, isValidElement } from "react";
 import { useAutocompleteContext } from "./AutocompleteContext";
+import { Description } from "../description/Description";
 import { cn } from "../../utils/cn";
-import { match } from "../../utils/condition";
+import { cond, match } from "../../utils/condition";
 import type { AutocompleteEmptyProps } from "./types";
 
 const heightClasses: Record<string, string> = {
-  sm: "min-h-control-sm px-control-sm-x text-xs",
-  md: "min-h-control-md px-control-md-x text-xs",
-  lg: "min-h-control-lg px-control-lg-x text-sm",
+  sm: "min-h-control-sm px-control-sm-x",
+  md: "min-h-control-md px-control-md-x",
+  lg: "min-h-control-lg px-control-lg-x",
 };
 
 export const AutocompleteEmpty = forwardRef<HTMLDivElement, AutocompleteEmptyProps>(
@@ -18,15 +19,18 @@ export const AutocompleteEmpty = forwardRef<HTMLDivElement, AutocompleteEmptyPro
     ref
   ) {
     const { itemCount, size } = useAutocompleteContext();
-    const [mounted, setMounted] = useState(false);
 
-    useEffect(() => {
-      setMounted(true);
-    }, []);
-
-    if (!mounted || itemCount > 0) {
+    if (itemCount > 0) {
       return null;
     }
+
+    const contentNode = cond(
+      isValidElement(children),
+      children,
+      <Description as="p" size={size} variant="muted">
+        {children}
+      </Description>
+    );
 
     return (
       <div
@@ -35,17 +39,16 @@ export const AutocompleteEmpty = forwardRef<HTMLDivElement, AutocompleteEmptyPro
         aria-live="polite"
         data-empty="true"
         className={cn(
-          "flex w-full items-center justify-center text-center text-muted select-none",
-          match(size, heightClasses, "min-h-control-md px-control-md-x text-xs"),
+          "flex w-full items-center justify-center text-center select-none py-control-sm-y",
+          match(size, heightClasses, "min-h-control-md px-control-md-x"),
           className
         )}
         {...props}
       >
-        {children}
+        {contentNode}
       </div>
     );
   }
 );
 
 AutocompleteEmpty.displayName = "Autocomplete.Empty";
-

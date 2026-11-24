@@ -143,12 +143,12 @@ export const BadgeIndicator = forwardRef<HTMLSpanElement, BadgeIndicatorProps>(
             circular: match(
               placement as NonNullable<typeof placement>,
               {
-                "top-right": "top-badge-circular right-badge-circular -translate-y-1/2 translate-x-1/2",
-                "top-left": "top-badge-circular left-badge-circular -translate-y-1/2 -translate-x-1/2",
-                "bottom-right": "bottom-badge-circular right-badge-circular translate-y-1/2 translate-x-1/2",
-                "bottom-left": "bottom-badge-circular left-badge-circular translate-y-1/2 -translate-x-1/2",
+                "top-right": "top-1 right-1 -translate-y-1/2 translate-x-1/2",
+                "top-left": "top-1 left-1 -translate-y-1/2 -translate-x-1/2",
+                "bottom-right": "bottom-1 right-1 translate-y-1/2 translate-x-1/2",
+                "bottom-left": "bottom-1 left-1 translate-y-1/2 -translate-x-1/2",
               },
-              "top-badge-circular right-badge-circular -translate-y-1/2 translate-x-1/2"
+              "top-1 right-1 -translate-y-1/2 translate-x-1/2"
             ),
             rectangular: match(
               placement as NonNullable<typeof placement>,

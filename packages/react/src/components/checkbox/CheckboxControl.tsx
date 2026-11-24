@@ -9,7 +9,7 @@ import { CheckboxIndicator } from "./CheckboxIndicator";
 import type { CheckboxControlProps } from "./types";
 
 export const variants = cva(
-  "relative inline-flex items-center justify-center shrink-0 border select-none transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] peer-active:scale-[var(--motion-press-scale)] group-active:scale-[var(--motion-press-scale)] focus-ring",
+  "relative inline-flex items-center justify-center shrink-0 border select-none transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-squish-scale)] peer-active:scale-[var(--motion-squish-scale)] group-active:scale-[var(--motion-squish-scale)] focus-ring",
   {
     variants: {
       size: {

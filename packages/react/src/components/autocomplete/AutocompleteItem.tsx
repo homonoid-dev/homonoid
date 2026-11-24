@@ -10,7 +10,7 @@ import {
 } from "react";
 import { useMergeRefs } from "@floating-ui/react";
 import { Tile } from "../tile/Tile";
-import { cond, match } from "../../utils/condition";
+import { all, any, cond, match } from "../../utils/condition";
 import { cn } from "../../utils/cn";
 import { useAutocompleteContext } from "./AutocompleteContext";
 import type { AutocompleteItemProps } from "./types";
@@ -52,9 +52,17 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
     const generatedId = useId();
     const itemId = `autocomplete-item-${generatedId}`;
 
-    const labelContent = label || (typeof children === "string" ? children : undefined);
-    const tileChildren = typeof children === "string" ? null : children;
-    const itemLabel: string = label || (typeof children === "string" ? children : value);
+    const labelContent = cond(
+      Boolean(label),
+      label,
+      cond(typeof children === "string", children, undefined)
+    );
+    const tileChildren = cond(typeof children === "string", null, children);
+    const itemLabel: string = cond(
+      Boolean(label),
+      label ?? "",
+      cond(typeof children === "string", children as string, value)
+    );
 
     const isMatch = useMemo(() => {
       if (!query.trim()) return true;
@@ -64,7 +72,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
       const q = query.toLowerCase();
       const text = itemLabel.toLowerCase();
       const desc = (description || "").toLowerCase();
-      return text.includes(q) || desc.includes(q);
+      return any(text.includes(q), desc.includes(q));
     }, [query, customFilter, value, itemLabel, description]);
 
     useEffect(() => {
@@ -79,9 +87,10 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
       return unregister;
     }, [isMatch, itemId, value, itemLabel, description, disabled, rootDisabled, registerItem]);
 
-    const isSelected =
-      (Boolean(selectedValue) && selectedValue === value) ||
-      (Boolean(query.trim()) && query.trim().toLowerCase() === itemLabel.toLowerCase());
+    const isSelected = any(
+      all(Boolean(selectedValue), selectedValue === value),
+      all(Boolean(query.trim()), query.trim().toLowerCase() === itemLabel.toLowerCase())
+    );
     const currentIndex = registeredItems.findIndex((item) => item.id === itemId);
     const isHighlighted = highlightedIndex !== null && currentIndex === highlightedIndex;
 
@@ -125,7 +134,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         sm: "sm" as const,
         md: "md" as const,
         lg: "lg" as const,
-        full: "xl" as const,
+        full: "lg" as const,
       },
       "sm" as const
     );
@@ -137,7 +146,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         sm: "rounded-sm",
         md: "rounded-lg",
         lg: "rounded-xl",
-        full: "rounded-concentric-full",
+        full: "rounded-xl",
       },
       "rounded-sm"
     );
@@ -160,6 +169,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         radius={effectiveRadius}
         disabled={disabled || rootDisabled}
         interactive={!disabled && !rootDisabled}
+        squish={!disabled && !rootDisabled}
         selected={isSelected}
         leading={leading}
         label={labelContent}
@@ -168,7 +178,8 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         className={cn(
           "shrink-0 cursor-pointer select-none",
           effectiveRadiusClass,
-          cond(isSelected, "bg-surface-hover font-medium", cond(isHighlighted, "bg-surface-hover/50", "")),
+          cond(isSelected, "font-medium", ""),
+          cond(isHighlighted, "bg-surface-hover", ""),
           className
         )}
         onClick={handleClick}

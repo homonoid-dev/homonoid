@@ -37,7 +37,7 @@ const compounds = (Object.keys(PALETTES) as Palette[]).flatMap((color) => [
 ]);
 
 export const variants = cva(
-  "relative inline-flex items-center justify-center font-medium select-none subpixel-antialiased overflow-hidden transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] aria-expanded:scale-[var(--motion-press-scale)] data-[state=open]:scale-[var(--motion-press-scale)] focus-ring cursor-pointer aria-expanded:cursor-default data-[state=open]:cursor-default disabled:opacity-50 disabled:pointer-events-none",
+  "relative inline-flex items-center justify-center font-medium select-none subpixel-antialiased overflow-hidden transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] squish focus-ring cursor-pointer aria-expanded:cursor-default data-[state=open]:cursor-default disabled:opacity-50 disabled:pointer-events-none",
   {
     variants: {
       variant: {
@@ -52,9 +52,9 @@ export const variants = cva(
         destructive: "",
       },
       size: {
-        sm: "h-control-sm px-control-sm-x gap-control-gap text-xs active:scale-[var(--motion-press-scale-sm)] aria-expanded:scale-[var(--motion-press-scale-sm)] data-[state=open]:scale-[var(--motion-press-scale-sm)]",
-        md: "h-control-md px-control-md-x gap-control-gap text-sm active:scale-[var(--motion-press-scale-md)] aria-expanded:scale-[var(--motion-press-scale-md)] data-[state=open]:scale-[var(--motion-press-scale-md)]",
-        lg: "h-control-lg px-control-lg-x gap-control-gap text-base active:scale-[var(--motion-press-scale-lg)] aria-expanded:scale-[var(--motion-press-scale-lg)] data-[state=open]:scale-[var(--motion-press-scale-lg)]",
+        sm: "h-control-sm px-control-sm-x gap-control-gap text-xs [--squish-x:var(--motion-squish-x-sm)] [--squish-y:var(--motion-squish-y-sm)]",
+        md: "h-control-md px-control-md-x gap-control-gap text-sm [--squish-x:var(--motion-squish-x-md)] [--squish-y:var(--motion-squish-y-md)]",
+        lg: "h-control-lg px-control-lg-x gap-control-gap text-base [--squish-x:var(--motion-squish-x-lg)] [--squish-y:var(--motion-squish-y-lg)]",
       },
       radius: {
         none: "rounded-none",
@@ -76,12 +76,12 @@ export const variants = cva(
       {
         layout: "icon",
         className:
-          "active:scale-[var(--motion-press-scale-sm)] aria-expanded:scale-[var(--motion-press-scale-sm)] data-[state=open]:scale-[var(--motion-press-scale-sm)]",
+          "[--squish-x:var(--motion-squish-scale-sm)] [--squish-y:var(--motion-squish-scale-sm)]",
       },
       {
         layout: "full",
         className:
-          "active:scale-[var(--motion-press-scale-expanded)] aria-expanded:scale-[var(--motion-press-scale-expanded)] data-[state=open]:scale-[var(--motion-press-scale-expanded)]",
+          "[--squish-x:var(--motion-squish-x-lg)] [--squish-y:var(--motion-squish-y-lg)]",
       },
       ...compounds,
     ],

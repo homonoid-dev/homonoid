@@ -22,17 +22,18 @@ export const AutocompleteList = forwardRef<HTMLDivElement, AutocompleteListProps
         aria-labelledby={inputId}
         tabIndex={-1}
         className={cn(
-          "relative flex max-h-72 flex-col overflow-y-auto p-0.5 gap-0.5 select-none focus:outline-none",
+          "relative max-h-72 overflow-y-auto select-none focus:outline-none",
           className
         )}
         onMouseLeave={handleMouseLeave}
         {...props}
       >
-        {children}
+        <div role="presentation" className="flex flex-col p-1.5 gap-0.5">
+          {children}
+        </div>
       </div>
     );
   }
 );
 
 AutocompleteList.displayName = "Autocomplete.List";
-

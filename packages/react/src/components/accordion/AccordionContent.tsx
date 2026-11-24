@@ -1,9 +1,10 @@
 "use client";
 
-import { forwardRef } from "react";
+import { forwardRef, isValidElement } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 import { cond } from "../../utils/condition";
+import { Description } from "../description/Description";
 import { useAccordionContext } from "./AccordionContext";
 import { useAccordionItemContext } from "./AccordionItemContext";
 import type { AccordionContentProps } from "./types";
@@ -24,17 +25,17 @@ export const accordionRegionVariants = cva(
 );
 
 export const accordionContentVariants = cva(
-  "text-muted leading-relaxed transform-gpu origin-top transition motion-reduce:transition-none",
+  "transform-gpu origin-top transition motion-reduce:transition-none",
   {
     variants: {
       open: {
         true: "opacity-100 scale-100 duration-[var(--motion-duration-slow)] ease-out",
-        false: "opacity-0 scale-[var(--motion-press-scale-expanded)] pointer-events-none duration-[var(--motion-duration-fast)] ease-in",
+        false: "opacity-0 scale-[var(--motion-squish-expanded)] pointer-events-none duration-[var(--motion-duration-fast)] ease-in",
       },
       size: {
-        sm: "pb-control-md-y pt-control-sm-y text-xs",
-        md: "pb-control-md-y pt-control-sm-y text-sm",
-        lg: "pb-control-lg-y pt-control-sm-y text-base",
+        sm: "pb-control-md-y pt-control-sm-y",
+        md: "pb-control-md-y pt-control-sm-y",
+        lg: "pb-control-lg-y pt-control-sm-y",
       },
       variant: {
         plain: "px-0",
@@ -60,6 +61,14 @@ export const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps
     const { size, variant } = useAccordionContext();
     const { open, triggerId, contentId } = useAccordionItemContext();
 
+    const contentNode = cond(
+      isValidElement(children),
+      children,
+      <Description as="p" size={size}>
+        {children}
+      </Description>
+    );
+
     return (
       <div
         ref={ref}
@@ -72,7 +81,7 @@ export const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps
       >
         <div className="min-h-0 overflow-hidden">
           <div className={accordionContentVariants({ open, size, variant })}>
-            {children}
+            {contentNode}
           </div>
         </div>
       </div>

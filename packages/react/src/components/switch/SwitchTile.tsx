@@ -107,7 +107,7 @@ export const SwitchTile = forwardRef<HTMLDivElement, SwitchTileProps>(
       descriptionId,
       inputRef: setRefs,
       inputProps,
-      handleChange: () => {},
+      handleChange: () => { },
     };
 
     const controlNode = (
@@ -185,7 +185,7 @@ export const SwitchTile = forwardRef<HTMLDivElement, SwitchTileProps>(
           onKeyDown={handleKeyDown}
           className={cn(
             "cursor-pointer select-none",
-            cond(disabled, "cursor-not-allowed opacity-50 active:scale-100", ""),
+            cond(disabled, "cursor-not-allowed opacity-50", ""),
             className
           )}
           {...props}

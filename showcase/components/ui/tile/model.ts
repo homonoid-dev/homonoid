@@ -11,6 +11,7 @@ export interface TileCodeOptions {
   size: TileSize;
   radius: TileRadius;
   interactive: boolean;
+  squish: boolean;
   selected: boolean;
   disabled: boolean;
   showLeading: boolean;
@@ -25,6 +26,7 @@ export function getTileCode(options: TileCodeOptions): string {
     size,
     radius,
     interactive,
+    squish,
     selected,
     disabled,
     showLeading,
@@ -61,6 +63,9 @@ export function getTileCode(options: TileCodeOptions): string {
   }
   if (interactive) {
     props.push("interactive");
+  }
+  if (squish) {
+    props.push("squish");
   }
   if (selected) {
     props.push("selected");

@@ -35,11 +35,11 @@ export const AutocompleteContent = forwardRef<HTMLDivElement, AutocompleteConten
       context,
       {
         duration: {
-          open: 160,
+          open: 150,
           close: 100,
         },
         common: {
-          transitionTimingFunction: "cubic-bezier(0.2, 0, 0, 1)",
+          transitionTimingFunction: "cubic-bezier(0.15, 1, 0.35, 1)",
         },
         initial: {
           opacity: 0,
@@ -81,9 +81,9 @@ export const AutocompleteContent = forwardRef<HTMLDivElement, AutocompleteConten
             }}
             data-state={cond(open, "open", "closed")}
             className={cn(
-              "transform-gpu overflow-hidden bg-surface border border-border shadow-lg p-1 focus:outline-none",
+              "transform-gpu overflow-hidden bg-surface border border-border shadow-lg focus:outline-none",
               cond(context.placement.startsWith("top"), "origin-bottom", "origin-top"),
-              match(radius, radiusClasses, "rounded-lg"),
+              match(radius, radiusClasses, "rounded-xl"),
               className
             )}
           >
@@ -96,4 +96,3 @@ export const AutocompleteContent = forwardRef<HTMLDivElement, AutocompleteConten
 );
 
 AutocompleteContent.displayName = "Autocomplete.Content";
-

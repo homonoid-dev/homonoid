@@ -4,7 +4,7 @@ import type { Radius, Size } from "../../types";
 export type TileVariant = "plain" | "contained" | "outlined";
 export type TileColor = "surface" | "subtle" | "primary" | "destructive";
 export type TileSize = Size;
-export type TileRadius = Radius | "xl";
+export type TileRadius = Radius;
 
 export interface TileProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   /**
@@ -64,6 +64,13 @@ export interface TileProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
    * Inferred from the presence of onClick, href, or interactive role when omitted.
    */
   interactive?: boolean;
+
+  /**
+   * Whether the tile applies physical squish compression when pressed.
+   * Defaults to false to keep compound surfaces like switches and checkboxes stable.
+   * @default false
+   */
+  squish?: boolean;
 
   /**
    * Whether the tile is currently selected or active.

@@ -6,14 +6,36 @@
     --motion-duration-normal: 250ms;
     --motion-duration-slow: 350ms;
     --motion-easing: cubic-bezier(0.4, 0, 0.2, 1);
-    --motion-press-scale-sm: 0.94;
-    --motion-press-scale-md: 0.95;
-    --motion-press-scale-lg: 0.96;
-    --motion-press-scale-expanded: 0.98;
-    --motion-press-scale: var(--motion-press-scale-md);
+
+    /* Squish Tokens */
+    --motion-squish-scale-sm: 0.94;
+    --motion-squish-scale-md: 0.95;
+    --motion-squish-scale-lg: 0.96;
+    --motion-squish-scale: var(--motion-squish-scale-md);
+    --motion-squish-expanded: 0.98;
+    --motion-squish-x-sm: 0.98;
+    --motion-squish-y-sm: 0.94;
+    --motion-squish-x-md: 0.985;
+    --motion-squish-y-md: 0.95;
+    --motion-squish-x-lg: 0.99;
+    --motion-squish-y-lg: 0.96;
+    --motion-squish-x: var(--motion-squish-x-md);
+    --motion-squish-y: var(--motion-squish-y-md);
   }
 }
 
 @utility focus-ring {
   @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/50;
+}
+
+@utility squish {
+  transition-duration: var(--motion-duration-normal);
+  transition-timing-function: var(--motion-easing);
+
+  &:active,
+  &[aria-expanded="true"],
+  &[data-state="open"] {
+    transform: scale(var(--squish-x, var(--motion-squish-scale)),
+        var(--squish-y, var(--motion-squish-scale)));
+  }
 }
