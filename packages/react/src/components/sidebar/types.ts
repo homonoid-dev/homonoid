@@ -5,7 +5,7 @@ import type {
   ReactNode,
   Ref,
 } from "react";
-import type { TileColor, TileSize, TileVariant } from "../tile/types";
+import type { TileColor, TileRadius, TileSize, TileVariant } from "../tile/types";
 
 export type SidebarCollapsible = "none" | "icon" | "offcanvas";
 export type SidebarVariant = "fixed" | "floating" | "bordered";
@@ -20,6 +20,7 @@ export interface SidebarItemData {
   leading?: ReactNode;
   trailing?: ReactNode;
   badge?: ReactNode;
+  radius?: TileRadius;
   onClick?: (e: MouseEvent<HTMLElement>) => void;
 }
 
@@ -71,6 +72,12 @@ export interface SidebarProps extends HTMLAttributes<HTMLElement> {
    * @default "left"
    */
   side?: SidebarSide;
+
+  /**
+   * Default corner radius applied to sidebar items.
+   * @default "full"
+   */
+  radius?: TileRadius;
 
   /**
    * Optional custom width class when expanded.
@@ -197,6 +204,11 @@ export interface SidebarItemProps extends Omit<HTMLAttributes<HTMLElement>, "col
    * @default "sm"
    */
   size?: TileSize;
+
+  /**
+   * Corner radius override for this item. Inherits from Sidebar radius when omitted.
+   */
+  radius?: TileRadius;
 }
 
 export interface SidebarFooterProps extends HTMLAttributes<HTMLDivElement> {

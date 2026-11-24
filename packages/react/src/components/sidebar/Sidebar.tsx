@@ -63,6 +63,7 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
     collapsible = "icon",
     variant = "bordered",
     side = "left",
+    radius = "full",
     width = "w-60",
     collapsedWidth = "w-16",
     header,
@@ -106,6 +107,7 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
     collapsible,
     variant,
     side,
+    radius,
     sidebarId,
   };
 
@@ -156,6 +158,7 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
                         leading={item.leading}
                         trailing={item.trailing}
                         badge={item.badge}
+                        radius={item.radius}
                         onClick={item.onClick}
                       >
                         {item.label}

@@ -17,6 +17,7 @@ export const SidebarItem = forwardRef<HTMLElement, SidebarItemProps>(
       active = false,
       disabled = false,
       size = "sm",
+      radius: explicitRadius,
       leading,
       trailing,
       badge,
@@ -29,7 +30,7 @@ export const SidebarItem = forwardRef<HTMLElement, SidebarItemProps>(
     },
     ref
   ) {
-    const { collapsed } = useSidebarContext();
+    const { collapsed, radius: contextRadius } = useSidebarContext();
 
     const Component = as || cond(Boolean(href), "a", "button");
 
@@ -64,7 +65,7 @@ export const SidebarItem = forwardRef<HTMLElement, SidebarItemProps>(
         variant={variant}
         color={color}
         size={size}
-        radius="lg"
+        radius={explicitRadius ?? contextRadius}
         selected={active}
         disabled={disabled}
         squish={!disabled}
