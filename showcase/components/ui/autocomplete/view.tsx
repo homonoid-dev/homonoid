@@ -107,7 +107,7 @@ export function AutocompleteView() {
         {cond(
           compound,
           <Autocomplete
-            key={`${size}-${radius}-${disabled}-${invalid}-${loading}-compound`}
+            key="compound"
             value={value}
             onValueChange={setValue}
             size={size}
@@ -140,7 +140,7 @@ export function AutocompleteView() {
             </Autocomplete.Content>
           </Autocomplete>,
           <Autocomplete
-            key={`${size}-${radius}-${floating}-${disabled}-${invalid}-${loading}-atomic`}
+            key="atomic"
             value={value}
             onValueChange={setValue}
             size={size}

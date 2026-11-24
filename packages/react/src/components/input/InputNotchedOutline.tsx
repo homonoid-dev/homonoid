@@ -1,12 +1,13 @@
 "use client";
 
 import { cn } from "../../utils/cn";
-import { cond, when } from "../../utils/condition";
+import { any, cond, when } from "../../utils/condition";
 
 export interface InputNotchedOutlineProps {
   isOutlined: boolean;
   isFloated: boolean;
   isFocused: boolean;
+  isExpanded?: boolean;
   isInvalid: boolean;
   disabled: boolean;
   clipPath?: string;
@@ -16,6 +17,7 @@ export function InputNotchedOutline({
   isOutlined,
   isFloated,
   isFocused,
+  isExpanded = false,
   isInvalid,
   disabled,
   clipPath,
@@ -27,7 +29,7 @@ export function InputNotchedOutline({
       disabled,
       "border-border opacity-50",
       cond(
-        isFocused,
+        any(isFocused, isExpanded),
         "border-primary group-hover:border-primary",
         "border-border group-hover:border-foreground/30 group-focus-within:border-primary group-focus-within:group-hover:border-primary"
       )

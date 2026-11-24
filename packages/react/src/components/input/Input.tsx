@@ -191,8 +191,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 
   const hasLabel = Boolean(label);
   const hasExternalLabel = all(!isFloating, hasLabel);
-  const hasFooter = any(Boolean(error), Boolean(description));
-  const needsOuterWrapper = any(hasLabel, hasFooter);
 
   const controlContainer = (
     <div
@@ -206,8 +204,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           radius,
           invalid: isInvalid,
           disabled,
-        }),
-        cond(!needsOuterWrapper, className, undefined)
+        })
       )}
     >
       {/* Leading Slot */}
@@ -278,6 +275,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         isOutlined={isOutlined}
         isFloated={isFloated}
         isFocused={isFocused}
+        isExpanded={isExpanded}
         isInvalid={isInvalid}
         disabled={disabled}
         clipPath={clipPath}
@@ -285,12 +283,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     </div>
   );
 
-  // If no external label and no footer (description or error), return control container directly
-  if (!needsOuterWrapper) {
-    return controlContainer;
-  }
-
-  // Composed layout with external label and helper/error captions
   return (
     <div className={cn("w-full flex flex-col gap-1.5 select-none", className)}>
       {when(
