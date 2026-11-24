@@ -80,48 +80,100 @@ export const variants = cva(
         className: "text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20 aria-expanded:bg-destructive-hover/5 data-[state=open]:bg-destructive-hover/5"
       },
 
-      // Contained Variants (Solid fills matching Button)
+      // Contained Variants — base fill, always applied
       {
         variant: "contained",
         color: "surface",
-        className: "bg-surface text-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
+        className: "bg-surface text-foreground"
       },
       {
         variant: "contained",
         color: "subtle",
-        className: "bg-subtle text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
+        className: "bg-subtle text-subtle-foreground"
       },
       {
         variant: "contained",
         color: "primary",
-        className: "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active aria-expanded:bg-primary-hover data-[state=open]:bg-primary-hover"
+        className: "bg-primary text-primary-foreground"
       },
       {
         variant: "contained",
         color: "destructive",
-        className: "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-active aria-expanded:bg-destructive-hover data-[state=open]:bg-destructive-hover"
+        className: "bg-destructive text-destructive-foreground"
       },
 
-      // Outlined Variants (Transparent + Border matching Button)
+      // Contained Variants — pointer feedback, only when interactive
+      {
+        variant: "contained",
+        color: "surface",
+        interactive: true,
+        className: "hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
+      },
+      {
+        variant: "contained",
+        color: "subtle",
+        interactive: true,
+        className: "hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
+      },
+      {
+        variant: "contained",
+        color: "primary",
+        interactive: true,
+        className: "hover:bg-primary-hover active:bg-primary-active aria-expanded:bg-primary-hover data-[state=open]:bg-primary-hover"
+      },
+      {
+        variant: "contained",
+        color: "destructive",
+        interactive: true,
+        className: "hover:bg-destructive-hover active:bg-destructive-active aria-expanded:bg-destructive-hover data-[state=open]:bg-destructive-hover"
+      },
+
+      // Outlined Variants — base border and text, always applied
       {
         variant: "outlined",
         color: "surface",
-        className: "border-border text-foreground hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
+        className: "border-border text-foreground"
       },
       {
         variant: "outlined",
         color: "subtle",
-        className: "border-subtle-border text-subtle-foreground hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
+        className: "border-subtle-border text-subtle-foreground"
       },
       {
         variant: "outlined",
         color: "primary",
-        className: "border-primary-border text-primary hover:bg-subtle active:bg-subtle-active aria-expanded:bg-subtle data-[state=open]:bg-subtle"
+        className: "border-primary-border text-primary"
       },
       {
         variant: "outlined",
         color: "destructive",
-        className: "border-destructive-border text-destructive hover:bg-destructive-hover/5 active:bg-destructive-active/20 aria-expanded:bg-destructive-hover/5 data-[state=open]:bg-destructive-hover/5"
+        className: "border-destructive-border text-destructive"
+      },
+
+      // Outlined Variants — pointer feedback, only when interactive
+      {
+        variant: "outlined",
+        color: "surface",
+        interactive: true,
+        className: "hover:bg-surface-hover active:bg-surface-active aria-expanded:bg-surface-hover data-[state=open]:bg-surface-hover"
+      },
+      {
+        variant: "outlined",
+        color: "subtle",
+        interactive: true,
+        className: "hover:bg-subtle-hover active:bg-subtle-active aria-expanded:bg-subtle-hover data-[state=open]:bg-subtle-hover"
+      },
+      {
+        variant: "outlined",
+        color: "primary",
+        interactive: true,
+        className: "hover:bg-subtle active:bg-subtle-active aria-expanded:bg-subtle data-[state=open]:bg-subtle"
+      },
+      {
+        variant: "outlined",
+        color: "destructive",
+        interactive: true,
+        className: "hover:bg-destructive-hover/5 active:bg-destructive-active/20 aria-expanded:bg-destructive-hover/5 data-[state=open]:bg-destructive-hover/5"
       },
 
       // Selected states
