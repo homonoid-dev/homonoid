@@ -38,6 +38,11 @@ export const tabVariants = cva(
       { layout: "icon", size: "sm", className: "w-control-sm" },
       { layout: "icon", size: "md", className: "w-control-md" },
       { layout: "icon", size: "lg", className: "w-control-lg" },
+      {
+        layout: "icon",
+        className:
+          "[--squish-x:var(--motion-squish-scale-sm)] [--squish-y:var(--motion-squish-scale-sm)]",
+      },
     ],
     defaultVariants: {
       size: "md",
