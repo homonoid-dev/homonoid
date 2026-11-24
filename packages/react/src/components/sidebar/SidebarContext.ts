@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext } from "react";
+import type { TileRadius } from "../tile/types";
 import type { SidebarCollapsible, SidebarSide, SidebarVariant } from "./types";
 
 export interface SidebarContextValue {
@@ -10,6 +11,7 @@ export interface SidebarContextValue {
   collapsible: SidebarCollapsible;
   variant: SidebarVariant;
   side: SidebarSide;
+  radius: TileRadius;
   sidebarId: string;
 }
 
