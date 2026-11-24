@@ -94,6 +94,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
         radius={concentricRadius}
         disabled={disabled}
         interactive={!disabled}
+        squish={!disabled}
         selected={isSelected}
         leading={leading}
         label={labelContent}

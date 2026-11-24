@@ -67,6 +67,7 @@ export const SidebarItem = forwardRef<HTMLElement, SidebarItemProps>(
         radius="lg"
         selected={active}
         disabled={disabled}
+        squish={!disabled}
         aria-current={cond(active, "page", undefined)}
         leading={leading}
         trailing={trailingElement}

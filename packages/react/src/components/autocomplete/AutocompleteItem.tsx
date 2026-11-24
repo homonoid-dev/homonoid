@@ -169,6 +169,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AutocompleteItemProps
         radius={effectiveRadius}
         disabled={disabled || rootDisabled}
         interactive={!disabled && !rootDisabled}
+        squish={!disabled && !rootDisabled}
         selected={isSelected}
         leading={leading}
         label={labelContent}
