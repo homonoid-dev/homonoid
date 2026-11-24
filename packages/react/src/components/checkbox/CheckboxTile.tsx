@@ -203,7 +203,7 @@ export const CheckboxTile = forwardRef<HTMLDivElement, CheckboxTileProps>(
           onKeyDown={handleKeyDown}
           className={cn(
             "cursor-pointer select-none",
-            cond(disabled, "cursor-not-allowed opacity-50 active:scale-100", ""),
+            cond(disabled, "cursor-not-allowed opacity-50", ""),
             className
           )}
           {...props}

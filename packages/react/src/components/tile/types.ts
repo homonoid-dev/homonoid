@@ -66,6 +66,13 @@ export interface TileProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   interactive?: boolean;
 
   /**
+   * Whether the tile applies physical squish compression when pressed.
+   * Defaults to false to keep compound surfaces like switches and checkboxes stable.
+   * @default false
+   */
+  squish?: boolean;
+
+  /**
    * Whether the tile is currently selected or active.
    * @default false
    */

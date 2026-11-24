@@ -81,6 +81,7 @@ export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
         selected={selected}
         disabled={disabled}
         interactive={!disabled}
+        squish={!disabled}
         leading={leading}
         label={labelContent}
         description={description}

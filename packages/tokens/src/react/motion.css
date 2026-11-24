@@ -11,9 +11,41 @@
     --motion-press-scale-lg: 0.96;
     --motion-press-scale-expanded: 0.98;
     --motion-press-scale: var(--motion-press-scale-md);
+
+    /* Squish Tokens */
+    --motion-squish-scale-sm: var(--motion-press-scale-sm);
+    --motion-squish-scale-md: var(--motion-press-scale-md);
+    --motion-squish-scale-lg: var(--motion-press-scale-lg);
+    --motion-squish-scale: var(--motion-press-scale);
+    --motion-squish-x-sm: 0.98;
+    --motion-squish-y-sm: 0.94;
+    --motion-squish-x-md: 0.985;
+    --motion-squish-y-md: 0.95;
+    --motion-squish-x-lg: 0.99;
+    --motion-squish-y-lg: 0.96;
+    --motion-squish-x: var(--motion-squish-x-md);
+    --motion-squish-y: var(--motion-squish-y-md);
   }
 }
 
 @utility focus-ring {
   @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/50;
+}
+
+@utility squish {
+  transition-property: transform;
+  transition-duration: var(--motion-duration-normal);
+  transition-timing-function: var(--motion-easing);
+  &:active {
+    transform: scale(var(--motion-squish-scale));
+  }
+}
+
+@utility squish-rect {
+  transition-property: transform;
+  transition-duration: var(--motion-duration-normal);
+  transition-timing-function: var(--motion-easing);
+  &:active {
+    transform: scale(var(--motion-squish-x), var(--motion-squish-y));
+  }
 }

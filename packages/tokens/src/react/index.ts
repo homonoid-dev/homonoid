@@ -61,7 +61,19 @@ export const tokens = {
     "press-scale-sm": "var(--motion-press-scale-sm)",
     "press-scale-md": "var(--motion-press-scale-md)",
     "press-scale-lg": "var(--motion-press-scale-lg)",
-    "press-scale": "var(--motion-press-scale)"
+    "press-scale": "var(--motion-press-scale)",
+    "squish-scale-sm": "var(--motion-squish-scale-sm)",
+    "squish-scale-md": "var(--motion-squish-scale-md)",
+    "squish-scale-lg": "var(--motion-squish-scale-lg)",
+    "squish-scale": "var(--motion-squish-scale)",
+    "squish-x-sm": "var(--motion-squish-x-sm)",
+    "squish-y-sm": "var(--motion-squish-y-sm)",
+    "squish-x-md": "var(--motion-squish-x-md)",
+    "squish-y-md": "var(--motion-squish-y-md)",
+    "squish-x-lg": "var(--motion-squish-x-lg)",
+    "squish-y-lg": "var(--motion-squish-y-lg)",
+    "squish-x": "var(--motion-squish-x)",
+    "squish-y": "var(--motion-squish-y)"
   }
 } as const;
 

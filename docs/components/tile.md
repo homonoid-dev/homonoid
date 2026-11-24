@@ -102,12 +102,12 @@ Interactive tiles communicate operational status across touch, pointer, and keyb
 
 ### Motion
 
-Tactile motion preserves spatial identity and aligns with the button interaction model:
+Tactile motion preserves spatial identity and provides calibrated squish feedback:
 
-- Scale Feedback: Active pressed states apply smooth geometric compression down to scale 0.97 using the `--motion-press-scale` token.
+- Squish Feedback: When squish is enabled through the squish property, active pressed states apply calibrated rectangular compression using `--motion-squish-x` and `--motion-squish-y` tokens to balance lateral and vertical displacement.
 - Duration: State transitions glide over normal duration using `--motion-duration-normal`.
 - Easing: Acceleration and deceleration follow the cubic bezier curve defined by `--motion-easing`.
-- Layout Continuity: Internal slots remain dimensionally stable to eliminate layout jitter when state transitions trigger.
+- Dimensional Stability: Compound surfaces like switch tiles and checkbox tiles keep squish disabled by default to preserve outer boundary stability while internal indicators toggle.
 
 <br>
 

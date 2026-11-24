@@ -37,7 +37,11 @@ export const variants = cva(
         full: "rounded-full"
       },
       interactive: {
-        true: "transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] aria-expanded:scale-[var(--motion-press-scale)] data-[state=open]:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:opacity-50 disabled:pointer-events-none aria-disabled:opacity-50 aria-disabled:pointer-events-none",
+        true: "transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] focus-ring cursor-pointer disabled:opacity-50 disabled:pointer-events-none aria-disabled:opacity-50 aria-disabled:pointer-events-none",
+        false: ""
+      },
+      squish: {
+        true: "active:scale-x-[var(--motion-squish-x)] active:scale-y-[var(--motion-squish-y)] aria-expanded:scale-x-[var(--motion-squish-x)] aria-expanded:scale-y-[var(--motion-squish-y)] data-[state=open]:scale-x-[var(--motion-squish-x)] data-[state=open]:scale-y-[var(--motion-squish-y)]",
         false: ""
       },
       selected: {
@@ -140,6 +144,23 @@ export const variants = cva(
         selected: true,
         color: "destructive",
         className: "bg-destructive-hover/10"
+      },
+
+      // Squish size calibration
+      {
+        squish: true,
+        size: "sm",
+        className: "active:scale-x-[var(--motion-squish-x-sm)] active:scale-y-[var(--motion-squish-y-sm)] aria-expanded:scale-x-[var(--motion-squish-x-sm)] aria-expanded:scale-y-[var(--motion-squish-y-sm)] data-[state=open]:scale-x-[var(--motion-squish-x-sm)] data-[state=open]:scale-y-[var(--motion-squish-y-sm)]"
+      },
+      {
+        squish: true,
+        size: "md",
+        className: "active:scale-x-[var(--motion-squish-x-md)] active:scale-y-[var(--motion-squish-y-md)] aria-expanded:scale-x-[var(--motion-squish-x-md)] aria-expanded:scale-y-[var(--motion-squish-y-md)] data-[state=open]:scale-x-[var(--motion-squish-x-md)] data-[state=open]:scale-y-[var(--motion-squish-y-md)]"
+      },
+      {
+        squish: true,
+        size: "lg",
+        className: "active:scale-x-[var(--motion-squish-x-lg)] active:scale-y-[var(--motion-squish-y-lg)] aria-expanded:scale-x-[var(--motion-squish-x-lg)] aria-expanded:scale-y-[var(--motion-squish-y-lg)] data-[state=open]:scale-x-[var(--motion-squish-x-lg)] data-[state=open]:scale-y-[var(--motion-squish-y-lg)]"
       }
     ],
     defaultVariants: {
@@ -148,6 +169,7 @@ export const variants = cva(
       size: "md",
       radius: "lg",
       interactive: true,
+      squish: false,
       selected: false,
       disabled: false
     }
@@ -173,6 +195,7 @@ export const Tile = forwardRef<HTMLElement, TileProps>(function Tile(
     size = "md",
     radius = "lg",
     interactive,
+    squish = false,
     selected = false,
     disabled = false,
     leading,
@@ -251,6 +274,7 @@ export const Tile = forwardRef<HTMLElement, TileProps>(function Tile(
           size,
           radius,
           interactive: isInteractive,
+          squish: cond(isInteractive, squish, false),
           selected,
           disabled
         }),
