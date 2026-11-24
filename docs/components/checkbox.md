@@ -107,7 +107,7 @@ Homonoid requires that state transitions preserve component identity and physica
 
 Motion parameters adhere strictly to tactile physics and `@homonoid/tokens`:
 
-- Press Scale: Tactile press compression (`active:scale-[var(--motion-press-scale)]`) providing calibrated feedback across touch and mouse interactions.
+- Squish Compression: Tactile press compression (`active:scale-[var(--motion-squish-scale)]`) providing calibrated feedback across touch and mouse interactions.
 - State Transition: Smooth token transitions (`duration-[var(--motion-duration-normal)]`, `ease-[var(--motion-easing)]`) across surface fill, border stroke, and focus ring states.
 - Glyph Morphing: Checkmark and indeterminate bars scale smoothly between 0.75 and 1.0 while cross fading into place over normal duration.
 - Pure Utility Architecture: Consumes Tailwind CSS utilities and design tokens directly with zero bespoke stylesheets.

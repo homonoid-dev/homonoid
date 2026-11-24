@@ -13,13 +13,13 @@ import { useTabsContext } from "./TabsContext";
 import type { TabsTabProps } from "./types";
 
 export const tabVariants = cva(
-  "group/tab relative select-none font-medium flex items-center justify-center isolate outline-none cursor-pointer disabled:pointer-events-none disabled:opacity-40 transition-[background-color,border-color,color,fill,stroke,opacity,box-shadow,transform] duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-focus focus-visible:z-10",
+  "group/tab relative select-none font-medium flex items-center justify-center isolate outline-none cursor-pointer disabled:pointer-events-none disabled:opacity-40 transition-[background-color,border-color,color,fill,stroke,opacity,box-shadow,transform] duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] squish motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-focus focus-visible:z-10",
   {
     variants: {
       size: {
-        sm: "h-control-sm px-control-sm-x gap-control-gap text-xs active:scale-[var(--motion-press-scale-sm)]",
-        md: "h-control-md px-control-md-x gap-control-gap text-sm active:scale-[var(--motion-press-scale-md)]",
-        lg: "h-control-lg px-control-lg-x gap-control-gap text-base active:scale-[var(--motion-press-scale-lg)]",
+        sm: "h-control-sm px-control-sm-x gap-control-gap text-xs [--squish-x:var(--motion-squish-x-sm)] [--squish-y:var(--motion-squish-y-sm)]",
+        md: "h-control-md px-control-md-x gap-control-gap text-sm [--squish-x:var(--motion-squish-x-md)] [--squish-y:var(--motion-squish-y-md)]",
+        lg: "h-control-lg px-control-lg-x gap-control-gap text-base [--squish-x:var(--motion-squish-x-lg)] [--squish-y:var(--motion-squish-y-lg)]",
       },
       radius: {
         none: "rounded-none",

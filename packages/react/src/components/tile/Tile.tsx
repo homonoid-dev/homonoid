@@ -41,7 +41,7 @@ export const variants = cva(
         false: ""
       },
       squish: {
-        true: "active:scale-x-[var(--motion-squish-x)] active:scale-y-[var(--motion-squish-y)] aria-expanded:scale-x-[var(--motion-squish-x)] aria-expanded:scale-y-[var(--motion-squish-y)] data-[state=open]:scale-x-[var(--motion-squish-x)] data-[state=open]:scale-y-[var(--motion-squish-y)]",
+        true: "squish [--squish-x:var(--motion-squish-x)] [--squish-y:var(--motion-squish-y)]",
         false: ""
       },
       selected: {
@@ -150,17 +150,17 @@ export const variants = cva(
       {
         squish: true,
         size: "sm",
-        className: "active:scale-x-[var(--motion-squish-x-sm)] active:scale-y-[var(--motion-squish-y-sm)] aria-expanded:scale-x-[var(--motion-squish-x-sm)] aria-expanded:scale-y-[var(--motion-squish-y-sm)] data-[state=open]:scale-x-[var(--motion-squish-x-sm)] data-[state=open]:scale-y-[var(--motion-squish-y-sm)]"
+        className: "[--squish-x:var(--motion-squish-x-sm)] [--squish-y:var(--motion-squish-y-sm)]"
       },
       {
         squish: true,
         size: "md",
-        className: "active:scale-x-[var(--motion-squish-x-md)] active:scale-y-[var(--motion-squish-y-md)] aria-expanded:scale-x-[var(--motion-squish-x-md)] aria-expanded:scale-y-[var(--motion-squish-y-md)] data-[state=open]:scale-x-[var(--motion-squish-x-md)] data-[state=open]:scale-y-[var(--motion-squish-y-md)]"
+        className: "[--squish-x:var(--motion-squish-x-md)] [--squish-y:var(--motion-squish-y-md)]"
       },
       {
         squish: true,
         size: "lg",
-        className: "active:scale-x-[var(--motion-squish-x-lg)] active:scale-y-[var(--motion-squish-y-lg)] aria-expanded:scale-x-[var(--motion-squish-x-lg)] aria-expanded:scale-y-[var(--motion-squish-y-lg)] data-[state=open]:scale-x-[var(--motion-squish-x-lg)] data-[state=open]:scale-y-[var(--motion-squish-y-lg)]"
+        className: "[--squish-x:var(--motion-squish-x-lg)] [--squish-y:var(--motion-squish-y-lg)]"
       }
     ],
     defaultVariants: {

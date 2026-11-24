@@ -30,7 +30,7 @@ export const accordionContentVariants = cva(
     variants: {
       open: {
         true: "opacity-100 scale-100 duration-[var(--motion-duration-slow)] ease-out",
-        false: "opacity-0 scale-[var(--motion-press-scale-expanded)] pointer-events-none duration-[var(--motion-duration-fast)] ease-in",
+        false: "opacity-0 scale-[var(--motion-squish-expanded)] pointer-events-none duration-[var(--motion-duration-fast)] ease-in",
       },
       size: {
         sm: "pb-control-md-y pt-control-sm-y",

@@ -127,10 +127,10 @@ Homonoid requires that view transitions preserve spatial identity rather than fl
 
 Motion reinforces tactile feedback and guarantees spatial continuity:
 
-- Size Specific Press Scale: When pressed, individual tabs scale down using tokens calibrated to their control dimensions:
-  Small size applies `--motion-press-scale-sm` at 0.94 compression.
-  Medium size applies `--motion-press-scale-md` at 0.95 compression.
-  Large size applies `--motion-press-scale-lg` at 0.96 compression.
+- Size Specific Squish: When pressed, individual tabs compress using rectangular squish tokens calibrated to their control dimensions:
+  Small size binds `--motion-squish-x-sm` and `--motion-squish-y-sm`.
+  Medium size binds `--motion-squish-x-md` and `--motion-squish-y-md`.
+  Large size binds `--motion-squish-x-lg` and `--motion-squish-y-lg`.
 - Gliding Indicator: The active background chip animates horizontally using spring physics with high stiffness and balanced damping for instantaneous responsiveness.
 - Easing and Duration: State shifts glide over 250ms normal duration using `--motion-duration-normal` and cubic bezier curves defined by `--motion-easing`.
 

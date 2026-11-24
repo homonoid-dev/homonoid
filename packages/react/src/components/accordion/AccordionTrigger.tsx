@@ -18,7 +18,7 @@ import { AccordionIndicator } from "./AccordionIndicator";
 import type { AccordionTriggerProps } from "./types";
 
 export const accordionTriggerVariants = cva(
-  "group flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale-expanded)] focus-ring cursor-pointer disabled:pointer-events-none disabled:cursor-not-allowed aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed bg-transparent text-foreground hover:text-foreground",
+  "group flex w-full select-none items-center justify-between text-left font-medium subpixel-antialiased transition duration-[var(--motion-duration-fast)] ease-[var(--motion-easing)] active:scale-x-[var(--motion-squish-x-lg)] active:scale-y-[var(--motion-squish-y-lg)] focus-ring cursor-pointer disabled:pointer-events-none disabled:cursor-not-allowed aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed bg-transparent text-foreground hover:text-foreground",
   {
     variants: {
       size: {

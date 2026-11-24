@@ -52,7 +52,7 @@ const compounds = (Object.keys(PALETTES) as Palette[]).flatMap((color) => [
 ]);
 
 export const variants = cva(
-  "relative inline-flex w-full select-none items-center justify-between overflow-hidden text-left font-normal subpixel-antialiased transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] active:scale-[var(--motion-press-scale)] aria-expanded:scale-[var(--motion-press-scale)] data-[state=open]:scale-[var(--motion-press-scale)] focus-ring cursor-pointer disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50",
+  "relative inline-flex w-full select-none items-center justify-between overflow-hidden text-left font-normal subpixel-antialiased transition duration-[var(--motion-duration-normal)] ease-[var(--motion-easing)] squish [--squish-x:var(--motion-squish-x)] [--squish-y:var(--motion-squish-y)] focus-ring cursor-pointer disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50",
   {
     variants: {
       variant: {

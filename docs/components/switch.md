@@ -109,7 +109,7 @@ Homonoid requires that state transitions preserve component identity and spatial
 
 Motion parameters adhere strictly to tactile physics and tokens:
 
-- Press Scale: Tactile press compression (`active:scale-[var(--motion-press-scale)]`) providing calibrated feedback across touch and mouse interactions.
+- Squish Compression: Tactile press compression (`active:scale-[var(--motion-squish-scale)]`) providing calibrated feedback across touch and mouse interactions.
 - Travel Transition: Thumb sliding duration (`duration-[var(--motion-duration-normal)]`) and easing (`ease-[var(--motion-easing)]`) ensuring smooth physical movement.
 - Pure Utility Architecture: Consumes Tailwind CSS utilities and design tokens directly with zero bespoke stylesheets.
 
